@@ -1,0 +1,32 @@
+//
+//  PKTask.m
+//  PodioKit
+//
+//  Created by Sebastian Rehnby on 10/11/11.
+//  Copyright (c) 2011 Podio. All rights reserved.
+//
+
+#import "PKTask.h"
+#import "PKRequestManager.h"
+
+@implementation PKTask
+
+@synthesize taskId = taskId_;
+@synthesize text = text_;
+@synthesize type = type_;
+@synthesize status = status_;
+@synthesize createdOn = createdOn_;
+
+- (void)dealloc {
+  [createdOn_ release];
+  [text_ release];
+  [super dealloc];
+}
+
+#pragma mark - PKMappableObject
+
++ (NSArray *)identityPropertyNames {
+  return [NSArray arrayWithObject:@"taskId"];
+}
+
+@end

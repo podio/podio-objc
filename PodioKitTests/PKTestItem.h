@@ -1,0 +1,27 @@
+//
+//  PKTestItem.h
+//  PodioKit
+//
+//  Created by Sebastian Rehnby on 12/21/11.
+//  Copyright (c) 2011 Podio. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import "PKMappableObject.h"
+#import "PKTestItemApp.h"
+
+@interface PKTestItem : NSObject <PKMappableObject> {
+
+ @private
+  NSNumber *itemId_;
+  NSString *title_;
+  NSArray *fields_;
+  PKTestItemApp *app_;
+}
+
+@property (nonatomic, copy) NSNumber *itemId;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, retain) NSArray *fields;
+@property (nonatomic, retain) PKTestItemApp *app;
+
+@end
