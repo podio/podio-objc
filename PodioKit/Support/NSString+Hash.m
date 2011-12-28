@@ -11,7 +11,7 @@
 
 @implementation NSString (Hash)
 
-- (NSString *)po_MD5String {
+- (NSString *)pk_MD5String {
   const char *src = [self UTF8String];
   unsigned char result[CC_MD5_DIGEST_LENGTH];
   CC_MD5(src, strlen(src), result);
@@ -25,7 +25,7 @@
   return [ret lowercaseString];
 }
 
-- (NSString *)po_SHA1String {
+- (NSString *)pk_SHA1String {
   NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
   uint8_t digest[CC_SHA1_DIGEST_LENGTH];
   

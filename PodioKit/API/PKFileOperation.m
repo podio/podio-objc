@@ -79,12 +79,12 @@
       default:
         // Failed
         POLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
-        requestError = [NSError po_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
+        requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
         break;
     }
   } else {
     NSLog(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
-    requestError = [NSError po_responseParseError];
+    requestError = [NSError pk_responseParseError];
   }
   
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 

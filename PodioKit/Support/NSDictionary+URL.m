@@ -11,10 +11,10 @@
 
 @implementation NSDictionary (URL)
 
-- (NSString *)po_escapedURLStringFromComponents {
+- (NSString *)pk_escapedURLStringFromComponents {
   NSMutableArray *components = [[NSMutableArray alloc] initWithCapacity:[self count]]; 
   [self enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-    NSString *param = [NSString stringWithFormat:@"%@=%@", [key po_escapedURLString], [value po_escapedURLString]];
+    NSString *param = [NSString stringWithFormat:@"%@=%@", [key pk_escapedURLString], [value pk_escapedURLString]];
     [components addObject:param];
   }];
   

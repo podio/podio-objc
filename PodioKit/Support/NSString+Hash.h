@@ -10,8 +10,7 @@
 
 @interface NSString (Hash)
 
-- (NSString *)po_MD5String;
-
-- (NSString *)po_SHA1String;
+- (NSString *)pk_MD5String;
+- (NSString *)pk_SHA1String;
 
 @end

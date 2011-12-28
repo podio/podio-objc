@@ -10,6 +10,6 @@
 
 @interface NSDictionary (URL)
 
-- (NSString *)po_escapedURLStringFromComponents;
+- (NSString *)pk_escapedURLStringFromComponents;
 
 @end

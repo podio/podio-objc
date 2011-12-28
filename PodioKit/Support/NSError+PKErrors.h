@@ -14,8 +14,8 @@ extern NSString * const PKERrorResponseStringKey;
 
 @interface NSError (PKErrors)
 
-+ (NSError *)po_noConnectionError;
-+ (NSError *)po_responseParseError;
-+ (NSError *)po_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString;
++ (NSError *)pk_noConnectionError;
++ (NSError *)pk_responseParseError;
++ (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString;
 
 @end

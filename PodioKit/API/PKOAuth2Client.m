@@ -84,7 +84,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 		[params setValue:username forKey:@"username"];
 		[params setValue:password forKey:@"password"];
     
-    NSString *queryString = [params po_escapedURLStringFromComponents];
+    NSString *queryString = [params pk_escapedURLStringFromComponents];
     NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
     POLogDebug(@"Authentication URL: %@", requestURLString);
     
@@ -120,7 +120,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 		[params setValue:[[NSURL URLWithString:self.redirectURL] absoluteString] forKey:@"redirect_uri"];
 		[params setValue:refreshToken forKey:@"refresh_token"];
     
-    NSString *queryString = [params po_escapedURLStringFromComponents];
+    NSString *queryString = [params pk_escapedURLStringFromComponents];
     NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
     POLogDebug(@"Refresh URL: %@", requestURLString);
     

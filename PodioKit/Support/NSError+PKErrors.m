@@ -14,7 +14,7 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
 
 @implementation NSError (PKErrors)
 
-+ (NSError *)po_noConnectionError {
++ (NSError *)pk_noConnectionError {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"You are not connected to the internet, please try again later.", nil) forKey:NSLocalizedDescriptionKey];
   
@@ -24,7 +24,7 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   return error;
 }
 
-+ (NSError *)po_responseParseError {
++ (NSError *)pk_responseParseError {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"Unable to read the server response.", nil) forKey:NSLocalizedDescriptionKey];
   
@@ -34,7 +34,7 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   return error;
 }
 
-+ (NSError *)po_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString {
++ (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"A server error occurred.", nil) forKey:NSLocalizedDescriptionKey];
   [userInfo setObject:[NSNumber numberWithUnsignedInteger:statusCode] forKey:PKErrorStatusCodeKey];

@@ -10,7 +10,7 @@
 
 @implementation NSString (URL)
 
-- (NSString *)po_escapedURLString {
+- (NSString *)pk_escapedURLString {
   NSString *escapedString = (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                                  (CFStringRef)self,
                                                                                  NULL,

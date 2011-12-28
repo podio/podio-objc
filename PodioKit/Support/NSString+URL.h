@@ -10,6 +10,6 @@
 
 @interface NSString (URL)
 
-- (NSString *)po_escapedURLString;
+- (NSString *)pk_escapedURLString;
 
 @end

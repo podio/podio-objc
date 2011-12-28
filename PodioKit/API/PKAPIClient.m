@@ -200,7 +200,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   NSMutableString *urlString = urlString = [NSMutableString stringWithFormat:@"%@%@", self.baseURLString, path];
     
   if (parameters != nil && [parameters count] > 0) {
-    [urlString appendFormat:@"?%@", [parameters po_escapedURLStringFromComponents]];
+    [urlString appendFormat:@"?%@", [parameters pk_escapedURLStringFromComponents]];
   }
   
   return urlString;
@@ -210,7 +210,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
     // No connection
-    operation.requestCompletionBlock([NSError po_noConnectionError], nil);
+    operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
     return NO;
   }
   
@@ -235,7 +235,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
     // No connection
-    operation.requestCompletionBlock([NSError po_noConnectionError], nil);
+    operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
     return NO;
   }
   
@@ -258,7 +258,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 }
 
 - (NSString *)authorizationHeader {
-  return [NSString stringWithFormat:@"OAuth2 %@", [self.authToken.accessToken po_escapedURLString]];
+  return [NSString stringWithFormat:@"OAuth2 %@", [self.authToken.accessToken pk_escapedURLString]];
 }
 
 - (void)startRequest:(ASIHTTPRequest *)request {

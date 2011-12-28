@@ -99,7 +99,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
         }
       } else {
         NSLog(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
-        requestError = [NSError po_responseParseError];      
+        requestError = [NSError pk_responseParseError];      
       }
       break;
     case 204:
@@ -109,7 +109,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     default:
       // Failed
       POLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
-      requestError = [NSError po_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
+      requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
       break;
   }
   
