@@ -39,7 +39,6 @@
 }
 
 - (NSString *)attributePathComponentsString {
-  NSLog(@"Key %@", [self.attributePathComponents componentsJoinedByString:@"/"]);
   return [self.attributePathComponents componentsJoinedByString:@"/"];
 }
 
