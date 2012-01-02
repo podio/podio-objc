@@ -358,9 +358,11 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   if (didReauthenticate) {
     // Reauthentication
     [self.pendingRequests removeAllObjects];
+    [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishReauthentication object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientReauthenticationFailed object:nil];
   } else {
     // Authentication
+    [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishAuthentication object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientAuthenticationFailed object:nil];
   }
 }
