@@ -23,4 +23,11 @@
   return request;
 }
 
++ (PKRequest *)requestForTaskWithId:(NSUInteger)taskId {
+  NSString *uri = [NSString stringWithFormat:@"/task/%d", taskId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  
+  return request;
+}
+
 @end
