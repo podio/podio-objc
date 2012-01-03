@@ -22,9 +22,9 @@
 
 - (NSDate *)pk_UTCDateFromLocalDate;
 
-- (NSString *)pk_localizedDateStringWithDateStyle:(NSDateFormatterStyle)dateStyle timeStyle:(NSDateFormatterStyle)timeStyle;
-
 - (NSString *)pk_dateTimeStringWithFormatString:(NSString *)formatString;
+
+- (NSString *)pk_dateString;
 
 - (NSString *)pk_dateTimeString;
 

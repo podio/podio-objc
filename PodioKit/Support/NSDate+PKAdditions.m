@@ -63,10 +63,6 @@
 	return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:self] autorelease];
 }
 
-- (NSString *)pk_localizedDateStringWithDateStyle:(NSDateFormatterStyle)dateStyle timeStyle:(NSDateFormatterStyle)timeStyle {
-  return [NSDateFormatter localizedStringFromDate:self dateStyle:dateStyle timeStyle:timeStyle];
-}
-
 - (NSString *)pk_dateTimeStringWithFormatString:(NSString *)formatString {
   NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
 	[formatter setDateFormat:formatString];
@@ -79,6 +75,10 @@
 	[formatter release];
   
 	return dateTimeString;
+}
+
+- (NSString *)pk_dateString {
+	return [self pk_dateTimeStringWithFormatString:@"YYYY-MM-dd"];
 }
 
 - (NSString *)pk_dateTimeString {
