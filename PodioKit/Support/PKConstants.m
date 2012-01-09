@@ -58,35 +58,6 @@
   return type;
 }
 
-typedef enum {
-  POTaskSectionIndexOverdue = 0,
-  POTaskSectionIndexToday,
-  POTaskSectionIndexTomorrow,
-  POTaskSectionIndexUpcoming,
-  POTaskSectionIndexLater,
-} POTaskSectionIndex;
-
-+ (NSUInteger)indexForTaskSection:(NSString *)section {
-  NSUInteger index = 0;
-  
-  if ([section isEqualToString:@"overdue"]) {
-    index = POTaskSectionIndexOverdue;
-  } else if ([section isEqualToString:@"today"]) {
-    index = POTaskSectionIndexToday;    
-  } else if ([section isEqualToString:@"tomorrow"]) {
-    index = POTaskSectionIndexTomorrow;
-  } else if ([section isEqualToString:@"upcoming"]) {
-    index = POTaskSectionIndexUpcoming;
-  } else if ([section isEqualToString:@"later"]) {
-    index = POTaskSectionIndexLater;
-  } else {
-    // Default
-    index = POTaskSectionIndexLater;
-  }
-  
-  return index;
-}
-
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string {
   PKStreamActivityType type = PKStreamActivityTypeNone;

@@ -387,7 +387,6 @@ static NSString * const kPKImageSizeBadge = @"badge"; // 220x160
 // Tasks
 + (PKTaskStatus)taskStatusForString:(NSString *)string;
 + (PKTaskActionType)taskActionTypeForString:(NSString *)string;
-+ (NSUInteger)indexForTaskSection:(NSString *)section;
 
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string;
