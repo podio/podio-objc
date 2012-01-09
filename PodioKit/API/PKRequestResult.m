@@ -44,7 +44,7 @@
 // Lazy evaluate
 - (NSString *)responseString {
   if (responseString_ == nil) {
-    responseString_ = [[self.responseData JSONStringWithOptions:JKParseOptionLooseUnicode error:nil] copy];
+    responseString_ = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
   }
   
   return [[responseString_ copy] autorelease];

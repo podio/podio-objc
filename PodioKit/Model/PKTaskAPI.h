@@ -11,7 +11,11 @@
 
 @interface PKTaskAPI : PKBaseAPI
 
-+ (PKRequest *)requestForActiveTasksWithProfileId:(NSUInteger)profileId;
 + (PKRequest *)requestForTaskWithId:(NSUInteger)taskId;
++ (PKRequest *)requestForTasksWithParameters:(NSDictionary *)parameters;
+
++ (PKRequest *)requestForMyTasksForUserId:(NSUInteger)userId;
++ (PKRequest *)requestForDelegatedTasks;
++ (PKRequest *)requestForCompletedTasks;
 
 @end
