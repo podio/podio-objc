@@ -114,6 +114,72 @@ static NSString * const kPKTaskActionTypeUpdatePrivate = @"update_private";
 static NSString * const kPKTaskActionTypeDelete = @"delete";
 static NSString * const kPKTaskActionTypeUpdateRef = @"update_ref";
 
+// Task groupings
+typedef enum {
+  PKTaskGroupNone = 0,
+  PKTaskGroupOverdue,
+  PKTaskGroupToday,
+  PKTaskGroupTomorrow,
+  PKTaskGroupUpcoming,
+  PKTaskGroupLater,
+  
+  PKTaskGroup1Day,
+  PKTaskGroup2Day,
+  PKTaskGroup3Day,
+  PKTaskGroup4Day,
+  PKTaskGroup5Day,
+  PKTaskGroup6Day,
+  PKTaskGroup1Week,
+  PKTaskGroup2Week,
+  PKTaskGroup3Week,
+  PKTaskGroup4Week,
+  PKTaskGroup1Month,
+  PKTaskGroup2Month,
+  PKTaskGroup3Month,
+  PKTaskGroup4Month,
+  PKTaskGroup5Month,
+  PKTaskGroup6Month,
+  PKTaskGroup7Month,
+  PKTaskGroup8Month,
+  PKTaskGroup9Month,
+  PKTaskGroup10Month,
+  PKTaskGroup11Month,
+  PKTaskGroup12Month,
+  PKTaskGroup1Year,
+  PKTaskGroupOlder,
+} PKTaskGroup;
+
+static NSString * const kPKTaskGroupOverdue = @"overdue";
+static NSString * const kPKTaskGroupToday = @"today";
+static NSString * const kPKTaskGroupTomorrow = @"tomorrow";
+static NSString * const kPKTaskGroupUpcoming = @"upcoming";
+static NSString * const kPKTaskGroupLater = @"later";
+
+static NSString * const kPKTaskGroup1Day = @"1_day";
+static NSString * const kPKTaskGroup2Day = @"2_days";
+static NSString * const kPKTaskGroup3Day = @"3_days";
+static NSString * const kPKTaskGroup4Day = @"4_days";
+static NSString * const kPKTaskGroup5Day = @"5_days";
+static NSString * const kPKTaskGroup6Day = @"6_days";
+static NSString * const kPKTaskGroup1Week = @"1_week";
+static NSString * const kPKTaskGroup2Week = @"2_weeks";
+static NSString * const kPKTaskGroup3Week = @"3_weeks";
+static NSString * const kPKTaskGroup4Week = @"4_weeks";
+static NSString * const kPKTaskGroup1Month = @"1_month";
+static NSString * const kPKTaskGroup2Month = @"2_months";
+static NSString * const kPKTaskGroup3Month = @"3_months";
+static NSString * const kPKTaskGroup4Month = @"4_months";
+static NSString * const kPKTaskGroup5Month = @"5_months";
+static NSString * const kPKTaskGroup6Month = @"6_months";
+static NSString * const kPKTaskGroup7Month = @"7_months";
+static NSString * const kPKTaskGroup8Month = @"8_months";
+static NSString * const kPKTaskGroup9Month = @"9_months";
+static NSString * const kPKTaskGroup10Month = @"10_months";
+static NSString * const kPKTaskGroup11Month = @"11_months";
+static NSString * const kPKTaskGroup12Month = @"12_months";
+static NSString * const kPKTaskGroup1Year = @"1_year";
+static NSString * const kPKTaskGroupOlder = @"older";
+
 #pragma mark - Item
 
 // Field types
@@ -387,6 +453,7 @@ static NSString * const kPKImageSizeBadge = @"badge"; // 220x160
 // Tasks
 + (PKTaskStatus)taskStatusForString:(NSString *)string;
 + (PKTaskActionType)taskActionTypeForString:(NSString *)string;
++ (PKTaskGroup)taskGroupForString:(NSString *)string;
 
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string;

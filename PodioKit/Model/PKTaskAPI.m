@@ -46,7 +46,7 @@
 
 + (PKRequest *)requestForCompletedTasks {
   NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
-  [parameters setObject:@"due_date" forKey:@"grouping"];
+  [parameters setObject:@"completed_on" forKey:@"grouping"];
   [parameters setObject:@"full" forKey:@"view"];
   [parameters setObject:@"1" forKey:@"completed"];
   [parameters setObject:@"user:0" forKey:@"completed_by"];

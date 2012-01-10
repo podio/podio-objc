@@ -58,6 +58,72 @@
   return type;
 }
 
++ (PKTaskGroup)taskGroupForString:(NSString *)string {
+  PKTaskGroup group = PKTaskGroupNone;
+  
+  if ([string isEqualToString:kPKTaskGroupOverdue]) {
+    group = PKTaskGroupOverdue;
+  } else if ([string isEqualToString:kPKTaskGroupToday]) {
+    group = PKTaskGroupToday;
+  } else if ([string isEqualToString:kPKTaskGroupTomorrow]) {
+    group = PKTaskGroupTomorrow;
+  } else if ([string isEqualToString:kPKTaskGroupUpcoming]) {
+    group = PKTaskGroupUpcoming;
+  } else if ([string isEqualToString:kPKTaskGroupLater]) {
+    group = PKTaskGroupLater;
+  } else if ([string isEqualToString:kPKTaskGroup1Day]) {
+    group = PKTaskGroup1Day;
+  } else if ([string isEqualToString:kPKTaskGroup2Day]) {
+    group = PKTaskGroup2Day;
+  } else if ([string isEqualToString:kPKTaskGroup3Day]) {
+    group = PKTaskGroup3Day;
+  } else if ([string isEqualToString:kPKTaskGroup4Day]) {
+    group = PKTaskGroup4Day;
+  } else if ([string isEqualToString:kPKTaskGroup5Day]) {
+    group = PKTaskGroup5Day;
+  } else if ([string isEqualToString:kPKTaskGroup6Day]) {
+    group = PKTaskGroup6Day;
+  } else if ([string isEqualToString:kPKTaskGroup1Week]) {
+    group = PKTaskGroup1Week;
+  } else if ([string isEqualToString:kPKTaskGroup2Week]) {
+    group = PKTaskGroup2Week;
+  } else if ([string isEqualToString:kPKTaskGroup3Week]) {
+    group = PKTaskGroup3Week;
+  } else if ([string isEqualToString:kPKTaskGroup4Week]) {
+    group = PKTaskGroup4Week;
+  } else if ([string isEqualToString:kPKTaskGroup1Month]) {
+    group = PKTaskGroup1Month;
+  } else if ([string isEqualToString:kPKTaskGroup2Month]) {
+    group = PKTaskGroup2Month;
+  } else if ([string isEqualToString:kPKTaskGroup3Month]) {
+    group = PKTaskGroup3Month;
+  } else if ([string isEqualToString:kPKTaskGroup4Month]) {
+    group = PKTaskGroup4Month;
+  } else if ([string isEqualToString:kPKTaskGroup5Month]) {
+    group = PKTaskGroup5Month;
+  } else if ([string isEqualToString:kPKTaskGroup6Month]) {
+    group = PKTaskGroup6Month;
+  } else if ([string isEqualToString:kPKTaskGroup7Month]) {
+    group = PKTaskGroup7Month;
+  } else if ([string isEqualToString:kPKTaskGroup8Month]) {
+    group = PKTaskGroup8Month;
+  } else if ([string isEqualToString:kPKTaskGroup9Month]) {
+    group = PKTaskGroup9Month;
+  } else if ([string isEqualToString:kPKTaskGroup10Month]) {
+    group = PKTaskGroup10Month;
+  } else if ([string isEqualToString:kPKTaskGroup11Month]) {
+    group = PKTaskGroup11Month;
+  } else if ([string isEqualToString:kPKTaskGroup12Month]) {
+    group = PKTaskGroup12Month;
+  } else if ([string isEqualToString:kPKTaskGroup1Year]) {
+    group = PKTaskGroup1Year;
+  } else if ([string isEqualToString:kPKTaskGroupOlder]) {
+    group = PKTaskGroupOlder;
+  }
+  
+  return group;
+}
+
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string {
   PKStreamActivityType type = PKStreamActivityTypeNone;
