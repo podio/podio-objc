@@ -17,41 +17,48 @@
   return request;
 }
 
-+ (PKRequest *)requestForTasksWithParameters:(NSDictionary *)parameters {
++ (PKRequest *)requestForTasksWithParameters:(NSDictionary *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKRequest *request = [PKRequest requestWithURI:@"/task/" method:PKAPIRequestMethodGET];
+  
+  [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+  
   [request.parameters addEntriesFromDictionary:parameters];
   
   return request;
 }
 
-+ (PKRequest *)requestForMyTasksForUserId:(NSUInteger)userId {
++ (PKRequest *)requestForMyTasksForUserId:(NSUInteger)userId offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
   [parameters setObject:@"due_date" forKey:@"grouping"];
   [parameters setObject:@"full" forKey:@"view"];
   [parameters setObject:[NSString stringWithFormat:@"%d", userId] forKey:@"responsible"];
   [parameters setObject:@"0" forKey:@"completed"];
   
-  return [self requestForTasksWithParameters:parameters];
+  return [self requestForTasksWithParameters:parameters offset:offset limit:limit];
 }
 
-+ (PKRequest *)requestForDelegatedTasks {
++ (PKRequest *)requestForDelegatedTasksOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
   [parameters setObject:@"due_date" forKey:@"grouping"];
   [parameters setObject:@"full" forKey:@"view"];
   [parameters setObject:@"0" forKey:@"completed"];
   [parameters setObject:@"1" forKey:@"reassigned"];
   
-  return [self requestForTasksWithParameters:parameters];
+  return [self requestForTasksWithParameters:parameters offset:offset limit:limit];
 }
 
-+ (PKRequest *)requestForCompletedTasks {
++ (PKRequest *)requestForCompletedTasksWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
   [parameters setObject:@"completed_on" forKey:@"grouping"];
   [parameters setObject:@"full" forKey:@"view"];
   [parameters setObject:@"1" forKey:@"completed"];
   [parameters setObject:@"user:0" forKey:@"completed_by"];
   
-  return [self requestForTasksWithParameters:parameters];
+  return [self requestForTasksWithParameters:parameters offset:offset limit:limit];
 }
 
 @end

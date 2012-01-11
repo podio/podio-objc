@@ -12,10 +12,10 @@
 @interface PKTaskAPI : PKBaseAPI
 
 + (PKRequest *)requestForTaskWithId:(NSUInteger)taskId;
-+ (PKRequest *)requestForTasksWithParameters:(NSDictionary *)parameters;
++ (PKRequest *)requestForTasksWithParameters:(NSDictionary *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
-+ (PKRequest *)requestForMyTasksForUserId:(NSUInteger)userId;
-+ (PKRequest *)requestForDelegatedTasks;
-+ (PKRequest *)requestForCompletedTasks;
++ (PKRequest *)requestForMyTasksForUserId:(NSUInteger)userId offset:(NSUInteger)offset limit:(NSUInteger)limit;
++ (PKRequest *)requestForDelegatedTasksOffset:(NSUInteger)offset limit:(NSUInteger)limit;
++ (PKRequest *)requestForCompletedTasksWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 @end
