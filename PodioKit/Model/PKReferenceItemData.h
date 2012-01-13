@@ -15,11 +15,13 @@
   NSString *title_;
   NSString *appName_;
   NSString *appItemName_;
+  NSString *appIcon_;
 }
 
 @property (nonatomic) NSInteger itemId;
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, copy) NSString *appName;
 @property (nonatomic, copy) NSString *appItemName;
+@property (nonatomic, copy) NSString *appIcon;
 
 @end
