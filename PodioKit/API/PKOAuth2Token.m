@@ -58,7 +58,8 @@ static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
 }
 
 - (BOOL)hasExpired {
-  return [self.expiresOn compare:[NSDate date]] == NSOrderedAscending;
+  NSDate *safeCompareDate = [NSDate dateWithTimeIntervalSinceNow:10 * 60]; // If less than 10 minutes left, refresh
+  return [self.expiresOn compare:safeCompareDate] == NSOrderedAscending;
 }
 
 @end

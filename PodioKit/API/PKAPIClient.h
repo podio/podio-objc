@@ -80,4 +80,6 @@ extern NSString * const POAPIClientRequestFailed;
 
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken;
 
+- (void)needsReauthentication;
+
 @end
