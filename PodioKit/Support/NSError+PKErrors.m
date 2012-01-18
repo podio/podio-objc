@@ -24,6 +24,16 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   return error;
 }
 
++ (NSError *)pk_requestCancelledError {
+  NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+  [userInfo setObject:NSLocalizedString(@"The request was cancelled.", nil) forKey:NSLocalizedDescriptionKey];
+  
+  NSError *error = [NSError errorWithDomain:kPodioKitErrorDomain code:PKErrorCodeRequestCancelled userInfo:userInfo];
+  [userInfo release];
+  
+  return error;
+}
+
 + (NSError *)pk_responseParseError {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"Unable to read the server response.", nil) forKey:NSLocalizedDescriptionKey];

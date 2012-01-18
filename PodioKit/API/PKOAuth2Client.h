@@ -20,7 +20,6 @@ typedef enum {
 extern NSString * const PKOAuth2ClientDidReceiveAccessTokenNotification;
 extern NSString * const PKOAuth2ClientFailedToReceiveTokenNotification;
 
-
 @class PKOAuth2Client;
 
 @protocol PKOAuth2ClientDelegate <NSObject>

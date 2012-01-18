@@ -50,6 +50,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (void)startRequest:(ASIHTTPRequest *)request;
 - (void)resendPendingRequests;
+- (void)cancelPendingRequests;
 
 @end
 
@@ -90,6 +91,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     
     isRefreshingToken_ = NO;
     isAuthenticating_ = NO;
+    isReuthenticating_ = NO;
     
     fileUploadURLString_ = [kDefaultFileUploadURL copy];
     fileDownloadURLString_ = [kDefaultFileDownloadURL copy];
@@ -150,6 +152,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)reauthenticateWithEmail:(NSString *)email password:(NSString *)password {
   if (isReuthenticating_) {
     POLogDebug(@"Already in the process of re-authenticating.");
+    return;
   }
   
   @synchronized(self) {
@@ -207,7 +210,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 }
 
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation {
-
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
     // No connection
     operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
@@ -232,7 +234,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 }
 
 - (BOOL)addFileOperation:(PKFileOperation *)operation {
-  
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
     // No connection
     operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
@@ -290,6 +291,15 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     }
     
     [self startRequest:request];
+  }];
+  
+  [self.pendingRequests removeAllObjects];
+}
+
+- (void)cancelPendingRequests {
+  [self.pendingRequests enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    PKRequestOperation *operation = obj;
+    operation.requestCompletionBlock([NSError pk_requestCancelledError], nil);
   }];
   
   [self.pendingRequests removeAllObjects];
@@ -357,7 +367,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   if (didReauthenticate) {
     // Reauthentication
-    [self.pendingRequests removeAllObjects];
     [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishReauthentication object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientReauthenticationFailed object:nil];
   } else {
@@ -365,6 +374,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishAuthentication object:nil];
     [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientAuthenticationFailed object:nil];
   }
+  
+  [self cancelPendingRequests];
 }
 
 - (void)oauthClientTokenRefreshDidFail:(PKOAuth2Client *)oauthClient {
@@ -372,7 +383,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   self.authToken = nil;
   
-  [self.pendingRequests removeAllObjects];
+  [self cancelPendingRequests];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientTokenRefreshFailed object:nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientNeedsReauthentication object:nil];

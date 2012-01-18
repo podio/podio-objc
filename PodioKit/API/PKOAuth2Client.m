@@ -12,6 +12,9 @@
 #import "JSONKit.h"
 
 
+NSString * const PKOAuth2ClientDidReceiveAccessTokenNotification = @"PKOAuth2ClientDidReceiveAccessTokenNotification";
+NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2ClientFailedToReceiveTokenNotification";
+
 @interface PKOAuth2Client ()
 
 @property (nonatomic) PKOAuth2RequestType requestType;
@@ -27,10 +30,6 @@
 @synthesize requests = requests_;
 @synthesize requestType = requestType_;
 @synthesize delegate = delegate_;
-
-
-NSString * const PKOAuth2ClientDidReceiveAccessTokenNotification = @"PKOAuth2ClientDidReceiveAccessTokenNotification";
-NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2ClientFailedToReceiveTokenNotification";
 
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL redirectURL:(NSString *)redirectURL {
   self = [super init];
@@ -71,6 +70,8 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
   NSAssert(self.clientSecret != nil, @"Client secret not configured.");
   NSAssert(self.tokenURL != nil, @"Token URL not configured.");
   NSAssert(self.redirectURL != nil, @"Redirect URL not configured.");
+  NSAssert(username != nil, @"Username cannot be nil.");
+  NSAssert(password != nil, @"Password cannot be nil.");
   
   @synchronized(self) {
     // Only allow one active request at a time
@@ -108,6 +109,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
   NSAssert(self.clientSecret != nil, @"Client secret not configured.");
   NSAssert(self.tokenURL != nil, @"Token URL not configured.");
   NSAssert(self.redirectURL != nil, @"Redirect URL not configured.");
+  NSAssert(refreshToken != nil, @"Refresh token cannot be nil.");
   
   @synchronized(self) {
     // Only allow one active request at a time
@@ -141,13 +143,14 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-  [self.requests removeObject:request];
+  POLogDebug(@"Authentication request finished with status code %d", [request responseStatusCode]);
   
-  POLogDebug(@"Authentication request succeeded with status code %d", [request responseStatusCode]);
+  [self.requests removeObject:request];
+  PKOAuth2RequestType requestType = self.requestType;
+  self.requestType = PKOAuth2RequestTypeNone;
   
   NSError *error = nil;
   id parsedData = [[request responseData] objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
-  
   if (error != nil) {
     POLogError(@"Failed to parse response data");
     return;
@@ -166,48 +169,46 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     PKOAuth2Token *token = [PKOAuth2Token tokenWithAccessToken:accessToken refreshToken:refreshToken expiresOn:expiresOn];
     
     // Notify
-    if (self.requestType == PKOAuth2RequestTypeAuthenticate) {
+    if (requestType == PKOAuth2RequestTypeAuthenticate) {
       if ([self.delegate respondsToSelector:@selector(oauthClient:didReceiveToken:)]) {
         [self.delegate oauthClient:self didReceiveToken:token];
       }
-    } else if (self.requestType == PKOAuth2RequestTypeRefreshToken) {
+    } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
       if ([self.delegate respondsToSelector:@selector(oauthClient:didReceiveToken:)]) {
         [self.delegate oauthClient:self didRefreshToken:token];
       }
     }
-  } else if (self.requestType == PKOAuth2RequestTypeAuthenticate) {
+  } else if (requestType == PKOAuth2RequestTypeAuthenticate) {
     // Authentication failed
     if ([self.delegate respondsToSelector:@selector(oauthClientAuthenticationDidFail:)]) {
       [self.delegate oauthClientAuthenticationDidFail:self];
     }
-  } else if (self.requestType == PKOAuth2RequestTypeRefreshToken) {
+  } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
     // Refresh failed
     if ([self.delegate respondsToSelector:@selector(oauthClientTokenRefreshDidFail:)]) {
       [self.delegate oauthClientTokenRefreshDidFail:self];
     }
   }
-  
-  self.requestType = PKOAuth2RequestTypeNone;
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-  [self.requests removeObject:request];
-  
   POLogDebug(@"Authentication request failed with status code %d", [request responseStatusCode]);
   
-  if (self.requestType == PKOAuth2RequestTypeAuthenticate) {
+  [self.requests removeObject:request];
+  PKOAuth2RequestType requestType = self.requestType;
+  self.requestType = PKOAuth2RequestTypeNone;
+  
+  if (requestType == PKOAuth2RequestTypeAuthenticate) {
     // Authentication failed
     if ([self.delegate respondsToSelector:@selector(oauthClientAuthenticationDidFail:)]) {
       [self.delegate oauthClientAuthenticationDidFail:self];
     }
-  } else if (self.requestType == PKOAuth2RequestTypeRefreshToken) {
+  } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
     // Refresh failed
     if ([self.delegate respondsToSelector:@selector(oauthClientTokenRefreshDidFail:)]) {
       [self.delegate oauthClientTokenRefreshDidFail:self];
     }
   }
-  
-  self.requestType = PKOAuth2RequestTypeNone;
 }
 
 @end
