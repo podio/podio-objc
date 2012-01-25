@@ -27,4 +27,11 @@
 + (PKRequest *)requestToUpdateDescriptionForTaskWithId:(NSUInteger)taskId description:(NSString *)description;
 + (PKRequest *)requestToUpdateDueDateForTaskWithId:(NSUInteger)taskId dueDate:(NSDate *)dueDate;
 
++ (PKRequest *)requestToCreateTaskWithText:(NSString *)text 
+                               description:(NSString *)description 
+                                   dueDate:(NSDate *)dueDate 
+                               responsible:(NSUInteger)responsible 
+                                 isPrivate:(BOOL)isPrivate 
+                               referenceId:(NSUInteger)referenceId 
+                             referenceType:(PKReferenceType)referenceType;
 @end

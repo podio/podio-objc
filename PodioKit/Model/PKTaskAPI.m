@@ -119,4 +119,47 @@
   return request;
 }
 
++ (PKRequest *)requestToCreateTaskWithText:(NSString *)text 
+                               description:(NSString *)description 
+                                   dueDate:(NSDate *)dueDate 
+                               responsible:(NSUInteger)responsible 
+                                 isPrivate:(BOOL)isPrivate 
+                               referenceId:(NSUInteger)referenceId 
+                             referenceType:(PKReferenceType)referenceType {
+  BOOL hasReference = referenceType != PKReferenceTypeNone && referenceId > 0;
+  
+  PKRequest *request = nil;
+  
+  if (hasReference) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%@/%d/", [PKConstants stringForReferenceType:referenceType], referenceId] method:PKAPIRequestMethodPOST];
+  } else {
+    request = [PKRequest requestWithURI:@"/task/" method:PKAPIRequestMethodPOST];
+  }
+  
+  NSMutableDictionary *body = [NSMutableDictionary dictionary];
+  [body setObject:text forKey:@"text"];
+  
+  if (responsible > 0) {
+    [body setObject:[NSNumber numberWithUnsignedInteger:responsible] forKey:@"responsible"];
+  }
+  
+  if (description != nil) {
+    [body setObject:description forKey:@"description"];
+  }
+  
+  if (dueDate != nil) {
+    [body setObject:[[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"due_on"];
+  }
+  
+  if (hasReference) {
+    [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
+    [body setObject:[NSNumber numberWithUnsignedInteger:referenceId] forKey:@"ref_id"];
+    [body setObject:[NSNumber numberWithBool:isPrivate] forKey:@"private"];
+  }
+  
+  request.body = body;
+  
+  return request;
+}
+
 @end
