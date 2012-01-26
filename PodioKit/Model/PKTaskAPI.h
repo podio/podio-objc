@@ -34,4 +34,7 @@
                                  isPrivate:(BOOL)isPrivate 
                                referenceId:(NSUInteger)referenceId 
                              referenceType:(PKReferenceType)referenceType;
+
++ (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId;
+
 @end

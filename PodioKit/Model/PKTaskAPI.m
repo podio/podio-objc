@@ -162,4 +162,8 @@
   return request;
 }
 
++ (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKAPIRequestMethodDELETE];
+}
+
 @end
