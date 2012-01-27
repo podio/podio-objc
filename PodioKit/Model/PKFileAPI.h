@@ -14,7 +14,8 @@
 @interface PKFileAPI : PKBaseAPI
 
 + (PKFileOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
-
 + (PKFileOperation *)uploadFileWithImage:(UIImage *)image completion:(PKRequestCompletionBlock)completion;
+
++ (PKRequest *)requestToAttachFileWithId:(NSUInteger)fileId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 
 @end

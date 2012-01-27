@@ -125,7 +125,8 @@
                                responsible:(NSUInteger)responsible 
                                  isPrivate:(BOOL)isPrivate 
                                referenceId:(NSUInteger)referenceId 
-                             referenceType:(PKReferenceType)referenceType {
+                             referenceType:(PKReferenceType)referenceType 
+                                   fileIds:(NSArray *)fileIds {
   BOOL hasReference = referenceType != PKReferenceTypeNone && referenceId > 0;
   
   PKRequest *request = nil;
@@ -155,6 +156,10 @@
     [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
     [body setObject:[NSNumber numberWithUnsignedInteger:referenceId] forKey:@"ref_id"];
     [body setObject:[NSNumber numberWithBool:isPrivate] forKey:@"private"];
+  }
+  
+  if ([fileIds count] > 0) {
+    [body setObject:fileIds forKey:@"file_ids"];
   }
   
   request.body = body;

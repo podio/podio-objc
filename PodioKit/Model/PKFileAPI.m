@@ -30,4 +30,14 @@
   return operation;
 }
 
++ (PKRequest *)requestToAttachFileWithId:(NSUInteger)fileId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d/attach", fileId] method:PKAPIRequestMethodPOST];
+  
+  request.body = [NSDictionary dictionaryWithObjectsAndKeys:
+                  [PKConstants stringForReferenceType:referenceType], @"ref_type", 
+                  [NSNumber numberWithUnsignedInteger:referenceId], @"ref_id", nil];
+  
+  return request;
+}
+
 @end
