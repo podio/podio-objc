@@ -177,7 +177,7 @@
 
 + (PKRequest *)requestForTaskTotalsForSpaceWithId:(NSUInteger)spaceId {
   PKRequest *request = [PKRequest requestWithURI:@"/task/total/" method:PKAPIRequestMethodGET];
-  [request.parameters setObject:[NSNumber numberWithUnsignedInteger:spaceId] forKey:@"space"];
+  [request.parameters setObject:[NSString stringWithFormat:@"%d", spaceId] forKey:@"space"];
   
   return request;
 }
