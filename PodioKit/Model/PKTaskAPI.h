@@ -38,4 +38,7 @@
 
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId;
 
++ (PKRequest *)requestForTaskTotals;
++ (PKRequest *)requestForTaskTotalsForSpaceWithId:(NSUInteger)spaceId;
+
 @end

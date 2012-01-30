@@ -171,4 +171,15 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKAPIRequestMethodDELETE];
 }
 
++ (PKRequest *)requestForTaskTotals {
+  return [PKRequest requestWithURI:@"/task/total/" method:PKAPIRequestMethodGET];
+}
+
++ (PKRequest *)requestForTaskTotalsForSpaceWithId:(NSUInteger)spaceId {
+  PKRequest *request = [PKRequest requestWithURI:@"/task/total/" method:PKAPIRequestMethodGET];
+  [request.parameters setObject:[NSNumber numberWithUnsignedInteger:spaceId] forKey:@"space"];
+  
+  return request;
+}
+
 @end
