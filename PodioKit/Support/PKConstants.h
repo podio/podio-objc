@@ -448,6 +448,7 @@ static NSString * const kPKAvatarSizeLarge = @"large";    // 160x160
 
 static NSString * const kPKImageSizeMedium = @"medium"; // 80x80
 static NSString * const kPKImageSizeBadge = @"badge"; // 220x160
+static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 @interface PKConstants : NSObject
 
