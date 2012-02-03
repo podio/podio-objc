@@ -327,6 +327,8 @@
 		50CC1D6C148CDA3A000B57EA /* PKStreamAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D52148CDA3A000B57EA /* PKStreamAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D6D148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
 		50CC1D6E148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
+		50D3FA7F14DAFB17008853BB /* PKReferenceMeetingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */; };
+		50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */; };
 		50F4FBC314487EDA00317E62 /* PKOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F4FBC114487EDA00317E62 /* PKOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50F4FBC414487EDA00317E62 /* PKOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */; };
 		50F4FBC514487EDA00317E62 /* PKOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */; };
@@ -588,6 +590,8 @@
 		50CC1D51148CDA39000B57EA /* PKRatingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRatingAPI.m; sourceTree = "<group>"; };
 		50CC1D52148CDA3A000B57EA /* PKStreamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamAPI.h; sourceTree = "<group>"; };
 		50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamAPI.m; sourceTree = "<group>"; };
+		50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceMeetingData.h; sourceTree = "<group>"; };
+		50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMeetingData.m; sourceTree = "<group>"; };
 		50F4FBC114487EDA00317E62 /* PKOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKOAuth2Client.h; sourceTree = "<group>"; };
 		50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKOAuth2Client.m; sourceTree = "<group>"; };
 		50F4FBC61448892700317E62 /* NSDictionary+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URL.h"; sourceTree = "<group>"; };
@@ -769,6 +773,8 @@
 				5030C0371435E76300027F07 /* PKReferenceRatingData.m */,
 				50B529F5148FC06800E05852 /* PKReferenceAlertData.h */,
 				50B529F6148FC06800E05852 /* PKReferenceAlertData.m */,
+				50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */,
+				50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */,
 			);
 			name = Reference;
 			sourceTree = "<group>";
@@ -1312,6 +1318,7 @@
 				50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */,
 				50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */,
 				50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */,
+				50D3FA7F14DAFB17008853BB /* PKReferenceMeetingData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1519,6 +1526,7 @@
 				50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */,
 				50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */,
 				502B9CCF14A7DF76009510F1 /* PKDefaultMappingProvider.m in Sources */,
+				50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

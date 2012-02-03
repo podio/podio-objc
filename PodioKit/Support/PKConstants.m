@@ -335,6 +335,8 @@
     type = PKReferenceTypeAction;
   } else if ([string isEqualToString:kPKReferenceTypeContract]) {
     type = PKReferenceTypeContract;
+  } else if ([string isEqualToString:kPKReferenceTypeMeeting]) {
+    type = PKReferenceTypeMeeting;
   }
   
   return type;
@@ -458,6 +460,9 @@
     case PKReferenceTypeContract:
       string = kPKReferenceTypeContract;
       break;
+    case PKReferenceTypeMeeting:
+      string = kPKReferenceTypeMeeting;
+      break;
     default:
       break;
   }
@@ -538,6 +543,12 @@
     type = PKNotificationTypeSelfKickedFromSpace;
   } else if ([string isEqualToString:kPKNotificationTypeSpaceCreate]) {
     type = PKNotificationTypeSpaceCreate;
+  } else if ([string isEqualToString:kPKNotificationTypeMeetingStarted]) {
+    type = PKNotificationTypeMeetingStarted;
+  } else if ([string isEqualToString:kPKNotificationTypeMeetingParticipantAdd]) {
+    type = PKNotificationTypeMeetingParticipantAdd;
+  } else if ([string isEqualToString:kPKNotificationTypeMeetingParticipantRemove]) {
+    type = PKNotificationTypeMeetingParticipantRemove;
   }
   
   return type;

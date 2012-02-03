@@ -331,7 +331,7 @@ typedef enum {
   PKReferenceTypeContract,
 //  PKReferenceTypeInvoice,
 //  PKReferenceTypePayment,
-//  PKReferenceTypeMeeting,
+  PKReferenceTypeMeeting,
 } PKReferenceType;
 
 static NSString * const kPKReferenceTypeApp = @"app";
@@ -375,7 +375,7 @@ static NSString * const kPKReferenceTypeAction = @"action";
 static NSString * const kPKReferenceTypeContract = @"contract";
 //static NSString * const kPKReferenceTypeInvoice = @"invoice";
 //static NSString * const kPKReferenceTypePayment = @"payment";
-//static NSString * const kPKReferenceTypeMeeting = @"meeting";
+static NSString * const kPKReferenceTypeMeeting = @"meeting";
 
 // Notifications
 typedef enum {
