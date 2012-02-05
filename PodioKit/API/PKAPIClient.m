@@ -114,7 +114,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)setBaseURLString:(NSString *)baseURLString {
   NSURL *baseURL = [NSURL URLWithString:baseURLString];
   if (baseURLString == nil) {
-    POLogError(@"Invalid base URL: %@", baseURLString);
+    PKLogError(@"Invalid base URL: %@", baseURLString);
     return;
   }
   
@@ -146,7 +146,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   NSAssert(self.oauthClient != nil, @"API client not yet configured with OAuth2 client id and secret.");
   
   if (isAuthenticating_) {
-    POLogDebug(@"Already in the process of authenticating.");
+    PKLogDebug(@"Already in the process of authenticating.");
     return;
   }
   
@@ -160,7 +160,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (void)reauthenticateWithEmail:(NSString *)email password:(NSString *)password {
   if (isReuthenticating_) {
-    POLogDebug(@"Already in the process of re-authenticating.");
+    PKLogDebug(@"Already in the process of re-authenticating.");
     return;
   }
   
@@ -186,7 +186,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken {
   if (isRefreshingToken_) {
-    POLogDebug(@"Already in the process of refreshing token.");
+    PKLogDebug(@"Already in the process of refreshing token.");
     return;
   }
   
@@ -332,12 +332,12 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (void)startRequest:(ASIHTTPRequest *)request {
 #ifdef DEBUG
-  POLogDebug(@"Request URL: %@", [request.url absoluteString]);
-  POLogDebug(@"Headers:");
+  PKLogDebug(@"Request URL: %@", [request.url absoluteString]);
+  PKLogDebug(@"Headers:");
   
   if ([[request requestHeaders] count] > 0) {
     [[request requestHeaders] enumerateKeysAndObjectsUsingBlock:^(id name, id value, BOOL *stop) {
-      POLogDebug(@"  %@: %@", name, value); 
+      PKLogDebug(@"  %@: %@", name, value); 
     }];
   }
 #endif

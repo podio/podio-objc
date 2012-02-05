@@ -4,7 +4,7 @@
 
 #ifdef __OBJC__
   #import <Foundation/Foundation.h>
-  #import "PKLogging.h"
+  #import "PKLog.h"
   #import "PKConstants.h"
   #import "NSError+PKErrors.h"
 #endif

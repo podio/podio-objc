@@ -75,7 +75,7 @@
   NSString *className = NSStringFromClass([self.mapping class]);
   Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
   if (klass == nil) {
-    POLogDebug(@"No object class for mapping class %@, skipping...", className);
+    PKLogDebug(@"No object class for mapping class %@, skipping...", className);
     return nil;
   }
   
@@ -161,13 +161,13 @@
   Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
   
   if (klass == nil) {
-    POLogWarn(@"No object class for mapping class %@, skipping...", className);
+    PKLogWarn(@"No object class for mapping class %@, skipping...", className);
     return nil;
   }
   
   // Skip this object?
   if (![[mapping class] shouldPerformMappingWithData:objectDict]) {
-    POLogDebug(@"Skipping mapping for class %@ with data %@...", className, objectDict);
+    PKLogDebug(@"Skipping mapping for class %@ with data %@...", className, objectDict);
     return nil;
   }
   
@@ -295,7 +295,7 @@
       id value = [valueMapping evaluateForValue:attributeValue objectDict:objectDict parent:parentObject];
       [(id)object setValue:value forKey:valueMapping.propertyName];
     } else {
-      POLogDebug(@"No selector for mapping property name '%@'", valueMapping.propertyName);
+      PKLogDebug(@"No selector for mapping property name '%@'", valueMapping.propertyName);
     }
   }
   else if ([mapping isMemberOfClass:[PKRelationshipMapping class]]) {
@@ -321,7 +321,7 @@
   NSString *className = NSStringFromClass([mapping.objectMapping class]);
   Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
   if (klass == nil) {
-    POLogWarn(@"No object class for mapping class %@, skipping...", className);
+    PKLogWarn(@"No object class for mapping class %@, skipping...", className);
     return nil;
   }
   
@@ -431,7 +431,7 @@
     NSString *className = NSStringFromClass([mapping.objectMapping class]);
     Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
     if (klass == nil) {
-      POLogWarn(@"No object class for mapping class %@, skipping...", className);
+      PKLogWarn(@"No object class for mapping class %@, skipping...", className);
       return;
     }
     

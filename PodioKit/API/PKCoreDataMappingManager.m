@@ -80,7 +80,7 @@
     // Save context
     NSError *error = nil;
     if (![context save:&error]) {
-      POLogError(@"ERROR: Failed to save mapper context: %@, %@", error, [error userInfo]);
+      PKLogError(@"ERROR: Failed to save mapper context: %@, %@", error, [error userInfo]);
     }
   }
 }

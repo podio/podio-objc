@@ -86,8 +86,8 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   switch (self.responseStatusCode) {
     case 200:
     case 201:
-      POLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-      //      POLogDebug(@"Response body: %@", data);
+      PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
+      //      PKLogDebug(@"Response body: %@", data);
       
       NSError *parseError = nil;
       parsedData = [self.responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
@@ -104,11 +104,11 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
       break;
     case 204:
       // Success but no data
-      POLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
+      PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
       break;
     default:
       // Failed
-      POLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
+      PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
       requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
       break;
   }
@@ -135,9 +135,9 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   if (![self isCancelled] && 
       !([[theError domain] isEqualToString:NetworkRequestErrorDomain] && [theError code] == ASIRequestCancelledErrorType)) { // Request cancelled
     
-    POLogError(@"Request failed with code %d, %@, ", [self responseStatusCode], [self responseString]);
-    POLogError(@"Request failed with error: %@, %@", [theError localizedDescription], [theError userInfo]);
-    POLogError(@"Request debug info:\n  Method: %@\n  URL: %@\n  Headers: %@", [self requestMethod], [[self url] absoluteString], [self requestHeaders]);
+    PKLogError(@"Request failed with code %d, %@, ", [self responseStatusCode], [self responseString]);
+    PKLogError(@"Request failed with error: %@, %@", [theError localizedDescription], [theError userInfo]);
+    PKLogError(@"Request debug info:\n  Method: %@\n  URL: %@\n  Headers: %@", [self requestMethod], [[self url] absoluteString], [self requestHeaders]);
 
     // Completion handler on main thread
     if (self.requestCompletionBlock != nil) {

@@ -87,7 +87,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     
     NSString *queryString = [params pk_escapedURLStringFromComponents];
     NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
-    POLogDebug(@"Authentication URL: %@", requestURLString);
+    PKLogDebug(@"Authentication URL: %@", requestURLString);
     
     [params release];
     
@@ -124,7 +124,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     
     NSString *queryString = [params pk_escapedURLStringFromComponents];
     NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
-    POLogDebug(@"Refresh URL: %@", requestURLString);
+    PKLogDebug(@"Refresh URL: %@", requestURLString);
     
     [params release];
     
@@ -143,7 +143,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-  POLogDebug(@"Authentication request finished with status code %d", [request responseStatusCode]);
+  PKLogDebug(@"Authentication request finished with status code %d", [request responseStatusCode]);
   
   [self.requests removeObject:request];
   PKOAuth2RequestType requestType = self.requestType;
@@ -152,11 +152,11 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
   NSError *error = nil;
   id parsedData = [[request responseData] objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
   if (error != nil) {
-    POLogError(@"Failed to parse response data");
+    PKLogError(@"Failed to parse response data");
     return;
   }
   
-  POLogDebug(@"Response body: %@", parsedData);
+  PKLogDebug(@"Response body: %@", parsedData);
   
   if (request.responseStatusCode == 200) {
     // Got a new token
@@ -192,7 +192,7 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
-  POLogDebug(@"Authentication request failed with status code %d", [request responseStatusCode]);
+  PKLogDebug(@"Authentication request failed with status code %d", [request responseStatusCode]);
   
   [self.requests removeObject:request];
   PKOAuth2RequestType requestType = self.requestType;

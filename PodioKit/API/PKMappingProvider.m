@@ -63,7 +63,7 @@
   Class klass = NSClassFromString(className);
   
   if (klass == nil) {
-    POLogDebug(@"No mapping for class name %@", mappedClassName);
+    PKLogDebug(@"No mapping for class name %@", mappedClassName);
   }
   
   return klass;
