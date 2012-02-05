@@ -549,6 +549,8 @@
     type = PKNotificationTypeMeetingParticipantAdd;
   } else if ([string isEqualToString:kPKNotificationTypeMeetingParticipantRemove]) {
     type = PKNotificationTypeMeetingParticipantRemove;
+  } else if ([string isEqualToString:kPKNotificationTypeReminder]) {
+    type = PKNotificationTypeReminder;
   }
   
   return type;
