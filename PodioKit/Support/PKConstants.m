@@ -125,6 +125,22 @@
 }
 
 // Stream
++ (PKReferenceType)streamObjectTypeForString:(NSString *)string {
+  PKReferenceType type = PKReferenceTypeNone;
+  
+  if ([string isEqualToString:kPKReferenceTypeItem]) {
+    type = PKReferenceTypeItem;
+  } else if ([string isEqualToString:kPKReferenceTypeStatus]) {
+    type = PKReferenceTypeStatus;
+  } else if ([string isEqualToString:kPKReferenceTypeTask]) {
+    type = PKReferenceTypeTask;
+  } else if ([string isEqualToString:kPKReferenceTypeAction]) {
+    type = PKReferenceTypeAction;
+  }
+  
+  return type;
+}
+
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string {
   PKStreamActivityType type = PKStreamActivityTypeNone;
 

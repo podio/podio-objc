@@ -458,6 +458,7 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 + (PKTaskGroup)taskGroupForString:(NSString *)string;
 
 // Stream
++ (PKReferenceType)streamObjectTypeForString:(NSString *)string;
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string;
 
 // Action
