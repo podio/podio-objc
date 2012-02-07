@@ -572,4 +572,16 @@
   return type;
 }
 
+#pragma mark - Meetings
+
++ (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string {
+  PKMeetingPluginType type = PKMeetingPluginTypeNone;
+  
+  if ([string isEqualToString:kPKMeetingPluginTypeCitrix]) {
+    type = PKMeetingPluginTypeCitrix;
+  }
+  
+  return type;
+}
+
 @end

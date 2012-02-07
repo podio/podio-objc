@@ -12,10 +12,12 @@
 
  @private
   NSInteger meetingId_;
-  NSInteger externalId_;
+  PKMeetingPluginType pluginType_;
+  id pluginData_;
 }
 
 @property (nonatomic) NSInteger meetingId;
-@property (nonatomic) NSInteger externalId;
+@property (nonatomic) PKMeetingPluginType pluginType;
+@property (nonatomic, retain) id pluginData;
 
 @end

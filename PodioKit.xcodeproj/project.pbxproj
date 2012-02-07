@@ -331,6 +331,12 @@
 		50CC1D6E148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
 		50D3FA7F14DAFB17008853BB /* PKReferenceMeetingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */; };
 		50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */; };
+		50DFDB7714E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */; };
+		50DFDB7814E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */; };
+		50DFDB7914E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */; };
+		50DFDB7C14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DFDB7A14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.h */; };
+		50DFDB7D14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7B14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m */; };
+		50DFDB7E14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7B14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m */; };
 		50F4FBC314487EDA00317E62 /* PKOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F4FBC114487EDA00317E62 /* PKOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50F4FBC414487EDA00317E62 /* PKOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */; };
 		50F4FBC514487EDA00317E62 /* PKOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */; };
@@ -595,6 +601,10 @@
 		50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamAPI.m; sourceTree = "<group>"; };
 		50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceMeetingData.h; sourceTree = "<group>"; };
 		50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMeetingData.m; sourceTree = "<group>"; };
+		50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMeetingPluginCitrixData.h; sourceTree = "<group>"; };
+		50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMeetingPluginCitrixData.m; sourceTree = "<group>"; };
+		50DFDB7A14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMeetingPluginDataFactory.h; sourceTree = "<group>"; };
+		50DFDB7B14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMeetingPluginDataFactory.m; sourceTree = "<group>"; };
 		50F4FBC114487EDA00317E62 /* PKOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKOAuth2Client.h; sourceTree = "<group>"; };
 		50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKOAuth2Client.m; sourceTree = "<group>"; };
 		50F4FBC61448892700317E62 /* NSDictionary+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URL.h"; sourceTree = "<group>"; };
@@ -714,6 +724,7 @@
 				5030C0BA1435E77A00027F07 /* Embed */,
 				501BF17514386621009764A3 /* File */,
 				5030C0B91435E76B00027F07 /* App */,
+				50DFDB6E14E1980A00D2C5B6 /* Meetings */,
 			);
 			name = Transformables;
 			sourceTree = "<group>";
@@ -1183,6 +1194,17 @@
 			path = Reachability;
 			sourceTree = "<group>";
 		};
+		50DFDB6E14E1980A00D2C5B6 /* Meetings */ = {
+			isa = PBXGroup;
+			children = (
+				50DFDB7A14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.h */,
+				50DFDB7B14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m */,
+				50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */,
+				50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */,
+			);
+			name = Meetings;
+			sourceTree = "<group>";
+		};
 		50F4FBBF14487EA800317E62 /* OAuth2Client */ = {
 			isa = PBXGroup;
 			children = (
@@ -1323,6 +1345,8 @@
 				50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */,
 				50D3FA7F14DAFB17008853BB /* PKReferenceMeetingData.h in Headers */,
 				5084B57A14DEF5F0002FC8DB /* PKLog.h in Headers */,
+				50DFDB7714E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h in Headers */,
+				50DFDB7C14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1532,6 +1556,8 @@
 				502B9CCF14A7DF76009510F1 /* PKDefaultMappingProvider.m in Sources */,
 				50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */,
 				5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */,
+				50DFDB7814E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */,
+				50DFDB7D14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1648,6 +1674,8 @@
 				50FCC3B114A1E7DE0001E6F4 /* PKTestItemAppMapping.m in Sources */,
 				502B9CD214A9BAD9009510F1 /* PKTestCase.m in Sources */,
 				5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */,
+				50DFDB7914E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */,
+				50DFDB7E14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

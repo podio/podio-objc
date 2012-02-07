@@ -431,6 +431,14 @@ static NSString * const kPKNotificationTypeMeetingParticipantAdd = @"meeting_par
 static NSString * const kPKNotificationTypeMeetingParticipantRemove = @"meeting_participant_remove";
 static NSString * const kPKNotificationTypeReminder = @"reminder";
 
+// Meetings
+typedef enum {
+  PKMeetingPluginTypeNone = 0,
+  PKMeetingPluginTypeCitrix,
+} PKMeetingPluginType;
+
+static NSString * const kPKMeetingPluginTypeCitrix = @"citrix";
+
 // Avatars
 typedef enum {
   PKAvatarTypeNone = 0,
@@ -482,5 +490,8 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 // Notification
 + (PKNotificationType)notificationTypeForString:(NSString *)string;
+
+// Meetings
++ (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string;
 
 @end

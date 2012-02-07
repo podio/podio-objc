@@ -7,21 +7,25 @@
 //
 
 #import "PKReferenceMeetingData.h"
+#import "PKMeetingPluginDataFactory.h"
 
 
 static NSString * const PKReferenceMeetingDataMeetingId = @"MeetingId";
-static NSString * const PKReferenceMeetingDataExternalId = @"ExternalId";
+static NSString * const PKReferenceMeetingDataPluginType = @"PluginType";
+static NSString * const PKReferenceMeetingDataPluginData = @"PluginData";
 
 @implementation PKReferenceMeetingData
 
 @synthesize meetingId = meetingId_;
-@synthesize externalId = externalId_;
+@synthesize pluginType = pluginType_;
+@synthesize pluginData = pluginData_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
     meetingId_ = [aDecoder decodeIntegerForKey:PKReferenceMeetingDataMeetingId];
-    externalId_ = [aDecoder decodeIntegerForKey:PKReferenceMeetingDataExternalId];
+    pluginType_ = [aDecoder decodeIntegerForKey:PKReferenceMeetingDataPluginType];
+    pluginData_ = [[aDecoder decodeObjectForKey:PKReferenceMeetingDataPluginData] retain];
   }
   return self;
 }
@@ -29,7 +33,13 @@ static NSString * const PKReferenceMeetingDataExternalId = @"ExternalId";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:meetingId_ forKey:PKReferenceMeetingDataMeetingId];
-  [aCoder encodeInteger:externalId_ forKey:PKReferenceMeetingDataExternalId];
+  [aCoder encodeInteger:pluginType_ forKey:PKReferenceMeetingDataPluginType];
+  [aCoder encodeObject:pluginData_ forKey:PKReferenceMeetingDataPluginData];
+}
+
+- (void)dealloc {
+  [pluginData_ release];
+  [super dealloc];
 }
 
 #pragma mark - Factory methods
@@ -38,7 +48,11 @@ static NSString * const PKReferenceMeetingDataExternalId = @"ExternalId";
   PKReferenceMeetingData *data = [self data];
   
   data.meetingId = [[dict pk_objectForKey:@"meeting_id"] integerValue];
-  data.externalId = [[dict pk_objectForKey:@"external_id"] integerValue];
+  data.pluginType = [PKConstants meetingPluginTypeForString:[dict pk_objectForKey:@"plugin"]];
+  
+  if (data.pluginType != PKMeetingPluginTypeNone) {
+    data.pluginData = [PKMeetingPluginDataFactory dataFromDictionary:[dict pk_objectForKey:@"plugin_data"] pluginType:data.pluginType];
+  }
   
   return data;
 }
