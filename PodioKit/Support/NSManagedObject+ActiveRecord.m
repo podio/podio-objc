@@ -93,4 +93,12 @@
   [self.managedObjectContext deleteObject:self];
 }
 
++ (void)deleteAllInContext:(NSManagedObjectContext *)context {
+  NSArray *objects = [self findAllInContext:context];
+  
+  [objects enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    [obj deleteObject];
+  }];
+}
+
 @end

@@ -28,5 +28,6 @@
 - (BOOL)saveWithError:(NSError **)error;
 
 - (void)deleteObject;
++ (void)deleteAllInContext:(NSManagedObjectContext *)context;
 
 @end
