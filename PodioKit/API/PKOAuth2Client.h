@@ -28,7 +28,7 @@ extern NSString * const PKOAuth2ClientFailedToReceiveTokenNotification;
 
 - (void)oauthClient:(PKOAuth2Client *)oauthClient didReceiveToken:(PKOAuth2Token *)token;
 - (void)oauthClient:(PKOAuth2Client *)oauthClient didRefreshToken:(PKOAuth2Token *)token;
-- (void)oauthClientAuthenticationDidFail:(PKOAuth2Client *)oauthClient;
+- (void)oauthClientAuthenticationDidFail:(PKOAuth2Client *)oauthClient responseData:(id)responseData;
 - (void)oauthClientTokenRefreshDidFail:(PKOAuth2Client *)oauthClient;
 
 @end

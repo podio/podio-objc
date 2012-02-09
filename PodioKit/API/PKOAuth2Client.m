@@ -180,8 +180,8 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     }
   } else if (requestType == PKOAuth2RequestTypeAuthenticate) {
     // Authentication failed
-    if ([self.delegate respondsToSelector:@selector(oauthClientAuthenticationDidFail:)]) {
-      [self.delegate oauthClientAuthenticationDidFail:self];
+    if ([self.delegate respondsToSelector:@selector(oauthClientAuthenticationDidFail:responseData:)]) {
+      [self.delegate oauthClientAuthenticationDidFail:self responseData:parsedData];
     }
   } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
     // Refresh failed
@@ -200,8 +200,8 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
   
   if (requestType == PKOAuth2RequestTypeAuthenticate) {
     // Authentication failed
-    if ([self.delegate respondsToSelector:@selector(oauthClientAuthenticationDidFail:)]) {
-      [self.delegate oauthClientAuthenticationDidFail:self];
+    if ([self.delegate respondsToSelector:@selector(oauthClientAuthenticationDidFail:responseData:)]) {
+      [self.delegate oauthClientAuthenticationDidFail:self responseData:nil];
     }
   } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
     // Refresh failed

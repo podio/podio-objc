@@ -33,6 +33,8 @@ extern NSString * const POAPIClientNeedsReauthentication;
 extern NSString * const POAPIClientRequestFinished;
 extern NSString * const POAPIClientRequestFailed;
 
+extern NSString * const PKAPIClientNoInternetConnection;
+
 @interface PKAPIClient : NSObject <ASIHTTPRequestDelegate, PKOAuth2ClientDelegate> {
 
  @private
