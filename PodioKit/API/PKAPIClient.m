@@ -51,8 +51,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 // Auth flow completion handlers
 - (void)didAuthenticateWithToken:(PKOAuth2Token *)token;
 - (void)authenticationFailedWithResponseData:(NSString *)responseData;
-- (void)didReauthenticateWithToken:(PKOAuth2Token *)token;
-- (void)reauthenticationFailed;
 - (void)didRefreshToken:(PKOAuth2Token *)token;
 - (void)tokenRefreshFailed;
 
@@ -102,7 +100,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     
     isRefreshingToken_ = NO;
     isAuthenticating_ = NO;
-    isReuthenticating_ = NO;
     
     fileUploadURLString_ = [kDefaultFileUploadURL copy];
     fileDownloadURLString_ = [kDefaultFileDownloadURL copy];
@@ -165,25 +162,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
 }
 
-- (void)reauthenticateWithEmail:(NSString *)email password:(NSString *)password {
-  if (isReuthenticating_) {
-    PKLogDebug(@"Already in the process of re-authenticating.");
-    return;
-  }
-  
-  if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:nil];
-    return;
-  }
-  
-  @synchronized(self) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientWillBeginReauthentication 
-                                                        object:nil];
-    isReuthenticating_ = YES;
-    [self.oauthClient authenticateWithUsername:email password:password];
-  }
-}
-
 - (BOOL)isAuthenticated {
   return self.authToken != nil;
 }
@@ -234,25 +212,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishAuthentication object:nil];
   [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientAuthenticationFailed object:responseData];
-}
-
-- (void)didReauthenticateWithToken:(PKOAuth2Token *)token {
-  isReuthenticating_ = NO;
-  self.authToken = token; // Keep token
-  
-  [self resendPendingRequests];
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishReauthentication object:nil];
-}
-
-- (void)reauthenticationFailed {
-  isReuthenticating_ = NO;
-  self.authToken = nil; // Reset token
-  
-  [self cancelPendingRequests];
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidFinishReauthentication object:nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientReauthenticationFailed object:nil];
 }
 
 - (void)didRefreshToken:(PKOAuth2Token *)token {
@@ -415,21 +374,12 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 #pragma mark - PKOAuth2ClientDelegate
 
 - (void)oauthClient:(PKOAuth2Client *)oauthClient didReceiveToken:(PKOAuth2Token *)token {
-  if (isAuthenticating_) {
-    [self didAuthenticateWithToken:token];
-  } else if (isReuthenticating_) {
-    [self didReauthenticateWithToken:token];
-  }
-  
+  [self didAuthenticateWithToken:token];
   [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientDidAuthenticateUser object:self.authToken];
 }
 
 - (void)oauthClientAuthenticationDidFail:(PKOAuth2Client *)oauthClient responseData:(id)responseData {
-  if (isAuthenticating_) {
-    [self authenticationFailedWithResponseData:responseData];
-  } else if (isReuthenticating_) {
-    [self reauthenticationFailed];
-  }
+  [self authenticationFailedWithResponseData:responseData];
 }
 
 - (void)oauthClient:(PKOAuth2Client *)oauthClient didRefreshToken:(PKOAuth2Token *)token {

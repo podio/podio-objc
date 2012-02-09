@@ -17,12 +17,8 @@
 extern NSString * const POAPIClientWillBeginAuthentication;
 extern NSString * const POAPIClientDidFinishAuthentication;
 
-extern NSString * const POAPIClientWillBeginReauthentication;
-extern NSString * const POAPIClientDidFinishReauthentication;
-
 extern NSString * const POAPIClientDidAuthenticateUser;
 extern NSString * const POAPIClientAuthenticationFailed;
-extern NSString * const POAPIClientReauthenticationFailed;
 
 extern NSString * const POAPIClientWillRefreshAccessToken;
 extern NSString * const POAPIClientDidRefreshAccessToken;
@@ -51,7 +47,6 @@ extern NSString * const PKAPIClientNoInternetConnection;
   
   BOOL isRefreshingToken_;
   BOOL isAuthenticating_;
-  BOOL isReuthenticating_;
 }
 
 @property (nonatomic, copy) NSString *baseURLString;
@@ -67,8 +62,6 @@ extern NSString * const PKAPIClientNoInternetConnection;
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString;
 
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password;
-
-- (void)reauthenticateWithEmail:(NSString *)email password:(NSString *)password;
 
 - (BOOL)isAuthenticated;
 
