@@ -8,9 +8,9 @@
 
 #import "PKStreamActivityDataFactory.h"
 #import "PKStreamActivityTaskData.h"
-#import "PKStreamActivityFileData.h"
 #import "PKReferenceCommentData.h"
 #import "PKReferenceRatingData.h"
+#import "PKFileData.h"
 #import "PKStreamActivityAnswerData.h"
 
 
@@ -19,24 +19,24 @@
 + (id)dataFromDictionary:(NSDictionary *)dict activityType:(PKStreamActivityType)activityType {
   id data = nil;
   
-  if (activityType == PKStreamActivityTypeComment) {
-    data = [PKReferenceCommentData dataFromDictionary:dict];
-  }
-  else if (activityType == PKStreamActivityTypeFile) {
-    data = [PKStreamActivityFileData dataFromDictionary:dict];
-  }
-  else if (activityType == PKStreamActivityTypeRating) {
-    data = [PKReferenceRatingData dataFromDictionary:dict];
-  }
-  else if (activityType == PKStreamActivityTypeCreation) {
-  }
-  else if (activityType == PKStreamActivityTypeUpdate) {
-  }
-  else if (activityType == PKStreamActivityTypeTask) {
-    data = [PKStreamActivityTaskData dataFromDictionary:dict];
-  }
-  else if (activityType == PKStreamActivityTypeAnswer) {
-    data = [PKStreamActivityAnswerData dataFromDictionary:dict];
+  switch (activityType) {
+    case PKStreamActivityTypeComment:
+      data = [PKReferenceCommentData dataFromDictionary:dict];
+      break;
+    case PKStreamActivityTypeFile:
+      data = [PKFileData dataFromDictionary:dict];
+      break;
+    case PKStreamActivityTypeRating:
+      data = [PKReferenceRatingData dataFromDictionary:dict];
+      break;
+    case PKStreamActivityTypeTask:
+      data = [PKStreamActivityTaskData dataFromDictionary:dict];
+      break;
+    case PKStreamActivityTypeAnswer:
+      data = [PKStreamActivityAnswerData dataFromDictionary:dict];
+      break;
+    default:
+      break;
   }
   
   return data;

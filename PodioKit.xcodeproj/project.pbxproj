@@ -71,7 +71,6 @@
 		5030C0771435E76300027F07 /* PKReferenceCommentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0301435E76300027F07 /* PKReferenceCommentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0781435E76300027F07 /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
 		5030C0791435E76300027F07 /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
-		5030C07A1435E76300027F07 /* PKStreamActivityFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0321435E76300027F07 /* PKStreamActivityFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0801435E76300027F07 /* PKReferenceRatingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0361435E76300027F07 /* PKReferenceRatingData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0811435E76300027F07 /* PKReferenceRatingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0371435E76300027F07 /* PKReferenceRatingData.m */; };
 		5030C0821435E76300027F07 /* PKReferenceRatingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0371435E76300027F07 /* PKReferenceRatingData.m */; };
@@ -82,9 +81,6 @@
 		5030C0891435E76300027F07 /* PKStreamActivityTaskData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03C1435E76300027F07 /* PKStreamActivityTaskData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C08A1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */; };
 		5030C08B1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */; };
-		5030C08C1435E76300027F07 /* PKStreamFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03E1435E76300027F07 /* PKStreamFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C08D1435E76300027F07 /* PKStreamFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03F1435E76300027F07 /* PKStreamFileData.m */; };
-		5030C08E1435E76300027F07 /* PKStreamFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03F1435E76300027F07 /* PKStreamFileData.m */; };
 		5030C08F1435E76300027F07 /* PKStreamItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0401435E76300027F07 /* PKStreamItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0901435E76300027F07 /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
 		5030C0911435E76300027F07 /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
@@ -249,7 +245,6 @@
 		50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE896E14A132E4004E027E /* PKQuestionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897114A13573004E027E /* PKItemFieldValueItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897414A1366B004E027E /* PKItemFieldValueOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */; };
-		50AE897614A13739004E027E /* PKStreamActivityFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897514A13739004E027E /* PKStreamActivityFileData.m */; };
 		50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */; };
 		50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
@@ -413,7 +408,6 @@
 		5030C02F1435E76300027F07 /* PKStreamActivityAnswerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityAnswerData.m; sourceTree = "<group>"; };
 		5030C0301435E76300027F07 /* PKReferenceCommentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceCommentData.h; sourceTree = "<group>"; };
 		5030C0311435E76300027F07 /* PKReferenceCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceCommentData.m; sourceTree = "<group>"; };
-		5030C0321435E76300027F07 /* PKStreamActivityFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActivityFileData.h; sourceTree = "<group>"; };
 		5030C0361435E76300027F07 /* PKReferenceRatingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceRatingData.h; sourceTree = "<group>"; };
 		5030C0371435E76300027F07 /* PKReferenceRatingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceRatingData.m; sourceTree = "<group>"; };
 		5030C0381435E76300027F07 /* PKReferenceStatusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceStatusData.h; sourceTree = "<group>"; };
@@ -421,8 +415,6 @@
 		5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceTaskActionData.m; sourceTree = "<group>"; };
 		5030C03C1435E76300027F07 /* PKStreamActivityTaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActivityTaskData.h; sourceTree = "<group>"; };
 		5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityTaskData.m; sourceTree = "<group>"; };
-		5030C03E1435E76300027F07 /* PKStreamFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamFileData.h; sourceTree = "<group>"; };
-		5030C03F1435E76300027F07 /* PKStreamFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamFileData.m; sourceTree = "<group>"; };
 		5030C0401435E76300027F07 /* PKStreamItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamItemData.h; sourceTree = "<group>"; };
 		5030C0411435E76300027F07 /* PKStreamItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamItemData.m; sourceTree = "<group>"; };
 		5030C0421435E76300027F07 /* PKStreamStatusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamStatusData.h; sourceTree = "<group>"; };
@@ -542,7 +534,6 @@
 		50AE896E14A132E4004E027E /* PKQuestionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKQuestionAPI.h; sourceTree = "<group>"; };
 		50AE897114A13573004E027E /* PKItemFieldValueItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueItemData.h; sourceTree = "<group>"; };
 		50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueOptionData.m; sourceTree = "<group>"; };
-		50AE897514A13739004E027E /* PKStreamActivityFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityFileData.m; sourceTree = "<group>"; };
 		50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceDataFactory.h; sourceTree = "<group>"; };
 		50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceDataFactory.m; sourceTree = "<group>"; };
 		50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceSpaceData.m; sourceTree = "<group>"; };
@@ -804,8 +795,6 @@
 				5030C0431435E76300027F07 /* PKStreamStatusData.m */,
 				5030C0441435E76300027F07 /* PKStreamTaskData.h */,
 				5030C0451435E76300027F07 /* PKStreamTaskData.m */,
-				5030C03E1435E76300027F07 /* PKStreamFileData.h */,
-				5030C03F1435E76300027F07 /* PKStreamFileData.m */,
 			);
 			name = Stream;
 			sourceTree = "<group>";
@@ -817,8 +806,6 @@
 				5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */,
 				5030C02E1435E76300027F07 /* PKStreamActivityAnswerData.h */,
 				5030C02F1435E76300027F07 /* PKStreamActivityAnswerData.m */,
-				5030C0321435E76300027F07 /* PKStreamActivityFileData.h */,
-				50AE897514A13739004E027E /* PKStreamActivityFileData.m */,
 				5030C03C1435E76300027F07 /* PKStreamActivityTaskData.h */,
 				5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */,
 			);
@@ -1263,12 +1250,10 @@
 				5030C0711435E76300027F07 /* PKStreamActionData.h in Headers */,
 				5030C0741435E76300027F07 /* PKStreamActivityAnswerData.h in Headers */,
 				5030C0771435E76300027F07 /* PKReferenceCommentData.h in Headers */,
-				5030C07A1435E76300027F07 /* PKStreamActivityFileData.h in Headers */,
 				5030C0801435E76300027F07 /* PKReferenceRatingData.h in Headers */,
 				5030C0831435E76300027F07 /* PKReferenceStatusData.h in Headers */,
 				5030C0861435E76300027F07 /* PKReferenceTaskActionData.h in Headers */,
 				5030C0891435E76300027F07 /* PKStreamActivityTaskData.h in Headers */,
-				5030C08C1435E76300027F07 /* PKStreamFileData.h in Headers */,
 				5030C08F1435E76300027F07 /* PKStreamItemData.h in Headers */,
 				5030C0921435E76300027F07 /* PKStreamStatusData.h in Headers */,
 				5030C0951435E76300027F07 /* PKStreamTaskData.h in Headers */,
@@ -1480,7 +1465,6 @@
 				5030C0811435E76300027F07 /* PKReferenceRatingData.m in Sources */,
 				5030C0871435E76300027F07 /* PKReferenceTaskActionData.m in Sources */,
 				5030C08A1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */,
-				5030C08D1435E76300027F07 /* PKStreamFileData.m in Sources */,
 				5030C0901435E76300027F07 /* PKStreamItemData.m in Sources */,
 				5030C0931435E76300027F07 /* PKStreamStatusData.m in Sources */,
 				5030C0961435E76300027F07 /* PKStreamTaskData.m in Sources */,
@@ -1546,7 +1530,6 @@
 				50B529F8148FC06800E05852 /* PKReferenceAlertData.m in Sources */,
 				5059533D149634B70046685A /* PKConversationAPI.m in Sources */,
 				50AE897414A1366B004E027E /* PKItemFieldValueOptionData.m in Sources */,
-				50AE897614A13739004E027E /* PKStreamActivityFileData.m in Sources */,
 				50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */,
 				50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */,
 				502B9CCF14A7DF76009510F1 /* PKDefaultMappingProvider.m in Sources */,
@@ -1595,7 +1578,6 @@
 				5030C0821435E76300027F07 /* PKReferenceRatingData.m in Sources */,
 				5030C0881435E76300027F07 /* PKReferenceTaskActionData.m in Sources */,
 				5030C08B1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */,
-				5030C08E1435E76300027F07 /* PKStreamFileData.m in Sources */,
 				5030C0911435E76300027F07 /* PKStreamItemData.m in Sources */,
 				5030C0941435E76300027F07 /* PKStreamStatusData.m in Sources */,
 				5030C0971435E76300027F07 /* PKStreamTaskData.m in Sources */,
