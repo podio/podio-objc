@@ -16,6 +16,7 @@
   NSString *descr_;
   NSString *hostedBy_;
   NSString *link_;
+  NSString *thumbnailLink_;
   NSString *mimeType_;
   NSInteger size_;
 }
@@ -25,6 +26,7 @@
 @property (nonatomic, copy) NSString *descr;
 @property (nonatomic, copy) NSString *hostedBy;
 @property (nonatomic, copy) NSString *link;
+@property (nonatomic, copy) NSString *thumbnailLink;
 @property (nonatomic, copy) NSString *mimeType;
 @property NSInteger size;
 

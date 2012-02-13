@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		501BF17914386A46009764A3 /* NSString+PKMimeType.h in Headers */ = {isa = PBXBuildFile; fileRef = 501BF17714386A46009764A3 /* NSString+PKMimeType.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		501BF17A14386A46009764A3 /* NSString+PKMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17814386A46009764A3 /* NSString+PKMimeType.m */; };
-		501BF17B14386A46009764A3 /* NSString+PKMimeType.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17814386A46009764A3 /* NSString+PKMimeType.m */; };
 		501BF17E14386AFE009764A3 /* PKFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 501BF17C14386AFE009764A3 /* PKFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501BF17F14386AFE009764A3 /* PKFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17D14386AFE009764A3 /* PKFileData.m */; };
 		501BF18014386AFE009764A3 /* PKFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17D14386AFE009764A3 /* PKFileData.m */; };
@@ -362,8 +359,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		501BF17714386A46009764A3 /* NSString+PKMimeType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKMimeType.h"; sourceTree = "<group>"; };
-		501BF17814386A46009764A3 /* NSString+PKMimeType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKMimeType.m"; sourceTree = "<group>"; };
 		501BF17C14386AFE009764A3 /* PKFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKFileData.h; sourceTree = "<group>"; };
 		501BF17D14386AFE009764A3 /* PKFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFileData.m; sourceTree = "<group>"; };
 		5021CD2A14458FAE00A7013D /* PKDefaultObjectRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDefaultObjectRepository.h; sourceTree = "<group>"; };
@@ -1026,8 +1021,6 @@
 		5065BFB91433655500360855 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				501BF17714386A46009764A3 /* NSString+PKMimeType.h */,
-				501BF17814386A46009764A3 /* NSString+PKMimeType.m */,
 				5065BFF7143366DD00360855 /* NSString+PKAdditions.h */,
 				5065BFF8143366DD00360855 /* NSString+PKAdditions.m */,
 				5065BFED143366C100360855 /* NSArray+PKAdditions.h */,
@@ -1269,7 +1262,6 @@
 				5030C0B61435E76300027F07 /* PKItemFieldValueVideoData.h in Headers */,
 				5030C0C91435E92800027F07 /* PKStreamActivityDataFactory.h in Headers */,
 				5030C0CC1435E92800027F07 /* PKStreamDataFactory.h in Headers */,
-				501BF17914386A46009764A3 /* NSString+PKMimeType.h in Headers */,
 				501BF17E14386AFE009764A3 /* PKFileData.h in Headers */,
 				50BBF53A1439B365002522D6 /* NSString+Hash.h in Headers */,
 				50A5FB33143B0FEA00674360 /* PKItemFieldValueDataFactory.h in Headers */,
@@ -1480,7 +1472,6 @@
 				5030C0B71435E76300027F07 /* PKItemFieldValueVideoData.m in Sources */,
 				5030C0CA1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */,
 				5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
-				501BF17A14386A46009764A3 /* NSString+PKMimeType.m in Sources */,
 				501BF17F14386AFE009764A3 /* PKFileData.m in Sources */,
 				50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */,
 				50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
@@ -1593,7 +1584,6 @@
 				5030C0B81435E76300027F07 /* PKItemFieldValueVideoData.m in Sources */,
 				5030C0CB1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */,
 				5030C0CE1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
-				501BF17B14386A46009764A3 /* NSString+PKMimeType.m in Sources */,
 				501BF18014386AFE009764A3 /* PKFileData.m in Sources */,
 				50BBF53C1439B365002522D6 /* NSString+Hash.m in Sources */,
 				50A5FB35143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,

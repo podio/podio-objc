@@ -141,9 +141,8 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 
     // Completion handler on main thread
     if (self.requestCompletionBlock != nil) {
-      
       dispatch_async(dispatch_get_main_queue(), ^{
-        self.requestCompletionBlock(error, nil);
+        self.requestCompletionBlock(theError, nil);
       });
     }
   }

@@ -13,6 +13,7 @@ static NSString * const POFileDataNameKey = @"Name";
 static NSString * const POFileDataDescriptionKey = @"Description";
 static NSString * const POFileDataHostedByKey = @"HostedBy";
 static NSString * const POFileDataLinkKey = @"Link";
+static NSString * const POFileDataThumbnailLinkKey = @"ThumbnailLink";
 static NSString * const POFileDataMimeTypeKey = @"MimeType";
 static NSString * const POFileDataSizeKey = @"Size";
 
@@ -23,6 +24,7 @@ static NSString * const POFileDataSizeKey = @"Size";
 @synthesize descr = descr_;
 @synthesize hostedBy = hostedBy_;
 @synthesize link = link_;
+@synthesize thumbnailLink = thumbnailLink_;
 @synthesize mimeType = mimeType_;
 @synthesize size = size_;
 
@@ -34,6 +36,7 @@ static NSString * const POFileDataSizeKey = @"Size";
     descr_ = [[aDecoder decodeObjectForKey:POFileDataDescriptionKey] copy];
     hostedBy_ = [[aDecoder decodeObjectForKey:POFileDataHostedByKey] copy];
     link_ = [[aDecoder decodeObjectForKey:POFileDataLinkKey] copy];
+    thumbnailLink_ = [[aDecoder decodeObjectForKey:POFileDataThumbnailLinkKey] copy];
     mimeType_ = [[aDecoder decodeObjectForKey:POFileDataMimeTypeKey] copy];
     size_ = [aDecoder decodeIntegerForKey:POFileDataSizeKey];
   }
@@ -47,6 +50,7 @@ static NSString * const POFileDataSizeKey = @"Size";
   [aCoder encodeObject:descr_ forKey:POFileDataDescriptionKey];
   [aCoder encodeObject:hostedBy_ forKey:POFileDataHostedByKey];
   [aCoder encodeObject:link_ forKey:POFileDataLinkKey];
+  [aCoder encodeObject:thumbnailLink_ forKey:POFileDataThumbnailLinkKey];
   [aCoder encodeObject:mimeType_ forKey:POFileDataMimeTypeKey];
   [aCoder encodeInteger:size_ forKey:POFileDataSizeKey];
 }
@@ -56,6 +60,7 @@ static NSString * const POFileDataSizeKey = @"Size";
   [descr_ release];
   [hostedBy_ release];
   [link_ release];
+  [thumbnailLink_ release];
   [mimeType_ release];
   [super dealloc];
 }
@@ -70,6 +75,7 @@ static NSString * const POFileDataSizeKey = @"Size";
   data.descr = [dict pk_objectForKey:@"description"];
   data.hostedBy = [dict pk_objectForKey:@"hosted_by"];
   data.link = [dict pk_objectForKey:@"link"];
+  data.thumbnailLink = [dict pk_objectForKey:@"thumbnail_link"];
   data.mimeType = [dict pk_objectForKey:@"mimetype"];
   data.size = [[dict pk_objectForKey:@"size"] integerValue];
   
