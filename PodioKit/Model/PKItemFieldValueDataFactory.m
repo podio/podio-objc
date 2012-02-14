@@ -11,7 +11,7 @@
 #import "PKItemFieldValueItemData.h"
 #import "PKItemFieldValueMoneyData.h"
 #import "PKItemFieldValueDateData.h"
-#import "PKItemFieldValueImageData.h"
+#import "PKFileData.h"
 #import "PKItemFieldValueEmbedData.h"
 #import "PKItemFieldValueMediaData.h"
 #import "PKItemFieldValueVideoData.h"
@@ -37,7 +37,7 @@
     data = [PKItemFieldValueDateData dataFromDictionary:dict];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeImage]) {
-    data = [PKItemFieldValueImageData dataFromDictionary:dict];
+    data = [PKFileData dataFromDictionary:dict];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeEmbed]) {
     data = [PKItemFieldValueEmbedData dataFromDictionary:dict];
