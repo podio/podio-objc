@@ -14,7 +14,6 @@
 #import "PKFileData.h"
 #import "PKItemFieldValueEmbedData.h"
 #import "PKItemFieldValueMediaData.h"
-#import "PKItemFieldValueVideoData.h"
 #import "PKItemFieldValueCalculationData.h"
 #import "PKItemFieldValueOptionData.h"
 #import "NSDictionary+PKAdditions.h"
@@ -43,23 +42,18 @@
     data = [PKItemFieldValueEmbedData dataFromDictionary:dict];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeMedia]) {
-    // Media
     data = [PKItemFieldValueMediaData dataFromDictionary:dict];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeVideo]) {
-    // Video
-    data = [PKItemFieldValueVideoData dataFromDictionary:dict];
+    data = [PKFileData dataFromDictionary:dict];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeCalculation]) {
-    // Calculation
     data = [PKItemFieldValueCalculationData dataFromDictionary:dict];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeNumber]) {
-    // Numeric
     data = [dict pk_numberFromStringForKey:@"value"];
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeState]) {
-    // State
     PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];
     
     optionData.optionId = -1; // No option id
@@ -69,7 +63,6 @@
     data = optionData;
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeCategory]) {
-    // Category
     PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];
     
     NSDictionary *optionDict = [dict pk_objectForKey:@"value"];
@@ -80,7 +73,6 @@
     data = optionData;
   }
   else if ([fieldType isEqualToString:kPKAppFieldTypeQuestion]) {
-    // Answer
     PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];
     
     NSDictionary *answerDict = [dict pk_objectForKey:@"value"];

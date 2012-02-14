@@ -111,9 +111,6 @@
 		5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
 		5030C0B21435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
 		5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C0B61435E76300027F07 /* PKItemFieldValueVideoData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C05A1435E76300027F07 /* PKItemFieldValueVideoData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C0B71435E76300027F07 /* PKItemFieldValueVideoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C05B1435E76300027F07 /* PKItemFieldValueVideoData.m */; };
-		5030C0B81435E76300027F07 /* PKItemFieldValueVideoData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C05B1435E76300027F07 /* PKItemFieldValueVideoData.m */; };
 		5030C0C91435E92800027F07 /* PKStreamActivityDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0C21435E92800027F07 /* PKStreamActivityDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0CA1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */; };
 		5030C0CB1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */; };
@@ -429,8 +426,6 @@
 		5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueMoneyData.h; sourceTree = "<group>"; };
 		5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueMoneyData.m; sourceTree = "<group>"; };
 		5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueOptionData.h; sourceTree = "<group>"; };
-		5030C05A1435E76300027F07 /* PKItemFieldValueVideoData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueVideoData.h; sourceTree = "<group>"; };
-		5030C05B1435E76300027F07 /* PKItemFieldValueVideoData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueVideoData.m; sourceTree = "<group>"; };
 		5030C0C21435E92800027F07 /* PKStreamActivityDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActivityDataFactory.h; sourceTree = "<group>"; };
 		5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityDataFactory.m; sourceTree = "<group>"; };
 		5030C0C41435E92800027F07 /* PKStreamDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamDataFactory.h; sourceTree = "<group>"; };
@@ -823,8 +818,6 @@
 				5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */,
 				5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */,
 				50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */,
-				5030C05A1435E76300027F07 /* PKItemFieldValueVideoData.h */,
-				5030C05B1435E76300027F07 /* PKItemFieldValueVideoData.m */,
 			);
 			name = Item;
 			sourceTree = "<group>";
@@ -1251,7 +1244,6 @@
 				5030C0AD1435E76300027F07 /* PKItemFieldValueMediaData.h in Headers */,
 				5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */,
 				5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */,
-				5030C0B61435E76300027F07 /* PKItemFieldValueVideoData.h in Headers */,
 				5030C0C91435E92800027F07 /* PKStreamActivityDataFactory.h in Headers */,
 				5030C0CC1435E92800027F07 /* PKStreamDataFactory.h in Headers */,
 				501BF17E14386AFE009764A3 /* PKFileData.h in Headers */,
@@ -1460,7 +1452,6 @@
 				5030C0A81435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */,
 				5030C0AE1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */,
 				5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */,
-				5030C0B71435E76300027F07 /* PKItemFieldValueVideoData.m in Sources */,
 				5030C0CA1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */,
 				5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
 				501BF17F14386AFE009764A3 /* PKFileData.m in Sources */,
@@ -1571,7 +1562,6 @@
 				5030C0A91435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */,
 				5030C0AF1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */,
 				5030C0B21435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */,
-				5030C0B81435E76300027F07 /* PKItemFieldValueVideoData.m in Sources */,
 				5030C0CB1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */,
 				5030C0CE1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
 				501BF18014386AFE009764A3 /* PKFileData.m in Sources */,
