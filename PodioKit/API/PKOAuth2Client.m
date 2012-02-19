@@ -96,6 +96,11 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 		request.requestMethod = @"POST";
     request.validatesSecureCertificate = YES;
     request.numberOfTimesToRetryOnTimeout = 2;
+    
+    NSArray *languages = [NSLocale preferredLanguages];
+    if ([languages count] > 0) {
+      [request addRequestHeader:@"Accept-Language" value:[languages objectAtIndex:0]];
+    }
 		
     self.requestType = PKOAuth2RequestTypeAuthenticate;
 		[self.requests addObject:request];
