@@ -11,11 +11,13 @@
 
 @implementation PKValueMapping
 
+@synthesize valueType = valueType_;
 @synthesize block = block_;
 
 - (id)initWithPropertyName:(NSString *)propertyName attributeName:(NSString *)attributeName {
   self = [super initWithPropertyName:propertyName attributeName:attributeName];
   if (self) {
+    valueType_ = PKValueTypeNormal;
     block_ = nil;
   }
   return self;

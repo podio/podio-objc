@@ -11,9 +11,12 @@
 #import "NSArray+PKAdditions.h"
 #import "NSString+PKAdditions.h"
 #import "NSDictionary+PKAdditions.h"
+#import "NSDate+PKAdditions.h"
 
 
 @interface PKObjectMapper ()
+
+@property (nonatomic, readonly) NSDateFormatter *dateFormatter;
 
 - (void)deleteObjectsForKlass:(Class)klass identityPredicate:(NSPredicate *)identityPredicate scopePredicate:(NSPredicate *)scopePredicate;
 
@@ -48,22 +51,28 @@
 - (void)dealloc {
   delegate_ = nil;
   
-  [scopePredicate_ release];
-  scopePredicate_ = nil;
-  
-  [mapping_ release];
-  mapping_ = nil;
-  
-  [mappingBlock_ release];
-  mappingBlock_ = nil;
-  
-  [repository_ release];
-  repository_ = nil;
-  
-  [mappingProvider_ release];
-  mappingProvider_ = nil;
-  
+  [dateFormatter_ release], dateFormatter_ = nil;
+  [scopePredicate_ release], scopePredicate_ = nil;
+  [mapping_ release], mapping_ = nil;
+  [mappingBlock_ release], mappingBlock_ = nil;
+  [repository_ release], repository_ = nil;
+  [mappingProvider_ release], mappingProvider_ = nil;
   [super dealloc];
+}
+
+#pragma mark - Helpers
+
+- (NSDateFormatter *)dateFormatter {
+  if (dateFormatter_ == nil) {
+    dateFormatter_ = [[NSDateFormatter alloc] init];
+    [dateFormatter_ setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    
+    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter_ setLocale:locale];
+    [locale release];
+  }
+  
+  return dateFormatter_;
 }
 
 #pragma mark - Mapping
@@ -292,7 +301,21 @@
     NSString *selectorString = [NSString stringWithFormat:@"set%@:", [valueMapping.propertyName pk_stringByCapitalizingFirstCharacter]];
     
     if ([object respondsToSelector:NSSelectorFromString(selectorString)]) {
-      id value = [valueMapping evaluateForValue:attributeValue objectDict:objectDict parent:parentObject];
+      id value = nil;
+      
+      switch (valueMapping.valueType) {
+        case PKValueTypeDate:
+          value = [self.dateFormatter dateFromString:attributeValue];
+          break;
+        case PKValueTypeUTCDate:
+          value = [[self.dateFormatter dateFromString:attributeValue] pk_localDateFromUTCDate];
+          break;
+        case PKValueTypeNormal:
+        default:
+          value = [valueMapping evaluateForValue:attributeValue objectDict:objectDict parent:parentObject];
+          break;
+      }
+      
       [(id)object setValue:value forKey:valueMapping.propertyName];
     } else {
       PKLogDebug(@"No selector for mapping property name '%@'", valueMapping.propertyName);

@@ -65,6 +65,16 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   [mapping release];
 }
 
+- (void)hasDateProperty:(NSString *)property forAttribute:(NSString *)attribute isUTC:(BOOL)isUTC {
+  PKValueMapping *mapping = [[PKValueMapping alloc] initWithPropertyName:property attributeName:attribute];
+  mapping.valueType = isUTC ? PKValueTypeUTCDate : PKValueTypeDate;
+  
+  [self addMapping:mapping];
+  [self.propertyMappings setObject:mapping forKey:property]; // Dictionary for fast lookup
+  
+  [mapping release];
+}
+
 - (void)hasProperty:(NSString *)property 
        forAttribute:(NSString *)attribute 
               block:(PKValueMappingBlock)block {
@@ -79,21 +89,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   [self hasProperty:property forAttribute:nil block:^id(id attrVal, NSDictionary *objDict, id parent) {
     NSAssert([parent respondsToSelector:NSSelectorFromString(parentProperty)], @"Parent object is missing property '%@'", parentProperty);
     return [parent valueForKey:parentProperty];
-  }];
-}
-
-- (void)hasDateProperty:(NSString *)property forAttribute:(NSString *)attribute isUTC:(BOOL)isUTC {
-  [self hasProperty:property forAttribute:attribute block:^id(id attrVal, NSDictionary *objDict, id parent) {
-    NSString *dateString = (NSString *)attrVal;
-    NSDate *date = nil;
-    
-    if (isUTC) {
-      date = [[NSDate pk_dateWithDateTimeString:dateString] pk_localDateFromUTCDate];
-    } else {
-      date = [NSDate pk_dateWithDateTimeString:dateString];
-    }
-    
-    return date;
   }];
 }
 

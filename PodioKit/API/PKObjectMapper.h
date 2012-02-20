@@ -39,6 +39,8 @@ typedef void (^PKCustomMappingBlock)(id obj);
   
   PKObjectMapping *mapping_;
   PKCustomMappingBlock mappingBlock_;
+  
+  NSDateFormatter *dateFormatter_;
 }
 
 @property (retain) PKMappingProvider *mappingProvider;
