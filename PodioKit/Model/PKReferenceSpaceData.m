@@ -36,10 +36,6 @@ static NSString * const POReferenceSpaceDataName = @"Name";
   [aCoder encodeObject:name_ forKey:POReferenceSpaceDataName];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

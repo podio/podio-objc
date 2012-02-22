@@ -19,7 +19,6 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   [userInfo setObject:NSLocalizedString(@"You are not connected to the internet, please try again later.", nil) forKey:NSLocalizedDescriptionKey];
   
   NSError *error = [NSError errorWithDomain:kPodioKitErrorDomain code:PKErrorCodeNoConnection userInfo:userInfo];
-  [userInfo release];
   
   return error;
 }
@@ -29,7 +28,6 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   [userInfo setObject:NSLocalizedString(@"The request was cancelled.", nil) forKey:NSLocalizedDescriptionKey];
   
   NSError *error = [NSError errorWithDomain:kPodioKitErrorDomain code:PKErrorCodeRequestCancelled userInfo:userInfo];
-  [userInfo release];
   
   return error;
 }
@@ -39,7 +37,6 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   [userInfo setObject:NSLocalizedString(@"Unable to read the server response.", nil) forKey:NSLocalizedDescriptionKey];
   
   NSError *error = [NSError errorWithDomain:kPodioKitErrorDomain code:PKErrorCodeParsingFailed userInfo:userInfo];
-  [userInfo release];
   
   return error;
 }
@@ -51,7 +48,6 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   [userInfo setObject:responseString forKey:PKERrorResponseStringKey];
   
   NSError *error = [NSError errorWithDomain:kPodioKitErrorDomain code:PKErrorCodeServerError userInfo:userInfo];
-  [userInfo release];
   
   return error;
 }

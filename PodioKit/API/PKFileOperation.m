@@ -24,12 +24,11 @@
 }
 
 - (void)dealloc {
-  [requestCompletionBlock_ release], requestCompletionBlock_ = nil;
-  [super dealloc];
+  requestCompletionBlock_ = nil;
 }
 
 + (PKFileOperation *)uploadOperationWithURLString:(NSString *)urlString filePath:(NSString *)filePath fileName:(NSString *)fileName {
-  PKFileOperation *operation = [[[self alloc] initWithURLString:urlString] autorelease];
+  PKFileOperation *operation = [[self alloc] initWithURLString:urlString];
   operation.shouldAttemptPersistentConnection = NO;
   
   [operation setFile:filePath withFileName:fileName andContentType:nil forKey:@"file"];
@@ -39,7 +38,7 @@
 }
 
 + (PKFileOperation *)imageUploadOperationWithURLString:(NSString *)urlString image:(UIImage *)image {
-  PKFileOperation *operation = [[[self alloc] initWithURLString:urlString] autorelease];
+  PKFileOperation *operation = [[self alloc] initWithURLString:urlString];
   operation.shouldAttemptPersistentConnection = NO;
   
   NSData * imageData = UIImageJPEGRepresentation(image, 0.8);

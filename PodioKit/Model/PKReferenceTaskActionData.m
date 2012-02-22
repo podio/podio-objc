@@ -35,10 +35,6 @@ static NSString * const POStreamActivityTaskActionDataChanged = @"Changed";
   [aCoder encodeObject:changed_ forKey:POStreamActivityTaskActionDataChanged];
 }
 
-- (void)dealloc {
-  [changed_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

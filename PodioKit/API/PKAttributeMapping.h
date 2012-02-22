@@ -14,7 +14,7 @@
   NSArray *attributePathComponents_;
 }
 
-@property (nonatomic, retain) NSArray *attributePathComponents;
+@property (nonatomic, strong) NSArray *attributePathComponents;
 @property (nonatomic, readonly) NSString *attributePathComponentsString;
 
 - (id)initWithAttributePathComponents:(NSArray *)attributePathComponents;

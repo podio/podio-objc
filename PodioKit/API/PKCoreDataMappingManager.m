@@ -23,7 +23,7 @@
                    mappingProvider:(PKMappingProvider *)mappingProvider {
   self = [super initWithMappingProvider:mappingProvider];
   if (self) {
-    managedObjectContext_ = [managedObjectContext retain];
+    managedObjectContext_ = managedObjectContext;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mappingContextDidSave:) 
                                                  name:NSManagedObjectContextDidSaveNotification 
@@ -33,12 +33,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [managedObjectContext_ release];
-  managedObjectContext_ = nil;
-  
-  [super dealloc];
-}
 
 - (PKObjectMapper *)objectMapper {
   NSAssert(self.mappingProvider != nil, @"No mapping provider set.");
@@ -48,9 +42,8 @@
   
   PKCoreDataRepository *repository = [[PKCoreDataRepository alloc] initWithPersistentStoreCoordinator:self.managedObjectContext.persistentStoreCoordinator];
   mapper.repository = repository;
-  [repository release];
   
-  return [mapper autorelease];
+  return mapper;
 }
 
 - (void)mappingContextDidSave:(NSNotification *)notification {

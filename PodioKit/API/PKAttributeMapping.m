@@ -15,7 +15,7 @@
 - (id)initWithAttributePathComponents:(NSArray *)attributePathComponents {
   self = [super init];
   if (self) {
-    attributePathComponents_ = [attributePathComponents retain];
+    attributePathComponents_ = attributePathComponents;
   }
   return self;
 }
@@ -25,17 +25,13 @@
   return [self initWithAttributePathComponents:components];
 }
 
-- (void)dealloc {
-  [attributePathComponents_ release];
-  [super dealloc];
-}
 
 + (id)mappingForAttributePathComponents:(NSArray *)attributePathComponents {
-  return [[[self alloc] initWithAttributePathComponents:attributePathComponents] autorelease];
+  return [[self alloc] initWithAttributePathComponents:attributePathComponents];
 }
 
 + (id)mappingForAttributeName:(NSString *)attributeName {
-  return [[[self alloc] initWithAttributeName:attributeName] autorelease];
+  return [[self alloc] initWithAttributeName:attributeName];
 }
 
 - (NSString *)attributePathComponentsString {

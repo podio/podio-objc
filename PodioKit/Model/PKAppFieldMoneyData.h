@@ -14,6 +14,6 @@
   NSArray *allowedCurrencies_;
 }
 
-@property (nonatomic, retain) NSArray *allowedCurrencies;
+@property (nonatomic, strong) NSArray *allowedCurrencies;
 
 @end

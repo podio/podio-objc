@@ -31,10 +31,6 @@ static NSString * const POQuestionOptionDataText = @"Text";
   [aCoder encodeObject:text_ forKey:POQuestionOptionDataText];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

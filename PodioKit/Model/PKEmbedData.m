@@ -62,16 +62,6 @@ static NSString * const POTransformableEmbedDataFileMimeTypeKey = @"FileMimeType
   [aCoder encodeObject:fileMimeType_ forKey:POTransformableEmbedDataFileMimeTypeKey];
 }
 
-- (void)dealloc {
-  [type_ release];
-  [title_ release];
-  [descr_ release];
-  [resolvedURL_ release];
-  [originalURL_ release];
-  [fileLink_ release];
-  [fileMimeType_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

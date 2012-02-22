@@ -28,9 +28,5 @@ static NSString * const POAppFieldCategoryDataAllowedCurrenciesKey = @"AllowedCu
   [aCoder encodeObject:allowedCurrencies_ forKey:POAppFieldCategoryDataAllowedCurrenciesKey];
 }
 
-- (void)dealloc {
-  [allowedCurrencies_ release];
-  [super dealloc];
-}
 
 @end

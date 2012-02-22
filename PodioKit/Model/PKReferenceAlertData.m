@@ -28,10 +28,6 @@ static NSString * const PKReferenceAlertDataText = @"Text";
   [aCoder encodeObject:text_ forKey:PKReferenceAlertDataText];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

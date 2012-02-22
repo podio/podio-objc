@@ -16,6 +16,6 @@
 }
 
 @property BOOL multiple;
-@property (nonatomic, retain) NSArray *options;
+@property (nonatomic, strong) NSArray *options;
 
 @end

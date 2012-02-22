@@ -27,7 +27,7 @@
 
 - (void)setUp {
   // TODO: Build mapping provider
-  self.mappingProvider = [[[PKTestMappingProvider alloc] init] autorelease];
+  self.mappingProvider = [[PKTestMappingProvider alloc] init];
 }
 
 - (void)tearDown {
@@ -147,7 +147,6 @@
   
   PKDefaultObjectRepository *repository = [[PKDefaultObjectRepository alloc] init];
   objectMapper.repository = repository;
-  [repository release];
   
   return objectMapper;
 }

@@ -29,8 +29,8 @@ static NSString * const POStreamStatusDataQuestion = @"Question";
     statusId_ = [aDecoder decodeIntegerForKey:POStreamStatusDataStatusId];
     value_ = [[aDecoder decodeObjectForKey:POStreamStatusDataValue] copy];
     richValue_ = [[aDecoder decodeObjectForKey:POStreamStatusDataRichValue] copy];
-    embed_ = [[aDecoder decodeObjectForKey:POStreamStatusDataEmbed] retain];
-    question_ = [[aDecoder decodeObjectForKey:POStreamStatusDataQuestion] retain];
+    embed_ = [aDecoder decodeObjectForKey:POStreamStatusDataEmbed];
+    question_ = [aDecoder decodeObjectForKey:POStreamStatusDataQuestion];
   }
   return self;
 }
@@ -44,13 +44,6 @@ static NSString * const POStreamStatusDataQuestion = @"Question";
   [aCoder encodeObject:question_ forKey:POStreamStatusDataQuestion];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [richValue_ release];
-  [embed_ release];
-  [question_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

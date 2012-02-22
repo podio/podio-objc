@@ -32,9 +32,5 @@ static NSString * const POAppFieldCategoryDataOptionsKey = @"Options";
   [aCoder encodeObject:options_ forKey:POAppFieldCategoryDataOptionsKey];
 }
 
-- (void)dealloc {
-  [options_ release];
-  [super dealloc];
-}
 
 @end

@@ -35,7 +35,7 @@
 - (id)initWithMappingProvider:(PKMappingProvider *)mappingProvider {
   self = [super init];
   if (self) {
-    mappingProvider_ = [mappingProvider retain];
+    mappingProvider_ = mappingProvider;
     repository_ = nil;
     delegate_ = nil;
     
@@ -51,13 +51,12 @@
 - (void)dealloc {
   delegate_ = nil;
   
-  [dateFormatter_ release], dateFormatter_ = nil;
-  [scopePredicate_ release], scopePredicate_ = nil;
-  [mapping_ release], mapping_ = nil;
-  [mappingBlock_ release], mappingBlock_ = nil;
-  [repository_ release], repository_ = nil;
-  [mappingProvider_ release], mappingProvider_ = nil;
-  [super dealloc];
+  dateFormatter_ = nil;
+  scopePredicate_ = nil;
+  mapping_ = nil;
+  mappingBlock_ = nil;
+  repository_ = nil;
+  mappingProvider_ = nil;
 }
 
 #pragma mark - Helpers
@@ -69,7 +68,6 @@
     
     NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
     [dateFormatter_ setLocale:locale];
-    [locale release];
   }
   
   return dateFormatter_;
@@ -145,8 +143,6 @@
       [self deleteObjectsForKlass:klass identityPredicate:identityPredicate scopePredicate:self.scopePredicate];
     }
     
-    [identityIds release];
-    [identityPredicates release];
   } else {
     // Single object
     id obj = [self applySingleObjectMapping:self.mapping objectDict:baseValue parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES];
@@ -225,7 +221,6 @@
     }
   }
     
-  [predicates release];
   
   if (object == nil) {
     object = [self.repository createObjectForClass:klass];
@@ -282,7 +277,6 @@
   }];
   
   NSArray *objects = [NSArray arrayWithArray:mutObjects];
-  [mutObjects release];
   
   return objects;
 }
@@ -408,11 +402,8 @@
     }
     
     [self deleteObjectsForKlass:klass identityPredicate:identityPredicate scopePredicate:scopePredicate];
-    [identityIds release];
-    [identityPredicates release];
     
     result = [NSArray arrayWithArray:resultObjects];
-    [resultObjects release];
   } else {
     // One-to-one
     id subObj = [self applySingleObjectMapping:mapping.objectMapping objectDict:attributeValue parentObject:object parentRelationshipName:[mapping propertyName] scopePredicate:scopePredicate useMappingBlock:NO];
@@ -497,8 +488,6 @@
     
     [self deleteObjectsForKlass:klass identityPredicate:identityPredicate scopePredicate:scopePredicate];
     
-    [identityIds release];
-    [identityPredicates release];
   } else {
     // Single
     [self applySingleObjectMapping:mapping.objectMapping objectDict:attributeValue parentObject:parentObject parentRelationshipName:nil scopePredicate:scopePredicate useMappingBlock:NO];
@@ -518,7 +507,6 @@
     // Both
     NSArray *predicates = [[NSArray alloc] initWithObjects:scopePredicate, invIdentityPredicate, nil];
     deletePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
-    [predicates release];
   } else if (scopePredicate != nil) {
     deletePredicate = scopePredicate;
   } else if (invIdentityPredicate != nil) {

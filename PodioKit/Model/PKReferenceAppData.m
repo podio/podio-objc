@@ -35,11 +35,6 @@ static NSString * const POReferenceAppDataIcon = @"Icon";
   [aCoder encodeObject:icon_ forKey:POReferenceAppDataIcon];
 }
 
-- (void)dealloc {
-  [icon_ release];
-  [name_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

@@ -20,7 +20,7 @@
 }
 
 + (id)pk_createInContext:(NSManagedObjectContext *)context {
-  return [[[self alloc] initWithEntity:[self pk_entityInContext:context] insertIntoManagedObjectContext:context] autorelease];
+  return [[self alloc] initWithEntity:[self pk_entityInContext:context] insertIntoManagedObjectContext:context];
 }
 
 @end

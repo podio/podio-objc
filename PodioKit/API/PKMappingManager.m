@@ -15,17 +15,11 @@
 - (id)initWithMappingProvider:(PKMappingProvider *)mappingProvider {
   self = [super init];
   if (self) {
-    mappingProvider_ = [mappingProvider retain];
+    mappingProvider_ = mappingProvider;
   }
   return self;
 }
 
-- (void)dealloc {
-  [mappingProvider_ release];
-  mappingProvider_ = nil;
-  
-  [super dealloc];
-}
 
 // Implement in subclass
 - (PKObjectMapper *)objectMapper {

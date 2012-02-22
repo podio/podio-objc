@@ -18,7 +18,7 @@
   NSManagedObjectContext *managedObjectContext_;
 }
 
-@property (nonatomic, retain) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext 
                    mappingProvider:(PKMappingProvider *)mappingProvider;

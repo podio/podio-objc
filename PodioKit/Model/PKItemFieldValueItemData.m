@@ -44,12 +44,6 @@ static NSString * const POTransformableAppItemDataAppIconKey = @"AppIcon";
   [aCoder encodeObject:appIcon_ forKey:POTransformableAppItemDataAppIconKey];
 }
 
-- (void)dealloc {
-  [title_ release];
-  [appName_ release];
-  [appIcon_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

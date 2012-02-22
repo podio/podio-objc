@@ -32,16 +32,9 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   return self;
 }
 
-- (void)dealloc {
-  [sequencePropertyName_ release];
-  [mappedDataPathComponents_ release];
-  [propertyMappings_ release];
-  [mappings_ release];
-  [super dealloc];
-}
 
 + (id)mapping {
-  return [[[self alloc] init] autorelease];
+  return [[self alloc] init];
 }
 
 - (void)buildMappings {
@@ -62,7 +55,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   [self addMapping:mapping];
   [self.propertyMappings setObject:mapping forKey:property]; // Dictionary for fast lookup
   
-  [mapping release];
 }
 
 - (void)hasDateProperty:(NSString *)property forAttribute:(NSString *)attribute isUTC:(BOOL)isUTC {
@@ -72,7 +64,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   [self addMapping:mapping];
   [self.propertyMappings setObject:mapping forKey:property]; // Dictionary for fast lookup
   
-  [mapping release];
 }
 
 - (void)hasProperty:(NSString *)property 
@@ -82,7 +73,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   [self addMapping:mapping];
   [self.propertyMappings setObject:mapping forKey:property]; // Dictionary for fast lookup
   
-  [mapping release];
 }
 
 - (void)hasProperty:(NSString *)property forParentProperty:(NSString *)parentProperty {
@@ -120,7 +110,7 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
     name = sequencePropertyName_;
   }
   
-  return [[name copy] autorelease];
+  return [name copy];
 }
 
 @end

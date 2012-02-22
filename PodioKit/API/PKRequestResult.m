@@ -20,25 +20,17 @@
   self = [super init];
   if (self) {
     responseStatusCode_ = responseStatusCode;
-    responseData_ = [responseData retain];
-    parsedData_ = [parsedData retain];
-    resultData_ = [resultData retain];
+    responseData_ = responseData;
+    parsedData_ = parsedData;
+    resultData_ = resultData;
     responseString_ = nil;
     responseObjectCount_ = -1;
   }
   return self;
 }
 
-- (void)dealloc {
-  [responseString_ release], responseString_ = nil;
-  [responseData_ release], responseData_ = nil;
-  [parsedData_ release], parsedData_ = nil;
-  [resultData_ release], resultData_ = nil;
-  [super dealloc];
-}
-
 + (PKRequestResult *)resultWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData resultData:(id)resultData {
-  return [[[self alloc] initWithResponseStatusCode:responseStatusCode responseData:responseData parsedData:parsedData resultData:resultData] autorelease];
+  return [[self alloc] initWithResponseStatusCode:responseStatusCode responseData:responseData parsedData:parsedData resultData:resultData];
 }
 
 // Lazy evaluate
@@ -47,7 +39,7 @@
     responseString_ = [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
   }
   
-  return [[responseString_ copy] autorelease];
+  return [responseString_ copy];
 }
 
 - (NSInteger)responseObjectCount {

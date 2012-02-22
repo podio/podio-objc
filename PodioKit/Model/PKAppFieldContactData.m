@@ -28,9 +28,5 @@ static NSString * const POAppFieldCategoryDataValidTypesKey = @"ValidTypes";
   [aCoder encodeObject:validTypes_ forKey:POAppFieldCategoryDataValidTypesKey];
 }
 
-- (void)dealloc {
-  [validTypes_ release];
-  [super dealloc];
-}
 
 @end

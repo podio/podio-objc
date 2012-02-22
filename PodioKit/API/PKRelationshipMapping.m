@@ -34,18 +34,12 @@ inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames
              inverseProperty:(NSString *)inverseProperty 
   inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames 
                objectMapping:(PKObjectMapping *)objectMapping {
-  return [[[self alloc] initWithPropertyName:propertyName 
+  return [[self alloc] initWithPropertyName:propertyName 
                                attributeName:attributeName 
                              inverseProperty:inverseProperty 
                   inverseScopeAttributeNames:inverseScopeAttributeNames 
-                               objectMapping:objectMapping] autorelease];
+                               objectMapping:objectMapping];
 }
 
-- (void)dealloc {
-  [objectMapping_ release];
-  [inversePropertyName_ release];
-  [inverseScopeAttributeNames_ release];
-  [super dealloc];
-}
 
 @end

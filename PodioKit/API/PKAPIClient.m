@@ -45,8 +45,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 @interface PKAPIClient ()
 
 @property (nonatomic, readonly) ASINetworkQueue *networkQueue;
-@property (nonatomic, retain) PKOAuth2Client *oauthClient;
-@property (nonatomic, retain) NSMutableArray *pendingRequests;
+@property (nonatomic, strong) PKOAuth2Client *oauthClient;
+@property (nonatomic, strong) NSMutableArray *pendingRequests;
 
 // Auth flow completion handlers
 - (void)didAuthenticateWithToken:(PKOAuth2Token *)token;
@@ -88,7 +88,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (id)init {
   @synchronized(self) {
-    [super init];
+    self = [super init];
     
     // Shared request queue
     networkQueue_ = nil;
@@ -118,7 +118,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
   
   if (baseURLString_ != nil) {
-    [baseURLString_ release];
     baseURLString_ = nil;
   }
   
@@ -132,10 +131,10 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString {
   self.baseURLString = baseURLString;
   
-  self.oauthClient = [[[PKOAuth2Client alloc] initWithClientID:clientId 
+  self.oauthClient = [[PKOAuth2Client alloc] initWithClientID:clientId 
                                                   clientSecret:secret 
                                                       tokenURL:[NSString stringWithFormat:@"%@/oauth/token", self.baseURLString] 
-                                                   redirectURL:kOAuthRedirectURL] autorelease];
+                                                   redirectURL:kOAuthRedirectURL];
   self.oauthClient.delegate = self;
 }
 

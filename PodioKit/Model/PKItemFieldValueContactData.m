@@ -52,13 +52,6 @@ static NSString * const POTransformableContactDataAvatarIdKey = @"AvatarId";
   [aCoder encodeInteger:avatarId_ forKey:POTransformableContactDataAvatarIdKey];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [email_ release];
-  [title_ release];
-  [organization_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

@@ -19,7 +19,7 @@ typedef NSPredicate * (^POScopePredicateBlock)(id parentObject);
   POScopePredicateBlock scopePredicateBlock_;
 }
 
-@property (nonatomic, retain) PKObjectMapping *objectMapping;
+@property (nonatomic, strong) PKObjectMapping *objectMapping;
 @property (nonatomic, copy) POScopePredicateBlock scopePredicateBlock;
 
 - (id)initWithAttributeName:(NSString *)attributeName 

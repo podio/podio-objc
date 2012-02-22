@@ -53,7 +53,7 @@ extern NSString * const PKAPIClientNoInternetConnection;
 @property (nonatomic, copy) NSString *fileUploadURLString;
 @property (nonatomic, copy) NSString *fileDownloadURLString;
 @property (nonatomic, copy) NSString *userAgent;
-@property (nonatomic, retain) PKOAuth2Token *authToken;
+@property (nonatomic, strong) PKOAuth2Token *authToken;
 
 + (PKAPIClient *)sharedClient;
 

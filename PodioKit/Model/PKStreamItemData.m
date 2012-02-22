@@ -32,10 +32,6 @@ static NSString * const POStreamItemDataTitle = @"Title";
   [aCoder encodeObject:title_ forKey:POStreamItemDataTitle];
 }
 
-- (void)dealloc {
-  [title_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

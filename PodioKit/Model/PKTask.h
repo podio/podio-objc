@@ -23,6 +23,6 @@
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic) PKTaskType type;
 @property (nonatomic) PKTaskStatus status;
-@property (nonatomic, retain) NSDate *createdOn;
+@property (nonatomic, strong) NSDate *createdOn;
 
 @end

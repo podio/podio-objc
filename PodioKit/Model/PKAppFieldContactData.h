@@ -15,6 +15,6 @@
   NSArray *validTypes_;
 }
 
-@property (nonatomic, retain) NSArray *validTypes;
+@property (nonatomic, strong) NSArray *validTypes;
 
 @end

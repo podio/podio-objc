@@ -18,8 +18,8 @@
   PKMappingManager *mappingManager_;
 }
 
-@property (nonatomic, retain) PKAPIClient *apiClient;
-@property (nonatomic, retain) PKMappingManager *mappingManager;
+@property (nonatomic, strong) PKAPIClient *apiClient;
+@property (nonatomic, strong) PKMappingManager *mappingManager;
 
 + (PKRequestManager *)sharedManager;
 

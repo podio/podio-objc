@@ -36,10 +36,6 @@ static NSString * const POTransformableAnswerDataSelectedKey = @"Selected";
   [aCoder encodeBool:selected_ forKey:POTransformableAnswerDataSelectedKey];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [super dealloc];
-}
 
 - (BOOL)isEqual:(id)object {
   BOOL equal = NO;

@@ -55,15 +55,6 @@ static NSString * const POFileDataSizeKey = @"Size";
   [aCoder encodeInteger:size_ forKey:POFileDataSizeKey];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [descr_ release];
-  [hostedBy_ release];
-  [link_ release];
-  [thumbnailLink_ release];
-  [mimeType_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

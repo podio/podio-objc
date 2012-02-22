@@ -36,10 +36,6 @@ static NSString * const PKStreamItemDataIsReply = @"IsReply";
   [aCoder encodeBool:isReply_ forKey:PKStreamItemDataIsReply];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

@@ -26,17 +26,13 @@
   return [self initWithPropertyName:propertyName attributePathComponents:components];
 }
 
-- (void)dealloc {
-  [propertyName_ release];
-  [super dealloc];
-}
 
 + (id)mappingForPropertyName:(NSString *)propertyName attributePathComponents:(NSArray *)attributePathComponents {
-  return [[[self alloc] initWithPropertyName:propertyName attributePathComponents:attributePathComponents] autorelease];
+  return [[self alloc] initWithPropertyName:propertyName attributePathComponents:attributePathComponents];
 }
 
 + (id)mappingForPropertyName:(NSString *)propertyName attributeName:(NSString *)attributeName {
-  return [[[self alloc] initWithPropertyName:propertyName attributeName:attributeName] autorelease];
+  return [[self alloc] initWithPropertyName:propertyName attributeName:attributeName];
 }
 
 @end

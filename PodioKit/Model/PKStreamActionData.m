@@ -28,7 +28,7 @@ static NSString * const POStreamActionReference = @"Reference";
     actionId_ = [aDecoder decodeIntegerForKey:POStreamActionDataActionId];
     type_ = [aDecoder decodeIntegerForKey:POStreamActionDataType];
     referenceType_ = [aDecoder decodeIntegerForKey:POStreamActionReferenceType];
-    reference_ = [[aDecoder decodeObjectForKey:POStreamActionReference] retain];
+    reference_ = [aDecoder decodeObjectForKey:POStreamActionReference];
   }
   return self;
 }
@@ -42,8 +42,7 @@ static NSString * const POStreamActionReference = @"Reference";
 }
 
 - (void)dealloc {
-  [reference_ release], reference_ = nil;
-  [super dealloc];
+  reference_ = nil;
 }
 
 #pragma mark - Factory methods

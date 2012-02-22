@@ -19,7 +19,7 @@
 @property (nonatomic, readonly) NSData *responseData;
 @property (nonatomic, readonly) NSString *responseString;
 @property (nonatomic, readonly) id responseObjectFromJSON;
-@property (nonatomic, retain) NSError *error;
+@property (nonatomic, strong) NSError *error;
 
 - (id)initWithData:(NSData *)data;
 

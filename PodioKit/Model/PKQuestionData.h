@@ -23,11 +23,11 @@
 
 @property (nonatomic) NSInteger questionId;
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, retain) NSArray *options;
+@property (nonatomic, strong) NSArray *options;
 @property (nonatomic) NSInteger answerCount;
-@property (nonatomic, retain) NSMutableDictionary *answerUsers;
-@property (nonatomic, retain) NSMutableDictionary *userAnswers;
-@property (nonatomic, retain) NSMutableDictionary *answerCounts;
+@property (nonatomic, strong) NSMutableDictionary *answerUsers;
+@property (nonatomic, strong) NSMutableDictionary *userAnswers;
+@property (nonatomic, strong) NSMutableDictionary *answerCounts;
 
 - (void)updateAnswerWithOptionId:(NSUInteger)optionId forUserWithId:(NSUInteger)userId;
 

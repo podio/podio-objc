@@ -35,10 +35,6 @@ static NSString * const POStreamActivityRatingDataValue = @"Value";
   [aCoder encodeObject:value_ forKey:POStreamActivityRatingDataValue];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

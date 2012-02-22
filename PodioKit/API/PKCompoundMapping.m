@@ -21,10 +21,6 @@ static NSString * const POInvalidMappingClassException = @"POInvalidMappingClass
   return self;
 }
 
-- (void)dealloc {
-  [mappings_ release];
-  [super dealloc];
-}
 
 - (NSArray *)mappings {
   return mappings_;

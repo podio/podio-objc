@@ -14,10 +14,6 @@
 @synthesize objectId = objectId_;
 @synthesize title = title_;
 
-- (void)dealloc {
-  [title_ release];
-  [super dealloc];
-}
 
 #pragma mark - PKMappableObject
 

@@ -15,7 +15,7 @@
   PKMappingProvider *mappingProvider_;
 }
 
-@property (nonatomic, retain) PKMappingProvider *mappingProvider;
+@property (nonatomic, strong) PKMappingProvider *mappingProvider;
 
 - (PKObjectMapper *)objectMapper;
 

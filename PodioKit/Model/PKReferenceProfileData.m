@@ -45,10 +45,6 @@ static NSString * const POReferenceProfileDataAvatarId = @"AvatarId";
   [aCoder encodeInteger:avatarId_ forKey:POReferenceProfileDataAvatarId];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

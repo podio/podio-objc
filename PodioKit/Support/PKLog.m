@@ -16,5 +16,4 @@ void PKLogWithLine(const char *filePath, int lineNumber, NSString *fmt, ...) {
   NSString *fileName = [[NSString stringWithUTF8String:filePath] lastPathComponent];
   printf("%s:%d %s\n", [fileName UTF8String], lineNumber, [string UTF8String]);
   va_end(args);
-  [string release];
 }

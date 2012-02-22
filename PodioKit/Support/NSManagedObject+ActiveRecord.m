@@ -47,7 +47,6 @@
   }
   
   NSArray *result = [context executeFetchRequest:request error:error];
-  [request release];
   
   return result;
 }
@@ -78,7 +77,7 @@
   NSString *entityName = [self respondsToSelector:@selector(entityName)] ? [self entityName] : NSStringFromClass(self);
   id obj = [[self alloc] initWithEntity:[NSEntityDescription entityForName:entityName inManagedObjectContext:context] insertIntoManagedObjectContext:context];
   
-  return [obj autorelease];
+  return obj;
 }
 
 - (BOOL)save {

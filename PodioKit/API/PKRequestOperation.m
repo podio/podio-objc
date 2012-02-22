@@ -36,20 +36,10 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   return self;
 }
 
-- (void)dealloc {
-  [requestCompletionBlock_ release];
-  requestCompletionBlock_ = nil;
-  
-  [objectMapper_ release];
-  objectMapper_ = nil;
-  
-  [super dealloc];
-}
-
 + (PKRequestOperation *)operationWithURLString:(NSString *)urlString 
                                         method:(NSString *)method 
                                           body:(id)body {
-  PKRequestOperation *operation = [[[self alloc] initWithURLString:urlString method:method] autorelease];
+  PKRequestOperation *operation = [[self alloc] initWithURLString:urlString method:method];
   operation.validatesSecureCertificate = YES;
   operation.shouldAttemptPersistentConnection = NO;
   
@@ -85,7 +75,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   // Parse data
   switch (self.responseStatusCode) {
     case 200:
-    case 201:
+    case 201: {
       PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
       //      PKLogDebug(@"Response body: %@", data);
       
@@ -102,15 +92,18 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
         requestError = [NSError pk_responseParseError];      
       }
       break;
-    case 204:
+    }
+    case 204: {
       // Success but no data
       PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
       break;
-    default:
+    }
+    default: {
       // Failed
       PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
       requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
       break;
+    }
   }
   
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 
@@ -157,12 +150,12 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     [NSException raise:PKNoObjectMapperSetException format:msg];
   }
   
-  // Do mapping
-  NSAutoreleasePool *pool = [[NSAutoreleasePool alloc] init];
-  id result = [[self.objectMapper performMappingWithData:data] retain];
-  [pool drain];
+  id result = nil;
+  @autoreleasepool {
+    result = [self.objectMapper performMappingWithData:data];
+  }
   
-  return [result autorelease];
+  return result;
 }
 
 @end

@@ -57,13 +57,6 @@ static NSString * const POStreamTaskDataResponsibleName = @"ResponsibleName";
   [aCoder encodeObject:responsibleName_ forKey:POStreamTaskDataResponsibleName];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [description_ release];
-  [dueDate_ release];
-  [responsibleName_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

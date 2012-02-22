@@ -29,8 +29,7 @@
 
 - (PKObjectMapper *)createObjectMapperWithMapping:(PKObjectMapping *)mapping {
   PKDefaultMappingProvider *mappingProvider = [[PKDefaultMappingProvider alloc] init];
-  PKObjectMapper *mapper = [[[PKObjectMapper alloc] initWithMappingProvider:mappingProvider] autorelease];
-  [mappingProvider release];
+  PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithMappingProvider:mappingProvider];
   
   mapper.repository = [PKDefaultObjectRepository repository];
   mapper.delegate = self;

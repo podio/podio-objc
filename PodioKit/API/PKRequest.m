@@ -45,30 +45,19 @@
 - (id)initWithURI:(NSString *)uri method:(PKAPIRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping {
   self = [self initWithURI:uri method:method];
   if (self) {
-    objectMapping_ = [objectMapping retain];
+    objectMapping_ = objectMapping;
   }
   
   return self;
 }
 
-- (void)dealloc {
-  [mappingBlock_ release];
-  [scopePredicate_ release];
-  [userInfo_ release];
-  [objectMapping_ release];
-  [body_ release];
-  [parameters_ release];
-  [method_ release];
-  [uri_ release];
-  [super dealloc];
-}
 
 + (PKRequest *)requestWithURI:(NSString *)uri method:(PKAPIRequestMethod)method {
-  return [[[self alloc] initWithURI:uri method:method] autorelease];
+  return [[self alloc] initWithURI:uri method:method];
 }
 
 + (PKRequest *)requestWithURI:(NSString *)uri method:(PKAPIRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping {
-  return [[[self alloc] initWithURI:uri method:method objectMapping:objectMapping] autorelease];
+  return [[self alloc] initWithURI:uri method:method objectMapping:objectMapping];
 }
 
 - (PKRequestOperation *)startWithCompletionBlock:(PKRequestCompletionBlock)completionBlock {

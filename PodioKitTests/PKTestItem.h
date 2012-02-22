@@ -21,7 +21,7 @@
 
 @property (nonatomic, copy) NSNumber *itemId;
 @property (nonatomic, copy) NSString *title;
-@property (nonatomic, retain) NSArray *fields;
-@property (nonatomic, retain) PKTestItemApp *app;
+@property (nonatomic, strong) NSArray *fields;
+@property (nonatomic, strong) PKTestItemApp *app;
 
 @end

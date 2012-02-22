@@ -14,7 +14,7 @@
   CFUUIDRef theUUID = CFUUIDCreate(NULL);
   CFStringRef string = CFUUIDCreateString(NULL, theUUID);
   CFRelease(theUUID);
-  return [(NSString *)string autorelease];
+  return (__bridge_transfer NSString *)string;
 }
 
 - (BOOL)pk_isHTML {
@@ -34,7 +34,7 @@
     NSString *firstChar = [[self substringToIndex:1] capitalizedString];
     capitalizedString = [self stringByReplacingCharactersInRange:NSMakeRange(0,1) withString:firstChar];
   } else {
-    capitalizedString = [[self copy] autorelease];
+    capitalizedString = [self copy];
   }
   
   return capitalizedString;
@@ -47,7 +47,6 @@
   }
   
   NSString *string = [array componentsJoinedByString:@""];
-  [array release];
  
   return string;
 }

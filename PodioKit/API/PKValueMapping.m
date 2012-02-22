@@ -31,10 +31,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [block_ release];
-  [super dealloc];
-}
 
 - (id)evaluateForValue:(id)attributeValue objectDict:(NSDictionary *)objectDict parent:(id)parent {
   id value = nil;

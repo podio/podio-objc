@@ -21,9 +21,9 @@
                                          // the scope of the target entity of the relationship
 }
 
-@property (nonatomic, retain) PKObjectMapping *objectMapping;
-@property (nonatomic, retain) NSString *inversePropertyName;
-@property (nonatomic, retain) NSArray *inverseScopeAttributeNames;
+@property (nonatomic, strong) PKObjectMapping *objectMapping;
+@property (nonatomic, strong) NSString *inversePropertyName;
+@property (nonatomic, strong) NSArray *inverseScopeAttributeNames;
 
 - (id)initWithPropertyName:(NSString *)propertyName 
              attributeName:(NSString *)attributeName 

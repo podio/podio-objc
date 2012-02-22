@@ -32,11 +32,11 @@ static NSString * const POQuestionDataAnswerCounts = @"AnswerCounts";
   if (self) {
     questionId_ = [aDecoder decodeIntegerForKey:POQuestionDataQuestionId];
     text_ = [[aDecoder decodeObjectForKey:POQuestionDataText] copy];
-    options_ = [[aDecoder decodeObjectForKey:POQuestionDataOptions] retain];
+    options_ = [aDecoder decodeObjectForKey:POQuestionDataOptions];
     answerCount_ = [aDecoder decodeIntegerForKey:POQuestionDataAnswerCount];
-    answerUsers_ = [[aDecoder decodeObjectForKey:POQuestionDataAnswerUsers] retain];
-    userAnswers_ = [[aDecoder decodeObjectForKey:POQuestionDataUserAnswers] retain];
-    answerCounts_ = [[aDecoder decodeObjectForKey:POQuestionDataAnswerCounts] retain];
+    answerUsers_ = [aDecoder decodeObjectForKey:POQuestionDataAnswerUsers];
+    userAnswers_ = [aDecoder decodeObjectForKey:POQuestionDataUserAnswers];
+    answerCounts_ = [aDecoder decodeObjectForKey:POQuestionDataAnswerCounts];
   }
   return self;
 }
@@ -52,14 +52,6 @@ static NSString * const POQuestionDataAnswerCounts = @"AnswerCounts";
   [aCoder encodeObject:answerCounts_ forKey:POQuestionDataAnswerCounts];
 }
 
-- (void)dealloc {
-  [answerCounts_ release];
-  [userAnswers_ release];
-  [answerUsers_ release];
-  [text_ release];
-  [options_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 
@@ -92,13 +84,10 @@ static NSString * const POQuestionDataAnswerCounts = @"AnswerCounts";
   data.answerCount = [userAnswers count];
   
   data.answerUsers = answerUsers;
-  [answerUsers release];
   
   data.userAnswers = userAnswers;
-  [userAnswers release];
   
   data.answerCounts = answerCounts;
-  [answerCounts release];
   
   return data;
 }

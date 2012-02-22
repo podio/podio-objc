@@ -36,12 +36,6 @@ static NSString * const POTransformableMediaDataVideoIdKey = @"VideoId";
   [aCoder encodeObject:videoId_ forKey:POTransformableMediaDataVideoIdKey];
 }
 
-- (void)dealloc {
-  [embedCode_ release];
-  [provider_ release];
-  [videoId_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

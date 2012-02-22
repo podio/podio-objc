@@ -32,15 +32,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [inverseClassMap_ release];
-  inverseClassMap_ = nil;
-  
-  [classMap_ release];
-  classMap_ = nil;
-  
-  [super dealloc];
-}
 
 - (void)addMappedClassName:(NSString *)mappedClassName forMappingClassName:(NSString *)mappingClassName {
   NSAssert(mappedClassName != nil, @"Mapped class cannot be nil");

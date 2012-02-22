@@ -26,14 +26,6 @@
   return self;
 }
 
-- (void)dealloc {
-  [app_ release], app_ = nil;
-  [fields_ release], fields_ = nil;
-  [itemId_ release], itemId_ = nil;
-  [title_ release], title_ = nil;
-  [super dealloc];
-}
-
 #pragma mark - PKMappableObject
 
 + (NSArray *)identityPropertyNames {

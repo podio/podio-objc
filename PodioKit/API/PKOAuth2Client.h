@@ -44,7 +44,7 @@ extern NSString * const PKOAuth2ClientFailedToReceiveTokenNotification;
   NSMutableSet *requests_;
   PKOAuth2RequestType requestType_;
   
-  id<PKOAuth2ClientDelegate> delegate_;
+  id<PKOAuth2ClientDelegate> __unsafe_unretained delegate_;
 }
 
 @property (nonatomic, copy) NSString *clientID;
@@ -52,7 +52,7 @@ extern NSString * const PKOAuth2ClientFailedToReceiveTokenNotification;
 @property (nonatomic, copy) NSString *tokenURL;
 @property (nonatomic, copy) NSString *redirectURL;
 @property (nonatomic, readonly) NSMutableSet *requests;
-@property (nonatomic, assign) id<PKOAuth2ClientDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<PKOAuth2ClientDelegate> delegate;
 
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL redirectURL:(NSString *)redirectURL;
 

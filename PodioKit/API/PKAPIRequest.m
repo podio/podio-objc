@@ -32,16 +32,9 @@ PKAPIRequestMethod const PKAPIRequestMethodDELETE = @"DELETE";
   return self;
 }
 
-- (void)dealloc {
-  [path_ release];
-  [method_ release];
-  [getParameters_ release];
-  [postParameters_ release];
-  [super dealloc];
-}
 
 + (id)requestWithPath:(NSString *)path method:(PKAPIRequestMethod)method {
-  return [[[self alloc] initWithPath:path method:method] autorelease];
+  return [[self alloc] initWithPath:path method:method];
 }
 
 @end

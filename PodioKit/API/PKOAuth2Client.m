@@ -48,13 +48,12 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 - (void)dealloc {
   delegate_ = nil;
   
-  [requests_ release], requests_ = nil;
-  [redirectURL_ release], redirectURL_ = nil;
-  [tokenURL_ release], tokenURL_ = nil;
-  [clientSecret_ release], clientSecret_ = nil;
-  [clientID_ release], clientID_ = nil;
+  requests_ = nil;
+  redirectURL_ = nil;
+  tokenURL_ = nil;
+  clientSecret_ = nil;
+  clientID_ = nil;
   
-  [super dealloc];
 }
 
 // Lazy load
@@ -89,7 +88,6 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
     PKLogDebug(@"Authentication URL: %@", requestURLString);
     
-    [params release];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:requestURLString]]; 
     request.delegate = self;
@@ -131,7 +129,6 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
     PKLogDebug(@"Refresh URL: %@", requestURLString);
     
-    [params release];
     
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:requestURLString]]; 
     request.delegate = self;

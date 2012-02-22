@@ -32,11 +32,6 @@ static NSString * const POTransformableCalculationDataUnitKey = @"Unit";
   [aCoder encodeObject:unit_ forKey:POTransformableCalculationDataUnitKey];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [unit_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

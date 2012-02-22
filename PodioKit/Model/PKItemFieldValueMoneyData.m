@@ -32,11 +32,6 @@ static NSString * const POTransformableMoneyDataCurrencyKey = @"Currency";
   [aCoder encodeObject:currency_ forKey:POTransformableMoneyDataCurrencyKey];
 }
 
-- (void)dealloc {
-  [amount_ release];
-  [currency_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

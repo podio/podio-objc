@@ -32,10 +32,6 @@ static NSString * const POStreamActivityAnswerDataText = @"Text";
   [aCoder encodeObject:text_ forKey:POStreamActivityAnswerDataText];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

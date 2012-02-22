@@ -31,7 +31,7 @@
 
 - (id)init {
   @synchronized(self) {
-    [super init];
+    self = [super init];
     
     // Custom initialization
     apiClient_ = nil;

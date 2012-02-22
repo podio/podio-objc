@@ -32,11 +32,6 @@ static NSString * const POTransformableDateDataEndDateKey = @"EndDate";
   [aCoder encodeObject:endDate_ forKey:POTransformableDateDataEndDateKey];
 }
 
-- (void)dealloc {
-  [startDate_ release];
-  [endDate_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

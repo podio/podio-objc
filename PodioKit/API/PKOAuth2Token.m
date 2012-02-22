@@ -30,7 +30,7 @@ static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
 }
 
 + (id)tokenWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken expiresOn:(NSDate *)expiresOn {
-  return [[[self alloc] initWithAccessToken:accessToken refreshToken:refreshToken expiresOn:expiresOn] autorelease];
+  return [[self alloc] initWithAccessToken:accessToken refreshToken:refreshToken expiresOn:expiresOn];
 }
 
 
@@ -50,12 +50,6 @@ static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
   [aCoder encodeObject:expiresOn_ forKey:PKOAuth2TokenExpiresOn];
 }
 
-- (void)dealloc {
-  [expiresOn_ release];
-  [refreshToken_ release];
-  [accessToken_ release];
-  [super dealloc];
-}
 
 - (BOOL)hasExpired {
   NSDate *safeCompareDate = [NSDate dateWithTimeIntervalSinceNow:10 * 60]; // If less than 10 minutes left, refresh

@@ -22,7 +22,7 @@
 }
 
 + (id)data {
-  return [[[self alloc] init] autorelease];
+  return [[self alloc] init];
 }
 
 + (id)dataFromDictionary:(NSDictionary *)dict {
@@ -37,7 +37,6 @@
   }
   
   NSArray *objects = [NSArray arrayWithArray:mutObjects];
-  [mutObjects release];
   
   return objects;
 }

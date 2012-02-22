@@ -21,10 +21,8 @@
   NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
   NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
   [formatter setLocale:locale];
-  [locale release];
   
   NSNumber *number = [formatter numberFromString:[self pk_objectForKey:key]];
-  [formatter release];
   
   return number;
 }
@@ -41,7 +39,7 @@
     }
   }
   
-  return [[value retain] autorelease];
+  return value;
 }
 
 - (NSDictionary *)pk_dictionaryByMergingDictionary:(NSDictionary *)dictionary {
@@ -50,7 +48,6 @@
   [mutDictionary addEntriesFromDictionary:dictionary];
   
   NSDictionary *newDictionary = [NSDictionary dictionaryWithDictionary:mutDictionary];
-  [mutDictionary release];
   
   return newDictionary;
 }

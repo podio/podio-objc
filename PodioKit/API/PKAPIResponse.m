@@ -18,25 +18,21 @@
 - (id)initWithData:(NSData *)data {
   self = [super init];
   if (self) {
-    responseData_ = [data retain];
+    responseData_ = data;
     self.error = nil;
   }
   return self;
 }
 
-- (void)dealloc {
-  [responseData_ release];
-  [super dealloc];
-}
 
 + (id)responseWithData:(NSData *)data {
-  return [[[self alloc] initWithData:data] autorelease];
+  return [[self alloc] initWithData:data];
 }
 
 #pragma mark - Impl
 
 - (NSString *)responseString {
-  return [[[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding] autorelease];
+  return [[NSString alloc] initWithData:self.responseData encoding:NSUTF8StringEncoding];
 }
 
 - (id)responseObjectFromJSON {

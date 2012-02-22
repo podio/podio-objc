@@ -18,23 +18,19 @@
   self = [super init];
   if (self) {
     managedObjectContext_ = nil;
-    persistentStoreCoordinator_ = [persistentStoreCoordinator retain];
+    persistentStoreCoordinator_ = persistentStoreCoordinator;
   }
   return self;
 }
 
 - (void)dealloc {
-  [managedObjectContext_ release];
-  managedObjectContext_ = nil;
   
-  [persistentStoreCoordinator_ release];
   persistentStoreCoordinator_ = nil;
   
-  [super dealloc];
 }
 
 + (id)repositoryWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-  return [[[[self class] alloc] initWithPersistentStoreCoordinator:persistentStoreCoordinator] autorelease];
+  return [[[self class] alloc] initWithPersistentStoreCoordinator:persistentStoreCoordinator];
 }
 
 #pragma mark - Impl

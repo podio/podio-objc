@@ -18,6 +18,6 @@
 
 @property (nonatomic) NSInteger meetingId;
 @property (nonatomic) PKMeetingPluginType pluginType;
-@property (nonatomic, retain) id pluginData;
+@property (nonatomic, strong) id pluginData;
 
 @end

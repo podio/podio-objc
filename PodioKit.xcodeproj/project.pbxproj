@@ -246,39 +246,39 @@
 		50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBF5391439B365002522D6 /* NSString+Hash.m */; };
 		50BBF53C1439B365002522D6 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBF5391439B365002522D6 /* NSString+Hash.m */; };
 		50C7FBFB1446D1CD006E00B8 /* ASIAuthenticationDialog.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBD51446D1CD006E00B8 /* ASIAuthenticationDialog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FBFC1446D1CD006E00B8 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD61446D1CD006E00B8 /* ASIAuthenticationDialog.m */; };
-		50C7FBFD1446D1CD006E00B8 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD61446D1CD006E00B8 /* ASIAuthenticationDialog.m */; };
+		50C7FBFC1446D1CD006E00B8 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD61446D1CD006E00B8 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FBFD1446D1CD006E00B8 /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD61446D1CD006E00B8 /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FBFE1446D1CD006E00B8 /* ASICacheDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBD71446D1CD006E00B8 /* ASICacheDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C7FBFF1446D1CD006E00B8 /* ASIDataCompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBD81446D1CD006E00B8 /* ASIDataCompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC001446D1CD006E00B8 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD91446D1CD006E00B8 /* ASIDataCompressor.m */; };
-		50C7FC011446D1CD006E00B8 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD91446D1CD006E00B8 /* ASIDataCompressor.m */; };
+		50C7FC001446D1CD006E00B8 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD91446D1CD006E00B8 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC011446D1CD006E00B8 /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBD91446D1CD006E00B8 /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC021446D1CD006E00B8 /* ASIDataDecompressor.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBDA1446D1CD006E00B8 /* ASIDataDecompressor.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC031446D1CD006E00B8 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDB1446D1CD006E00B8 /* ASIDataDecompressor.m */; };
-		50C7FC041446D1CD006E00B8 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDB1446D1CD006E00B8 /* ASIDataDecompressor.m */; };
+		50C7FC031446D1CD006E00B8 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDB1446D1CD006E00B8 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC041446D1CD006E00B8 /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDB1446D1CD006E00B8 /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC051446D1CD006E00B8 /* ASIDownloadCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBDC1446D1CD006E00B8 /* ASIDownloadCache.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC061446D1CD006E00B8 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDD1446D1CD006E00B8 /* ASIDownloadCache.m */; };
-		50C7FC071446D1CD006E00B8 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDD1446D1CD006E00B8 /* ASIDownloadCache.m */; };
+		50C7FC061446D1CD006E00B8 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDD1446D1CD006E00B8 /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC071446D1CD006E00B8 /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDD1446D1CD006E00B8 /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC081446D1CD006E00B8 /* ASIFormDataRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBDE1446D1CD006E00B8 /* ASIFormDataRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC091446D1CD006E00B8 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDF1446D1CD006E00B8 /* ASIFormDataRequest.m */; };
-		50C7FC0A1446D1CD006E00B8 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDF1446D1CD006E00B8 /* ASIFormDataRequest.m */; };
+		50C7FC091446D1CD006E00B8 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDF1446D1CD006E00B8 /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC0A1446D1CD006E00B8 /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBDF1446D1CD006E00B8 /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC0B1446D1CD006E00B8 /* ASIHTTPRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBE01446D1CD006E00B8 /* ASIHTTPRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC0C1446D1CD006E00B8 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE11446D1CD006E00B8 /* ASIHTTPRequest.m */; };
-		50C7FC0D1446D1CD006E00B8 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE11446D1CD006E00B8 /* ASIHTTPRequest.m */; };
+		50C7FC0C1446D1CD006E00B8 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE11446D1CD006E00B8 /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC0D1446D1CD006E00B8 /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE11446D1CD006E00B8 /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC0E1446D1CD006E00B8 /* ASIHTTPRequestConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBE21446D1CD006E00B8 /* ASIHTTPRequestConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C7FC0F1446D1CD006E00B8 /* ASIHTTPRequestDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBE31446D1CD006E00B8 /* ASIHTTPRequestDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C7FC101446D1CD006E00B8 /* ASIInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBE41446D1CD006E00B8 /* ASIInputStream.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC111446D1CD006E00B8 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE51446D1CD006E00B8 /* ASIInputStream.m */; };
-		50C7FC121446D1CD006E00B8 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE51446D1CD006E00B8 /* ASIInputStream.m */; };
+		50C7FC111446D1CD006E00B8 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE51446D1CD006E00B8 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC121446D1CD006E00B8 /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE51446D1CD006E00B8 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC131446D1CD006E00B8 /* ASINetworkQueue.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBE61446D1CD006E00B8 /* ASINetworkQueue.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC141446D1CD006E00B8 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE71446D1CD006E00B8 /* ASINetworkQueue.m */; };
-		50C7FC151446D1CD006E00B8 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE71446D1CD006E00B8 /* ASINetworkQueue.m */; };
+		50C7FC141446D1CD006E00B8 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE71446D1CD006E00B8 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC151446D1CD006E00B8 /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE71446D1CD006E00B8 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC161446D1CD006E00B8 /* ASIProgressDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBE81446D1CD006E00B8 /* ASIProgressDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50C7FC171446D1CD006E00B8 /* JSONKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBEA1446D1CD006E00B8 /* JSONKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC181446D1CD006E00B8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBEB1446D1CD006E00B8 /* JSONKit.m */; };
-		50C7FC191446D1CD006E00B8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBEB1446D1CD006E00B8 /* JSONKit.m */; };
+		50C7FC181446D1CD006E00B8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBEB1446D1CD006E00B8 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC191446D1CD006E00B8 /* JSONKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBEB1446D1CD006E00B8 /* JSONKit.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50C7FC2A1446D1CD006E00B8 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBF91446D1CD006E00B8 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC2B1446D1CD006E00B8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBFA1446D1CD006E00B8 /* Reachability.m */; };
-		50C7FC2C1446D1CD006E00B8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBFA1446D1CD006E00B8 /* Reachability.m */; };
+		50C7FC2B1446D1CD006E00B8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBFA1446D1CD006E00B8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		50C7FC2C1446D1CD006E00B8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBFA1446D1CD006E00B8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50CBD0C4144C27DC007AC114 /* PKOAuth2Token.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CBD0C2144C27DC007AC114 /* PKOAuth2Token.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CBD0C5144C27DC007AC114 /* PKOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CBD0C3144C27DC007AC114 /* PKOAuth2Token.m */; };
 		50CBD0C6144C27DC007AC114 /* PKOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CBD0C3144C27DC007AC114 /* PKOAuth2Token.m */; };
@@ -1699,6 +1699,7 @@
 		5065BF1014335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1719,6 +1720,7 @@
 		5065BF1114335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1739,6 +1741,7 @@
 		5065BF1314335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -1757,6 +1760,7 @@
 		5065BF1414335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",

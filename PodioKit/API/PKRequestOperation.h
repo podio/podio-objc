@@ -21,7 +21,7 @@ extern NSString * const PKNoObjectMapperSetException;
   PKRequestCompletionBlock requestCompletionBlock_;
 }
 
-@property (retain) PKObjectMapper *objectMapper;
+@property (strong) PKObjectMapper *objectMapper;
 @property (copy) PKRequestCompletionBlock requestCompletionBlock;
 
 + (PKRequestOperation *)operationWithURLString:(NSString *)urlString 

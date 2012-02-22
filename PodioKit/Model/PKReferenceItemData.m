@@ -44,13 +44,6 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
   [aCoder encodeObject:appIcon_ forKey:PKStreamItemDataAppIcon];
 }
 
-- (void)dealloc {
-  [appIcon_ release];
-  [appItemName_ release];
-  [appName_ release];
-  [title_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

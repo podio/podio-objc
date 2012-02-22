@@ -33,11 +33,11 @@ typedef void (^PKRequestCompletionBlock)(NSError *error, PKRequestResult *result
 
 @property (copy) NSString *uri;
 @property (copy) PKAPIRequestMethod method;
-@property (retain) NSMutableDictionary *parameters;
-@property (retain) id body;
-@property (retain) PKObjectMapping *objectMapping;
-@property (retain) NSDictionary *userInfo;
-@property (nonatomic, retain) NSPredicate *scopePredicate;
+@property (strong) NSMutableDictionary *parameters;
+@property (strong) id body;
+@property (strong) PKObjectMapping *objectMapping;
+@property (strong) NSDictionary *userInfo;
+@property (nonatomic, strong) NSPredicate *scopePredicate;
 @property NSUInteger offset;
 @property (copy) PKCustomMappingBlock mappingBlock;
 

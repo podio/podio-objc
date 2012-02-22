@@ -18,8 +18,7 @@
     [mutArray addObject:block(obj)];
   }];
   
-  NSArray *array = [[mutArray copy] autorelease];
-  [mutArray release];
+  NSArray *array = [mutArray copy];
   
   return array;
 }

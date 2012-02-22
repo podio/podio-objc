@@ -32,10 +32,6 @@ static NSString * const PKStreamActivityCommentDataValue = @"Value";
   [aCoder encodeObject:value_ forKey:PKStreamActivityCommentDataValue];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

@@ -26,14 +26,9 @@
 
 + (id)mappingForAttributeName:(NSString *)attributeName 
                 objectMapping:(PKObjectMapping *)objectMapping {
-  return [[[self alloc] initWithAttributeName:attributeName 
-                                objectMapping:objectMapping] autorelease];
+  return [[self alloc] initWithAttributeName:attributeName 
+                                objectMapping:objectMapping];
 }
 
-- (void)dealloc {
-  [scopePredicateBlock_ release];
-  [objectMapping_ release];
-  [super dealloc];
-}
 
 @end
