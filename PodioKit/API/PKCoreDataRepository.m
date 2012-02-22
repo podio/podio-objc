@@ -23,12 +23,6 @@
   return self;
 }
 
-- (void)dealloc {
-  
-  persistentStoreCoordinator_ = nil;
-  
-}
-
 + (id)repositoryWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator {
   return [[[self class] alloc] initWithPersistentStoreCoordinator:persistentStoreCoordinator];
 }

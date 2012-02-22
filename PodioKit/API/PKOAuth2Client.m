@@ -47,13 +47,6 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 
 - (void)dealloc {
   delegate_ = nil;
-  
-  requests_ = nil;
-  redirectURL_ = nil;
-  tokenURL_ = nil;
-  clientSecret_ = nil;
-  clientID_ = nil;
-  
 }
 
 // Lazy load

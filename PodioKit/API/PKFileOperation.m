@@ -23,10 +23,6 @@
   return self;
 }
 
-- (void)dealloc {
-  requestCompletionBlock_ = nil;
-}
-
 + (PKFileOperation *)uploadOperationWithURLString:(NSString *)urlString filePath:(NSString *)filePath fileName:(NSString *)fileName {
   PKFileOperation *operation = [[self alloc] initWithURLString:urlString];
   operation.shouldAttemptPersistentConnection = NO;

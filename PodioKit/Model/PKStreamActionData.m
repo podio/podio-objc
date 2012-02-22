@@ -41,10 +41,6 @@ static NSString * const POStreamActionReference = @"Reference";
   [aCoder encodeObject:reference_ forKey:POStreamActionReference];
 }
 
-- (void)dealloc {
-  reference_ = nil;
-}
-
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {

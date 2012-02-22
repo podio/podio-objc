@@ -50,13 +50,6 @@
 
 - (void)dealloc {
   delegate_ = nil;
-  
-  dateFormatter_ = nil;
-  scopePredicate_ = nil;
-  mapping_ = nil;
-  mappingBlock_ = nil;
-  repository_ = nil;
-  mappingProvider_ = nil;
 }
 
 #pragma mark - Helpers
