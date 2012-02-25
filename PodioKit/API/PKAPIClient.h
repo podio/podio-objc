@@ -58,23 +58,19 @@ extern NSString * const PKAPIClientNoInternetConnection;
 + (PKAPIClient *)sharedClient;
 
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret;
-
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString;
 
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password;
+
+- (void)refreshToken;
+- (void)refreshUsingRefreshToken:(NSString *)refreshToken;
+- (void)needsReauthentication;
 
 - (BOOL)isAuthenticated;
 
 - (NSString *)URLStringForPath:(NSString *)path parameters:(NSDictionary *)parameters;
 
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation;
-
 - (BOOL)addFileOperation:(PKFileOperation *)operation;
-
-- (void)refreshToken;
-
-- (void)refreshUsingRefreshToken:(NSString *)refreshToken;
-
-- (void)needsReauthentication;
 
 @end

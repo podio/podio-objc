@@ -161,10 +161,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
 }
 
-- (BOOL)isAuthenticated {
-  return self.authToken != nil;
-}
-
 - (void)refreshToken {
   if ([self isAuthenticated]) {
     [self refreshUsingRefreshToken:self.authToken.refreshToken];
@@ -196,6 +192,20 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)needsReauthentication {
   self.authToken = nil;
   [[NSNotificationCenter defaultCenter] postNotificationName:POAPIClientNeedsReauthentication object:nil];
+}
+
+- (BOOL)isAuthenticated {
+  return self.authToken != nil;
+}
+
+- (NSString *)URLStringForPath:(NSString *)path parameters:(NSDictionary *)parameters {
+  NSMutableString *urlString = urlString = [NSMutableString stringWithFormat:@"%@%@", self.baseURLString, path];
+  
+  if (parameters != nil && [parameters count] > 0) {
+    [urlString appendFormat:@"?%@", [parameters pk_escapedURLStringFromComponents]];
+  }
+  
+  return urlString;
 }
 
 - (void)didAuthenticateWithToken:(PKOAuth2Token *)token {
@@ -244,16 +254,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
   
   return networkQueue_;
-}
-
-- (NSString *)URLStringForPath:(NSString *)path parameters:(NSDictionary *)parameters {
-  NSMutableString *urlString = urlString = [NSMutableString stringWithFormat:@"%@%@", self.baseURLString, path];
-    
-  if (parameters != nil && [parameters count] > 0) {
-    [urlString appendFormat:@"?%@", [parameters pk_escapedURLStringFromComponents]];
-  }
-  
-  return urlString;
 }
 
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation {

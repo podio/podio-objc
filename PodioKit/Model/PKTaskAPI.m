@@ -182,4 +182,29 @@
   return request;
 }
 
++ (PKRequest *)requestForTaskTotalsWithTime:(PKTaskTotalsTime)time {
+  NSString *timeString = nil;
+  
+  switch (time) {
+    case PKTaskTotalsTimeOverdue:
+      timeString = @"overdue";
+      break;
+    case PKTaskTotalsTimeDue:
+      timeString = @"due";
+      break;
+    case PKTaskTotalsTimeToday:
+      timeString = @"today";
+      break;
+    case PKTaskTotalsTimeAll:
+    default:
+      timeString = @"all";
+      break;
+  }
+  
+  NSString *uri = [NSString stringWithFormat:@"/task/total/%@", timeString];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  
+  return request;
+}
+
 @end

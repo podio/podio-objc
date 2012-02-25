@@ -41,4 +41,6 @@
 + (PKRequest *)requestForTaskTotals;
 + (PKRequest *)requestForTaskTotalsForSpaceWithId:(NSUInteger)spaceId;
 
++ (PKRequest *)requestForTaskTotalsWithTime:(PKTaskTotalsTime)time;
+
 @end

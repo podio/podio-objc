@@ -16,19 +16,11 @@ extern PKAPIRequestMethod const PKAPIRequestMethodPOST;
 extern PKAPIRequestMethod const PKAPIRequestMethodPUT;
 extern PKAPIRequestMethod const PKAPIRequestMethodDELETE;
 
-@interface PKAPIRequest : NSObject {
-
- @protected
-  NSString *path_;
-  PKAPIRequestMethod method_;
-  NSMutableDictionary *getParameters_;
-  NSMutableDictionary *postParameters_;
-  BOOL authenticated_;
-}
+@interface PKAPIRequest : NSObject
 
 @property (nonatomic, copy) NSString *path;
-@property (nonatomic, readonly) NSMutableDictionary *getParameters;
-@property (nonatomic, readonly) NSMutableDictionary *postParameters;
+@property (nonatomic, strong, readonly) NSMutableDictionary *getParameters;
+@property (nonatomic, strong, readonly) NSMutableDictionary *postParameters;
 @property BOOL authenticated;
 
 - (id)initWithPath:(NSString *)path method:(PKAPIRequestMethod)method;

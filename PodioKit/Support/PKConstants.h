@@ -181,6 +181,14 @@ static NSString * const kPKTaskGroup12Month = @"12_months";
 static NSString * const kPKTaskGroup1Year = @"1_year";
 static NSString * const kPKTaskGroupOlder = @"older";
 
+// Task totals
+typedef enum {
+  PKTaskTotalsTimeOverdue = 0,
+  PKTaskTotalsTimeDue,
+  PKTaskTotalsTimeToday,
+  PKTaskTotalsTimeAll,
+} PKTaskTotalsTime;
+
 #pragma mark - Item
 
 // Field types
