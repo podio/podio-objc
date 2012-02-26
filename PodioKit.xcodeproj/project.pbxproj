@@ -36,7 +36,6 @@
 		502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FB314458B2F004F4185 /* PKDefaultMappingProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 502B5FB114458B2F004F4185 /* PKDefaultMappingProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		502B5FB514458B2F004F4185 /* PKDefaultMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB214458B2F004F4185 /* PKDefaultMappingProvider.m */; };
-		502B5FB914458C93004F4185 /* PKTaskMappingTests.h in Headers */ = {isa = PBXBuildFile; fileRef = 502B5FB714458C93004F4185 /* PKTaskMappingTests.h */; settings = {ATTRIBUTES = (); }; };
 		502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB814458C93004F4185 /* PKTaskMappingTests.m */; };
 		502B9CCF14A7DF76009510F1 /* PKDefaultMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB214458B2F004F4185 /* PKDefaultMappingProvider.m */; };
 		502B9CD214A9BAD9009510F1 /* PKTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B9CD114A9BAD8009510F1 /* PKTestCase.m */; };
@@ -1303,7 +1302,6 @@
 				50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */,
 				50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */,
 				50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */,
-				502B5FB914458C93004F4185 /* PKTaskMappingTests.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1641,58 +1639,39 @@
 		5065BF0D14335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
 					armv6,
 					armv7,
 				);
-				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					DEBUG,
-					"$(inherited)",
-				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Development;
 		};
 		5065BF0E14335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = (
 					armv6,
 					armv7,
 				);
-				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = "";
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
-				PUBLIC_HEADERS_FOLDER_PATH = "$(TARGET_NAME)";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -1700,6 +1679,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1707,10 +1687,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1728,13 +1709,11 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = "";
 				GCC_THUMB_SUPPORT = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				INSTALL_PATH = "$(BUILT_PRODUCTS_DIR)";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
