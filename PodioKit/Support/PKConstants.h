@@ -57,6 +57,8 @@ typedef enum {
   PKRightAddAnswer       = 1 << 22,
 } PKRight;
 
+#pragma mark - Spaces
+
 typedef enum {
   PKSpaceTypeNone = 0,
   PKSpaceTypeRegular,
@@ -65,6 +67,19 @@ typedef enum {
 
 static NSString * const kPKSpaceTypeRegular = @"regular";
 static NSString * const kPKSpaceTypeEmployeeNetwork = @"emp_network";
+
+typedef enum {
+  PKSpaceCreateStatusNone = 0,
+  PKSpaceCreateStatusJoined,
+  PKSpaceCreateStatusOpen,
+  PKSpaceCreateStatusClosed,
+  PKSpaceCreateStatusDeleted,
+} PKSpaceCreateStatus;
+
+static NSString * const kPKSpaceCreateStatusJoined = @"joined";
+static NSString * const kPKSpaceCreateStatusOpen = @"open";
+static NSString * const kPKSpaceCreateStatusClosed = @"closed";
+static NSString * const kPKSpaceCreateStatusDeleted = @"deleted";
 
 #pragma mark - Tasks
 
@@ -495,6 +510,7 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 // Space
 + (PKSpaceType)spaceTypeForString:(NSString *)string;
++ (PKSpaceCreateStatus)spaceCreateStatusForString:(NSString *)string;
 
 // Avatar
 + (PKAvatarType)avatarTypeForString:(NSString *)string;

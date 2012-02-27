@@ -219,6 +219,12 @@
 		5084B57A14DEF5F0002FC8DB /* PKLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5084B57814DEF5F0002FC8DB /* PKLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
 		5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
+		508D211D14FBB332002593A4 /* PKSpaceCreateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D211B14FBB332002593A4 /* PKSpaceCreateData.h */; };
+		508D211E14FBB332002593A4 /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
+		508D211F14FBB332002593A4 /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
+		508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D212A14FBB875002593A4 /* PKSpaceAPI.h */; };
+		508D212D14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
+		508D212E14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
 		509EAE71147A798F007252D8 /* PKFileOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 509EAE6F147A798F007252D8 /* PKFileOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		509EAE72147A798F007252D8 /* PKFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 509EAE70147A798F007252D8 /* PKFileOperation.m */; };
 		50A16D8D148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */; };
@@ -506,6 +512,10 @@
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		5084B57814DEF5F0002FC8DB /* PKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLog.h; sourceTree = "<group>"; };
 		5084B57914DEF5F0002FC8DB /* PKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLog.m; sourceTree = "<group>"; };
+		508D211B14FBB332002593A4 /* PKSpaceCreateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceCreateData.h; sourceTree = "<group>"; };
+		508D211C14FBB332002593A4 /* PKSpaceCreateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceCreateData.m; sourceTree = "<group>"; };
+		508D212A14FBB875002593A4 /* PKSpaceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceAPI.h; sourceTree = "<group>"; };
+		508D212B14FBB875002593A4 /* PKSpaceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceAPI.m; sourceTree = "<group>"; };
 		509EAE6F147A798F007252D8 /* PKFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKFileOperation.h; sourceTree = "<group>"; };
 		509EAE70147A798F007252D8 /* PKFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFileOperation.m; sourceTree = "<group>"; };
 		50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceStatusData.m; sourceTree = "<group>"; };
@@ -690,6 +700,7 @@
 				5030C04C1435E76300027F07 /* PKObjectData.h */,
 				5030C04D1435E76300027F07 /* PKObjectData.m */,
 				5030C0BF1435E88700027F07 /* Item */,
+				508D211914FBB311002593A4 /* Space */,
 				5030C0BD1435E7AB00027F07 /* Stream */,
 				5030C0BC1435E79A00027F07 /* Reference */,
 				5030C0BB1435E78F00027F07 /* Question */,
@@ -1092,6 +1103,8 @@
 				5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */,
 				5059533A149634B70046685A /* PKConversationAPI.h */,
 				5059533B149634B70046685A /* PKConversationAPI.m */,
+				508D212A14FBB875002593A4 /* PKSpaceAPI.h */,
+				508D212B14FBB875002593A4 /* PKSpaceAPI.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -1108,6 +1121,15 @@
 				5065BFA2143364EA00360855 /* PKAPIResponse.m */,
 			);
 			name = Client;
+			sourceTree = "<group>";
+		};
+		508D211914FBB311002593A4 /* Space */ = {
+			isa = PBXGroup;
+			children = (
+				508D211B14FBB332002593A4 /* PKSpaceCreateData.h */,
+				508D211C14FBB332002593A4 /* PKSpaceCreateData.m */,
+			);
+			name = Space;
 			sourceTree = "<group>";
 		};
 		50C7FBD41446D1CD006E00B8 /* ASIHTTPRequest */ = {
@@ -1302,6 +1324,8 @@
 				50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */,
 				50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */,
 				50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */,
+				508D211D14FBB332002593A4 /* PKSpaceCreateData.h in Headers */,
+				508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1508,6 +1532,8 @@
 				5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */,
 				50DFDB7814E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */,
 				50DFDB7D14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m in Sources */,
+				508D211E14FBB332002593A4 /* PKSpaceCreateData.m in Sources */,
+				508D212D14FBB875002593A4 /* PKSpaceAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1622,6 +1648,8 @@
 				5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */,
 				50DFDB7914E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */,
 				50DFDB7E14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m in Sources */,
+				508D211F14FBB332002593A4 /* PKSpaceCreateData.m in Sources */,
+				508D212E14FBB875002593A4 /* PKSpaceAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

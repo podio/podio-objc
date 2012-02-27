@@ -500,6 +500,22 @@
   return type;
 }
 
++ (PKSpaceCreateStatus)spaceCreateStatusForString:(NSString *)string {
+  PKSpaceCreateStatus type = PKSpaceCreateStatusNone;
+  
+  if ([string isEqualToString:kPKSpaceCreateStatusJoined]) {
+    type = PKSpaceCreateStatusJoined;
+  } else if ([string isEqualToString:kPKSpaceCreateStatusOpen]) {
+    type = PKSpaceCreateStatusOpen;
+  } else if ([string isEqualToString:kPKSpaceCreateStatusClosed]) {
+    type = PKSpaceCreateStatusClosed;
+  } else if ([string isEqualToString:kPKSpaceCreateStatusDeleted]) {
+    type = PKSpaceCreateStatusDeleted;
+  }
+  
+  return type;
+}
+
 #pragma mark - Avatar
 
 + (PKAvatarType)avatarTypeForString:(NSString *)string {
