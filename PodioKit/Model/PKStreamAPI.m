@@ -1,5 +1,5 @@
 //
-//  POStreamAPI.m
+//  PKStreamAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/14/11.

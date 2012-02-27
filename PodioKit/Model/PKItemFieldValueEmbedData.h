@@ -1,5 +1,5 @@
 //
-//  POTransformableEmbedData.h
+//  PKItemFieldValueEmbedData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/19/11.

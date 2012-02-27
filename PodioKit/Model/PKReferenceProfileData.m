@@ -1,5 +1,5 @@
 //
-//  POReferenceProfileData.m
+//  PKReferenceProfileData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 12/1/11.
@@ -9,11 +9,11 @@
 #import "PKReferenceProfileData.h"
 
 
-static NSString * const POReferenceProfileDataProfileId = @"ProfileId";
-static NSString * const POReferenceProfileDataUserId = @"UserId";
-static NSString * const POReferenceProfileDataName = @"Name";
-static NSString * const POReferenceProfileDataType = @"Type";
-static NSString * const POReferenceProfileDataAvatarId = @"AvatarId";
+static NSString * const PKReferenceProfileDataProfileId = @"ProfileId";
+static NSString * const PKReferenceProfileDataUserId = @"UserId";
+static NSString * const PKReferenceProfileDataName = @"Name";
+static NSString * const PKReferenceProfileDataType = @"Type";
+static NSString * const PKReferenceProfileDataAvatarId = @"AvatarId";
 
 @implementation PKReferenceProfileData
 
@@ -27,22 +27,22 @@ static NSString * const POReferenceProfileDataAvatarId = @"AvatarId";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    profileId_ = [aDecoder decodeIntForKey:POReferenceProfileDataProfileId];
-    userId_ = [aDecoder decodeIntForKey:POReferenceProfileDataUserId];
-    name_ = [[aDecoder decodeObjectForKey:POReferenceProfileDataName] copy];
-    type_ = [aDecoder decodeIntForKey:POReferenceProfileDataType];
-    avatarId_ = [aDecoder decodeIntForKey:POReferenceProfileDataAvatarId];
+    profileId_ = [aDecoder decodeIntForKey:PKReferenceProfileDataProfileId];
+    userId_ = [aDecoder decodeIntForKey:PKReferenceProfileDataUserId];
+    name_ = [[aDecoder decodeObjectForKey:PKReferenceProfileDataName] copy];
+    type_ = [aDecoder decodeIntForKey:PKReferenceProfileDataType];
+    avatarId_ = [aDecoder decodeIntForKey:PKReferenceProfileDataAvatarId];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:profileId_ forKey:POReferenceProfileDataProfileId];
-  [aCoder encodeInteger:userId_ forKey:POReferenceProfileDataUserId];
-  [aCoder encodeObject:name_ forKey:POReferenceProfileDataName];
-  [aCoder encodeInteger:type_ forKey:POReferenceProfileDataType];
-  [aCoder encodeInteger:avatarId_ forKey:POReferenceProfileDataAvatarId];
+  [aCoder encodeInteger:profileId_ forKey:PKReferenceProfileDataProfileId];
+  [aCoder encodeInteger:userId_ forKey:PKReferenceProfileDataUserId];
+  [aCoder encodeObject:name_ forKey:PKReferenceProfileDataName];
+  [aCoder encodeInteger:type_ forKey:PKReferenceProfileDataType];
+  [aCoder encodeInteger:avatarId_ forKey:PKReferenceProfileDataAvatarId];
 }
 
 

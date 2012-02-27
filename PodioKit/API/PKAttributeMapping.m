@@ -1,5 +1,5 @@
 //
-//  POAttributeMapping.m
+//  PKAttributeMapping.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/26/11.

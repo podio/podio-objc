@@ -1,5 +1,5 @@
 //
-//  POSyncMap.m
+//  PKSyncMap.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-04.
@@ -97,7 +97,7 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 
 - (void)hasMappingForAttribute:(NSString *)attribute 
                  objectMapping:(PKObjectMapping *)objectMapping 
-           scopePredicateBlock:(POScopePredicateBlock)scopePredicateBlock {
+           scopePredicateBlock:(PKScopePredicateBlock)scopePredicateBlock {
   PKStandaloneMapping *mapping = [PKStandaloneMapping mappingForAttributeName:attribute 
                                                                 objectMapping:objectMapping];
   mapping.scopePredicateBlock = scopePredicateBlock;

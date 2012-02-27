@@ -1,5 +1,5 @@
 //
-//  POCoreDataMapperFactory.m
+//  PKCoreDataMapperFactory.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/27/11.
@@ -38,7 +38,7 @@
   return managedObjectContext_;
 }
 
-#pragma mark - POObjectRepository methods
+#pragma mark - PKObjectRepository methods
 
 - (id<PKMappableObject>)objectForClass:(Class)klass matchingPredicate:(NSPredicate *)predicate {
   if (![klass isSubclassOfClass:[NSManagedObject class]]) {

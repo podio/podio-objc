@@ -1,5 +1,5 @@
 //
-//  POStreamActivityDataFactory.h
+//  PKStreamActivityDataFactory.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.

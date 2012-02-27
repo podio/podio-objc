@@ -1,5 +1,5 @@
 //
-//  POAppFieldMoneyData.h
+//  PKAppFieldMoneyData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/22/11.

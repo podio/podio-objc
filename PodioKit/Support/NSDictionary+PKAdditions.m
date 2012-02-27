@@ -1,5 +1,5 @@
 //
-//  NSDictionary+POParseTypes.m
+//  NSDictionary+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-01.

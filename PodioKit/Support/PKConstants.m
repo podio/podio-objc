@@ -1,5 +1,5 @@
 //
-//  POConstants.m
+//  PKConstants.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/28/11.

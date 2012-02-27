@@ -1,5 +1,5 @@
 //
-//  POOrganizationAPI.m
+//  PKOrganizationAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 11/17/11.

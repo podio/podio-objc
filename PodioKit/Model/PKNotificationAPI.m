@@ -1,5 +1,5 @@
 //
-//  PONotificationsAPI.m
+//  PKNotificationsAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/11/11.

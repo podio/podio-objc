@@ -1,5 +1,5 @@
 //
-//  POReferenceDataFactory.h
+//  PKReferenceDataFactory.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/21/11.

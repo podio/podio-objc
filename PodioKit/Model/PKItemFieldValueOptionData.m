@@ -1,5 +1,5 @@
 //
-//  POTransformableAnswerData.m
+//  PKItemFieldValueOptionData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/23/11.
@@ -9,9 +9,9 @@
 #import "PKItemFieldValueOptionData.h"
 
 
-static NSString * const POTransformableAnswerDataAnswerIdKey = @"AnswerId";
-static NSString * const POTransformableAnswerDataAnswerKey = @"Answer";
-static NSString * const POTransformableAnswerDataSelectedKey = @"Selected";
+static NSString * const PKItemFieldValueOptionDataAnswerIdKey = @"AnswerId";
+static NSString * const PKItemFieldValueOptionDataAnswerKey = @"Answer";
+static NSString * const PKItemFieldValueOptionDataSelectedKey = @"Selected";
 
 @implementation PKItemFieldValueOptionData
 
@@ -22,18 +22,18 @@ static NSString * const POTransformableAnswerDataSelectedKey = @"Selected";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    optionId_ = [aDecoder decodeIntegerForKey:POTransformableAnswerDataAnswerIdKey];
-    text_ = [[aDecoder decodeObjectForKey:POTransformableAnswerDataAnswerKey] copy];
-    selected_ = [aDecoder decodeBoolForKey:POTransformableAnswerDataSelectedKey];
+    optionId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueOptionDataAnswerIdKey];
+    text_ = [[aDecoder decodeObjectForKey:PKItemFieldValueOptionDataAnswerKey] copy];
+    selected_ = [aDecoder decodeBoolForKey:PKItemFieldValueOptionDataSelectedKey];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:optionId_ forKey:POTransformableAnswerDataAnswerIdKey];
-  [aCoder encodeObject:text_ forKey:POTransformableAnswerDataAnswerKey];
-  [aCoder encodeBool:selected_ forKey:POTransformableAnswerDataSelectedKey];
+  [aCoder encodeInteger:optionId_ forKey:PKItemFieldValueOptionDataAnswerIdKey];
+  [aCoder encodeObject:text_ forKey:PKItemFieldValueOptionDataAnswerKey];
+  [aCoder encodeBool:selected_ forKey:PKItemFieldValueOptionDataSelectedKey];
 }
 
 

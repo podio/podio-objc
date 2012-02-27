@@ -1,5 +1,5 @@
 //
-//  POSyncAttributeMapping.h
+//  PKValueMapping.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-04.

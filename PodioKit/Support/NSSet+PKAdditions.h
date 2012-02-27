@@ -1,5 +1,5 @@
 //
-//  NSSet+POAdditions.h
+//  NSSet+PKAdditions.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/7/11.

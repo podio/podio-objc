@@ -1,5 +1,5 @@
 //
-//  POStandaloneMapping.h
+//  PKStandaloneMapping.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/26/11.
@@ -10,17 +10,17 @@
 
 @class PKObjectMapping;
 
-typedef NSPredicate * (^POScopePredicateBlock)(id parentObject);
+typedef NSPredicate * (^PKScopePredicateBlock)(id parentObject);
 
 @interface PKStandaloneMapping : PKAttributeMapping {
   
  @protected
   PKObjectMapping *objectMapping_;       // The object mapping for the target entity
-  POScopePredicateBlock scopePredicateBlock_;
+  PKScopePredicateBlock scopePredicateBlock_;
 }
 
 @property (nonatomic, strong) PKObjectMapping *objectMapping;
-@property (nonatomic, copy) POScopePredicateBlock scopePredicateBlock;
+@property (nonatomic, copy) PKScopePredicateBlock scopePredicateBlock;
 
 - (id)initWithAttributeName:(NSString *)attributeName 
               objectMapping:(PKObjectMapping *)objectMapping;

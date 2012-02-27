@@ -1,5 +1,5 @@
 //
-//  POManagedObject.h
+//  PKManagedObject.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/7/11.

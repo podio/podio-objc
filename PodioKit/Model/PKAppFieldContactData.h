@@ -1,5 +1,5 @@
 //
-//  POAppFieldContactData.h
+//  PKAppFieldContactData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/7/11.

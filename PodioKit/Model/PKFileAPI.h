@@ -1,5 +1,5 @@
 //
-//  POFileAPI.h
+//  PKFileAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 11/21/11.

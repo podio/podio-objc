@@ -1,5 +1,5 @@
 //
-//  POQuestionAPI.h
+//  PKQuestionAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 11/28/11.

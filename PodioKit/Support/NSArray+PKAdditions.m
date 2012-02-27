@@ -1,5 +1,5 @@
 //
-//  NSArray+POAdditions.m
+//  NSArray+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/20/11.

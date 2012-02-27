@@ -1,5 +1,5 @@
 //
-//  POStreamTaskData.m
+//  PKStreamTaskData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -10,14 +10,14 @@
 #import "NSDate+PKAdditions.h"
 
 
-static NSString * const POStreamTaskDataTaskId = @"TaskId";
-static NSString * const POStreamTaskDataStatus = @"Status";
-static NSString * const POStreamTaskDataText = @"Text";
-static NSString * const POStreamTaskDataDescription = @"Description";
-static NSString * const POStreamTaskDataDueDate = @"DueDate";
-static NSString * const POStreamTaskDataResponsibleUserId = @"ResponsibleUserId";
-static NSString * const POStreamTaskDataResponsibleAvatarFileId = @"ResponsibleAvatarFileId";
-static NSString * const POStreamTaskDataResponsibleName = @"ResponsibleName";
+static NSString * const PKStreamTaskDataTaskId = @"TaskId";
+static NSString * const PKStreamTaskDataStatus = @"Status";
+static NSString * const PKStreamTaskDataText = @"Text";
+static NSString * const PKStreamTaskDataDescription = @"Description";
+static NSString * const PKStreamTaskDataDueDate = @"DueDate";
+static NSString * const PKStreamTaskDataResponsibleUserId = @"ResponsibleUserId";
+static NSString * const PKStreamTaskDataResponsibleAvatarFileId = @"ResponsibleAvatarFileId";
+static NSString * const PKStreamTaskDataResponsibleName = @"ResponsibleName";
 
 @implementation PKStreamTaskData
 
@@ -33,28 +33,28 @@ static NSString * const POStreamTaskDataResponsibleName = @"ResponsibleName";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    taskId_ = [aDecoder decodeIntegerForKey:POStreamTaskDataTaskId];
-    status_ = [aDecoder decodeIntegerForKey:POStreamTaskDataStatus];
-    text_ = [[aDecoder decodeObjectForKey:POStreamTaskDataText] copy];
-    description_ = [[aDecoder decodeObjectForKey:POStreamTaskDataDescription] copy];
-    dueDate_ = [[aDecoder decodeObjectForKey:POStreamTaskDataDueDate] copy];
-    responsibleUserId_ = [aDecoder decodeIntegerForKey:POStreamTaskDataResponsibleUserId];
-    responsibleAvatarFileId_ = [aDecoder decodeIntegerForKey:POStreamTaskDataResponsibleAvatarFileId];
-    responsibleName_ = [[aDecoder decodeObjectForKey:POStreamTaskDataResponsibleName] copy];
+    taskId_ = [aDecoder decodeIntegerForKey:PKStreamTaskDataTaskId];
+    status_ = [aDecoder decodeIntegerForKey:PKStreamTaskDataStatus];
+    text_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataText] copy];
+    description_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataDescription] copy];
+    dueDate_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataDueDate] copy];
+    responsibleUserId_ = [aDecoder decodeIntegerForKey:PKStreamTaskDataResponsibleUserId];
+    responsibleAvatarFileId_ = [aDecoder decodeIntegerForKey:PKStreamTaskDataResponsibleAvatarFileId];
+    responsibleName_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataResponsibleName] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:taskId_ forKey:POStreamTaskDataTaskId];
-  [aCoder encodeInteger:status_ forKey:POStreamTaskDataStatus];
-  [aCoder encodeObject:text_ forKey:POStreamTaskDataText];
-  [aCoder encodeObject:description_ forKey:POStreamTaskDataDescription];
-  [aCoder encodeObject:dueDate_ forKey:POStreamTaskDataDueDate];
-  [aCoder encodeInteger:responsibleUserId_ forKey:POStreamTaskDataResponsibleUserId];
-  [aCoder encodeInteger:responsibleAvatarFileId_ forKey:POStreamTaskDataResponsibleAvatarFileId];
-  [aCoder encodeObject:responsibleName_ forKey:POStreamTaskDataResponsibleName];
+  [aCoder encodeInteger:taskId_ forKey:PKStreamTaskDataTaskId];
+  [aCoder encodeInteger:status_ forKey:PKStreamTaskDataStatus];
+  [aCoder encodeObject:text_ forKey:PKStreamTaskDataText];
+  [aCoder encodeObject:description_ forKey:PKStreamTaskDataDescription];
+  [aCoder encodeObject:dueDate_ forKey:PKStreamTaskDataDueDate];
+  [aCoder encodeInteger:responsibleUserId_ forKey:PKStreamTaskDataResponsibleUserId];
+  [aCoder encodeInteger:responsibleAvatarFileId_ forKey:PKStreamTaskDataResponsibleAvatarFileId];
+  [aCoder encodeObject:responsibleName_ forKey:PKStreamTaskDataResponsibleName];
 }
 
 

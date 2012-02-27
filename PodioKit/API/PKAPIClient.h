@@ -1,5 +1,5 @@
 //
-//  POAPIClient.h
+//  PKAPIClient.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-01.
@@ -14,20 +14,20 @@
 #import "PKOAuth2Client.h"
 
 
-extern NSString * const POAPIClientWillBeginAuthentication;
-extern NSString * const POAPIClientDidFinishAuthentication;
+extern NSString * const PKAPIClientWillBeginAuthentication;
+extern NSString * const PKAPIClientDidFinishAuthentication;
 
-extern NSString * const POAPIClientDidAuthenticateUser;
-extern NSString * const POAPIClientAuthenticationFailed;
+extern NSString * const PKAPIClientDidAuthenticateUser;
+extern NSString * const PKAPIClientAuthenticationFailed;
 
-extern NSString * const POAPIClientWillRefreshAccessToken;
-extern NSString * const POAPIClientDidRefreshAccessToken;
+extern NSString * const PKAPIClientWillRefreshAccessToken;
+extern NSString * const PKAPIClientDidRefreshAccessToken;
 
-extern NSString * const POAPIClientTokenRefreshFailed;
-extern NSString * const POAPIClientNeedsReauthentication;
+extern NSString * const PKAPIClientTokenRefreshFailed;
+extern NSString * const PKAPIClientNeedsReauthentication;
 
-extern NSString * const POAPIClientRequestFinished;
-extern NSString * const POAPIClientRequestFailed;
+extern NSString * const PKAPIClientRequestFinished;
+extern NSString * const PKAPIClientRequestFailed;
 
 extern NSString * const PKAPIClientNoInternetConnection;
 

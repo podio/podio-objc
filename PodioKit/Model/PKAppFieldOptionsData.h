@@ -1,5 +1,5 @@
 //
-//  POAppFieldCategoryData.h
+//  PKAppFieldOptionsData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/17/11.

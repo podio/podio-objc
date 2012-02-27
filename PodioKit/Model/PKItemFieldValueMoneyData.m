@@ -1,5 +1,5 @@
 //
-//  POTransformableMoneyData.m
+//  PKItemFieldValueMoneyData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-07.
@@ -9,8 +9,8 @@
 #import "PKItemFieldValueMoneyData.h"
 
 
-static NSString * const POTransformableMoneyDataAmountKey = @"Amount";
-static NSString * const POTransformableMoneyDataCurrencyKey = @"Currency";
+static NSString * const PKItemFieldValueMoneyDataAmountKey = @"Amount";
+static NSString * const PKItemFieldValueMoneyDataCurrencyKey = @"Currency";
 
 @implementation PKItemFieldValueMoneyData
 
@@ -20,16 +20,16 @@ static NSString * const POTransformableMoneyDataCurrencyKey = @"Currency";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    amount_ = [[aDecoder decodeObjectForKey:POTransformableMoneyDataAmountKey] copy];
-    currency_ = [[aDecoder decodeObjectForKey:POTransformableMoneyDataCurrencyKey] copy];
+    amount_ = [[aDecoder decodeObjectForKey:PKItemFieldValueMoneyDataAmountKey] copy];
+    currency_ = [[aDecoder decodeObjectForKey:PKItemFieldValueMoneyDataCurrencyKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:amount_ forKey:POTransformableMoneyDataAmountKey];
-  [aCoder encodeObject:currency_ forKey:POTransformableMoneyDataCurrencyKey];
+  [aCoder encodeObject:amount_ forKey:PKItemFieldValueMoneyDataAmountKey];
+  [aCoder encodeObject:currency_ forKey:PKItemFieldValueMoneyDataCurrencyKey];
 }
 
 

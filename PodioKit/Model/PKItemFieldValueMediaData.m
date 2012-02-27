@@ -1,5 +1,5 @@
 //
-//  POTransformableMediaData.m
+//  PKItemFieldValueItemData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/19/11.
@@ -9,9 +9,9 @@
 #import "PKItemFieldValueMediaData.h"
 
 
-static NSString * const POTransformableMediaDataEmbedCodeKey = @"EmbedCode";
-static NSString * const POTransformableMediaDataProviderKey = @"Provider";
-static NSString * const POTransformableMediaDataVideoIdKey = @"VideoId";
+static NSString * const PKItemFieldValueItemDataEmbedCodeKey = @"EmbedCode";
+static NSString * const PKItemFieldValueItemDataProviderKey = @"Provider";
+static NSString * const PKItemFieldValueItemDataVideoIdKey = @"VideoId";
 
 @implementation PKItemFieldValueMediaData
 
@@ -22,18 +22,18 @@ static NSString * const POTransformableMediaDataVideoIdKey = @"VideoId";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    embedCode_ = [[aDecoder decodeObjectForKey:POTransformableMediaDataEmbedCodeKey] copy];
-    provider_ = [[aDecoder decodeObjectForKey:POTransformableMediaDataProviderKey] copy];
-    videoId_ = [[aDecoder decodeObjectForKey:POTransformableMediaDataVideoIdKey] copy];
+    embedCode_ = [[aDecoder decodeObjectForKey:PKItemFieldValueItemDataEmbedCodeKey] copy];
+    provider_ = [[aDecoder decodeObjectForKey:PKItemFieldValueItemDataProviderKey] copy];
+    videoId_ = [[aDecoder decodeObjectForKey:PKItemFieldValueItemDataVideoIdKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:embedCode_ forKey:POTransformableMediaDataEmbedCodeKey];
-  [aCoder encodeObject:provider_ forKey:POTransformableMediaDataProviderKey];
-  [aCoder encodeObject:videoId_ forKey:POTransformableMediaDataVideoIdKey];
+  [aCoder encodeObject:embedCode_ forKey:PKItemFieldValueItemDataEmbedCodeKey];
+  [aCoder encodeObject:provider_ forKey:PKItemFieldValueItemDataProviderKey];
+  [aCoder encodeObject:videoId_ forKey:PKItemFieldValueItemDataVideoIdKey];
 }
 
 

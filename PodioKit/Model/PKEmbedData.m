@@ -1,5 +1,5 @@
 //
-//  POEmbedData.m
+//  PKEmbedData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -8,16 +8,16 @@
 
 #import "PKEmbedData.h"
 
-static NSString * const POTransformableEmbedDataEmbedIdKey = @"EmbedId";
-static NSString * const POTransformableEmbedDataTypeKey = @"Type";
-static NSString * const POTransformableEmbedDataTitleKey = @"Title";
-static NSString * const POTransformableEmbedDataDescriptionKey = @"Description";
-static NSString * const POTransformableEmbedDataResolvedURLKey = @"ResolvedURL";
-static NSString * const POTransformableEmbedDataOriginalURLKey = @"OriginalURL";
+static NSString * const PKEmbedDataEmbedIdKey = @"EmbedId";
+static NSString * const PKEmbedDataTypeKey = @"Type";
+static NSString * const PKEmbedDataTitleKey = @"Title";
+static NSString * const PKEmbedDataDescriptionKey = @"Description";
+static NSString * const PKEmbedDataResolvedURLKey = @"ResolvedURL";
+static NSString * const PKEmbedDataOriginalURLKey = @"OriginalURL";
 
-static NSString * const POTransformableEmbedDataFileIdKey = @"FileId";
-static NSString * const POTransformableEmbedDataFileLinkKey = @"FileLink";
-static NSString * const POTransformableEmbedDataFileMimeTypeKey = @"FileMimeType";
+static NSString * const PKEmbedDataFileIdKey = @"FileId";
+static NSString * const PKEmbedDataFileLinkKey = @"FileLink";
+static NSString * const PKEmbedDataFileMimeTypeKey = @"FileMimeType";
 
 @implementation PKEmbedData
 
@@ -34,32 +34,32 @@ static NSString * const POTransformableEmbedDataFileMimeTypeKey = @"FileMimeType
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    embedId_ = [aDecoder decodeIntegerForKey:POTransformableEmbedDataEmbedIdKey];
-    type_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataTypeKey] copy];
-    title_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataTitleKey] copy];
-    descr_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataDescriptionKey] copy];
-    resolvedURL_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataResolvedURLKey] copy];
-    originalURL_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataOriginalURLKey] copy];
+    embedId_ = [aDecoder decodeIntegerForKey:PKEmbedDataEmbedIdKey];
+    type_ = [[aDecoder decodeObjectForKey:PKEmbedDataTypeKey] copy];
+    title_ = [[aDecoder decodeObjectForKey:PKEmbedDataTitleKey] copy];
+    descr_ = [[aDecoder decodeObjectForKey:PKEmbedDataDescriptionKey] copy];
+    resolvedURL_ = [[aDecoder decodeObjectForKey:PKEmbedDataResolvedURLKey] copy];
+    originalURL_ = [[aDecoder decodeObjectForKey:PKEmbedDataOriginalURLKey] copy];
     
-    fileId_ = [aDecoder decodeIntegerForKey:POTransformableEmbedDataFileIdKey];
-    fileLink_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataFileLinkKey] copy];
-    fileMimeType_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataFileMimeTypeKey] copy];
+    fileId_ = [aDecoder decodeIntegerForKey:PKEmbedDataFileIdKey];
+    fileLink_ = [[aDecoder decodeObjectForKey:PKEmbedDataFileLinkKey] copy];
+    fileMimeType_ = [[aDecoder decodeObjectForKey:PKEmbedDataFileMimeTypeKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:embedId_ forKey:POTransformableEmbedDataEmbedIdKey];
-  [aCoder encodeObject:type_ forKey:POTransformableEmbedDataTypeKey];
-  [aCoder encodeObject:title_ forKey:POTransformableEmbedDataTitleKey];
-  [aCoder encodeObject:descr_ forKey:POTransformableEmbedDataDescriptionKey];
-  [aCoder encodeObject:resolvedURL_ forKey:POTransformableEmbedDataResolvedURLKey];
-  [aCoder encodeObject:originalURL_ forKey:POTransformableEmbedDataOriginalURLKey];
+  [aCoder encodeInteger:embedId_ forKey:PKEmbedDataEmbedIdKey];
+  [aCoder encodeObject:type_ forKey:PKEmbedDataTypeKey];
+  [aCoder encodeObject:title_ forKey:PKEmbedDataTitleKey];
+  [aCoder encodeObject:descr_ forKey:PKEmbedDataDescriptionKey];
+  [aCoder encodeObject:resolvedURL_ forKey:PKEmbedDataResolvedURLKey];
+  [aCoder encodeObject:originalURL_ forKey:PKEmbedDataOriginalURLKey];
   
-  [aCoder encodeInteger:fileId_ forKey:POTransformableEmbedDataFileIdKey];
-  [aCoder encodeObject:fileLink_ forKey:POTransformableEmbedDataFileLinkKey];
-  [aCoder encodeObject:fileMimeType_ forKey:POTransformableEmbedDataFileMimeTypeKey];
+  [aCoder encodeInteger:fileId_ forKey:PKEmbedDataFileIdKey];
+  [aCoder encodeObject:fileLink_ forKey:PKEmbedDataFileLinkKey];
+  [aCoder encodeObject:fileMimeType_ forKey:PKEmbedDataFileMimeTypeKey];
 }
 
 

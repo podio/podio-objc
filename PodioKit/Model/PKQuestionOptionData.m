@@ -1,5 +1,5 @@
 //
-//  POQuestionOptionData.m
+//  PKQuestionOptionData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -8,8 +8,8 @@
 
 #import "PKQuestionOptionData.h"
 
-static NSString * const POQuestionOptionDataOptionId = @"OptionId";
-static NSString * const POQuestionOptionDataText = @"Text";
+static NSString * const PKQuestionOptionDataOptionId = @"OptionId";
+static NSString * const PKQuestionOptionDataText = @"Text";
 
 @implementation PKQuestionOptionData
 
@@ -19,18 +19,17 @@ static NSString * const POQuestionOptionDataText = @"Text";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    optionId_ = [aDecoder decodeIntegerForKey:POQuestionOptionDataOptionId];
-    text_ = [[aDecoder decodeObjectForKey:POQuestionOptionDataText] copy];
+    optionId_ = [aDecoder decodeIntegerForKey:PKQuestionOptionDataOptionId];
+    text_ = [[aDecoder decodeObjectForKey:PKQuestionOptionDataText] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:optionId_ forKey:POQuestionOptionDataOptionId];
-  [aCoder encodeObject:text_ forKey:POQuestionOptionDataText];
+  [aCoder encodeInteger:optionId_ forKey:PKQuestionOptionDataOptionId];
+  [aCoder encodeObject:text_ forKey:PKQuestionOptionDataText];
 }
-
 
 #pragma mark - Factory methods
 

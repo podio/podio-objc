@@ -1,5 +1,5 @@
 //
-//  POCompoundMapping.m
+//  PKCompoundMapping.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/26/11.
@@ -9,7 +9,7 @@
 #import "PKCompoundMapping.h"
 
 
-static NSString * const POInvalidMappingClassException = @"POInvalidMappingClassException";
+static NSString * const PKInvalidMappingClassException = @"PKInvalidMappingClassException";
 
 @implementation PKCompoundMapping
 
@@ -28,7 +28,7 @@ static NSString * const POInvalidMappingClassException = @"POInvalidMappingClass
 
 - (void)addMapping:(id)mapping {
   if (![mapping isKindOfClass:[PKAttributeMapping class]]) {
-    @throw [NSException exceptionWithName:POInvalidMappingClassException reason:@"The mapping object must be of class POAttributeMapping." userInfo:nil];
+    @throw [NSException exceptionWithName:PKInvalidMappingClassException reason:@"The mapping object must be of class PKAttributeMapping." userInfo:nil];
   }
   
   [mappings_ addObject:mapping];

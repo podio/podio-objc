@@ -63,7 +63,7 @@
   }
 }
 
-#pragma mark - POObjectMapperDelegate methods
+#pragma mark - PKObjectMapperDelegate methods
 
 - (void)objectMapperDidFinishMapping:(PKObjectMapper *)objectMapper {
   PKObjectMapper *mapper = (PKObjectMapper *)objectMapper;

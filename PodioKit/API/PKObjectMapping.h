@@ -1,5 +1,5 @@
 //
-//  POSyncMap.h
+//  PKSyncMap.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-04.
@@ -53,6 +53,6 @@
 
 - (void)hasMappingForAttribute:(NSString *)attribute 
                  objectMapping:(PKObjectMapping *)objectMapping 
-           scopePredicateBlock:(POScopePredicateBlock)scopePredicateBlock;
+           scopePredicateBlock:(PKScopePredicateBlock)scopePredicateBlock;
 
 @end

@@ -1,5 +1,5 @@
 //
-//  NSManagedObject+POAdditions.m
+//  NSManagedObject+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/27/11.

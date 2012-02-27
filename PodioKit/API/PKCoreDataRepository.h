@@ -1,5 +1,5 @@
 //
-//  POCoreDataMapperFactory.h
+//  PKCoreDataMapperFactory.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/27/11.

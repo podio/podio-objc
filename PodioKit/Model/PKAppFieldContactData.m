@@ -1,5 +1,5 @@
 //
-//  POAppFieldContactData.m
+//  PKAppFieldContactData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/7/11.
@@ -9,7 +9,7 @@
 #import "PKAppFieldContactData.h"
 
 
-static NSString * const POAppFieldCategoryDataValidTypesKey = @"ValidTypes";
+static NSString * const PKAppFieldContactDataValidTypesKey = @"ValidTypes";
 
 @implementation PKAppFieldContactData
 
@@ -18,15 +18,14 @@ static NSString * const POAppFieldCategoryDataValidTypesKey = @"ValidTypes";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    validTypes_ = [[aDecoder decodeObjectForKey:POAppFieldCategoryDataValidTypesKey] copy];
+    validTypes_ = [[aDecoder decodeObjectForKey:PKAppFieldContactDataValidTypesKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:validTypes_ forKey:POAppFieldCategoryDataValidTypesKey];
+  [aCoder encodeObject:validTypes_ forKey:PKAppFieldContactDataValidTypesKey];
 }
-
 
 @end

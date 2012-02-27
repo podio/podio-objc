@@ -1,5 +1,5 @@
 //
-//  POMappingManager.h
+//  PKMappingManager.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/14/11.

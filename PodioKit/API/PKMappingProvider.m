@@ -1,5 +1,5 @@
 //
-//  POMappingProvider.m
+//  PKMappingProvider.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/31/11.
