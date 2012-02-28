@@ -171,18 +171,11 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKAPIRequestMethodDELETE];
 }
 
-+ (PKRequest *)requestForTaskTotals {
-  return [PKRequest requestWithURI:@"/task/total/" method:PKAPIRequestMethodGET];
-}
-
-+ (PKRequest *)requestForTaskTotalsForSpaceWithId:(NSUInteger)spaceId {
-  PKRequest *request = [PKRequest requestWithURI:@"/task/total/" method:PKAPIRequestMethodGET];
-  [request.parameters setObject:[NSString stringWithFormat:@"%d", spaceId] forKey:@"space"];
-  
-  return request;
-}
-
 + (PKRequest *)requestForTaskTotalsWithTime:(PKTaskTotalsTime)time {
+  return [self requestForTaskTotalsWithTime:time spaceId:0];
+}
+
++ (PKRequest *)requestForTaskTotalsWithTime:(PKTaskTotalsTime)time spaceId:(NSUInteger)spaceId {
   NSString *timeString = nil;
   
   switch (time) {
@@ -203,6 +196,10 @@
   
   NSString *uri = [NSString stringWithFormat:@"/task/total/%@", timeString];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  
+  if (spaceId > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", spaceId] forKey:@"space_id"];
+  }
   
   return request;
 }
