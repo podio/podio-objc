@@ -462,6 +462,18 @@ typedef enum {
 
 static NSString * const kPKMeetingPluginTypeCitrix = @"citrix";
 
+// Providers
+typedef enum {
+  PKProviderCapabilityNone = 0,
+  PKProviderCapabilityFiles,
+  PKProviderCapabilityContacts,
+  PKProviderCapabilityMeetings,
+} PKProviderCapability;
+
+static NSString * const kPKProviderCapabilityFiles = @"files";
+static NSString * const kPKProviderCapabilityContacts = @"contacts";
+static NSString * const kPKProviderCapabilityMeetings = @"meetings";
+
 // Avatars
 typedef enum {
   PKAvatarTypeNone = 0,
@@ -520,5 +532,9 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 // Meetings
 + (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string;
+
+// Providers
++ (PKProviderCapability)providerCapabilityForString:(NSString *)string;
++ (NSString *)stringForProviderCapability:(PKProviderCapability)capability;
 
 @end

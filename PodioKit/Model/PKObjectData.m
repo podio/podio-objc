@@ -7,6 +7,7 @@
 //
 
 #import "PKObjectData.h"
+#import "NSArray+PKAdditions.h"
 
 
 @implementation PKObjectData
@@ -30,14 +31,10 @@
 }
 
 + (NSArray *)dataObjectsFromArray:(NSArray *)dicts {
-  NSMutableArray *mutObjects = [[NSMutableArray alloc] initWithCapacity:[dicts count]];
-  for (NSDictionary *dict in dicts) {
-    id data = [self dataFromDictionary:dict];
-    [mutObjects addObject:data];
-  }
-  
-  NSArray *objects = [NSArray arrayWithArray:mutObjects];
-  
+  NSArray *objects = [dicts pk_arrayFromObjectsCollectedWithBlock:^id(id dict) {
+    return [self dataFromDictionary:dict];
+  }];
+
   return objects;
 }
 

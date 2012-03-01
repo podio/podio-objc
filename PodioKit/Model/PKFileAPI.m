@@ -40,4 +40,25 @@
   return request;
 }
 
++ (PKRequest *)requestForFilesForLinkedAccountWithId:(NSUInteger)linkedAccountId externalFolderId:(NSString *)externalFolderId limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%d/", linkedAccountId]  method:PKAPIRequestMethodGET];
+  
+  if (externalFolderId != nil) {
+    [request.parameters setObject:externalFolderId forKey:@"external_folder_id"];
+  }
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestToUploadLinkedAccountFileWithExternalFileId:(NSString *)externalFileId linkedAccountId:(NSUInteger)linkedAccountId {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%d/", linkedAccountId]  method:PKAPIRequestMethodPOST];
+  request.body = [NSDictionary dictionaryWithObject:externalFileId forKey:@"external_file_id"];
+  
+  return request;
+}
+
 @end

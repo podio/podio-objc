@@ -600,4 +600,40 @@
   return type;
 }
 
+#pragma mark - Providers
+
++ (PKProviderCapability)providerCapabilityForString:(NSString *)string {
+  PKProviderCapability capability = PKProviderCapabilityNone;
+  
+  if ([string isEqualToString:kPKProviderCapabilityFiles]) {
+    capability = PKProviderCapabilityFiles;
+  } else if ([string isEqualToString:kPKProviderCapabilityContacts]) {
+    capability = PKProviderCapabilityContacts;
+  } else if ([string isEqualToString:kPKProviderCapabilityMeetings]) {
+    capability = PKProviderCapabilityMeetings;
+  }
+  
+  return capability;
+}
+
++ (NSString *)stringForProviderCapability:(PKProviderCapability)capability {
+  NSString *string = nil;
+  
+  switch (capability) {
+    case PKProviderCapabilityFiles:
+      string = kPKProviderCapabilityFiles;
+      break;
+    case PKProviderCapabilityContacts:
+      string = kPKProviderCapabilityContacts;
+      break;
+    case PKProviderCapabilityMeetings:
+      string = kPKProviderCapabilityMeetings;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
 @end

@@ -40,6 +40,7 @@
 #import "PKSpaceAPI.h"
 #import "PKStreamAPI.h"
 #import "PKTaskAPI.h"
+#import "PKLinkedAccountAPI.h"
 
 #pragma mark - Mapping
 
@@ -105,8 +106,11 @@
 #import "PKMeetingPluginDataFactory.h"
 #import "PKEmbedData.h"
 #import "PKFileData.h"
+#import "PKExternalFileData.h"
 #import "PKQuestionData.h"
 #import "PKQuestionOptionData.h"
+#import "PKLinkedAccountData.h"
+#import "PKProviderData.h"
 
 #pragma mark - Domain objects
 
