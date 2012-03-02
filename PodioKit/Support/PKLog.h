@@ -46,4 +46,4 @@ void PKLogWithLine(const char *filePath, int lineNumber, NSString *fmt, ...);
 #endif
 
 #define PKLogRect(rect) PKLog(NSStringFromCGRect(rect))
-#define PKLogSize(size) PKLog(NSStringFromCGRect(rect))
+#define PKLogSize(size) PKLog(NSStringFromCGSize(size))

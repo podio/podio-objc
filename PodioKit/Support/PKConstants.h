@@ -474,6 +474,9 @@ static NSString * const kPKProviderCapabilityFiles = @"files";
 static NSString * const kPKProviderCapabilityContacts = @"contacts";
 static NSString * const kPKProviderCapabilityMeetings = @"meetings";
 
+// Files
+static NSString * const kPKFileHostedByPodio = @"podio";
+
 // Avatars
 typedef enum {
   PKAvatarTypeNone = 0,
