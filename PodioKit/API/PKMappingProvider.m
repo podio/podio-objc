@@ -34,14 +34,14 @@
 
 
 - (void)addMappedClassName:(NSString *)mappedClassName forMappingClassName:(NSString *)mappingClassName {
-  NSAssert(mappedClassName != nil, @"Mapped class cannot be nil");
-  NSAssert(mappingClassName != nil, @"Mapping class cannot be nil");
+  PKAssert(mappedClassName != nil, @"Mapped class cannot be nil");
+  PKAssert(mappingClassName != nil, @"Mapping class cannot be nil");
   [self.classMap setObject:mappedClassName forKey:mappingClassName];
   [self.inverseClassMap setObject:mappingClassName forKey:mappedClassName];  
 }
 
 - (Class)mappedClassForMappingClassName:(NSString *)mappingClassName {
-  NSAssert(mappingClassName != nil, @"Mapping class cannot be nil");
+  PKAssert(mappingClassName != nil, @"Mapping class cannot be nil");
   NSString *className = [self.classMap objectForKey:mappingClassName];
   Class klass = NSClassFromString(className);
   
@@ -49,7 +49,7 @@
 }
 
 - (Class)mappingClassForMappedClassName:(NSString *)mappedClassName {
-  NSAssert(mappedClassName != nil, @"Mapping class cannot be nil");
+  PKAssert(mappedClassName != nil, @"Mapping class cannot be nil");
   NSString *className = [self.inverseClassMap objectForKey:mappedClassName];
   Class klass = NSClassFromString(className);
   

@@ -50,7 +50,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     NSError *error = nil;
     NSString *bodyString = [body JSONStringWithOptions:0 error:&error];
     if (error != nil) {
-      NSLog(@"Failed to serialize request body data: %@, %@", error, [error userInfo]);
+      PKLogError(@"Failed to serialize request body data: %@, %@", error, [error userInfo]);
     }
     
     [operation appendPostData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
@@ -88,7 +88,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
           resultData = [self performMappingOfData:parsedData];
         }
       } else {
-        NSLog(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
+        PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
         requestError = [NSError pk_responseParseError];      
       }
       break;

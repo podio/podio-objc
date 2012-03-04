@@ -77,7 +77,7 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 
 - (void)hasProperty:(NSString *)property forParentProperty:(NSString *)parentProperty {
   [self hasProperty:property forAttribute:nil block:^id(id attrVal, NSDictionary *objDict, id parent) {
-    NSAssert([parent respondsToSelector:NSSelectorFromString(parentProperty)], @"Parent object is missing property '%@'", parentProperty);
+    PKAssert([parent respondsToSelector:NSSelectorFromString(parentProperty)], @"Parent object is missing property '%@'", parentProperty);
     return [parent valueForKey:parentProperty];
   }];
 }

@@ -69,8 +69,8 @@
 #pragma mark - Mapping
 
 - (id)performMappingWithData:(id)data {
-  NSAssert(self.repository != nil, @"No data source set.");
-  NSAssert(self.mappingProvider != nil, @"No mapping provider set");
+  PKAssert(self.repository != nil, @"No data source set.");
+  PKAssert(self.mappingProvider != nil, @"No mapping provider set");
   
   NSString *className = NSStringFromClass([self.mapping class]);
   Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
@@ -175,8 +175,8 @@
   NSArray *propPredicates = [identityPropNames pk_arrayFromObjectsCollectedWithBlock:^id(id propName) {
     
     id propMapping = [mapping.propertyMappings objectForKey:propName];
-    NSAssert(propMapping != nil, @"No mapping for property '%@', unable to determine object identity.", propName);
-    NSAssert([propMapping isKindOfClass:[PKValueMapping class]], @"The mapping identity property '%@' is of an unsupported type %@", propMapping, NSStringFromClass([propMapping class]));
+    PKAssert(propMapping != nil, @"No mapping for property '%@', unable to determine object identity.", propName);
+    PKAssert([propMapping isKindOfClass:[PKValueMapping class]], @"The mapping identity property '%@' is of an unsupported type %@", propMapping, NSStringFromClass([propMapping class]));
     
     // Determine value
     id attributeValue = [objectDict pk_objectForPathComponents:[propMapping attributePathComponents]];
@@ -217,7 +217,7 @@
   
   if (object == nil) {
     object = [self.repository createObjectForClass:klass];
-    NSAssert(object != nil, @"Failed to create new instance of class '%@'", NSStringFromClass(klass));
+    PKAssert(object != nil, @"Failed to create new instance of class '%@'", NSStringFromClass(klass));
   }
   
   // Apply mapping block
@@ -326,7 +326,7 @@
 }
 
 - (id)applyRelationshipMapping:(PKRelationshipMapping *)mapping attributeValue:(id)attributeValue object:(id<PKMappableObject>)object {
-  NSAssert(mapping.objectMapping != nil, @"No object mapping set.");
+  PKAssert(mapping.objectMapping != nil, @"No object mapping set.");
   
   NSString *className = NSStringFromClass([mapping.objectMapping class]);
   Class klass = [self.mappingProvider mappedClassForMappingClassName:className];

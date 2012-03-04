@@ -41,7 +41,7 @@
                                                            error:&error];
   if (error != nil) {
     obj = nil;
-    NSLog(@"ERROR: Failed to parse object from JSON data: %@", self.responseString);
+    PKLogError(@"ERROR: Failed to parse object from JSON data: %@", self.responseString);
   }
   
   return obj;

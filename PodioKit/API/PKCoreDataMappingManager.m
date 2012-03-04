@@ -35,7 +35,7 @@
 
 
 - (PKObjectMapper *)objectMapper {
-  NSAssert(self.mappingProvider != nil, @"No mapping provider set.");
+  PKAssert(self.mappingProvider != nil, @"No mapping provider set.");
   
   PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithMappingProvider:self.mappingProvider];
   mapper.delegate = self;

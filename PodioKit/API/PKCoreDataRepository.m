@@ -50,7 +50,7 @@
   NSError *error = nil;
   id obj = [self.managedObjectContext pk_objectForEntity:entity predicate:predicate error:&error];
   if (error != nil) {
-    NSLog(@"ERROR: Failed go fetch object: %@, %@", error, [error userInfo]);
+    PKLogError(@"Failed go fetch object: %@, %@", error, [error userInfo]);
   }
   
   return obj;
@@ -77,7 +77,7 @@
   NSError *error = nil;
   [self.managedObjectContext pk_deleteObjectsForEntity:entity predicate:predicate error:&error];
   if (error != nil) {
-    NSLog(@"ERROR: Failed go delete objects: %@, %@", error, [error userInfo]);
+    PKLogError(@"Failed go delete objects: %@, %@", error, [error userInfo]);
   }
 }
 

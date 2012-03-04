@@ -58,12 +58,12 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 }
 
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password {
-  NSAssert(self.clientID != nil, @"Client ID not configured.");
-  NSAssert(self.clientSecret != nil, @"Client secret not configured.");
-  NSAssert(self.tokenURL != nil, @"Token URL not configured.");
-  NSAssert(self.redirectURL != nil, @"Redirect URL not configured.");
-  NSAssert(username != nil, @"Username cannot be nil.");
-  NSAssert(password != nil, @"Password cannot be nil.");
+  PKAssert(self.clientID != nil, @"Client ID not configured.");
+  PKAssert(self.clientSecret != nil, @"Client secret not configured.");
+  PKAssert(self.tokenURL != nil, @"Token URL not configured.");
+  PKAssert(self.redirectURL != nil, @"Redirect URL not configured.");
+  PKAssert(username != nil, @"Username cannot be nil.");
+  PKAssert(password != nil, @"Password cannot be nil.");
   
   @synchronized(self) {
     // Only allow one active request at a time
@@ -101,11 +101,11 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
 }
 
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken {
-  NSAssert(self.clientID != nil, @"Client ID not configured.");
-  NSAssert(self.clientSecret != nil, @"Client secret not configured.");
-  NSAssert(self.tokenURL != nil, @"Token URL not configured.");
-  NSAssert(self.redirectURL != nil, @"Redirect URL not configured.");
-  NSAssert(refreshToken != nil, @"Refresh token cannot be nil.");
+  PKAssert(self.clientID != nil, @"Client ID not configured.");
+  PKAssert(self.clientSecret != nil, @"Client secret not configured.");
+  PKAssert(self.tokenURL != nil, @"Token URL not configured.");
+  PKAssert(self.redirectURL != nil, @"Redirect URL not configured.");
+  PKAssert(refreshToken != nil, @"Refresh token cannot be nil.");
   
   @synchronized(self) {
     // Only allow one active request at a time

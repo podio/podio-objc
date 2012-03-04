@@ -141,7 +141,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 #pragma mark - Authorization
 
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password {
-  NSAssert(self.oauthClient != nil, @"API client not yet configured with OAuth2 client id and secret.");
+  PKAssert(self.oauthClient != nil, @"API client not yet configured with OAuth2 client id and secret.");
   
   if (isAuthenticating_) {
     PKLogDebug(@"Already in the process of authenticating.");

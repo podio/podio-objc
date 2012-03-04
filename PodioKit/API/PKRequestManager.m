@@ -44,8 +44,8 @@
 #pragma mark - Request
 
 - (PKRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion {
-  NSAssert(self.apiClient != nil, @"No API client set.");
-  NSAssert(self.mappingManager != nil, @"No mapping manager set.");
+  PKAssert(self.apiClient != nil, @"No API client set.");
+  PKAssert(self.mappingManager != nil, @"No mapping manager set.");
   
   NSString *urlString = [self.apiClient URLStringForPath:request.uri parameters:request.parameters];
   PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];

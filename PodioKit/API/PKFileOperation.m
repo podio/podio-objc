@@ -78,7 +78,7 @@
         break;
     }
   } else {
-    NSLog(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
+    PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
     requestError = [NSError pk_responseParseError];
   }
   

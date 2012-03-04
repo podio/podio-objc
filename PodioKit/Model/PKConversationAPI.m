@@ -11,9 +11,9 @@
 @implementation PKConversationAPI
 
 + (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds {
-  NSAssert(text != nil && [text length] > 0, @"Missing message text");
-  NSAssert(subject != nil && [subject length] > 0, @"Missing message subject");
-  NSAssert(participantUserIds != nil && [participantUserIds count] > 0, @"Missing message participants");
+  PKAssert(text != nil && [text length] > 0, @"Missing message text");
+  PKAssert(subject != nil && [subject length] > 0, @"Missing message subject");
+  PKAssert(participantUserIds != nil && [participantUserIds count] > 0, @"Missing message participants");
   
   PKRequest *request = [PKRequest requestWithURI:@"/conversation/" method:PKAPIRequestMethodPOST];
   request.body = [NSDictionary dictionaryWithObjectsAndKeys:text, @"text", subject, @"subject", participantUserIds, @"participants", nil];
