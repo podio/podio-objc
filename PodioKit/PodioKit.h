@@ -12,6 +12,7 @@
 
 #import "PKConstants.h"
 #import "PKLog.h"
+#import "PKAssert.h"
 
 #pragma mark - Client
 
