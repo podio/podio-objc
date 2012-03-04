@@ -326,6 +326,9 @@
 		50CC1D6C148CDA3A000B57EA /* PKStreamAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D52148CDA3A000B57EA /* PKStreamAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D6D148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
 		50CC1D6E148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
+		50D33178150226D40054B777 /* PKSearchResultData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D33176150226D40054B777 /* PKSearchResultData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50D33179150226D40054B777 /* PKSearchResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D33177150226D40054B777 /* PKSearchResultData.m */; };
+		50D3317A150226D40054B777 /* PKSearchResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D33177150226D40054B777 /* PKSearchResultData.m */; };
 		50D3FA7F14DAFB17008853BB /* PKReferenceMeetingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */; };
 		50DFDB7714E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -337,6 +340,9 @@
 		50E494D814FD2B7F007D5C32 /* PKLinkedAccountAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E494D614FD2B7F007D5C32 /* PKLinkedAccountAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50E494D914FD2B7F007D5C32 /* PKLinkedAccountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */; };
 		50E494DA14FD2B7F007D5C32 /* PKLinkedAccountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */; };
+		50ED3E7B15010E3000079432 /* PKSearchAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ED3E7915010E3000079432 /* PKSearchAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50ED3E7C15010E3000079432 /* PKSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3E7A15010E3000079432 /* PKSearchAPI.m */; };
+		50ED3E7D15010E3000079432 /* PKSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3E7A15010E3000079432 /* PKSearchAPI.m */; };
 		50F4FBC314487EDA00317E62 /* PKOAuth2Client.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F4FBC114487EDA00317E62 /* PKOAuth2Client.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50F4FBC414487EDA00317E62 /* PKOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */; };
 		50F4FBC514487EDA00317E62 /* PKOAuth2Client.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */; };
@@ -597,6 +603,8 @@
 		50CC1D51148CDA39000B57EA /* PKRatingAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRatingAPI.m; sourceTree = "<group>"; };
 		50CC1D52148CDA3A000B57EA /* PKStreamAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamAPI.h; sourceTree = "<group>"; };
 		50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamAPI.m; sourceTree = "<group>"; };
+		50D33176150226D40054B777 /* PKSearchResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSearchResultData.h; sourceTree = "<group>"; };
+		50D33177150226D40054B777 /* PKSearchResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSearchResultData.m; sourceTree = "<group>"; };
 		50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceMeetingData.h; sourceTree = "<group>"; };
 		50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMeetingData.m; sourceTree = "<group>"; };
 		50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMeetingPluginCitrixData.h; sourceTree = "<group>"; };
@@ -605,6 +613,8 @@
 		50DFDB7B14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMeetingPluginDataFactory.m; sourceTree = "<group>"; };
 		50E494D614FD2B7F007D5C32 /* PKLinkedAccountAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountAPI.h; sourceTree = "<group>"; };
 		50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLinkedAccountAPI.m; sourceTree = "<group>"; };
+		50ED3E7915010E3000079432 /* PKSearchAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSearchAPI.h; sourceTree = "<group>"; };
+		50ED3E7A15010E3000079432 /* PKSearchAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSearchAPI.m; sourceTree = "<group>"; };
 		50F4FBC114487EDA00317E62 /* PKOAuth2Client.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKOAuth2Client.h; sourceTree = "<group>"; };
 		50F4FBC214487EDA00317E62 /* PKOAuth2Client.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKOAuth2Client.m; sourceTree = "<group>"; };
 		50F4FBC61448892700317E62 /* NSDictionary+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+URL.h"; sourceTree = "<group>"; };
@@ -718,6 +728,7 @@
 			children = (
 				5030C04C1435E76300027F07 /* PKObjectData.h */,
 				5030C04D1435E76300027F07 /* PKObjectData.m */,
+				50D33174150226A70054B777 /* Search */,
 				5030C0BF1435E88700027F07 /* Item */,
 				508D211914FBB311002593A4 /* Space */,
 				5030C0BD1435E7AB00027F07 /* Stream */,
@@ -1126,6 +1137,8 @@
 				508D212B14FBB875002593A4 /* PKSpaceAPI.m */,
 				50E494D614FD2B7F007D5C32 /* PKLinkedAccountAPI.h */,
 				50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */,
+				50ED3E7915010E3000079432 /* PKSearchAPI.h */,
+				50ED3E7A15010E3000079432 /* PKSearchAPI.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -1207,6 +1220,15 @@
 				50C7FBFA1446D1CD006E00B8 /* Reachability.m */,
 			);
 			path = Reachability;
+			sourceTree = "<group>";
+		};
+		50D33174150226A70054B777 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				50D33176150226D40054B777 /* PKSearchResultData.h */,
+				50D33177150226D40054B777 /* PKSearchResultData.m */,
+			);
+			name = Search;
 			sourceTree = "<group>";
 		};
 		50DFDB6E14E1980A00D2C5B6 /* Meetings */ = {
@@ -1362,6 +1384,8 @@
 				5032336214FD3F2C0028D887 /* PKExternalFileData.h in Headers */,
 				507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */,
 				5053634314FF962B0068622A /* PKProviderData.h in Headers */,
+				50ED3E7B15010E3000079432 /* PKSearchAPI.h in Headers */,
+				50D33178150226D40054B777 /* PKSearchResultData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1573,6 +1597,8 @@
 				5032336314FD3F2C0028D887 /* PKExternalFileData.m in Sources */,
 				507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */,
 				5053634414FF962B0068622A /* PKProviderData.m in Sources */,
+				50ED3E7C15010E3000079432 /* PKSearchAPI.m in Sources */,
+				50D33179150226D40054B777 /* PKSearchResultData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1692,6 +1718,8 @@
 				5032336414FD3F2C0028D887 /* PKExternalFileData.m in Sources */,
 				507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */,
 				5053634514FF962B0068622A /* PKProviderData.m in Sources */,
+				50ED3E7D15010E3000079432 /* PKSearchAPI.m in Sources */,
+				50D3317A150226D40054B777 /* PKSearchResultData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

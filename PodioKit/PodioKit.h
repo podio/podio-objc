@@ -41,6 +41,7 @@
 #import "PKStreamAPI.h"
 #import "PKTaskAPI.h"
 #import "PKLinkedAccountAPI.h"
+#import "PKSearchAPI.h"
 
 #pragma mark - Mapping
 
@@ -111,6 +112,7 @@
 #import "PKQuestionOptionData.h"
 #import "PKLinkedAccountData.h"
 #import "PKProviderData.h"
+#import "PKSearchResultData.h"
 
 #pragma mark - Domain objects
 
