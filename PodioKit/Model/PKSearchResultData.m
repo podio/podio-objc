@@ -27,6 +27,7 @@ static NSString * const PKSearchResultDataSpaceName = @"spaceName";
 @synthesize appIcon = appIcon_;
 @synthesize spaceId = spaceId_;
 @synthesize spaceName = spaceName_;
+@synthesize createdBy = createdBy_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
@@ -68,6 +69,7 @@ static NSString * const PKSearchResultDataSpaceName = @"spaceName";
   data.appIcon = [[[dict pk_objectForKey:@"app"] pk_objectForKey:@"config"] pk_objectForKey:@"icon"];
   data.spaceId = [[[dict pk_objectForKey:@"space"] pk_objectForKey:@"space_id"] integerValue];
   data.spaceName = [[dict pk_objectForKey:@"space"] pk_objectForKey:@"name"];
+  data.createdBy = [PKByLineData dataFromDictionary:[dict pk_objectForKey:@"created_by"]];
   
   return data;
 }

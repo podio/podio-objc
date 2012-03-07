@@ -131,6 +131,9 @@
 		5032BAD6144491A500B7F7C7 /* PKTaskAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
 		5032BAD8144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
+		50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50458F381507734300FA66A6 /* PKByLineData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
+		50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
 		5053634314FF962B0068622A /* PKProviderData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5053634114FF962B0068622A /* PKProviderData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5053634414FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
 		5053634514FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
@@ -463,6 +466,8 @@
 		5032BACB1444907800B7F7C7 /* PKTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMapping.m; sourceTree = "<group>"; };
 		5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskAPI.h; sourceTree = "<group>"; };
 		5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskAPI.m; sourceTree = "<group>"; };
+		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
+		50458F391507734300FA66A6 /* PKByLineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKByLineData.m; sourceTree = "<group>"; };
 		5053634114FF962B0068622A /* PKProviderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKProviderData.h; sourceTree = "<group>"; };
 		5053634214FF962B0068622A /* PKProviderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKProviderData.m; sourceTree = "<group>"; };
 		5059533A149634B70046685A /* PKConversationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKConversationAPI.h; sourceTree = "<group>"; };
@@ -745,6 +750,7 @@
 				507F7A1314FE8354001F8BF9 /* Linked Account */,
 				5030C0B91435E76B00027F07 /* App */,
 				50DFDB6E14E1980A00D2C5B6 /* Meetings */,
+				50458F361507731600FA66A6 /* Misc */,
 			);
 			name = Transformables;
 			sourceTree = "<group>";
@@ -878,6 +884,15 @@
 				5032BAC614448E1500B7F7C7 /* PKTask.m */,
 			);
 			name = Entities;
+			sourceTree = "<group>";
+		};
+		50458F361507731600FA66A6 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				50458F381507734300FA66A6 /* PKByLineData.h */,
+				50458F391507734300FA66A6 /* PKByLineData.m */,
+			);
+			name = Misc;
 			sourceTree = "<group>";
 		};
 		5065BEDD14335AB900360855 = {
@@ -1396,6 +1411,7 @@
 				50ED3E7B15010E3000079432 /* PKSearchAPI.h in Headers */,
 				50D33178150226D40054B777 /* PKSearchResultData.h in Headers */,
 				507CA05C1503E3E800678F9D /* PKAssert.h in Headers */,
+				50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1609,6 +1625,7 @@
 				5053634414FF962B0068622A /* PKProviderData.m in Sources */,
 				50ED3E7C15010E3000079432 /* PKSearchAPI.m in Sources */,
 				50D33179150226D40054B777 /* PKSearchResultData.m in Sources */,
+				50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1730,6 +1747,7 @@
 				507CA0671503E77A00678F9D /* ASIHTTPRequest.m in Sources */,
 				507CA0681503E77A00678F9D /* ASIInputStream.m in Sources */,
 				507CA0691503E77A00678F9D /* ASINetworkQueue.m in Sources */,
+				50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

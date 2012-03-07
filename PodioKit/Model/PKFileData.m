@@ -59,6 +59,8 @@ static NSString * const PKFileDataSizeKey = @"Size";
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {
+  if (dict == nil) return nil;
+  
   PKFileData *data = [self data];
   
   data.fileId = [[dict pk_objectForKey:@"file_id"] integerValue];

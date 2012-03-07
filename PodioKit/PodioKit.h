@@ -114,6 +114,7 @@
 #import "PKLinkedAccountData.h"
 #import "PKProviderData.h"
 #import "PKSearchResultData.h"
+#import "PKByLineData.h"
 
 #pragma mark - Domain objects
 

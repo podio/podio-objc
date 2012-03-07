@@ -7,6 +7,7 @@
 //
 
 #import "PKObjectData.h"
+#import "PKByLineData.h"
 
 @interface PKSearchResultData : PKObjectData
 
@@ -18,5 +19,6 @@
 @property (nonatomic, copy) NSString *appIcon;
 @property (nonatomic) NSInteger spaceId;
 @property (nonatomic, copy) NSString *spaceName;
+@property (nonatomic, strong) PKByLineData *createdBy;
 
 @end
