@@ -13,5 +13,6 @@
 @property (nonatomic) NSInteger linkedAccountId;
 @property (nonatomic, copy) NSString *label;
 @property (nonatomic, copy) NSString *provider;
+@property (nonatomic, copy) NSString *providerHumanizedName;
 
 @end

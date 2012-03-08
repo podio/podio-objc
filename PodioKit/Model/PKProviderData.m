@@ -9,18 +9,21 @@
 #import "PKProviderData.h"
 
 static NSString * const PKProviderDataNameKey = @"Name";
-static NSString * const PKProviderDataURLKey = @"URL";
+static NSString * const PKProviderDataHumanizedNameKey = @"HumanizedName";
+static NSString * const PKProviderDataConnectLinkKey = @"ConnectLink";
 
 @implementation PKProviderData
 
 @synthesize name = name_;
-@synthesize url = url_;
+@synthesize humanizedName = humanizedName_;
+@synthesize connectLink = connectLink_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
     name_ = [[aDecoder decodeObjectForKey:PKProviderDataNameKey] copy];
-    url_ = [[aDecoder decodeObjectForKey:PKProviderDataURLKey] copy];
+    humanizedName_ = [[aDecoder decodeObjectForKey:PKProviderDataHumanizedNameKey] copy];
+    connectLink_ = [[aDecoder decodeObjectForKey:PKProviderDataConnectLinkKey] copy];
   }
   return self;
 }
@@ -28,7 +31,8 @@ static NSString * const PKProviderDataURLKey = @"URL";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeObject:name_ forKey:PKProviderDataNameKey];
-  [aCoder encodeObject:url_ forKey:PKProviderDataURLKey];
+  [aCoder encodeObject:humanizedName_ forKey:PKProviderDataHumanizedNameKey];
+  [aCoder encodeObject:connectLink_ forKey:PKProviderDataConnectLinkKey];
 }
 
 #pragma mark - Factory methods
@@ -37,7 +41,8 @@ static NSString * const PKProviderDataURLKey = @"URL";
   PKProviderData *data = [self data];
   
   data.name = [dict pk_objectForKey:@"name"];
-  data.url = [dict pk_objectForKey:@"url"];
+  data.humanizedName = [dict pk_objectForKey:@"humanized_name"];
+  data.connectLink = [dict pk_objectForKey:@"connect_link"];
   
   return data;
 }

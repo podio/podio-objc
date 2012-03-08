@@ -11,6 +11,7 @@
 @interface PKProviderData : PKObjectData
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *url;
+@property (nonatomic, copy) NSString *humanizedName;
+@property (nonatomic, copy) NSString *connectLink;
 
 @end

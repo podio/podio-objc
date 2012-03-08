@@ -11,5 +11,6 @@
 @interface PKLinkedAccountAPI : PKBaseAPI
 
 + (PKRequest *)requestForLinkedAccountsWithCapability:(PKProviderCapability)capability;
++ (PKRequest *)requestForProvidersWithCapability:(PKProviderCapability)capability;
 
 @end
