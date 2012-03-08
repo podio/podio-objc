@@ -157,11 +157,12 @@ NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2Clie
     // Got a new token
     NSString *accessToken = [parsedData objectForKey:@"access_token"];
     NSString *refreshToken = [parsedData objectForKey:@"refresh_token"];
+    NSString *transferToken = [parsedData objectForKey:@"transfer_token"];
     
     NSTimeInterval expiresIn = [[parsedData objectForKey:@"expires_in"] intValue];
     NSDate *expiresOn = [NSDate dateWithTimeIntervalSinceNow:expiresIn];
     
-    PKOAuth2Token *token = [PKOAuth2Token tokenWithAccessToken:accessToken refreshToken:refreshToken expiresOn:expiresOn];
+    PKOAuth2Token *token = [PKOAuth2Token tokenWithAccessToken:accessToken refreshToken:refreshToken transferToken:transferToken expiresOn:expiresOn];
     
     // Notify
     if (requestType == PKOAuth2RequestTypeAuthenticate) {

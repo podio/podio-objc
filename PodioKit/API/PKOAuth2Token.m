@@ -11,26 +11,29 @@
 
 static NSString * const PKOAuth2TokenAccessToken = @"AccessToken";
 static NSString * const PKOAuth2TokenRefreshToken = @"RefreshToken";
+static NSString * const PKOAuth2TokenTransferToken = @"TransferToken";
 static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
 
 @implementation PKOAuth2Token
 
 @synthesize accessToken = accessToken_;
 @synthesize refreshToken = refreshToken_;
+@synthesize transferToken = transferToken_;
 @synthesize expiresOn = expiresOn_;
 
-- (id)initWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken expiresOn:(NSDate *)expiresOn {
+- (id)initWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn {
   self = [super init];
   if (self) {
     accessToken_ = [accessToken copy];
     refreshToken_ = [refreshToken copy];
+    transferToken_ = [transferToken copy];
     expiresOn_ = [expiresOn copy];
   }
   return self;
 }
 
-+ (id)tokenWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken expiresOn:(NSDate *)expiresOn {
-  return [[self alloc] initWithAccessToken:accessToken refreshToken:refreshToken expiresOn:expiresOn];
++ (id)tokenWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn {
+  return [[self alloc] initWithAccessToken:accessToken refreshToken:refreshToken transferToken:transferToken expiresOn:expiresOn];
 }
 
 
@@ -39,6 +42,7 @@ static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
   if (self) {
     accessToken_ = [[aDecoder decodeObjectForKey:PKOAuth2TokenAccessToken] copy];
     refreshToken_ = [[aDecoder decodeObjectForKey:PKOAuth2TokenRefreshToken] copy];
+    transferToken_ = [[aDecoder decodeObjectForKey:PKOAuth2TokenTransferToken] copy];
     expiresOn_ = [[aDecoder decodeObjectForKey:PKOAuth2TokenExpiresOn] copy];
   }
   return self;
@@ -47,6 +51,7 @@ static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [aCoder encodeObject:accessToken_ forKey:PKOAuth2TokenAccessToken];
   [aCoder encodeObject:refreshToken_ forKey:PKOAuth2TokenRefreshToken];
+  [aCoder encodeObject:transferToken_ forKey:PKOAuth2TokenTransferToken];
   [aCoder encodeObject:expiresOn_ forKey:PKOAuth2TokenExpiresOn];
 }
 
