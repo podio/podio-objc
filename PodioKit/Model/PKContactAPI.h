@@ -16,8 +16,8 @@ typedef enum {
 
 @interface PKContactAPI : PKBaseAPI
 
-+ (PKRequest *)requestForGlobalContactsWithType:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit;
-+ (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit;
-+ (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit;
++ (PKRequest *)requestForGlobalContactsWithType:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit;
++ (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit;
++ (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 @end

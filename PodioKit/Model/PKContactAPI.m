@@ -10,17 +10,17 @@
 
 @interface PKContactAPI ()
 
-+ (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit;
++ (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 @end
 
 @implementation PKContactAPI
 
-+ (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
   
   request.offset = offset;
-  [request.parameters setObject:@"0" forKey:@"exclude_self"];
+  [request.parameters setObject:[NSString stringWithFormat:@"%d", excludeSelf] forKey:@"exclude_self"];
   
   switch (type) {
     case PKRequestContactTypeFull:
@@ -48,18 +48,18 @@
   return request;
 }
 
-+ (PKRequest *)requestForGlobalContactsWithType:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  return [self requestForContactsWithURI:@"/contact/" type:type contactTypes:contactTypes offset:offset limit:limit];
++ (PKRequest *)requestForGlobalContactsWithType:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  return [self requestForContactsWithURI:@"/contact/" type:type contactTypes:contactTypes excludeSelf:excludeSelf offset:offset limit:limit];
 }
 
-+ (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSString *uri = [NSString stringWithFormat:@"/contact/space/%d/", spaceId];
-  return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes offset:offset limit:limit];
+  return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes excludeSelf:excludeSelf offset:offset limit:limit];
 }
 
-+ (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSString *uri = [NSString stringWithFormat:@"/contact/org/%d/", orgId];
-  return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes offset:offset limit:limit];
+  return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes excludeSelf:excludeSelf offset:offset limit:limit];
 }
 
 @end
