@@ -43,6 +43,7 @@
 #import "PKTaskAPI.h"
 #import "PKLinkedAccountAPI.h"
 #import "PKSearchAPI.h"
+#import "PKContactAPI.h"
 
 #pragma mark - Mapping
 

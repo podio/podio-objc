@@ -1,0 +1,65 @@
+//
+//  PKContactAPI.m
+//  PodioKit
+//
+//  Created by Sebastian Rehnby on 3/9/12.
+//  Copyright (c) 2012 Podio. All rights reserved.
+//
+
+#import "PKContactAPI.h"
+
+@interface PKContactAPI ()
+
++ (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit;
+
+@end
+
+@implementation PKContactAPI
+
++ (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  
+  request.offset = offset;
+  [request.parameters setObject:@"0" forKey:@"exclude_self"];
+  
+  switch (type) {
+    case PKRequestContactTypeFull:
+      [request.parameters setObject:@"full" forKey:@"type"];
+      break;
+    case PKRequestContactTypeMini:
+      [request.parameters setObject:@"mini" forKey:@"type"];
+      break;
+    default:
+      break;
+  }
+  
+  if (contactTypes != nil) {
+    [request.parameters setObject:[contactTypes componentsJoinedByString:@","] forKey:@"contact_type"];
+  }
+  
+  if (offset > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+  }
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestForGlobalContactsWithType:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  return [self requestForContactsWithURI:@"/contact/" type:type contactTypes:contactTypes offset:offset limit:limit];
+}
+
++ (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  NSString *uri = [NSString stringWithFormat:@"/contact/space/%d/", spaceId];
+  return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes offset:offset limit:limit];
+}
+
++ (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  NSString *uri = [NSString stringWithFormat:@"/contact/org/%d/", orgId];
+  return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes offset:offset limit:limit];
+}
+
+@end

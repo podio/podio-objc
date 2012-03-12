@@ -336,6 +336,9 @@
 		50D3317A150226D40054B777 /* PKSearchResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D33177150226D40054B777 /* PKSearchResultData.m */; };
 		50D3FA7F14DAFB17008853BB /* PKReferenceMeetingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */; };
+		50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DB5BA6150A55B500B5E489 /* PKContactAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50DB5BA9150A55B500B5E489 /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
+		50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
 		50DFDB7714E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50DFDB7814E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */; };
 		50DFDB7914E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */; };
@@ -617,6 +620,8 @@
 		50D33177150226D40054B777 /* PKSearchResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSearchResultData.m; sourceTree = "<group>"; };
 		50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceMeetingData.h; sourceTree = "<group>"; };
 		50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMeetingData.m; sourceTree = "<group>"; };
+		50DB5BA6150A55B500B5E489 /* PKContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKContactAPI.h; sourceTree = "<group>"; };
+		50DB5BA7150A55B500B5E489 /* PKContactAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKContactAPI.m; sourceTree = "<group>"; };
 		50DFDB7514E1989D00D2C5B6 /* PKMeetingPluginCitrixData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMeetingPluginCitrixData.h; sourceTree = "<group>"; };
 		50DFDB7614E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMeetingPluginCitrixData.m; sourceTree = "<group>"; };
 		50DFDB7A14E19A8400D2C5B6 /* PKMeetingPluginDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMeetingPluginDataFactory.h; sourceTree = "<group>"; };
@@ -1163,6 +1168,8 @@
 				50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */,
 				50ED3E7915010E3000079432 /* PKSearchAPI.h */,
 				50ED3E7A15010E3000079432 /* PKSearchAPI.m */,
+				50DB5BA6150A55B500B5E489 /* PKContactAPI.h */,
+				50DB5BA7150A55B500B5E489 /* PKContactAPI.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -1412,6 +1419,7 @@
 				50D33178150226D40054B777 /* PKSearchResultData.h in Headers */,
 				507CA05C1503E3E800678F9D /* PKAssert.h in Headers */,
 				50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */,
+				50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1626,6 +1634,7 @@
 				50ED3E7C15010E3000079432 /* PKSearchAPI.m in Sources */,
 				50D33179150226D40054B777 /* PKSearchResultData.m in Sources */,
 				50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */,
+				50DB5BA9150A55B500B5E489 /* PKContactAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1748,6 +1757,7 @@
 				507CA0681503E77A00678F9D /* ASIInputStream.m in Sources */,
 				507CA0691503E77A00678F9D /* ASINetworkQueue.m in Sources */,
 				50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */,
+				50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
