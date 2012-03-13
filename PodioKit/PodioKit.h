@@ -45,6 +45,7 @@
 #import "PKSearchAPI.h"
 #import "PKContactAPI.h"
 #import "PKUserAPI.h"
+#import "PKAppStoreAPI.h"
 
 #pragma mark - Mapping
 
@@ -117,6 +118,8 @@
 #import "PKProviderData.h"
 #import "PKSearchResultData.h"
 #import "PKByLineData.h"
+#import "PKShareData.h"
+#import "PKShareCategoryData.h"
 
 #pragma mark - Domain objects
 

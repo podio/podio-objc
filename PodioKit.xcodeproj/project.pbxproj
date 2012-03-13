@@ -264,6 +264,15 @@
 		50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */; };
 		50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
+		50B319CF150F8F2700EAD7C7 /* PKAppStoreAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B319D0150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
+		50B319D1150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
+		50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319DF150F98AE00EAD7C7 /* PKShareData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B319E2150F98AE00EAD7C7 /* PKShareData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E0150F98AE00EAD7C7 /* PKShareData.m */; };
+		50B319E3150F98AE00EAD7C7 /* PKShareData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E0150F98AE00EAD7C7 /* PKShareData.m */; };
+		50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319E4150F98E800EAD7C7 /* PKShareCategoryData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */; };
+		50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */; };
 		50B529F7148FC06800E05852 /* PKReferenceAlertData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B529F5148FC06800E05852 /* PKReferenceAlertData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B529F8148FC06800E05852 /* PKReferenceAlertData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B529F6148FC06800E05852 /* PKReferenceAlertData.m */; };
 		50B529F9148FC06800E05852 /* PKReferenceAlertData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B529F6148FC06800E05852 /* PKReferenceAlertData.m */; };
@@ -568,6 +577,12 @@
 		50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceDataFactory.h; sourceTree = "<group>"; };
 		50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceDataFactory.m; sourceTree = "<group>"; };
 		50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceSpaceData.m; sourceTree = "<group>"; };
+		50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppStoreAPI.h; sourceTree = "<group>"; };
+		50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppStoreAPI.m; sourceTree = "<group>"; };
+		50B319DF150F98AE00EAD7C7 /* PKShareData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShareData.h; sourceTree = "<group>"; };
+		50B319E0150F98AE00EAD7C7 /* PKShareData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKShareData.m; sourceTree = "<group>"; };
+		50B319E4150F98E800EAD7C7 /* PKShareCategoryData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShareCategoryData.h; sourceTree = "<group>"; };
+		50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKShareCategoryData.m; sourceTree = "<group>"; };
 		50B529F5148FC06800E05852 /* PKReferenceAlertData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceAlertData.h; sourceTree = "<group>"; };
 		50B529F6148FC06800E05852 /* PKReferenceAlertData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceAlertData.m; sourceTree = "<group>"; };
 		50BBF5381439B365002522D6 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
@@ -760,6 +775,7 @@
 				507F7A1314FE8354001F8BF9 /* Linked Account */,
 				5030C0B91435E76B00027F07 /* App */,
 				50DFDB6E14E1980A00D2C5B6 /* Meetings */,
+				50B319DD150F989800EAD7C7 /* App Store */,
 				50458F361507731600FA66A6 /* Misc */,
 			);
 			name = Transformables;
@@ -1177,6 +1193,8 @@
 				50DB5BA7150A55B500B5E489 /* PKContactAPI.m */,
 				50FEF576150E7CB2003B5306 /* PKUserAPI.h */,
 				50FEF577150E7CB2003B5306 /* PKUserAPI.m */,
+				50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */,
+				50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -1213,6 +1231,17 @@
 				508D211C14FBB332002593A4 /* PKSpaceCreateData.m */,
 			);
 			name = Space;
+			sourceTree = "<group>";
+		};
+		50B319DD150F989800EAD7C7 /* App Store */ = {
+			isa = PBXGroup;
+			children = (
+				50B319DF150F98AE00EAD7C7 /* PKShareData.h */,
+				50B319E0150F98AE00EAD7C7 /* PKShareData.m */,
+				50B319E4150F98E800EAD7C7 /* PKShareCategoryData.h */,
+				50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */,
+			);
+			name = "App Store";
 			sourceTree = "<group>";
 		};
 		50C7FBD41446D1CD006E00B8 /* ASIHTTPRequest */ = {
@@ -1428,6 +1457,9 @@
 				50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */,
 				50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */,
 				50FEF578150E7CB2003B5306 /* PKUserAPI.h in Headers */,
+				50B319CF150F8F2700EAD7C7 /* PKAppStoreAPI.h in Headers */,
+				50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */,
+				50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1644,6 +1676,9 @@
 				50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */,
 				50DB5BA9150A55B500B5E489 /* PKContactAPI.m in Sources */,
 				50FEF579150E7CB2003B5306 /* PKUserAPI.m in Sources */,
+				50B319D0150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */,
+				50B319E2150F98AE00EAD7C7 /* PKShareData.m in Sources */,
+				50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1768,6 +1803,9 @@
 				50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */,
 				50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */,
 				50FEF57A150E7CB2003B5306 /* PKUserAPI.m in Sources */,
+				50B319D1150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */,
+				50B319E3150F98AE00EAD7C7 /* PKShareData.m in Sources */,
+				50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
