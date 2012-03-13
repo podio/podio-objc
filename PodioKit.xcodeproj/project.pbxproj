@@ -369,6 +369,9 @@
 		50FCC3AB14A1E2580001E6F4 /* PKTestItemFieldMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FCC3AA14A1E2580001E6F4 /* PKTestItemFieldMapping.m */; };
 		50FCC3AE14A1E75C0001E6F4 /* PKTestItemApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FCC3AD14A1E75C0001E6F4 /* PKTestItemApp.m */; };
 		50FCC3B114A1E7DE0001E6F4 /* PKTestItemAppMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FCC3B014A1E7DE0001E6F4 /* PKTestItemAppMapping.m */; };
+		50FEF578150E7CB2003B5306 /* PKUserAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FEF576150E7CB2003B5306 /* PKUserAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50FEF579150E7CB2003B5306 /* PKUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEF577150E7CB2003B5306 /* PKUserAPI.m */; };
+		50FEF57A150E7CB2003B5306 /* PKUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEF577150E7CB2003B5306 /* PKUserAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -654,6 +657,8 @@
 		50FCC3AD14A1E75C0001E6F4 /* PKTestItemApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemApp.m; sourceTree = "<group>"; };
 		50FCC3AF14A1E7DD0001E6F4 /* PKTestItemAppMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItemAppMapping.h; sourceTree = "<group>"; };
 		50FCC3B014A1E7DE0001E6F4 /* PKTestItemAppMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemAppMapping.m; sourceTree = "<group>"; };
+		50FEF576150E7CB2003B5306 /* PKUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKUserAPI.h; sourceTree = "<group>"; };
+		50FEF577150E7CB2003B5306 /* PKUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKUserAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1170,6 +1175,8 @@
 				50ED3E7A15010E3000079432 /* PKSearchAPI.m */,
 				50DB5BA6150A55B500B5E489 /* PKContactAPI.h */,
 				50DB5BA7150A55B500B5E489 /* PKContactAPI.m */,
+				50FEF576150E7CB2003B5306 /* PKUserAPI.h */,
+				50FEF577150E7CB2003B5306 /* PKUserAPI.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -1420,6 +1427,7 @@
 				507CA05C1503E3E800678F9D /* PKAssert.h in Headers */,
 				50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */,
 				50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */,
+				50FEF578150E7CB2003B5306 /* PKUserAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1635,6 +1643,7 @@
 				50D33179150226D40054B777 /* PKSearchResultData.m in Sources */,
 				50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */,
 				50DB5BA9150A55B500B5E489 /* PKContactAPI.m in Sources */,
+				50FEF579150E7CB2003B5306 /* PKUserAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1758,6 +1767,7 @@
 				507CA0691503E77A00678F9D /* ASINetworkQueue.m in Sources */,
 				50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */,
 				50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */,
+				50FEF57A150E7CB2003B5306 /* PKUserAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
