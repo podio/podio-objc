@@ -20,4 +20,7 @@ typedef enum {
 + (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit;
 + (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKRequest *)requestForContactWithProfileId:(NSUInteger)profileId;
++ (PKRequest *)requestForContactWithUserId:(NSUInteger)userId;
+
 @end

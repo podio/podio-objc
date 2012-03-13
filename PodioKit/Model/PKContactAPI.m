@@ -62,4 +62,12 @@
   return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes excludeSelf:excludeSelf offset:offset limit:limit];
 }
 
++ (PKRequest *)requestForContactWithProfileId:(NSUInteger)profileId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/%d/v2", profileId] method:PKAPIRequestMethodGET];
+}
+
++ (PKRequest *)requestForContactWithUserId:(NSUInteger)userId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/user/%d", userId] method:PKAPIRequestMethodGET];
+}
+
 @end
