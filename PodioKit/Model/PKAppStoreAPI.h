@@ -13,11 +13,26 @@ typedef enum {
   PKAppStoreAPIRecommendedAreaMobile,
 } PKAppStoreAPIRecommendedArea;
 
+typedef enum {
+  PKAppStoreAPIShareTypeAll = 0,
+  PKAppStoreAPIShareTypeApp,
+  PKAppStoreAPIShareTypePack,
+} PKAppStoreAPIShareType;
+
+typedef enum {
+  PKAppStoreAPISortOrderDefault = 0,
+  PKAppStoreAPISortOrderInstall,
+  PKAppStoreAPISortOrderRating,
+  PKAppStoreAPISortOrderPopularity,
+  PKAppStoreAPISortOrderName,
+} PKAppStoreAPISortOrder;
+
 @interface PKAppStoreAPI : PKBaseAPI
 
 + (PKRequest *)requestForRecommendedSharesForArea:(PKAppStoreAPIRecommendedArea)area;
 
 + (PKRequest *)requestForCategories;
-+ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId;
++ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder;
++ (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId;
 
 @end

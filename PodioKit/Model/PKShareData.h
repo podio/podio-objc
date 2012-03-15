@@ -10,7 +10,7 @@
 
 @interface PKShareData : PKObjectData
 
-@property (nonatomic) NSUInteger appId;
+@property (nonatomic) NSUInteger shareId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *abstract;
 @property (nonatomic, copy) NSString *icon;

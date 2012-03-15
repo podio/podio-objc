@@ -239,6 +239,9 @@
 		5084B57A14DEF5F0002FC8DB /* PKLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5084B57814DEF5F0002FC8DB /* PKLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
 		5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
+		50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50858ABB15120EAC00ED8A6E /* PKAppAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50858ABE15120EAD00ED8A6E /* PKAppAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50858ABC15120EAD00ED8A6E /* PKAppAPI.m */; };
+		50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50858ABC15120EAD00ED8A6E /* PKAppAPI.m */; };
 		508D211D14FBB332002593A4 /* PKSpaceCreateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D211B14FBB332002593A4 /* PKSpaceCreateData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		508D211E14FBB332002593A4 /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
 		508D211F14FBB332002593A4 /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
@@ -558,6 +561,8 @@
 		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
 		5084B57814DEF5F0002FC8DB /* PKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLog.h; sourceTree = "<group>"; };
 		5084B57914DEF5F0002FC8DB /* PKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLog.m; sourceTree = "<group>"; };
+		50858ABB15120EAC00ED8A6E /* PKAppAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppAPI.h; sourceTree = "<group>"; };
+		50858ABC15120EAD00ED8A6E /* PKAppAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppAPI.m; sourceTree = "<group>"; };
 		508D211B14FBB332002593A4 /* PKSpaceCreateData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceCreateData.h; sourceTree = "<group>"; };
 		508D211C14FBB332002593A4 /* PKSpaceCreateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceCreateData.m; sourceTree = "<group>"; };
 		508D212A14FBB875002593A4 /* PKSpaceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceAPI.h; sourceTree = "<group>"; };
@@ -1195,6 +1200,8 @@
 				50FEF577150E7CB2003B5306 /* PKUserAPI.m */,
 				50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */,
 				50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */,
+				50858ABB15120EAC00ED8A6E /* PKAppAPI.h */,
+				50858ABC15120EAD00ED8A6E /* PKAppAPI.m */,
 			);
 			name = APIs;
 			sourceTree = "<group>";
@@ -1460,6 +1467,7 @@
 				50B319CF150F8F2700EAD7C7 /* PKAppStoreAPI.h in Headers */,
 				50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */,
 				50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */,
+				50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1679,6 +1687,7 @@
 				50B319D0150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */,
 				50B319E2150F98AE00EAD7C7 /* PKShareData.m in Sources */,
 				50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
+				50858ABE15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1806,6 +1815,7 @@
 				50B319D1150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */,
 				50B319E3150F98AE00EAD7C7 /* PKShareData.m in Sources */,
 				50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
+				50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

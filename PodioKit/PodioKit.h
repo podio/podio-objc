@@ -46,6 +46,7 @@
 #import "PKContactAPI.h"
 #import "PKUserAPI.h"
 #import "PKAppStoreAPI.h"
+#import "PKAppAPI.h"
 
 #pragma mark - Mapping
 

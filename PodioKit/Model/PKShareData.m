@@ -8,7 +8,7 @@
 
 #import "PKShareData.h"
 
-static NSString * const PKShareDataAppId = @"AppId";
+static NSString * const PKShareDataShareId = @"ShareId";
 static NSString * const PKShareDataName = @"Name";
 static NSString * const PKShareDataAbstract = @"Abstract";
 static NSString * const PKShareDataIcon = @"Icon";
@@ -16,7 +16,7 @@ static NSString * const PKShareDataRating = @"Rating";
 
 @implementation PKShareData
 
-@synthesize appId = appId_;
+@synthesize shareId = shareId_;
 @synthesize name = name_;
 @synthesize abstract = abstract_;
 @synthesize icon = icon_;
@@ -25,7 +25,7 @@ static NSString * const PKShareDataRating = @"Rating";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    appId_ = [aDecoder decodeIntegerForKey:PKShareDataAppId];
+    shareId_ = [aDecoder decodeIntegerForKey:PKShareDataShareId];
     name_ = [[aDecoder decodeObjectForKey:PKShareDataName] copy];
     abstract_ = [[aDecoder decodeObjectForKey:PKShareDataAbstract] copy];
     icon_ = [[aDecoder decodeObjectForKey:PKShareDataIcon] copy];
@@ -36,7 +36,7 @@ static NSString * const PKShareDataRating = @"Rating";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:appId_ forKey:PKShareDataAppId];
+  [aCoder encodeInteger:shareId_ forKey:PKShareDataShareId];
   [aCoder encodeObject:name_ forKey:PKShareDataName];
   [aCoder encodeObject:abstract_ forKey:PKShareDataAbstract];
   [aCoder encodeObject:icon_ forKey:PKShareDataIcon];
@@ -50,7 +50,7 @@ static NSString * const PKShareDataRating = @"Rating";
   
   PKShareData *data = [self data];
   
-  data.appId = [[dict pk_objectForKey:@"app_id"] integerValue];
+  data.shareId = [[dict pk_objectForKey:@"share_id"] integerValue];
   data.name = [dict pk_objectForKey:@"name"];
   data.abstract = [dict pk_objectForKey:@"abstract"];
   data.icon = [dict pk_objectForKey:@"icon"];

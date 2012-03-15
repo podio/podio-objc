@@ -31,8 +31,55 @@
   return [PKRequest requestWithURI:@"/app_store/category/" method:PKAPIRequestMethodGET];
 }
 
-+ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKAPIRequestMethodGET];
++ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKAPIRequestMethodGET];
+  
+  NSString *typeString = nil;
+  switch (type) {
+    case PKAppStoreAPIShareTypeApp:
+      typeString = @"app";
+      break;
+    case PKAppStoreAPIShareTypePack:
+      typeString = @"pack";
+      break;
+    default:
+      break;
+  }
+  
+  if (typeString != nil) {
+    [request.parameters setObject:typeString forKey:@"type"];
+  }
+  
+  NSString *sortString = nil;
+  switch (sortOrder) {
+    case PKAppStoreAPISortOrderInstall:
+      sortString = @"install";
+      break;
+    case PKAppStoreAPISortOrderRating:
+      sortString = @"rating";
+      break;
+    case PKAppStoreAPISortOrderPopularity:
+      sortString = @"popularity";
+      break;
+    case PKAppStoreAPISortOrderName:
+      sortString = @"name";
+      break;
+    default:
+      break;
+  }
+  
+  if (sortString != nil) {
+    [request.parameters setObject:sortString forKey:@"sort"];
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKAPIRequestMethodPOST];
+  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:spaceId] forKey:@"space_id"];
+  
+  return request;
 }
 
 @end
