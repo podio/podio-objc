@@ -17,11 +17,6 @@
 @synthesize status = status_;
 @synthesize createdOn = createdOn_;
 
-- (void)dealloc {
-  [createdOn_ release];
-  [text_ release];
-  [super dealloc];
-}
 
 #pragma mark - PKMappableObject
 

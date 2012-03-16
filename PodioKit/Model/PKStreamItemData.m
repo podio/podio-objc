@@ -1,5 +1,5 @@
 //
-//  POStreamItemData.m
+//  PKStreamItemData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -9,8 +9,8 @@
 #import "PKStreamItemData.h"
 
 
-static NSString * const POStreamItemDataItemId = @"ItemId";
-static NSString * const POStreamItemDataTitle = @"Title";
+static NSString * const PKStreamItemDataItemId = @"ItemId";
+static NSString * const PKStreamItemDataTitle = @"Title";
 
 @implementation PKStreamItemData
 
@@ -20,22 +20,18 @@ static NSString * const POStreamItemDataTitle = @"Title";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    itemId_ = [aDecoder decodeIntegerForKey:POStreamItemDataItemId];
-    title_ = [[aDecoder decodeObjectForKey:POStreamItemDataTitle] copy];
+    itemId_ = [aDecoder decodeIntegerForKey:PKStreamItemDataItemId];
+    title_ = [[aDecoder decodeObjectForKey:PKStreamItemDataTitle] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:itemId_ forKey:POStreamItemDataItemId];
-  [aCoder encodeObject:title_ forKey:POStreamItemDataTitle];
+  [aCoder encodeInteger:itemId_ forKey:PKStreamItemDataItemId];
+  [aCoder encodeObject:title_ forKey:PKStreamItemDataTitle];
 }
 
-- (void)dealloc {
-  [title_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

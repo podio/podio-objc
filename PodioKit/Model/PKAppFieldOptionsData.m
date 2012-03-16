@@ -1,5 +1,5 @@
 //
-//  POAppFieldCategoryData.m
+//  PKAppFieldOptionsData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/17/11.
@@ -9,8 +9,8 @@
 #import "PKAppFieldOptionsData.h"
 
 
-static NSString * const POAppFieldCategoryDataMultipleKey = @"Multiple";
-static NSString * const POAppFieldCategoryDataOptionsKey = @"Options";
+static NSString * const PKAppFieldOptionsDataMultipleKey = @"Multiple";
+static NSString * const PKAppFieldOptionsDataOptionsKey = @"Options";
 
 @implementation PKAppFieldOptionsData
 
@@ -20,21 +20,17 @@ static NSString * const POAppFieldCategoryDataOptionsKey = @"Options";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    multiple_ = [aDecoder decodeBoolForKey:POAppFieldCategoryDataMultipleKey];
-    options_ = [[aDecoder decodeObjectForKey:POAppFieldCategoryDataOptionsKey] copy];
+    multiple_ = [aDecoder decodeBoolForKey:PKAppFieldOptionsDataMultipleKey];
+    options_ = [[aDecoder decodeObjectForKey:PKAppFieldOptionsDataOptionsKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeBool:multiple_ forKey:POAppFieldCategoryDataMultipleKey];
-  [aCoder encodeObject:options_ forKey:POAppFieldCategoryDataOptionsKey];
+  [aCoder encodeBool:multiple_ forKey:PKAppFieldOptionsDataMultipleKey];
+  [aCoder encodeObject:options_ forKey:PKAppFieldOptionsDataOptionsKey];
 }
 
-- (void)dealloc {
-  [options_ release];
-  [super dealloc];
-}
 
 @end

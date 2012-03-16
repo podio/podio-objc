@@ -1,5 +1,5 @@
 //
-//  POAppFieldMoneyData.h
+//  PKAppFieldMoneyData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/22/11.
@@ -14,6 +14,6 @@
   NSArray *allowedCurrencies_;
 }
 
-@property (nonatomic, retain) NSArray *allowedCurrencies;
+@property (nonatomic, strong) NSArray *allowedCurrencies;
 
 @end

@@ -11,12 +11,12 @@
 @implementation NSString (URL)
 
 - (NSString *)pk_escapedURLString {
-  NSString *escapedString = (NSString *) CFURLCreateStringByAddingPercentEscapes(NULL,
-                                                                                 (CFStringRef)self,
+  NSString *escapedString = (__bridge_transfer NSString *) CFURLCreateStringByAddingPercentEscapes(NULL,
+                                                                                 (__bridge CFStringRef)self,
                                                                                  NULL,
                                                                                  (CFStringRef) @"!*'();:@&=+$,/?%#[]",
                                                                                  kCFStringEncodingUTF8);
-  return [escapedString autorelease];
+  return escapedString;
 }
 
 @end

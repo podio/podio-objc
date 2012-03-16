@@ -1,5 +1,5 @@
 //
-//  POStreamActivityRatingData.m
+//  PKReferenceRatingData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/21/11.
@@ -8,9 +8,9 @@
 
 #import "PKReferenceRatingData.h"
 
-static NSString * const POStreamActivityRatingDataRatingId = @"RatingId";
-static NSString * const POStreamActivityRatingDataType = @"Type";
-static NSString * const POStreamActivityRatingDataValue = @"Value";
+static NSString * const PKReferenceRatingDataRatingId = @"RatingId";
+static NSString * const PKReferenceRatingDataType = @"Type";
+static NSString * const PKReferenceRatingDataValue = @"Value";
 
 @implementation PKReferenceRatingData
 
@@ -21,24 +21,20 @@ static NSString * const POStreamActivityRatingDataValue = @"Value";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    ratingId_ = [aDecoder decodeIntegerForKey:POStreamActivityRatingDataRatingId];
-    type_ = [aDecoder decodeIntegerForKey:POStreamActivityRatingDataType];
-    value_ = [[aDecoder decodeObjectForKey:POStreamActivityRatingDataValue] copy];
+    ratingId_ = [aDecoder decodeIntegerForKey:PKReferenceRatingDataRatingId];
+    type_ = [aDecoder decodeIntegerForKey:PKReferenceRatingDataType];
+    value_ = [[aDecoder decodeObjectForKey:PKReferenceRatingDataValue] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:ratingId_ forKey:POStreamActivityRatingDataRatingId];
-  [aCoder encodeInteger:type_ forKey:POStreamActivityRatingDataType];
-  [aCoder encodeObject:value_ forKey:POStreamActivityRatingDataValue];
+  [aCoder encodeInteger:ratingId_ forKey:PKReferenceRatingDataRatingId];
+  [aCoder encodeInteger:type_ forKey:PKReferenceRatingDataType];
+  [aCoder encodeObject:value_ forKey:PKReferenceRatingDataValue];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

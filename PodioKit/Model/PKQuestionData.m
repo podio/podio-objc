@@ -1,5 +1,5 @@
 //
-//  POQuestionData.m
+//  PKQuestionData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -9,13 +9,13 @@
 #import "PKQuestionData.h"
 #import "PKQuestionOptionData.h"
 
-static NSString * const POQuestionDataQuestionId = @"QuestionId";
-static NSString * const POQuestionDataText = @"Text";
-static NSString * const POQuestionDataOptions = @"Options";
-static NSString * const POQuestionDataAnswerCount = @"AnswerCount";
-static NSString * const POQuestionDataAnswerUsers = @"AnswerUsers";
-static NSString * const POQuestionDataUserAnswers = @"UserAnswers";
-static NSString * const POQuestionDataAnswerCounts = @"AnswerCounts";
+static NSString * const PKQuestionDataQuestionId = @"QuestionId";
+static NSString * const PKQuestionDataText = @"Text";
+static NSString * const PKQuestionDataOptions = @"Options";
+static NSString * const PKQuestionDataAnswerCount = @"AnswerCount";
+static NSString * const PKQuestionDataAnswerUsers = @"AnswerUsers";
+static NSString * const PKQuestionDataUserAnswers = @"UserAnswers";
+static NSString * const PKQuestionDataAnswerCounts = @"AnswerCounts";
 
 @implementation PKQuestionData
 
@@ -30,36 +30,28 @@ static NSString * const POQuestionDataAnswerCounts = @"AnswerCounts";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    questionId_ = [aDecoder decodeIntegerForKey:POQuestionDataQuestionId];
-    text_ = [[aDecoder decodeObjectForKey:POQuestionDataText] copy];
-    options_ = [[aDecoder decodeObjectForKey:POQuestionDataOptions] retain];
-    answerCount_ = [aDecoder decodeIntegerForKey:POQuestionDataAnswerCount];
-    answerUsers_ = [[aDecoder decodeObjectForKey:POQuestionDataAnswerUsers] retain];
-    userAnswers_ = [[aDecoder decodeObjectForKey:POQuestionDataUserAnswers] retain];
-    answerCounts_ = [[aDecoder decodeObjectForKey:POQuestionDataAnswerCounts] retain];
+    questionId_ = [aDecoder decodeIntegerForKey:PKQuestionDataQuestionId];
+    text_ = [[aDecoder decodeObjectForKey:PKQuestionDataText] copy];
+    options_ = [aDecoder decodeObjectForKey:PKQuestionDataOptions];
+    answerCount_ = [aDecoder decodeIntegerForKey:PKQuestionDataAnswerCount];
+    answerUsers_ = [aDecoder decodeObjectForKey:PKQuestionDataAnswerUsers];
+    userAnswers_ = [aDecoder decodeObjectForKey:PKQuestionDataUserAnswers];
+    answerCounts_ = [aDecoder decodeObjectForKey:PKQuestionDataAnswerCounts];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:questionId_ forKey:POQuestionDataQuestionId];
-  [aCoder encodeObject:text_ forKey:POQuestionDataText];
-  [aCoder encodeObject:options_ forKey:POQuestionDataOptions];
-  [aCoder encodeInteger:answerCount_ forKey:POQuestionDataAnswerCount];
-  [aCoder encodeObject:answerUsers_ forKey:POQuestionDataAnswerUsers];
-  [aCoder encodeObject:userAnswers_ forKey:POQuestionDataUserAnswers];
-  [aCoder encodeObject:answerCounts_ forKey:POQuestionDataAnswerCounts];
+  [aCoder encodeInteger:questionId_ forKey:PKQuestionDataQuestionId];
+  [aCoder encodeObject:text_ forKey:PKQuestionDataText];
+  [aCoder encodeObject:options_ forKey:PKQuestionDataOptions];
+  [aCoder encodeInteger:answerCount_ forKey:PKQuestionDataAnswerCount];
+  [aCoder encodeObject:answerUsers_ forKey:PKQuestionDataAnswerUsers];
+  [aCoder encodeObject:userAnswers_ forKey:PKQuestionDataUserAnswers];
+  [aCoder encodeObject:answerCounts_ forKey:PKQuestionDataAnswerCounts];
 }
 
-- (void)dealloc {
-  [answerCounts_ release];
-  [userAnswers_ release];
-  [answerUsers_ release];
-  [text_ release];
-  [options_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 
@@ -92,13 +84,10 @@ static NSString * const POQuestionDataAnswerCounts = @"AnswerCounts";
   data.answerCount = [userAnswers count];
   
   data.answerUsers = answerUsers;
-  [answerUsers release];
   
   data.userAnswers = userAnswers;
-  [userAnswers release];
   
   data.answerCounts = answerCounts;
-  [answerCounts release];
   
   return data;
 }

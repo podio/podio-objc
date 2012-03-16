@@ -1,5 +1,5 @@
 //
-//  POTransformableCalculationData.m
+//  PKItemFieldValueCalculationData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/29/11.
@@ -9,8 +9,8 @@
 #import "PKItemFieldValueCalculationData.h"
 
 
-static NSString * const POTransformableCalculationDataValueKey = @"Value";
-static NSString * const POTransformableCalculationDataUnitKey = @"Unit";
+static NSString * const PKItemFieldValueCalculationDataValueKey = @"Value";
+static NSString * const PKItemFieldValueCalculationDataUnitKey = @"Unit";
 
 @implementation PKItemFieldValueCalculationData
 
@@ -20,23 +20,18 @@ static NSString * const POTransformableCalculationDataUnitKey = @"Unit";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    value_ = [[aDecoder decodeObjectForKey:POTransformableCalculationDataValueKey] copy];
-    unit_ = [[aDecoder decodeObjectForKey:POTransformableCalculationDataUnitKey] copy];
+    value_ = [[aDecoder decodeObjectForKey:PKItemFieldValueCalculationDataValueKey] copy];
+    unit_ = [[aDecoder decodeObjectForKey:PKItemFieldValueCalculationDataUnitKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:value_ forKey:POTransformableCalculationDataValueKey];
-  [aCoder encodeObject:unit_ forKey:POTransformableCalculationDataUnitKey];
+  [aCoder encodeObject:value_ forKey:PKItemFieldValueCalculationDataValueKey];
+  [aCoder encodeObject:unit_ forKey:PKItemFieldValueCalculationDataUnitKey];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [unit_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 
@@ -44,10 +39,7 @@ static NSString * const POTransformableCalculationDataUnitKey = @"Unit";
   PKItemFieldValueCalculationData *data = [self data];
   
   data.value = [dict pk_numberFromStringForKey:@"value"];
-  
-//  TODO: Include unit
-//  data.unit = [[[dict pk_objectForKey:@"config"] pk_objectForKey:@"settings"] pk_objectForKey:@"unit"];
-  
+
   return data;
 }
 

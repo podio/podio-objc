@@ -36,11 +36,6 @@ static NSString * const PKMeetingPluginCitrixDataURL = @"URL";
   [aCoder encodeObject:url_ forKey:PKMeetingPluginCitrixDataURL];
 }
 
-- (void)dealloc {
-  [info_ release];
-  [url_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

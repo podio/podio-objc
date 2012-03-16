@@ -1,5 +1,5 @@
 //
-//  NSManagedObject+POAdditions.m
+//  NSManagedObject+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/27/11.
@@ -20,7 +20,7 @@
 }
 
 + (id)pk_createInContext:(NSManagedObjectContext *)context {
-  return [[[self alloc] initWithEntity:[self pk_entityInContext:context] insertIntoManagedObjectContext:context] autorelease];
+  return [[self alloc] initWithEntity:[self pk_entityInContext:context] insertIntoManagedObjectContext:context];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  POTransformableContactData.m
+//  PKItemFieldValueContactData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-07.
@@ -9,13 +9,13 @@
 #import "PKItemFieldValueContactData.h"
 
 
-static NSString * const POTransformableContactDataNameKey = @"Name";
-static NSString * const POTransformableContactDataEmailKey = @"Email";
-static NSString * const POTransformableContactDataTitleKey = @"Title";
-static NSString * const POTransformableContactDataOrgKey = @"Org";
-static NSString * const POTransformableContactDataUserIdKey = @"UserId";
-static NSString * const POTransformableContactDataProfileIdKey = @"ProfileId";
-static NSString * const POTransformableContactDataAvatarIdKey = @"AvatarId";
+static NSString * const PKItemFieldValueContactDataNameKey = @"Name";
+static NSString * const PKItemFieldValueContactDataEmailKey = @"Email";
+static NSString * const PKItemFieldValueContactDataTitleKey = @"Title";
+static NSString * const PKItemFieldValueContactDataOrgKey = @"Org";
+static NSString * const PKItemFieldValueContactDataUserIdKey = @"UserId";
+static NSString * const PKItemFieldValueContactDataProfileIdKey = @"ProfileId";
+static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
 
 @implementation PKItemFieldValueContactData
 
@@ -30,35 +30,28 @@ static NSString * const POTransformableContactDataAvatarIdKey = @"AvatarId";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    name_ = [[aDecoder decodeObjectForKey:POTransformableContactDataNameKey] copy];
-    email_ = [[aDecoder decodeObjectForKey:POTransformableContactDataEmailKey] copy];
-    title_ = [[aDecoder decodeObjectForKey:POTransformableContactDataTitleKey] copy];
-    organization_ = [[aDecoder decodeObjectForKey:POTransformableContactDataOrgKey] copy];
-    userId_ = [aDecoder decodeIntegerForKey:POTransformableContactDataUserIdKey];
-    profileId_ = [aDecoder decodeIntegerForKey:POTransformableContactDataProfileIdKey];
-    avatarId_ = [aDecoder decodeIntegerForKey:POTransformableContactDataAvatarIdKey];
+    name_ = [[aDecoder decodeObjectForKey:PKItemFieldValueContactDataNameKey] copy];
+    email_ = [[aDecoder decodeObjectForKey:PKItemFieldValueContactDataEmailKey] copy];
+    title_ = [[aDecoder decodeObjectForKey:PKItemFieldValueContactDataTitleKey] copy];
+    organization_ = [[aDecoder decodeObjectForKey:PKItemFieldValueContactDataOrgKey] copy];
+    userId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataUserIdKey];
+    profileId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataProfileIdKey];
+    avatarId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataAvatarIdKey];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:name_ forKey:POTransformableContactDataNameKey];
-  [aCoder encodeObject:email_ forKey:POTransformableContactDataEmailKey];
-  [aCoder encodeObject:title_ forKey:POTransformableContactDataTitleKey];
-  [aCoder encodeObject:organization_ forKey:POTransformableContactDataOrgKey];
-  [aCoder encodeInteger:userId_ forKey:POTransformableContactDataUserIdKey];
-  [aCoder encodeInteger:profileId_ forKey:POTransformableContactDataProfileIdKey];
-  [aCoder encodeInteger:avatarId_ forKey:POTransformableContactDataAvatarIdKey];
+  [aCoder encodeObject:name_ forKey:PKItemFieldValueContactDataNameKey];
+  [aCoder encodeObject:email_ forKey:PKItemFieldValueContactDataEmailKey];
+  [aCoder encodeObject:title_ forKey:PKItemFieldValueContactDataTitleKey];
+  [aCoder encodeObject:organization_ forKey:PKItemFieldValueContactDataOrgKey];
+  [aCoder encodeInteger:userId_ forKey:PKItemFieldValueContactDataUserIdKey];
+  [aCoder encodeInteger:profileId_ forKey:PKItemFieldValueContactDataProfileIdKey];
+  [aCoder encodeInteger:avatarId_ forKey:PKItemFieldValueContactDataAvatarIdKey];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [email_ release];
-  [title_ release];
-  [organization_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

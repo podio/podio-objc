@@ -25,7 +25,7 @@ static NSString * const PKReferenceMeetingDataPluginData = @"PluginData";
   if (self) {
     meetingId_ = [aDecoder decodeIntegerForKey:PKReferenceMeetingDataMeetingId];
     pluginType_ = [aDecoder decodeIntegerForKey:PKReferenceMeetingDataPluginType];
-    pluginData_ = [[aDecoder decodeObjectForKey:PKReferenceMeetingDataPluginData] retain];
+    pluginData_ = [aDecoder decodeObjectForKey:PKReferenceMeetingDataPluginData];
   }
   return self;
 }
@@ -37,10 +37,6 @@ static NSString * const PKReferenceMeetingDataPluginData = @"PluginData";
   [aCoder encodeObject:pluginData_ forKey:PKReferenceMeetingDataPluginData];
 }
 
-- (void)dealloc {
-  [pluginData_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

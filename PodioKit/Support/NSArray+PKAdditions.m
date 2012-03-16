@@ -1,5 +1,5 @@
 //
-//  NSArray+POAdditions.m
+//  NSArray+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/20/11.
@@ -18,8 +18,7 @@
     [mutArray addObject:block(obj)];
   }];
   
-  NSArray *array = [[mutArray copy] autorelease];
-  [mutArray release];
+  NSArray *array = [mutArray copy];
   
   return array;
 }

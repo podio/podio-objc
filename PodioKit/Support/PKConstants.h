@@ -57,6 +57,8 @@ typedef enum {
   PKRightAddAnswer       = 1 << 22,
 } PKRight;
 
+#pragma mark - Spaces
+
 typedef enum {
   PKSpaceTypeNone = 0,
   PKSpaceTypeRegular,
@@ -65,6 +67,19 @@ typedef enum {
 
 static NSString * const kPKSpaceTypeRegular = @"regular";
 static NSString * const kPKSpaceTypeEmployeeNetwork = @"emp_network";
+
+typedef enum {
+  PKSpaceCreateStatusNone = 0,
+  PKSpaceCreateStatusJoined,
+  PKSpaceCreateStatusOpen,
+  PKSpaceCreateStatusClosed,
+  PKSpaceCreateStatusDeleted,
+} PKSpaceCreateStatus;
+
+static NSString * const kPKSpaceCreateStatusJoined = @"joined";
+static NSString * const kPKSpaceCreateStatusOpen = @"open";
+static NSString * const kPKSpaceCreateStatusClosed = @"closed";
+static NSString * const kPKSpaceCreateStatusDeleted = @"deleted";
 
 #pragma mark - Tasks
 
@@ -180,6 +195,14 @@ static NSString * const kPKTaskGroup11Month = @"11_months";
 static NSString * const kPKTaskGroup12Month = @"12_months";
 static NSString * const kPKTaskGroup1Year = @"1_year";
 static NSString * const kPKTaskGroupOlder = @"older";
+
+// Task totals
+typedef enum {
+  PKTaskTotalsTimeOverdue = 0,
+  PKTaskTotalsTimeDue,
+  PKTaskTotalsTimeToday,
+  PKTaskTotalsTimeAll,
+} PKTaskTotalsTime;
 
 #pragma mark - Item
 
@@ -439,6 +462,21 @@ typedef enum {
 
 static NSString * const kPKMeetingPluginTypeCitrix = @"citrix";
 
+// Providers
+typedef enum {
+  PKProviderCapabilityNone = 0,
+  PKProviderCapabilityFiles,
+  PKProviderCapabilityContacts,
+  PKProviderCapabilityMeetings,
+} PKProviderCapability;
+
+static NSString * const kPKProviderCapabilityFiles = @"files";
+static NSString * const kPKProviderCapabilityContacts = @"contacts";
+static NSString * const kPKProviderCapabilityMeetings = @"meetings";
+
+// Files
+static NSString * const kPKFileHostedByPodio = @"podio";
+
 // Avatars
 typedef enum {
   PKAvatarTypeNone = 0,
@@ -487,6 +525,7 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 // Space
 + (PKSpaceType)spaceTypeForString:(NSString *)string;
++ (PKSpaceCreateStatus)spaceCreateStatusForString:(NSString *)string;
 
 // Avatar
 + (PKAvatarType)avatarTypeForString:(NSString *)string;
@@ -496,5 +535,9 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 // Meetings
 + (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string;
+
+// Providers
++ (PKProviderCapability)providerCapabilityForString:(NSString *)string;
++ (NSString *)stringForProviderCapability:(PKProviderCapability)capability;
 
 @end

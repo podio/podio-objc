@@ -1,5 +1,5 @@
 //
-//  POTransformableEmbedData.m
+//  PKItemFieldValueEmbedData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/19/11.
@@ -10,16 +10,16 @@
 
 
 
-static NSString * const POTransformableEmbedDataEmbedIdKey = @"EmbedId";
-static NSString * const POTransformableEmbedDataTypeKey = @"Type";
-static NSString * const POTransformableEmbedDataTitleKey = @"Title";
-static NSString * const POTransformableEmbedDataDescriptionKey = @"Description";
-static NSString * const POTransformableEmbedDataResolvedURLKey = @"ResolvedURL";
-static NSString * const POTransformableEmbedDataOriginalURLKey = @"OriginalURL";
+static NSString * const PKItemFieldValueEmbedDataEmbedIdKey = @"EmbedId";
+static NSString * const PKItemFieldValueEmbedDataTypeKey = @"Type";
+static NSString * const PKItemFieldValueEmbedDataTitleKey = @"Title";
+static NSString * const PKItemFieldValueEmbedDataDescriptionKey = @"Description";
+static NSString * const PKItemFieldValueEmbedDataResolvedURLKey = @"ResolvedURL";
+static NSString * const PKItemFieldValueEmbedDataOriginalURLKey = @"OriginalURL";
 
-static NSString * const POTransformableEmbedDataFileIdKey = @"FileId";
-static NSString * const POTransformableEmbedDataFileLinkKey = @"FileLink";
-static NSString * const POTransformableEmbedDataFileMimeTypeKey = @"FileMimeType";
+static NSString * const PKItemFieldValueEmbedDataFileIdKey = @"FileId";
+static NSString * const PKItemFieldValueEmbedDataFileLinkKey = @"FileLink";
+static NSString * const PKItemFieldValueEmbedDataFileMimeTypeKey = @"FileMimeType";
 
 @implementation PKItemFieldValueEmbedData
 
@@ -36,44 +36,34 @@ static NSString * const POTransformableEmbedDataFileMimeTypeKey = @"FileMimeType
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    embedId_ = [aDecoder decodeIntegerForKey:POTransformableEmbedDataEmbedIdKey];
-    type_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataTypeKey] copy];
-    title_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataTitleKey] copy];
-    descr_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataDescriptionKey] copy];
-    resolvedURL_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataResolvedURLKey] copy];
-    originalURL_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataOriginalURLKey] copy];
+    embedId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueEmbedDataEmbedIdKey];
+    type_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataTypeKey] copy];
+    title_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataTitleKey] copy];
+    descr_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataDescriptionKey] copy];
+    resolvedURL_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataResolvedURLKey] copy];
+    originalURL_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataOriginalURLKey] copy];
     
-    fileId_ = [aDecoder decodeIntegerForKey:POTransformableEmbedDataFileIdKey];
-    fileLink_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataFileLinkKey] copy];
-    fileMimeType_ = [[aDecoder decodeObjectForKey:POTransformableEmbedDataFileMimeTypeKey] copy];
+    fileId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueEmbedDataFileIdKey];
+    fileLink_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataFileLinkKey] copy];
+    fileMimeType_ = [[aDecoder decodeObjectForKey:PKItemFieldValueEmbedDataFileMimeTypeKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:embedId_ forKey:POTransformableEmbedDataEmbedIdKey];
-  [aCoder encodeObject:type_ forKey:POTransformableEmbedDataTypeKey];
-  [aCoder encodeObject:title_ forKey:POTransformableEmbedDataTitleKey];
-  [aCoder encodeObject:descr_ forKey:POTransformableEmbedDataDescriptionKey];
-  [aCoder encodeObject:resolvedURL_ forKey:POTransformableEmbedDataResolvedURLKey];
-  [aCoder encodeObject:originalURL_ forKey:POTransformableEmbedDataOriginalURLKey];
+  [aCoder encodeInteger:embedId_ forKey:PKItemFieldValueEmbedDataEmbedIdKey];
+  [aCoder encodeObject:type_ forKey:PKItemFieldValueEmbedDataTypeKey];
+  [aCoder encodeObject:title_ forKey:PKItemFieldValueEmbedDataTitleKey];
+  [aCoder encodeObject:descr_ forKey:PKItemFieldValueEmbedDataDescriptionKey];
+  [aCoder encodeObject:resolvedURL_ forKey:PKItemFieldValueEmbedDataResolvedURLKey];
+  [aCoder encodeObject:originalURL_ forKey:PKItemFieldValueEmbedDataOriginalURLKey];
   
-  [aCoder encodeInteger:fileId_ forKey:POTransformableEmbedDataFileIdKey];
-  [aCoder encodeObject:fileLink_ forKey:POTransformableEmbedDataFileLinkKey];
-  [aCoder encodeObject:fileMimeType_ forKey:POTransformableEmbedDataFileMimeTypeKey];
+  [aCoder encodeInteger:fileId_ forKey:PKItemFieldValueEmbedDataFileIdKey];
+  [aCoder encodeObject:fileLink_ forKey:PKItemFieldValueEmbedDataFileLinkKey];
+  [aCoder encodeObject:fileMimeType_ forKey:PKItemFieldValueEmbedDataFileMimeTypeKey];
 }
 
-- (void)dealloc {
-  [type_ release];
-  [title_ release];
-  [descr_ release];
-  [resolvedURL_ release];
-  [originalURL_ release];
-  [fileLink_ release];
-  [fileMimeType_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

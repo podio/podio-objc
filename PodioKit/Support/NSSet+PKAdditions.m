@@ -1,5 +1,5 @@
 //
-//  NSSet+POAdditions.m
+//  NSSet+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/7/11.
@@ -11,14 +11,13 @@
 @implementation NSSet (PKAdditions)
 
 - (NSSet *)pk_setFromObjectsCollectedWithBlock:(id (^)(id))block {
-  __block NSMutableSet *mutSet = [[NSMutableSet alloc] initWithCapacity:[self count]];
+  NSMutableSet *mutSet = [[NSMutableSet alloc] initWithCapacity:[self count]];
   
   [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
     [mutSet addObject:block(obj)];
   }];
   
-  NSSet *set = [[mutSet copy] autorelease];
-  [mutSet release];
+  NSSet *set = [mutSet copy];
   
   return set;
 }

@@ -1,5 +1,5 @@
 //
-//  POAppFieldMoneyData.m
+//  PKAppFieldMoneyData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/22/11.
@@ -9,7 +9,7 @@
 #import "PKAppFieldMoneyData.h"
 
 
-static NSString * const POAppFieldCategoryDataAllowedCurrenciesKey = @"AllowedCurrencies";
+static NSString * const PKAppFieldMoneyDataAllowedCurrenciesKey = @"AllowedCurrencies";
 
 @implementation PKAppFieldMoneyData
 
@@ -18,19 +18,15 @@ static NSString * const POAppFieldCategoryDataAllowedCurrenciesKey = @"AllowedCu
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    allowedCurrencies_ = [[aDecoder decodeObjectForKey:POAppFieldCategoryDataAllowedCurrenciesKey] copy];
+    allowedCurrencies_ = [[aDecoder decodeObjectForKey:PKAppFieldMoneyDataAllowedCurrenciesKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:allowedCurrencies_ forKey:POAppFieldCategoryDataAllowedCurrenciesKey];
+  [aCoder encodeObject:allowedCurrencies_ forKey:PKAppFieldMoneyDataAllowedCurrenciesKey];
 }
 
-- (void)dealloc {
-  [allowedCurrencies_ release];
-  [super dealloc];
-}
 
 @end

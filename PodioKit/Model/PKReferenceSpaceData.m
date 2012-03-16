@@ -1,5 +1,5 @@
 //
-//  POReferenceSpaceData.m
+//  PKReferenceSpaceData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/21/11.
@@ -9,9 +9,9 @@
 #import "PKReferenceSpaceData.h"
 
 
-static NSString * const POReferenceSpaceDataSpaceId = @"SpaceId";
-static NSString * const POReferenceSpaceDataType = @"Type";
-static NSString * const POReferenceSpaceDataName = @"Name";
+static NSString * const PKReferenceSpaceDataSpaceId = @"SpaceId";
+static NSString * const PKReferenceSpaceDataType = @"Type";
+static NSString * const PKReferenceSpaceDataName = @"Name";
 
 @implementation PKReferenceSpaceData
 
@@ -22,24 +22,20 @@ static NSString * const POReferenceSpaceDataName = @"Name";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    spaceId_ = [aDecoder decodeIntForKey:POReferenceSpaceDataSpaceId];
-    type_ = [aDecoder decodeIntForKey:POReferenceSpaceDataType];
-    name_ = [[aDecoder decodeObjectForKey:POReferenceSpaceDataName] copy];
+    spaceId_ = [aDecoder decodeIntForKey:PKReferenceSpaceDataSpaceId];
+    type_ = [aDecoder decodeIntForKey:PKReferenceSpaceDataType];
+    name_ = [[aDecoder decodeObjectForKey:PKReferenceSpaceDataName] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:spaceId_ forKey:POReferenceSpaceDataSpaceId];
-  [aCoder encodeInteger:type_ forKey:POReferenceSpaceDataType];
-  [aCoder encodeObject:name_ forKey:POReferenceSpaceDataName];
+  [aCoder encodeInteger:spaceId_ forKey:PKReferenceSpaceDataSpaceId];
+  [aCoder encodeInteger:type_ forKey:PKReferenceSpaceDataType];
+  [aCoder encodeObject:name_ forKey:PKReferenceSpaceDataName];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

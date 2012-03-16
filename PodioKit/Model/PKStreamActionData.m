@@ -1,5 +1,5 @@
 //
-//  POStreamActionData.m
+//  PKStreamActionData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -10,10 +10,10 @@
 #import "PKReferenceDataFactory.h"
 
 
-static NSString * const POStreamActionDataActionId = @"ActionId";
-static NSString * const POStreamActionDataType = @"Type";
-static NSString * const POStreamActionReferenceType = @"ReferenceType";
-static NSString * const POStreamActionReference = @"Reference";
+static NSString * const PKStreamActionDataActionId = @"ActionId";
+static NSString * const PKStreamActionDataType = @"Type";
+static NSString * const PKStreamActionDataReferenceType = @"ReferenceType";
+static NSString * const PKStreamActionDataReference = @"Reference";
 
 @implementation PKStreamActionData
 
@@ -25,25 +25,20 @@ static NSString * const POStreamActionReference = @"Reference";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    actionId_ = [aDecoder decodeIntegerForKey:POStreamActionDataActionId];
-    type_ = [aDecoder decodeIntegerForKey:POStreamActionDataType];
-    referenceType_ = [aDecoder decodeIntegerForKey:POStreamActionReferenceType];
-    reference_ = [[aDecoder decodeObjectForKey:POStreamActionReference] retain];
+    actionId_ = [aDecoder decodeIntegerForKey:PKStreamActionDataActionId];
+    type_ = [aDecoder decodeIntegerForKey:PKStreamActionDataType];
+    referenceType_ = [aDecoder decodeIntegerForKey:PKStreamActionDataReferenceType];
+    reference_ = [aDecoder decodeObjectForKey:PKStreamActionDataReference];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:actionId_ forKey:POStreamActionDataActionId];
-  [aCoder encodeInteger:type_ forKey:POStreamActionDataType];
-  [aCoder encodeInteger:referenceType_ forKey:POStreamActionReferenceType];
-  [aCoder encodeObject:reference_ forKey:POStreamActionReference];
-}
-
-- (void)dealloc {
-  [reference_ release], reference_ = nil;
-  [super dealloc];
+  [aCoder encodeInteger:actionId_ forKey:PKStreamActionDataActionId];
+  [aCoder encodeInteger:type_ forKey:PKStreamActionDataType];
+  [aCoder encodeInteger:referenceType_ forKey:PKStreamActionDataReferenceType];
+  [aCoder encodeObject:reference_ forKey:PKStreamActionDataReference];
 }
 
 #pragma mark - Factory methods

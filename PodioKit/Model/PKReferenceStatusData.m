@@ -1,5 +1,5 @@
 //
-//  POStreamActivityStatusData.m
+//  PKReferenceStatusData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -9,8 +9,8 @@
 #import "PKReferenceStatusData.h"
 
 
-static NSString * const POStreamActivityStatusDataStatusId = @"StatusId";
-static NSString * const POStreamActivityStatusDataValue = @"Value";
+static NSString * const PKReferenceStatusDataStatusId = @"StatusId";
+static NSString * const PKReferenceStatusDataValue = @"Value";
 
 @implementation PKReferenceStatusData
 
@@ -20,22 +20,18 @@ static NSString * const POStreamActivityStatusDataValue = @"Value";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    statusId_ = [aDecoder decodeIntegerForKey:POStreamActivityStatusDataStatusId];
-    value_ = [[aDecoder decodeObjectForKey:POStreamActivityStatusDataValue] copy];
+    statusId_ = [aDecoder decodeIntegerForKey:PKReferenceStatusDataStatusId];
+    value_ = [[aDecoder decodeObjectForKey:PKReferenceStatusDataValue] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:statusId_ forKey:POStreamActivityStatusDataStatusId];
-  [aCoder encodeObject:value_ forKey:POStreamActivityStatusDataValue];
+  [aCoder encodeInteger:statusId_ forKey:PKReferenceStatusDataStatusId];
+  [aCoder encodeObject:value_ forKey:PKReferenceStatusDataValue];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

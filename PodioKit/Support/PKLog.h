@@ -14,36 +14,36 @@ void PKLogWithLine(const char *filePath, int lineNumber, NSString *fmt, ...);
 
 // Log levels
 #ifdef DEBUG
-#define LOG_LEVEL_DEBUG
+#define PK_LOG_LEVEL_DEBUG
 #endif
 
-#define LOG_LEVEL_INFO
-#define LOG_LEVEL_WARNING
-#define LOG_LEVEL_ERROR
+#define PK_LOG_LEVEL_INFO
+#define PK_LOG_LEVEL_WARNING
+#define PK_LOG_LEVEL_ERROR
 
-#ifdef LOG_LEVEL_DEBUG
+#ifdef PK_LOG_LEVEL_DEBUG
 #define PKLogDebug(fmt...) PKLog(@"DEBUG: " fmt)
 #else
 #define PKLogDebug(fmt...)
 #endif
 
-#ifdef LOG_LEVEL_INFO
+#ifdef PK_LOG_LEVEL_INFO
 #define PKLogInfo(fmt...) PKLog(@"INFO: " fmt)
 #else
 #define PKLogInfo(fmt...)
 #endif
 
-#ifdef LOG_LEVEL_WARNING
+#ifdef PK_LOG_LEVEL_WARNING
 #define PKLogWarn(fmt...) PKLog(@"WARNING: " fmt)
 #else
 #define PKLogWarn(fmt...)
 #endif
 
-#ifdef LOG_LEVEL_ERROR
+#ifdef PK_LOG_LEVEL_ERROR
 #define PKLogError(fmt...) PKLog(@"ERROR: " fmt)
 #else
 #define PKLogError(fmt...)
 #endif
 
 #define PKLogRect(rect) PKLog(NSStringFromCGRect(rect))
-#define PKLogSize(size) PKLog(NSStringFromCGRect(rect))
+#define PKLogSize(size) PKLog(NSStringFromCGSize(size))

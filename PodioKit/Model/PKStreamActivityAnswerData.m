@@ -1,5 +1,5 @@
 //
-//  POStreamActivityAnswerData.m
+//  PKStreamActivityAnswerData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -9,8 +9,8 @@
 #import "PKStreamActivityAnswerData.h"
 
 
-static NSString * const POStreamActivityAnswerDataOptionId = @"OptionId";
-static NSString * const POStreamActivityAnswerDataText = @"Text";
+static NSString * const PKStreamActivityAnswerDataOptionId = @"OptionId";
+static NSString * const PKStreamActivityAnswerDataText = @"Text";
 
 @implementation PKStreamActivityAnswerData
 
@@ -20,22 +20,18 @@ static NSString * const POStreamActivityAnswerDataText = @"Text";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    optionId_ = [aDecoder decodeIntegerForKey:POStreamActivityAnswerDataOptionId];
-    text_ = [[aDecoder decodeObjectForKey:POStreamActivityAnswerDataText] copy];
+    optionId_ = [aDecoder decodeIntegerForKey:PKStreamActivityAnswerDataOptionId];
+    text_ = [[aDecoder decodeObjectForKey:PKStreamActivityAnswerDataText] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:optionId_ forKey:POStreamActivityAnswerDataOptionId];
-  [aCoder encodeObject:text_ forKey:POStreamActivityAnswerDataText];
+  [aCoder encodeInteger:optionId_ forKey:PKStreamActivityAnswerDataOptionId];
+  [aCoder encodeObject:text_ forKey:PKStreamActivityAnswerDataText];
 }
 
-- (void)dealloc {
-  [text_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

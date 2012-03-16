@@ -1,5 +1,5 @@
 //
-//  POFileData.h
+//  PKFileData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 10/2/11.

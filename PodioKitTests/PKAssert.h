@@ -6,13 +6,20 @@
 //  Copyright (c) 2011 Podio. All rights reserved.
 //
 
-#ifndef PodioKit_PKAssert_h
-#define PodioKit_PKAssert_h
+#import <Foundation/Foundation.h>
 
-#define PKAssertNil(a1)              STAssertNil(a1, @"Should be nil")
-#define PKAssertNotNil(a1)           STAssertNotNil(a1, @"Should not be nil")
-#define PKAssertGreaterThanZero(a1)  STAssertTrue(a1 > 0, @"Should be greater than 0")
-#define PKAssertZero(a1)             STAssertTrue(a1 == 0, @"Should be 0")
-#define PKAssertEquals(a1, a2)       STAssertTrue(a1 == a2, @"Should be equal")
+#define PKLogBug PKLog
 
-#endif
+#define PKAssert(condition, desc, ...) \
+  if (!(condition)) { \
+    PKLogBug((desc), ##__VA_ARGS__); \
+    NSAssert((condition), (desc), ##__VA_ARGS__); \
+  }
+
+#define PKCAssert(condition, desc, ...) \
+  if (!(condition)) { \
+    PKLogBug((desc), ##__VA_ARGS__); \
+    NSCAssert((condition), (desc), ##__VA_ARGS__); \
+  }
+
+#define PKAssertFail(desc, ...) PKAssert(NO, (desc), ##__VA_ARGS__)

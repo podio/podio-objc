@@ -14,9 +14,9 @@
 // Macro for skipping tests
 #define PK_SKIP_TEST(msg) \
   if (msg != nil) { \
-  NSLog(@"Test case [%@ %@:%d] skipped: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__, msg); \
+  PKLogInfo(@"Test case [%@ %@:%d] skipped: %@", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__, msg); \
   } else { \
-  NSLog(@"Test case [%@ %@:%d] skipped", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__); \
+  PKLogInfo(@"Test case [%@ %@:%d] skipped", NSStringFromClass([self class]), NSStringFromSelector(_cmd), __LINE__); \
   } \
   return
 

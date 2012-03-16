@@ -1,5 +1,5 @@
 //
-//  POFileData.m
+//  PKFileData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 10/2/11.
@@ -8,14 +8,14 @@
 
 #import "PKFileData.h"
 
-static NSString * const POFileDataFileIdKey = @"FileId";
-static NSString * const POFileDataNameKey = @"Name";
-static NSString * const POFileDataDescriptionKey = @"Description";
-static NSString * const POFileDataHostedByKey = @"HostedBy";
-static NSString * const POFileDataLinkKey = @"Link";
-static NSString * const POFileDataThumbnailLinkKey = @"ThumbnailLink";
-static NSString * const POFileDataMimeTypeKey = @"MimeType";
-static NSString * const POFileDataSizeKey = @"Size";
+static NSString * const PKFileDataFileIdKey = @"FileId";
+static NSString * const PKFileDataNameKey = @"Name";
+static NSString * const PKFileDataDescriptionKey = @"Description";
+static NSString * const PKFileDataHostedByKey = @"HostedBy";
+static NSString * const PKFileDataLinkKey = @"Link";
+static NSString * const PKFileDataThumbnailLinkKey = @"ThumbnailLink";
+static NSString * const PKFileDataMimeTypeKey = @"MimeType";
+static NSString * const PKFileDataSizeKey = @"Size";
 
 @implementation PKFileData
 
@@ -31,43 +31,36 @@ static NSString * const POFileDataSizeKey = @"Size";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    fileId_ = [aDecoder decodeIntegerForKey:POFileDataFileIdKey];
-    name_ = [[aDecoder decodeObjectForKey:POFileDataNameKey] copy];
-    descr_ = [[aDecoder decodeObjectForKey:POFileDataDescriptionKey] copy];
-    hostedBy_ = [[aDecoder decodeObjectForKey:POFileDataHostedByKey] copy];
-    link_ = [[aDecoder decodeObjectForKey:POFileDataLinkKey] copy];
-    thumbnailLink_ = [[aDecoder decodeObjectForKey:POFileDataThumbnailLinkKey] copy];
-    mimeType_ = [[aDecoder decodeObjectForKey:POFileDataMimeTypeKey] copy];
-    size_ = [aDecoder decodeIntegerForKey:POFileDataSizeKey];
+    fileId_ = [aDecoder decodeIntegerForKey:PKFileDataFileIdKey];
+    name_ = [[aDecoder decodeObjectForKey:PKFileDataNameKey] copy];
+    descr_ = [[aDecoder decodeObjectForKey:PKFileDataDescriptionKey] copy];
+    hostedBy_ = [[aDecoder decodeObjectForKey:PKFileDataHostedByKey] copy];
+    link_ = [[aDecoder decodeObjectForKey:PKFileDataLinkKey] copy];
+    thumbnailLink_ = [[aDecoder decodeObjectForKey:PKFileDataThumbnailLinkKey] copy];
+    mimeType_ = [[aDecoder decodeObjectForKey:PKFileDataMimeTypeKey] copy];
+    size_ = [aDecoder decodeIntegerForKey:PKFileDataSizeKey];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:fileId_ forKey:POFileDataFileIdKey];
-  [aCoder encodeObject:name_ forKey:POFileDataNameKey];
-  [aCoder encodeObject:descr_ forKey:POFileDataDescriptionKey];
-  [aCoder encodeObject:hostedBy_ forKey:POFileDataHostedByKey];
-  [aCoder encodeObject:link_ forKey:POFileDataLinkKey];
-  [aCoder encodeObject:thumbnailLink_ forKey:POFileDataThumbnailLinkKey];
-  [aCoder encodeObject:mimeType_ forKey:POFileDataMimeTypeKey];
-  [aCoder encodeInteger:size_ forKey:POFileDataSizeKey];
+  [aCoder encodeInteger:fileId_ forKey:PKFileDataFileIdKey];
+  [aCoder encodeObject:name_ forKey:PKFileDataNameKey];
+  [aCoder encodeObject:descr_ forKey:PKFileDataDescriptionKey];
+  [aCoder encodeObject:hostedBy_ forKey:PKFileDataHostedByKey];
+  [aCoder encodeObject:link_ forKey:PKFileDataLinkKey];
+  [aCoder encodeObject:thumbnailLink_ forKey:PKFileDataThumbnailLinkKey];
+  [aCoder encodeObject:mimeType_ forKey:PKFileDataMimeTypeKey];
+  [aCoder encodeInteger:size_ forKey:PKFileDataSizeKey];
 }
 
-- (void)dealloc {
-  [name_ release];
-  [descr_ release];
-  [hostedBy_ release];
-  [link_ release];
-  [thumbnailLink_ release];
-  [mimeType_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {
+  if (dict == nil) return nil;
+  
   PKFileData *data = [self data];
   
   data.fileId = [[dict pk_objectForKey:@"file_id"] integerValue];

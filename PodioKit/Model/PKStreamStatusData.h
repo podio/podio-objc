@@ -1,5 +1,5 @@
 //
-//  POStreamStatusData.h
+//  PKStreamStatusData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -23,7 +23,7 @@
 @property (nonatomic) NSInteger statusId;
 @property (nonatomic, copy) NSString *value;
 @property (nonatomic, copy) NSString *richValue;
-@property (nonatomic, retain) PKEmbedData *embed;
-@property (nonatomic, retain) PKQuestionData *question;
+@property (nonatomic, strong) PKEmbedData *embed;
+@property (nonatomic, strong) PKQuestionData *question;
 
 @end

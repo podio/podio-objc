@@ -1,5 +1,5 @@
 //
-//  POReferenceAppData.m
+//  PKReferenceAppData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 12/1/11.
@@ -8,9 +8,9 @@
 
 #import "PKReferenceAppData.h"
 
-static NSString * const POReferenceAppDataAppId = @"AppId";
-static NSString * const POReferenceAppDataName = @"Name";
-static NSString * const POReferenceAppDataIcon = @"Icon";
+static NSString * const PKReferenceAppDataAppId = @"AppId";
+static NSString * const PKReferenceAppDataName = @"Name";
+static NSString * const PKReferenceAppDataIcon = @"Icon";
 
 @implementation PKReferenceAppData
 
@@ -21,25 +21,20 @@ static NSString * const POReferenceAppDataIcon = @"Icon";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    appId_ = [aDecoder decodeIntForKey:POReferenceAppDataAppId];
-    name_ = [[aDecoder decodeObjectForKey:POReferenceAppDataName] copy];
-    icon_ = [[aDecoder decodeObjectForKey:POReferenceAppDataIcon] copy];
+    appId_ = [aDecoder decodeIntForKey:PKReferenceAppDataAppId];
+    name_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataName] copy];
+    icon_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataIcon] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:appId_ forKey:POReferenceAppDataAppId];
-  [aCoder encodeObject:name_ forKey:POReferenceAppDataName];
-  [aCoder encodeObject:icon_ forKey:POReferenceAppDataIcon];
+  [aCoder encodeInteger:appId_ forKey:PKReferenceAppDataAppId];
+  [aCoder encodeObject:name_ forKey:PKReferenceAppDataName];
+  [aCoder encodeObject:icon_ forKey:PKReferenceAppDataIcon];
 }
 
-- (void)dealloc {
-  [icon_ release];
-  [name_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

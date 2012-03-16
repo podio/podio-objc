@@ -1,5 +1,5 @@
 //
-//  POReferenceSpaceData.h
+//  PKReferenceSpaceData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/21/11.

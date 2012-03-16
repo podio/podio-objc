@@ -1,5 +1,5 @@
 //
-//  POAppFieldContactData.h
+//  PKAppFieldContactData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/7/11.
@@ -15,6 +15,6 @@
   NSArray *validTypes_;
 }
 
-@property (nonatomic, retain) NSArray *validTypes;
+@property (nonatomic, strong) NSArray *validTypes;
 
 @end

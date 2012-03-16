@@ -1,5 +1,5 @@
 //
-//  POStreamActionData.h
+//  PKStreamActionData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -20,6 +20,6 @@
 @property (nonatomic) NSInteger actionId;
 @property (nonatomic) PKActionType type;
 @property (nonatomic) PKReferenceType referenceType;
-@property (nonatomic, retain) id reference;
+@property (nonatomic, strong) id reference;
 
 @end

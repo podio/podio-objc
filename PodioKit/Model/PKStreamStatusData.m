@@ -1,5 +1,5 @@
 //
-//  POStreamStatusData.m
+//  PKStreamStatusData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -9,11 +9,11 @@
 #import "PKStreamStatusData.h"
 
 
-static NSString * const POStreamStatusDataStatusId = @"StatusId";
-static NSString * const POStreamStatusDataValue = @"Value";
-static NSString * const POStreamStatusDataRichValue = @"RichValue";
-static NSString * const POStreamStatusDataEmbed = @"Embed";
-static NSString * const POStreamStatusDataQuestion = @"Question";
+static NSString * const PKStreamStatusDataStatusId = @"StatusId";
+static NSString * const PKStreamStatusDataValue = @"Value";
+static NSString * const PKStreamStatusDataRichValue = @"RichValue";
+static NSString * const PKStreamStatusDataEmbed = @"Embed";
+static NSString * const PKStreamStatusDataQuestion = @"Question";
 
 @implementation PKStreamStatusData
 
@@ -26,31 +26,24 @@ static NSString * const POStreamStatusDataQuestion = @"Question";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    statusId_ = [aDecoder decodeIntegerForKey:POStreamStatusDataStatusId];
-    value_ = [[aDecoder decodeObjectForKey:POStreamStatusDataValue] copy];
-    richValue_ = [[aDecoder decodeObjectForKey:POStreamStatusDataRichValue] copy];
-    embed_ = [[aDecoder decodeObjectForKey:POStreamStatusDataEmbed] retain];
-    question_ = [[aDecoder decodeObjectForKey:POStreamStatusDataQuestion] retain];
+    statusId_ = [aDecoder decodeIntegerForKey:PKStreamStatusDataStatusId];
+    value_ = [[aDecoder decodeObjectForKey:PKStreamStatusDataValue] copy];
+    richValue_ = [[aDecoder decodeObjectForKey:PKStreamStatusDataRichValue] copy];
+    embed_ = [aDecoder decodeObjectForKey:PKStreamStatusDataEmbed];
+    question_ = [aDecoder decodeObjectForKey:PKStreamStatusDataQuestion];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:statusId_ forKey:POStreamStatusDataStatusId];
-  [aCoder encodeObject:value_ forKey:POStreamStatusDataValue];
-  [aCoder encodeObject:richValue_ forKey:POStreamStatusDataRichValue];
-  [aCoder encodeObject:embed_ forKey:POStreamStatusDataEmbed];
-  [aCoder encodeObject:question_ forKey:POStreamStatusDataQuestion];
+  [aCoder encodeInteger:statusId_ forKey:PKStreamStatusDataStatusId];
+  [aCoder encodeObject:value_ forKey:PKStreamStatusDataValue];
+  [aCoder encodeObject:richValue_ forKey:PKStreamStatusDataRichValue];
+  [aCoder encodeObject:embed_ forKey:PKStreamStatusDataEmbed];
+  [aCoder encodeObject:question_ forKey:PKStreamStatusDataQuestion];
 }
 
-- (void)dealloc {
-  [value_ release];
-  [richValue_ release];
-  [embed_ release];
-  [question_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 

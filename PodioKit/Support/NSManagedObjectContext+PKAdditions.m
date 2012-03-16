@@ -34,7 +34,6 @@
   }
   
   NSArray *result = [self executeFetchRequest:request error:error];
-  [request release];
   
   return result;
 }

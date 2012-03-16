@@ -1,5 +1,5 @@
 //
-//  NSDate+POAdditions.m
+//  NSDate+PKAdditions.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/29/11.
@@ -21,10 +21,8 @@
   // Need to use a specific locale to parse format string correctly
   NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
   [formatter setLocale:locale];
-  [locale release];
 	
 	NSDate *date = [formatter dateFromString:dateString];
-	[formatter release];
   
 	return date;
 }
@@ -49,7 +47,7 @@
 	NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
 	NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
 	
-	return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:self] autorelease];
+	return [[NSDate alloc] initWithTimeInterval:interval sinceDate:self];
 }
 
 - (NSDate *)pk_UTCDateFromLocalDate {
@@ -60,7 +58,7 @@
 	NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
 	NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
 	
-	return [[[NSDate alloc] initWithTimeInterval:interval sinceDate:self] autorelease];
+	return [[NSDate alloc] initWithTimeInterval:interval sinceDate:self];
 }
 
 - (NSString *)pk_dateTimeStringWithFormatString:(NSString *)formatString {
@@ -69,10 +67,8 @@
   
   NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
   [formatter setLocale:locale];
-  [locale release];
 	
 	NSString *dateTimeString = [formatter stringFromDate:self];
-	[formatter release];
   
 	return dateTimeString;
 }

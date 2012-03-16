@@ -11,7 +11,7 @@
 @implementation PKDefaultObjectRepository
 
 + (id)repository {
-  return [[[self alloc] init] autorelease];
+  return [[self alloc] init];
 }
 
 - (id<PKMappableObject>)objectForClass:(Class)klass matchingPredicate:(NSPredicate *)predicate {
@@ -20,7 +20,7 @@
 
 - (id<PKMappableObject>)createObjectForClass:(Class)klass {
   // Simplest possible instantiation
-  return [[[klass alloc] init] autorelease];
+  return [[klass alloc] init];
 }
 
 - (void)deleteObjectsForClass:(Class)klass matchingPredicate:(NSPredicate *)predicate {

@@ -1,0 +1,12 @@
+//
+// Prefix header for all source files of the 'PodioKitTests' target in the 'PodioKitTests' project
+//
+
+#ifdef __OBJC__
+  #import <Foundation/Foundation.h>
+  #import "PKLog.h"
+  #import "PKAssert.h"
+  #import "PKConstants.h"
+  #import "NSError+PKErrors.h"
+  #import "PKTestAssert.h"
+#endif

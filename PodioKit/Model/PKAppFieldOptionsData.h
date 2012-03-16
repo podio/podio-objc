@@ -1,5 +1,5 @@
 //
-//  POAppFieldCategoryData.h
+//  PKAppFieldOptionsData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 8/17/11.
@@ -16,6 +16,6 @@
 }
 
 @property BOOL multiple;
-@property (nonatomic, retain) NSArray *options;
+@property (nonatomic, strong) NSArray *options;
 
 @end

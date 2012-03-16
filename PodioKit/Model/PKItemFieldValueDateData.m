@@ -1,5 +1,5 @@
 //
-//  POTransformableDateData.m
+//  PKItemFieldValueDateData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-07.
@@ -9,8 +9,8 @@
 #import "PKItemFieldValueDateData.h"
 #import "NSDate+PKAdditions.h"
 
-static NSString * const POTransformableDateDataStartDateKey = @"StartDate";
-static NSString * const POTransformableDateDataEndDateKey = @"EndDate";
+static NSString * const PKItemFieldValueDateDataStartDateKey = @"StartDate";
+static NSString * const PKItemFieldValueDateDataEndDateKey = @"EndDate";
 
 @implementation PKItemFieldValueDateData
 
@@ -20,23 +20,18 @@ static NSString * const POTransformableDateDataEndDateKey = @"EndDate";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    startDate_ = [[aDecoder decodeObjectForKey:POTransformableDateDataStartDateKey] copy];
-    endDate_ = [[aDecoder decodeObjectForKey:POTransformableDateDataEndDateKey] copy];
+    startDate_ = [[aDecoder decodeObjectForKey:PKItemFieldValueDateDataStartDateKey] copy];
+    endDate_ = [[aDecoder decodeObjectForKey:PKItemFieldValueDateDataEndDateKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:startDate_ forKey:POTransformableDateDataStartDateKey];
-  [aCoder encodeObject:endDate_ forKey:POTransformableDateDataEndDateKey];
+  [aCoder encodeObject:startDate_ forKey:PKItemFieldValueDateDataStartDateKey];
+  [aCoder encodeObject:endDate_ forKey:PKItemFieldValueDateDataEndDateKey];
 }
 
-- (void)dealloc {
-  [startDate_ release];
-  [endDate_ release];
-  [super dealloc];
-}
 
 #pragma mark - Factory methods
 
