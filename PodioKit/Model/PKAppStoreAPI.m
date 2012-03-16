@@ -31,7 +31,7 @@
   return [PKRequest requestWithURI:@"/app_store/category/" method:PKAPIRequestMethodGET];
 }
 
-+ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder {
++ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder language:(NSString *)language {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKAPIRequestMethodGET];
   
   NSString *typeString = nil;
@@ -70,6 +70,10 @@
   
   if (sortString != nil) {
     [request.parameters setObject:sortString forKey:@"sort"];
+  }
+  
+  if (language != nil) {
+    [request.parameters setObject:language forKey:@"language"];
   }
   
   return request;
