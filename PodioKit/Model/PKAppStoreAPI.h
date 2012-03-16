@@ -32,7 +32,8 @@ typedef enum {
 + (PKRequest *)requestForRecommendedSharesForArea:(PKAppStoreAPIRecommendedArea)area;
 
 + (PKRequest *)requestForCategories;
-+ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder language:(NSString *)language;
++ (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder 
+                                       language:(NSString *)language offset:(NSUInteger)offset limit:(NSUInteger)limit;
 + (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId;
 
 @end
