@@ -35,6 +35,11 @@ NSString * const PKAPIClientRequestFailed = @"PKAPIClientRequestFailed";
 
 NSString * const PKAPIClientNoInternetConnection = @"PKAPIClientNoInternetConnection";
 
+// Notification user info keys
+NSString * const PKAPIClientRequestKey = @"Request";
+NSString * const PKAPIClientTokenKey = @"Token";
+NSString * const PKAPIClientResponseDataKey = @"ResponseData";
+
 // Constants
 
 static NSString * const kDefaultBaseURL = @"https://api.podio.com";
@@ -50,7 +55,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 // Auth flow completion handlers
 - (void)didAuthenticateWithToken:(PKOAuth2Token *)token;
-- (void)authenticationFailedWithResponseData:(NSString *)responseData;
+- (void)authenticationFailedWithResponseData:(id)responseData;
 - (void)didRefreshToken:(PKOAuth2Token *)token;
 - (void)tokenRefreshFailed;
 
@@ -149,13 +154,13 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
   
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
     return;
   }
   
   @synchronized(self) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication 
-                                                        object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
+    
     isAuthenticating_ = YES;
     [self.oauthClient authenticateWithUsername:email password:password];
   }
@@ -176,22 +181,21 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
   
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
     return;
   }
   
   @synchronized(self) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillRefreshAccessToken 
-                                                        object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillRefreshAccessToken object:self];
     
     isRefreshingToken_ = YES;
     [self.oauthClient refreshUsingRefreshToken:refreshToken];
   }
 }
 
-- (void)needsReauthentication {
+- (void)handleUnauthorized {
   self.authToken = nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
 }
 
 - (BOOL)isAuthenticated {
@@ -212,15 +216,17 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   isAuthenticating_ = NO;
   self.authToken = token; // Keep token
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
 }
 
-- (void)authenticationFailedWithResponseData:(NSString *)responseData {
+- (void)authenticationFailedWithResponseData:(id)responseData {
   isAuthenticating_ = NO;
   self.authToken = nil; // Reset token
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:responseData];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
+  
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:responseData forKey:PKAPIClientResponseDataKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
 }
 
 - (void)didRefreshToken:(PKOAuth2Token *)token {
@@ -229,7 +235,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [self resendPendingRequests];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self.authToken];
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:token forKey:PKAPIClientTokenKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self userInfo:userInfo];
 }
 
 - (void)tokenRefreshFailed {
@@ -239,8 +246,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [self cancelPendingRequests];
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:nil];
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:nil];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:self];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
 }
 
 #pragma mark - Requests
@@ -258,7 +265,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation {
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
     operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
     return NO;
   }
@@ -282,7 +289,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (BOOL)addFileOperation:(PKFileOperation *)operation {
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
     operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
     return NO;
   }
@@ -355,26 +362,30 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 #pragma mark - ASIHTTPRequestDelegate
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
-  if ([request responseStatusCode] == 401) {
-    [self needsReauthentication];
+  if (request.responseStatusCode == 401) {
+    [self handleUnauthorized];
   }
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFinished object:request];
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:request forKey:PKAPIClientRequestKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFinished object:self userInfo:userInfo];
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request {
-  if ([request responseStatusCode] == 401) {
-    [self needsReauthentication];
+- (void)requestFailed:(ASIHTTPRequest *)request {  
+  if (request.responseStatusCode == 401) {
+    [self handleUnauthorized];
   }
   
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFailed object:request];
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:request forKey:PKAPIClientRequestKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFailed object:self userInfo:userInfo];
 }
 
 #pragma mark - PKOAuth2ClientDelegate
 
 - (void)oauthClient:(PKOAuth2Client *)oauthClient didReceiveToken:(PKOAuth2Token *)token {
   [self didAuthenticateWithToken:token];
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self.authToken];
+  
+  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:token forKey:PKAPIClientTokenKey];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self userInfo:userInfo];
 }
 
 - (void)oauthClientAuthenticationDidFail:(PKOAuth2Client *)oauthClient responseData:(id)responseData {

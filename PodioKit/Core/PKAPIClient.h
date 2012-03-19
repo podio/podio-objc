@@ -14,6 +14,7 @@
 #import "PKOAuth2Client.h"
 
 
+// Notifications
 extern NSString * const PKAPIClientWillBeginAuthentication;
 extern NSString * const PKAPIClientDidFinishAuthentication;
 
@@ -30,6 +31,11 @@ extern NSString * const PKAPIClientRequestFinished;
 extern NSString * const PKAPIClientRequestFailed;
 
 extern NSString * const PKAPIClientNoInternetConnection;
+
+// Notification user info keys
+extern NSString * const PKAPIClientRequestKey;
+extern NSString * const PKAPIClientTokenKey;
+extern NSString * const PKAPIClientResponseDataKey;
 
 @interface PKAPIClient : NSObject <ASIHTTPRequestDelegate, PKOAuth2ClientDelegate> {
 
@@ -64,7 +70,7 @@ extern NSString * const PKAPIClientNoInternetConnection;
 
 - (void)refreshToken;
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken;
-- (void)needsReauthentication;
+- (void)handleUnauthorized;
 
 - (BOOL)isAuthenticated;
 

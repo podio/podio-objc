@@ -12,9 +12,6 @@
 #import "JSONKit.h"
 
 
-NSString * const PKOAuth2ClientDidReceiveAccessTokenNotification = @"PKOAuth2ClientDidReceiveAccessTokenNotification";
-NSString * const PKOAuth2ClientFailedToReceiveTokenNotification = @"PKOAuth2ClientFailedToReceiveTokenNotification";
-
 @interface PKOAuth2Client ()
 
 @property (nonatomic) PKOAuth2RequestType requestType;

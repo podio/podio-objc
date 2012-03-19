@@ -17,9 +17,6 @@ typedef enum {
   PKOAuth2RequestTypeRefreshToken,
 } PKOAuth2RequestType;
 
-extern NSString * const PKOAuth2ClientDidReceiveAccessTokenNotification;
-extern NSString * const PKOAuth2ClientFailedToReceiveTokenNotification;
-
 @class PKOAuth2Client;
 
 @protocol PKOAuth2ClientDelegate <NSObject>
