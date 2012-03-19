@@ -30,26 +30,14 @@ typedef enum {
 
 @end
 
-@interface PKOAuth2Client : NSObject <ASIHTTPRequestDelegate> {
-  
- @private
-  NSString *clientID_;
-  NSString *clientSecret_;
-  NSString *tokenURL_;
-  NSString *redirectURL_;
-  
-  NSMutableSet *requests_;
-  PKOAuth2RequestType requestType_;
-  
-  id<PKOAuth2ClientDelegate> __unsafe_unretained delegate_;
-}
+@interface PKOAuth2Client : NSObject <ASIHTTPRequestDelegate>
 
+@property (nonatomic, weak) id<PKOAuth2ClientDelegate> delegate;
 @property (nonatomic, copy) NSString *clientID;
 @property (nonatomic, copy) NSString *clientSecret;
 @property (nonatomic, copy) NSString *tokenURL;
 @property (nonatomic, copy) NSString *redirectURL;
 @property (nonatomic, readonly) NSMutableSet *requests;
-@property (nonatomic, unsafe_unretained) id<PKOAuth2ClientDelegate> delegate;
 
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL redirectURL:(NSString *)redirectURL;
 

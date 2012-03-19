@@ -26,30 +26,15 @@ typedef void (^PKCustomMappingBlock)(id obj);
 
 @end
 
-@interface PKObjectMapper : NSObject {
-  
- @private
-  PKMappingProvider *mappingProvider_;
-  
-  id<PKObjectRepository> repository_;
-  id<PKObjectMapperDelegate> __unsafe_unretained delegate_;
-  
-  NSPredicate *scopePredicate_;
-  NSUInteger offset_;
-  
-  PKObjectMapping *mapping_;
-  PKCustomMappingBlock mappingBlock_;
-  
-  NSDateFormatter *dateFormatter_;
-}
+@interface PKObjectMapper : NSObject
 
-@property (strong, readonly) PKMappingProvider *provider;
-@property (strong, readonly) id<PKObjectRepository> repository; // NOTE! The repository is retained throught the lifecycle of this mapper
-@property (unsafe_unretained) id<PKObjectMapperDelegate> delegate;
-@property (strong) NSPredicate *scopePredicate;
-@property NSUInteger offset;
-@property (strong) PKObjectMapping *mapping;
-@property (copy) PKCustomMappingBlock mappingBlock;
+@property (nonatomic, weak) id<PKObjectMapperDelegate> delegate;
+@property (nonatomic, strong, readonly) PKMappingProvider *provider;
+@property (nonatomic, strong, readonly) id<PKObjectRepository> repository; // NOTE! The repository is retained throught the lifecycle of this mapper
+@property (nonatomic, strong) NSPredicate *scopePredicate;
+@property (nonatomic) NSUInteger offset;
+@property (nonatomic, strong) PKObjectMapping *mapping;
+@property (nonatomic, copy) PKCustomMappingBlock mappingBlock;
 
 - (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository;
 

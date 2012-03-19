@@ -20,13 +20,13 @@
 
 @implementation PKOAuth2Client
 
+@synthesize delegate = delegate_;
 @synthesize clientID = clientID_;
 @synthesize clientSecret = clientSecret_;
 @synthesize tokenURL = tokenURL_;
 @synthesize redirectURL = redirectURL_;
 @synthesize requests = requests_;
 @synthesize requestType = requestType_;
-@synthesize delegate = delegate_;
 
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL redirectURL:(NSString *)redirectURL {
   self = [super init];
