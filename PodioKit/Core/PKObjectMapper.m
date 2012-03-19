@@ -16,7 +16,7 @@
 
 @interface PKObjectMapper ()
 
-@property (nonatomic, readonly) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong, readonly) NSDateFormatter *dateFormatter;
 
 - (void)deleteObjectsForKlass:(Class)klass identityPredicate:(NSPredicate *)identityPredicate scopePredicate:(NSPredicate *)scopePredicate;
 
@@ -24,13 +24,14 @@
 
 @implementation PKObjectMapper
 
+@synthesize delegate = delegate_;
 @synthesize provider = provider_;
 @synthesize repository = repository_;
-@synthesize delegate = delegate_;
 @synthesize scopePredicate = scopePredicate_;
 @synthesize offset = offset_;
 @synthesize mapping = mapping_;
 @synthesize mappingBlock = mappingBlock_;
+@synthesize dateFormatter = dateFormatter_;
 
 - (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository {
   self = [super init];
