@@ -25,11 +25,7 @@
 @implementation PKObjectMapper
 
 @synthesize delegate = delegate_;
-<<<<<<< HEAD
 @synthesize provider = provider_;
-=======
-@synthesize mappingProvider = mappingProvider_;
->>>>>>> Changed unsafe_unretained qualifier to weak
 @synthesize repository = repository_;
 @synthesize scopePredicate = scopePredicate_;
 @synthesize offset = offset_;
