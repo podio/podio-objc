@@ -378,10 +378,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 #pragma mark - ASIHTTPRequestDelegate
 
-- (void)requestStarted:(ASIHTTPRequest *)request {
-  PKLogDebug(@"Starting request with URL: %@", [request.url absoluteString]);
-}
-
 - (void)requestFinished:(ASIHTTPRequest *)request {
   if (request.responseStatusCode == 401) {
     [self handleUnauthorized];
