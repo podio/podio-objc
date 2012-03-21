@@ -24,6 +24,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 
 @synthesize objectMapper = objectMapper_;
 @synthesize requestCompletionBlock = requestCompletionBlock_;
+@synthesize allowsConcurrent = allowsConcurrent_;
 
 - (id)initWithURLString:(NSString *)urlString method:(NSString *)method {
   NSURL *requestURL = [NSURL URLWithString:urlString];
@@ -32,6 +33,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     self.requestMethod = method;
     objectMapper_ = nil;
     requestCompletionBlock_ = nil;
+    allowsConcurrent_ = YES;
   }
   return self;
 }

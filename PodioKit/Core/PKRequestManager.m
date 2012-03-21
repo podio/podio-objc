@@ -50,6 +50,7 @@
   NSString *urlString = [self.apiClient URLStringForPath:request.uri parameters:request.parameters];
   PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];
   operation.requestCompletionBlock = completion;
+  operation.allowsConcurrent = request.allowsConcurrent;
   
   if (request.objectMapping != nil) {
     PKObjectMapper *mapper = [self.mappingManager objectMapper];

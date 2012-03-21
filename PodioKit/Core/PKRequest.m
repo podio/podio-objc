@@ -23,6 +23,7 @@
 @synthesize scopePredicate = scopePredicate_;
 @synthesize offset = offset_;
 @synthesize mappingBlock = mappingBlock_;
+@synthesize allowsConcurrent = allowsConcurrent_;
 
 - (id)initWithURI:(NSString *)uri method:(PKAPIRequestMethod)method {
   self = [super init];
@@ -35,8 +36,8 @@
     userInfo_ = nil;
     scopePredicate_ = nil;
     offset_ = 0;
-    
     mappingBlock_ = nil;
+    allowsConcurrent_ = YES;
   }
   
   return self;

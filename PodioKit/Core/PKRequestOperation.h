@@ -23,6 +23,7 @@ extern NSString * const PKNoObjectMapperSetException;
 
 @property (strong) PKObjectMapper *objectMapper;
 @property (copy) PKRequestCompletionBlock requestCompletionBlock;
+@property BOOL allowsConcurrent;
 
 + (PKRequestOperation *)operationWithURLString:(NSString *)urlString 
                                         method:(NSString *)method 

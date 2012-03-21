@@ -46,6 +46,7 @@ extern NSString * const PKAPIClientResponseDataKey;
   NSString *userAgent_;
   
   ASINetworkQueue *networkQueue_;
+  ASINetworkQueue *serialNetworkQueue_;
   PKOAuth2Client *oauthClient_;
   PKOAuth2Token *authToken_;
   

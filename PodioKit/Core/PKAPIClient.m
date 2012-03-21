@@ -50,6 +50,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 @interface PKAPIClient ()
 
 @property (nonatomic, readonly) ASINetworkQueue *networkQueue;
+@property (nonatomic, readonly) ASINetworkQueue *serialNetworkQueue;
 @property (nonatomic, strong) PKOAuth2Client *oauthClient;
 @property (nonatomic, strong) NSMutableArray *pendingRequests;
 
@@ -97,6 +98,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     
     // Shared request queue
     networkQueue_ = nil;
+    serialNetworkQueue_ = nil;
     
     // OAuth
     self.oauthClient = nil;
@@ -263,6 +265,17 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   return networkQueue_;
 }
 
+- (ASINetworkQueue *)serialNetworkQueue {
+  if (serialNetworkQueue_ == nil) {
+    serialNetworkQueue_ = [[ASINetworkQueue alloc] init];
+    [serialNetworkQueue_ setMaxConcurrentOperationCount:1];
+    [serialNetworkQueue_ setShouldCancelAllRequestsOnFailure:NO];
+ 		[serialNetworkQueue_ go];
+  }
+  
+  return serialNetworkQueue_;
+}
+
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation {
   if (![[Reachability reachabilityForInternetConnection] isReachable]) {
     [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
@@ -324,7 +337,11 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
 #endif
   
-  [self.networkQueue addOperation:request];
+  if ([request isKindOfClass:[PKRequestOperation class]] && ![(PKRequestOperation *)request allowsConcurrent]) {
+    [self.serialNetworkQueue addOperation:request];
+  } else {
+    [self.networkQueue addOperation:request];
+  }
 }
 
 - (void)resendPendingRequests {
@@ -360,6 +377,10 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 }
 
 #pragma mark - ASIHTTPRequestDelegate
+
+- (void)requestStarted:(ASIHTTPRequest *)request {
+  PKLogDebug(@"Starting request with URL: %@", [request.url absoluteString]);
+}
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
   if (request.responseStatusCode == 401) {

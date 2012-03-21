@@ -37,9 +37,10 @@ typedef void (^PKRequestCompletionBlock)(NSError *error, PKRequestResult *result
 @property (strong) id body;
 @property (strong) PKObjectMapping *objectMapping;
 @property (strong) NSDictionary *userInfo;
-@property (nonatomic, strong) NSPredicate *scopePredicate;
+@property (strong) NSPredicate *scopePredicate;
 @property NSUInteger offset;
 @property (copy) PKCustomMappingBlock mappingBlock;
+@property BOOL allowsConcurrent;
 
 - (id)initWithURI:(NSString *)uri 
            method:(PKAPIRequestMethod)method;
