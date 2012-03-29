@@ -236,6 +236,9 @@
 		507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
 		507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
 		5082225D14FC3E66005056A1 /* PodioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082225B14FC3E66005056A1 /* PodioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
+		50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
 		5084B57A14DEF5F0002FC8DB /* PKLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5084B57814DEF5F0002FC8DB /* PKLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
 		5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
@@ -559,6 +562,8 @@
 		507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountData.h; sourceTree = "<group>"; };
 		507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLinkedAccountData.m; sourceTree = "<group>"; };
 		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
+		50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceMemberRequestData.h; sourceTree = "<group>"; };
+		50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceMemberRequestData.m; sourceTree = "<group>"; };
 		5084B57814DEF5F0002FC8DB /* PKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLog.h; sourceTree = "<group>"; };
 		5084B57914DEF5F0002FC8DB /* PKLog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLog.m; sourceTree = "<group>"; };
 		50858ABB15120EAC00ED8A6E /* PKAppAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppAPI.h; sourceTree = "<group>"; };
@@ -1236,6 +1241,8 @@
 			children = (
 				508D211B14FBB332002593A4 /* PKSpaceCreateData.h */,
 				508D211C14FBB332002593A4 /* PKSpaceCreateData.m */,
+				50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */,
+				50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */,
 			);
 			name = Space;
 			sourceTree = "<group>";
@@ -1468,6 +1475,7 @@
 				50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */,
 				50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */,
 				50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */,
+				50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1688,6 +1696,7 @@
 				50B319E2150F98AE00EAD7C7 /* PKShareData.m in Sources */,
 				50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
 				50858ABE15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
+				50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1816,6 +1825,7 @@
 				50B319E3150F98AE00EAD7C7 /* PKShareData.m in Sources */,
 				50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
 				50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
+				50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

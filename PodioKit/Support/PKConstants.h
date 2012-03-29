@@ -427,6 +427,7 @@ typedef enum {
   PKNotificationTypeMeetingParticipantAdd,
   PKNotificationTypeMeetingParticipantRemove,
   PKNotificationTypeReminder,
+  PKNotificationTypeSpaceMemberRequest,
 } PKNotificationType;
 
 static NSString * const kPKNotificationTypeAlert = @"alert";
@@ -453,6 +454,7 @@ static NSString * const kPKNotificationTypeMeetingStarted = @"meeting_started";
 static NSString * const kPKNotificationTypeMeetingParticipantAdd = @"meeting_participant_add";
 static NSString * const kPKNotificationTypeMeetingParticipantRemove = @"meeting_participant_remove";
 static NSString * const kPKNotificationTypeReminder = @"reminder";
+static NSString * const kPKNotificationTypeSpaceMemberRequest = @"space_member_request";
 
 // Meetings
 typedef enum {

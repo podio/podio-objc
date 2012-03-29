@@ -121,6 +121,7 @@
 #import "PKByLineData.h"
 #import "PKShareData.h"
 #import "PKShareCategoryData.h"
+#import "PKSpaceMemberRequestData.h"
 
 #pragma mark - Domain objects
 

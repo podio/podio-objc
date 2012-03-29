@@ -14,6 +14,10 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/join", spaceId] method:PKAPIRequestMethodPOST];
 }
 
++ (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member_request/%d", spaceId, requestId] method:PKAPIRequestMethodPUT];
+}
+
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId {
   PKAssert(name != nil, @"Space name cannot be nil");
   PKAssert([name length] > 0, @"Space name cannot be empty");

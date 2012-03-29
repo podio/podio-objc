@@ -11,6 +11,7 @@
 @interface PKSpaceAPI : PKBaseAPI
 
 + (PKRequest *)requestToJoinSpaceWithId:(NSUInteger)spaceId;
++ (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId;
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId;
 
 @end
