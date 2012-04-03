@@ -14,6 +14,28 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodGET];
 }
 
++ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId filterId:(NSUInteger)filterId offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodGET];
+  request.offset = offset;
+  
+  if (offset > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+  }
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+  
+  if (filterId > 0) {
+    [request.parameters setObject:[NSNumber numberWithUnsignedInteger:filterId] forKey:@"filter_id"];
+  } else {
+    // Sort by created date by default
+    [request.parameters setObject:@"created_on" forKey:@"sort_by"];
+  }
+  
+  return request;
+}
+
 + (PKRequest *)requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodPOST];
   

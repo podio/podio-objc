@@ -12,25 +12,29 @@
 @implementation PKRequestResult
 
 @synthesize responseStatusCode = responseStatusCode_;
+@synthesize responseString = responseString_;
 @synthesize responseData = responseData_;
 @synthesize parsedData = parsedData_;
+@synthesize objectData = objectData_;
 @synthesize resultData = resultData_;
+@synthesize responseObjectCount = responseObjectCount_;
 
-- (id)initWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData resultData:(id)resultData {
+- (id)initWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData objectData:(id)objectData resultData:(id)resultData {
   self = [super init];
   if (self) {
     responseStatusCode_ = responseStatusCode;
     responseData_ = responseData;
     parsedData_ = parsedData;
     resultData_ = resultData;
+    objectData_ = objectData;
     responseString_ = nil;
     responseObjectCount_ = -1;
   }
   return self;
 }
 
-+ (PKRequestResult *)resultWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData resultData:(id)resultData {
-  return [[self alloc] initWithResponseStatusCode:responseStatusCode responseData:responseData parsedData:parsedData resultData:resultData];
++ (PKRequestResult *)resultWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData objectData:(id)objectData resultData:(id)resultData {
+  return [[self alloc] initWithResponseStatusCode:responseStatusCode responseData:responseData parsedData:parsedData objectData:objectData resultData:resultData];
 }
 
 // Lazy evaluate
@@ -44,8 +48,8 @@
 
 - (NSInteger)responseObjectCount {
   if (responseObjectCount_ == -1) {
-    if (self.parsedData != nil) {
-      responseObjectCount_ = [self.parsedData isKindOfClass:[NSArray class]] ? [self.parsedData count] : 1; 
+    if (self.objectData != nil) {
+      responseObjectCount_ = [self.objectData isKindOfClass:[NSArray class]] ? [self.objectData count] : 1; 
     } else {
       responseObjectCount_ = 0;
     }

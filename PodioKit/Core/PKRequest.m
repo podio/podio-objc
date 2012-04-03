@@ -19,6 +19,7 @@
 @synthesize parameters = parameters_;
 @synthesize body = body_;
 @synthesize objectMapping = objectMapping_;
+@synthesize objectDataPathComponents = objectDataPathComponents_;
 @synthesize userInfo = userInfo_;
 @synthesize scopePredicate = scopePredicate_;
 @synthesize offset = offset_;
@@ -33,6 +34,7 @@
     parameters_ = [[NSMutableDictionary alloc] init];
     body_ = nil;
     objectMapping_ = nil;
+    objectDataPathComponents_ = nil;
     userInfo_ = nil;
     scopePredicate_ = nil;
     offset_ = 0;

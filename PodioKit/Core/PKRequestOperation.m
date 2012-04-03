@@ -9,6 +9,7 @@
 #import "PKRequestOperation.h"
 #import "PKRequestResult.h"
 #import "JSONKit.h"
+#import "NSDictionary+PKAdditions.h"
 
 
 // Exceptions
@@ -23,6 +24,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 @implementation PKRequestOperation
 
 @synthesize objectMapper = objectMapper_;
+@synthesize objectDataPathComponents = objectDataPathComponents_;
 @synthesize requestCompletionBlock = requestCompletionBlock_;
 @synthesize allowsConcurrent = allowsConcurrent_;
 
@@ -72,6 +74,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   
   id resultData = nil;
   id parsedData = nil;
+  id objectData = nil;
   NSError *requestError = nil;
   
   // Parse data
@@ -79,15 +82,19 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     case 200:
     case 201: {
       PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-      //      PKLogDebug(@"Response body: %@", data);
       
       NSError *parseError = nil;
       parsedData = [self.responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
       
       if (parseError == nil) {
+        objectData = parsedData;
+        if (self.objectDataPathComponents != nil) {
+          objectData = [parsedData pk_objectForPathComponents:self.objectDataPathComponents];
+        }
+        
         // Should map response?
         if (self.objectMapper != nil) {
-          resultData = [self performMappingOfData:parsedData];
+          resultData = [self performMappingOfData:objectData];
         }
       } else {
         PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
@@ -110,12 +117,12 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 
                                                              responseData:self.responseData 
-                                                               parsedData:parsedData 
+                                                               parsedData:parsedData
+                                                               objectData:objectData
                                                                resultData:resultData];
   
   // Completion handler on main thread
   if (self.requestCompletionBlock != nil) {
-    
     dispatch_async(dispatch_get_main_queue(), ^{
       self.requestCompletionBlock(requestError, result);
     });
