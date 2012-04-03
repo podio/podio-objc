@@ -36,6 +36,7 @@ typedef void (^PKRequestCompletionBlock)(NSError *error, PKRequestResult *result
 @property (strong) NSMutableDictionary *parameters;
 @property (strong) id body;
 @property (strong) PKObjectMapping *objectMapping;
+@property (copy) NSArray *objectDataPathComponents;
 @property (strong) NSDictionary *userInfo;
 @property (strong) NSPredicate *scopePredicate;
 @property NSUInteger offset;

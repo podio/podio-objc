@@ -22,6 +22,7 @@ extern NSString * const PKNoObjectMapperSetException;
 }
 
 @property (strong) PKObjectMapper *objectMapper;
+@property (copy) NSArray *objectDataPathComponents;
 @property (copy) PKRequestCompletionBlock requestCompletionBlock;
 @property BOOL allowsConcurrent;
 

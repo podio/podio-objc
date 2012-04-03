@@ -8,24 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PKRequestResult : NSObject {
-  
- @private
-  NSUInteger responseStatusCode_;
-  NSString *responseString_;
-  id responseData_;
-  id parsedData_;
-  id resultData_;
-  NSInteger responseObjectCount_;
-}
+@interface PKRequestResult : NSObject
 
 @property (readonly) NSUInteger responseStatusCode;
 @property (readonly) NSString *responseString;
-@property (readonly) id responseData;
-@property (readonly) id parsedData;
-@property (readonly) id resultData;
+@property (readonly) id responseData; // The raw data
+@property (readonly) id parsedData; // The returned data parsed into native containers
+@property (readonly) id objectData; // The object(s) returned from the server
+@property (readonly) id resultData; // The final mapped object(s)
 @property (readonly) NSInteger responseObjectCount;
 
-+ (PKRequestResult *)resultWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData resultData:(id)resultData;
++ (PKRequestResult *)resultWithResponseStatusCode:(NSUInteger)responseStatusCode responseData:(id)responseData parsedData:(id)parsedData objectData:(id)objectData resultData:(id)resultData;
 
 @end

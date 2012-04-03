@@ -16,7 +16,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 
 @synthesize mappings = mappings_;
 @synthesize propertyMappings = propertyMappings_;
-@synthesize mappedDataPathComponents = mappedDataPathComponents_;
 @synthesize sequencePropertyName = sequencePropertyName_;
 
 - (id)init {
@@ -24,7 +23,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   if (self) {
     mappings_ = [[NSMutableArray alloc] init];
     propertyMappings_ = [[NSMutableDictionary alloc] init];
-    mappedDataPathComponents_ = nil;
     sequencePropertyName_ = nil;
     
     [self buildMappings];

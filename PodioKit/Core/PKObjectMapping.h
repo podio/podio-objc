@@ -23,7 +23,6 @@
 
 @property (nonatomic, strong) NSMutableArray *mappings;
 @property (nonatomic, strong) NSMutableDictionary *propertyMappings;
-@property (nonatomic, strong) NSMutableArray *mappedDataPathComponents;
 @property (nonatomic, copy) NSString *sequencePropertyName;
 
 + (id)mapping;

@@ -85,6 +85,7 @@
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 
                                                              responseData:self.responseData 
                                                                parsedData:parsedData 
+                                                               objectData:nil
                                                                resultData:resultData];
   
   // Completion handler on main thread

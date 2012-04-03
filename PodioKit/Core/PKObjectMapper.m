@@ -80,16 +80,10 @@
     return nil;
   }
   
-  // Extract actual data
-  id baseValue = data;
-  if (self.mapping.mappedDataPathComponents != nil) {
-    baseValue = [data pk_objectForPathComponents:self.mapping.mappedDataPathComponents];
-  }
-  
   id result = nil;
   
   // Map
-  if ([baseValue isKindOfClass:[NSArray class]]) {
+  if ([data isKindOfClass:[NSArray class]]) {
     // Collection
     
     NSArray *identityPropNames = [klass identityPropertyNames];
@@ -100,7 +94,7 @@
     
     BOOL shouldRemoveOld = self.offset == 0;
     
-    result = [self applyCollectionObjectMapping:self.mapping objectDicts:baseValue parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES block:^(id obj, NSDictionary *objDict) {
+    result = [self applyCollectionObjectMapping:self.mapping objectDicts:data parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES block:^(id obj, NSDictionary *objDict) {
       
       if (shouldRemoveOld) {
         // Need to build identity predicates for deletion
@@ -139,7 +133,7 @@
     
   } else {
     // Single object
-    id obj = [self applySingleObjectMapping:self.mapping objectDict:baseValue parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES];
+    id obj = [self applySingleObjectMapping:self.mapping objectDict:data parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES];
     
     if (obj != nil) {
       result = obj;
