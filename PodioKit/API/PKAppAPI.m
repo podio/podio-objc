@@ -18,4 +18,11 @@
   return request;
 }
 
++ (PKRequest *)requestForAppsInSpaceWithId:(NSUInteger)spaceId {
+  NSString *uri = [NSString stringWithFormat:@"/app/space/%d/", spaceId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  
+  return request;
+}
+
 @end
