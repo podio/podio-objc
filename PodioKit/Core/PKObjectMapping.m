@@ -38,6 +38,7 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 - (void)buildMappings {
   // Subclass should construct mapping
 }
+
 + (BOOL)shouldPerformMappingWithData:(NSDictionary *)data {
   // Subclasses should override to evaluate if the data is mappable
   return YES;
