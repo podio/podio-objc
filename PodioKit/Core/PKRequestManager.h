@@ -8,20 +8,22 @@
 
 #import <Foundation/Foundation.h>
 #import "PKAPIClient.h"
-#import "PKMappingManager.h"
+#import "PKMappingCoordinator.h"
 #import "PKRequestOperation.h"
 
 @interface PKRequestManager : NSObject {
 
  @private
   PKAPIClient *apiClient_;
-  PKMappingManager *mappingManager_;
+  PKMappingCoordinator *mappingCoordinator_;
 }
 
 @property (nonatomic, strong) PKAPIClient *apiClient;
-@property (nonatomic, strong) PKMappingManager *mappingManager;
+@property (nonatomic, strong) PKMappingCoordinator *mappingCoordinator;
 
 + (PKRequestManager *)sharedManager;
+
+- (void)configureWithClient:(PKAPIClient *)client mappingCoordinator:(PKMappingCoordinator *)coordinator;
 
 - (PKRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion;
 

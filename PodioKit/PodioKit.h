@@ -6,6 +6,10 @@
 //  Copyright (c) 2012 Podio. All rights reserved.
 //
 
+#if ! __has_feature(objc_arc)
+#error PodioKit has to be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag.
+#endif
+
 #import <Foundation/Foundation.h>
 
 #pragma mark - General
@@ -60,12 +64,12 @@
 #import "PKRelationshipMapping.h"
 #import "PKStandaloneMapping.h"
 #import "PKMappableObject.h"
-#import "PKMappingManager.h"
+#import "PKMappingCoordinator.h"
 #import "PKMappingProvider.h"
-#import "PKDefaultMappingProvider.h"
-#import "PKCoreDataMappingManager.h"
-#import "PKCoreDataRepository.h"
+#import "PKDefaultMappingCoordinator.h"
 #import "PKDefaultObjectRepository.h"
+#import "PKCoreDataMappingCoordinator.h"
+#import "PKCoreDataRepository.h"
 
 #pragma mark - Storage
 
@@ -123,11 +127,6 @@
 #import "PKShareCategoryData.h"
 #import "PKSpaceMemberRequestData.h"
 #import "PKReferenceBatchData.h"
-
-#pragma mark - Domain objects
-
-#import "PKTask.h"
-#import "PKTaskMapping.h"
 
 #pragma mark - Categories
 

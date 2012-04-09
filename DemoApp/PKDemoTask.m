@@ -1,22 +1,19 @@
 //
-//  PKTask.m
+//  PKDemoTask.m
 //  PodioKit
 //
-//  Created by Sebastian Rehnby on 10/11/11.
-//  Copyright (c) 2011 Podio. All rights reserved.
+//  Created by Sebastian Rehnby on 4/6/12.
+//  Copyright (c) 2012 Podio. All rights reserved.
 //
 
-#import "PKTask.h"
-#import "PKRequestManager.h"
+#import "PKDemoTask.h"
 
-@implementation PKTask
+@implementation PKDemoTask
 
 @synthesize taskId = taskId_;
 @synthesize text = text_;
-@synthesize type = type_;
 @synthesize status = status_;
 @synthesize createdOn = createdOn_;
-
 
 #pragma mark - PKMappableObject
 

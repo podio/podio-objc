@@ -7,10 +7,10 @@
 //
 
 #import "PKTaskMappingTests.h"
-#import "PKDefaultMappingProvider.h"
+#import "PKTestMappingProvider.h"
 #import "PKDefaultObjectRepository.h"
 #import "PKTaskMapping.h"
-#import "PKTask.h"
+#import "PKTestTask.h"
 #import "JSONKit.h"
 #import "PKAssert.h"
 
@@ -21,19 +21,18 @@
 
 - (id)dataWithContentsOfJSONFile:(NSString *)filename;
 
-- (void)validateTask:(PKTask *)task;
+- (void)validateTask:(PKTestTask *)task;
 
 @end
 
 @implementation PKTaskMappingTests
 
 - (PKObjectMapper *)createObjectMapperWithMapping:(PKObjectMapping *)mapping {
-  PKDefaultMappingProvider *mappingProvider = [[PKDefaultMappingProvider alloc] init];
-  PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithMappingProvider:mappingProvider];
+  PKTestMappingProvider *mappingProvider = [[PKTestMappingProvider alloc] init];
+  PKDefaultObjectRepository *repository = [PKDefaultObjectRepository repository];
   
-  mapper.repository = [PKDefaultObjectRepository repository];
+  PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithProvider:mappingProvider repository:repository];
   mapper.delegate = self;
-  
   mapper.mapping = mapping;
   
   return mapper;
@@ -75,11 +74,11 @@
   };
   
   id task = [mapper performMappingWithData:data];
-  STAssertTrue([task isKindOfClass:[PKTask class]], @"Wrong class, expected PKTask, got %@", [task class]);
+  STAssertTrue([task isKindOfClass:[PKTestTask class]], @"Wrong class, expected PKTask, got %@", [task class]);
   [self validateTask:task];
 }
 
-- (void)validateTask:(PKTask *)task {
+- (void)validateTask:(PKTestTask *)task {
   PKAssertGreaterThanZero(task.taskId);
   PKAssertNotNil(task.text);
   PKAssertGreaterThanZero(task.type);

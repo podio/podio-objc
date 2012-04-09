@@ -1,21 +1,21 @@
 //
-//  PKCoreDataMappingManager.m
+//  PKCoreDataMappingCoordinator.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/14/11.
 //  Copyright 2011 Podio. All rights reserved.
 //
 
-#import "PKCoreDataMappingManager.h"
+#import "PKCoreDataMappingCoordinator.h"
 #import "PKCoreDataRepository.h"
 
-@interface PKCoreDataMappingManager ()
+@interface PKCoreDataMappingCoordinator ()
 
 - (void)mappingContextDidSave:(NSNotification *)notification;
 
 @end
 
-@implementation PKCoreDataMappingManager
+@implementation PKCoreDataMappingCoordinator
 
 @synthesize managedObjectContext = managedObjectContext_;
 
@@ -37,11 +37,10 @@
 - (PKObjectMapper *)objectMapper {
   PKAssert(self.mappingProvider != nil, @"No mapping provider set.");
   
-  PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithMappingProvider:self.mappingProvider];
-  mapper.delegate = self;
-  
   PKCoreDataRepository *repository = [[PKCoreDataRepository alloc] initWithPersistentStoreCoordinator:self.managedObjectContext.persistentStoreCoordinator];
-  mapper.repository = repository;
+  
+  PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithProvider:self.mappingProvider repository:repository];
+  mapper.delegate = self;
   
   return mapper;
 }

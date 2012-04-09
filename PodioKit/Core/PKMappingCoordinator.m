@@ -1,14 +1,14 @@
 //
-//  PKMappingManager.m
+//  PKMappingCoordinator.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/14/11.
 //  Copyright 2011 Podio. All rights reserved.
 //
 
-#import "PKMappingManager.h"
+#import "PKMappingCoordinator.h"
 
-@implementation PKMappingManager
+@implementation PKMappingCoordinator
 
 @synthesize mappingProvider = mappingProvider_;
 
@@ -21,7 +21,7 @@
 }
 
 
-// Implement in subclass
+// Implement in subclass to provide a properly configured object mapper instance
 - (PKObjectMapper *)objectMapper {
   [self doesNotRecognizeSelector:_cmd];
   return nil;

@@ -28,16 +28,13 @@
 		5028CBF4145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF1145E92DD0003A097 /* NSManagedObject+ActiveRecord.m */; };
 		5028CBF6145E939A0003A097 /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
 		5028CBF7145E939A0003A097 /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
-		5028CBFA145E96620003A097 /* PKCoreDataMappingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5028CBF8145E96620003A097 /* PKCoreDataMappingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5028CBFB145E96620003A097 /* PKCoreDataMappingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingManager.m */; };
-		5028CBFC145E96620003A097 /* PKCoreDataMappingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingManager.m */; };
+		5028CBFA145E96620003A097 /* PKCoreDataMappingCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5028CBF8145E96620003A097 /* PKCoreDataMappingCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5028CBFB145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */; };
+		5028CBFC145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */; };
 		502B5FAE1445729D004F4185 /* PKObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 502B5FAC1445729D004F4185 /* PKObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
-		502B5FB314458B2F004F4185 /* PKDefaultMappingProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 502B5FB114458B2F004F4185 /* PKDefaultMappingProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		502B5FB514458B2F004F4185 /* PKDefaultMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB214458B2F004F4185 /* PKDefaultMappingProvider.m */; };
 		502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB814458C93004F4185 /* PKTaskMappingTests.m */; };
-		502B9CCF14A7DF76009510F1 /* PKDefaultMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB214458B2F004F4185 /* PKDefaultMappingProvider.m */; };
 		502B9CD214A9BAD9009510F1 /* PKTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B9CD114A9BAD8009510F1 /* PKTestCase.m */; };
 		5030C05C1435E76300027F07 /* PKAppFieldContactData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C01E1435E76300027F07 /* PKAppFieldContactData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C05D1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
@@ -122,9 +119,7 @@
 		5032BAB8144489CB00B7F7C7 /* PKBaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BAB6144489CB00B7F7C7 /* PKBaseObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
 		5032BABA144489CB00B7F7C7 /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
-		5032BAC714448E1500B7F7C7 /* PKTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BAC514448E1500B7F7C7 /* PKTask.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5032BAC814448E1500B7F7C7 /* PKTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAC614448E1500B7F7C7 /* PKTask.m */; };
-		5032BAC914448E1500B7F7C7 /* PKTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAC614448E1500B7F7C7 /* PKTask.m */; };
+		5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAC614448E1500B7F7C7 /* PKTestTask.m */; };
 		5032BACC1444907800B7F7C7 /* PKTaskMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BACA1444907800B7F7C7 /* PKTaskMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032BACD1444907800B7F7C7 /* PKTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BACB1444907800B7F7C7 /* PKTaskMapping.m */; };
 		5032BACE1444907800B7F7C7 /* PKTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BACB1444907800B7F7C7 /* PKTaskMapping.m */; };
@@ -156,9 +151,9 @@
 		5065BF4B1433627900360855 /* PKRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF421433627900360855 /* PKRequestOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF4C1433627900360855 /* PKRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF431433627900360855 /* PKRequestOperation.m */; };
 		5065BF4D1433627900360855 /* PKRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF431433627900360855 /* PKRequestOperation.m */; };
-		5065BF531433632200360855 /* PKMappingManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF511433632200360855 /* PKMappingManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5065BF541433632200360855 /* PKMappingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingManager.m */; };
-		5065BF551433632200360855 /* PKMappingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingManager.m */; };
+		5065BF531433632200360855 /* PKMappingCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF511433632200360855 /* PKMappingCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5065BF541433632200360855 /* PKMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingCoordinator.m */; };
+		5065BF551433632200360855 /* PKMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingCoordinator.m */; };
 		5065BF581433632C00360855 /* PKMappingProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF561433632C00360855 /* PKMappingProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF591433632C00360855 /* PKMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF571433632C00360855 /* PKMappingProvider.m */; };
 		5065BF5A1433632C00360855 /* PKMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF571433632C00360855 /* PKMappingProvider.m */; };
@@ -235,9 +230,6 @@
 		507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */; };
 		507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
 		507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
-		50821D3B153EFB9300994320 /* PKReferenceBatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50821D39153EFB9200994320 /* PKReferenceBatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50821D3C153EFB9300994320 /* PKReferenceBatchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50821D3A153EFB9300994320 /* PKReferenceBatchData.m */; };
-		50821D3D153EFB9300994320 /* PKReferenceBatchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50821D3A153EFB9300994320 /* PKReferenceBatchData.m */; };
 		5082225D14FC3E66005056A1 /* PodioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082225B14FC3E66005056A1 /* PodioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
@@ -254,6 +246,14 @@
 		508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D212A14FBB875002593A4 /* PKSpaceAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		508D212D14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
 		508D212E14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
+		509D6939152CA7A40033291C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F814345E9C00360855 /* UIKit.framework */; };
+		509D693A152CA7A40033291C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
+		509D693B152CA7A40033291C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F614345E5000360855 /* CoreGraphics.framework */; };
+		509D6941152CA7A40033291C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 509D693F152CA7A40033291C /* InfoPlist.strings */; };
+		509D6943152CA7A40033291C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6942152CA7A40033291C /* main.m */; };
+		509D6947152CA7A40033291C /* PKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6946152CA7A40033291C /* PKAppDelegate.m */; };
+		509D6974152CF6E10033291C /* PKDefaultMappingCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 509D6972152CF6E10033291C /* PKDefaultMappingCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		509D6975152CF6E10033291C /* PKDefaultMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */; };
 		509EAE71147A798F007252D8 /* PKFileOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 509EAE6F147A798F007252D8 /* PKFileOperation.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		509EAE72147A798F007252D8 /* PKFileOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 509EAE70147A798F007252D8 /* PKFileOperation.m */; };
 		50A16D8D148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */; };
@@ -273,6 +273,15 @@
 		50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */; };
 		50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
+		50B317DC152F7477002E73F2 /* libPodioKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEE814335AB900360855 /* libPodioKit.a */; };
+		50B317DD152F749B002E73F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F414345CF300360855 /* CoreData.framework */; };
+		50B317DE152F74D6002E73F2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FC14345F0D00360855 /* MobileCoreServices.framework */; };
+		50B317DF152F74E8002E73F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FD14345F0D00360855 /* SystemConfiguration.framework */; };
+		50B317E0152F74F5002E73F2 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FA14345ECB00360855 /* CFNetwork.framework */; };
+		50B317E1152F7510002E73F2 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
+		50B317E4152F7605002E73F2 /* PKDemoTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B317E3152F7605002E73F2 /* PKDemoTask.m */; };
+		50B317E7152F76AA002E73F2 /* PKDemoTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B317E6152F76AA002E73F2 /* PKDemoTaskMapping.m */; };
+		50B317EA152F77EC002E73F2 /* PKTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B317E9152F77EC002E73F2 /* PKTaskListViewController.m */; };
 		50B319CF150F8F2700EAD7C7 /* PKAppStoreAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B319D0150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
 		50B319D1150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
@@ -400,6 +409,13 @@
 			remoteGlobalIDString = 5065BEE714335AB900360855;
 			remoteInfo = PodioKit;
 		};
+		50B317D9152F7406002E73F2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5065BEDF14335AB900360855 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5065BEE714335AB900360855;
+			remoteInfo = PodioKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -418,12 +434,10 @@
 		5028CBF0145E92DD0003A097 /* NSManagedObject+ActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+ActiveRecord.h"; sourceTree = "<group>"; };
 		5028CBF1145E92DD0003A097 /* NSManagedObject+ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+ActiveRecord.m"; sourceTree = "<group>"; };
 		5028CBF5145E939A0003A097 /* PKConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKConstants.m; sourceTree = "<group>"; };
-		5028CBF8145E96620003A097 /* PKCoreDataMappingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCoreDataMappingManager.h; sourceTree = "<group>"; };
-		5028CBF9145E96620003A097 /* PKCoreDataMappingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCoreDataMappingManager.m; sourceTree = "<group>"; };
+		5028CBF8145E96620003A097 /* PKCoreDataMappingCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCoreDataMappingCoordinator.h; sourceTree = "<group>"; };
+		5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCoreDataMappingCoordinator.m; sourceTree = "<group>"; };
 		502B5FAC1445729D004F4185 /* PKObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKObjectMapping.h; sourceTree = "<group>"; };
 		502B5FAD1445729D004F4185 /* PKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKObjectMapping.m; sourceTree = "<group>"; };
-		502B5FB114458B2F004F4185 /* PKDefaultMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDefaultMappingProvider.h; sourceTree = "<group>"; };
-		502B5FB214458B2F004F4185 /* PKDefaultMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDefaultMappingProvider.m; sourceTree = "<group>"; };
 		502B5FB714458C93004F4185 /* PKTaskMappingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskMappingTests.h; sourceTree = "<group>"; };
 		502B5FB814458C93004F4185 /* PKTaskMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMappingTests.m; sourceTree = "<group>"; };
 		502B9CD014A9BAD8009510F1 /* PKTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestCase.h; sourceTree = "<group>"; };
@@ -484,8 +498,8 @@
 		5032336114FD3F2C0028D887 /* PKExternalFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKExternalFileData.m; sourceTree = "<group>"; };
 		5032BAB6144489CB00B7F7C7 /* PKBaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKBaseObject.h; sourceTree = "<group>"; };
 		5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBaseObject.m; sourceTree = "<group>"; };
-		5032BAC514448E1500B7F7C7 /* PKTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTask.h; sourceTree = "<group>"; };
-		5032BAC614448E1500B7F7C7 /* PKTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTask.m; sourceTree = "<group>"; };
+		5032BAC514448E1500B7F7C7 /* PKTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTask.h; sourceTree = "<group>"; };
+		5032BAC614448E1500B7F7C7 /* PKTestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestTask.m; sourceTree = "<group>"; };
 		5032BACA1444907800B7F7C7 /* PKTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskMapping.h; sourceTree = "<group>"; };
 		5032BACB1444907800B7F7C7 /* PKTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMapping.m; sourceTree = "<group>"; };
 		5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskAPI.h; sourceTree = "<group>"; };
@@ -512,8 +526,8 @@
 		5065BF411433627900360855 /* PKRequestManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRequestManager.m; sourceTree = "<group>"; };
 		5065BF421433627900360855 /* PKRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKRequestOperation.h; sourceTree = "<group>"; };
 		5065BF431433627900360855 /* PKRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRequestOperation.m; sourceTree = "<group>"; };
-		5065BF511433632200360855 /* PKMappingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMappingManager.h; sourceTree = "<group>"; };
-		5065BF521433632200360855 /* PKMappingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMappingManager.m; sourceTree = "<group>"; };
+		5065BF511433632200360855 /* PKMappingCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMappingCoordinator.h; sourceTree = "<group>"; };
+		5065BF521433632200360855 /* PKMappingCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMappingCoordinator.m; sourceTree = "<group>"; };
 		5065BF561433632C00360855 /* PKMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKMappingProvider.h; sourceTree = "<group>"; };
 		5065BF571433632C00360855 /* PKMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKMappingProvider.m; sourceTree = "<group>"; };
 		5065BF66143363EC00360855 /* PKCoreDataRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCoreDataRepository.h; sourceTree = "<group>"; };
@@ -564,8 +578,6 @@
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountData.h; sourceTree = "<group>"; };
 		507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLinkedAccountData.m; sourceTree = "<group>"; };
-		50821D39153EFB9200994320 /* PKReferenceBatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceBatchData.h; sourceTree = "<group>"; };
-		50821D3A153EFB9300994320 /* PKReferenceBatchData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceBatchData.m; sourceTree = "<group>"; };
 		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
 		50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceMemberRequestData.h; sourceTree = "<group>"; };
 		50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceMemberRequestData.m; sourceTree = "<group>"; };
@@ -577,6 +589,15 @@
 		508D211C14FBB332002593A4 /* PKSpaceCreateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceCreateData.m; sourceTree = "<group>"; };
 		508D212A14FBB875002593A4 /* PKSpaceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceAPI.h; sourceTree = "<group>"; };
 		508D212B14FBB875002593A4 /* PKSpaceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceAPI.m; sourceTree = "<group>"; };
+		509D6937152CA7A40033291C /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		509D693E152CA7A40033291C /* DemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
+		509D6940152CA7A40033291C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		509D6942152CA7A40033291C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		509D6944152CA7A40033291C /* DemoApp-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DemoApp-Prefix.pch"; sourceTree = "<group>"; };
+		509D6945152CA7A40033291C /* PKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKAppDelegate.h; sourceTree = "<group>"; };
+		509D6946152CA7A40033291C /* PKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PKAppDelegate.m; sourceTree = "<group>"; };
+		509D6972152CF6E10033291C /* PKDefaultMappingCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDefaultMappingCoordinator.h; sourceTree = "<group>"; };
+		509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDefaultMappingCoordinator.m; sourceTree = "<group>"; };
 		509EAE6F147A798F007252D8 /* PKFileOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKFileOperation.h; sourceTree = "<group>"; };
 		509EAE70147A798F007252D8 /* PKFileOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFileOperation.m; sourceTree = "<group>"; };
 		50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceStatusData.m; sourceTree = "<group>"; };
@@ -592,6 +613,12 @@
 		50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceDataFactory.h; sourceTree = "<group>"; };
 		50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceDataFactory.m; sourceTree = "<group>"; };
 		50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceSpaceData.m; sourceTree = "<group>"; };
+		50B317E2152F7605002E73F2 /* PKDemoTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDemoTask.h; sourceTree = "<group>"; };
+		50B317E3152F7605002E73F2 /* PKDemoTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDemoTask.m; sourceTree = "<group>"; };
+		50B317E5152F76AA002E73F2 /* PKDemoTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDemoTaskMapping.h; sourceTree = "<group>"; };
+		50B317E6152F76AA002E73F2 /* PKDemoTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDemoTaskMapping.m; sourceTree = "<group>"; };
+		50B317E8152F77EC002E73F2 /* PKTaskListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskListViewController.h; sourceTree = "<group>"; };
+		50B317E9152F77EC002E73F2 /* PKTaskListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskListViewController.m; sourceTree = "<group>"; };
 		50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppStoreAPI.h; sourceTree = "<group>"; };
 		50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppStoreAPI.m; sourceTree = "<group>"; };
 		50B319DF150F98AE00EAD7C7 /* PKShareData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKShareData.h; sourceTree = "<group>"; };
@@ -717,6 +744,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		509D6934152CA7A40033291C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				50B317E0152F74F5002E73F2 /* CFNetwork.framework in Frameworks */,
+				50B317DF152F74E8002E73F2 /* SystemConfiguration.framework in Frameworks */,
+				50B317DE152F74D6002E73F2 /* MobileCoreServices.framework in Frameworks */,
+				50B317DD152F749B002E73F2 /* CoreData.framework in Frameworks */,
+				509D6939152CA7A40033291C /* UIKit.framework in Frameworks */,
+				509D693A152CA7A40033291C /* Foundation.framework in Frameworks */,
+				509D693B152CA7A40033291C /* CoreGraphics.framework in Frameworks */,
+				50B317E1152F7510002E73F2 /* libz.dylib in Frameworks */,
+				50B317DC152F7477002E73F2 /* libPodioKit.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -745,6 +788,8 @@
 			children = (
 				50FCC39A14A1C9960001E6F4 /* PKObjectMapperTests.h */,
 				50FCC39B14A1C9960001E6F4 /* PKObjectMapperTests.m */,
+				5032BAC514448E1500B7F7C7 /* PKTestTask.h */,
+				5032BAC614448E1500B7F7C7 /* PKTestTask.m */,
 				50FCC39D14A1D4D90001E6F4 /* PKTestItem.h */,
 				50FCC39E14A1D4D90001E6F4 /* PKTestItem.m */,
 				50FCC3A614A1E0520001E6F4 /* PKTestItemField.h */,
@@ -856,8 +901,6 @@
 				50B529F6148FC06800E05852 /* PKReferenceAlertData.m */,
 				50D3FA7D14DAFB17008853BB /* PKReferenceMeetingData.h */,
 				50D3FA7E14DAFB17008853BB /* PKReferenceMeetingData.m */,
-				50821D39153EFB9200994320 /* PKReferenceBatchData.h */,
-				50821D3A153EFB9300994320 /* PKReferenceBatchData.m */,
 			);
 			name = Reference;
 			sourceTree = "<group>";
@@ -923,8 +966,6 @@
 			children = (
 				5032BAB6144489CB00B7F7C7 /* PKBaseObject.h */,
 				5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */,
-				5032BAC514448E1500B7F7C7 /* PKTask.h */,
-				5032BAC614448E1500B7F7C7 /* PKTask.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -943,6 +984,7 @@
 			children = (
 				5065BEED14335AB900360855 /* PodioKit */,
 				5065BF0314335ABA00360855 /* PodioKitTests */,
+				509D693C152CA7A40033291C /* DemoApp */,
 				5065BFBB1433660200360855 /* Vendor */,
 				5065BEEA14335AB900360855 /* Frameworks */,
 				5065BEE914335AB900360855 /* Products */,
@@ -956,6 +998,7 @@
 			children = (
 				5065BEE814335AB900360855 /* libPodioKit.a */,
 				5065BEF814335ABA00360855 /* PodioKitTests.octest */,
+				509D6937152CA7A40033291C /* DemoApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1053,8 +1096,8 @@
 				50599F071456B3B5001F5201 /* PKObjectRepository.h */,
 				5028CBE8145E90D40003A097 /* PKObjectMapper.h */,
 				5028CBE9145E90D40003A097 /* PKObjectMapper.m */,
-				5065BF511433632200360855 /* PKMappingManager.h */,
-				5065BF521433632200360855 /* PKMappingManager.m */,
+				5065BF511433632200360855 /* PKMappingCoordinator.h */,
+				5065BF521433632200360855 /* PKMappingCoordinator.m */,
 				5065BF561433632C00360855 /* PKMappingProvider.h */,
 				5065BF571433632C00360855 /* PKMappingProvider.m */,
 			);
@@ -1085,8 +1128,8 @@
 				5065BFB01433650E00360855 /* PKManagedObject.m */,
 				5065BF66143363EC00360855 /* PKCoreDataRepository.h */,
 				5065BF67143363EC00360855 /* PKCoreDataRepository.m */,
-				5028CBF8145E96620003A097 /* PKCoreDataMappingManager.h */,
-				5028CBF9145E96620003A097 /* PKCoreDataMappingManager.m */,
+				5028CBF8145E96620003A097 /* PKCoreDataMappingCoordinator.h */,
+				5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */,
 			);
 			name = CoreData;
 			sourceTree = "<group>";
@@ -1158,10 +1201,10 @@
 			children = (
 				5030C01B1435E71A00027F07 /* Models */,
 				5065C0AA1434536200360855 /* Mappings */,
-				502B5FB114458B2F004F4185 /* PKDefaultMappingProvider.h */,
-				502B5FB214458B2F004F4185 /* PKDefaultMappingProvider.m */,
 				5021CD2A14458FAE00A7013D /* PKDefaultObjectRepository.h */,
 				5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */,
+				509D6972152CF6E10033291C /* PKDefaultMappingCoordinator.h */,
+				509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1252,6 +1295,33 @@
 				50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */,
 			);
 			name = Space;
+			sourceTree = "<group>";
+		};
+		509D693C152CA7A40033291C /* DemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				509D6945152CA7A40033291C /* PKAppDelegate.h */,
+				509D6946152CA7A40033291C /* PKAppDelegate.m */,
+				50B317E8152F77EC002E73F2 /* PKTaskListViewController.h */,
+				50B317E9152F77EC002E73F2 /* PKTaskListViewController.m */,
+				50B317E2152F7605002E73F2 /* PKDemoTask.h */,
+				50B317E3152F7605002E73F2 /* PKDemoTask.m */,
+				50B317E5152F76AA002E73F2 /* PKDemoTaskMapping.h */,
+				50B317E6152F76AA002E73F2 /* PKDemoTaskMapping.m */,
+				509D693D152CA7A40033291C /* Supporting Files */,
+			);
+			path = DemoApp;
+			sourceTree = "<group>";
+		};
+		509D693D152CA7A40033291C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				509D693E152CA7A40033291C /* DemoApp-Info.plist */,
+				509D693F152CA7A40033291C /* InfoPlist.strings */,
+				509D6942152CA7A40033291C /* main.m */,
+				509D6944152CA7A40033291C /* DemoApp-Prefix.pch */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		50B319DD150F989800EAD7C7 /* App Store */ = {
@@ -1362,7 +1432,7 @@
 				5065BF451433627900360855 /* PKRequest.h in Headers */,
 				5065BF481433627900360855 /* PKRequestManager.h in Headers */,
 				5065BF4B1433627900360855 /* PKRequestOperation.h in Headers */,
-				5065BF531433632200360855 /* PKMappingManager.h in Headers */,
+				5065BF531433632200360855 /* PKMappingCoordinator.h in Headers */,
 				5065BF581433632C00360855 /* PKMappingProvider.h in Headers */,
 				5065BF68143363EC00360855 /* PKCoreDataRepository.h in Headers */,
 				5065BF6C1433640C00360855 /* PKMappableObject.h in Headers */,
@@ -1415,7 +1485,6 @@
 				50BBF53A1439B365002522D6 /* NSString+Hash.h in Headers */,
 				50A5FB33143B0FEA00674360 /* PKItemFieldValueDataFactory.h in Headers */,
 				5032BAB8144489CB00B7F7C7 /* PKBaseObject.h in Headers */,
-				5032BAC714448E1500B7F7C7 /* PKTask.h in Headers */,
 				5032BAD6144491A500B7F7C7 /* PKTaskAPI.h in Headers */,
 				502B5FAE1445729D004F4185 /* PKObjectMapping.h in Headers */,
 				5021CD2C14458FAE00A7013D /* PKDefaultObjectRepository.h in Headers */,
@@ -1440,7 +1509,7 @@
 				50599F081456B3B5001F5201 /* PKObjectRepository.h in Headers */,
 				5028CBEA145E90D40003A097 /* PKObjectMapper.h in Headers */,
 				5028CBF2145E92DD0003A097 /* NSManagedObject+ActiveRecord.h in Headers */,
-				5028CBFA145E96620003A097 /* PKCoreDataMappingManager.h in Headers */,
+				5028CBFA145E96620003A097 /* PKCoreDataMappingCoordinator.h in Headers */,
 				509EAE71147A798F007252D8 /* PKFileOperation.h in Headers */,
 				50CC1D54148CDA3A000B57EA /* PKBaseAPI.h in Headers */,
 				50CC1D57148CDA3A000B57EA /* PKCommentAPI.h in Headers */,
@@ -1448,7 +1517,6 @@
 				50CC1D5D148CDA3A000B57EA /* PKItemAPI.h in Headers */,
 				50CC1D60148CDA3A000B57EA /* PKNotificationAPI.h in Headers */,
 				5032BACC1444907800B7F7C7 /* PKTaskMapping.h in Headers */,
-				502B5FB314458B2F004F4185 /* PKDefaultMappingProvider.h in Headers */,
 				5026A2BB147114B70051D7C8 /* NSError+PKErrors.h in Headers */,
 				5026A2BF147116BC0051D7C8 /* PKRequestResult.h in Headers */,
 				50CC1CDE14878100000B57EA /* PKReferenceAppData.h in Headers */,
@@ -1483,7 +1551,7 @@
 				50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */,
 				50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */,
 				50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */,
-				50821D3B153EFB9300994320 /* PKReferenceBatchData.h in Headers */,
+				509D6974152CF6E10033291C /* PKDefaultMappingCoordinator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1526,6 +1594,24 @@
 			productReference = 5065BEF814335ABA00360855 /* PodioKitTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		509D6936152CA7A40033291C /* DemoApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 509D694A152CA7A40033291C /* Build configuration list for PBXNativeTarget "DemoApp" */;
+			buildPhases = (
+				509D6933152CA7A40033291C /* Sources */,
+				509D6934152CA7A40033291C /* Frameworks */,
+				509D6935152CA7A40033291C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				50B317DA152F7406002E73F2 /* PBXTargetDependency */,
+			);
+			name = DemoApp;
+			productName = DemoApp;
+			productReference = 509D6937152CA7A40033291C /* DemoApp.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1549,6 +1635,7 @@
 			targets = (
 				5065BEE714335AB900360855 /* PodioKit */,
 				5065BEF714335ABA00360855 /* PodioKitTests */,
+				509D6936152CA7A40033291C /* DemoApp */,
 			);
 		};
 /* End PBXProject section */
@@ -1561,6 +1648,14 @@
 				50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */,
 				5021CD31144594DB00A7013D /* GetActiveTasks.json in Resources */,
 				505F7E471445EFBC00727A1D /* GetTask.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		509D6935152CA7A40033291C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509D6941152CA7A40033291C /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1590,7 +1685,7 @@
 				5065BF461433627900360855 /* PKRequest.m in Sources */,
 				5065BF491433627900360855 /* PKRequestManager.m in Sources */,
 				5065BF4C1433627900360855 /* PKRequestOperation.m in Sources */,
-				5065BF541433632200360855 /* PKMappingManager.m in Sources */,
+				5065BF541433632200360855 /* PKMappingCoordinator.m in Sources */,
 				5065BF591433632C00360855 /* PKMappingProvider.m in Sources */,
 				5065BF69143363EC00360855 /* PKCoreDataRepository.m in Sources */,
 				5065BF841433649A00360855 /* PKAttributeMapping.m in Sources */,
@@ -1638,7 +1733,6 @@
 				50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */,
 				50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
 				5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
-				5032BAC814448E1500B7F7C7 /* PKTask.m in Sources */,
 				5032BACD1444907800B7F7C7 /* PKTaskMapping.m in Sources */,
 				5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
 				502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */,
@@ -1661,7 +1755,7 @@
 				5028CBEE145E921A0003A097 /* PKStandaloneMapping.m in Sources */,
 				5028CBF3145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */,
 				5028CBF6145E939A0003A097 /* PKConstants.m in Sources */,
-				5028CBFB145E96620003A097 /* PKCoreDataMappingManager.m in Sources */,
+				5028CBFB145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */,
 				5026A2BC147114B70051D7C8 /* NSError+PKErrors.m in Sources */,
 				5026A2C0147116BC0051D7C8 /* PKRequestResult.m in Sources */,
 				509EAE72147A798F007252D8 /* PKFileOperation.m in Sources */,
@@ -1684,7 +1778,6 @@
 				50AE897414A1366B004E027E /* PKItemFieldValueOptionData.m in Sources */,
 				50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */,
 				50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */,
-				502B9CCF14A7DF76009510F1 /* PKDefaultMappingProvider.m in Sources */,
 				50D3FA8014DAFB17008853BB /* PKReferenceMeetingData.m in Sources */,
 				5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */,
 				50DFDB7814E1989D00D2C5B6 /* PKMeetingPluginCitrixData.m in Sources */,
@@ -1705,7 +1798,7 @@
 				50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
 				50858ABE15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
 				50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
-				50821D3C153EFB9300994320 /* PKReferenceBatchData.m in Sources */,
+				509D6975152CF6E10033291C /* PKDefaultMappingCoordinator.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1716,7 +1809,7 @@
 				5065BF471433627900360855 /* PKRequest.m in Sources */,
 				5065BF4A1433627900360855 /* PKRequestManager.m in Sources */,
 				5065BF4D1433627900360855 /* PKRequestOperation.m in Sources */,
-				5065BF551433632200360855 /* PKMappingManager.m in Sources */,
+				5065BF551433632200360855 /* PKMappingCoordinator.m in Sources */,
 				5065BF5A1433632C00360855 /* PKMappingProvider.m in Sources */,
 				5065BF6A143363EC00360855 /* PKCoreDataRepository.m in Sources */,
 				5065BF851433649A00360855 /* PKAttributeMapping.m in Sources */,
@@ -1764,11 +1857,10 @@
 				50BBF53C1439B365002522D6 /* NSString+Hash.m in Sources */,
 				50A5FB35143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
 				5032BABA144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
-				5032BAC914448E1500B7F7C7 /* PKTask.m in Sources */,
+				5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */,
 				5032BACE1444907800B7F7C7 /* PKTaskMapping.m in Sources */,
 				5032BAD8144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
 				502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */,
-				502B5FB514458B2F004F4185 /* PKDefaultMappingProvider.m in Sources */,
 				502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */,
 				5021CD2E14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */,
 				50C7FC191446D1CD006E00B8 /* JSONKit.m in Sources */,
@@ -1782,7 +1874,7 @@
 				5028CBEF145E921A0003A097 /* PKStandaloneMapping.m in Sources */,
 				5028CBF4145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */,
 				5028CBF7145E939A0003A097 /* PKConstants.m in Sources */,
-				5028CBFC145E96620003A097 /* PKCoreDataMappingManager.m in Sources */,
+				5028CBFC145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */,
 				50CC1CE114878109000B57EA /* PKReferenceAppData.m in Sources */,
 				50CC1CE614878124000B57EA /* PKReferenceProfileData.m in Sources */,
 				50CC1D56148CDA3A000B57EA /* PKBaseAPI.m in Sources */,
@@ -1835,7 +1927,18 @@
 				50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
 				50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
 				50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
-				50821D3D153EFB9300994320 /* PKReferenceBatchData.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		509D6933152CA7A40033291C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				509D6943152CA7A40033291C /* main.m in Sources */,
+				509D6947152CA7A40033291C /* PKAppDelegate.m in Sources */,
+				50B317E4152F7605002E73F2 /* PKDemoTask.m in Sources */,
+				50B317E7152F76AA002E73F2 /* PKDemoTaskMapping.m in Sources */,
+				50B317EA152F77EC002E73F2 /* PKTaskListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1847,7 +1950,23 @@
 			target = 5065BEE714335AB900360855 /* PodioKit */;
 			targetProxy = 5065BF0014335ABA00360855 /* PBXContainerItemProxy */;
 		};
+		50B317DA152F7406002E73F2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5065BEE714335AB900360855 /* PodioKit */;
+			targetProxy = 50B317D9152F7406002E73F2 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		509D693F152CA7A40033291C /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				509D6940152CA7A40033291C /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		5065BF0D14335ABA00360855 /* Development */ = {
@@ -1975,6 +2094,62 @@
 			};
 			name = Release;
 		};
+		509D6948152CA7A40033291C /* Development */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DemoApp/DemoApp-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "DemoApp/DemoApp-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Development;
+		};
+		509D6949152CA7A40033291C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "DemoApp/DemoApp-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "DemoApp/DemoApp-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				VALIDATE_PRODUCT = YES;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -2001,6 +2176,15 @@
 			buildConfigurations = (
 				5065BF1314335ABA00360855 /* Development */,
 				5065BF1414335ABA00360855 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		509D694A152CA7A40033291C /* Build configuration list for PBXNativeTarget "DemoApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				509D6948152CA7A40033291C /* Development */,
+				509D6949152CA7A40033291C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

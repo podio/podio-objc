@@ -7,9 +7,8 @@
 //
 
 #import "PKBaseObject.h"
-#import "PKRequestOperation.h"
 
-@interface PKTask : PKBaseObject {
+@interface PKTestTask : PKBaseObject {
 
  @private
   NSUInteger taskId_;
