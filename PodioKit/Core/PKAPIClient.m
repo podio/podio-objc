@@ -227,7 +227,13 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:responseData forKey:PKAPIClientResponseDataKey];
+  NSMutableDictionary *mutUserInfo = [NSMutableDictionary dictionary];
+  if (responseData != nil) {
+    [mutUserInfo setObject:responseData forKey:PKAPIClientResponseDataKey];
+  }
+  
+  NSDictionary *userInfo = [mutUserInfo copy];
+  
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
 }
 
