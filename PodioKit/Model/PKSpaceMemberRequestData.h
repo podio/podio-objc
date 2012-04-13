@@ -12,5 +12,6 @@
 
 @property (nonatomic) NSUInteger requestId;
 @property (nonatomic) NSUInteger spaceId;
+@property (nonatomic) PKSpaceMemberRequestStatus status;
 
 @end

@@ -516,6 +516,18 @@
   return type;
 }
 
++ (PKSpaceMemberRequestStatus)spaceMemberRequestStatusForString:(NSString *)string {
+  PKSpaceMemberRequestStatus status = PKSpaceMemberRequestStatusNone;
+  
+  if ([string isEqualToString:kPKSpaceMemberRequestStatusActive]) {
+    status = PKSpaceMemberRequestStatusActive;
+  } else if ([string isEqualToString:kPKSpaceMemberRequestStatusAccepted]) {
+    status = PKSpaceMemberRequestStatusAccepted;
+  }
+  
+  return status;
+}
+
 #pragma mark - Avatar
 
 + (PKAvatarType)avatarTypeForString:(NSString *)string {

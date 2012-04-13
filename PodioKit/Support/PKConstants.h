@@ -81,6 +81,15 @@ static NSString * const kPKSpaceCreateStatusOpen = @"open";
 static NSString * const kPKSpaceCreateStatusClosed = @"closed";
 static NSString * const kPKSpaceCreateStatusDeleted = @"deleted";
 
+typedef enum {
+  PKSpaceMemberRequestStatusNone = 0,
+  PKSpaceMemberRequestStatusActive,
+  PKSpaceMemberRequestStatusAccepted,
+} PKSpaceMemberRequestStatus;
+
+static NSString * const kPKSpaceMemberRequestStatusActive = @"active";
+static NSString * const kPKSpaceMemberRequestStatusAccepted = @"accepted";
+
 #pragma mark - Tasks
 
 typedef enum {
@@ -528,6 +537,7 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 // Space
 + (PKSpaceType)spaceTypeForString:(NSString *)string;
 + (PKSpaceCreateStatus)spaceCreateStatusForString:(NSString *)string;
++ (PKSpaceMemberRequestStatus)spaceMemberRequestStatusForString:(NSString *)string;
 
 // Avatar
 + (PKAvatarType)avatarTypeForString:(NSString *)string;
