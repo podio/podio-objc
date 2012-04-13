@@ -127,6 +127,7 @@
 #import "PKShareCategoryData.h"
 #import "PKSpaceMemberRequestData.h"
 #import "PKReferenceBatchData.h"
+#import "PKAppFieldDataFactory.h"
 
 #pragma mark - Categories
 

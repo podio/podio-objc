@@ -76,7 +76,7 @@
   NSString *className = NSStringFromClass([self.mapping class]);
   Class klass = [self.provider mappedClassForMappingClassName:className];
   if (klass == nil) {
-    PKLogDebug(@"No object class for mapping class %@, skipping...", className);
+    PKLogWarn(@"No object class for mapping class %@, skipping...", className);
     return nil;
   }
   

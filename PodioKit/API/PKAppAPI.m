@@ -10,6 +10,10 @@
 
 @implementation PKAppAPI
 
++ (PKRequest *)requestForAppWithId:(NSUInteger)appId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d", appId] method:PKAPIRequestMethodGET];
+}
+
 + (PKRequest *)requestToInstallAppWithId:(NSUInteger)appId spaceId:(NSUInteger)spaceId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d/install", appId] method:PKAPIRequestMethodPOST];
   

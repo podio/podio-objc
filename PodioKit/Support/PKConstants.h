@@ -213,9 +213,32 @@ typedef enum {
   PKTaskTotalsTimeAll,
 } PKTaskTotalsTime;
 
-#pragma mark - Item
+#pragma mark - App
 
 // Field types
+typedef enum {
+  PKAppFieldTypeNone = 0,
+  PKAppFieldTypeTitle,
+  PKAppFieldTypeText, 
+  PKAppFieldTypeNumber,
+  PKAppFieldTypeState,
+  PKAppFieldTypeImage,
+  PKAppFieldTypeMedia,
+  PKAppFieldTypeDate,
+  PKAppFieldTypeApp,
+  PKAppFieldTypeMember,
+  PKAppFieldTypeContact,
+  PKAppFieldTypeMoney,
+  PKAppFieldTypeProgress,
+  PKAppFieldTypeLocation,
+  PKAppFieldTypeVideo,
+  PKAppFieldTypeDuration,
+  PKAppFieldTypeEmbed,
+  PKAppFieldTypeCalculation,
+  PKAppFieldTypeQuestion,
+  PKAppFieldTypeCategory,
+} PKAppFieldType;
+
 static NSString * const kPKAppFieldTypeTitle = @"title";
 static NSString * const kPKAppFieldTypeText = @"text";
 static NSString * const kPKAppFieldTypeNumber = @"number";
@@ -235,6 +258,8 @@ static NSString * const kPKAppFieldTypeEmbed = @"embed";
 static NSString * const kPKAppFieldTypeCalculation = @"calculation";
 static NSString * const kPKAppFieldTypeQuestion = @"question";
 static NSString * const kPKAppFieldTypeCategory = @"category";
+
+#pragma mark - Item
 
 // Item revision
 typedef enum {
@@ -566,5 +591,9 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 // Providers
 + (PKProviderCapability)providerCapabilityForString:(NSString *)string;
 + (NSString *)stringForProviderCapability:(PKProviderCapability)capability;
+
+// App
++ (PKAppFieldType)appFieldTypeForString:(NSString *)string;
++ (NSString *)stringForAppFieldType:(PKAppFieldType)type;
 
 @end

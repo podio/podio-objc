@@ -10,6 +10,7 @@
 
 @interface PKAppAPI : PKBaseAPI
 
++ (PKRequest *)requestForAppWithId:(NSUInteger)appId;
 + (PKRequest *)requestToInstallAppWithId:(NSUInteger)appId spaceId:(NSUInteger)spaceId;
 + (PKRequest *)requestForAppsInSpaceWithId:(NSUInteger)spaceId;
 

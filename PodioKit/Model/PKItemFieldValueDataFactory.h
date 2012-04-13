@@ -10,6 +10,6 @@
 
 @interface PKItemFieldValueDataFactory : NSObject
 
-+ (id)dataFromDictionary:(NSDictionary *)dict fieldType:(NSString *)fieldType;
++ (id)dataFromDictionary:(NSDictionary *)dict fieldType:(PKAppFieldType)fieldType;
 
 @end

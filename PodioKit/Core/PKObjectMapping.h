@@ -43,6 +43,8 @@
 
 - (void)hasDateProperty:(NSString *)property forAttribute:(NSString *)attribute isUTC:(BOOL)isUTC;
 
+- (void)hasRightsProperty:(NSString *)property forAttribute:(NSString *)attribute;
+
 - (void)hasRelationship:(NSString *)property 
            forAttribute:(NSString *)attribute 
         inverseProperty:(NSString *)inverseProperty 
