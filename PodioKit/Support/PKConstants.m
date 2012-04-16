@@ -776,4 +776,35 @@
   return string;
 }
 
+#pragma mark - Images
+
++ (NSString *)stringForImageSize:(PKImageSize)imageSize {
+  NSString *string = nil;
+  
+  switch (imageSize) {
+    case PKImageSizeTiny:
+      string = kPKImageSizeTiny;
+      break;
+    case PKImageSizeSmall:
+      string = kPKImageSizeSmall;
+      break;
+    case PKImageSizeMedium:
+      string = kPKImageSizeMedium;
+      break;
+    case PKImageSizeBadge:
+      string = kPKImageSizeBadge;
+      break;
+    case PKImageSizeLarge:
+      string = kPKImageSizeLarge;
+      break;
+    case PKImageSizeExtraLarge:
+      string = kPKImageSizeExtraLarge;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
 @end
