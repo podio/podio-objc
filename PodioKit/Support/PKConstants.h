@@ -579,10 +579,28 @@ typedef enum {
 static NSString * const kPKAvatarTypeFile = @"file";
 static NSString * const kPKAvatarTypeIcon = @"icon";
 
+typedef enum {
+  PKAvatarSizeNone = 0,
+  PKAvatarSizeTiny,
+  PKAvatarSizeSmall,
+  PKAvatarSizeMedium,
+  PKAvatarSizeLarge,
+} PKAvatarSize;
+
 static NSString * const kPKAvatarSizeTiny = @"tiny";      // 16x16
 static NSString * const kPKAvatarSizeSmall = @"small";    // 32x32
 static NSString * const kPKAvatarSizeMedium = @"medium";  // 80x80
 static NSString * const kPKAvatarSizeLarge = @"large";    // 160x160
+
+typedef enum {
+  PKImageSizeNone = 0,
+  PKImageSizeTiny,
+  PKImageSizeSmall,
+  PKImageSizeMedium,
+  PKImageSizeBadge,
+  PKImageSizeLarge,
+  PKImageSizeExtraLarge,
+} PKImageSize;
 
 static NSString * const kPKImageSizeTiny = @"tiny"; // 16x16
 static NSString * const kPKImageSizeSmall = @"small"; // 32x32
@@ -642,5 +660,8 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 // App
 + (PKAppFieldType)appFieldTypeForString:(NSString *)string;
 + (NSString *)stringForAppFieldType:(PKAppFieldType)type;
+
+// Images
++ (NSString *)stringForImageSize:(PKImageSize)imageSize;
 
 @end
