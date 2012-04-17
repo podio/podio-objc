@@ -37,7 +37,7 @@
       data = [PKItemFieldValueDateData dataFromDictionary:dict];
       break;
     case PKAppFieldTypeImage:
-      data = [PKFileData dataFromDictionary:dict];
+      data = [PKFileData dataFromDictionary:[dict pk_objectForKey:@"value"]];
       break;
     case PKAppFieldTypeEmbed:
       data = [PKItemFieldValueEmbedData dataFromDictionary:dict];
