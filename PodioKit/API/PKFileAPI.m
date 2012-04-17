@@ -30,6 +30,18 @@
   return operation;
 }
 
++ (PKRequestOperation *)downloadFileWithURLString:(NSString *)urlString savePath:(NSString *)savePath delegate:(id)delegate completion:(PKRequestCompletionBlock)completion {
+  PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:PKAPIRequestMethodGET body:nil];
+  operation.requestCompletionBlock = completion;
+  
+  operation.downloadProgressDelegate = delegate;
+  operation.downloadDestinationPath = savePath;
+  
+  [[[PKRequestManager sharedManager] apiClient] addRequestOperation:operation];
+  
+  return operation;
+}
+
 + (PKRequest *)requestToAttachFileWithId:(NSUInteger)fileId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d/attach", fileId] method:PKAPIRequestMethodPOST];
   
