@@ -364,6 +364,9 @@ typedef enum {
 //  PKReferenceTypeInvoice,
 //  PKReferenceTypePayment,
   PKReferenceTypeMeeting,
+  PKReferenceTypeBatch,
+  PKReferenceTypeSystem,
+  PKReferenceTypeSpaceMemberRequest,
 } PKReferenceType;
 
 static NSString * const kPKReferenceTypeApp = @"app";
@@ -408,6 +411,9 @@ static NSString * const kPKReferenceTypeContract = @"contract";
 //static NSString * const kPKReferenceTypeInvoice = @"invoice";
 //static NSString * const kPKReferenceTypePayment = @"payment";
 static NSString * const kPKReferenceTypeMeeting = @"meeting";
+static NSString * const kPKReferenceTypeBatch = @"batch";
+static NSString * const kPKReferenceTypeSystem = @"system";
+static NSString * const kPKReferenceTypeSpaceMemberRequest = @"space_member_request";
 
 // Notifications
 typedef enum {
@@ -437,6 +443,8 @@ typedef enum {
   PKNotificationTypeMeetingParticipantRemove,
   PKNotificationTypeReminder,
   PKNotificationTypeSpaceMemberRequest,
+  PKNotificationTypeBatchProcess,
+  PKNotificationTypeBatchComplete,
 } PKNotificationType;
 
 static NSString * const kPKNotificationTypeAlert = @"alert";
@@ -464,6 +472,8 @@ static NSString * const kPKNotificationTypeMeetingParticipantAdd = @"meeting_par
 static NSString * const kPKNotificationTypeMeetingParticipantRemove = @"meeting_participant_remove";
 static NSString * const kPKNotificationTypeReminder = @"reminder";
 static NSString * const kPKNotificationTypeSpaceMemberRequest = @"space_member_request";
+static NSString * const kPKNotificationTypeBatchProcess = @"batch_process";
+static NSString * const kPKNotificationTypeBatchComplete = @"batch_complete";
 
 // Meetings
 typedef enum {
@@ -487,6 +497,11 @@ static NSString * const kPKProviderCapabilityMeetings = @"meetings";
 
 // Files
 static NSString * const kPKFileHostedByPodio = @"podio";
+
+// Batch
+static NSString * const kPKBatchPluginAppImport = @"app_import";
+static NSString * const kPKBatchPluginAppExport = @"app_export";
+static NSString * const kPKBatchPluginAppConnectionLoad = @"connection_load";
 
 // Avatars
 typedef enum {

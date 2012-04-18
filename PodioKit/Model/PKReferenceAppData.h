@@ -8,13 +8,7 @@
 
 #import "PKObjectData.h"
 
-@interface PKReferenceAppData : PKObjectData {
-  
- @private
-  NSInteger appId_;
-  NSString *name_;
-  NSString *icon_;
-}
+@interface PKReferenceAppData : PKObjectData
 
 @property (nonatomic) NSInteger appId;
 @property (nonatomic, copy) NSString *name;

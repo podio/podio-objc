@@ -353,8 +353,14 @@
     type = PKReferenceTypeContract;
   } else if ([string isEqualToString:kPKReferenceTypeMeeting]) {
     type = PKReferenceTypeMeeting;
+  } else if ([string isEqualToString:kPKReferenceTypeBatch]) {
+    type = PKReferenceTypeBatch;
+  } else if ([string isEqualToString:kPKReferenceTypeSystem]) {
+    type = PKReferenceTypeSystem;
+  } else if ([string isEqualToString:kPKReferenceTypeSpaceMemberRequest]) {
+    type = PKReferenceTypeSpaceMemberRequest;
   }
-  
+    
   return type;
 }
 
@@ -597,6 +603,10 @@
     type = PKNotificationTypeReminder;
   } else if ([string isEqualToString:kPKNotificationTypeSpaceMemberRequest]) {
     type = PKNotificationTypeSpaceMemberRequest;
+  } else if ([string isEqualToString:kPKNotificationTypeBatchProcess]) {
+    type = PKNotificationTypeBatchProcess;
+  } else if ([string isEqualToString:kPKNotificationTypeBatchComplete]) {
+    type = PKNotificationTypeBatchComplete;
   }
   
   return type;
