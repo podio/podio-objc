@@ -3,10 +3,11 @@
 //  DemoApp
 //
 //  Created by Sebastian Rehnby on 4/4/12.
-//  Copyright (c) 2012 Rehserve IT. All rights reserved.
+//  Copyright (c) 2012 Podio. All rights reserved.
 //
 
 #import "PKAppDelegate.h"
+#import "PKLoginViewController.h"
 #import "PKTaskListViewController.h"
 
 // Your API key/secret
@@ -16,16 +17,15 @@ static NSString * const kAPISecret = @"KmClI7RDBXPRTxtf9mjSbecJf9NMLtDjA45Hm5V0u
 // Provide a descriptive user agent to make it easier to track issues with your application in logs etc.
 static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 
-// Your application should prompt the user for their credentials
-static NSString * const kEmail = @"podiokitdemoapp@gmail.com";
-static NSString * const kPassword = @"sup3rs3cr3t";
-
 @interface PKAppDelegate ()
 
 @property (nonatomic, strong) PKOAuth2Token *authToken;
 @property (nonatomic, strong) PKTaskListViewController *taskListController;
 
-// Session livecycle callbacks
+- (void)presentLoginScreenAnimated:(BOOL)animated;
+- (void)logout;
+
+// Session livecycle notifications
 - (void)didAuthenticateUserNotification:(NSNotification *)notification;
 - (void)authenticationDidFailNotification:(NSNotification *)notification;
 - (void)needsReauthenticationNotification:(NSNotification *)notification;
@@ -59,6 +59,8 @@ static NSString * const kPassword = @"sup3rs3cr3t";
   
   // Initialize window
   self.taskListController = [[PKTaskListViewController alloc] init];
+  self.taskListController.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Log out", nil) style:UIBarButtonItemStyleBordered target:self action:@selector(logout)];
+  
   UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:self.taskListController];
   
   self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -69,11 +71,28 @@ static NSString * const kPassword = @"sup3rs3cr3t";
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  // Authenticate whenever the application becomes active. Excessive in a real application but simple for the demo.
-  [[PKAPIClient sharedClient] authenticateWithEmail:kEmail password:kPassword];
+  if (self.authToken == nil) {
+    [self presentLoginScreenAnimated:NO];
+  }
 }
 
+#pragma mark - Implementation
+
+- (void)presentLoginScreenAnimated:(BOOL)animated {
+  PKLoginViewController *controller = [[PKLoginViewController alloc] init];
+  [self.window.rootViewController presentModalViewController:controller animated:NO];
+}
+
+- (void)logout {
+  self.authToken = nil;
+  [self presentLoginScreenAnimated:YES];
+}
+
+#pragma mark - Session lifecycle notifications
+
 - (void)didAuthenticateUserNotification:(NSNotification *)notification {
+  [self.window.rootViewController dismissModalViewControllerAnimated:YES];
+  
   self.authToken = [notification.userInfo objectForKey:PKAPIClientTokenKey];
   self.taskListController.userId = [[self.authToken.refData pk_objectForKey:@"id"] unsignedIntegerValue];
   
