@@ -16,7 +16,7 @@
 @implementation PKRequestManager
 
 @synthesize apiClient = apiClient_;
-@synthesize mappingManager = mappingManager_;
+@synthesize mappingCoordinator = mappingCoordinator_;
 
 + (PKRequestManager *)sharedManager {
   static PKRequestManager *sharedInstance = nil;
@@ -35,17 +35,26 @@
     
     // Custom initialization
     apiClient_ = nil;
-    mappingManager_ = nil;
     
     return self;
   }
 }
 
+#pragma mark - Impl
+
+- (PKAPIClient *)apiClient {
+  return apiClient_ != nil ? apiClient_ : [PKAPIClient sharedClient];
+}
+
+- (void)configureWithClient:(PKAPIClient *)client mappingCoordinator:(PKMappingCoordinator *)coordinator {
+  apiClient_ = client;
+  mappingCoordinator_ = coordinator;  
+}
+
 #pragma mark - Request
 
 - (PKRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion {
-  PKAssert(self.apiClient != nil, @"No API client set.");
-  PKAssert(self.mappingManager != nil, @"No mapping manager set.");
+  PKAssert(self.mappingCoordinator != nil, @"No mapping coordinator set.");
   
   NSString *urlString = [self.apiClient URLStringForPath:request.uri parameters:request.parameters];
   PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];
@@ -53,7 +62,7 @@
   operation.allowsConcurrent = request.allowsConcurrent;
   
   if (request.objectMapping != nil) {
-    PKObjectMapper *mapper = [self.mappingManager objectMapper];
+    PKObjectMapper *mapper = [self.mappingCoordinator objectMapper];
     mapper.mapping = request.objectMapping;
     mapper.mappingBlock = request.mappingBlock;
     mapper.offset = request.offset;

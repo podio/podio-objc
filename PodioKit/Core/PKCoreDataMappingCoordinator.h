@@ -1,5 +1,5 @@
 //
-//  PKCoreDataMappingManager.h
+//  PKCoreDataMappingCoordinator.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/14/11.
@@ -7,12 +7,12 @@
 //
 
 #import <CoreData/CoreData.h>
-#import "PKMappingManager.h"
+#import "PKMappingCoordinator.h"
 #import "PKObjectMapper.h"
 #import "PKMappingProvider.h"
 
 
-@interface PKCoreDataMappingManager : PKMappingManager <PKObjectMapperDelegate> {
+@interface PKCoreDataMappingCoordinator : PKMappingCoordinator <PKObjectMapperDelegate> {
 
  @private
   NSManagedObjectContext *managedObjectContext_;

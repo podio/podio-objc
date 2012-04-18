@@ -1,5 +1,5 @@
 //
-//  PKMappingManager.h
+//  PKMappingCoordinator.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/14/11.
@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "PKObjectMapper.h"
 
-@interface PKMappingManager : NSObject {
+@interface PKMappingCoordinator : NSObject {
 
  @private
   PKMappingProvider *mappingProvider_;

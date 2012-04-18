@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 Podio. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <SenTestingKit/SenTestingKit.h>
 
 #define PKAssertNil(a1)              STAssertTrue(a1 == nil, @"Should be nil")

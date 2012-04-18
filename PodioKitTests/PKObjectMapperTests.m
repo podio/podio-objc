@@ -143,10 +143,8 @@
 #pragma mark - Helpers
 
 - (PKObjectMapper *)createObjectMapper {
-  PKObjectMapper *objectMapper = [[PKObjectMapper alloc] initWithMappingProvider:self.mappingProvider];
-  
   PKDefaultObjectRepository *repository = [[PKDefaultObjectRepository alloc] init];
-  objectMapper.repository = repository;
+  PKObjectMapper *objectMapper = [[PKObjectMapper alloc] initWithProvider:self.mappingProvider repository:repository];
   
   return objectMapper;
 }

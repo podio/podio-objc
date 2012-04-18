@@ -10,13 +10,14 @@
 
 @interface PKOAuth2Token : NSObject <NSCoding>
 
-@property (nonatomic, readonly) NSString *accessToken;
-@property (nonatomic, readonly) NSString *refreshToken;
-@property (nonatomic, readonly) NSString *transferToken;
-@property (nonatomic, readonly) NSDate *expiresOn;
+@property (nonatomic, copy, readonly) NSString *accessToken;
+@property (nonatomic, copy, readonly) NSString *refreshToken;
+@property (nonatomic, copy, readonly) NSString *transferToken;
+@property (nonatomic, copy, readonly) NSDate *expiresOn;
+@property (nonatomic, copy, readonly) NSDictionary *refData;
 
-- (id)initWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn;
-+ (id)tokenWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn;
+- (id)initWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn refData:(NSDictionary *)refData;
++ (id)tokenWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn refData:(NSDictionary *)refData;
 
 - (BOOL)hasExpired;
 
