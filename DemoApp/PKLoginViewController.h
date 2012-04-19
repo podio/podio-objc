@@ -10,9 +10,9 @@
 
 @interface PKLoginViewController : UIViewController
 
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton *loginButton;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailTextField;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)loginButtonPressed;
 
