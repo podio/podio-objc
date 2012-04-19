@@ -13,18 +13,15 @@
 
 @synthesize objectMapping = objectMapping_;
 @synthesize inversePropertyName = inversePropertyName_;
-@synthesize inverseScopeAttributeNames = inverseScopeAttributeNames_;
 
 - (id)initWithPropertyName:(NSString *)propertyName 
              attributeName:(NSString *)attributeName 
            inverseProperty:(NSString *)inverseProperty 
-inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames 
              objectMapping:(PKObjectMapping *)objectMapping {
   self = [super initWithPropertyName:propertyName attributeName:attributeName];
   if (self) {
     self.objectMapping = objectMapping;
     self.inversePropertyName = inverseProperty;
-    self.inverseScopeAttributeNames = inverseScopeAttributeNames;
   }
   return self;
 }
@@ -32,12 +29,10 @@ inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames
 + (id)mappingForPropertyName:(NSString *)propertyName 
                attributeName:(NSString *)attributeName 
              inverseProperty:(NSString *)inverseProperty 
-  inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames 
                objectMapping:(PKObjectMapping *)objectMapping {
   return [[self alloc] initWithPropertyName:propertyName 
                                attributeName:attributeName 
                              inverseProperty:inverseProperty 
-                  inverseScopeAttributeNames:inverseScopeAttributeNames 
                                objectMapping:objectMapping];
 }
 

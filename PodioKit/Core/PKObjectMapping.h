@@ -48,7 +48,6 @@
 - (void)hasRelationship:(NSString *)property 
            forAttribute:(NSString *)attribute 
         inverseProperty:(NSString *)inverseProperty 
- inverseScopeProperties:(NSArray *)inverseScopeProperties 
           objectMapping:(PKObjectMapping *)objectMapping;
 
 - (void)hasMappingForAttribute:(NSString *)attribute 

@@ -339,13 +339,9 @@
   
   // Scope predicate
   NSPredicate *scopePredicate = nil;
-  if (mapping.inversePropertyName != nil && mapping.inverseScopeAttributeNames != nil) {
-    NSArray *invScopePreds = [mapping.inverseScopeAttributeNames pk_arrayFromObjectsCollectedWithBlock:^id(id invScopeAttrName) {
-      NSString *predicateString = [NSString stringWithFormat:@"%@.%@ == %%@", mapping.inversePropertyName, invScopeAttrName];
-      return [NSPredicate predicateWithFormat:predicateString, [(id)object valueForKey:invScopeAttrName]];
-    }];
-    
-    scopePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:invScopePreds];
+  if (mapping.inversePropertyName != nil) {
+    NSString *predicateString = [NSString stringWithFormat:@"%@ == %%@", mapping.inversePropertyName];
+    scopePredicate = [NSPredicate predicateWithFormat:predicateString, object];
   }
   
   if ([attributeValue isKindOfClass:[NSArray class]]) {

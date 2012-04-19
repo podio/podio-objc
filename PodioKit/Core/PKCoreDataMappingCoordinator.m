@@ -69,6 +69,10 @@
   if ([mapper.repository isKindOfClass:[PKCoreDataRepository class]]) {
     NSManagedObjectContext *context = [(PKCoreDataRepository *)mapper.repository managedObjectContext];
     
+    PKLogDebug(@"Inserted object count: %d", [[context insertedObjects] count]);
+    PKLogDebug(@"Updated object count: %d", [[context updatedObjects] count]);
+    PKLogDebug(@"Deleted object count: %d", [[context deletedObjects] count]);
+    
     // Save context
     NSError *error = nil;
     if (![context save:&error]) {
