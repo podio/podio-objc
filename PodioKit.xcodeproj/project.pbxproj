@@ -124,9 +124,7 @@
 		5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
 		5032BABA144489CB00B7F7C7 /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
 		5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAC614448E1500B7F7C7 /* PKTestTask.m */; };
-		5032BACC1444907800B7F7C7 /* PKTaskMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BACA1444907800B7F7C7 /* PKTaskMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5032BACD1444907800B7F7C7 /* PKTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BACB1444907800B7F7C7 /* PKTaskMapping.m */; };
-		5032BACE1444907800B7F7C7 /* PKTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BACB1444907800B7F7C7 /* PKTaskMapping.m */; };
+		5032BACE1444907800B7F7C7 /* PKTestTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */; };
 		5032BAD6144491A500B7F7C7 /* PKTaskAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
 		5032BAD8144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
@@ -509,8 +507,8 @@
 		5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBaseObject.m; sourceTree = "<group>"; };
 		5032BAC514448E1500B7F7C7 /* PKTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTask.h; sourceTree = "<group>"; };
 		5032BAC614448E1500B7F7C7 /* PKTestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestTask.m; sourceTree = "<group>"; };
-		5032BACA1444907800B7F7C7 /* PKTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskMapping.h; sourceTree = "<group>"; };
-		5032BACB1444907800B7F7C7 /* PKTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMapping.m; sourceTree = "<group>"; };
+		5032BACA1444907800B7F7C7 /* PKTestTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTestTaskMapping.h; path = ../PodioKit/Model/PKTestTaskMapping.h; sourceTree = "<group>"; };
+		5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTestTaskMapping.m; path = ../PodioKit/Model/PKTestTaskMapping.m; sourceTree = "<group>"; };
 		5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskAPI.h; sourceTree = "<group>"; };
 		5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskAPI.m; sourceTree = "<group>"; };
 		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
@@ -797,8 +795,6 @@
 			children = (
 				50FCC39A14A1C9960001E6F4 /* PKObjectMapperTests.h */,
 				50FCC39B14A1C9960001E6F4 /* PKObjectMapperTests.m */,
-				5032BAC514448E1500B7F7C7 /* PKTestTask.h */,
-				5032BAC614448E1500B7F7C7 /* PKTestTask.m */,
 				50FCC39D14A1D4D90001E6F4 /* PKTestItem.h */,
 				50FCC39E14A1D4D90001E6F4 /* PKTestItem.m */,
 				50FCC3A614A1E0520001E6F4 /* PKTestItemField.h */,
@@ -813,7 +809,12 @@
 				50FCC3B014A1E7DE0001E6F4 /* PKTestItemAppMapping.m */,
 				50FCC3A314A1D6250001E6F4 /* PKTestMappingProvider.h */,
 				50FCC3A414A1D6250001E6F4 /* PKTestMappingProvider.m */,
-				50FCC39914A1C95C0001E6F4 /* Model Mappings */,
+				502B5FB714458C93004F4185 /* PKTaskMappingTests.h */,
+				502B5FB814458C93004F4185 /* PKTaskMappingTests.m */,
+				5032BAC514448E1500B7F7C7 /* PKTestTask.h */,
+				5032BAC614448E1500B7F7C7 /* PKTestTask.m */,
+				5032BACA1444907800B7F7C7 /* PKTestTaskMapping.h */,
+				5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */,
 				5021CD2F144594B800A7013D /* Fixtures */,
 			);
 			name = Mapping;
@@ -1211,22 +1212,12 @@
 			isa = PBXGroup;
 			children = (
 				5030C01B1435E71A00027F07 /* Models */,
-				5065C0AA1434536200360855 /* Mappings */,
 				5021CD2A14458FAE00A7013D /* PKDefaultObjectRepository.h */,
 				5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */,
 				509D6972152CF6E10033291C /* PKDefaultMappingCoordinator.h */,
 				509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		5065C0AA1434536200360855 /* Mappings */ = {
-			isa = PBXGroup;
-			children = (
-				5032BACA1444907800B7F7C7 /* PKTaskMapping.h */,
-				5032BACB1444907800B7F7C7 /* PKTaskMapping.m */,
-			);
-			name = Mappings;
 			sourceTree = "<group>";
 		};
 		5065C0CE14345AB900360855 /* API */ = {
@@ -1425,15 +1416,6 @@
 			name = OAuth2Client;
 			sourceTree = "<group>";
 		};
-		50FCC39914A1C95C0001E6F4 /* Model Mappings */ = {
-			isa = PBXGroup;
-			children = (
-				502B5FB714458C93004F4185 /* PKTaskMappingTests.h */,
-				502B5FB814458C93004F4185 /* PKTaskMappingTests.m */,
-			);
-			name = "Model Mappings";
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1530,7 +1512,6 @@
 				50CC1D5A148CDA3A000B57EA /* PKFileAPI.h in Headers */,
 				50CC1D5D148CDA3A000B57EA /* PKItemAPI.h in Headers */,
 				50CC1D60148CDA3A000B57EA /* PKNotificationAPI.h in Headers */,
-				5032BACC1444907800B7F7C7 /* PKTaskMapping.h in Headers */,
 				5026A2BB147114B70051D7C8 /* NSError+PKErrors.h in Headers */,
 				5026A2BF147116BC0051D7C8 /* PKRequestResult.h in Headers */,
 				50CC1CDE14878100000B57EA /* PKReferenceAppData.h in Headers */,
@@ -1750,7 +1731,6 @@
 				50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */,
 				50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
 				5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
-				5032BACD1444907800B7F7C7 /* PKTaskMapping.m in Sources */,
 				5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
 				502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */,
 				5021CD2D14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */,
@@ -1876,7 +1856,7 @@
 				50A5FB35143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
 				5032BABA144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
 				5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */,
-				5032BACE1444907800B7F7C7 /* PKTaskMapping.m in Sources */,
+				5032BACE1444907800B7F7C7 /* PKTestTaskMapping.m in Sources */,
 				5032BAD8144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
 				502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */,
 				502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */,

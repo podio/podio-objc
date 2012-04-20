@@ -9,7 +9,7 @@
 #import "PKTaskMappingTests.h"
 #import "PKTestMappingProvider.h"
 #import "PKDefaultObjectRepository.h"
-#import "PKTaskMapping.h"
+#import "PKTestTaskMapping.h"
 #import "PKTestTask.h"
 #import "JSONKit.h"
 #import "PKAssert.h"
@@ -52,7 +52,7 @@
 - (void)testGetActiveTasks {
   id data = [self dataWithContentsOfJSONFile:@"GetActiveTasks"];
   
-  PKObjectMapper *mapper = [self createObjectMapperWithMapping:[PKTaskMapping mapping]];
+  PKObjectMapper *mapper = [self createObjectMapperWithMapping:[PKTestTaskMapping mapping]];
   mapper.mappingBlock = ^(id obj) {
     [obj setValue:[NSNumber numberWithInt:PKTaskTypeActive] forKey:@"type"];
   };
@@ -68,7 +68,7 @@
 - (void)testGetTask {
   id data = [self dataWithContentsOfJSONFile:@"GetTask"];
   
-  PKObjectMapper *mapper = [self createObjectMapperWithMapping:[PKTaskMapping mapping]];
+  PKObjectMapper *mapper = [self createObjectMapperWithMapping:[PKTestTaskMapping mapping]];
   mapper.mappingBlock = ^(id obj) {
     [obj setValue:[NSNumber numberWithInt:PKTaskTypeActive] forKey:@"type"];
   };

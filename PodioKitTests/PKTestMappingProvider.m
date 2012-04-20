@@ -15,7 +15,7 @@
   [self addMappedClassName:@"PKTestItemField" forMappingClassName:@"PKTestItemFieldMapping"];
   [self addMappedClassName:@"PKTestItemApp" forMappingClassName:@"PKTestItemAppMapping"];
   
-  [self addMappedClassName:@"PKTestTask" forMappingClassName:@"PKTaskMapping"];
+  [self addMappedClassName:@"PKTestTask" forMappingClassName:@"PKTestTaskMapping"];
 }
 
 @end

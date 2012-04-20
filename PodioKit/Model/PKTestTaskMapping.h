@@ -1,5 +1,5 @@
 //
-//  PKTaskMapping.h
+//  PKTestTaskMapping.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 10/11/11.
@@ -8,6 +8,6 @@
 
 #import "PKObjectMapping.h"
 
-@interface PKTaskMapping : PKObjectMapping
+@interface PKTestTaskMapping : PKObjectMapping
 
 @end
