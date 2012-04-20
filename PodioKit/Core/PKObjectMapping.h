@@ -18,7 +18,6 @@
  @private
   NSMutableArray *mappings_;
   NSMutableDictionary *propertyMappings_;
-  NSMutableArray *mappedDataPathComponents_;
   NSString *sequencePropertyName_;
 }
 
