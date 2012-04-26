@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-#pragma mark - Errors/Exceptions
+#pragma mark - Errors and exceptions
 
 static NSString * const kPodioKitErrorDomain = @"PodioKitErrorDomain";
 
@@ -213,6 +213,17 @@ typedef enum {
   PKTaskTotalsTimeAll,
 } PKTaskTotalsTime;
 
+#pragma mark - App
+
+typedef enum {
+  PKAppTypeNone,
+  PKAppTypeStandard,
+  PKAppTypeMeeting,
+} PKAppType;
+
+static NSString * const kPKAppTypeStandard = @"standard";
+static NSString * const kPKAppTypeMeeting = @"meeting";
+
 #pragma mark - Item
 
 // Field types
@@ -415,7 +426,8 @@ static NSString * const kPKReferenceTypeBatch = @"batch";
 static NSString * const kPKReferenceTypeSystem = @"system";
 static NSString * const kPKReferenceTypeSpaceMemberRequest = @"space_member_request";
 
-// Notifications
+#pragma mark - Notifications
+
 typedef enum {
   PKNotificationTypeNone = 0,
   PKNotificationTypeAlert,
@@ -475,15 +487,30 @@ static NSString * const kPKNotificationTypeSpaceMemberRequest = @"space_member_r
 static NSString * const kPKNotificationTypeBatchProcess = @"batch_process";
 static NSString * const kPKNotificationTypeBatchComplete = @"batch_complete";
 
-// Meetings
+#pragma mark - Meetings
+
 typedef enum {
-  PKMeetingPluginTypeNone = 0,
-  PKMeetingPluginTypeCitrix,
-} PKMeetingPluginType;
+  PKExternalMeetingTypeNone = 0,
+  PKExternalMeetingTypeGoToMeeting,
+} PKExternalMeetingType;
 
-static NSString * const kPKMeetingPluginTypeCitrix = @"citrix";
+static NSString * const kPKExternalMeetingTypeGoToMeeting = @"gotomeeting";
 
-// Providers
+typedef enum {
+  PKMeetingParticipantStatusNone,
+  PKMeetingParticipantStatusInvited,
+  PKMeetingParticipantStatusAccepted,
+  PKMeetingParticipantStatusDeclined,
+  PKMeetingParticipantStatusTentative,
+} PKMeetingParticipantStatus;
+
+static NSString * const kPKMeetingParticipantStatusInvited = @"invited";
+static NSString * const kPKMeetingParticipantStatusAccepted = @"accepted";
+static NSString * const kPKMeetingParticipantStatusDeclined = @"declined";
+static NSString * const kPKMeetingParticipantStatusTentative = @"tentative";
+
+#pragma mark - Providers
+
 typedef enum {
   PKProviderCapabilityNone = 0,
   PKProviderCapabilityFiles,
@@ -495,15 +522,16 @@ static NSString * const kPKProviderCapabilityFiles = @"files";
 static NSString * const kPKProviderCapabilityContacts = @"contacts";
 static NSString * const kPKProviderCapabilityMeetings = @"meetings";
 
-// Files
+#pragma mark - Files
 static NSString * const kPKFileHostedByPodio = @"podio";
 
-// Batch
+#pragma mark - Batch
 static NSString * const kPKBatchPluginAppImport = @"app_import";
 static NSString * const kPKBatchPluginAppExport = @"app_export";
 static NSString * const kPKBatchPluginAppConnectionLoad = @"connection_load";
 
-// Avatars
+#pragma mark - Avatars
+
 typedef enum {
   PKAvatarTypeNone = 0,
   PKAvatarTypeFile,
@@ -531,6 +559,9 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 + (PKTaskStatus)taskStatusForString:(NSString *)string;
 + (PKTaskActionType)taskActionTypeForString:(NSString *)string;
 + (PKTaskGroup)taskGroupForString:(NSString *)string;
+
+// App
++ (PKAppType)appTypeForString:(NSString *)string;
 
 // Stream
 + (PKReferenceType)streamObjectTypeForString:(NSString *)string;
@@ -561,7 +592,9 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 + (PKNotificationType)notificationTypeForString:(NSString *)string;
 
 // Meetings
-+ (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string;
++ (PKExternalMeetingType)externalMeetingTypeForString:(NSString *)string;
++ (PKMeetingParticipantStatus)meetingParticipantStatusForString:(NSString *)string;
++ (NSString *)stringForMeetingParticipantStatus:(PKMeetingParticipantStatus)status;
 
 // Providers
 + (PKProviderCapability)providerCapabilityForString:(NSString *)string;

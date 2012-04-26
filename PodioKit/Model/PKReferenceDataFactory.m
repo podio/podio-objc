@@ -14,7 +14,6 @@
 #import "PKReferenceItemData.h"
 #import "PKReferenceMessageData.h"
 #import "PKReferenceRatingData.h"
-#import "PKReferenceMeetingData.h"
 
 @implementation PKReferenceDataFactory
 
@@ -42,9 +41,6 @@
       break;
     case PKReferenceTypeTaskAction:
       data = [PKReferenceTaskActionData dataFromDictionary:dict];
-      break;
-    case PKReferenceTypeMeeting:
-      data = [PKReferenceMeetingData dataFromDictionary:dict];
       break;
     default:
       break;

@@ -96,7 +96,6 @@
 #import "PKReferenceAppData.h"
 #import "PKReferenceCommentData.h"
 #import "PKReferenceItemData.h"
-#import "PKReferenceMeetingData.h"
 #import "PKReferenceMessageData.h"
 #import "PKReferenceProfileData.h"
 #import "PKReferenceRatingData.h"
@@ -112,8 +111,7 @@
 #import "PKStreamItemData.h"
 #import "PKStreamStatusData.h"
 #import "PKStreamTaskData.h"
-#import "PKMeetingPluginCitrixData.h"
-#import "PKMeetingPluginDataFactory.h"
+#import "PKExternalMeetingData.h"
 #import "PKEmbedData.h"
 #import "PKFileData.h"
 #import "PKExternalFileData.h"
@@ -127,6 +125,7 @@
 #import "PKShareCategoryData.h"
 #import "PKSpaceMemberRequestData.h"
 #import "PKReferenceBatchData.h"
+#import "PKItemParticipantsData.h"
 
 #pragma mark - Categories
 

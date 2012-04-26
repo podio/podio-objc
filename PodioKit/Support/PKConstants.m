@@ -124,6 +124,19 @@
   return group;
 }
 
+// App
++ (PKAppType)appTypeForString:(NSString *)string {
+  PKAppType type = PKAppTypeNone;
+  
+  if ([string isEqualToString:kPKAppTypeStandard]) {
+    type = PKAppTypeStandard;
+  } else if ([string isEqualToString:kPKAppTypeMeeting]) {
+    type = PKAppTypeMeeting;
+  }
+  
+  return type;
+}
+
 // Stream
 + (PKReferenceType)streamObjectTypeForString:(NSString *)string {
   PKReferenceType type = PKReferenceTypeNone;
@@ -614,14 +627,53 @@
 
 #pragma mark - Meetings
 
-+ (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string {
-  PKMeetingPluginType type = PKMeetingPluginTypeNone;
++ (PKExternalMeetingType)externalMeetingTypeForString:(NSString *)string {
+  PKExternalMeetingType type = PKExternalMeetingTypeNone;
   
-  if ([string isEqualToString:kPKMeetingPluginTypeCitrix]) {
-    type = PKMeetingPluginTypeCitrix;
+  if ([string isEqualToString:kPKExternalMeetingTypeGoToMeeting]) {
+    type = PKExternalMeetingTypeGoToMeeting;
   }
   
   return type;
+}
+
++ (PKMeetingParticipantStatus)meetingParticipantStatusForString:(NSString *)string {
+  PKMeetingParticipantStatus status = PKMeetingParticipantStatusNone;
+  
+  if ([string isEqualToString:kPKMeetingParticipantStatusInvited]) {
+    status = PKMeetingParticipantStatusInvited;
+  } else if ([string isEqualToString:kPKMeetingParticipantStatusAccepted]) {
+    status = PKMeetingParticipantStatusAccepted;
+  } else if ([string isEqualToString:kPKMeetingParticipantStatusDeclined]) {
+    status = PKMeetingParticipantStatusDeclined;
+  } else if ([string isEqualToString:kPKMeetingParticipantStatusTentative]) {
+    status = PKMeetingParticipantStatusTentative;
+  }
+  
+  return status;
+}
+
++ (NSString *)stringForMeetingParticipantStatus:(PKMeetingParticipantStatus)status {
+  NSString *string = nil;
+  
+  switch (status) {
+    case PKMeetingParticipantStatusInvited:
+      string = kPKMeetingParticipantStatusInvited;
+      break;
+    case PKMeetingParticipantStatusAccepted:
+      string = kPKMeetingParticipantStatusAccepted;
+      break;
+    case PKMeetingParticipantStatusDeclined:
+      string = kPKMeetingParticipantStatusDeclined;
+      break;
+    case PKMeetingParticipantStatusTentative:
+      string = kPKMeetingParticipantStatusTentative;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
 }
 
 #pragma mark - Providers
