@@ -159,7 +159,13 @@
     NSTimeInterval expiresIn = [[parsedData objectForKey:@"expires_in"] intValue];
     NSDate *expiresOn = [NSDate dateWithTimeIntervalSinceNow:expiresIn];
     
-    PKOAuth2Token *token = [PKOAuth2Token tokenWithAccessToken:accessToken refreshToken:refreshToken transferToken:transferToken expiresOn:expiresOn];
+    NSDictionary *refData = [parsedData objectForKey:@"ref"];
+    
+    PKOAuth2Token *token = [PKOAuth2Token tokenWithAccessToken:accessToken 
+                                                  refreshToken:refreshToken 
+                                                 transferToken:transferToken 
+                                                     expiresOn:expiresOn 
+                                                       refData:refData];
     
     // Notify
     if (requestType == PKOAuth2RequestTypeAuthenticate) {

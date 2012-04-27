@@ -10,7 +10,7 @@
 
 @implementation NSSet (PKAdditions)
 
-- (NSSet *)pk_setFromObjectsCollectedWithBlock:(id (^)(id))block {
+- (NSSet *)pk_setFromObjectsCollectedWithBlock:(id (^)(id obj))block {
   NSMutableSet *mutSet = [[NSMutableSet alloc] initWithCapacity:[self count]];
   
   [self enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {

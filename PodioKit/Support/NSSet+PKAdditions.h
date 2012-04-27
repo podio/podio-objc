@@ -10,6 +10,6 @@
 
 @interface NSSet (PKAdditions)
 
-- (NSSet *)pk_setFromObjectsCollectedWithBlock:(id (^)(id))block;
+- (NSSet *)pk_setFromObjectsCollectedWithBlock:(id (^)(id obj))block;
 
 @end

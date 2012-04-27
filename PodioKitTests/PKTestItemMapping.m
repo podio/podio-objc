@@ -21,8 +21,8 @@
 - (void)buildMappings {
   [self hasProperty:@"itemId" forAttribute:@"item_id"];
   [self hasProperty:@"title" forAttribute:@"title"];
-  [self hasRelationship:@"fields" forAttribute:@"fields" inverseProperty:nil inverseScopeProperties:nil objectMapping:[PKTestItemFieldMapping mapping]];
-  [self hasRelationship:@"app" forAttribute:@"app" inverseProperty:nil inverseScopeProperties:nil objectMapping:[PKTestItemAppMapping mapping]];
+  [self hasRelationship:@"fields" forAttribute:@"fields" inverseProperty:nil objectMapping:[PKTestItemFieldMapping mapping]];
+  [self hasRelationship:@"app" forAttribute:@"app" inverseProperty:nil objectMapping:[PKTestItemAppMapping mapping]];
 }
 
 @end

@@ -43,15 +43,15 @@ typedef void (^PKCustomMappingBlock)(id obj);
   NSDateFormatter *dateFormatter_;
 }
 
-@property (strong) PKMappingProvider *mappingProvider;
-@property (strong) id<PKObjectRepository> repository; // NOTE! The repository is retained throught the lifecycle of this mapper
+@property (strong, readonly) PKMappingProvider *provider;
+@property (strong, readonly) id<PKObjectRepository> repository; // NOTE! The repository is retained throught the lifecycle of this mapper
 @property (unsafe_unretained) id<PKObjectMapperDelegate> delegate;
 @property (strong) NSPredicate *scopePredicate;
 @property NSUInteger offset;
 @property (strong) PKObjectMapping *mapping;
 @property (copy) PKCustomMappingBlock mappingBlock;
 
-- (id)initWithMappingProvider:(PKMappingProvider *)mappingProvider;
+- (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository;
 
 - (id)performMappingWithData:(id)data;
 

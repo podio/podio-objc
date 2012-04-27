@@ -17,24 +17,19 @@
  @protected
   PKObjectMapping *objectMapping_;       // The object mapping for the target entity
   NSString *inversePropertyName_;        // The name of the target entity's inverse property for this relationship
-  NSArray *inverseScopeAttributeNames_;  // The attributes of the parent entity that defines
-                                         // the scope of the target entity of the relationship
 }
 
 @property (nonatomic, strong) PKObjectMapping *objectMapping;
 @property (nonatomic, strong) NSString *inversePropertyName;
-@property (nonatomic, strong) NSArray *inverseScopeAttributeNames;
 
 - (id)initWithPropertyName:(NSString *)propertyName 
              attributeName:(NSString *)attributeName 
            inverseProperty:(NSString *)inverseProperty 
-inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames 
              objectMapping:(PKObjectMapping *)objectMapping;
 
 + (id)mappingForPropertyName:(NSString *)propertyName 
                attributeName:(NSString *)attributeName 
              inverseProperty:(NSString *)inverseProperty 
-  inverseScopeAttributeNames:(NSArray *)inverseScopeAttributeNames 
                objectMapping:(PKObjectMapping *)objectMapping;
 
 @end

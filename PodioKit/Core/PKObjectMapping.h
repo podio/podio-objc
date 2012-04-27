@@ -18,7 +18,6 @@
  @private
   NSMutableArray *mappings_;
   NSMutableDictionary *propertyMappings_;
-  NSMutableArray *mappedDataPathComponents_;
   NSString *sequencePropertyName_;
 }
 
@@ -48,7 +47,6 @@
 - (void)hasRelationship:(NSString *)property 
            forAttribute:(NSString *)attribute 
         inverseProperty:(NSString *)inverseProperty 
- inverseScopeProperties:(NSArray *)inverseScopeProperties 
           objectMapping:(PKObjectMapping *)objectMapping;
 
 - (void)hasMappingForAttribute:(NSString *)attribute 

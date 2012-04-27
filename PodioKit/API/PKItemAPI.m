@@ -44,4 +44,15 @@
   return request;
 }
 
++ (PKRequest *)requestToSetParticipationForItemWithId:(NSUInteger)itemId status:(PKMeetingParticipantStatus)status {
+  PKAssert(status != PKMeetingParticipantStatusNone, @"Participation is invalid, %d", status);
+  
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/participation", itemId] method:PKAPIRequestMethodPUT];
+  
+  NSString *statusString = [PKConstants stringForMeetingParticipantStatus:status];
+  request.body = [NSDictionary dictionaryWithObject:statusString forKey:@"status"];
+  
+  return request;
+}
+
 @end

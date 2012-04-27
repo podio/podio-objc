@@ -42,8 +42,8 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
   PKReferenceAppData *data = [self data];
   
   data.appId = [[dict pk_objectForKey:@"app_id"] integerValue];
-  data.name = [dict pk_objectForKey:@"name"];
-  data.icon = [dict pk_objectForKey:@"icon"];
+  data.name = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"name"];
+  data.icon = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"icon"];
   
   return data;
 }

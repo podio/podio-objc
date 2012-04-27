@@ -124,6 +124,35 @@
   return group;
 }
 
+// App
++ (PKAppType)appTypeForString:(NSString *)string {
+  PKAppType type = PKAppTypeNone;
+  
+  if ([string isEqualToString:kPKAppTypeStandard]) {
+    type = PKAppTypeStandard;
+  } else if ([string isEqualToString:kPKAppTypeMeeting]) {
+    type = PKAppTypeMeeting;
+  }
+  
+  return type;
+}
+
++ (PKAppFieldMapping)appFieldMappingForString:(NSString *)string {
+  PKAppFieldMapping mapping = PKAppFieldMappingNone;
+  
+  if ([string isEqualToString:kPKAppFieldMappingMeetingTime]) {
+    mapping = PKAppFieldMappingMeetingTime;
+  } else if ([string isEqualToString:kPKAppFieldMappingMeetingParticipants]) {
+    mapping = PKAppFieldMappingMeetingParticipants;
+  } else if ([string isEqualToString:kPKAppFieldMappingMeetingAgenda]) {
+    mapping = PKAppFieldMappingMeetingAgenda;
+  } else if ([string isEqualToString:kPKAppFieldMappingMeetingLocation]) {
+    mapping = PKAppFieldMappingMeetingLocation;
+  }
+  
+  return mapping;
+}
+
 // Stream
 + (PKReferenceType)streamObjectTypeForString:(NSString *)string {
   PKReferenceType type = PKReferenceTypeNone;
@@ -353,8 +382,14 @@
     type = PKReferenceTypeContract;
   } else if ([string isEqualToString:kPKReferenceTypeMeeting]) {
     type = PKReferenceTypeMeeting;
+  } else if ([string isEqualToString:kPKReferenceTypeBatch]) {
+    type = PKReferenceTypeBatch;
+  } else if ([string isEqualToString:kPKReferenceTypeSystem]) {
+    type = PKReferenceTypeSystem;
+  } else if ([string isEqualToString:kPKReferenceTypeSpaceMemberRequest]) {
+    type = PKReferenceTypeSpaceMemberRequest;
   }
-  
+    
   return type;
 }
 
@@ -516,6 +551,18 @@
   return type;
 }
 
++ (PKSpaceMemberRequestStatus)spaceMemberRequestStatusForString:(NSString *)string {
+  PKSpaceMemberRequestStatus status = PKSpaceMemberRequestStatusNone;
+  
+  if ([string isEqualToString:kPKSpaceMemberRequestStatusActive]) {
+    status = PKSpaceMemberRequestStatusActive;
+  } else if ([string isEqualToString:kPKSpaceMemberRequestStatusAccepted]) {
+    status = PKSpaceMemberRequestStatusAccepted;
+  }
+  
+  return status;
+}
+
 #pragma mark - Avatar
 
 + (PKAvatarType)avatarTypeForString:(NSString *)string {
@@ -583,6 +630,12 @@
     type = PKNotificationTypeMeetingParticipantRemove;
   } else if ([string isEqualToString:kPKNotificationTypeReminder]) {
     type = PKNotificationTypeReminder;
+  } else if ([string isEqualToString:kPKNotificationTypeSpaceMemberRequest]) {
+    type = PKNotificationTypeSpaceMemberRequest;
+  } else if ([string isEqualToString:kPKNotificationTypeBatchProcess]) {
+    type = PKNotificationTypeBatchProcess;
+  } else if ([string isEqualToString:kPKNotificationTypeBatchComplete]) {
+    type = PKNotificationTypeBatchComplete;
   }
   
   return type;
@@ -590,14 +643,53 @@
 
 #pragma mark - Meetings
 
-+ (PKMeetingPluginType)meetingPluginTypeForString:(NSString *)string {
-  PKMeetingPluginType type = PKMeetingPluginTypeNone;
++ (PKExternalMeetingType)externalMeetingTypeForString:(NSString *)string {
+  PKExternalMeetingType type = PKExternalMeetingTypeNone;
   
-  if ([string isEqualToString:kPKMeetingPluginTypeCitrix]) {
-    type = PKMeetingPluginTypeCitrix;
+  if ([string isEqualToString:kPKExternalMeetingTypeGoToMeeting]) {
+    type = PKExternalMeetingTypeGoToMeeting;
   }
   
   return type;
+}
+
++ (PKMeetingParticipantStatus)meetingParticipantStatusForString:(NSString *)string {
+  PKMeetingParticipantStatus status = PKMeetingParticipantStatusNone;
+  
+  if ([string isEqualToString:kPKMeetingParticipantStatusInvited]) {
+    status = PKMeetingParticipantStatusInvited;
+  } else if ([string isEqualToString:kPKMeetingParticipantStatusAccepted]) {
+    status = PKMeetingParticipantStatusAccepted;
+  } else if ([string isEqualToString:kPKMeetingParticipantStatusDeclined]) {
+    status = PKMeetingParticipantStatusDeclined;
+  } else if ([string isEqualToString:kPKMeetingParticipantStatusTentative]) {
+    status = PKMeetingParticipantStatusTentative;
+  }
+  
+  return status;
+}
+
++ (NSString *)stringForMeetingParticipantStatus:(PKMeetingParticipantStatus)status {
+  NSString *string = nil;
+  
+  switch (status) {
+    case PKMeetingParticipantStatusInvited:
+      string = kPKMeetingParticipantStatusInvited;
+      break;
+    case PKMeetingParticipantStatusAccepted:
+      string = kPKMeetingParticipantStatusAccepted;
+      break;
+    case PKMeetingParticipantStatusDeclined:
+      string = kPKMeetingParticipantStatusDeclined;
+      break;
+    case PKMeetingParticipantStatusTentative:
+      string = kPKMeetingParticipantStatusTentative;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
 }
 
 #pragma mark - Providers

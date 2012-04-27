@@ -1,15 +1,15 @@
 //
-//  PKTaskMapping.m
+//  PKTestTaskMapping.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 10/11/11.
 //  Copyright (c) 2011 Podio. All rights reserved.
 //
 
-#import "PKTaskMapping.h"
+#import "PKTestTaskMapping.h"
 #import "NSDictionary+PKAdditions.h"
 
-@implementation PKTaskMapping
+@implementation PKTestTaskMapping
 
 - (void)buildMappings {
   [self hasProperty:@"taskId" forAttribute:@"task_id"];

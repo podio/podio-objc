@@ -118,7 +118,7 @@
                           [NSNumber numberWithInt:4321], @"field_id", 
                           @"Field text 2", @"text", nil], nil];
   
-  PKRelationshipMapping *mapping = [[PKRelationshipMapping alloc] initWithPropertyName:@"fields" attributeName:@"fields" inverseProperty:nil inverseScopeAttributeNames:nil objectMapping:[PKTestItemFieldMapping mapping]];
+  PKRelationshipMapping *mapping = [[PKRelationshipMapping alloc] initWithPropertyName:@"fields" attributeName:@"fields" inverseProperty:nil objectMapping:[PKTestItemFieldMapping mapping]];
   [mapper applyRelationshipMapping:mapping attributeValue:data object:item];
   
   STAssertTrue([item.fields count] == 2, @"Item field count does not match, got %d", [item.fields count]);
@@ -133,7 +133,7 @@
                            [NSNumber numberWithInt:4444], @"app_id", 
                            @"Bugs", @"name", nil];
   
-  PKRelationshipMapping *mapping = [[PKRelationshipMapping alloc] initWithPropertyName:@"app" attributeName:@"app" inverseProperty:nil inverseScopeAttributeNames:nil objectMapping:[PKTestItemAppMapping mapping]];
+  PKRelationshipMapping *mapping = [[PKRelationshipMapping alloc] initWithPropertyName:@"app" attributeName:@"app" inverseProperty:nil objectMapping:[PKTestItemAppMapping mapping]];
   [mapper applyRelationshipMapping:mapping attributeValue:data object:item];
   STAssertTrue(item.app != nil, @"App should not be nil");
   STAssertTrue([item.app.appId intValue] == 4444, @"App id does not match, got %d", [item.app.appId intValue]);
@@ -143,10 +143,8 @@
 #pragma mark - Helpers
 
 - (PKObjectMapper *)createObjectMapper {
-  PKObjectMapper *objectMapper = [[PKObjectMapper alloc] initWithMappingProvider:self.mappingProvider];
-  
   PKDefaultObjectRepository *repository = [[PKDefaultObjectRepository alloc] init];
-  objectMapper.repository = repository;
+  PKObjectMapper *objectMapper = [[PKObjectMapper alloc] initWithProvider:self.mappingProvider repository:repository];
   
   return objectMapper;
 }

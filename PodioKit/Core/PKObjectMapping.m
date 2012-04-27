@@ -85,12 +85,10 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 - (void)hasRelationship:(NSString *)property 
            forAttribute:(NSString *)attribute 
         inverseProperty:(NSString *)inverseProperty 
- inverseScopeProperties:(NSArray *)inverseScopeProperties 
           objectMapping:(PKObjectMapping *)objectMapping {
   PKRelationshipMapping *mapping = [PKRelationshipMapping mappingForPropertyName:property 
                                                                    attributeName:attribute 
                                                                  inverseProperty:inverseProperty 
-                                                      inverseScopeAttributeNames:inverseScopeProperties 
                                                                    objectMapping:objectMapping];
   [self addMapping:mapping];
 }

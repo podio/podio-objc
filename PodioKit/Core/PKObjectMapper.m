@@ -24,7 +24,7 @@
 
 @implementation PKObjectMapper
 
-@synthesize mappingProvider = mappingProvider_;
+@synthesize provider = provider_;
 @synthesize repository = repository_;
 @synthesize delegate = delegate_;
 @synthesize scopePredicate = scopePredicate_;
@@ -32,11 +32,11 @@
 @synthesize mapping = mapping_;
 @synthesize mappingBlock = mappingBlock_;
 
-- (id)initWithMappingProvider:(PKMappingProvider *)mappingProvider {
+- (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository {
   self = [super init];
   if (self) {
-    mappingProvider_ = mappingProvider;
-    repository_ = nil;
+    provider_ = provider;
+    repository_ = repository;
     delegate_ = nil;
     
     scopePredicate_ = nil;
@@ -70,10 +70,10 @@
 
 - (id)performMappingWithData:(id)data {
   PKAssert(self.repository != nil, @"No data source set.");
-  PKAssert(self.mappingProvider != nil, @"No mapping provider set");
+  PKAssert(self.provider != nil, @"No mapping provider set");
   
   NSString *className = NSStringFromClass([self.mapping class]);
-  Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
+  Class klass = [self.provider mappedClassForMappingClassName:className];
   if (klass == nil) {
     PKLogDebug(@"No object class for mapping class %@, skipping...", className);
     return nil;
@@ -156,7 +156,7 @@
 - (id)applySingleObjectMapping:(PKObjectMapping *)mapping objectDict:(NSDictionary *)objectDict parentObject:(id<PKMappableObject>)parentObject parentRelationshipName:(NSString *)parentRelationshipName scopePredicate:(NSPredicate *)scopePredicate useMappingBlock:(BOOL)useMappingBlock {
   // Lookup class
   NSString *className = NSStringFromClass([mapping class]);
-  Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
+  Class klass = [self.provider mappedClassForMappingClassName:className];
   
   if (klass == nil) {
     PKLogWarn(@"No object class for mapping class %@, skipping...", className);
@@ -329,7 +329,7 @@
   PKAssert(mapping.objectMapping != nil, @"No object mapping set.");
   
   NSString *className = NSStringFromClass([mapping.objectMapping class]);
-  Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
+  Class klass = [self.provider mappedClassForMappingClassName:className];
   if (klass == nil) {
     PKLogWarn(@"No object class for mapping class %@, skipping...", className);
     return nil;
@@ -339,13 +339,9 @@
   
   // Scope predicate
   NSPredicate *scopePredicate = nil;
-  if (mapping.inversePropertyName != nil && mapping.inverseScopeAttributeNames != nil) {
-    NSArray *invScopePreds = [mapping.inverseScopeAttributeNames pk_arrayFromObjectsCollectedWithBlock:^id(id invScopeAttrName) {
-      NSString *predicateString = [NSString stringWithFormat:@"%@.%@ == %%@", mapping.inversePropertyName, invScopeAttrName];
-      return [NSPredicate predicateWithFormat:predicateString, [(id)object valueForKey:invScopeAttrName]];
-    }];
-    
-    scopePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:invScopePreds];
+  if (mapping.inversePropertyName != nil) {
+    NSString *predicateString = [NSString stringWithFormat:@"%@ == %%@", mapping.inversePropertyName];
+    scopePredicate = [NSPredicate predicateWithFormat:predicateString, object];
   }
   
   if ([attributeValue isKindOfClass:[NSArray class]]) {
@@ -436,7 +432,7 @@
   if ([attributeValue isKindOfClass:[NSArray class]]) {
     // Collection
     NSString *className = NSStringFromClass([mapping.objectMapping class]);
-    Class klass = [self.mappingProvider mappedClassForMappingClassName:className];
+    Class klass = [self.provider mappedClassForMappingClassName:className];
     if (klass == nil) {
       PKLogWarn(@"No object class for mapping class %@, skipping...", className);
       return;

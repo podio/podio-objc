@@ -1,19 +1,27 @@
-# Exclude the build directory
+# Xcode
 build/*
- 
-# Exclude temp nibs and swap files
-*~.nib
-*.swp
- 
-# Exclude OS X folder attributes
-.DS_Store
- 
-# Exclude user-specific XCode 3 and 4 files
-*.mode1
-*.mode1v3
-*.mode2v3
-*.perspective
-*.perspectivev3
+DerivedData/*
 *.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
 *.xcworkspace
+!default.xcworkspace
 xcuserdata
+profile
+*.moved-aside
+
+.DS_Store?
+Icon?
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+.DS_Store
