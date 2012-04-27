@@ -259,6 +259,19 @@ static NSString * const kPKItemRevisionTypeCreation = @"creation";
 static NSString * const kPKItemRevisionTypeUpdate = @"update";
 static NSString * const kPKItemRevisionTypeDelete = @"delete";
 
+// App field mapping
+typedef enum {
+  PKAppFieldMappingNone,
+  PKAppFieldMappingMeetingTime,
+  PKAppFieldMappingMeetingParticipants,
+  PKAppFieldMappingMeetingAgenda,
+  PKAppFieldMappingMeetingLocation,
+} PKAppFieldMapping;
+
+static NSString * const kPKAppFieldMappingMeetingTime = @"meeting_time";
+static NSString * const kPKAppFieldMappingMeetingParticipants = @"meeting_participants";
+static NSString * const kPKAppFieldMappingMeetingAgenda = @"meeting_agenda";
+static NSString * const kPKAppFieldMappingMeetingLocation = @"meeting_location";
 
 #pragma mark - Stream
 
@@ -562,6 +575,7 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 
 // App
 + (PKAppType)appTypeForString:(NSString *)string;
++ (PKAppFieldMapping)appFieldMappingForString:(NSString *)string;
 
 // Stream
 + (PKReferenceType)streamObjectTypeForString:(NSString *)string;

@@ -137,6 +137,22 @@
   return type;
 }
 
++ (PKAppFieldMapping)appFieldMappingForString:(NSString *)string {
+  PKAppFieldMapping mapping = PKAppFieldMappingNone;
+  
+  if ([string isEqualToString:kPKAppFieldMappingMeetingTime]) {
+    mapping = PKAppFieldMappingMeetingTime;
+  } else if ([string isEqualToString:kPKAppFieldMappingMeetingParticipants]) {
+    mapping = PKAppFieldMappingMeetingParticipants;
+  } else if ([string isEqualToString:kPKAppFieldMappingMeetingAgenda]) {
+    mapping = PKAppFieldMappingMeetingAgenda;
+  } else if ([string isEqualToString:kPKAppFieldMappingMeetingLocation]) {
+    mapping = PKAppFieldMappingMeetingLocation;
+  }
+  
+  return mapping;
+}
+
 // Stream
 + (PKReferenceType)streamObjectTypeForString:(NSString *)string {
   PKReferenceType type = PKReferenceTypeNone;
