@@ -80,7 +80,7 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 
 - (void)presentLoginScreenAnimated:(BOOL)animated {
   PKLoginViewController *controller = [[PKLoginViewController alloc] init];
-  [self.window.rootViewController presentModalViewController:controller animated:NO];
+  [self.window.rootViewController presentViewController:controller animated:NO completion:nil];
 }
 
 - (void)logout {
@@ -91,7 +91,7 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 #pragma mark - Session lifecycle notifications
 
 - (void)didAuthenticateUserNotification:(NSNotification *)notification {
-  [self.window.rootViewController dismissModalViewControllerAnimated:YES];
+  [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
   
   self.authToken = [notification.userInfo objectForKey:PKAPIClientTokenKey];
   self.taskListController.userId = [[self.authToken.refData pk_objectForKey:@"id"] unsignedIntegerValue];
