@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>APIClientID</key>
+	<string>YOUR_API_KEY_CLIENT_ID_HERE</string>
+	<key>APIClientSecret</key>
+	<string>YOUR_API_KEY_CLIENT_SECRET_HERE</string>
+</dict>
+</plist>

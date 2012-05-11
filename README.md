@@ -4,7 +4,12 @@ PodioKit is the Objective-C client library for the Podio API used in the Podio i
 
 PodioKit uses ARC and assumes a deployment target of > iOS 4.3.
 
-## Installation
+## Running the Demo app
+
+1. In the `DemoApp-Configuration.plist` file, define your API key's client ID and secret.
+2. Run the DemoApp scheme to launch the app.
+
+## Using PodioKit
 
 To add PodioKit to your project, follow these steps:
 

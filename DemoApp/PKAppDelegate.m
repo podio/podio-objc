@@ -10,10 +10,6 @@
 #import "PKLoginViewController.h"
 #import "PKTaskListViewController.h"
 
-// Your API key/secret
-static NSString * const kAPIKey = @"podiokit-demo-app";
-static NSString * const kAPISecret = @"KmClI7RDBXPRTxtf9mjSbecJf9NMLtDjA45Hm5V0u63f7ebbRqIPGKcR0OdJRO6q";
-
 // Provide a descriptive user agent to make it easier to track issues with your application in logs etc.
 static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 
@@ -39,8 +35,13 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 @synthesize taskListController = taskListController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {  
-  // Configure PodioKit
-  [[PKAPIClient sharedClient] configureWithClientId:kAPIKey secret:kAPISecret];
+  // Configure PodioKit. Define your API client id and secret in the DemoApp-Configuration.plist file
+  NSString *configPath = [[NSBundle mainBundle] pathForResource:@"DemoApp-Configuration" ofType:@"plist"];
+  NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:configPath];
+  NSString *clientId = [config objectForKey:@"APIClientID"];
+  NSString *clientSecret = [config objectForKey:@"APIClientSecret"];
+  
+  [[PKAPIClient sharedClient] configureWithClientId:clientId secret:clientSecret];
   [[PKAPIClient sharedClient] setUserAgent:kUserAgent];
   
   // A mapping provider is required to look up the domain object class for an object mapping used to map the 
