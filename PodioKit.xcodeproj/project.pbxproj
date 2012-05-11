@@ -141,6 +141,7 @@
 		5059533D149634B70046685A /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
 		5059533E149634B70046685A /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
 		50599F081456B3B5001F5201 /* PKObjectRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 50599F071456B3B5001F5201 /* PKObjectRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505C4F98155C96C30081850F /* DemoApp-Configuration.plist */; };
 		505F7E471445EFBC00727A1D /* GetTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 505F7E461445EFBC00727A1D /* GetTask.json */; };
 		50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50620AAD14BC8CA60060A786 /* InfoPlist.strings */; };
 		5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
@@ -519,6 +520,7 @@
 		5059533B149634B70046685A /* PKConversationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKConversationAPI.m; sourceTree = "<group>"; };
 		50599EF01455A024001F5201 /* PKAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKAssert.h; path = ../../PodioKitTests/PKAssert.h; sourceTree = "<group>"; };
 		50599F071456B3B5001F5201 /* PKObjectRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKObjectRepository.h; sourceTree = "<group>"; };
+		505C4F98155C96C30081850F /* DemoApp-Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Configuration.plist"; sourceTree = "<group>"; };
 		505F7E461445EFBC00727A1D /* GetTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetTask.json; sourceTree = "<group>"; };
 		50620AAD14BC8CA60060A786 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1317,6 +1319,7 @@
 		509D693D152CA7A40033291C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				505C4F98155C96C30081850F /* DemoApp-Configuration.plist */,
 				509D693E152CA7A40033291C /* DemoApp-Info.plist */,
 				509D693F152CA7A40033291C /* InfoPlist.strings */,
 				509D6942152CA7A40033291C /* main.m */,
@@ -1647,6 +1650,7 @@
 			files = (
 				509D6941152CA7A40033291C /* InfoPlist.strings in Resources */,
 				500EA92F153F20F10049F224 /* PKLoginViewController.xib in Resources */,
+				505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
