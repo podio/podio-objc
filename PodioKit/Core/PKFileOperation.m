@@ -33,13 +33,13 @@
   return operation;
 }
 
-+ (PKFileOperation *)imageUploadOperationWithURLString:(NSString *)urlString image:(UIImage *)image {
++ (PKFileOperation *)imageUploadOperationWithURLString:(NSString *)urlString image:(UIImage *)image fileName:(NSString *)fileName {
   PKFileOperation *operation = [[self alloc] initWithURLString:urlString];
   operation.shouldAttemptPersistentConnection = NO;
   
   NSData * imageData = UIImageJPEGRepresentation(image, 0.8);
-  [operation setData:imageData withFileName:@"Image.jpg" andContentType:@"image/jpeg" forKey:@"file"];
-  [operation setPostValue:@"Image.jpg" forKey:@"name"];
+  [operation setData:imageData withFileName:fileName andContentType:@"image/jpeg" forKey:@"file"];
+  [operation setPostValue:fileName forKey:@"name"];
 	operation.numberOfTimesToRetryOnTimeout = 2;
   
   return operation;

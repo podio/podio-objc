@@ -20,9 +20,9 @@
   return operation;
 }
 
-+ (PKFileOperation *)uploadFileWithImage:(UIImage *)image completion:(PKRequestCompletionBlock)completion {
++ (PKFileOperation *)uploadFileWithImage:(UIImage *)image fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion {
   PKAPIClient *apiClient = [[PKRequestManager sharedManager] apiClient];
-  PKFileOperation *operation = [PKFileOperation imageUploadOperationWithURLString:apiClient.fileUploadURLString image:image];
+  PKFileOperation *operation = [PKFileOperation imageUploadOperationWithURLString:apiClient.fileUploadURLString image:image fileName:fileName];
   operation.requestCompletionBlock = completion;
   
   [apiClient addFileOperation:operation];
