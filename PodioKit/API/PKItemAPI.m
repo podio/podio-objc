@@ -14,7 +14,11 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodGET];
 }
 
-+ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId filterId:(NSUInteger)filterId offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKRequest *)requestToDeleteItemWithId:(NSUInteger)itemId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodDELETE];
+}
+
++ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodGET];
   request.offset = offset;
   
@@ -26,8 +30,9 @@
     [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
   }
   
-  if (filterId > 0) {
-    [request.parameters setObject:[NSNumber numberWithUnsignedInteger:filterId] forKey:@"filter_id"];
+  if (viewId > 0) {
+    [request.parameters setObject:@"0" forKey:@"remember"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", viewId] forKey:@"view_id"];
   } else {
     // Sort by created date by default
     [request.parameters setObject:@"created_on" forKey:@"sort_by"];

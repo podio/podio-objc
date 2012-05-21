@@ -282,6 +282,9 @@
 		50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */; };
 		50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
+		50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
+		50B2A40E15666EFB00DC6C65 /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
 		50B317DC152F7477002E73F2 /* libPodioKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEE814335AB900360855 /* libPodioKit.a */; };
 		50B317DD152F749B002E73F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F414345CF300360855 /* CoreData.framework */; };
 		50B317DE152F74D6002E73F2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FC14345F0D00360855 /* MobileCoreServices.framework */; };
@@ -627,6 +630,8 @@
 		50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceDataFactory.h; sourceTree = "<group>"; };
 		50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceDataFactory.m; sourceTree = "<group>"; };
 		50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceSpaceData.m; sourceTree = "<group>"; };
+		50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKViewAPI.h; sourceTree = "<group>"; };
+		50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKViewAPI.m; sourceTree = "<group>"; };
 		50B317E2152F7605002E73F2 /* PKDemoTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDemoTask.h; sourceTree = "<group>"; };
 		50B317E3152F7605002E73F2 /* PKDemoTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDemoTask.m; sourceTree = "<group>"; };
 		50B317E5152F76AA002E73F2 /* PKDemoTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDemoTaskMapping.h; sourceTree = "<group>"; };
@@ -1264,6 +1269,8 @@
 				50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */,
 				50858ABB15120EAC00ED8A6E /* PKAppAPI.h */,
 				50858ABC15120EAD00ED8A6E /* PKAppAPI.m */,
+				50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */,
+				50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1552,6 +1559,7 @@
 				500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */,
 				501FDEDD1548095E002B6413 /* PKItemParticipantsData.h in Headers */,
 				5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */,
+				50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1802,6 +1810,7 @@
 				500EA92A153F20830049F224 /* PKReferenceBatchData.m in Sources */,
 				501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
 				5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
+				50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1931,6 +1940,7 @@
 				50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
 				501FDEDF1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
 				5048937C15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
+				50B2A40E15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
