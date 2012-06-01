@@ -64,15 +64,8 @@
       data = optionData;
       break;
     }
-    case PKAppFieldTypeCategory: {
-      PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];
-      
-      NSDictionary *optionDict = [dict pk_objectForKey:@"value"];
-      optionData.optionId = [[optionDict pk_objectForKey:@"id"] integerValue];
-      optionData.text = [optionDict pk_objectForKey:@"text"];
-      optionData.selected = YES;
-      
-      data = optionData;
+    case PKAppFieldTypeCategory: {      
+      data = [PKItemFieldValueOptionData dataFromDictionary:[dict pk_objectForKey:@"value"]];
       break;
     }
     case PKAppFieldTypeQuestion: {
