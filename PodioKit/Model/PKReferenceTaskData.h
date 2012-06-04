@@ -1,5 +1,5 @@
 //
-//  PKStreamActivityTaskData.h
+//  PKReferenceTaskData.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
@@ -8,7 +8,7 @@
 
 #import "PKObjectData.h"
 
-@interface PKStreamActivityTaskData : PKObjectData {
+@interface PKReferenceTaskData : PKObjectData {
 
  @private
   NSInteger taskId_;
