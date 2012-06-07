@@ -52,11 +52,12 @@
       
       NSMutableArray *options = [[NSMutableArray alloc] init];
       [allowedValues enumerateObjectsUsingBlock:^(id allowedValue, NSUInteger idx, BOOL *stop) {
-        
-        PKItemFieldValueOptionData *option = [PKItemFieldValueOptionData data];
-        option.optionId = -1; // Use index as id
-        option.text = allowedValue;
-        [options addObject:option];
+        if ([allowedValue length] > 0) { // Old statefieds might contain blank fields
+          PKItemFieldValueOptionData *option = [PKItemFieldValueOptionData data];
+          option.optionId = -1; // Use index as id
+          option.text = allowedValue;
+          [options addObject:option];
+        }
       }];
       
       optionsData.options = options;

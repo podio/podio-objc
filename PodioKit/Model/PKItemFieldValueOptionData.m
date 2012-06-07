@@ -47,12 +47,18 @@ static NSString * const PKItemFieldValueOptionDataColorStringKey = @"ColorString
     return equal;
   }
   
-  if (self.optionId < 0) {
-    // Compare strings
-    equal = [self.text isEqualToString:[object text]];
-  } else {
+  return [self isEqualToOption:(PKItemFieldValueOptionData *)object];
+}
+
+- (BOOL)isEqualToOption:(PKItemFieldValueOptionData *)option {
+  BOOL equal;
+  
+  if (self.optionId > 0) {
     // Compare ids
-    equal = self.optionId == [object optionId];
+    equal = self.optionId == [option optionId];
+  } else {
+    // Compare strings
+    equal = [self.text isEqualToString:[option text]];
   }
   
   return equal;
