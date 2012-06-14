@@ -6,10 +6,6 @@
 //  Copyright (c) 2012 Podio. All rights reserved.
 //
 
-//#if ! __has_feature(objc_arc)
-//#error PodioKit has to be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag.
-//#endif
-
 #import <Foundation/Foundation.h>
 
 #pragma mark - General
