@@ -9,6 +9,8 @@
 #import "PKFileOperation.h"
 #import "JSONKit.h"
 
+static NSTimeInterval const kTimeout = 30;
+
 @implementation PKFileOperation
 
 @synthesize requestCompletionBlock = requestCompletionBlock_;
@@ -18,7 +20,7 @@
   self = [super initWithURL:requestURL];
   if (self) {
     self.requestMethod = PKAPIRequestMethodPOST;
-    requestCompletionBlock_ = nil;
+    self.timeOutSeconds = kTimeout;
   }
   return self;
 }

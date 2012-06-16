@@ -9,7 +9,6 @@
 #import "PKAPIClient.h"
 #import "ASIHTTPRequest.h"
 #import "PKRequestOperation.h"
-#import "Reachability.h"
 #import "NSString+URL.h"
 #import "NSDictionary+URL.h"
 
@@ -155,11 +154,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     return;
   }
   
-  if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
-    return;
-  }
-  
   @synchronized(self) {
     [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
     
@@ -179,11 +173,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken {
   if (isRefreshingToken_) {
     PKLogDebug(@"Already in the process of refreshing token.");
-    return;
-  }
-  
-  if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
     return;
   }
   
@@ -282,13 +271,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   return serialNetworkQueue_;
 }
 
-- (BOOL)addRequestOperation:(PKRequestOperation *)operation {
-  if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
-    operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
-    return NO;
-  }
-  
+- (BOOL)addRequestOperation:(PKRequestOperation *)operation {  
   operation.delegate = self;
   
   [operation addRequestHeader:@"User-Agent" value:self.userAgent];
@@ -306,13 +289,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   return YES;
 }
 
-- (BOOL)addFileOperation:(PKFileOperation *)operation {
-  if (![[Reachability reachabilityForInternetConnection] isReachable]) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNoInternetConnection object:self];
-    operation.requestCompletionBlock([NSError pk_noConnectionError], nil);
-    return NO;
-  }
-  
+- (BOOL)addFileOperation:(PKFileOperation *)operation {  
   operation.delegate = self;
   
   [operation addRequestHeader:@"User-Agent" value:self.userAgent];

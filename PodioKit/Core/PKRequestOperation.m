@@ -12,6 +12,8 @@
 #import "NSDictionary+PKAdditions.h"
 
 
+static NSTimeInterval const kTimeout = 30;
+
 // Exceptions
 NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 
@@ -33,6 +35,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   self = [super initWithURL:requestURL];
   if (self) {
     self.requestMethod = method;
+    self.timeOutSeconds = kTimeout;
     objectMapper_ = nil;
     requestCompletionBlock_ = nil;
     allowsConcurrent_ = YES;
