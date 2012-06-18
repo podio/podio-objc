@@ -271,14 +271,18 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   return serialNetworkQueue_;
 }
 
-- (BOOL)addRequestOperation:(PKRequestOperation *)operation {  
+- (BOOL)addRequestOperation:(PKRequestOperation *)operation {
+  if (![self isAuthenticated]) {
+    operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    return NO;
+  }
+  
   operation.delegate = self;
   
   [operation addRequestHeader:@"User-Agent" value:self.userAgent];
   [operation addRequestHeader:@"Authorization" value:[self authorizationHeader]];
-
-  // Enqueue
-  if ([self isAuthenticated] && ![self.authToken hasExpired]) {
+  
+  if (![self.authToken hasExpired]) {
     [self startRequest:operation];
   } else {
     // Token expired, keep request until token is refreshed
@@ -290,6 +294,11 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 }
 
 - (BOOL)addFileOperation:(PKFileOperation *)operation {  
+  if (![self isAuthenticated]) {
+    operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    return NO;
+  }
+  
   operation.delegate = self;
   
   [operation addRequestHeader:@"User-Agent" value:self.userAgent];
@@ -297,7 +306,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   [operation addRequestHeader:@"RefreshToken" value:self.authToken.refreshToken];
   
   // Enqueue
-  if ([self isAuthenticated] && ![self.authToken hasExpired]) {
+  if (![self.authToken hasExpired]) {
     [self startRequest:operation];
   } else {
     // Token expired, keep request until token is refreshed

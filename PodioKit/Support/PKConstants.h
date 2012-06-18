@@ -15,9 +15,10 @@ static NSString * const kPodioKitErrorDomain = @"PodioKitErrorDomain";
 
 typedef enum {
   PKErrorCodeNoConnection = 1001,
-  PKErrorCodeParsingFailed = 1002,
-  PKErrorCodeMultipleRequests = 1003,
-  PKErrorCodeRequestCancelled = 1004,
+  PKErrorCodeNotAuthenticated = 1002,
+  PKErrorCodeParsingFailed = 1003,
+  PKErrorCodeMultipleRequests = 1004,
+  PKErrorCodeRequestCancelled = 1005,
   PKErrorCodeServerError = 2000,
 } PKErrorCode;
 
