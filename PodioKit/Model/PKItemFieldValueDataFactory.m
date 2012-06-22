@@ -46,7 +46,7 @@
       data = [PKItemFieldValueMediaData dataFromDictionary:dict];
       break;
     case PKAppFieldTypeVideo:
-      data = [PKFileData dataFromDictionary:dict];
+      data = [PKFileData dataFromDictionary:[dict pk_objectForKey:@"value"]];
       break;
     case PKAppFieldTypeCalculation:
       data = [PKItemFieldValueCalculationData dataFromDictionary:dict];

@@ -844,6 +844,40 @@
   return string;
 }
 
++ (PKAppFieldStatus)appFieldStatusForString:(NSString *)string {
+  PKAppFieldStatus status = PKAppFieldStatusNone;
+  
+  if ([string isEqualToString:kPKAppFieldStatusActive]) {
+    status = PKAppFieldStatusActive;
+  } else if ([string isEqualToString:kPKAppFieldStatusInactive]) {
+    status = PKAppFieldStatusInactive;
+  } else if ([string isEqualToString:kPKAppFieldStatusDeleted]) {
+    status = PKAppFieldStatusDeleted;
+  }
+  
+  return status;
+}
+
++ (NSString *)stringForAppFieldStatus:(PKAppFieldStatus)status {
+  NSString *string = nil;
+  
+  switch (status) {
+    case PKAppFieldStatusActive:
+      string = kPKAppFieldStatusActive;
+      break;
+    case PKAppFieldStatusInactive:
+      string = kPKAppFieldStatusInactive;
+      break;
+    case PKAppFieldStatusDeleted:
+      string = kPKAppFieldStatusDeleted;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
 #pragma mark - Images
 
 + (NSString *)stringForImageSize:(PKImageSize)imageSize {

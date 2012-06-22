@@ -271,6 +271,17 @@ static NSString * const kPKAppFieldTypeCalculation = @"calculation";
 static NSString * const kPKAppFieldTypeQuestion = @"question";
 static NSString * const kPKAppFieldTypeCategory = @"category";
 
+typedef enum {
+  PKAppFieldStatusNone,
+  PKAppFieldStatusActive,
+  PKAppFieldStatusInactive,
+  PKAppFieldStatusDeleted,
+} PKAppFieldStatus;
+
+static NSString * const kPKAppFieldStatusActive = @"active";
+static NSString * const kPKAppFieldStatusInactive = @"inactive";
+static NSString * const kPKAppFieldStatusDeleted = @"deleted";
+
 #pragma mark - Item
 
 // Item revision
@@ -661,6 +672,8 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 // App
 + (PKAppFieldType)appFieldTypeForString:(NSString *)string;
 + (NSString *)stringForAppFieldType:(PKAppFieldType)type;
++ (PKAppFieldStatus)appFieldStatusForString:(NSString *)string;
++ (NSString *)stringForAppFieldStatus:(PKAppFieldStatus)status;
 
 // Images
 + (NSString *)stringForImageSize:(PKImageSize)imageSize;
