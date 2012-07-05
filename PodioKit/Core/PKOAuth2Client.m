@@ -7,10 +7,10 @@
 //
 
 #import "PKOAuth2Client.h"
-#import "ASIHTTPRequest.h"
 #import "NSDictionary+URL.h"
 #import "JSONKit.h"
 
+static const NSTimeInterval kRequestTimeout = 30;
 
 @interface PKOAuth2Client ()
 
@@ -58,7 +58,6 @@
   PKAssert(self.clientID != nil, @"Client ID not configured.");
   PKAssert(self.clientSecret != nil, @"Client secret not configured.");
   PKAssert(self.tokenURL != nil, @"Token URL not configured.");
-  PKAssert(self.redirectURL != nil, @"Redirect URL not configured.");
   PKAssert(username != nil, @"Username cannot be nil.");
   PKAssert(password != nil, @"Password cannot be nil.");
   
@@ -66,24 +65,18 @@
     // Only allow one active request at a time
     if (self.requestType != PKOAuth2RequestTypeNone) return;
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:@"password" forKey:@"grant_type"];
-		[params setValue:self.clientID forKey:@"client_id"];
-		[params setValue:self.clientSecret forKey:@"client_secret"];
-		[params setValue:[[NSURL URLWithString:self.redirectURL] absoluteString] forKey:@"redirect_uri"];
-		[params setValue:username forKey:@"username"];
-		[params setValue:password forKey:@"password"];
-    
-    NSString *queryString = [params pk_escapedURLStringFromComponents];
-    NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
-    PKLogDebug(@"Authentication URL: %@", requestURLString);
-    
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:requestURLString]]; 
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:self.tokenURL]];
     request.delegate = self;
 		request.requestMethod = @"POST";
     request.validatesSecureCertificate = YES;
     request.numberOfTimesToRetryOnTimeout = 2;
+    request.timeOutSeconds = kRequestTimeout;
+    
+    [request setPostValue:@"password" forKey:@"grant_type"];
+    [request setPostValue:self.clientID forKey:@"client_id"];
+    [request setPostValue:self.clientSecret forKey:@"client_secret"];
+    [request setPostValue:username forKey:@"username"];
+    [request setPostValue:password forKey:@"password"];
     
     NSArray *languages = [NSLocale preferredLanguages];
     if ([languages count] > 0) {
@@ -101,30 +94,23 @@
   PKAssert(self.clientID != nil, @"Client ID not configured.");
   PKAssert(self.clientSecret != nil, @"Client secret not configured.");
   PKAssert(self.tokenURL != nil, @"Token URL not configured.");
-  PKAssert(self.redirectURL != nil, @"Redirect URL not configured.");
   PKAssert(refreshToken != nil, @"Refresh token cannot be nil.");
   
   @synchronized(self) {
     // Only allow one active request at a time
     if (self.requestType != PKOAuth2RequestTypeNone) return;
     
-    NSMutableDictionary *params = [[NSMutableDictionary alloc] init];
-    [params setValue:@"refresh_token" forKey:@"grant_type"];
-		[params setValue:self.clientID forKey:@"client_id"];
-		[params setValue:self.clientSecret forKey:@"client_secret"];
-		[params setValue:[[NSURL URLWithString:self.redirectURL] absoluteString] forKey:@"redirect_uri"];
-		[params setValue:refreshToken forKey:@"refresh_token"];
-    
-    NSString *queryString = [params pk_escapedURLStringFromComponents];
-    NSString *requestURLString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, queryString];
-    PKLogDebug(@"Refresh URL: %@", requestURLString);
-    
-    
-    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:[NSURL URLWithString:requestURLString]]; 
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:self.tokenURL]];
     request.delegate = self;
 		request.requestMethod = @"POST";
     request.validatesSecureCertificate = YES;
     request.numberOfTimesToRetryOnTimeout = 2;
+    request.timeOutSeconds = kRequestTimeout;
+    
+    [request setPostValue:@"refresh_token" forKey:@"grant_type"];
+    [request setPostValue:self.clientID forKey:@"client_id"];
+    [request setPostValue:self.clientSecret forKey:@"client_secret"];
+    [request setPostValue:refreshToken forKey:@"refresh_token"];
     
     self.requestType = PKOAuth2RequestTypeRefreshToken;
 		[self.requests addObject:request];

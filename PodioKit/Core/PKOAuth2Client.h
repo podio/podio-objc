@@ -8,8 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PKOAuth2Token.h"
-#import "ASIHTTPRequest.h"
-
+#import "ASIFormDataRequest.h"
 
 typedef enum {
   PKOAuth2RequestTypeNone = 0,
