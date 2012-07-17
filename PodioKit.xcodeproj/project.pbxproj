@@ -233,6 +233,8 @@
 		507CA0681503E77A00678F9D /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE51446D1CD006E00B8 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		507CA0691503E77A00678F9D /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE71446D1CD006E00B8 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
+		507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */; };
+		507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */; };
 		507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */; };
 		507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
 		507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
@@ -588,6 +590,8 @@
 		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKEmbedAPI.h; sourceTree = "<group>"; };
+		507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKEmbedAPI.m; sourceTree = "<group>"; };
 		507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountData.h; sourceTree = "<group>"; };
 		507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLinkedAccountData.m; sourceTree = "<group>"; };
 		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
@@ -1256,6 +1260,8 @@
 				50858ABC15120EAD00ED8A6E /* PKAppAPI.m */,
 				50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */,
 				50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */,
+				507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */,
+				507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1544,6 +1550,7 @@
 				501FDEDD1548095E002B6413 /* PKItemParticipantsData.h in Headers */,
 				5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */,
 				50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */,
+				507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1794,6 +1801,7 @@
 				501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
 				5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
 				50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
+				507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
