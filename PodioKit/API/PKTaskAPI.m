@@ -167,6 +167,48 @@
   return request;
 }
 
++ (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId 
+                                    text:(NSString *)text 
+                             description:(NSString *)description 
+                                 dueDate:(NSDate *)dueDate 
+                             responsible:(NSUInteger)responsible 
+                               isPrivate:(BOOL)isPrivate 
+                             referenceId:(NSUInteger)referenceId 
+                           referenceType:(PKReferenceType)referenceType {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKAPIRequestMethodPUT];
+  
+  NSMutableDictionary *body = [NSMutableDictionary dictionary];
+  [body setObject:text forKey:@"text"];
+  
+  if (responsible > 0) {
+    [body setObject:[NSNumber numberWithUnsignedInteger:responsible] forKey:@"responsible"];
+  }
+  
+  if (description != nil) {
+    [body setObject:description forKey:@"description"];
+  }
+  
+  NSString *dateString = [dueDate pk_dateString];
+  if ([dateString length] > 0) {
+    [body setObject:dateString forKey:@"due_date"];
+  }
+  
+  NSString *timeString = [dueDate pk_timeString];
+  if ([timeString length] > 0) {
+    [body setObject:timeString forKey:@"due_time"];
+  }
+  
+  if (referenceType != PKReferenceTypeNone && referenceId > 0) {
+    [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
+    [body setObject:[NSNumber numberWithUnsignedInteger:referenceId] forKey:@"ref_id"];
+    [body setObject:[NSNumber numberWithBool:isPrivate] forKey:@"private"];
+  }
+  
+  request.body = body;
+  
+  return request;
+}
+
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId {
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKAPIRequestMethodDELETE];
 }

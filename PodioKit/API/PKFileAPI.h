@@ -23,4 +23,6 @@
 + (PKRequest *)requestForFilesForLinkedAccountWithId:(NSUInteger)linkedAccountId externalFolderId:(NSString *)externalFolderId limit:(NSUInteger)limit;
 + (PKRequest *)requestToUploadLinkedAccountFileWithExternalFileId:(NSString *)externalFileId linkedAccountId:(NSUInteger)linkedAccountId;
 
++ (PKRequest *)requestToDeleteFileWithId:(NSUInteger)fileId;
+
 @end

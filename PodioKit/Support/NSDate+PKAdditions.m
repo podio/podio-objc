@@ -77,6 +77,10 @@
 	return [self pk_dateTimeStringWithFormatString:@"YYYY-MM-dd"];
 }
 
+- (NSString *)pk_timeString {
+	return [self pk_dateTimeStringWithFormatString:@"HH:mm:ss"];
+}
+
 - (NSString *)pk_dateTimeString {
   return [self pk_dateTimeStringWithFormatString:@"yyyy-MM-dd HH:mm:ss"];
 }

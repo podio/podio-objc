@@ -73,4 +73,8 @@
   return request;
 }
 
++ (PKRequest *)requestToDeleteFileWithId:(NSUInteger)fileId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d", fileId] method:PKAPIRequestMethodDELETE];
+}
+
 @end
