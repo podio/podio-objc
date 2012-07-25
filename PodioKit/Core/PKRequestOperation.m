@@ -158,8 +158,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 - (id)performMappingOfData:(id)data {
   
   if (self.objectMapper == nil) {
-    NSString *msg = @"No object mapper set, unable to perform mapping of response data.";
-    [NSException raise:PKNoObjectMapperSetException format:msg];
+    [NSException raise:PKNoObjectMapperSetException format:@"No object mapper set, unable to perform mapping of response data."];
   }
   
   id result = nil;
