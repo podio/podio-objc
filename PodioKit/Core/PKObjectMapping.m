@@ -68,7 +68,7 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 - (void)hasRightsProperty:(NSString *)property forAttribute:(NSString *)attribute {
   [self hasProperty:property forAttribute:attribute block:^id(id attrVal, NSDictionary *objDict, id parent) {
     NSUInteger rightsMask = [PKConstants rightsMaskFromArrayOfStrings:attrVal];
-    return [NSNumber numberWithUnsignedInteger:rightsMask];
+    return @(rightsMask);
   }];
 }
 

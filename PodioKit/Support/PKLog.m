@@ -13,7 +13,7 @@ void PKLogWithLine(const char *filePath, int lineNumber, NSString *fmt, ...) {
   va_start(args, fmt);
   
   NSString *string = [[NSString alloc] initWithFormat:fmt arguments:args];
-  NSString *fileName = [[NSString stringWithUTF8String:filePath] lastPathComponent];
+  NSString *fileName = [@(filePath) lastPathComponent];
   printf("%s:%d %s\n", [fileName UTF8String], lineNumber, [string UTF8String]);
   va_end(args);
 }

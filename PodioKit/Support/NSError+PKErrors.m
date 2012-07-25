@@ -45,7 +45,7 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
 + (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"A server error occurred.", nil) forKey:NSLocalizedDescriptionKey];
-  [userInfo setObject:[NSNumber numberWithUnsignedInteger:statusCode] forKey:PKErrorStatusCodeKey];
+  [userInfo setObject:@(statusCode) forKey:PKErrorStatusCodeKey];
   [userInfo setObject:responseString forKey:PKERrorResponseStringKey];
   
   return [NSError errorWithDomain:kPodioKitErrorDomain code:PKErrorCodeServerError userInfo:userInfo];

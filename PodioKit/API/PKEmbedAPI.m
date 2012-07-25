@@ -12,7 +12,7 @@
 
 + (PKRequest *)requestToCreateEmbedWithURLString:(NSString *)urlString {
   PKRequest *request = [PKRequest requestWithURI:@"/embed/" method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObject:urlString forKey:@"url"];
+  request.body = @{@"url": urlString};
   
   return request;
 }

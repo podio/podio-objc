@@ -99,18 +99,18 @@
                                           method:PKAPIRequestMethodPOST 
                                    objectMapping:nil];
   
-  NSMutableDictionary * body = [NSMutableDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInteger:spaceId], @"space_id", text, @"value", nil];
+  NSMutableDictionary * body = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(spaceId), @"space_id", text, @"value", nil];
   
 	if ([fileIds count] > 0) {
     [body setObject:fileIds forKey:@"file_ids"];
 	}
   
   if (embedId > 0) {
-    [body setObject:[NSNumber numberWithUnsignedInteger:embedId] forKey:@"embed_id"];
+    [body setObject:@(embedId) forKey:@"embed_id"];
   }
   
   if (embedFileId > 0) {
-    [body setObject:[NSNumber numberWithUnsignedInteger:embedFileId] forKey:@"embed_file_id"];
+    [body setObject:@(embedFileId) forKey:@"embed_file_id"];
   }
   
   request.body = body;

@@ -23,11 +23,11 @@
   request.body = [NSMutableDictionary dictionaryWithObject:query forKey:@"query"];
   
   if (offset > 0) {
-    [request.body setObject:[NSNumber numberWithUnsignedInteger:offset] forKey:@"offset"];
+    [request.body setObject:@(offset) forKey:@"offset"];
   }
   
   if (limit > 0) {
-    [request.body setObject:[NSNumber numberWithUnsignedInteger:limit] forKey:@"limit"];
+    [request.body setObject:@(limit) forKey:@"limit"];
   }
   
   return request;

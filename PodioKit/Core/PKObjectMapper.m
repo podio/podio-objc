@@ -254,7 +254,7 @@
       if (mapping.sequencePropertyName != nil) {
         NSString *sequenceSetSelectorName = [NSString stringWithFormat:@"set%@:", [mapping.sequencePropertyName pk_stringByCapitalizingFirstCharacter]];
         if ([object respondsToSelector:NSSelectorFromString(sequenceSetSelectorName)]) {
-          [object setValue:[NSNumber numberWithUnsignedInteger:seqIndex] forKey:mapping.sequencePropertyName];
+          [object setValue:@(seqIndex) forKey:mapping.sequencePropertyName];
         }
       }
       
@@ -489,7 +489,7 @@
   NSPredicate *deletePredicate = nil;
   if (scopePredicate != nil && invIdentityPredicate != nil) {
     // Both
-    NSArray *predicates = [[NSArray alloc] initWithObjects:scopePredicate, invIdentityPredicate, nil];
+    NSArray *predicates = @[scopePredicate, invIdentityPredicate];
     deletePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
   } else if (scopePredicate != nil) {
     deletePredicate = scopePredicate;

@@ -17,7 +17,7 @@
 + (PKRequest *)requestToInstallAppWithId:(NSUInteger)appId spaceId:(NSUInteger)spaceId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d/install", appId] method:PKAPIRequestMethodPOST];
   
-  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:spaceId] forKey:@"space_id"];
+  request.body = @{@"space_id": @(spaceId)};
   
   return request;
 }

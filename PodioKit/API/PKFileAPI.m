@@ -45,9 +45,8 @@
 + (PKRequest *)requestToAttachFileWithId:(NSUInteger)fileId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d/attach", fileId] method:PKAPIRequestMethodPOST];
   
-  request.body = [NSDictionary dictionaryWithObjectsAndKeys:
-                  [PKConstants stringForReferenceType:referenceType], @"ref_type", 
-                  [NSNumber numberWithUnsignedInteger:referenceId], @"ref_id", nil];
+  request.body = @{@"ref_type": [PKConstants stringForReferenceType:referenceType], 
+                  @"ref_id": @(referenceId)};
   
   return request;
 }
@@ -68,7 +67,7 @@
 
 + (PKRequest *)requestToUploadLinkedAccountFileWithExternalFileId:(NSString *)externalFileId linkedAccountId:(NSUInteger)linkedAccountId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%d/", linkedAccountId]  method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObject:externalFileId forKey:@"external_file_id"];
+  request.body = @{@"external_file_id": externalFileId};
   
   return request;
 }

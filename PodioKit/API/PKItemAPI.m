@@ -77,7 +77,7 @@
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/participation", itemId] method:PKAPIRequestMethodPUT];
   
   NSString *statusString = [PKConstants stringForMeetingParticipantStatus:status];
-  request.body = [NSDictionary dictionaryWithObject:statusString forKey:@"status"];
+  request.body = @{@"status": statusString};
   
   return request;
 }

@@ -64,7 +64,7 @@
 
 + (PKRequest *)requestToAssignTaskWithId:(NSUInteger)taskId toUserWithId:(NSUInteger)userId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/assign", taskId] method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:userId] forKey:@"responsible"];
+  request.body = @{@"responsible": @(userId)};
   
   return request;
 }
@@ -79,30 +79,29 @@
 
 + (PKRequest *)requestToUpdateReferenceForTaskWithId:(NSUInteger)taskId referenceType:(PKReferenceType)referenceType referenceId:(NSUInteger)referenceId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/ref", taskId] method:PKAPIRequestMethodPUT];
-  request.body = [NSDictionary dictionaryWithObjectsAndKeys:
-                  [PKConstants stringForReferenceType:referenceType], @"ref_type", 
-                  [NSNumber numberWithUnsignedInteger:referenceId], @"ref_id" , nil];
+  request.body = @{@"ref_type": [PKConstants stringForReferenceType:referenceType], 
+                  @"ref_id": @(referenceId)};
   
   return request;
 }
 
 + (PKRequest *)requestToUpdatePrivacyForTaskWithId:(NSUInteger)taskId isPrivate:(BOOL)isPrivate {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/private", taskId] method:PKAPIRequestMethodPUT];
-  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithBool:isPrivate] forKey:@"private"];
+  request.body = @{@"private": @(isPrivate)};
   
   return request;
 }
 
 + (PKRequest *)requestToUpdateTextForTaskWithId:(NSUInteger)taskId text:(NSString *)text {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/text", taskId] method:PKAPIRequestMethodPUT];
-  request.body = [NSDictionary dictionaryWithObject:text forKey:@"text"];
+  request.body = @{@"text": text};
   
   return request;
 }
 
 + (PKRequest *)requestToUpdateDescriptionForTaskWithId:(NSUInteger)taskId description:(NSString *)description {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/description", taskId] method:PKAPIRequestMethodPUT];
-  request.body = [NSDictionary dictionaryWithObject:description forKey:@"description"];
+  request.body = @{@"description": description};
   
   return request;
 }
@@ -111,9 +110,9 @@
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/due_on", taskId] method:PKAPIRequestMethodPUT];
   
   if (dueDate != nil) {
-    request.body = [NSDictionary dictionaryWithObject:[[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"due_on"];
+    request.body = @{@"due_on": [[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString]};
   } else {
-    request.body = [NSDictionary dictionaryWithObject:[NSNull null] forKey:@"due_on"];
+    request.body = @{@"due_on": [NSNull null]};
   }
   
   return request;
@@ -141,7 +140,7 @@
   [body setObject:text forKey:@"text"];
   
   if (responsible > 0) {
-    [body setObject:[NSNumber numberWithUnsignedInteger:responsible] forKey:@"responsible"];
+    [body setObject:@(responsible) forKey:@"responsible"];
   }
   
   if (description != nil) {
@@ -154,8 +153,8 @@
   
   if (hasReference) {
     [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
-    [body setObject:[NSNumber numberWithUnsignedInteger:referenceId] forKey:@"ref_id"];
-    [body setObject:[NSNumber numberWithBool:isPrivate] forKey:@"private"];
+    [body setObject:@(referenceId) forKey:@"ref_id"];
+    [body setObject:@(isPrivate) forKey:@"private"];
   }
   
   if ([fileIds count] > 0) {
@@ -181,7 +180,7 @@
   [body setObject:text forKey:@"text"];
   
   if (responsible > 0) {
-    [body setObject:[NSNumber numberWithUnsignedInteger:responsible] forKey:@"responsible"];
+    [body setObject:@(responsible) forKey:@"responsible"];
   }
   
   if (description != nil) {
@@ -200,8 +199,8 @@
   
   if (referenceType != PKReferenceTypeNone && referenceId > 0) {
     [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
-    [body setObject:[NSNumber numberWithUnsignedInteger:referenceId] forKey:@"ref_id"];
-    [body setObject:[NSNumber numberWithBool:isPrivate] forKey:@"private"];
+    [body setObject:@(referenceId) forKey:@"ref_id"];
+    [body setObject:@(isPrivate) forKey:@"private"];
   }
   
   request.body = body;

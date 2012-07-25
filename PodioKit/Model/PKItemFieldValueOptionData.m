@@ -65,16 +65,15 @@ static NSString * const PKItemFieldValueOptionDataColorStringKey = @"ColorString
 }
 
 - (NSUInteger)hash {
-  return [[NSNumber numberWithInteger:self.optionId] hash];
+  return [@(self.optionId) hash];
 }
 
 
 - (NSString *)description {
   // Print as dictionary
-  return [[NSDictionary dictionaryWithObjectsAndKeys:
-           [NSNumber numberWithInteger:optionId_], @"optionId", 
-           text_, @"text", 
-           [NSNumber numberWithBool:selected_], @"selected", nil] description];
+  return [@{@"optionId": @(optionId_), 
+           @"text": text_, 
+           @"selected": @(selected_)} description];
 }
 
 #pragma mark - Factory methods

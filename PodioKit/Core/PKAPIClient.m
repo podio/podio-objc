@@ -232,7 +232,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [self resendPendingRequests];
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:token forKey:PKAPIClientTokenKey];
+  NSDictionary *userInfo = @{PKAPIClientTokenKey: token};
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self userInfo:userInfo];
 }
 
@@ -375,7 +375,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     [self handleUnauthorized];
   }
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:request forKey:PKAPIClientRequestKey];
+  NSDictionary *userInfo = @{PKAPIClientRequestKey: request};
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFinished object:self userInfo:userInfo];
 }
 
@@ -384,7 +384,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
     [self handleUnauthorized];
   }
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:request forKey:PKAPIClientRequestKey];
+  NSDictionary *userInfo = @{PKAPIClientRequestKey: request};
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFailed object:self userInfo:userInfo];
 }
 
@@ -393,7 +393,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)oauthClient:(PKOAuth2Client *)oauthClient didReceiveToken:(PKOAuth2Token *)token {
   [self didAuthenticateWithToken:token];
   
-  NSDictionary *userInfo = [NSDictionary dictionaryWithObject:token forKey:PKAPIClientTokenKey];
+  NSDictionary *userInfo = @{PKAPIClientTokenKey: token};
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self userInfo:userInfo];
 }
 

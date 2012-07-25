@@ -31,28 +31,25 @@
 }
 
 + (PKRequest *)requestForNewNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"0", @"viewed",
-                           @"incoming", @"direction", nil];
+  NSDictionary *options = @{@"viewed": @"0",
+                           @"direction": @"incoming"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForViewedNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"1", @"viewed",
-                           @"incoming", @"direction", nil];
+  NSDictionary *options = @{@"viewed": @"1",
+                           @"direction": @"incoming"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForStarredNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObject:@"1" forKey:@"starred"];
+  NSDictionary *options = @{@"starred": @"1"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForSentNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"conversation", @"context_type",
-                           @"outgoing", @"direction", nil];
+  NSDictionary *options = @{@"context_type": @"conversation",
+                           @"direction": @"outgoing"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
