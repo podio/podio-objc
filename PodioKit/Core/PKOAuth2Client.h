@@ -35,10 +35,9 @@ typedef enum {
 @property (nonatomic, copy) NSString *clientID;
 @property (nonatomic, copy) NSString *clientSecret;
 @property (nonatomic, copy) NSString *tokenURL;
-@property (nonatomic, copy) NSString *redirectURL;
 @property (nonatomic, readonly) NSMutableSet *requests;
 
-- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL redirectURL:(NSString *)redirectURL;
+- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL;
 
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password;
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken;

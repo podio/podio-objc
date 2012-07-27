@@ -139,8 +139,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   self.oauthClient = [[PKOAuth2Client alloc] initWithClientID:clientId 
                                                   clientSecret:secret 
-                                                      tokenURL:[NSString stringWithFormat:@"%@/oauth/token", self.baseURLString] 
-                                                   redirectURL:kOAuthRedirectURL];
+                                                      tokenURL:[NSString stringWithFormat:@"%@/oauth/token", self.baseURLString]];
   self.oauthClient.delegate = self;
 }
 

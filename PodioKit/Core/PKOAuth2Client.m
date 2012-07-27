@@ -24,17 +24,15 @@ static const NSTimeInterval kRequestTimeout = 30;
 @synthesize clientID = clientID_;
 @synthesize clientSecret = clientSecret_;
 @synthesize tokenURL = tokenURL_;
-@synthesize redirectURL = redirectURL_;
 @synthesize requests = requests_;
 @synthesize requestType = requestType_;
 
-- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL redirectURL:(NSString *)redirectURL {
+- (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL {
   self = [super init];
   if (self) {
     clientID_ = [clientID copy];
     clientSecret_ = [clientSecret copy];
     tokenURL_ = [tokenURL copy];
-    redirectURL_ = [redirectURL copy];
     requests_ = nil;
     requestType_ = PKOAuth2RequestTypeNone;
     delegate_ = nil;
