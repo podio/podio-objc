@@ -251,8 +251,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (ASINetworkQueue *)networkQueue {
   if (networkQueue_ == nil) {
     networkQueue_ = [[ASINetworkQueue alloc] init];
-    [networkQueue_ setMaxConcurrentOperationCount:NSOperationQueueDefaultMaxConcurrentOperationCount];
-    [networkQueue_ setShouldCancelAllRequestsOnFailure:NO];
+    networkQueue_.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
+    networkQueue_.shouldCancelAllRequestsOnFailure = NO;
  		[networkQueue_ go];
   }
   
@@ -262,8 +262,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (ASINetworkQueue *)serialNetworkQueue {
   if (serialNetworkQueue_ == nil) {
     serialNetworkQueue_ = [[ASINetworkQueue alloc] init];
-    [serialNetworkQueue_ setMaxConcurrentOperationCount:1];
-    [serialNetworkQueue_ setShouldCancelAllRequestsOnFailure:NO];
+    networkQueue_.maxConcurrentOperationCount = 1;
+    networkQueue_.shouldCancelAllRequestsOnFailure = NO;
  		[serialNetworkQueue_ go];
   }
   

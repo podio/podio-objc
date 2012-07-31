@@ -36,6 +36,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   if (self) {
     self.requestMethod = method;
     self.timeOutSeconds = kTimeout;
+    self.showAccurateProgress = NO;
     objectMapper_ = nil;
     requestCompletionBlock_ = nil;
     allowsConcurrent_ = YES;

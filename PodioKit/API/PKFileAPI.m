@@ -35,6 +35,8 @@
   operation.requestCompletionBlock = completion;
   
   operation.downloadProgressDelegate = delegate;
+  operation.showAccurateProgress = YES;
+  
   operation.downloadDestinationPath = savePath;
   
   [[[PKRequestManager sharedManager] apiClient] addRequestOperation:operation];
