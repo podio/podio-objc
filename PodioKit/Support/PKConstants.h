@@ -593,33 +593,39 @@ static NSString * const kPKAvatarTypeIcon = @"icon";
 
 typedef enum {
   PKAvatarSizeNone = 0,
+  PKAvatarSizeDefault,
   PKAvatarSizeTiny,
   PKAvatarSizeSmall,
   PKAvatarSizeMedium,
   PKAvatarSizeLarge,
 } PKAvatarSize;
 
-static NSString * const kPKAvatarSizeTiny = @"tiny";      // 16x16
-static NSString * const kPKAvatarSizeSmall = @"small";    // 32x32
-static NSString * const kPKAvatarSizeMedium = @"medium";  // 80x80
-static NSString * const kPKAvatarSizeLarge = @"large";    // 160x160
+static NSString * const kPKAvatarSizeDefault = @"default"; // 40x40
+static NSString * const kPKAvatarSizeTiny = @"tiny";       // 16x16
+static NSString * const kPKAvatarSizeSmall = @"small";     // 32x32
+static NSString * const kPKAvatarSizeMedium = @"medium";   // 80x80
+static NSString * const kPKAvatarSizeLarge = @"large";     // 160x160
 
 typedef enum {
   PKImageSizeNone = 0,
+  PKImageSizeDefault,
   PKImageSizeTiny,
   PKImageSizeSmall,
   PKImageSizeMedium,
   PKImageSizeBadge,
   PKImageSizeLarge,
   PKImageSizeExtraLarge,
+  PKImageSizeIOSLarge,
 } PKImageSize;
 
+static NSString * const kPKImageSizeDefault = @"default"; // 40x40
 static NSString * const kPKImageSizeTiny = @"tiny"; // 16x16
 static NSString * const kPKImageSizeSmall = @"small"; // 32x32
 static NSString * const kPKImageSizeMedium = @"medium"; // 80x80
 static NSString * const kPKImageSizeBadge = @"badge"; // 220x160
 static NSString * const kPKImageSizeLarge = @"large"; // 160x160
 static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
+static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 
 @interface PKConstants : NSObject
 
@@ -676,6 +682,6 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 + (NSString *)stringForAppFieldStatus:(PKAppFieldStatus)status;
 
 // Images
-+ (NSString *)stringForImageSize:(PKImageSize)imageSize;
++ (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina;
 
 @end

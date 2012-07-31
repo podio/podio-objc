@@ -880,10 +880,13 @@
 
 #pragma mark - Images
 
-+ (NSString *)stringForImageSize:(PKImageSize)imageSize {
++ (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina {
   NSString *string = nil;
   
   switch (imageSize) {
+    case PKImageSizeDefault:
+      string = kPKImageSizeDefault;
+      break;
     case PKImageSizeTiny:
       string = kPKImageSizeTiny;
       break;
@@ -902,8 +905,15 @@
     case PKImageSizeExtraLarge:
       string = kPKImageSizeExtraLarge;
       break;
+    case PKImageSizeIOSLarge:
+      string = kPKImageSizeIOSLarge;
+      break;
     default:
       break;
+  }
+  
+  if (isRetina) {
+    string = [string stringByAppendingString:@"_x2"];
   }
   
   return string;
