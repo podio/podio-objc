@@ -82,4 +82,29 @@
   return request;
 }
 
++ (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemId:(NSUInteger)notItemId sortType:(PKItemAPISortType)sortType {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%d/find", fieldId] method:PKAPIRequestMethodGET];
+
+  switch (sortType) {
+    case PKItemAPISortTypeCreatedOn:
+      [request.parameters setObject:@"created_on" forKey:@"sort"];
+      break;
+    case PKItemAPISortTypeTitle:
+      [request.parameters setObject:@"title" forKey:@"sort"];
+      break;
+    default:
+      break;
+  }
+  
+  if (notItemId > 0) {
+    [request.parameters setObject:@(notItemId) forKey:@"not_item_id"];
+  }
+  
+  if ([text length] > 0) {
+    [request.parameters setObject:text forKey:@"text"];
+  }
+  
+  return request;
+}
+
 @end

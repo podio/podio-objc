@@ -9,6 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "PKBaseAPI.h"
 
+typedef enum {
+  PKItemAPISortTypeNone = 0,
+  PKItemAPISortTypeCreatedOn,
+  PKItemAPISortTypeTitle,
+} PKItemAPISortType;
+
 @interface PKItemAPI : PKBaseAPI
 
 + (PKRequest *)requestForItemWithId:(NSUInteger)itemId;
@@ -18,5 +24,6 @@
 + (PKRequest *)requestToUpdateItemFields:(NSArray *)fields itemId:(NSUInteger)itemId;
 + (PKRequest *)requestToUpdateItemWithId:(NSUInteger)itemId fields:(NSArray *)fields fileIds:(NSArray *)fileIds;
 + (PKRequest *)requestToSetParticipationForItemWithId:(NSUInteger)itemId status:(PKMeetingParticipantStatus)status;
++ (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemId:(NSUInteger)notItemId sortType:(PKItemAPISortType)sortType;
 
 @end
