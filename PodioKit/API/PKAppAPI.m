@@ -29,4 +29,14 @@
   return request;
 }
 
++ (PKRequest *)requestForTopAppsWithLimit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:@"/app/top/" method:PKAPIRequestMethodGET];
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+
+  return request;
+}
+
 @end

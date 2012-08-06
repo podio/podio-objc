@@ -13,5 +13,6 @@
 + (PKRequest *)requestForAppWithId:(NSUInteger)appId;
 + (PKRequest *)requestToInstallAppWithId:(NSUInteger)appId spaceId:(NSUInteger)spaceId;
 + (PKRequest *)requestForAppsInSpaceWithId:(NSUInteger)spaceId;
++ (PKRequest *)requestForTopAppsWithLimit:(NSUInteger)limit;
 
 @end
