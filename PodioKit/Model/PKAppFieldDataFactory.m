@@ -30,11 +30,12 @@
       
       __block NSMutableArray *options = [[NSMutableArray alloc] init];
       for (NSDictionary *optionsDict in [settingsDict pk_objectForKey:@"options"]) {
-        if ([[optionsDict objectForKey:@"status"] isEqualToString:@"active"]) {
+        if ([[optionsDict pk_objectForKey:@"status"] isEqualToString:@"active"]) {
           // Add active options
           PKItemFieldValueOptionData *option = [PKItemFieldValueOptionData data];
-          option.optionId = [[optionsDict objectForKey:@"id"] integerValue];
-          option.text = [optionsDict objectForKey:@"text"];
+          option.optionId = [[optionsDict pk_objectForKey:@"id"] integerValue];
+          option.text = [optionsDict pk_objectForKey:@"text"];
+          option.colorString = [dict pk_objectForKey:@"color"];
           [options addObject:option];
         }
       }
