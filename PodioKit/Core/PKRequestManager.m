@@ -60,6 +60,7 @@
   PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];
   operation.requestCompletionBlock = completion;
   operation.allowsConcurrent = request.allowsConcurrent;
+  operation.objectDataPathComponents = request.objectDataPathComponents;
   
   if (request.objectMapping != nil) {
     PKObjectMapper *mapper = [self.mappingCoordinator objectMapper];

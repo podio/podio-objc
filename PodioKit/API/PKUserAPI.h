@@ -12,4 +12,7 @@
 
 + (PKRequest *)requestForUserStatus;
 
++ (PKRequest *)requestForMobileNotificationSettings;
++ (PKRequest *)requestToSetMobileNotificationSettings:(NSDictionary *)settings;
+
 @end

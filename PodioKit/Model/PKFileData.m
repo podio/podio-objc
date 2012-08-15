@@ -75,4 +75,10 @@ static NSString * const PKFileDataSizeKey = @"Size";
   return data;
 }
 
+#pragma mark - Impl
+
+- (BOOL)isHostedByPodio {
+  return self.hostedBy == nil || [self.hostedBy isEqualToString:kPKFileHostedByPodio];
+}
+
 @end

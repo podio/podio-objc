@@ -728,4 +728,195 @@
   return string;
 }
 
+#pragma mark - App
+
++ (PKAppFieldType)appFieldTypeForString:(NSString *)string {
+  PKAppFieldType type = PKAppFieldTypeNone;
+  
+  if ([string isEqualToString:kPKAppFieldTypeTitle]) {
+    type = PKAppFieldTypeTitle;
+  } else if ([string isEqualToString:kPKAppFieldTypeText]) {
+    type = PKAppFieldTypeText;
+  } else if ([string isEqualToString:kPKAppFieldTypeNumber]) {
+    type = PKAppFieldTypeNumber;
+  } else if ([string isEqualToString:kPKAppFieldTypeState]) {
+    type = PKAppFieldTypeState;
+  } else if ([string isEqualToString:kPKAppFieldTypeImage]) {
+    type = PKAppFieldTypeImage;
+  } else if ([string isEqualToString:kPKAppFieldTypeMedia]) {
+    type = PKAppFieldTypeMedia;
+  } else if ([string isEqualToString:kPKAppFieldTypeDate]) {
+    type = PKAppFieldTypeDate;
+  } else if ([string isEqualToString:kPKAppFieldTypeApp]) {
+    type = PKAppFieldTypeApp;
+  } else if ([string isEqualToString:kPKAppFieldTypeMember]) {
+    type = PKAppFieldTypeMember;
+  } else if ([string isEqualToString:kPKAppFieldTypeContact]) {
+    type = PKAppFieldTypeContact;
+  } else if ([string isEqualToString:kPKAppFieldTypeMoney]) {
+    type = PKAppFieldTypeMoney;
+  } else if ([string isEqualToString:kPKAppFieldTypeProgress]) {
+    type = PKAppFieldTypeProgress;
+  } else if ([string isEqualToString:kPKAppFieldTypeLocation]) {
+    type = PKAppFieldTypeLocation;
+  } else if ([string isEqualToString:kPKAppFieldTypeVideo]) {
+    type = PKAppFieldTypeVideo;
+  } else if ([string isEqualToString:kPKAppFieldTypeDuration]) {
+    type = PKAppFieldTypeDuration;
+  } else if ([string isEqualToString:kPKAppFieldTypeEmbed]) {
+    type = PKAppFieldTypeEmbed;
+  } else if ([string isEqualToString:kPKAppFieldTypeCalculation]) {
+    type = PKAppFieldTypeCalculation;
+  } else if ([string isEqualToString:kPKAppFieldTypeQuestion]) {
+    type = PKAppFieldTypeQuestion;
+  } else if ([string isEqualToString:kPKAppFieldTypeCategory]) {
+    type = PKAppFieldTypeCategory;
+  }
+  
+  return type;
+}
+
++ (NSString *)stringForAppFieldType:(PKAppFieldType)type {
+  NSString *string = nil;
+  
+  switch (type) {
+    case PKAppFieldTypeTitle:
+      string = kPKAppFieldTypeTitle;
+      break;
+    case PKAppFieldTypeText:
+      string = kPKAppFieldTypeText;
+      break;
+    case PKAppFieldTypeNumber:
+      string = kPKAppFieldTypeNumber;
+      break;
+    case PKAppFieldTypeState:
+      string = kPKAppFieldTypeState;
+      break;
+    case PKAppFieldTypeImage:
+      string = kPKAppFieldTypeImage;
+      break;
+    case PKAppFieldTypeMedia:
+      string = kPKAppFieldTypeMedia;
+      break;
+    case PKAppFieldTypeDate:
+      string = kPKAppFieldTypeDate;
+      break;
+    case PKAppFieldTypeApp:
+      string = kPKAppFieldTypeApp;
+      break;
+    case PKAppFieldTypeMember:
+      string = kPKAppFieldTypeMember;
+      break;
+    case PKAppFieldTypeContact:
+      string = kPKAppFieldTypeContact;
+      break;
+    case PKAppFieldTypeMoney:
+      string = kPKAppFieldTypeMoney;
+      break;
+    case PKAppFieldTypeProgress:
+      string = kPKAppFieldTypeProgress;
+      break;
+    case PKAppFieldTypeLocation:
+      string = kPKAppFieldTypeLocation;
+      break;
+    case PKAppFieldTypeVideo:
+      string = kPKAppFieldTypeVideo;
+      break;
+    case PKAppFieldTypeDuration:
+      string = kPKAppFieldTypeDuration;
+      break;
+    case PKAppFieldTypeEmbed:
+      string = kPKAppFieldTypeEmbed;
+      break;
+    case PKAppFieldTypeCalculation:
+      string = kPKAppFieldTypeCalculation;
+      break;
+    case PKAppFieldTypeQuestion:
+      string = kPKAppFieldTypeQuestion;
+      break;
+    case PKAppFieldTypeCategory:
+      string = kPKAppFieldTypeCategory;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
++ (PKAppFieldStatus)appFieldStatusForString:(NSString *)string {
+  PKAppFieldStatus status = PKAppFieldStatusNone;
+  
+  if ([string isEqualToString:kPKAppFieldStatusActive]) {
+    status = PKAppFieldStatusActive;
+  } else if ([string isEqualToString:kPKAppFieldStatusInactive]) {
+    status = PKAppFieldStatusInactive;
+  } else if ([string isEqualToString:kPKAppFieldStatusDeleted]) {
+    status = PKAppFieldStatusDeleted;
+  }
+  
+  return status;
+}
+
++ (NSString *)stringForAppFieldStatus:(PKAppFieldStatus)status {
+  NSString *string = nil;
+  
+  switch (status) {
+    case PKAppFieldStatusActive:
+      string = kPKAppFieldStatusActive;
+      break;
+    case PKAppFieldStatusInactive:
+      string = kPKAppFieldStatusInactive;
+      break;
+    case PKAppFieldStatusDeleted:
+      string = kPKAppFieldStatusDeleted;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
+#pragma mark - Images
+
++ (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina {
+  NSString *string = nil;
+  
+  switch (imageSize) {
+    case PKImageSizeDefault:
+      string = kPKImageSizeDefault;
+      break;
+    case PKImageSizeTiny:
+      string = kPKImageSizeTiny;
+      break;
+    case PKImageSizeSmall:
+      string = kPKImageSizeSmall;
+      break;
+    case PKImageSizeMedium:
+      string = kPKImageSizeMedium;
+      break;
+    case PKImageSizeBadge:
+      string = kPKImageSizeBadge;
+      break;
+    case PKImageSizeLarge:
+      string = kPKImageSizeLarge;
+      break;
+    case PKImageSizeExtraLarge:
+      string = kPKImageSizeExtraLarge;
+      break;
+    case PKImageSizeIOSLarge:
+      string = kPKImageSizeIOSLarge;
+      break;
+    default:
+      break;
+  }
+  
+  if (isRetina) {
+    string = [string stringByAppendingString:@"_x2"];
+  }
+  
+  return string;
+}
+
 @end

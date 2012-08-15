@@ -30,4 +30,6 @@
 @property (nonatomic, copy) NSString *mimeType;
 @property NSInteger size;
 
+- (BOOL)isHostedByPodio;
+
 @end

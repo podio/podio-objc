@@ -138,7 +138,7 @@
 	
 	ASIHTTPRequest *request = (ASIHTTPRequest *)operation;
 	
-	if ([self showAccurateProgress]) {
+	if ([request showAccurateProgress]) {
 		
 		// Force the request to build its body (this may change requestMethod)
 		[request buildPostBody];
@@ -172,7 +172,7 @@
 		[request setShouldResetUploadProgress:NO];
 	}
 	
-	[request setShowAccurateProgress:[self showAccurateProgress]];
+//	[request setShowAccurateProgress:[self showAccurateProgress]];
 	
 	[request setQueue:self];
 	[super addOperation:request];

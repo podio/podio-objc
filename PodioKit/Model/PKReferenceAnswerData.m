@@ -1,18 +1,18 @@
 //
-//  PKStreamActivityAnswerData.m
+//  PKReferenceAnswerData.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/20/11.
 //  Copyright 2011 Podio. All rights reserved.
 //
 
-#import "PKStreamActivityAnswerData.h"
+#import "PKReferenceAnswerData.h"
 
 
-static NSString * const PKStreamActivityAnswerDataOptionId = @"OptionId";
-static NSString * const PKStreamActivityAnswerDataText = @"Text";
+static NSString * const PKReferenceAnswerDataOptionId = @"OptionId";
+static NSString * const PKReferenceAnswerDataText = @"Text";
 
-@implementation PKStreamActivityAnswerData
+@implementation PKReferenceAnswerData
 
 @synthesize optionId = optionId_;
 @synthesize text = text_;
@@ -20,23 +20,23 @@ static NSString * const PKStreamActivityAnswerDataText = @"Text";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    optionId_ = [aDecoder decodeIntegerForKey:PKStreamActivityAnswerDataOptionId];
-    text_ = [[aDecoder decodeObjectForKey:PKStreamActivityAnswerDataText] copy];
+    optionId_ = [aDecoder decodeIntegerForKey:PKReferenceAnswerDataOptionId];
+    text_ = [[aDecoder decodeObjectForKey:PKReferenceAnswerDataText] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:optionId_ forKey:PKStreamActivityAnswerDataOptionId];
-  [aCoder encodeObject:text_ forKey:PKStreamActivityAnswerDataText];
+  [aCoder encodeInteger:optionId_ forKey:PKReferenceAnswerDataOptionId];
+  [aCoder encodeObject:text_ forKey:PKReferenceAnswerDataText];
 }
 
 
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {
-  PKStreamActivityAnswerData *data = [self data];
+  PKReferenceAnswerData *data = [self data];
   
   NSDictionary *optionDict = [dict pk_objectForKey:@"question_option"];
   data.optionId = [[optionDict pk_objectForKey:@"question_option_id"] unsignedIntegerValue];

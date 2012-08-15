@@ -15,9 +15,10 @@ static NSString * const kPodioKitErrorDomain = @"PodioKitErrorDomain";
 
 typedef enum {
   PKErrorCodeNoConnection = 1001,
-  PKErrorCodeParsingFailed = 1002,
-  PKErrorCodeMultipleRequests = 1003,
-  PKErrorCodeRequestCancelled = 1004,
+  PKErrorCodeNotAuthenticated = 1002,
+  PKErrorCodeParsingFailed = 1003,
+  PKErrorCodeMultipleRequests = 1004,
+  PKErrorCodeRequestCancelled = 1005,
   PKErrorCodeServerError = 2000,
 } PKErrorCode;
 
@@ -227,6 +228,29 @@ static NSString * const kPKAppTypeMeeting = @"meeting";
 #pragma mark - Item
 
 // Field types
+typedef enum {
+  PKAppFieldTypeNone = 0,
+  PKAppFieldTypeTitle,
+  PKAppFieldTypeText, 
+  PKAppFieldTypeNumber,
+  PKAppFieldTypeState,
+  PKAppFieldTypeImage,
+  PKAppFieldTypeMedia,
+  PKAppFieldTypeDate,
+  PKAppFieldTypeApp,
+  PKAppFieldTypeMember,
+  PKAppFieldTypeContact,
+  PKAppFieldTypeMoney,
+  PKAppFieldTypeProgress,
+  PKAppFieldTypeLocation,
+  PKAppFieldTypeVideo,
+  PKAppFieldTypeDuration,
+  PKAppFieldTypeEmbed,
+  PKAppFieldTypeCalculation,
+  PKAppFieldTypeQuestion,
+  PKAppFieldTypeCategory,
+} PKAppFieldType;
+
 static NSString * const kPKAppFieldTypeTitle = @"title";
 static NSString * const kPKAppFieldTypeText = @"text";
 static NSString * const kPKAppFieldTypeNumber = @"number";
@@ -246,6 +270,19 @@ static NSString * const kPKAppFieldTypeEmbed = @"embed";
 static NSString * const kPKAppFieldTypeCalculation = @"calculation";
 static NSString * const kPKAppFieldTypeQuestion = @"question";
 static NSString * const kPKAppFieldTypeCategory = @"category";
+
+typedef enum {
+  PKAppFieldStatusNone,
+  PKAppFieldStatusActive,
+  PKAppFieldStatusInactive,
+  PKAppFieldStatusDeleted,
+} PKAppFieldStatus;
+
+static NSString * const kPKAppFieldStatusActive = @"active";
+static NSString * const kPKAppFieldStatusInactive = @"inactive";
+static NSString * const kPKAppFieldStatusDeleted = @"deleted";
+
+#pragma mark - Item
 
 // Item revision
 typedef enum {
@@ -554,17 +591,41 @@ typedef enum {
 static NSString * const kPKAvatarTypeFile = @"file";
 static NSString * const kPKAvatarTypeIcon = @"icon";
 
-static NSString * const kPKAvatarSizeTiny = @"tiny";      // 16x16
-static NSString * const kPKAvatarSizeSmall = @"small";    // 32x32
-static NSString * const kPKAvatarSizeMedium = @"medium";  // 80x80
-static NSString * const kPKAvatarSizeLarge = @"large";    // 160x160
+typedef enum {
+  PKAvatarSizeNone = 0,
+  PKAvatarSizeDefault,
+  PKAvatarSizeTiny,
+  PKAvatarSizeSmall,
+  PKAvatarSizeMedium,
+  PKAvatarSizeLarge,
+} PKAvatarSize;
 
+static NSString * const kPKAvatarSizeDefault = @"default"; // 40x40
+static NSString * const kPKAvatarSizeTiny = @"tiny";       // 16x16
+static NSString * const kPKAvatarSizeSmall = @"small";     // 32x32
+static NSString * const kPKAvatarSizeMedium = @"medium";   // 80x80
+static NSString * const kPKAvatarSizeLarge = @"large";     // 160x160
+
+typedef enum {
+  PKImageSizeNone = 0,
+  PKImageSizeDefault,
+  PKImageSizeTiny,
+  PKImageSizeSmall,
+  PKImageSizeMedium,
+  PKImageSizeBadge,
+  PKImageSizeLarge,
+  PKImageSizeExtraLarge,
+  PKImageSizeIOSLarge,
+} PKImageSize;
+
+static NSString * const kPKImageSizeDefault = @"default"; // 40x40
 static NSString * const kPKImageSizeTiny = @"tiny"; // 16x16
 static NSString * const kPKImageSizeSmall = @"small"; // 32x32
 static NSString * const kPKImageSizeMedium = @"medium"; // 80x80
 static NSString * const kPKImageSizeBadge = @"badge"; // 220x160
 static NSString * const kPKImageSizeLarge = @"large"; // 160x160
 static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
+static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 
 @interface PKConstants : NSObject
 
@@ -613,5 +674,14 @@ static NSString * const kPKImageSizeExtraLarge = @"extra_large"; // 520x?
 // Providers
 + (PKProviderCapability)providerCapabilityForString:(NSString *)string;
 + (NSString *)stringForProviderCapability:(PKProviderCapability)capability;
+
+// App
++ (PKAppFieldType)appFieldTypeForString:(NSString *)string;
++ (NSString *)stringForAppFieldType:(PKAppFieldType)type;
++ (PKAppFieldStatus)appFieldStatusForString:(NSString *)string;
++ (NSString *)stringForAppFieldStatus:(PKAppFieldStatus)status;
+
+// Images
++ (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina;
 
 @end

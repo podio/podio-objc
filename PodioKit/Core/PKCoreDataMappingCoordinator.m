@@ -25,7 +25,7 @@
   if (self) {
     managedObjectContext_ = managedObjectContext;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mappingContextDidSave:) 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mappingContextDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification 
                                                object:nil];
   }
@@ -33,6 +33,9 @@
   return self;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (PKObjectMapper *)objectMapper {
   PKAssert(self.mappingProvider != nil, @"No mapping provider set.");

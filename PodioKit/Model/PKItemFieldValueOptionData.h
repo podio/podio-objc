@@ -20,5 +20,8 @@
 @property NSInteger optionId;
 @property (nonatomic, copy) NSString *text;
 @property BOOL selected;
+@property (nonatomic, copy) NSString *colorString;
+
+- (BOOL)isEqualToOption:(PKItemFieldValueOptionData *)option;
 
 @end

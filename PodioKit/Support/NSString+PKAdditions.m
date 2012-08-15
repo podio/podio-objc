@@ -18,8 +18,9 @@
 }
 
 - (BOOL)pk_isHTML {
-  NSRange range = [self rangeOfString:@"(<\\w+>?).+(</\\w+>)" options:NSRegularExpressionSearch];
-  BOOL isHTML = range.location != NSNotFound;
+  NSRange range = [self rangeOfString:@"(<\\w+>?).+(</\\w+>)" options:NSRegularExpressionSearch | NSRegularExpressionCaseInsensitive];
+  NSRange brRange = [self rangeOfString:@"(<\\w+(\\s+/)?>)" options:NSRegularExpressionSearch | NSRegularExpressionCaseInsensitive];
+  BOOL isHTML = range.location != NSNotFound || brRange.location != NSNotFound;
   
   return isHTML;
 }

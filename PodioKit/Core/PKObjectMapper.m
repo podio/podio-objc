@@ -16,7 +16,7 @@
 
 @interface PKObjectMapper ()
 
-@property (nonatomic, readonly) NSDateFormatter *dateFormatter;
+@property (nonatomic, strong, readonly) NSDateFormatter *dateFormatter;
 
 - (void)deleteObjectsForKlass:(Class)klass identityPredicate:(NSPredicate *)identityPredicate scopePredicate:(NSPredicate *)scopePredicate;
 
@@ -24,13 +24,14 @@
 
 @implementation PKObjectMapper
 
+@synthesize delegate = delegate_;
 @synthesize provider = provider_;
 @synthesize repository = repository_;
-@synthesize delegate = delegate_;
 @synthesize scopePredicate = scopePredicate_;
 @synthesize offset = offset_;
 @synthesize mapping = mapping_;
 @synthesize mappingBlock = mappingBlock_;
+@synthesize dateFormatter = dateFormatter_;
 
 - (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository {
   self = [super init];
@@ -75,20 +76,14 @@
   NSString *className = NSStringFromClass([self.mapping class]);
   Class klass = [self.provider mappedClassForMappingClassName:className];
   if (klass == nil) {
-    PKLogDebug(@"No object class for mapping class %@, skipping...", className);
+    PKLogWarn(@"No object class for mapping class %@, skipping...", className);
     return nil;
-  }
-  
-  // Extract actual data
-  id baseValue = data;
-  if (self.mapping.mappedDataPathComponents != nil) {
-    baseValue = [data pk_objectForPathComponents:self.mapping.mappedDataPathComponents];
   }
   
   id result = nil;
   
   // Map
-  if ([baseValue isKindOfClass:[NSArray class]]) {
+  if ([data isKindOfClass:[NSArray class]]) {
     // Collection
     
     NSArray *identityPropNames = [klass identityPropertyNames];
@@ -99,7 +94,7 @@
     
     BOOL shouldRemoveOld = self.offset == 0;
     
-    result = [self applyCollectionObjectMapping:self.mapping objectDicts:baseValue parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES block:^(id obj, NSDictionary *objDict) {
+    result = [self applyCollectionObjectMapping:self.mapping objectDicts:data parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES block:^(id obj, NSDictionary *objDict) {
       
       if (shouldRemoveOld) {
         // Need to build identity predicates for deletion
@@ -138,7 +133,7 @@
     
   } else {
     // Single object
-    id obj = [self applySingleObjectMapping:self.mapping objectDict:baseValue parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES];
+    id obj = [self applySingleObjectMapping:self.mapping objectDict:data parentObject:nil parentRelationshipName:nil scopePredicate:self.scopePredicate useMappingBlock:YES];
     
     if (obj != nil) {
       result = obj;
@@ -259,7 +254,7 @@
       if (mapping.sequencePropertyName != nil) {
         NSString *sequenceSetSelectorName = [NSString stringWithFormat:@"set%@:", [mapping.sequencePropertyName pk_stringByCapitalizingFirstCharacter]];
         if ([object respondsToSelector:NSSelectorFromString(sequenceSetSelectorName)]) {
-          [object setValue:[NSNumber numberWithUnsignedInteger:seqIndex] forKey:mapping.sequencePropertyName];
+          [object setValue:@(seqIndex) forKey:mapping.sequencePropertyName];
         }
       }
       
@@ -494,7 +489,7 @@
   NSPredicate *deletePredicate = nil;
   if (scopePredicate != nil && invIdentityPredicate != nil) {
     // Both
-    NSArray *predicates = [[NSArray alloc] initWithObjects:scopePredicate, invIdentityPredicate, nil];
+    NSArray *predicates = @[scopePredicate, invIdentityPredicate];
     deletePredicate = [NSCompoundPredicate andPredicateWithSubpredicates:predicates];
   } else if (scopePredicate != nil) {
     deletePredicate = scopePredicate;

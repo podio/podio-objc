@@ -13,7 +13,7 @@
 + (PKRequest *)requestForLikeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
 	NSString * uri = [NSString stringWithFormat:@"/rating/%@/%d/like", [PKConstants stringForReferenceType:referenceType], referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST objectMapping:nil];
-	request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithInt:1] forKey:@"value"];
+	request.body = @{@"value": @1};
   
   return request;
 }

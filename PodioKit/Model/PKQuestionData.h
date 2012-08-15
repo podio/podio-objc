@@ -29,6 +29,4 @@
 @property (nonatomic, strong) NSMutableDictionary *userAnswers;
 @property (nonatomic, strong) NSMutableDictionary *answerCounts;
 
-- (void)updateAnswerWithOptionId:(NSUInteger)optionId forUserWithId:(NSUInteger)userId;
-
 @end

@@ -10,11 +10,32 @@
 
 @implementation PKAppAPI
 
++ (PKRequest *)requestForAppWithId:(NSUInteger)appId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d", appId] method:PKAPIRequestMethodGET];
+}
+
 + (PKRequest *)requestToInstallAppWithId:(NSUInteger)appId spaceId:(NSUInteger)spaceId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d/install", appId] method:PKAPIRequestMethodPOST];
   
-  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:spaceId] forKey:@"space_id"];
+  request.body = @{@"space_id": @(spaceId)};
   
+  return request;
+}
+
++ (PKRequest *)requestForAppsInSpaceWithId:(NSUInteger)spaceId {
+  NSString *uri = [NSString stringWithFormat:@"/app/space/%d/", spaceId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  
+  return request;
+}
+
++ (PKRequest *)requestForTopAppsWithLimit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:@"/app/top/" method:PKAPIRequestMethodGET];
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+
   return request;
 }
 

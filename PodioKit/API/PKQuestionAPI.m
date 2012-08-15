@@ -13,7 +13,7 @@
 + (PKRequest *)requestToAnswerQuestionWithId:(NSUInteger)questionId withOptionId:(NSUInteger)optionId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
 	NSString * uri = [NSString stringWithFormat:@"/question/%d/%@/%d/", questionId, [PKConstants stringForReferenceType:referenceType], referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
-	request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:optionId] forKey:@"question_option_id"];
+	request.body = @{@"question_option_id": @(optionId)};
   
   return request;
 }

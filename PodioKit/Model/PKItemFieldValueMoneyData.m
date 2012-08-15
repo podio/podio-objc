@@ -38,7 +38,7 @@ static NSString * const PKItemFieldValueMoneyDataCurrencyKey = @"Currency";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueMoneyData *data = [self data];
   
-  data.amount = [NSNumber numberWithFloat:[[dict pk_objectForKey:@"value"] floatValue]];
+  data.amount = @([[dict pk_objectForKey:@"value"] floatValue]);
   data.currency = [dict pk_objectForKey:@"currency"];
   
   return data;

@@ -14,6 +14,33 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodGET];
 }
 
++ (PKRequest *)requestToDeleteItemWithId:(NSUInteger)itemId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodDELETE];
+}
+
++ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodGET];
+  request.offset = offset;
+  
+  if (offset > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+  }
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+  
+  if (viewId > 0) {
+    [request.parameters setObject:@"0" forKey:@"remember"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", viewId] forKey:@"view_id"];
+  } else {
+    // Sort by created date by default
+    [request.parameters setObject:@"created_on" forKey:@"sort_by"];
+  }
+  
+  return request;
+}
+
 + (PKRequest *)requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodPOST];
   
@@ -50,7 +77,32 @@
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/participation", itemId] method:PKAPIRequestMethodPUT];
   
   NSString *statusString = [PKConstants stringForMeetingParticipantStatus:status];
-  request.body = [NSDictionary dictionaryWithObject:statusString forKey:@"status"];
+  request.body = @{@"status": statusString};
+  
+  return request;
+}
+
++ (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemId:(NSUInteger)notItemId sortType:(PKItemAPISortType)sortType {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%d/find", fieldId] method:PKAPIRequestMethodGET];
+
+  switch (sortType) {
+    case PKItemAPISortTypeCreatedOn:
+      [request.parameters setObject:@"created_on" forKey:@"sort"];
+      break;
+    case PKItemAPISortTypeTitle:
+      [request.parameters setObject:@"title" forKey:@"sort"];
+      break;
+    default:
+      break;
+  }
+  
+  if (notItemId > 0) {
+    [request.parameters setObject:@(notItemId) forKey:@"not_item_id"];
+  }
+  
+  if ([text length] > 0) {
+    [request.parameters setObject:text forKey:@"text"];
+  }
   
   return request;
 }

@@ -25,7 +25,7 @@
 - (NSString *)pk_dateTimeStringWithFormatString:(NSString *)formatString;
 
 - (NSString *)pk_dateString;
-
+- (NSString *)pk_timeString;
 - (NSString *)pk_dateTimeString;
 
 @end

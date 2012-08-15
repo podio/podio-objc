@@ -25,7 +25,7 @@
   
   PKRequest *request = [PKRequest requestWithURI:@"/space/" method:PKAPIRequestMethodPOST];
   
-  request.body = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithUnsignedInteger:organizationId], @"org_id", name, @"name", nil];
+  request.body = @{@"org_id": @(organizationId), @"name": name};
   
   return request;
 }

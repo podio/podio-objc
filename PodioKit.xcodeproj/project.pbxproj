@@ -65,9 +65,9 @@
 		5030C0711435E76300027F07 /* PKStreamActionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C02C1435E76300027F07 /* PKStreamActionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0721435E76300027F07 /* PKStreamActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02D1435E76300027F07 /* PKStreamActionData.m */; };
 		5030C0731435E76300027F07 /* PKStreamActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02D1435E76300027F07 /* PKStreamActionData.m */; };
-		5030C0741435E76300027F07 /* PKStreamActivityAnswerData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C02E1435E76300027F07 /* PKStreamActivityAnswerData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C0751435E76300027F07 /* PKStreamActivityAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKStreamActivityAnswerData.m */; };
-		5030C0761435E76300027F07 /* PKStreamActivityAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKStreamActivityAnswerData.m */; };
+		5030C0741435E76300027F07 /* PKReferenceAnswerData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C02E1435E76300027F07 /* PKReferenceAnswerData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5030C0751435E76300027F07 /* PKReferenceAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */; };
+		5030C0761435E76300027F07 /* PKReferenceAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */; };
 		5030C0771435E76300027F07 /* PKReferenceCommentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0301435E76300027F07 /* PKReferenceCommentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0781435E76300027F07 /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
 		5030C0791435E76300027F07 /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
@@ -78,9 +78,9 @@
 		5030C0861435E76300027F07 /* PKReferenceTaskActionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03A1435E76300027F07 /* PKReferenceTaskActionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0871435E76300027F07 /* PKReferenceTaskActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */; };
 		5030C0881435E76300027F07 /* PKReferenceTaskActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */; };
-		5030C0891435E76300027F07 /* PKStreamActivityTaskData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03C1435E76300027F07 /* PKStreamActivityTaskData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C08A1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */; };
-		5030C08B1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */; };
+		5030C0891435E76300027F07 /* PKReferenceTaskData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03C1435E76300027F07 /* PKReferenceTaskData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5030C08A1435E76300027F07 /* PKReferenceTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKReferenceTaskData.m */; };
+		5030C08B1435E76300027F07 /* PKReferenceTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKReferenceTaskData.m */; };
 		5030C08F1435E76300027F07 /* PKStreamItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0401435E76300027F07 /* PKStreamItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0901435E76300027F07 /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
 		5030C0911435E76300027F07 /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
@@ -114,9 +114,6 @@
 		5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
 		5030C0B21435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
 		5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C0C91435E92800027F07 /* PKStreamActivityDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0C21435E92800027F07 /* PKStreamActivityDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C0CA1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */; };
-		5030C0CB1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */; };
 		5030C0CC1435E92800027F07 /* PKStreamDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0C41435E92800027F07 /* PKStreamDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C51435E92800027F07 /* PKStreamDataFactory.m */; };
 		5030C0CE1435E92800027F07 /* PKStreamDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C51435E92800027F07 /* PKStreamDataFactory.m */; };
@@ -134,6 +131,9 @@
 		50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50458F381507734300FA66A6 /* PKByLineData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
 		50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
+		5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5048937815400A0400022E6C /* PKAppFieldDataFactory.h */; };
+		5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
+		5048937C15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
 		5053634314FF962B0068622A /* PKProviderData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5053634114FF962B0068622A /* PKProviderData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5053634414FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
 		5053634514FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
@@ -233,6 +233,8 @@
 		507CA0681503E77A00678F9D /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE51446D1CD006E00B8 /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		507CA0691503E77A00678F9D /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBE71446D1CD006E00B8 /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
+		507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */; };
+		507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */; };
 		507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */; };
 		507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
 		507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
@@ -279,6 +281,9 @@
 		50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897E14A138EE004E027E /* PKReferenceDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */; };
 		50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
+		50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
+		50B2A40E15666EFB00DC6C65 /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
 		50B317DC152F7477002E73F2 /* libPodioKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEE814335AB900360855 /* libPodioKit.a */; };
 		50B317DD152F749B002E73F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F414345CF300360855 /* CoreData.framework */; };
 		50B317DE152F74D6002E73F2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FC14345F0D00360855 /* MobileCoreServices.framework */; };
@@ -465,8 +470,8 @@
 		5030C02A1435E76300027F07 /* PKReferenceSpaceData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceSpaceData.h; sourceTree = "<group>"; };
 		5030C02C1435E76300027F07 /* PKStreamActionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActionData.h; sourceTree = "<group>"; };
 		5030C02D1435E76300027F07 /* PKStreamActionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActionData.m; sourceTree = "<group>"; };
-		5030C02E1435E76300027F07 /* PKStreamActivityAnswerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActivityAnswerData.h; sourceTree = "<group>"; };
-		5030C02F1435E76300027F07 /* PKStreamActivityAnswerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityAnswerData.m; sourceTree = "<group>"; };
+		5030C02E1435E76300027F07 /* PKReferenceAnswerData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceAnswerData.h; sourceTree = "<group>"; };
+		5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceAnswerData.m; sourceTree = "<group>"; };
 		5030C0301435E76300027F07 /* PKReferenceCommentData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceCommentData.h; sourceTree = "<group>"; };
 		5030C0311435E76300027F07 /* PKReferenceCommentData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceCommentData.m; sourceTree = "<group>"; };
 		5030C0361435E76300027F07 /* PKReferenceRatingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceRatingData.h; sourceTree = "<group>"; };
@@ -474,8 +479,8 @@
 		5030C0381435E76300027F07 /* PKReferenceStatusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceStatusData.h; sourceTree = "<group>"; };
 		5030C03A1435E76300027F07 /* PKReferenceTaskActionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceTaskActionData.h; sourceTree = "<group>"; };
 		5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceTaskActionData.m; sourceTree = "<group>"; };
-		5030C03C1435E76300027F07 /* PKStreamActivityTaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActivityTaskData.h; sourceTree = "<group>"; };
-		5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityTaskData.m; sourceTree = "<group>"; };
+		5030C03C1435E76300027F07 /* PKReferenceTaskData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceTaskData.h; sourceTree = "<group>"; };
+		5030C03D1435E76300027F07 /* PKReferenceTaskData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceTaskData.m; sourceTree = "<group>"; };
 		5030C0401435E76300027F07 /* PKStreamItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamItemData.h; sourceTree = "<group>"; };
 		5030C0411435E76300027F07 /* PKStreamItemData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamItemData.m; sourceTree = "<group>"; };
 		5030C0421435E76300027F07 /* PKStreamStatusData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamStatusData.h; sourceTree = "<group>"; };
@@ -498,8 +503,6 @@
 		5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueMoneyData.h; sourceTree = "<group>"; };
 		5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueMoneyData.m; sourceTree = "<group>"; };
 		5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueOptionData.h; sourceTree = "<group>"; };
-		5030C0C21435E92800027F07 /* PKStreamActivityDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamActivityDataFactory.h; sourceTree = "<group>"; };
-		5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamActivityDataFactory.m; sourceTree = "<group>"; };
 		5030C0C41435E92800027F07 /* PKStreamDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKStreamDataFactory.h; sourceTree = "<group>"; };
 		5030C0C51435E92800027F07 /* PKStreamDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamDataFactory.m; sourceTree = "<group>"; };
 		5032336014FD3F2C0028D887 /* PKExternalFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKExternalFileData.h; sourceTree = "<group>"; };
@@ -514,6 +517,8 @@
 		5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskAPI.m; sourceTree = "<group>"; };
 		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
 		50458F391507734300FA66A6 /* PKByLineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKByLineData.m; sourceTree = "<group>"; };
+		5048937815400A0400022E6C /* PKAppFieldDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldDataFactory.h; sourceTree = "<group>"; };
+		5048937915400A0400022E6C /* PKAppFieldDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldDataFactory.m; sourceTree = "<group>"; };
 		5053634114FF962B0068622A /* PKProviderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKProviderData.h; sourceTree = "<group>"; };
 		5053634214FF962B0068622A /* PKProviderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKProviderData.m; sourceTree = "<group>"; };
 		5059533A149634B70046685A /* PKConversationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKConversationAPI.h; sourceTree = "<group>"; };
@@ -585,6 +590,8 @@
 		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKEmbedAPI.h; sourceTree = "<group>"; };
+		507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKEmbedAPI.m; sourceTree = "<group>"; };
 		507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountData.h; sourceTree = "<group>"; };
 		507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLinkedAccountData.m; sourceTree = "<group>"; };
 		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
@@ -622,6 +629,8 @@
 		50AE897B14A138EE004E027E /* PKReferenceDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceDataFactory.h; sourceTree = "<group>"; };
 		50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceDataFactory.m; sourceTree = "<group>"; };
 		50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceSpaceData.m; sourceTree = "<group>"; };
+		50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKViewAPI.h; sourceTree = "<group>"; };
+		50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKViewAPI.m; sourceTree = "<group>"; };
 		50B317E2152F7605002E73F2 /* PKDemoTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDemoTask.h; sourceTree = "<group>"; };
 		50B317E3152F7605002E73F2 /* PKDemoTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDemoTask.m; sourceTree = "<group>"; };
 		50B317E5152F76AA002E73F2 /* PKDemoTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDemoTaskMapping.h; sourceTree = "<group>"; };
@@ -852,6 +861,8 @@
 		5030C0B91435E76B00027F07 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				5048937815400A0400022E6C /* PKAppFieldDataFactory.h */,
+				5048937915400A0400022E6C /* PKAppFieldDataFactory.m */,
 				5030C01E1435E76300027F07 /* PKAppFieldContactData.h */,
 				5030C01F1435E76300027F07 /* PKAppFieldContactData.m */,
 				5030C0201435E76300027F07 /* PKAppFieldMoneyData.h */,
@@ -909,6 +920,10 @@
 				50B529F6148FC06800E05852 /* PKReferenceAlertData.m */,
 				500EA927153F20830049F224 /* PKReferenceBatchData.h */,
 				500EA928153F20830049F224 /* PKReferenceBatchData.m */,
+				5030C02E1435E76300027F07 /* PKReferenceAnswerData.h */,
+				5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */,
+				5030C03C1435E76300027F07 /* PKReferenceTaskData.h */,
+				5030C03D1435E76300027F07 /* PKReferenceTaskData.m */,
 			);
 			name = Reference;
 			sourceTree = "<group>";
@@ -916,7 +931,6 @@
 		5030C0BD1435E7AB00027F07 /* Stream */ = {
 			isa = PBXGroup;
 			children = (
-				5030C0BE1435E81C00027F07 /* Activity */,
 				5030C0C41435E92800027F07 /* PKStreamDataFactory.h */,
 				5030C0C51435E92800027F07 /* PKStreamDataFactory.m */,
 				5030C02C1435E76300027F07 /* PKStreamActionData.h */,
@@ -929,19 +943,6 @@
 				5030C0451435E76300027F07 /* PKStreamTaskData.m */,
 			);
 			name = Stream;
-			sourceTree = "<group>";
-		};
-		5030C0BE1435E81C00027F07 /* Activity */ = {
-			isa = PBXGroup;
-			children = (
-				5030C0C21435E92800027F07 /* PKStreamActivityDataFactory.h */,
-				5030C0C31435E92800027F07 /* PKStreamActivityDataFactory.m */,
-				5030C02E1435E76300027F07 /* PKStreamActivityAnswerData.h */,
-				5030C02F1435E76300027F07 /* PKStreamActivityAnswerData.m */,
-				5030C03C1435E76300027F07 /* PKStreamActivityTaskData.h */,
-				5030C03D1435E76300027F07 /* PKStreamActivityTaskData.m */,
-			);
-			name = Activity;
 			sourceTree = "<group>";
 		};
 		5030C0BF1435E88700027F07 /* Item */ = {
@@ -1257,6 +1258,10 @@
 				50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */,
 				50858ABB15120EAC00ED8A6E /* PKAppAPI.h */,
 				50858ABC15120EAD00ED8A6E /* PKAppAPI.m */,
+				50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */,
+				50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */,
+				507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */,
+				507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1455,12 +1460,12 @@
 				5030C06B1435E76300027F07 /* PKQuestionOptionData.h in Headers */,
 				5030C06E1435E76300027F07 /* PKReferenceSpaceData.h in Headers */,
 				5030C0711435E76300027F07 /* PKStreamActionData.h in Headers */,
-				5030C0741435E76300027F07 /* PKStreamActivityAnswerData.h in Headers */,
+				5030C0741435E76300027F07 /* PKReferenceAnswerData.h in Headers */,
 				5030C0771435E76300027F07 /* PKReferenceCommentData.h in Headers */,
 				5030C0801435E76300027F07 /* PKReferenceRatingData.h in Headers */,
 				5030C0831435E76300027F07 /* PKReferenceStatusData.h in Headers */,
 				5030C0861435E76300027F07 /* PKReferenceTaskActionData.h in Headers */,
-				5030C0891435E76300027F07 /* PKStreamActivityTaskData.h in Headers */,
+				5030C0891435E76300027F07 /* PKReferenceTaskData.h in Headers */,
 				5030C08F1435E76300027F07 /* PKStreamItemData.h in Headers */,
 				5030C0921435E76300027F07 /* PKStreamStatusData.h in Headers */,
 				5030C0951435E76300027F07 /* PKStreamTaskData.h in Headers */,
@@ -1472,7 +1477,6 @@
 				5030C0AD1435E76300027F07 /* PKItemFieldValueMediaData.h in Headers */,
 				5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */,
 				5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */,
-				5030C0C91435E92800027F07 /* PKStreamActivityDataFactory.h in Headers */,
 				5030C0CC1435E92800027F07 /* PKStreamDataFactory.h in Headers */,
 				501BF17E14386AFE009764A3 /* PKFileData.h in Headers */,
 				50BBF53A1439B365002522D6 /* NSString+Hash.h in Headers */,
@@ -1544,6 +1548,9 @@
 				509D6974152CF6E10033291C /* PKDefaultMappingCoordinator.h in Headers */,
 				500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */,
 				501FDEDD1548095E002B6413 /* PKItemParticipantsData.h in Headers */,
+				5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */,
+				50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */,
+				507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1706,11 +1713,11 @@
 				5030C0691435E76300027F07 /* PKQuestionData.m in Sources */,
 				5030C06C1435E76300027F07 /* PKQuestionOptionData.m in Sources */,
 				5030C0721435E76300027F07 /* PKStreamActionData.m in Sources */,
-				5030C0751435E76300027F07 /* PKStreamActivityAnswerData.m in Sources */,
+				5030C0751435E76300027F07 /* PKReferenceAnswerData.m in Sources */,
 				5030C0781435E76300027F07 /* PKReferenceCommentData.m in Sources */,
 				5030C0811435E76300027F07 /* PKReferenceRatingData.m in Sources */,
 				5030C0871435E76300027F07 /* PKReferenceTaskActionData.m in Sources */,
-				5030C08A1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */,
+				5030C08A1435E76300027F07 /* PKReferenceTaskData.m in Sources */,
 				5030C0901435E76300027F07 /* PKStreamItemData.m in Sources */,
 				5030C0931435E76300027F07 /* PKStreamStatusData.m in Sources */,
 				5030C0961435E76300027F07 /* PKStreamTaskData.m in Sources */,
@@ -1722,7 +1729,6 @@
 				5030C0A81435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */,
 				5030C0AE1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */,
 				5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */,
-				5030C0CA1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */,
 				5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
 				501BF17F14386AFE009764A3 /* PKFileData.m in Sources */,
 				50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */,
@@ -1793,6 +1799,9 @@
 				509D6975152CF6E10033291C /* PKDefaultMappingCoordinator.m in Sources */,
 				500EA92A153F20830049F224 /* PKReferenceBatchData.m in Sources */,
 				501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
+				5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
+				50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
+				507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1829,11 +1838,11 @@
 				5030C06A1435E76300027F07 /* PKQuestionData.m in Sources */,
 				5030C06D1435E76300027F07 /* PKQuestionOptionData.m in Sources */,
 				5030C0731435E76300027F07 /* PKStreamActionData.m in Sources */,
-				5030C0761435E76300027F07 /* PKStreamActivityAnswerData.m in Sources */,
+				5030C0761435E76300027F07 /* PKReferenceAnswerData.m in Sources */,
 				5030C0791435E76300027F07 /* PKReferenceCommentData.m in Sources */,
 				5030C0821435E76300027F07 /* PKReferenceRatingData.m in Sources */,
 				5030C0881435E76300027F07 /* PKReferenceTaskActionData.m in Sources */,
-				5030C08B1435E76300027F07 /* PKStreamActivityTaskData.m in Sources */,
+				5030C08B1435E76300027F07 /* PKReferenceTaskData.m in Sources */,
 				5030C0911435E76300027F07 /* PKStreamItemData.m in Sources */,
 				5030C0941435E76300027F07 /* PKStreamStatusData.m in Sources */,
 				5030C0971435E76300027F07 /* PKStreamTaskData.m in Sources */,
@@ -1845,7 +1854,6 @@
 				5030C0A91435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */,
 				5030C0AF1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */,
 				5030C0B21435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */,
-				5030C0CB1435E92800027F07 /* PKStreamActivityDataFactory.m in Sources */,
 				5030C0CE1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
 				501BF18014386AFE009764A3 /* PKFileData.m in Sources */,
 				50BBF53C1439B365002522D6 /* NSString+Hash.m in Sources */,
@@ -1921,6 +1929,8 @@
 				50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
 				50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
 				501FDEDF1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
+				5048937C15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
+				50B2A40E15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1971,6 +1981,7 @@
 					armv6,
 					armv7,
 				);
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -1979,7 +1990,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
@@ -1995,12 +2006,13 @@
 					armv6,
 					armv7,
 				);
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
@@ -2012,7 +2024,6 @@
 		5065BF1014335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2035,7 +2046,6 @@
 		5065BF1114335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2054,7 +2064,6 @@
 		5065BF1314335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -2073,7 +2082,6 @@
 		5065BF1414335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
@@ -2094,7 +2102,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -2117,7 +2124,6 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Development;
@@ -2127,7 +2133,6 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

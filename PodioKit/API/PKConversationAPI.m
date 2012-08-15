@@ -16,7 +16,7 @@
   PKAssert(participantUserIds != nil && [participantUserIds count] > 0, @"Missing message participants");
   
   PKRequest *request = [PKRequest requestWithURI:@"/conversation/" method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObjectsAndKeys:text, @"text", subject, @"subject", participantUserIds, @"participants", nil];
+  request.body = @{@"text": text, @"subject": subject, @"participants": participantUserIds};
   
   return request;
 }
@@ -29,7 +29,7 @@
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text {
   NSString * uri = [NSString stringWithFormat:@"/conversation/%d/reply", conversationId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObject:text forKey:@"text"];
+  request.body = @{@"text": text};
   
   return request;
 }
@@ -37,7 +37,7 @@
 + (PKRequest *)requestToAddParticipantWithUserId:(NSUInteger)userId toConversationWithId:(NSUInteger)conversationId {
   NSString * uri = [NSString stringWithFormat:@"/conversation/%d/participant/", conversationId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:userId] forKey:@"user_id"];
+  request.body = @{@"user_id": @(userId)};
   
   return request;
 }

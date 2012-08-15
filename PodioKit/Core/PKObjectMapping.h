@@ -23,7 +23,6 @@
 
 @property (nonatomic, strong) NSMutableArray *mappings;
 @property (nonatomic, strong) NSMutableDictionary *propertyMappings;
-@property (nonatomic, strong) NSMutableArray *mappedDataPathComponents;
 @property (nonatomic, copy) NSString *sequencePropertyName;
 
 + (id)mapping;
@@ -43,6 +42,8 @@
 - (void)hasProperty:(NSString *)property forParentProperty:(NSString *)parentProperty;
 
 - (void)hasDateProperty:(NSString *)property forAttribute:(NSString *)attribute isUTC:(BOOL)isUTC;
+
+- (void)hasRightsProperty:(NSString *)property forAttribute:(NSString *)attribute;
 
 - (void)hasRelationship:(NSString *)property 
            forAttribute:(NSString *)attribute 
