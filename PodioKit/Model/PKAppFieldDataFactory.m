@@ -32,10 +32,7 @@
       for (NSDictionary *optionsDict in [settingsDict pk_objectForKey:@"options"]) {
         if ([[optionsDict pk_objectForKey:@"status"] isEqualToString:@"active"]) {
           // Add active options
-          PKItemFieldValueOptionData *option = [PKItemFieldValueOptionData data];
-          option.optionId = [[optionsDict pk_objectForKey:@"id"] integerValue];
-          option.text = [optionsDict pk_objectForKey:@"text"];
-          option.colorString = [dict pk_objectForKey:@"color"];
+          PKItemFieldValueOptionData *option = [PKItemFieldValueOptionData dataFromDictionary:optionsDict];
           [options addObject:option];
         }
       }
