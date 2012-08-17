@@ -639,7 +639,6 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 + (PKAppFieldMapping)appFieldMappingForString:(NSString *)string;
 
 // Stream
-+ (PKReferenceType)streamObjectTypeForString:(NSString *)string;
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string;
 
 // Action

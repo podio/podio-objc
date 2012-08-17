@@ -11,6 +11,7 @@
 #import "PKStreamStatusData.h"
 #import "PKStreamTaskData.h"
 #import "PKStreamActionData.h"
+#import "PKFileData.h"
 
 @implementation PKStreamDataFactory
 
@@ -25,6 +26,8 @@
     data = [PKStreamTaskData dataFromDictionary:dict];
   } else if (objectType == PKReferenceTypeAction) {
     data = [PKStreamActionData dataFromDictionary:dict];
+  } else if (objectType == PKReferenceTypeFile) {
+    data = [PKFileData dataFromDictionary:dict];
   }
   
   return data;
