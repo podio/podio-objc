@@ -511,8 +511,8 @@
 		5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBaseObject.m; sourceTree = "<group>"; };
 		5032BAC514448E1500B7F7C7 /* PKTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTask.h; sourceTree = "<group>"; };
 		5032BAC614448E1500B7F7C7 /* PKTestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestTask.m; sourceTree = "<group>"; };
-		5032BACA1444907800B7F7C7 /* PKTestTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKTestTaskMapping.h; path = ../PodioKit/Model/PKTestTaskMapping.h; sourceTree = "<group>"; };
-		5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PKTestTaskMapping.m; path = ../PodioKit/Model/PKTestTaskMapping.m; sourceTree = "<group>"; };
+		5032BACA1444907800B7F7C7 /* PKTestTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTaskMapping.h; sourceTree = "<group>"; };
+		5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestTaskMapping.m; sourceTree = "<group>"; };
 		5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskAPI.h; sourceTree = "<group>"; };
 		5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskAPI.m; sourceTree = "<group>"; };
 		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
