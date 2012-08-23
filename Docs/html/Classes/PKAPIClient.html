@@ -1,0 +1,853 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="html/html; charset=utf-8" />
+		<title>PKAPIClient Class Reference</title>
+		<meta id="xcode-display" name="xcode-display" content="render"/>
+		<meta name="viewport" content="width=550" />
+		<link rel="stylesheet" type="text/css" href="../css/styles.css" media="all" />
+		<link rel="stylesheet" type="text/css" media="print" href="../css/stylesPrint.css" />
+		<meta name="generator" content="appledoc 2.0.5 (build 789)" />
+	</head>
+	<body>
+		<header id="top_header">
+			<div id="library" class="hideInXcode">
+				<h1><a id="libraryTitle" href="../index.html">PodioKit </a></h1>
+				<a id="developerHome" href="../index.html">Citrix Systems, Inc</a>
+			</div>
+			
+			<div id="title" role="banner">
+				<h1 class="hideInXcode">PKAPIClient Class Reference</h1>
+			</div>
+			<ul id="headerButtons" role="toolbar">
+				<li id="toc_button">
+					<button aria-label="Show Table of Contents" role="checkbox" class="open" id="table_of_contents"><span class="disclosure"></span>Table of Contents</button>
+				</li>
+				<li id="jumpto_button" role="navigation">
+					<select id="jumpTo">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+	
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<option value="instance_methods">Instance Methods</option>
+	
+	<option value="//api/name/URLStringForPath:parameters:">&nbsp;&nbsp;&nbsp;&nbsp;- URLStringForPath:parameters:</option>
+	
+	<option value="//api/name/addFileOperation:">&nbsp;&nbsp;&nbsp;&nbsp;- addFileOperation:</option>
+	
+	<option value="//api/name/addRequestOperation:">&nbsp;&nbsp;&nbsp;&nbsp;- addRequestOperation:</option>
+	
+	<option value="//api/name/authenticateWithEmail:password:">&nbsp;&nbsp;&nbsp;&nbsp;- authenticateWithEmail:password:</option>
+	
+	<option value="//api/name/configureWithClientId:secret:">&nbsp;&nbsp;&nbsp;&nbsp;- configureWithClientId:secret:</option>
+	
+	<option value="//api/name/configureWithClientId:secret:baseURLString:">&nbsp;&nbsp;&nbsp;&nbsp;- configureWithClientId:secret:baseURLString:</option>
+	
+	<option value="//api/name/isAuthenticated">&nbsp;&nbsp;&nbsp;&nbsp;- isAuthenticated</option>
+	
+	<option value="//api/name/refreshToken">&nbsp;&nbsp;&nbsp;&nbsp;- refreshToken</option>
+	
+	<option value="//api/name/refreshUsingRefreshToken:">&nbsp;&nbsp;&nbsp;&nbsp;- refreshUsingRefreshToken:</option>
+	
+	
+	
+</select>
+				</li>
+			</ul>
+		</header>
+		<nav id="tocContainer" class="isShowingTOC">
+			<ul id="toc" role="tree">
+				
+<li role="treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#overview">Overview</a></span></li>
+
+
+
+
+<li role="treeitem" id="task_treeitem"><span class="nodisclosure"></span><span class="sectionName"><a href="#tasks">Tasks</a></span><ul>
+	
+</ul></li>
+
+
+
+
+
+
+
+
+
+<li role="treeitem" class="children"><span class="disclosure"></span><span class="sectionName"><a href="#instance_methods">Instance Methods</a></span><ul>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/URLStringForPath:parameters:">URLStringForPath:parameters:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addFileOperation:">addFileOperation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/addRequestOperation:">addRequestOperation:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/authenticateWithEmail:password:">authenticateWithEmail:password:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configureWithClientId:secret:">configureWithClientId:secret:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/configureWithClientId:secret:baseURLString:">configureWithClientId:secret:baseURLString:</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/isAuthenticated">isAuthenticated</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refreshToken">refreshToken</a></span></li>
+	
+	<li><span class="nodisclosure"></span><span class="sectionName"><a href="#//api/name/refreshUsingRefreshToken:">refreshUsingRefreshToken:</a></span></li>
+	
+</ul></li>
+
+
+			</ul>
+		</nav>
+		<article>
+			<div id="contents" class="isShowingTOC" role="main">
+				<a title="PKAPIClient Class Reference" name="top"></a>
+				<div class="main-navigation navigation-top">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="header">
+					<div class="section-header">
+						<h1 class="title title-header">PKAPIClient Class Reference</h1>
+					</div>		
+				</div>
+				<div id="container">	
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<td class="specification-title">Inherits from</td>
+	<td class="specification-value">NSObject</td>
+</tr><tr>
+	<td class="specification-title">Conforms to</td>
+	<td class="specification-value">ASIHTTPRequestDelegate<br />PKOAuth2ClientDelegate</td>
+</tr><tr>
+	<td class="specification-title">Declared in</td>
+	<td class="specification-value">PKAPIClient.h<br />PKAPIClient.m</td>
+</tr>
+						</tbody></table></div>
+					
+					
+					
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p>Singleton class responsible for handling all API interaction, from authentication to request handling.</p>
+					</div>
+					
+					
+					
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						<h2 class="subtitle subtitle-tasks">Tasks</h2>
+						
+						
+						
+						
+
+						<ul class="task-list">
+							<li>
+	<span class="tooltip">
+		<code><a href="#//api/name/configureWithClientId:secret:">&ndash;&nbsp;configureWithClientId:secret:</a></code>
+		<span class="tooltip"><p>Configures the client for API access with the base URL string of <a href="https://api.podio.com">https://api.podio.com</a></p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/configureWithClientId:secret:baseURLString:">&ndash;&nbsp;configureWithClientId:secret:baseURLString:</a></code>
+		<span class="tooltip"><p>Configures the client for API access.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/authenticateWithEmail:password:">&ndash;&nbsp;authenticateWithEmail:password:</a></code>
+		<span class="tooltip"><p>Authenticate a user.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/refreshToken">&ndash;&nbsp;refreshToken</a></code>
+		<span class="tooltip"><p>Force a access token refresh with the current refresh token.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/refreshUsingRefreshToken:">&ndash;&nbsp;refreshUsingRefreshToken:</a></code>
+		<span class="tooltip"><p>Force a access token refresh with a particular refresh token.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/isAuthenticated">&ndash;&nbsp;isAuthenticated</a></code>
+		<span class="tooltip"><p>Checks if there client has a valid token.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/URLStringForPath:parameters:">&ndash;&nbsp;URLStringForPath:parameters:</a></code>
+		<span class="tooltip"><p>Returns the full URL string for a path and a number of query parameters based on the configured base URL.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addRequestOperation:">&ndash;&nbsp;addRequestOperation:</a></code>
+		<span class="tooltip"><p>Add a request operation to the network queue.</p></span>
+	</span>
+	
+	
+</li><li>
+	<span class="tooltip">
+		<code><a href="#//api/name/addFileOperation:">&ndash;&nbsp;addFileOperation:</a></code>
+		<span class="tooltip"><p>Add a file operation to the network queue.</p></span>
+	</span>
+	
+	
+</li>
+						</ul>
+						
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="section section-methods">
+						<a title="Instance Methods" name="instance_methods"></a>
+						<h2 class="subtitle subtitle-methods">Instance Methods</h2>
+						
+						<div class="section-method">
+	<a name="//api/name/URLStringForPath:parameters:" title="URLStringForPath:parameters:"></a>
+	<h3 class="subsubtitle method-title">URLStringForPath:parameters:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Returns the full URL string for a path and a number of query parameters based on the configured base URL.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (NSString *)URLStringForPath:(NSString *)<em>path</em> parameters:(NSDictionary *)<em>parameters</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>path</em></dt>
+			<dd><p>The resource path.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>parameters</em></dt>
+			<dd><p>A dictionary of query parameters. The query parameter values have to be of type NSString.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>The full URL string.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Returns the full URL string for a path and a number of query parameters based on the configured base URL.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addFileOperation:" title="addFileOperation:"></a>
+	<h3 class="subsubtitle method-title">addFileOperation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a file operation to the network queue.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)addFileOperation:(PKFileOperation *)<em>operation</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>operation</em></dt>
+			<dd><p>The file operation.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the operation was added to the queue.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Add a file operation to the network queue.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/addRequestOperation:" title="addRequestOperation:"></a>
+	<h3 class="subsubtitle method-title">addRequestOperation:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Add a request operation to the network queue.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)addRequestOperation:(PKRequestOperation *)<em>operation</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>operation</em></dt>
+			<dd><p>The request operation.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if the operation was added to the queue.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Add a request operation to the network queue.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/authenticateWithEmail:password:" title="authenticateWithEmail:password:"></a>
+	<h3 class="subsubtitle method-title">authenticateWithEmail:password:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Authenticate a user.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)authenticateWithEmail:(NSString *)<em>email</em> password:(NSString *)<em>password</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>email</em></dt>
+			<dd><p>The username.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>password</em></dt>
+			<dd><p>The password.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Authenticate a user.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/configureWithClientId:secret:" title="configureWithClientId:secret:"></a>
+	<h3 class="subsubtitle method-title">configureWithClientId:secret:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Configures the client for API access with the base URL string of <a href="https://api.podio.com">https://api.podio.com</a></p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)configureWithClientId:(NSString *)<em>clientId</em> secret:(NSString *)<em>secret</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>clientId</em></dt>
+			<dd><p>A Podio API client id.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>secret</em></dt>
+			<dd><p>A Podio API client secret for the corresponding client id.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Configures the client for API access with the base URL string of <a href="https://api.podio.com">https://api.podio.com</a></p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection see-also-section">
+		<h4 class="method-subtitle">See Also</h4>
+		<ul>
+			
+			<li><code><p><a href="#//api/name/configureWithClientId:secret:baseURLString:">&ndash; configureWithClientId:secret:baseURLString:</a></p></code></li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/configureWithClientId:secret:baseURLString:" title="configureWithClientId:secret:baseURLString:"></a>
+	<h3 class="subsubtitle method-title">configureWithClientId:secret:baseURLString:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Configures the client for API access.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)configureWithClientId:(NSString *)<em>clientId</em> secret:(NSString *)<em>secret</em> baseURLString:(NSString *)<em>baseURLString</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>clientId</em></dt>
+			<dd><p>A Podio API client id.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>secret</em></dt>
+			<dd><p>A Podio API client secret for the corresponding client id.</p></dd>
+		</dl>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>baseURLString</em></dt>
+			<dd><p>The Podio API base URL string.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Configures the client for API access.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/isAuthenticated" title="isAuthenticated"></a>
+	<h3 class="subsubtitle method-title">isAuthenticated</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Checks if there client has a valid token.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (BOOL)isAuthenticated</code></div>
+
+    
+	
+	
+	
+	<div class="method-subsection return">
+		<h4 class="method-subtitle parameter-title">Return Value</h4>
+		<p>YES if there is a valid token.</p>
+	</div>
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Checks if there client has a valid token.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/refreshToken" title="refreshToken"></a>
+	<h3 class="subsubtitle method-title">refreshToken</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Force a access token refresh with the current refresh token.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)refreshToken</code></div>
+
+    
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Force a access token refresh with the current refresh token.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+						<div class="section-method">
+	<a name="//api/name/refreshUsingRefreshToken:" title="refreshUsingRefreshToken:"></a>
+	<h3 class="subsubtitle method-title">refreshUsingRefreshToken:</h3>
+	
+	
+	
+	<div class="method-subsection brief-description">
+		<p>Force a access token refresh with a particular refresh token.</p>
+	</div>		
+	
+    
+
+	<div class="method-subsection method-declaration"><code>- (void)refreshUsingRefreshToken:(NSString *)<em>refreshToken</em></code></div>
+
+    
+	
+	<div class="method-subsection arguments-section parameters">
+		<h4 class="method-subtitle parameter-title">Parameters</h4>
+		
+		<dl class="argument-def parameter-def">
+			<dt><em>refreshToken</em></dt>
+			<dd><p>The refresh token to use to refresh the access token.</p></dd>
+		</dl>
+		
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection discussion-section">
+		<h4 class="method-subtitle">Discussion</h4>
+		<p>Force a access token refresh with a particular refresh token.</p>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	<div class="method-subsection declared-in-section">
+		<h4 class="method-subtitle">Declared In</h4>
+		<code class="declared-in-ref">PKAPIClient.h</code><br />
+	</div>				
+	
+	
+</div>
+						
+					</div>
+					
+					
+				</div>
+				<div class="main-navigation navigation-bottom">
+					<ul>
+	<li><a href="../index.html">Index</a></li>
+	<li><a href="../hierarchy.html">Hierarchy</a></li>
+</ul>
+				</div>
+				<div id="footer">
+					<hr />
+					<div class="footer-copyright">
+						<p><span class="copyright">&copy; 2012 Citrix Systems, Inc. All rights reserved. (Last updated: 2012-08-23)</span><br />
+						
+						<span class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.0.5 (build 789)</a>.</span></p>
+						
+					</div>
+				</div>
+			</div>
+		</article>
+		<script type="text/javascript">
+			function jumpToChange()
+			{
+				window.location.hash = this.options[this.selectedIndex].value;
+			}
+			
+			function toggleTOC()
+			{
+				var contents = document.getElementById('contents');
+				var tocContainer = document.getElementById('tocContainer');
+				
+				if (this.getAttribute('class') == 'open')
+				{
+					this.setAttribute('class', '');
+					contents.setAttribute('class', '');
+					tocContainer.setAttribute('class', '');
+					
+					window.name = "hideTOC";
+				}
+				else
+				{
+					this.setAttribute('class', 'open');
+					contents.setAttribute('class', 'isShowingTOC');
+					tocContainer.setAttribute('class', 'isShowingTOC');
+					
+					window.name = "";
+				}
+				return false;
+			}
+			
+			function toggleTOCEntryChildren(e)
+			{
+				e.stopPropagation();
+				var currentClass = this.getAttribute('class');
+				if (currentClass == 'children') {
+					this.setAttribute('class', 'children open');
+				}
+				else if (currentClass == 'children open') {
+					this.setAttribute('class', 'children');
+				}
+				return false;
+			}
+			
+			function tocEntryClick(e)
+			{
+				e.stopPropagation();
+				return true;
+			}
+			
+			function init()
+			{
+				var selectElement = document.getElementById('jumpTo');
+				selectElement.addEventListener('change', jumpToChange, false);
+				
+				var tocButton = document.getElementById('table_of_contents');
+				tocButton.addEventListener('click', toggleTOC, false);
+				
+				var taskTreeItem = document.getElementById('task_treeitem');
+				if (taskTreeItem.getElementsByTagName('li').length > 0)
+				{
+					taskTreeItem.setAttribute('class', 'children');
+					taskTreeItem.firstChild.setAttribute('class', 'disclosure');
+				}
+				
+				var tocList = document.getElementById('toc');
+				
+				var tocEntries = tocList.getElementsByTagName('li');
+				for (var i = 0; i < tocEntries.length; i++) {
+					tocEntries[i].addEventListener('click', toggleTOCEntryChildren, false);
+				}
+				
+				var tocLinks = tocList.getElementsByTagName('a');
+				for (var i = 0; i < tocLinks.length; i++) {
+					tocLinks[i].addEventListener('click', tocEntryClick, false);
+				}
+				
+				if (window.name == "hideTOC") {
+					toggleTOC.call(tocButton);
+				}
+			}
+			
+			window.onload = init;
+			
+			// If showing in Xcode, hide the TOC and Header
+			if (navigator.userAgent.match(/xcode/i)) {
+				document.getElementById("contents").className = "hideInXcode"
+				document.getElementById("tocContainer").className = "hideInXcode"
+				document.getElementById("top_header").className = "hideInXcode"
+			}
+			
+		</script>
+	</body>
+</html>
