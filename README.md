@@ -9,7 +9,7 @@ PodioKit uses ARC and requires a deployment target of >= iOS 5.0.
 1. In the `DemoApp-Configuration.plist` file, define your API key's client ID and secret.
 2. Run the DemoApp scheme to launch the app.
 
-## Using PodioKit
+## Adding PodioKit to Your Project
 
 To add PodioKit to your project, follow these steps:
 
@@ -30,11 +30,98 @@ To add PodioKit to your project, follow these steps:
 		SystemConfiguration.framework
 		MobileCoreServices.framework
 
+## Using PodioKit
+
+The easiest way to get started is to take a look at the DemoApp project. However, in this section you'll find an introduction to the basic concepts.
+
+### Configuring PodioKit
+
+Before using PodioKit, you need to configure it. A good place to do this is in `application:didFinishLaunchingWithOptions:` in your app delegate. To get basic functionality and be able to make simple API requests, you just need the following:
+
+	[[PKAPIClient sharedClient] configureWithClientId:clientId secret:clientSecret];
+
+### Making a Simple API request
+
+PodioKit provides a number of API interface classes. These interface classes are logically separated to match the [Podio API areas](https://developers.podio.com/doc).  Each interface class provides a set of methods that each returns a `PKRequest`. A `PKRequest` defines the HTTP request to make to the API, such as resource path, query parameters, request body etc. A `PKRequest` has an optional property `objectMapping` to provide an instance of `PKObjectMapping` (Described below). If set, the object mapping is used to map the response data to the native domain object class that corresponds to the provided object mapping class.
+
+		PKRequest *request = [PKTaskAPI requestForTaskWithId:123456];
+		
+		[request startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+			if (!error) {
+				// Success
+				NSLog(@"Result: %@", result.parsedData);
+			} else {
+				// Handle failure...
+			}
+		}];
+
+#### Mapping the Response to Native Domain Objects
+
+To map the response data to a native domain object, you need to set the `objectMapping` property of the `PKRequest` object, like:
+
+		PKRequest *request = [PKTaskAPI requestForTaskWithId:123456];
+		request.objectMapping = [MYTaskMapping mapping];
+		
+		[request startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+			if (!error) {
+				// Success
+				NSLog(@"Result: %@, %@", result.parsedData, result.resultData);
+			} else {
+				// Handle failure...
+			}
+		}];
+
+Where `MYTaskMapping` might look something like this:
+
+    @implementation MYTaskMapping
+
+    - (void)buildMappings {
+      [self hasProperty:@"taskId" forAttribute:@"task_id"];
+      [self hasProperty:@"text" forAttribute:@"text"];  
+    }
+
+    @end
+    
+In order for this to work, you also have to make sure that you configure the `PKRequestManager` singleton with a mapping provider to allow it to look up your domain object class from the object mapping class. The following code should be added in your app delegate after the `configureWithClientId:secret:` call described above:
+
+    PKMappingProvider *provider = [[PKMappingProvider alloc] init];
+    [provider addMappedClassName:@"MYTask" forMappingClassName:@"MYTaskMapping"];
+    
+    [PKRequestManager sharedManager].mappingCoordinator = [[PKDefaultMappingCoordinator alloc] initWithMappingProvider:provider];
+
+A `PKMappingProvider` can be instantiated directly (as shown here), or subclassed. If subclassed, you should implement the `buildClassMap` method to add your mapping/domain class associations with the same `addMappedClassName:forMappingClassName` method used above.
+
+### Object data mapping
+
+Object data mapping is the process of creating and populating native domain objects with the JSON response returned by the API. PodioKit relies on [KVC](https://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/KeyValueCoding/Articles/KeyValueCoding.html) to achieve this. It provides a generic way to map response data to native objects by defining reusable mapping definitions for remote resources using subclasses of PKObjectMapping for each object type. Object mappings can also be combined, nested and reused for multiple API operations. The data mapping strategy in PodioKit is inspired by [RestKit](http://restkit.org/).
+There are a number of key classes and protocols that are a part of the mapping process:
+#### PKMappableObject
+A protocol required to be implemented by every native class that is used as the target domain object class for a PKObjectMapping instance. This protocol is needed by PKObjectMapper to determine things such as object identity.
+#### PKObjectMapping
+This class is subclassed to define object mappings for the response data to the native domain object’s value properties.
+#### PKAttributeMapping
+A class describing how an attribute should be mapped to a specific domain object property.
+#### PKObjectMappingProvider
+Every client application should provide a custom subclass of this class or use the default mapping provider class provided by PodioKit to define the domain object class for each object mapping to be used within the application.
+#### PKObjectMapper
+The object mapper is the core of the mapping process and is responsible for evaluating and applying all the mapped properties to a single or collection of domain objects.
+#### PKObjectMapperDelegate 
+The delegate object to receive updates from the object mapper during the mapping process. For example, in the case of Core Data the delegate is notified once the mapping completes in order to save the changes.
+
+#### PKObjectRepository
+The object repository is an abstraction used to decouple the creation, lookup and deletion of domain objects. Its implementation differs depending on the underlying persistence layer and its interface is only concerned with object class and identity.
+#### PKMappingCoordinator 
+The mapping manager is responsible for providing each new request operation with an new object mapper. This is needed because a single NSManagedObjectContext instance can only be used on the thread that instantiated it. Hence, PodioKit needs to create a new object context for each concurrent background operation.
+
+## Documentation
+
+PodioKit uses [appledoc](http://gentlebytes.com/appledoc/) for documentation. However, many classes are still missing documentation but the ambition is to improve this going forward.
+
 ## Dependencies
 
 PodioKit uses the following open source libraries:
 
-* [ASIHTTPRequest](http://allseeing-i.com/ASIHTTPRequest/) for general networking. We are aware that this library has been deprecated and we investigating alternatives.
+* [ASIHTTPRequest](http://allseeing-i.com/ASIHTTPRequest/) for general networking. We are aware that this library has been deprecated and we are looking into alternatives.
 * [JSONKit](https://github.com/johnezang/JSONKit) for parsing JSON data.
 * [Reachability](http://developer.apple.com/library/ios/#samplecode/Reachability/Introduction/Intro.html) for monitoring network availability.
 
