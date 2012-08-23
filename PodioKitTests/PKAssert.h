@@ -16,10 +16,4 @@
     NSAssert((condition), (desc), ##__VA_ARGS__); \
   }
 
-#define PKCAssert(condition, desc, ...) \
-  if (!(condition)) { \
-    PKLogBug((desc), ##__VA_ARGS__); \
-    NSCAssert((condition), (desc), ##__VA_ARGS__); \
-  }
-
 #define PKAssertFail(desc, ...) PKAssert(NO, (desc), ##__VA_ARGS__)
