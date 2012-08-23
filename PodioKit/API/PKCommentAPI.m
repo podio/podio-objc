@@ -12,7 +12,7 @@
 
 + (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
 	NSString * uri = [NSString stringWithFormat:@"/comment/%@/%d/", [PKConstants stringForReferenceType:referenceType], referenceId];
-  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST objectMapping:nil];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST objectMapping:nil];
 	request.body = @{@"value": text};
   
   return request;

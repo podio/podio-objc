@@ -11,7 +11,7 @@ namespace :docs do
         --clean-output \
         --keep-intermediate-files \
         --project-name PodioKit \
-        --project-company \"Citrix Systems, Inc.\" \
+        --project-company \"Citrix Systems, Inc\" \
         --company-id com.podio \
         --output Docs PodioKit"
   end

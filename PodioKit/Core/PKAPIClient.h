@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "ASINetworkQueue.h"
-#import "PKAPIRequest.h"
 #import "PKRequestOperation.h"
 #import "PKFileOperation.h"
 #import "PKOAuth2Client.h"
@@ -37,6 +36,9 @@ extern NSString * const PKAPIClientRequestKey;
 extern NSString * const PKAPIClientTokenKey;
 extern NSString * const PKAPIClientResponseDataKey;
 
+/**
+ Singleton class responsible for handling all API interaction, from authentication to request handling.
+ */
 @interface PKAPIClient : NSObject <ASIHTTPRequestDelegate, PKOAuth2ClientDelegate> {
 
  @private
@@ -64,20 +66,67 @@ extern NSString * const PKAPIClientResponseDataKey;
 
 + (PKAPIClient *)sharedClient;
 
+ 
+
+/** Configures the client for API access with the base URL string of [https://api.podio.com](https://api.podio.com)
+ 
+ @param clientId A Podio API client id.
+ @param secret A Podio API client secret for the corresponding client id.
+ @see configureWithClientId:secret:baseURLString:
+ */
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret;
+
+/** Configures the client for API access.
+ 
+ @param clientId A Podio API client id.
+ @param secret A Podio API client secret for the corresponding client id.
+ @param baseURLString The Podio API base URL string.
+ */
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString;
 
+/** Authenticate a user.
+ 
+ @param email The username.
+ @param password The password.
+ */
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password;
 
+/** Force a access token refresh with the current refresh token.
+ */
 - (void)refreshToken;
-- (void)refreshUsingRefreshToken:(NSString *)refreshToken;
-- (void)handleUnauthorized;
 
+/** Force a access token refresh with a particular refresh token.
+ 
+ @param refreshToken The refresh token to use to refresh the access token.
+ */
+- (void)refreshUsingRefreshToken:(NSString *)refreshToken;
+
+/** Checks if there client has a valid token.
+ 
+ @return YES if there is a valid token.
+ */
 - (BOOL)isAuthenticated;
 
+/** Returns the full URL string for a path and a number of query parameters based on the configured base URL.
+ 
+ @param path The resource path.
+ @param parameters A dictionary of query parameters. The query parameter values have to be of type NSString.
+ @return The full URL string.
+ */
 - (NSString *)URLStringForPath:(NSString *)path parameters:(NSDictionary *)parameters;
 
+/** Add a request operation to the network queue.
+ 
+ @param operation The request operation.
+ @return YES if the operation was added to the queue.
+ */
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation;
+
+/** Add a file operation to the network queue.
+ 
+ @param operation The file operation.
+ @return YES if the operation was added to the queue.
+ */
 - (BOOL)addFileOperation:(PKFileOperation *)operation;
 
 @end

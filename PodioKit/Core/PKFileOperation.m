@@ -19,7 +19,7 @@ static NSTimeInterval const kTimeout = 30;
   NSURL *requestURL = [NSURL URLWithString:urlString];
   self = [super initWithURL:requestURL];
   if (self) {
-    self.requestMethod = PKAPIRequestMethodPOST;
+    self.requestMethod = PKRequestMethodPOST;
     self.timeOutSeconds = kTimeout;
   }
   return self;

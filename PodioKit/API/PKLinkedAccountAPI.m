@@ -11,7 +11,7 @@
 @implementation PKLinkedAccountAPI
 
 + (PKRequest *)requestForLinkedAccountsWithCapability:(PKProviderCapability)capability {
-  PKRequest *request = [PKRequest requestWithURI:@"/linked_account/" method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:@"/linked_account/" method:PKRequestMethodGET];
   
   if (capability != PKProviderCapabilityNone) {
     [request.parameters setObject:[PKConstants stringForProviderCapability:capability] forKey:@"capability"];
@@ -21,7 +21,7 @@
 }
 
 + (PKRequest *)requestForProvidersWithCapability:(PKProviderCapability)capability {
-  PKRequest *request = [PKRequest requestWithURI:@"/linked_account/provider/" method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:@"/linked_account/provider/" method:PKRequestMethodGET];
   
   if (capability != PKProviderCapabilityNone) {
     [request.parameters setObject:[PKConstants stringForProviderCapability:capability] forKey:@"capability"];

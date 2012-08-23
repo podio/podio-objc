@@ -11,15 +11,15 @@
 @implementation PKItemAPI
 
 + (PKRequest *)requestForItemWithId:(NSUInteger)itemId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestToDeleteItemWithId:(NSUInteger)itemId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodDELETE];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodDELETE];
 }
 
 + (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodGET];
   request.offset = offset;
   
   if (offset > 0) {
@@ -42,7 +42,7 @@
 }
 
 + (PKRequest *)requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKAPIRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodPOST];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
   if (fileIds != nil && [fileIds count] > 0) {
@@ -53,7 +53,7 @@
 }
 
 + (PKRequest *)requestToUpdateItemFields:(NSArray *)fields itemId:(NSUInteger)itemId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/value", itemId] method:PKAPIRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/value", itemId] method:PKRequestMethodPUT];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
   
@@ -61,7 +61,7 @@
 }
 
 + (PKRequest *)requestToUpdateItemWithId:(NSUInteger)itemId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKAPIRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodPUT];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
   if (fileIds != nil && [fileIds count] > 0) {
@@ -74,7 +74,7 @@
 + (PKRequest *)requestToSetParticipationForItemWithId:(NSUInteger)itemId status:(PKMeetingParticipantStatus)status {
   PKAssert(status != PKMeetingParticipantStatusNone, @"Participation is invalid, %d", status);
   
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/participation", itemId] method:PKAPIRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/participation", itemId] method:PKRequestMethodPUT];
   
   NSString *statusString = [PKConstants stringForMeetingParticipantStatus:status];
   request.body = @{@"status": statusString};
@@ -83,7 +83,7 @@
 }
 
 + (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemId:(NSUInteger)notItemId sortType:(PKItemAPISortType)sortType {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%d/find", fieldId] method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%d/find", fieldId] method:PKRequestMethodGET];
 
   switch (sortType) {
     case PKItemAPISortTypeCreatedOn:

@@ -12,7 +12,7 @@
 
 + (PKRequest *)requestForViewsForAppWithId:(NSUInteger)appId {
   NSString *uri = [NSString stringWithFormat:@"/view/app/%d/", appId];
-  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET];
   
   return request;
 }

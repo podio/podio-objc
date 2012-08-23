@@ -15,7 +15,7 @@
                                           limit:(NSUInteger)limit 
                                        dateFrom:(NSDate *)dateFrom 
                                          dateTo:(NSDate *)dateTo {
-  PKRequest *request = [PKRequest requestWithURI:@"/stream/v2/" method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:@"/stream/v2/" method:PKRequestMethodGET];
   request.offset = offset;
   
   NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -40,7 +40,7 @@
                                      limit:(NSUInteger)limit 
                                   dateFrom:(NSDate *)dateFrom 
                                     dateTo:(NSDate *)dateTo {  
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/space/%d/v2/", spaceId] method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/space/%d/v2/", spaceId] method:PKRequestMethodGET];
   request.offset = offset;
   
   NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -65,7 +65,7 @@
                                             limit:(NSUInteger)limit 
                                          dateFrom:(NSDate *)dateFrom 
                                            dateTo:(NSDate *)dateTo {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/org/%d/v2/", organizationId] method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/org/%d/v2/", organizationId] method:PKRequestMethodGET];
   request.offset = offset;
   
   NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
@@ -87,7 +87,7 @@
 
 + (PKRequest *)requestForStreamObjectWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
   NSString * uri = [NSString stringWithFormat:@"/stream/%@/%d/v2", [PKConstants stringForReferenceType:referenceType], referenceId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForPostStatusWithText:(NSString *)text 
@@ -96,7 +96,7 @@
                                 embedFileId:(NSUInteger)embedFileId 
                                     spaceId:(NSUInteger)spaceId {
   PKRequest *request = [PKRequest requestWithURI:@"/status/" 
-                                          method:PKAPIRequestMethodPOST 
+                                          method:PKRequestMethodPOST 
                                    objectMapping:nil];
   
   NSMutableDictionary * body = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(spaceId), @"space_id", text, @"value", nil];

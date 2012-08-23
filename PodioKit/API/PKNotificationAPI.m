@@ -12,7 +12,7 @@
 @implementation PKNotificationAPI
 
 + (PKRequest *)requestForNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo options:(NSDictionary *)options {
-  PKRequest *request = [PKRequest requestWithURI:@"/notification/" method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:@"/notification/" method:PKRequestMethodGET];
   request.parameters = [NSMutableDictionary dictionaryWithDictionary:options];
   
   request.offset = offset;
@@ -54,26 +54,26 @@
 }
 
 + (PKRequest *)requestForNotificationWithNotificationId:(NSUInteger)notificationId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/notification/%d/v2", notificationId] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/notification/%d/v2", notificationId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestToMarkNotificationAsViewedWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
   NSString *uri = [NSString stringWithFormat:@"/notification/%@/%d/viewed", [PKConstants stringForReferenceType:referenceType], referenceId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToMarkAllNotificationsAsViewed {
-  return [PKRequest requestWithURI:@"/notification/viewed" method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:@"/notification/viewed" method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToStarNotificationWithId:(NSUInteger)notificationId {
   NSString *uri = [NSString stringWithFormat:@"/notification/%d/star", notificationId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToUnstarNotificationWithId:(NSUInteger)notificationId {
   NSString *uri = [NSString stringWithFormat:@"/notification/%d/star", notificationId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodDELETE];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
 }
 
 @end

@@ -19,8 +19,6 @@
 #import "PKOAuth2Client.h"
 #import "PKOAuth2Token.h"
 #import "PKAPIClient.h"
-#import "PKAPIRequest.h"
-#import "PKAPIResponse.h"
 #import "PKRequestOperation.h"
 #import "PKFileOperation.h"
 #import "PKRequest.h"

@@ -186,12 +186,6 @@
 		5065BFA3143364EA00360855 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF9B143364EA00360855 /* PKAPIClient.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFA4143364EA00360855 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF9C143364EA00360855 /* PKAPIClient.m */; };
 		5065BFA5143364EA00360855 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF9C143364EA00360855 /* PKAPIClient.m */; };
-		5065BFA9143364EA00360855 /* PKAPIRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF9F143364EA00360855 /* PKAPIRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5065BFAA143364EA00360855 /* PKAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFA0143364EA00360855 /* PKAPIRequest.m */; };
-		5065BFAB143364EA00360855 /* PKAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFA0143364EA00360855 /* PKAPIRequest.m */; };
-		5065BFAC143364EA00360855 /* PKAPIResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFA1143364EA00360855 /* PKAPIResponse.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5065BFAD143364EA00360855 /* PKAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFA2143364EA00360855 /* PKAPIResponse.m */; };
-		5065BFAE143364EA00360855 /* PKAPIResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFA2143364EA00360855 /* PKAPIResponse.m */; };
 		5065BFB11433650E00360855 /* PKManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFAF1433650E00360855 /* PKManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFB21433650E00360855 /* PKManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB01433650E00360855 /* PKManagedObject.m */; };
 		5065BFB31433650E00360855 /* PKManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB01433650E00360855 /* PKManagedObject.m */; };
@@ -560,10 +554,6 @@
 		5065BF821433649A00360855 /* PKValueMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKValueMapping.m; sourceTree = "<group>"; };
 		5065BF9B143364EA00360855 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
 		5065BF9C143364EA00360855 /* PKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClient.m; sourceTree = "<group>"; };
-		5065BF9F143364EA00360855 /* PKAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIRequest.h; sourceTree = "<group>"; };
-		5065BFA0143364EA00360855 /* PKAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIRequest.m; sourceTree = "<group>"; };
-		5065BFA1143364EA00360855 /* PKAPIResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIResponse.h; sourceTree = "<group>"; };
-		5065BFA2143364EA00360855 /* PKAPIResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIResponse.m; sourceTree = "<group>"; };
 		5065BFAF1433650E00360855 /* PKManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKManagedObject.h; sourceTree = "<group>"; };
 		5065BFB01433650E00360855 /* PKManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKManagedObject.m; sourceTree = "<group>"; };
 		5065BFB41433654B00360855 /* NSManagedObject+PKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+PKAdditions.h"; sourceTree = "<group>"; };
@@ -1272,10 +1262,6 @@
 				50F4FBBF14487EA800317E62 /* OAuth2Client */,
 				5065BF9B143364EA00360855 /* PKAPIClient.h */,
 				5065BF9C143364EA00360855 /* PKAPIClient.m */,
-				5065BF9F143364EA00360855 /* PKAPIRequest.h */,
-				5065BFA0143364EA00360855 /* PKAPIRequest.m */,
-				5065BFA1143364EA00360855 /* PKAPIResponse.h */,
-				5065BFA2143364EA00360855 /* PKAPIResponse.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
@@ -1441,8 +1427,6 @@
 				5065BF951433649A00360855 /* PKStandaloneMapping.h in Headers */,
 				5065BF981433649A00360855 /* PKValueMapping.h in Headers */,
 				5065BFA3143364EA00360855 /* PKAPIClient.h in Headers */,
-				5065BFA9143364EA00360855 /* PKAPIRequest.h in Headers */,
-				5065BFAC143364EA00360855 /* PKAPIResponse.h in Headers */,
 				5065BFB11433650E00360855 /* PKManagedObject.h in Headers */,
 				5065BFB61433654B00360855 /* NSManagedObject+PKAdditions.h in Headers */,
 				5065BFF1143366C100360855 /* NSArray+PKAdditions.h in Headers */,
@@ -1696,8 +1680,6 @@
 				5065BF931433649A00360855 /* PKRelationshipMapping.m in Sources */,
 				5065BF991433649A00360855 /* PKValueMapping.m in Sources */,
 				5065BFA4143364EA00360855 /* PKAPIClient.m in Sources */,
-				5065BFAA143364EA00360855 /* PKAPIRequest.m in Sources */,
-				5065BFAD143364EA00360855 /* PKAPIResponse.m in Sources */,
 				5065BFB21433650E00360855 /* PKManagedObject.m in Sources */,
 				5065BFB71433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */,
 				5065BFF2143366C100360855 /* NSArray+PKAdditions.m in Sources */,
@@ -1821,8 +1803,6 @@
 				5065BF941433649A00360855 /* PKRelationshipMapping.m in Sources */,
 				5065BF9A1433649A00360855 /* PKValueMapping.m in Sources */,
 				5065BFA5143364EA00360855 /* PKAPIClient.m in Sources */,
-				5065BFAB143364EA00360855 /* PKAPIRequest.m in Sources */,
-				5065BFAE143364EA00360855 /* PKAPIResponse.m in Sources */,
 				5065BFB31433650E00360855 /* PKManagedObject.m in Sources */,
 				5065BFB81433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */,
 				5065BFF3143366C100360855 /* NSArray+PKAdditions.m in Sources */,

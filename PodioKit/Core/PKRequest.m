@@ -11,6 +11,10 @@
 #import "PKRequestOperation.h"
 #import "PKRequestManager.h"
 
+PKRequestMethod const PKRequestMethodGET = @"GET";
+PKRequestMethod const PKRequestMethodPOST = @"POST";
+PKRequestMethod const PKRequestMethodPUT = @"PUT";
+PKRequestMethod const PKRequestMethodDELETE = @"DELETE";
 
 @implementation PKRequest
 
@@ -26,7 +30,7 @@
 @synthesize mappingBlock = mappingBlock_;
 @synthesize allowsConcurrent = allowsConcurrent_;
 
-- (id)initWithURI:(NSString *)uri method:(PKAPIRequestMethod)method {
+- (id)initWithURI:(NSString *)uri method:(PKRequestMethod)method {
   self = [super init];
   if (self) {
     uri_ = [uri copy];
@@ -45,7 +49,7 @@
   return self;
 }
 
-- (id)initWithURI:(NSString *)uri method:(PKAPIRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping {
+- (id)initWithURI:(NSString *)uri method:(PKRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping {
   self = [self initWithURI:uri method:method];
   if (self) {
     objectMapping_ = objectMapping;
@@ -55,11 +59,11 @@
 }
 
 
-+ (PKRequest *)requestWithURI:(NSString *)uri method:(PKAPIRequestMethod)method {
++ (PKRequest *)requestWithURI:(NSString *)uri method:(PKRequestMethod)method {
   return [[self alloc] initWithURI:uri method:method];
 }
 
-+ (PKRequest *)requestWithURI:(NSString *)uri method:(PKAPIRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping {
++ (PKRequest *)requestWithURI:(NSString *)uri method:(PKRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping {
   return [[self alloc] initWithURI:uri method:method objectMapping:objectMapping];
 }
 

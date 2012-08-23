@@ -12,7 +12,7 @@
 @implementation PKOrganizationAPI
 
 + (PKRequest *)requestForOrganizations {
-  return [PKRequest requestWithURI:@"/org/" method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:@"/org/" method:PKRequestMethodGET];
 }
 
 @end

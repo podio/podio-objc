@@ -11,7 +11,7 @@
 @implementation PKEmbedAPI
 
 + (PKRequest *)requestToCreateEmbedWithURLString:(NSString *)urlString {
-  PKRequest *request = [PKRequest requestWithURI:@"/embed/" method:PKAPIRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:@"/embed/" method:PKRequestMethodPOST];
   request.body = @{@"url": urlString};
   
   return request;

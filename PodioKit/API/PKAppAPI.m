@@ -11,11 +11,11 @@
 @implementation PKAppAPI
 
 + (PKRequest *)requestForAppWithId:(NSUInteger)appId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d", appId] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d", appId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestToInstallAppWithId:(NSUInteger)appId spaceId:(NSUInteger)spaceId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d/install", appId] method:PKAPIRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app/%d/install", appId] method:PKRequestMethodPOST];
   
   request.body = @{@"space_id": @(spaceId)};
   
@@ -24,13 +24,13 @@
 
 + (PKRequest *)requestForAppsInSpaceWithId:(NSUInteger)spaceId {
   NSString *uri = [NSString stringWithFormat:@"/app/space/%d/", spaceId];
-  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET];
   
   return request;
 }
 
 + (PKRequest *)requestForTopAppsWithLimit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:@"/app/top/" method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:@"/app/top/" method:PKRequestMethodGET];
   
   if (limit > 0) {
     [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];

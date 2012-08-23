@@ -11,11 +11,11 @@
 @implementation PKSpaceAPI
 
 + (PKRequest *)requestToJoinSpaceWithId:(NSUInteger)spaceId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/join", spaceId] method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/join", spaceId] method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member_request/%d", spaceId, requestId] method:PKAPIRequestMethodPUT];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member_request/%d", spaceId, requestId] method:PKRequestMethodPUT];
 }
 
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId {
@@ -23,7 +23,7 @@
   PKAssert([name length] > 0, @"Space name cannot be empty");
   PKAssert(organizationId > 0, @"Invalid organization id %d", organizationId);
   
-  PKRequest *request = [PKRequest requestWithURI:@"/space/" method:PKAPIRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:@"/space/" method:PKRequestMethodPOST];
   
   request.body = @{@"org_id": @(organizationId), @"name": name};
   

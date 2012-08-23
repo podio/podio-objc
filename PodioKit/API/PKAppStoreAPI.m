@@ -24,16 +24,16 @@
       break;
   }
   
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/recommended/%@/", areaString] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/recommended/%@/", areaString] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForCategories {
-  return [PKRequest requestWithURI:@"/app_store/category/" method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:@"/app_store/category/" method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder 
                                        language:(NSString *)language offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKRequestMethodGET];
   
   NSString *typeString = nil;
   switch (type) {
@@ -89,7 +89,7 @@
 }
 
 + (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKAPIRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKRequestMethodPOST];
   request.body = @{@"space_id": @(spaceId)};
   
   return request;
