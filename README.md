@@ -44,32 +44,32 @@ Before using PodioKit, you need to configure it. A good place to do this is in `
 
 PodioKit provides a number of API interface classes. These interface classes are logically separated to match the [Podio API areas](https://developers.podio.com/doc).  Each interface class provides a set of methods that each returns a `PKRequest`. A `PKRequest` defines the HTTP request to make to the API, such as resource path, query parameters, request body etc. A `PKRequest` has an optional property `objectMapping` to provide an instance of `PKObjectMapping` (Described below). If set, the object mapping is used to map the response data to the native domain object class that corresponds to the provided object mapping class.
 
-		PKRequest *request = [PKTaskAPI requestForTaskWithId:123456];
-		
-		[request startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-			if (!error) {
-				// Success
-				NSLog(@"Result: %@", result.parsedData);
-			} else {
-				// Handle failure...
-			}
-		}];
+	PKRequest *request = [PKTaskAPI requestForTaskWithId:123456];
+	
+    [request startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+    	if (!error) {
+    		// Success
+    		NSLog(@"Result: %@", result.parsedData);
+    	} else {
+    		// Handle failure...
+	    }
+	}];
 
 #### Mapping the Response to Native Domain Objects
 
 To map the response data to a native domain object, you need to set the `objectMapping` property of the `PKRequest` object, like:
 
-		PKRequest *request = [PKTaskAPI requestForTaskWithId:123456];
-		request.objectMapping = [MYTaskMapping mapping];
-		
-		[request startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-			if (!error) {
-				// Success
-				NSLog(@"Result: %@, %@", result.parsedData, result.resultData);
-			} else {
-				// Handle failure...
-			}
-		}];
+    PKRequest *request = [PKTaskAPI requestForTaskWithId:123456];
+    request.objectMapping = [MYTaskMapping mapping];
+    
+    [request startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+    	if (!error) {
+    		// Success
+    		NSLog(@"Result: %@, %@", result.parsedData, result.resultData);
+    	} else {
+    		// Handle failure...
+	    }
+	}];
 
 Where `MYTaskMapping` might look something like this:
 
