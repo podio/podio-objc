@@ -1619,7 +1619,7 @@
 			attributes = {
 				CLASSPREFIX = PK;
 				LastUpgradeCheck = 0430;
-				ORGANIZATIONNAME = Podio;
+				ORGANIZATIONNAME = "Citrix Systems, Inc.";
 			};
 			buildConfigurationList = 5065BEE214335AB900360855 /* Build configuration list for PBXProject "PodioKit" */;
 			compatibilityVersion = "Xcode 3.2";
