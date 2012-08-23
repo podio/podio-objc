@@ -12,7 +12,8 @@
 #import "PKCompoundMapping.h"
 #import "PKStandaloneMapping.h"
 
-
+/** A class defining how an NSDictionary should be mapped to the corresponding domain object's value properties.
+ */
 @interface PKObjectMapping : NSObject {
 
  @private

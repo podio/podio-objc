@@ -9,6 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "PKMappableObject.h"
 
+/** The object repository is an abstraction used to decouple the creation, lookup and deletion of domain objects. 
+ Its implementation differs depending on the underlying persistence layer and its interface is only concerned with 
+ object class and identity.
+ */
 @protocol PKObjectRepository <NSObject>
 
 @required

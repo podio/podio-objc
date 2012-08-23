@@ -101,7 +101,7 @@ A protocol required to be implemented by every native class that is used as the 
 This class is subclassed to define object mappings for the response data to the native domain object’s value properties.
 #### PKAttributeMapping
 A class describing how an attribute should be mapped to a specific domain object property.
-#### PKObjectMappingProvider
+#### PKMappingProvider
 Every client application should provide a custom subclass of this class or use the default mapping provider class provided by PodioKit to define the domain object class for each object mapping to be used within the application.
 #### PKObjectMapper
 The object mapper is the core of the mapping process and is responsible for evaluating and applying all the mapped properties to a single or collection of domain objects.
@@ -111,7 +111,7 @@ The delegate object to receive updates from the object mapper during the mapping
 #### PKObjectRepository
 The object repository is an abstraction used to decouple the creation, lookup and deletion of domain objects. Its implementation differs depending on the underlying persistence layer and its interface is only concerned with object class and identity.
 #### PKMappingCoordinator 
-The mapping manager is responsible for providing each new request operation with an new object mapper. This is needed because a single NSManagedObjectContext instance can only be used on the thread that instantiated it. Hence, PodioKit needs to create a new object context for each concurrent background operation.
+The mapping coordinator is responsible for providing each new request operation with an new object mapper. This is needed because a single NSManagedObjectContext instance can only be used on the thread that instantiated it. Hence, PodioKit needs to create a new object context for each concurrent background operation.
 
 ## Documentation
 

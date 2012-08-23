@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+/** Class used to by PKObjectMapper to lookup the corresponding domain object class name for a object mapping class name.
+ */
 @interface PKMappingProvider : NSObject {
 
  @private

@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+/** A class describing how an attribute should be mapped to a specific domain object property.
+ */
 @interface PKAttributeMapping : NSObject {
   
 @private

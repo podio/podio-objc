@@ -17,6 +17,8 @@ typedef void (^PKCustomMappingBlock)(id obj);
 @class PKObjectMapper;
 @class PKObjectMapping;
 
+/** This delegate protocol is used to send updates from the object mapper during the mapping process.
+ */
 @protocol PKObjectMapperDelegate <NSObject>
 
 @optional
@@ -26,6 +28,9 @@ typedef void (^PKCustomMappingBlock)(id obj);
 
 @end
 
+/** The object mapper is the core of the mapping process and is responsible for evaluating and applying all the 
+ mapped properties to a single or collection of domain objects.
+ */
 @interface PKObjectMapper : NSObject
 
 @property (nonatomic, weak) id<PKObjectMapperDelegate> delegate;
