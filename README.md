@@ -2,7 +2,7 @@
 
 PodioKit is the Objective-C client library for the Podio API used in the Podio iOS app. It provides an easy interface for interacting with the Podio API and is responsible for request management and data mapping. If can be used as is or in combination with a storage layer like Core Data.
 
-PodioKit uses ARC and assumes a deployment target of > iOS 4.3.
+PodioKit uses ARC and requires a deployment target of >= iOS 5.0.
 
 ## Running the Demo app
 
@@ -29,3 +29,13 @@ To add PodioKit to your project, follow these steps:
 		CGNetwork.framework
 		SystemConfiguration.framework
 		MobileCoreServices.framework
+
+## Dependencies
+
+PodioKit uses the following open source libraries:
+
+* [ASIHTTPRequest](http://allseeing-i.com/ASIHTTPRequest/) for general networking. We are aware that this library has been deprecated and we investigating alternatives.
+* [JSONKit](https://github.com/johnezang/JSONKit) for parsing JSON data.
+* [Reachability](http://developer.apple.com/library/ios/#samplecode/Reachability/Introduction/Intro.html) for monitoring network availability.
+
+These libraries can be found in the _Vendor_ subfolder.

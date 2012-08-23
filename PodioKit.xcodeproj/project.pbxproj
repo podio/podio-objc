@@ -1069,7 +1069,6 @@
 			isa = PBXGroup;
 			children = (
 				5065C0E314345ADC00360855 /* Client */,
-				5065BF4F1433629600360855 /* Request */,
 				5065BF4E1433628D00360855 /* Mapping */,
 			);
 			path = Core;
@@ -1091,7 +1090,7 @@
 		5065BF4E1433628D00360855 /* Mapping */ = {
 			isa = PBXGroup;
 			children = (
-				5065BF721433648500360855 /* Base Mappings */,
+				5065BF721433648500360855 /* Mappings */,
 				5065BF65143363C400360855 /* CoreData */,
 				5065BF6B1433640C00360855 /* PKMappableObject.h */,
 				50599F071456B3B5001F5201 /* PKObjectRepository.h */,
@@ -1103,23 +1102,6 @@
 				5065BF571433632C00360855 /* PKMappingProvider.m */,
 			);
 			name = Mapping;
-			sourceTree = "<group>";
-		};
-		5065BF4F1433629600360855 /* Request */ = {
-			isa = PBXGroup;
-			children = (
-				5065BF3E1433627900360855 /* PKRequest.h */,
-				5065BF3F1433627900360855 /* PKRequest.m */,
-				5065BF401433627900360855 /* PKRequestManager.h */,
-				5065BF411433627900360855 /* PKRequestManager.m */,
-				5065BF421433627900360855 /* PKRequestOperation.h */,
-				5065BF431433627900360855 /* PKRequestOperation.m */,
-				509EAE6F147A798F007252D8 /* PKFileOperation.h */,
-				509EAE70147A798F007252D8 /* PKFileOperation.m */,
-				5026A2BD147116BC0051D7C8 /* PKRequestResult.h */,
-				5026A2BE147116BC0051D7C8 /* PKRequestResult.m */,
-			);
-			name = Request;
 			sourceTree = "<group>";
 		};
 		5065BF65143363C400360855 /* CoreData */ = {
@@ -1135,7 +1117,7 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		5065BF721433648500360855 /* Base Mappings */ = {
+		5065BF721433648500360855 /* Mappings */ = {
 			isa = PBXGroup;
 			children = (
 				502B5FAC1445729D004F4185 /* PKObjectMapping.h */,
@@ -1153,7 +1135,7 @@
 				5065BF7F1433649A00360855 /* PKStandaloneMapping.h */,
 				5028CBED145E921A0003A097 /* PKStandaloneMapping.m */,
 			);
-			name = "Base Mappings";
+			name = Mappings;
 			sourceTree = "<group>";
 		};
 		5065BFB91433655500360855 /* Categories */ = {
@@ -1262,6 +1244,16 @@
 				50F4FBBF14487EA800317E62 /* OAuth2Client */,
 				5065BF9B143364EA00360855 /* PKAPIClient.h */,
 				5065BF9C143364EA00360855 /* PKAPIClient.m */,
+				5065BF3E1433627900360855 /* PKRequest.h */,
+				5065BF3F1433627900360855 /* PKRequest.m */,
+				5065BF401433627900360855 /* PKRequestManager.h */,
+				5065BF411433627900360855 /* PKRequestManager.m */,
+				5065BF421433627900360855 /* PKRequestOperation.h */,
+				5065BF431433627900360855 /* PKRequestOperation.m */,
+				509EAE6F147A798F007252D8 /* PKFileOperation.h */,
+				509EAE70147A798F007252D8 /* PKFileOperation.m */,
+				5026A2BD147116BC0051D7C8 /* PKRequestResult.h */,
+				5026A2BE147116BC0051D7C8 /* PKRequestResult.m */,
 			);
 			name = Client;
 			sourceTree = "<group>";
