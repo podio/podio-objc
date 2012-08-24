@@ -11,8 +11,6 @@
 
 #pragma mark - Errors and exceptions
 
-static NSString * const kPodioKitErrorDomain = @"PodioKitErrorDomain";
-
 typedef enum {
   PKErrorCodeNoConnection = 1001,
   PKErrorCodeNotAuthenticated = 1002,

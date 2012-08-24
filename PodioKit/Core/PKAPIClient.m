@@ -53,8 +53,6 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 @property (nonatomic, strong) PKOAuth2Client *oauthClient;
 @property (nonatomic, strong) NSMutableArray *pendingRequests;
 
-- (void)handleUnauthorized;
-
 // Auth flow completion handlers
 - (void)didAuthenticateWithToken:(PKOAuth2Token *)token;
 - (void)authenticationFailedWithResponseData:(id)responseData;

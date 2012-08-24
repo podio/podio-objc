@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
+extern NSString * const PKPodioKitErrorDomain;
 extern NSString * const PKErrorStatusCodeKey;
 extern NSString * const PKERrorResponseStringKey;
 

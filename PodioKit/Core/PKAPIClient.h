@@ -107,6 +107,10 @@ extern NSString * const PKAPIClientResponseDataKey;
  */
 - (BOOL)isAuthenticated;
 
+/** Call when the API returns unauthorized HTTP response.
+ */
+- (void)handleUnauthorized;
+
 /** Returns the full URL string for a path and a number of query parameters based on the configured base URL.
  
  @param path The resource path.
