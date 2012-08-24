@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 3/13/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKShareCategoryData.h"

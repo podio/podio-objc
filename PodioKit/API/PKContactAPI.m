@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 3/9/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKContactAPI.h"
@@ -17,7 +17,7 @@
 @implementation PKContactAPI
 
 + (PKRequest *)requestForContactsWithURI:(NSString *)uri type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:uri method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET];
   
   request.offset = offset;
   [request.parameters setObject:[NSString stringWithFormat:@"%d", excludeSelf] forKey:@"exclude_self"];
@@ -63,11 +63,11 @@
 }
 
 + (PKRequest *)requestForContactWithProfileId:(NSUInteger)profileId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/%d/v2", profileId] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/%d/v2", profileId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForContactWithUserId:(NSUInteger)userId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/user/%d", userId] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/user/%d", userId] method:PKRequestMethodGET];
 }
 
 @end

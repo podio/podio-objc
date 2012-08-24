@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/29/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -25,7 +25,7 @@
 - (NSString *)pk_dateTimeStringWithFormatString:(NSString *)formatString;
 
 - (NSString *)pk_dateString;
-
+- (NSString *)pk_timeString;
 - (NSString *)pk_dateTimeString;
 
 @end

@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 10/11/11.
-//  Copyright (c) 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -35,6 +35,15 @@
                                referenceId:(NSUInteger)referenceId 
                              referenceType:(PKReferenceType)referenceType 
                                    fileIds:(NSArray *)fileIds;
+
++ (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId 
+                                    text:(NSString *)text 
+                             description:(NSString *)description 
+                                 dueDate:(NSDate *)dueDate 
+                             responsible:(NSUInteger)responsible 
+                               isPrivate:(BOOL)isPrivate 
+                             referenceId:(NSUInteger)referenceId 
+                           referenceType:(PKReferenceType)referenceType;
 
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId;
 

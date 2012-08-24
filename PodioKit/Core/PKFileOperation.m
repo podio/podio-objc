@@ -3,11 +3,13 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 11/21/11.
-//  Copyright (c) 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKFileOperation.h"
 #import "JSONKit.h"
+
+static NSTimeInterval const kTimeout = 30;
 
 @implementation PKFileOperation
 
@@ -17,8 +19,8 @@
   NSURL *requestURL = [NSURL URLWithString:urlString];
   self = [super initWithURL:requestURL];
   if (self) {
-    self.requestMethod = PKAPIRequestMethodPOST;
-    requestCompletionBlock_ = nil;
+    self.requestMethod = PKRequestMethodPOST;
+    self.timeOutSeconds = kTimeout;
   }
   return self;
 }
@@ -33,13 +35,13 @@
   return operation;
 }
 
-+ (PKFileOperation *)imageUploadOperationWithURLString:(NSString *)urlString image:(UIImage *)image {
++ (PKFileOperation *)imageUploadOperationWithURLString:(NSString *)urlString image:(UIImage *)image fileName:(NSString *)fileName {
   PKFileOperation *operation = [[self alloc] initWithURLString:urlString];
   operation.shouldAttemptPersistentConnection = NO;
   
   NSData * imageData = UIImageJPEGRepresentation(image, 0.8);
-  [operation setData:imageData withFileName:@"Image.jpg" andContentType:@"image/jpeg" forKey:@"file"];
-  [operation setPostValue:@"Image.jpg" forKey:@"name"];
+  [operation setData:imageData withFileName:fileName andContentType:@"image/jpeg" forKey:@"file"];
+  [operation setPostValue:fileName forKey:@"name"];
 	operation.numberOfTimesToRetryOnTimeout = 2;
   
   return operation;
@@ -85,6 +87,7 @@
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 
                                                              responseData:self.responseData 
                                                                parsedData:parsedData 
+                                                               objectData:nil
                                                                resultData:resultData];
   
   // Completion handler on main thread

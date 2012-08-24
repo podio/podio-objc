@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/29/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "NSDate+PKAdditions.h"
@@ -75,6 +75,10 @@
 
 - (NSString *)pk_dateString {
 	return [self pk_dateTimeStringWithFormatString:@"YYYY-MM-dd"];
+}
+
+- (NSString *)pk_timeString {
+	return [self pk_dateTimeStringWithFormatString:@"HH:mm:ss"];
 }
 
 - (NSString *)pk_dateTimeString {

@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/11/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKNotificationAPI.h"
@@ -12,7 +12,7 @@
 @implementation PKNotificationAPI
 
 + (PKRequest *)requestForNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo options:(NSDictionary *)options {
-  PKRequest *request = [PKRequest requestWithURI:@"/notification/" method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:@"/notification/" method:PKRequestMethodGET];
   request.parameters = [NSMutableDictionary dictionaryWithDictionary:options];
   
   request.offset = offset;
@@ -31,52 +31,49 @@
 }
 
 + (PKRequest *)requestForNewNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"0", @"viewed",
-                           @"incoming", @"direction", nil];
+  NSDictionary *options = @{@"viewed": @"0",
+                           @"direction": @"incoming"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForViewedNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"1", @"viewed",
-                           @"incoming", @"direction", nil];
+  NSDictionary *options = @{@"viewed": @"1",
+                           @"direction": @"incoming"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForStarredNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObject:@"1" forKey:@"starred"];
+  NSDictionary *options = @{@"starred": @"1"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForSentNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit dateFrom:(NSDate *)dateFrom dateTo:(NSDate *)dateTo {
-  NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
-                           @"conversation", @"context_type",
-                           @"outgoing", @"direction", nil];
+  NSDictionary *options = @{@"context_type": @"conversation",
+                           @"direction": @"outgoing"};
   return [self requestForNotificationsWithOffset:offset limit:limit dateFrom:dateFrom dateTo:dateTo options:options];
 }
 
 + (PKRequest *)requestForNotificationWithNotificationId:(NSUInteger)notificationId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/notification/%d/v2", notificationId] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/notification/%d/v2", notificationId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestToMarkNotificationAsViewedWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
   NSString *uri = [NSString stringWithFormat:@"/notification/%@/%d/viewed", [PKConstants stringForReferenceType:referenceType], referenceId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToMarkAllNotificationsAsViewed {
-  return [PKRequest requestWithURI:@"/notification/viewed" method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:@"/notification/viewed" method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToStarNotificationWithId:(NSUInteger)notificationId {
   NSString *uri = [NSString stringWithFormat:@"/notification/%d/star", notificationId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodPOST];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToUnstarNotificationWithId:(NSUInteger)notificationId {
   NSString *uri = [NSString stringWithFormat:@"/notification/%d/star", notificationId];
-  return [PKRequest requestWithURI:uri method:PKAPIRequestMethodDELETE];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
 }
 
 @end

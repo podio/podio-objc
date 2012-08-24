@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/21/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKReferenceDataFactory.h"
@@ -14,6 +14,10 @@
 #import "PKReferenceItemData.h"
 #import "PKReferenceMessageData.h"
 #import "PKReferenceRatingData.h"
+#import "PKReferenceTaskData.h"
+#import "PKReferenceCommentData.h"
+#import "PKReferenceAnswerData.h"
+#import "PKFileData.h"
 
 @implementation PKReferenceDataFactory
 
@@ -41,6 +45,18 @@
       break;
     case PKReferenceTypeTaskAction:
       data = [PKReferenceTaskActionData dataFromDictionary:dict];
+      break;
+    case PKReferenceTypeComment:
+      data = [PKReferenceCommentData dataFromDictionary:dict];
+      break;
+    case PKReferenceTypeFile:
+      data = [PKFileData dataFromDictionary:dict];
+      break;
+    case PKReferenceTypeTask:
+      data = [PKReferenceTaskData dataFromDictionary:dict];
+      break;
+    case PKReferenceTypeQuestionAnswer:
+      data = [PKReferenceAnswerData dataFromDictionary:dict];
       break;
     default:
       break;

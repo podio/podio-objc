@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/14/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKCoreDataMappingCoordinator.h"
@@ -23,9 +23,10 @@
                    mappingProvider:(PKMappingProvider *)mappingProvider {
   self = [super initWithMappingProvider:mappingProvider];
   if (self) {
+    PKAssert(managedObjectContext.concurrencyType == NSMainQueueConcurrencyType, @"The object context must have a concurrency type NSMainQueueConcurrencyType");
     managedObjectContext_ = managedObjectContext;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mappingContextDidSave:) 
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mappingContextDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification 
                                                object:nil];
   }
@@ -33,6 +34,9 @@
   return self;
 }
 
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 - (PKObjectMapper *)objectMapper {
   PKAssert(self.mappingProvider != nil, @"No mapping provider set.");
@@ -52,14 +56,11 @@
   if (savedContext == self.managedObjectContext) {
     return;
   }
-  
-  if ([NSThread isMainThread]) {
-    // Merge changes on main thread
-    [self.managedObjectContext mergeChangesFromContextDidSaveNotification:notification];
-  } else {
-    // Not main thread, perform on main thread
-    [self performSelectorOnMainThread:@selector(mappingContextDidSave:) withObject:notification waitUntilDone:NO];
-  }
+
+  NSManagedObjectContext *context = self.managedObjectContext;
+  [context performBlock:^{
+    [context mergeChangesFromContextDidSaveNotification:notification];
+  }];
 }
 
 #pragma mark - PKObjectMapperDelegate methods

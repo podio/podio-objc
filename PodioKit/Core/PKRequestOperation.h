@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/12/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "ASIHTTPRequest.h"
@@ -22,6 +22,7 @@ extern NSString * const PKNoObjectMapperSetException;
 }
 
 @property (strong) PKObjectMapper *objectMapper;
+@property (copy) NSArray *objectDataPathComponents;
 @property (copy) PKRequestCompletionBlock requestCompletionBlock;
 @property BOOL allowsConcurrent;
 

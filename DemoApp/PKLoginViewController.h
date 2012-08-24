@@ -3,16 +3,16 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 4/18/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
 @interface PKLoginViewController : UIViewController
 
-@property (unsafe_unretained, nonatomic) IBOutlet UIButton *loginButton;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *emailTextField;
-@property (unsafe_unretained, nonatomic) IBOutlet UITextField *passwordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *loginButton;
+@property (weak, nonatomic) IBOutlet UITextField *emailTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passwordTextField;
 
 - (IBAction)loginButtonPressed;
 

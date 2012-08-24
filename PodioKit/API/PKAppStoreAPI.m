@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 3/13/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKAppStoreAPI.h"
@@ -24,16 +24,16 @@
       break;
   }
   
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/recommended/%@/", areaString] method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/recommended/%@/", areaString] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForCategories {
-  return [PKRequest requestWithURI:@"/app_store/category/" method:PKAPIRequestMethodGET];
+  return [PKRequest requestWithURI:@"/app_store/category/" method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder 
                                        language:(NSString *)language offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKAPIRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKRequestMethodGET];
   
   NSString *typeString = nil;
   switch (type) {
@@ -89,8 +89,8 @@
 }
 
 + (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKAPIRequestMethodPOST];
-  request.body = [NSDictionary dictionaryWithObject:[NSNumber numberWithUnsignedInteger:spaceId] forKey:@"space_id"];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKRequestMethodPOST];
+  request.body = @{@"space_id": @(spaceId)};
   
   return request;
 }

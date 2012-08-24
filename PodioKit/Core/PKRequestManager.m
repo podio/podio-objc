@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/31/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKRequestManager.h"
@@ -60,6 +60,7 @@
   PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];
   operation.requestCompletionBlock = completion;
   operation.allowsConcurrent = request.allowsConcurrent;
+  operation.objectDataPathComponents = request.objectDataPathComponents;
   
   if (request.objectMapping != nil) {
     PKObjectMapper *mapper = [self.mappingCoordinator objectMapper];

@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/31/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -17,6 +17,8 @@ typedef void (^PKCustomMappingBlock)(id obj);
 @class PKObjectMapper;
 @class PKObjectMapping;
 
+/** This delegate protocol is used to send updates from the object mapper during the mapping process.
+ */
 @protocol PKObjectMapperDelegate <NSObject>
 
 @optional
@@ -26,30 +28,18 @@ typedef void (^PKCustomMappingBlock)(id obj);
 
 @end
 
-@interface PKObjectMapper : NSObject {
-  
- @private
-  PKMappingProvider *mappingProvider_;
-  
-  id<PKObjectRepository> repository_;
-  id<PKObjectMapperDelegate> __unsafe_unretained delegate_;
-  
-  NSPredicate *scopePredicate_;
-  NSUInteger offset_;
-  
-  PKObjectMapping *mapping_;
-  PKCustomMappingBlock mappingBlock_;
-  
-  NSDateFormatter *dateFormatter_;
-}
+/** The object mapper is the core of the mapping process and is responsible for evaluating and applying all the 
+ mapped properties to a single or collection of domain objects.
+ */
+@interface PKObjectMapper : NSObject
 
-@property (strong, readonly) PKMappingProvider *provider;
-@property (strong, readonly) id<PKObjectRepository> repository; // NOTE! The repository is retained throught the lifecycle of this mapper
-@property (unsafe_unretained) id<PKObjectMapperDelegate> delegate;
-@property (strong) NSPredicate *scopePredicate;
-@property NSUInteger offset;
-@property (strong) PKObjectMapping *mapping;
-@property (copy) PKCustomMappingBlock mappingBlock;
+@property (nonatomic, weak) id<PKObjectMapperDelegate> delegate;
+@property (nonatomic, strong, readonly) PKMappingProvider *provider;
+@property (nonatomic, strong, readonly) id<PKObjectRepository> repository; // NOTE! The repository is retained throught the lifecycle of this mapper
+@property (nonatomic, strong) NSPredicate *scopePredicate;
+@property (nonatomic) NSUInteger offset;
+@property (nonatomic, strong) PKObjectMapping *mapping;
+@property (nonatomic, copy) PKCustomMappingBlock mappingBlock;
 
 - (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository;
 

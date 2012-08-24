@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-04.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -12,7 +12,8 @@
 #import "PKCompoundMapping.h"
 #import "PKStandaloneMapping.h"
 
-
+/** A class defining how an NSDictionary should be mapped to the corresponding domain object's value properties.
+ */
 @interface PKObjectMapping : NSObject {
 
  @private
@@ -23,7 +24,6 @@
 
 @property (nonatomic, strong) NSMutableArray *mappings;
 @property (nonatomic, strong) NSMutableDictionary *propertyMappings;
-@property (nonatomic, strong) NSMutableArray *mappedDataPathComponents;
 @property (nonatomic, copy) NSString *sequencePropertyName;
 
 + (id)mapping;
@@ -43,6 +43,8 @@
 - (void)hasProperty:(NSString *)property forParentProperty:(NSString *)parentProperty;
 
 - (void)hasDateProperty:(NSString *)property forAttribute:(NSString *)attribute isUTC:(BOOL)isUTC;
+
+- (void)hasRightsProperty:(NSString *)property forAttribute:(NSString *)attribute;
 
 - (void)hasRelationship:(NSString *)property 
            forAttribute:(NSString *)attribute 

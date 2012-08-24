@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-07.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKItemFieldValueMoneyData.h"
@@ -38,7 +38,7 @@ static NSString * const PKItemFieldValueMoneyDataCurrencyKey = @"Currency";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueMoneyData *data = [self data];
   
-  data.amount = [NSNumber numberWithFloat:[[dict pk_objectForKey:@"value"] floatValue]];
+  data.amount = @([[dict pk_objectForKey:@"value"] floatValue]);
   data.currency = [dict pk_objectForKey:@"currency"];
   
   return data;

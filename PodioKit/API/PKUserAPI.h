@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 3/12/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKBaseAPI.h"
@@ -11,5 +11,8 @@
 @interface PKUserAPI : PKBaseAPI
 
 + (PKRequest *)requestForUserStatus;
+
++ (PKRequest *)requestForMobileNotificationSettings;
++ (PKRequest *)requestToSetMobileNotificationSettings:(NSDictionary *)settings;
 
 @end

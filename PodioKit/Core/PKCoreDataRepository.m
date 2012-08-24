@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/27/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKCoreDataRepository.h"
@@ -31,7 +31,7 @@
 
 - (NSManagedObjectContext *)managedObjectContext {
   if (managedObjectContext_ == nil) {
-    managedObjectContext_ = [[NSManagedObjectContext alloc] init];
+    managedObjectContext_ = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
     managedObjectContext_.persistentStoreCoordinator = persistentStoreCoordinator_;
   }
   

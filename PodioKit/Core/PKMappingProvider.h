@@ -3,11 +3,13 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 7/31/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
+/** Class used to by PKObjectMapper to lookup the corresponding domain object class name for a object mapping class name.
+ */
 @interface PKMappingProvider : NSObject {
 
  @private

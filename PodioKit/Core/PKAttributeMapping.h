@@ -3,11 +3,13 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/26/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
+/** A class describing how an attribute should be mapped to a specific domain object property.
+ */
 @interface PKAttributeMapping : NSObject {
   
 @private

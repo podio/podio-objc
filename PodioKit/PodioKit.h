@@ -3,12 +3,8 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2/27/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
-
-//#if ! __has_feature(objc_arc)
-//#error PodioKit has to be compiled with ARC. Either turn on ARC for the project or use -fobjc-arc flag.
-//#endif
 
 #import <Foundation/Foundation.h>
 
@@ -23,8 +19,6 @@
 #import "PKOAuth2Client.h"
 #import "PKOAuth2Token.h"
 #import "PKAPIClient.h"
-#import "PKAPIRequest.h"
-#import "PKAPIResponse.h"
 #import "PKRequestOperation.h"
 #import "PKFileOperation.h"
 #import "PKRequest.h"
@@ -51,6 +45,8 @@
 #import "PKUserAPI.h"
 #import "PKAppStoreAPI.h"
 #import "PKAppAPI.h"
+#import "PKViewAPI.h"
+#import "PKEmbedAPI.h"
 
 #pragma mark - Mapping
 
@@ -104,9 +100,8 @@
 #import "PKReferenceTaskActionData.h"
 #import "PKSpaceCreateData.h"
 #import "PKStreamActionData.h"
-#import "PKStreamActivityAnswerData.h"
-#import "PKStreamActivityDataFactory.h"
-#import "PKStreamActivityTaskData.h"
+#import "PKReferenceAnswerData.h"
+#import "PKReferenceTaskData.h"
 #import "PKStreamDataFactory.h"
 #import "PKStreamItemData.h"
 #import "PKStreamStatusData.h"
@@ -126,6 +121,7 @@
 #import "PKSpaceMemberRequestData.h"
 #import "PKReferenceBatchData.h"
 #import "PKItemParticipantsData.h"
+#import "PKAppFieldDataFactory.h"
 
 #pragma mark - Categories
 

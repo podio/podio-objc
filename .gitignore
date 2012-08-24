@@ -25,3 +25,7 @@ Icon?
 .Spotlight-V100
 .Trashes
 .DS_Store
+
+# appledoc
+docset-installed.txt
+*/docset

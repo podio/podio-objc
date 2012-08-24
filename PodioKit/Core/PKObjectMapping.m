@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2011-07-04.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKObjectMapping.h"
@@ -16,7 +16,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 
 @synthesize mappings = mappings_;
 @synthesize propertyMappings = propertyMappings_;
-@synthesize mappedDataPathComponents = mappedDataPathComponents_;
 @synthesize sequencePropertyName = sequencePropertyName_;
 
 - (id)init {
@@ -24,7 +23,6 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   if (self) {
     mappings_ = [[NSMutableArray alloc] init];
     propertyMappings_ = [[NSMutableDictionary alloc] init];
-    mappedDataPathComponents_ = nil;
     sequencePropertyName_ = nil;
     
     [self buildMappings];
@@ -40,6 +38,7 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
 - (void)buildMappings {
   // Subclass should construct mapping
 }
+
 + (BOOL)shouldPerformMappingWithData:(NSDictionary *)data {
   // Subclasses should override to evaluate if the data is mappable
   return YES;
@@ -64,6 +63,13 @@ static NSString * const kDefaultSequencePropertyName = @"seqIndex";
   [self addMapping:mapping];
   [self.propertyMappings setObject:mapping forKey:property]; // Dictionary for fast lookup
   
+}
+
+- (void)hasRightsProperty:(NSString *)property forAttribute:(NSString *)attribute {
+  [self hasProperty:property forAttribute:attribute block:^id(id attrVal, NSDictionary *objDict, id parent) {
+    NSUInteger rightsMask = [PKConstants rightsMaskFromArrayOfStrings:attrVal];
+    return @(rightsMask);
+  }];
 }
 
 - (void)hasProperty:(NSString *)property 

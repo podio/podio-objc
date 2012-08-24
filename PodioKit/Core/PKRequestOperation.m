@@ -3,13 +3,16 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 9/12/11.
-//  Copyright 2011 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKRequestOperation.h"
 #import "PKRequestResult.h"
 #import "JSONKit.h"
+#import "NSDictionary+PKAdditions.h"
 
+
+static NSTimeInterval const kTimeout = 30;
 
 // Exceptions
 NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
@@ -23,6 +26,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 @implementation PKRequestOperation
 
 @synthesize objectMapper = objectMapper_;
+@synthesize objectDataPathComponents = objectDataPathComponents_;
 @synthesize requestCompletionBlock = requestCompletionBlock_;
 @synthesize allowsConcurrent = allowsConcurrent_;
 
@@ -31,6 +35,8 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   self = [super initWithURL:requestURL];
   if (self) {
     self.requestMethod = method;
+    self.timeOutSeconds = kTimeout;
+    self.showAccurateProgress = NO;
     objectMapper_ = nil;
     requestCompletionBlock_ = nil;
     allowsConcurrent_ = YES;
@@ -72,6 +78,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   
   id resultData = nil;
   id parsedData = nil;
+  id objectData = nil;
   NSError *requestError = nil;
   
   // Parse data
@@ -79,15 +86,19 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     case 200:
     case 201: {
       PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-      //      PKLogDebug(@"Response body: %@", data);
       
       NSError *parseError = nil;
       parsedData = [self.responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
       
       if (parseError == nil) {
+        objectData = parsedData;
+        if (self.objectDataPathComponents != nil) {
+          objectData = [parsedData pk_objectForPathComponents:self.objectDataPathComponents];
+        }
+        
         // Should map response?
         if (self.objectMapper != nil) {
-          resultData = [self performMappingOfData:parsedData];
+          resultData = [self performMappingOfData:objectData];
         }
       } else {
         PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
@@ -110,12 +121,12 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 
                                                              responseData:self.responseData 
-                                                               parsedData:parsedData 
+                                                               parsedData:parsedData
+                                                               objectData:objectData
                                                                resultData:resultData];
   
   // Completion handler on main thread
   if (self.requestCompletionBlock != nil) {
-    
     dispatch_async(dispatch_get_main_queue(), ^{
       self.requestCompletionBlock(requestError, result);
     });
@@ -148,8 +159,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 - (id)performMappingOfData:(id)data {
   
   if (self.objectMapper == nil) {
-    NSString *msg = @"No object mapper set, unable to perform mapping of response data.";
-    [NSException raise:PKNoObjectMapperSetException format:msg];
+    [NSException raise:PKNoObjectMapperSetException format:@"No object mapper set, unable to perform mapping of response data."];
   }
   
   id result = nil;

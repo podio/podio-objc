@@ -3,7 +3,7 @@
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 4/25/12.
-//  Copyright (c) 2012 Podio. All rights reserved.
+//  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKItemParticipantsData.h"
@@ -42,7 +42,7 @@ static NSString * const PKItemParticipantsDataParticipantsDictKey = @"Participan
   data.participantsDict = [[NSMutableDictionary alloc] initWithCapacity:[dict count]];
   
   [dict enumerateKeysAndObjectsUsingBlock:^(id profileIdString, id statusDict, BOOL *stop) {
-    NSNumber *profileId = [NSNumber numberWithInteger:[profileIdString integerValue]];
+    NSNumber *profileId = @([profileIdString integerValue]);
     [data.participantsDict setObject:[statusDict pk_objectForKey:@"status"] forKey:profileId];
   }];
   
@@ -85,7 +85,7 @@ static NSString * const PKItemParticipantsDataParticipantsDictKey = @"Participan
 - (PKMeetingParticipantStatus)statusForProfileWithId:(NSUInteger)profileId {
   PKMeetingParticipantStatus status = PKMeetingParticipantStatusNone;
   
-  NSString *statusString = [self.participantsDict pk_objectForKey:[NSNumber numberWithUnsignedInteger:profileId]];
+  NSString *statusString = [self.participantsDict pk_objectForKey:@(profileId)];
   if (statusString != nil) {
     status = [PKConstants meetingParticipantStatusForString:statusString];
   }
@@ -95,7 +95,7 @@ static NSString * const PKItemParticipantsDataParticipantsDictKey = @"Participan
 
 - (void)setStatus:(PKMeetingParticipantStatus)status forProfileId:(NSUInteger)profileId {
   NSString *statusString = [PKConstants stringForMeetingParticipantStatus:status];
-  [self.participantsDict setObject:statusString forKey:[NSNumber numberWithUnsignedInteger:profileId]];
+  [self.participantsDict setObject:statusString forKey:@(profileId)];
 }
 
 @end
