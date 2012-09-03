@@ -65,7 +65,10 @@
       break;
     }
     case PKAppFieldTypeCategory: {      
-      data = [PKItemFieldValueOptionData dataFromDictionary:[dict pk_objectForKey:@"value"]];
+      PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData dataFromDictionary:[dict pk_objectForKey:@"value"]];
+      optionData.selected = YES;
+      
+      data = optionData;
       break;
     }
     case PKAppFieldTypeQuestion: {

@@ -28,7 +28,7 @@
       
       optionsData.multiple = [[settingsDict pk_objectForKey:@"multiple"] boolValue];
       
-      __block NSMutableArray *options = [[NSMutableArray alloc] init];
+      NSMutableArray *options = [[NSMutableArray alloc] init];
       for (NSDictionary *optionsDict in [settingsDict pk_objectForKey:@"options"]) {
         if ([[optionsDict pk_objectForKey:@"status"] isEqualToString:@"active"]) {
           // Add active options

@@ -83,7 +83,7 @@ static NSString * const PKItemFieldValueOptionDataColorStringKey = @"ColorString
   
   data.optionId = [[dict pk_objectForKey:@"id"] integerValue];
   data.text = [dict pk_objectForKey:@"text"];
-  data.selected = YES;
+  data.selected = NO;
   data.colorString = [dict pk_objectForKey:@"color"];
   
   return data;
