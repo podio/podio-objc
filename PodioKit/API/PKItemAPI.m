@@ -18,24 +18,46 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodDELETE];
 }
 
-+ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodGET];
++ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId filters:(NSDictionary *)filters offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = nil;
+  if (filters) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/filter/", appId] method:PKRequestMethodPOST];
+  } else if (viewId > 0) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/filter/%d/", appId, viewId] method:PKRequestMethodPOST];
+  } else {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodGET];
+  }
+  
   request.offset = offset;
   
-  if (offset > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
-  }
-  
-  if (limit > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
-  }
-  
-  if (viewId > 0) {
-    [request.parameters setObject:@"0" forKey:@"remember"];
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", viewId] forKey:@"view_id"];
+  if (viewId > 0 || filters) {
+    NSMutableDictionary *body = [NSMutableDictionary dictionary];
+    [body setObject:@(NO) forKey:@"remember"];
+    
+    if (filters) {
+      [body setObject:filters forKey:@"filters"];
+    }
+    
+    if (offset > 0) {
+      [body setObject:@(offset) forKey:@"offset"];
+    }
+    
+    if (limit > 0) {
+      [body setObject:@(limit) forKey:@"limit"];
+    }
+    
+    request.body = body;
   } else {
     // Sort by created date by default
     [request.parameters setObject:@"created_on" forKey:@"sort_by"];
+    
+    if (offset > 0) {
+      [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+    }
+    
+    if (limit > 0) {
+      [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+    }
   }
   
   return request;

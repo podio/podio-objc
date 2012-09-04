@@ -326,6 +326,10 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
       PKLogDebug(@"  %@: %@", name, value); 
     }];
   }
+  
+  if ([request.postBody length] > 0) {
+    PKLogDebug(@"Body: %@", [[NSString alloc] initWithData:request.postBody encoding:NSUTF8StringEncoding]);
+  }
 #endif
   
   if ([request isKindOfClass:[PKRequestOperation class]] && ![(PKRequestOperation *)request allowsConcurrent]) {
