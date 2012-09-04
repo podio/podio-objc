@@ -104,7 +104,7 @@
   return request;
 }
 
-+ (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemId:(NSUInteger)notItemId sortType:(PKItemAPISortType)sortType {
++ (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemIds:(NSArray *)notItemIds sortType:(PKItemAPISortType)sortType {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%d/find", fieldId] method:PKRequestMethodGET];
 
   switch (sortType) {
@@ -118,8 +118,8 @@
       break;
   }
   
-  if (notItemId > 0) {
-    [request.parameters setObject:@(notItemId) forKey:@"not_item_id"];
+  if ([notItemIds count] > 0) {
+    [request.parameters setObject:[notItemIds componentsJoinedByString:@","] forKey:@"not_item_id"];
   }
   
   if ([text length] > 0) {
