@@ -15,4 +15,7 @@
 + (PKRequest *)requestForMobileNotificationSettings;
 + (PKRequest *)requestToSetMobileNotificationSettings:(NSDictionary *)settings;
 
++ (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email;
++ (PKRequest *)requestToActivateUserWithActivationCode:(NSString *)activationCode name:(NSString *)name password:(NSString *)password;
+
 @end

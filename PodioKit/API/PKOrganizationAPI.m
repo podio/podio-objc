@@ -15,4 +15,18 @@
   return [PKRequest requestWithURI:@"/org/" method:PKRequestMethodGET];
 }
 
++ (PKRequest *)requestToCreateOrganizationName:(NSString *)name {
+  PKRequest *request = [PKRequest requestWithURI:@"/org/" method:PKRequestMethodPOST];
+  request.body = @{@"name": name};
+  
+  return request;
+}
+
++ (PKRequest *)requestToUpdateOrganizationWithId:(NSUInteger)organizationId name:(NSString *)name {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/org/%d", organizationId] method:PKRequestMethodPUT];
+  request.body = @{@"name": name};
+  
+  return request;
+}
+
 @end

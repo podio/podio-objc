@@ -25,4 +25,22 @@
   return request;
 }
 
++ (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email {
+  PKRequest *request = [PKRequest requestWithURI:@"/user/inactive/" method:PKRequestMethodPOST];
+  request.body = @{@"mail": email};
+  
+  return request;
+}
+
++ (PKRequest *)requestToActivateUserWithActivationCode:(NSString *)activationCode name:(NSString *)name password:(NSString *)password {
+  PKRequest *request = [PKRequest requestWithURI:@"/user/activate_user" method:PKRequestMethodPOST];
+  request.body = @{
+    @"activation_code": activationCode,
+    @"name": name,
+    @"password": password,
+  };
+  
+  return request;
+}
+
 @end

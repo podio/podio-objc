@@ -14,4 +14,7 @@
 
 + (PKRequest *)requestForOrganizations;
 
++ (PKRequest *)requestToCreateOrganizationName:(NSString *)name;
++ (PKRequest *)requestToUpdateOrganizationWithId:(NSUInteger)organizationId name:(NSString *)name;
+
 @end
