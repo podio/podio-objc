@@ -60,6 +60,7 @@
   PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];
   operation.requestCompletionBlock = completion;
   operation.allowsConcurrent = request.allowsConcurrent;
+  operation.requiresAuthenticated = request.requiresAuthenticated;
   operation.objectDataPathComponents = request.objectDataPathComponents;
   
   if (request.objectMapping != nil) {

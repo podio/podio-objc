@@ -25,6 +25,7 @@ extern NSString * const PKNoObjectMapperSetException;
 @property (copy) NSArray *objectDataPathComponents;
 @property (copy) PKRequestCompletionBlock requestCompletionBlock;
 @property BOOL allowsConcurrent;
+@property BOOL requiresAuthenticated;
 
 + (PKRequestOperation *)operationWithURLString:(NSString *)urlString 
                                         method:(NSString *)method 

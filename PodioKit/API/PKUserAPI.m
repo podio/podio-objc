@@ -25,15 +25,24 @@
   return request;
 }
 
-+ (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email {
++ (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email locale:(NSString *)locale options:(NSDictionary *)options {
   PKRequest *request = [PKRequest requestWithURI:@"/user/inactive/" method:PKRequestMethodPOST];
-  request.body = @{@"mail": email};
+  request.requiresAuthenticated = NO;
+  
+  request.body = [NSMutableDictionary dictionary];
+  [request.body setObject:email forKey:@"mail"];
+  [request.body setObject:locale forKey:@"locale"];
+  
+  if ([options count] > 0) {
+    [request.body addEntriesFromDictionary:options];
+  }
   
   return request;
 }
 
 + (PKRequest *)requestToActivateUserWithActivationCode:(NSString *)activationCode name:(NSString *)name password:(NSString *)password {
   PKRequest *request = [PKRequest requestWithURI:@"/user/activate_user" method:PKRequestMethodPOST];
+  request.requiresAuthenticated = NO;
   request.body = @{
     @"activation_code": activationCode,
     @"name": name,

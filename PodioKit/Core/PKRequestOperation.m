@@ -29,6 +29,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 @synthesize objectDataPathComponents = objectDataPathComponents_;
 @synthesize requestCompletionBlock = requestCompletionBlock_;
 @synthesize allowsConcurrent = allowsConcurrent_;
+@synthesize requiresAuthenticated = requiresAuthenticated_;
 
 - (id)initWithURLString:(NSString *)urlString method:(NSString *)method {
   NSURL *requestURL = [NSURL URLWithString:urlString];
@@ -40,6 +41,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     objectMapper_ = nil;
     requestCompletionBlock_ = nil;
     allowsConcurrent_ = YES;
+    requiresAuthenticated_ = YES;
   }
   return self;
 }
