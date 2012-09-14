@@ -183,19 +183,13 @@
     [body setObject:@(responsible) forKey:@"responsible"];
   }
   
-  if (description != nil) {
-    [body setObject:description forKey:@"description"];
-  }
+  [body setObject:(description ? description : [NSNull null]) forKey:@"description"];
   
   NSString *dateString = [dueDate pk_dateString];
-  if ([dateString length] > 0) {
-    [body setObject:dateString forKey:@"due_date"];
-  }
+  [body setObject:([dateString length] > 0 ? dateString : [NSNull null]) forKey:@"due_date"];
   
   NSString *timeString = [dueDate pk_timeString];
-  if ([timeString length] > 0) {
-    [body setObject:timeString forKey:@"due_time"];
-  }
+  [body setObject:([timeString length] > 0 ? timeString : [NSNull null]) forKey:@"due_time"];
   
   if (referenceType != PKReferenceTypeNone && referenceId > 0) {
     [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
