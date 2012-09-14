@@ -32,7 +32,7 @@
   
   if (viewId > 0 || filters) {
     NSMutableDictionary *body = [NSMutableDictionary dictionary];
-    [body setObject:@(NO) forKey:@"remember"];
+    [body setObject:@NO forKey:@"remember"];
     
     if (filters) {
       [body setObject:filters forKey:@"filters"];
