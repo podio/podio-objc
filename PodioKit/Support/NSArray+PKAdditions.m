@@ -23,4 +23,13 @@
   return array;
 }
 
+- (id)pk_firstObject {
+  id obj = nil;
+  if ([self count] > 0) {
+    obj = [self objectAtIndex:0];
+  }
+  
+  return obj;
+}
+
 @end

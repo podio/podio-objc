@@ -13,4 +13,6 @@
 
 - (NSArray *)pk_arrayFromObjectsCollectedWithBlock:(id (^)(id obj))block;
 
+- (id)pk_firstObject;
+
 @end
