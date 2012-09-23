@@ -69,11 +69,8 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   return operation;
 }
 
-// Request succeeded
 - (void)requestFinished {
-  
   if ([self isCancelled]) {
-    // Cancelled
     [super requestFinished];
     return;
   }
@@ -83,16 +80,25 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   id objectData = nil;
   NSError *requestError = nil;
   
-  // Parse data
+  // Parse
+  NSData *responseData = self.responseData;
+  if (responseData) {
+    NSError *parseError = nil;
+    parsedData = [responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
+    
+    if (parseError) {
+      PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
+      requestError = [NSError pk_responseParseError];
+    }
+  }
+  
+  // Handle
   switch (self.responseStatusCode) {
     case 200:
     case 201: {
       PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
       
-      NSError *parseError = nil;
-      parsedData = [self.responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
-      
-      if (parseError == nil) {
+      if (parsedData) {
         objectData = parsedData;
         if (self.objectDataPathComponents != nil) {
           objectData = [parsedData pk_objectForPathComponents:self.objectDataPathComponents];
@@ -102,9 +108,6 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
         if (self.objectMapper != nil) {
           resultData = [self performMappingOfData:objectData];
         }
-      } else {
-        PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
-        requestError = [NSError pk_responseParseError];      
       }
       break;
     }
@@ -116,7 +119,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     default: {
       // Failed
       PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
-      requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
+      requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode parsedData:parsedData];
       break;
     }
   }

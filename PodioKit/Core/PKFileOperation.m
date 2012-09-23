@@ -76,7 +76,7 @@ static NSTimeInterval const kTimeout = 30;
       default:
         // Failed
         PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
-        requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
+        requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode parsedData:parsedData];
         break;
     }
   } else {

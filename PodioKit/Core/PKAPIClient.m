@@ -296,6 +296,11 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [operation addRequestHeader:@"User-Agent" value:self.userAgent];
   
+  NSArray *languages = [NSLocale preferredLanguages];
+  if ([languages count] > 0) {
+    [operation addRequestHeader:@"Accept-Language" value:languages[0]];
+  }
+  
   if (operation.requiresAuthenticated) {
     // Use OAuth
     [operation addRequestHeader:@"Authorization" value:[self authorizationHeader]];

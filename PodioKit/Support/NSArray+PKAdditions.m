@@ -23,4 +23,18 @@
   return array;
 }
 
+- (NSArray *)pk_filteredArrayUsingBlock:(BOOL (^)(id obj))block {
+  NSMutableArray *mutArray = [[NSMutableArray alloc] init];
+  
+  [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+    if (block(obj)) {
+      [mutArray addObject:obj];
+    }
+  }];
+  
+  NSArray *array = [mutArray copy];
+  
+  return array;
+}
+
 @end

@@ -7,11 +7,12 @@
 //
 
 #import "NSError+PKErrors.h"
+#import "NSDictionary+PKAdditions.h"
 
 
 NSString * const PKPodioKitErrorDomain = @"PodioKitErrorDomain";
 NSString * const PKErrorStatusCodeKey = @"PKErrorStatusCodeKey";
-NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
+NSString * const PKErrorResponseDataKey = @"PKErrorResponseDataKey";
 
 @implementation NSError (PKErrors)
 
@@ -43,13 +44,30 @@ NSString * const PKERrorResponseStringKey = @"PKERrorResponseStringKey";
   return [NSError errorWithDomain:PKPodioKitErrorDomain code:PKErrorCodeParsingFailed userInfo:userInfo];
 }
 
-+ (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString {
++ (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode parsedData:(id)parsedData {
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"A server error occurred.", nil) forKey:NSLocalizedDescriptionKey];
   [userInfo setObject:@(statusCode) forKey:PKErrorStatusCodeKey];
-  [userInfo setObject:responseString forKey:PKERrorResponseStringKey];
+  
+  if (parsedData && [parsedData isKindOfClass:[NSDictionary class]]) {
+    NSError *underlyingError = [NSError errorWithDomain:PKPodioKitErrorDomain code:statusCode userInfo:@{
+                                  PKErrorResponseDataKey : parsedData,
+                                  NSLocalizedDescriptionKey : [parsedData pk_objectForKey:@"error_description"]
+                                }];
+    
+    [userInfo setObject:underlyingError forKey:NSUnderlyingErrorKey];
+  }
   
   return [NSError errorWithDomain:PKPodioKitErrorDomain code:PKErrorCodeServerError userInfo:userInfo];
+}
+
+- (NSString *)pk_serverSideDescription {
+  NSString *description = nil;
+  if (self.code == PKErrorCodeServerError) {
+    description = [[[self userInfo] objectForKey:NSUnderlyingErrorKey] localizedDescription];
+  }
+  
+  return description;
 }
 
 @end

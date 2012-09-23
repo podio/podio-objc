@@ -11,7 +11,7 @@
 
 extern NSString * const PKPodioKitErrorDomain;
 extern NSString * const PKErrorStatusCodeKey;
-extern NSString * const PKERrorResponseStringKey;
+extern NSString * const PKErrorResponseDataKey;
 
 @interface NSError (PKErrors)
 
@@ -19,6 +19,8 @@ extern NSString * const PKERrorResponseStringKey;
 + (NSError *)pk_notAuthenticatedError;
 + (NSError *)pk_requestCancelledError;
 + (NSError *)pk_responseParseError;
-+ (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode responseString:(NSString *)responseString;
++ (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode parsedData:(id)parsedData;
+
+- (NSString *)pk_serverSideDescription;
 
 @end
