@@ -8,7 +8,6 @@
 
 #import "PKRequestOperation.h"
 #import "PKRequestResult.h"
-#import "JSONKit.h"
 #import "NSDictionary+PKAdditions.h"
 
 
@@ -58,12 +57,12 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     [operation addRequestHeader: @"Content-Type" value: @"application/json"];
     
     NSError *error = nil;
-    NSString *bodyString = [body JSONStringWithOptions:0 error:&error];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:body options:0 error:&error];
     if (error != nil) {
       PKLogError(@"Failed to serialize request body data: %@, %@", error, [error userInfo]);
     }
     
-    [operation appendPostData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    [operation appendPostData:bodyData];
   }
   
   return operation;
@@ -82,9 +81,9 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   
   // Parse
   NSData *responseData = self.responseData;
-  if (responseData) {
+  if ([responseData length] > 0) {
     NSError *parseError = nil;
-    parsedData = [responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
+    parsedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&parseError];
     
     if (parseError) {
       PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
@@ -92,12 +91,12 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     }
   }
   
+  PKLogDebug(@"Request finished with status code: %d", self.responseStatusCode);
+  
   // Handle
   switch (self.responseStatusCode) {
     case 200:
     case 201: {
-      PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-      
       if (parsedData) {
         objectData = parsedData;
         if (self.objectDataPathComponents != nil) {
@@ -111,14 +110,12 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
       }
       break;
     }
-    case 204: {
-      // Success but no data
-      PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
+    case 204:
+      // Sucess without data
       break;
-    }
     default: {
       // Failed
-      PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
+      PKLogDebug(@"Request failed with body: %@", self.responseString);
       requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode parsedData:parsedData];
       break;
     }

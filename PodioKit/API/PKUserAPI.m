@@ -52,4 +52,12 @@
   return request;
 }
 
++ (PKRequest *)requestToRecoverPasswordForEmail:(NSString *)email {
+  PKRequest *request = [PKRequest requestWithURI:@"/user/recover_password" method:PKRequestMethodPOST];
+  request.requiresAuthenticated = NO;
+  request.body = @{@"mail": email};
+  
+  return request;
+}
+
 @end

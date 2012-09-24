@@ -7,7 +7,6 @@
 //
 
 #import "PKFileOperation.h"
-#import "JSONKit.h"
 
 static NSTimeInterval const kTimeout = 30;
 
@@ -57,31 +56,31 @@ static NSTimeInterval const kTimeout = 30;
   }
   
   id resultData = nil;
+  id parsedData = nil;
   NSError *requestError = nil;
   
-  // Parse data
-  NSError *parseError = nil;
-  id parsedData = [self.responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
-  
-  if (parseError == nil) {
-    switch (self.responseStatusCode) {
-      case 200:
-      case 201:
-        PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-        break;
-      case 204:
-        // Success but no data
-        PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-        break;
-      default:
-        // Failed
-        PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
-        requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode parsedData:parsedData];
-        break;
+  NSData *responseData = self.responseData;
+  if ([responseData length] > 0) {
+    NSError *parseError = nil;
+    parsedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&parseError];
+    
+    if (parseError) {
+      PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
     }
-  } else {
-    PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
-    requestError = [NSError pk_responseParseError];
+  }
+  
+  PKLogDebug(@"Request finished with status code %d", self.responseStatusCode);
+  
+  switch (self.responseStatusCode) {
+    case 200:
+    case 201:
+    case 204:
+      break;
+    default:
+      // Failed
+      PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
+      requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode parsedData:parsedData];
+      break;
   }
   
   PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.responseStatusCode 

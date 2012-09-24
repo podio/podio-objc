@@ -8,7 +8,6 @@
 
 #import "PKOAuth2Client.h"
 #import "NSDictionary+URL.h"
-#import "JSONKit.h"
 
 static const NSTimeInterval kRequestTimeout = 30;
 
@@ -112,7 +111,7 @@ static const NSTimeInterval kRequestTimeout = 30;
   PKAssert(grantType != nil, @"Grant type cannot be nil.");
   
   NSDictionary *params = @{@"grant_type": grantType, @"client_id": self.clientID, @"client_secret": self.clientSecret};
-  NSData *postData = [[body JSONString] dataUsingEncoding:NSUTF8StringEncoding];
+  NSData *postData = [NSJSONSerialization dataWithJSONObject:body options:0 error:NULL];
   
   [self authenticateWithQueryParameters:params postParameters:nil postData:postData];
 }
@@ -154,14 +153,20 @@ static const NSTimeInterval kRequestTimeout = 30;
   PKOAuth2RequestType requestType = self.requestType;
   self.requestType = PKOAuth2RequestTypeNone;
   
-  NSError *error = nil;
-  id parsedData = [[request responseData] objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
-  if (error != nil) {
-    PKLogError(@"Failed to parse response data");
-    return;
-  }
+  id parsedData = nil;
   
-  PKLogDebug(@"Response body: %@", parsedData);
+  NSData *responseData = request.responseData;
+  if ([responseData length] > 0) {
+    NSError *error = nil;
+    parsedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+    
+    if (!error) {
+      PKLogDebug(@"Response body: %@", parsedData);
+    } else {
+      PKLogError(@"Failed to parse response data %@, %@", [error localizedDescription], [error userInfo]);
+      return;
+    }
+  }
   
   if (request.responseStatusCode == 200) {
     // Got a new token
