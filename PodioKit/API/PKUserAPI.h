@@ -20,4 +20,7 @@
 
 + (PKRequest *)requestToRecoverPasswordForEmail:(NSString *)email;
 
++ (PKRequest *)requestToUpdateProfileFieldWithKey:(NSString *)key value:(id)value;
++ (PKRequest *)requestToUpdateProfileAvatarWithFileId:(NSUInteger)fileId;
+
 @end

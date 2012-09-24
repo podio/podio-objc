@@ -60,4 +60,15 @@
   return request;
 }
 
++ (PKRequest *)requestToUpdateProfileFieldWithKey:(NSString *)key value:(id)value {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/user/profile/%@", key] method:PKRequestMethodPUT];
+  request.body = @{@"value": value};
+  
+  return request;
+}
+
++ (PKRequest *)requestToUpdateProfileAvatarWithFileId:(NSUInteger)fileId {
+  return [self requestToUpdateProfileFieldWithKey:@"avatar" value:@(fileId)];
+}
+
 @end
