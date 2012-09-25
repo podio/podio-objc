@@ -84,12 +84,19 @@ extern NSString * const PKAPIClientResponseDataKey;
  */
 - (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString;
 
-/** Authenticate a user.
+/** Authenticate a user with username/password.
  
  @param email The username.
  @param password The password.
  */
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password;
+
+/** Authenticate a user with a custom grant type.
+ 
+ @param grantType The grant type.
+ @param body The POST body parameters.
+ */
+- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body;
 
 /** Force a access token refresh with the current refresh token.
  */

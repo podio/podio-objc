@@ -161,6 +161,22 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   }
 }
 
+- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body {
+  PKAssert(self.oauthClient != nil, @"API client not yet configured with OAuth2 client id and secret.");
+  
+  if (isAuthenticating_) {
+    PKLogDebug(@"Already in the process of authenticating.");
+    return;
+  }
+  
+  @synchronized(self) {
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
+    
+    isAuthenticating_ = YES;
+    [self.oauthClient authenticateWithGrantType:grantType body:body];
+  }
+}
+
 - (void)refreshToken {
   if ([self isAuthenticated]) {
     [self refreshUsingRefreshToken:self.authToken.refreshToken];
@@ -271,7 +287,7 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 }
 
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation {
-  if (![self isAuthenticated]) {
+  if (operation.requiresAuthenticated && ![self isAuthenticated]) {
     operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
     return NO;
   }
@@ -279,7 +295,21 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   operation.delegate = self;
   
   [operation addRequestHeader:@"User-Agent" value:self.userAgent];
-  [operation addRequestHeader:@"Authorization" value:[self authorizationHeader]];
+  
+  NSArray *languages = [NSLocale preferredLanguages];
+  if ([languages count] > 0) {
+    [operation addRequestHeader:@"Accept-Language" value:languages[0]];
+  }
+  
+  if (operation.requiresAuthenticated) {
+    // Use OAuth
+    [operation addRequestHeader:@"Authorization" value:[self authorizationHeader]];
+  } else {
+    // Use trusted authentication with HTTP Basic Auth
+    operation.username = self.oauthClient.clientID;
+    operation.password = self.oauthClient.clientSecret;
+    operation.authenticationScheme = (NSString *)kCFHTTPAuthenticationSchemeBasic;
+  }
   
   if (![self.authToken hasExpired]) {
     [self startRequest:operation];

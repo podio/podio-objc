@@ -11,7 +11,6 @@
 #import "PKDefaultObjectRepository.h"
 #import "PKTestTaskMapping.h"
 #import "PKTestTask.h"
-#import "JSONKit.h"
 #import "PKAssert.h"
 
 

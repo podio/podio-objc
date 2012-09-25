@@ -8,7 +8,6 @@
 
 #import "PKRequestOperation.h"
 #import "PKRequestResult.h"
-#import "JSONKit.h"
 #import "NSDictionary+PKAdditions.h"
 
 
@@ -29,6 +28,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
 @synthesize objectDataPathComponents = objectDataPathComponents_;
 @synthesize requestCompletionBlock = requestCompletionBlock_;
 @synthesize allowsConcurrent = allowsConcurrent_;
+@synthesize requiresAuthenticated = requiresAuthenticated_;
 
 - (id)initWithURLString:(NSString *)urlString method:(NSString *)method {
   NSURL *requestURL = [NSURL URLWithString:urlString];
@@ -40,6 +40,7 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     objectMapper_ = nil;
     requestCompletionBlock_ = nil;
     allowsConcurrent_ = YES;
+    requiresAuthenticated_ = YES;
   }
   return self;
 }
@@ -56,22 +57,19 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
     [operation addRequestHeader: @"Content-Type" value: @"application/json"];
     
     NSError *error = nil;
-    NSString *bodyString = [body JSONStringWithOptions:0 error:&error];
+    NSData *bodyData = [NSJSONSerialization dataWithJSONObject:body options:0 error:&error];
     if (error != nil) {
       PKLogError(@"Failed to serialize request body data: %@, %@", error, [error userInfo]);
     }
     
-    [operation appendPostData:[bodyString dataUsingEncoding:NSUTF8StringEncoding]];
+    [operation appendPostData:bodyData];
   }
   
   return operation;
 }
 
-// Request succeeded
 - (void)requestFinished {
-  
   if ([self isCancelled]) {
-    // Cancelled
     [super requestFinished];
     return;
   }
@@ -81,16 +79,25 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
   id objectData = nil;
   NSError *requestError = nil;
   
-  // Parse data
+  // Parse
+  NSData *responseData = self.responseData;
+  if ([responseData length] > 0) {
+    NSError *parseError = nil;
+    parsedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&parseError];
+    
+    if (parseError) {
+      PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
+      requestError = [NSError pk_responseParseError];
+    }
+  }
+  
+  PKLogDebug(@"Request finished with status code: %d", self.responseStatusCode);
+  
+  // Handle
   switch (self.responseStatusCode) {
     case 200:
     case 201: {
-      PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
-      
-      NSError *parseError = nil;
-      parsedData = [self.responseData objectFromJSONDataWithParseOptions:JKParseOptionLooseUnicode error:&parseError];
-      
-      if (parseError == nil) {
+      if (parsedData) {
         objectData = parsedData;
         if (self.objectDataPathComponents != nil) {
           objectData = [parsedData pk_objectForPathComponents:self.objectDataPathComponents];
@@ -100,21 +107,16 @@ NSString * const PKNoObjectMapperSetException = @"PKNoObjectMapperSetException";
         if (self.objectMapper != nil) {
           resultData = [self performMappingOfData:objectData];
         }
-      } else {
-        PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
-        requestError = [NSError pk_responseParseError];      
       }
       break;
     }
-    case 204: {
-      // Success but no data
-      PKLogDebug(@"Request succeded with status code %d", self.responseStatusCode);
+    case 204:
+      // Sucess without data
       break;
-    }
     default: {
       // Failed
-      PKLogDebug(@"Request failed with status code %d: %@", self.responseStatusCode, self.responseString);
-      requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode responseString:self.responseString];
+      PKLogDebug(@"Request failed with body: %@", self.responseString);
+      requestError = [NSError pk_serverErrorWithStatusCode:self.responseStatusCode parsedData:parsedData];
       break;
     }
   }

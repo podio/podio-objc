@@ -8,7 +8,6 @@
 
 #import "PKOAuth2Client.h"
 #import "NSDictionary+URL.h"
-#import "JSONKit.h"
 
 static const NSTimeInterval kRequestTimeout = 30;
 
@@ -52,29 +51,36 @@ static const NSTimeInterval kRequestTimeout = 30;
   return requests_;
 }
 
-- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password {
+- (void)authenticateWithQueryParameters:(NSDictionary *)queryParameters postParameters:(NSDictionary *)postParameters postData:(NSData *)postData {
   PKAssert(self.clientID != nil, @"Client ID not configured.");
   PKAssert(self.clientSecret != nil, @"Client secret not configured.");
   PKAssert(self.tokenURL != nil, @"Token URL not configured.");
-  PKAssert(username != nil, @"Username cannot be nil.");
-  PKAssert(password != nil, @"Password cannot be nil.");
   
   @synchronized(self) {
     // Only allow one active request at a time
     if (self.requestType != PKOAuth2RequestTypeNone) return;
     
-    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:self.tokenURL]];
+    NSString *urlString;
+    if ([queryParameters count] > 0) {
+      urlString = [NSString stringWithFormat:@"%@?%@", self.tokenURL, [queryParameters pk_escapedURLStringFromComponents]];
+    } else {
+      urlString = self.tokenURL;
+    }
+    
+    ASIFormDataRequest *request = [ASIFormDataRequest requestWithURL:[NSURL URLWithString:urlString]];
     request.delegate = self;
 		request.requestMethod = @"POST";
     request.validatesSecureCertificate = YES;
     request.numberOfTimesToRetryOnTimeout = 2;
     request.timeOutSeconds = kRequestTimeout;
     
-    [request setPostValue:@"password" forKey:@"grant_type"];
-    [request setPostValue:self.clientID forKey:@"client_id"];
-    [request setPostValue:self.clientSecret forKey:@"client_secret"];
-    [request setPostValue:username forKey:@"username"];
-    [request setPostValue:password forKey:@"password"];
+    if (postData) {
+      [request appendPostData:postData];
+    } else if (postParameters) {
+      [postParameters enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop) {
+        [request setPostValue:obj forKey:key];
+      }];
+    }
     
     NSArray *languages = [NSLocale preferredLanguages];
     if ([languages count] > 0) {
@@ -86,6 +92,28 @@ static const NSTimeInterval kRequestTimeout = 30;
     
 		[request startAsynchronous];
   }
+}
+
+- (void)authenticateWithUsername:(NSString *)username password:(NSString *)password {
+  PKAssert(username != nil, @"Username cannot be nil.");
+  PKAssert(password != nil, @"Password cannot be nil.");
+  
+  NSDictionary *postParams = @{@"grant_type": @"password",
+                               @"client_id": self.clientID,
+                               @"client_secret": self.clientSecret,
+                               @"username": username,
+                               @"password": password};
+  
+  [self authenticateWithQueryParameters:nil postParameters:postParams postData:nil];
+}
+
+- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body {
+  PKAssert(grantType != nil, @"Grant type cannot be nil.");
+  
+  NSDictionary *params = @{@"grant_type": grantType, @"client_id": self.clientID, @"client_secret": self.clientSecret};
+  NSData *postData = [NSJSONSerialization dataWithJSONObject:body options:0 error:NULL];
+  
+  [self authenticateWithQueryParameters:params postParameters:nil postData:postData];
 }
 
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken {
@@ -125,14 +153,20 @@ static const NSTimeInterval kRequestTimeout = 30;
   PKOAuth2RequestType requestType = self.requestType;
   self.requestType = PKOAuth2RequestTypeNone;
   
-  NSError *error = nil;
-  id parsedData = [[request responseData] objectFromJSONDataWithParseOptions:JKParseOptionNone error:&error];
-  if (error != nil) {
-    PKLogError(@"Failed to parse response data");
-    return;
-  }
+  id parsedData = nil;
   
-  PKLogDebug(@"Response body: %@", parsedData);
+  NSData *responseData = request.responseData;
+  if ([responseData length] > 0) {
+    NSError *error = nil;
+    parsedData = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:&error];
+    
+    if (!error) {
+      PKLogDebug(@"Response body: %@", parsedData);
+    } else {
+      PKLogError(@"Failed to parse response data %@, %@", [error localizedDescription], [error userInfo]);
+      return;
+    }
+  }
   
   if (request.responseStatusCode == 200) {
     // Got a new token

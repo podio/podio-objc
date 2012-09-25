@@ -40,6 +40,7 @@ typedef enum {
 - (id)initWithClientID:(NSString *)clientID clientSecret:(NSString *)clientSecret tokenURL:(NSString *)tokenURL;
 
 - (void)authenticateWithUsername:(NSString *)username password:(NSString *)password;
+- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body;
 - (void)refreshUsingRefreshToken:(NSString *)refreshToken;
 
 @end

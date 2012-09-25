@@ -7,7 +7,6 @@
 //
 
 #import "PKRequestResult.h"
-#import "JSONKit.h"
 
 @implementation PKRequestResult
 
