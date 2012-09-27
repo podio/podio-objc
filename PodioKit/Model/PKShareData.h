@@ -15,5 +15,6 @@
 @property (nonatomic, copy) NSString *abstract;
 @property (nonatomic, copy) NSString *icon;
 @property (nonatomic) NSInteger rating;
+@property (nonatomic, copy) NSArray *children; // PKShareData objects
 
 @end

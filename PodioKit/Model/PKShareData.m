@@ -13,6 +13,7 @@ static NSString * const PKShareDataName = @"Name";
 static NSString * const PKShareDataAbstract = @"Abstract";
 static NSString * const PKShareDataIcon = @"Icon";
 static NSString * const PKShareDataRating = @"Rating";
+static NSString * const PKShareDataChildren = @"Children";
 
 @implementation PKShareData
 
@@ -21,6 +22,7 @@ static NSString * const PKShareDataRating = @"Rating";
 @synthesize abstract = abstract_;
 @synthesize icon = icon_;
 @synthesize rating = rating_;
+@synthesize children = children_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
@@ -30,6 +32,7 @@ static NSString * const PKShareDataRating = @"Rating";
     abstract_ = [[aDecoder decodeObjectForKey:PKShareDataAbstract] copy];
     icon_ = [[aDecoder decodeObjectForKey:PKShareDataIcon] copy];
     rating_ = [aDecoder decodeIntegerForKey:PKShareDataRating];
+    children_ = [[aDecoder decodeObjectForKey:PKShareDataChildren] copy];
   }
   return self;
 }
@@ -41,6 +44,7 @@ static NSString * const PKShareDataRating = @"Rating";
   [aCoder encodeObject:abstract_ forKey:PKShareDataAbstract];
   [aCoder encodeObject:icon_ forKey:PKShareDataIcon];
   [aCoder encodeInteger:rating_ forKey:PKShareDataRating];
+  [aCoder encodeObject:children_ forKey:PKShareDataChildren];
 }
 
 #pragma mark - Factory methods
@@ -55,6 +59,7 @@ static NSString * const PKShareDataRating = @"Rating";
   data.abstract = [dict pk_objectForKey:@"abstract"];
   data.icon = [dict pk_objectForKey:@"icon"];
   data.rating = [[dict pk_objectForKey:@"rating"] integerValue];
+  data.children = [self dataObjectsFromArray:[dict pk_objectForKey:@"children"]];
   
   return data;
 }
