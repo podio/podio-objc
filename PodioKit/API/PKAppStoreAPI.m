@@ -89,8 +89,17 @@
 }
 
 + (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId {
+  return [self requestToInstallShareWithId:shareId spaceId:spaceId dependencies:nil];
+}
+
++ (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId dependencies:(NSArray *)dependencies {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKRequestMethodPOST];
-  request.body = @{@"space_id": @(spaceId)};
+  
+  request.body = [NSMutableDictionary dictionaryWithObject:@(spaceId) forKey:@"space_id"];
+  
+  if ([dependencies count] > 0) {
+    [request.body setObject:dependencies forKey:@"dependencies"];
+  }
   
   return request;
 }
