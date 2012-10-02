@@ -202,8 +202,8 @@ static const NSTimeInterval kRequestTimeout = 30;
     }
   } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
     // Refresh failed
-    if ([self.delegate respondsToSelector:@selector(oauthClientTokenRefreshDidFail:)]) {
-      [self.delegate oauthClientTokenRefreshDidFail:self];
+    if ([self.delegate respondsToSelector:@selector(oauthClientTokenRefreshDidFail:error:)]) {
+      [self.delegate oauthClientTokenRefreshDidFail:self error:request.error];
     }
   }
 }
@@ -222,8 +222,8 @@ static const NSTimeInterval kRequestTimeout = 30;
     }
   } else if (requestType == PKOAuth2RequestTypeRefreshToken) {
     // Refresh failed
-    if ([self.delegate respondsToSelector:@selector(oauthClientTokenRefreshDidFail:)]) {
-      [self.delegate oauthClientTokenRefreshDidFail:self];
+    if ([self.delegate respondsToSelector:@selector(oauthClientTokenRefreshDidFail:error:)]) {
+      [self.delegate oauthClientTokenRefreshDidFail:self error:request.error];
     }
   }
 }
