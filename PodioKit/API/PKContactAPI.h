@@ -23,4 +23,6 @@ typedef enum {
 + (PKRequest *)requestForContactWithProfileId:(NSUInteger)profileId;
 + (PKRequest *)requestForContactWithUserId:(NSUInteger)userId;
 
++ (PKRequest *)requestForContactsForLinkedAccountWithId:(NSUInteger)linkedAccountId limit:(NSUInteger)limit;
+
 @end

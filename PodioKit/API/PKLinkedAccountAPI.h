@@ -13,4 +13,6 @@
 + (PKRequest *)requestForLinkedAccountsWithCapability:(PKProviderCapability)capability;
 + (PKRequest *)requestForProvidersWithCapability:(PKProviderCapability)capability;
 
++ (PKRequest *)requestToCreateLinkedAccountWithBody:(NSDictionary *)body;
+
 @end

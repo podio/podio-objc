@@ -30,4 +30,11 @@
   return request;
 }
 
++ (PKRequest *)requestToCreateLinkedAccountWithBody:(NSDictionary *)body {
+  PKRequest *request = [PKRequest requestWithURI:@"/linked_account/" method:PKRequestMethodPOST];
+  request.body = body;
+  
+  return request;
+}
+
 @end

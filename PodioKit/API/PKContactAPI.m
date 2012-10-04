@@ -70,4 +70,14 @@
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/user/%d", userId] method:PKRequestMethodGET];
 }
 
++ (PKRequest *)requestForContactsForLinkedAccountWithId:(NSUInteger)linkedAccountId limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/linked_account/%d", linkedAccountId] method:PKRequestMethodGET];
+  
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  }
+  
+  return request;
+}
+
 @end
