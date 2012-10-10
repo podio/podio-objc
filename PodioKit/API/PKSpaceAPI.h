@@ -14,4 +14,6 @@
 + (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId;
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId;
 
++ (PKRequest *)requestToAddMemberToSpaceWithId:(NSUInteger)spaceId role:(PKRole)role userIds:(NSArray *)userIds emails:(NSArray *)emails externalContacts:(NSDictionary *)externalContacts;
+
 @end

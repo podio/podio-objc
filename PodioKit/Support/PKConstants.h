@@ -29,7 +29,7 @@ static NSString* const kPKContactTypeConnection = @"connection";
 static NSString * const kPKUserTypeUser = @"user";
 static NSString * const kPKUserTypeApp = @"app";
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, PKRight) {
   PKRightNone            = 0,
   PKRightView            = 1 << 0,
   PKRightUpdate          = 1 << 1,
@@ -54,7 +54,33 @@ typedef enum {
   PKRightAddHook         = 1 << 20,
   PKRightAddQuestion     = 1 << 21,
   PKRightAddAnswer       = 1 << 22,
-} PKRight;
+  PKRightAddContract     = 1 << 23,
+  PKRightAddUser         = 1 << 24,
+  PKRightAddUserLight    = 1 << 25,
+  PKRightMove            = 1 << 26,
+  PKRightExport          = 1 << 27,
+  PKRightReference       = 1 << 28,
+  PKRightViewAdmins      = 1 << 29,
+  PKRightDownload        = 1 << 30,
+  PKRightViewMembers     = 1 << 31,
+  PKRightAutoJoin        = 1 << 32,
+  PKRightGrant           = 1 << 33,
+  PKRightViewStructure   = 1 << 34,
+};
+
+#pragma mark - Role
+
+typedef NS_ENUM(NSUInteger, PKRole) {
+  PKRoleNone = 0,
+  PKRoleLight,
+  PKRoleRegular,
+  PKRoleAdmin,
+};
+
+static NSString * const kPKRoleLight = @"light";
+static NSString * const kPKRoleRegular = @"regular";
+static NSString * const kPKRoleAdmin = @"admin";
+
 
 #pragma mark - Spaces
 
@@ -645,6 +671,10 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 
 // Rights
 + (NSUInteger)rightsMaskFromArrayOfStrings:(NSArray *)strings;
+
+// Roles
++ (PKRole)roleForString:(NSString *)string;
++ (NSString *)stringForRole:(PKRole)role;
 
 // Reference
 + (PKReferenceType)referenceTypeForString:(NSString *)string;

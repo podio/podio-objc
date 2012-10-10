@@ -279,10 +279,68 @@
       rightsMask |= PKRightAddQuestion;
     } else if ([obj isEqualToString:@"add_answer"]) {
       rightsMask |= PKRightAddAnswer;
+    } else if ([obj isEqualToString:@"add_contract"]) {
+      rightsMask |= PKRightAddContract;
+    } else if ([obj isEqualToString:@"add_user"]) {
+      rightsMask |= PKRightAddUser;
+    } else if ([obj isEqualToString:@"add_user_light"]) {
+      rightsMask |= PKRightAddUserLight;
+    } else if ([obj isEqualToString:@"move"]) {
+      rightsMask |= PKRightMove;
+    } else if ([obj isEqualToString:@"export"]) {
+      rightsMask |= PKRightExport;
+    } else if ([obj isEqualToString:@"reference"]) {
+      rightsMask |= PKRightReference;
+    } else if ([obj isEqualToString:@"view_admins"]) {
+      rightsMask |= PKRightViewAdmins;
+    } else if ([obj isEqualToString:@"download"]) {
+      rightsMask |= PKRightDownload;
+    } else if ([obj isEqualToString:@"view_members"]) {
+      rightsMask |= PKRightViewMembers;
+    } else if ([obj isEqualToString:@"auto_join"]) {
+      rightsMask |= PKRightAutoJoin;
+    } else if ([obj isEqualToString:@"grant"]) {
+      rightsMask |= PKRightAddAnswer;
+    } else if ([obj isEqualToString:@"view_structure"]) {
+      rightsMask |= PKRightViewStructure;
     }
   }];
   
   return rightsMask;
+}
+
++ (PKRole)roleForString:(NSString *)string {
+  PKRole role = PKRoleNone;
+  
+  if ([string isEqualToString:kPKRoleLight]) {
+    role = PKRoleLight;
+  } else if ([string isEqualToString:kPKRoleRegular]) {
+    role = PKRoleRegular;
+  } else if ([string isEqualToString:kPKRoleAdmin]) {
+    role = PKRoleAdmin;
+  }
+  
+  return role;
+}
+
++ (NSString *)stringForRole:(PKRole)role {
+  NSString *string = nil;
+  
+  switch (role) {
+    case PKRoleLight:
+      string = kPKRoleLight;
+      break;
+    case PKRoleRegular:
+      string = kPKRoleRegular;
+      break;
+    case PKRoleAdmin:
+      string = kPKRoleAdmin;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
 }
 
 + (PKReferenceType)referenceTypeForString:(NSString *)string {
