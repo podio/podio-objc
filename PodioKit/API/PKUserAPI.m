@@ -25,13 +25,14 @@
   return request;
 }
 
-+ (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email locale:(NSString *)locale options:(NSDictionary *)options {
++ (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email locale:(NSString *)locale timeZone:(NSString *)timeZone options:(NSDictionary *)options {
   PKRequest *request = [PKRequest requestWithURI:@"/user/inactive/" method:PKRequestMethodPOST];
   request.requiresAuthenticated = NO;
   
   request.body = [NSMutableDictionary dictionary];
   [request.body setObject:email forKey:@"mail"];
   [request.body setObject:locale forKey:@"locale"];
+  [request.body setObject:timeZone forKey:@"timezone"];
   
   if ([options count] > 0) {
     [request.body addEntriesFromDictionary:options];
