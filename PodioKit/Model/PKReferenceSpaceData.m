@@ -43,8 +43,7 @@ static NSString * const PKReferenceSpaceDataName = @"Name";
   PKReferenceSpaceData *data = [self data];
   
   data.spaceId = [[dict pk_objectForKey:@"space_id"] integerValue];
-  data.type = [[dict pk_objectForKey:@"type"] isEqualToString:kPKSpaceTypeEmployeeNetwork] ? 
-    PKSpaceTypeEmployeeNetwork : PKSpaceTypeRegular;
+  data.type = [PKConstants spaceTypeForString:[dict pk_objectForKey:@"type"]];
   data.name = [dict pk_objectForKey:@"name"];
   
   return data;

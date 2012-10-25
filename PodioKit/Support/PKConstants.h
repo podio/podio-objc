@@ -88,10 +88,12 @@ typedef enum {
   PKSpaceTypeNone = 0,
   PKSpaceTypeRegular,
   PKSpaceTypeEmployeeNetwork,
+  PKSpaceTypeDemo,
 } PKSpaceType;
 
 static NSString * const kPKSpaceTypeRegular = @"regular";
 static NSString * const kPKSpaceTypeEmployeeNetwork = @"emp_network";
+static NSString * const kPKSpaceTypeDemo = @"demo";
 
 typedef enum {
   PKSpaceCreateStatusNone = 0,

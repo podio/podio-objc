@@ -572,6 +572,8 @@
     type = PKSpaceTypeRegular;
   } else if ([string isEqualToString:kPKSpaceTypeEmployeeNetwork]) {
     type = PKSpaceTypeEmployeeNetwork;
+  } else if ([string isEqualToString:kPKSpaceTypeDemo]) {
+    type = PKSpaceTypeDemo;
   }
   
   return type;
