@@ -514,7 +514,7 @@
 		5053634214FF962B0068622A /* PKProviderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKProviderData.m; sourceTree = "<group>"; };
 		5059533A149634B70046685A /* PKConversationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKConversationAPI.h; sourceTree = "<group>"; };
 		5059533B149634B70046685A /* PKConversationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKConversationAPI.m; sourceTree = "<group>"; };
-		50599EF01455A024001F5201 /* PKAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PKAssert.h; path = ../../PodioKitTests/PKAssert.h; sourceTree = "<group>"; };
+		50599EF01455A024001F5201 /* PKAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAssert.h; sourceTree = "<group>"; };
 		50599F071456B3B5001F5201 /* PKObjectRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKObjectRepository.h; sourceTree = "<group>"; };
 		505C4F98155C96C30081850F /* DemoApp-Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Configuration.plist"; sourceTree = "<group>"; };
 		505F7E461445EFBC00727A1D /* GetTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetTask.json; sourceTree = "<group>"; };
