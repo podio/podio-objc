@@ -41,6 +41,14 @@
   return request;
 }
 
++ (PKRequest *)requestForActivationStatusWithCode:(NSString *)activationCode {
+  PKRequest *request = [PKRequest requestWithURI:@"/user/status/activation" method:PKRequestMethodGET];
+  request.requiresAuthenticated = NO;
+  request.parameters[@"activation_code"] = activationCode;
+  
+  return request;
+}
+
 + (PKRequest *)requestToActivateUserWithActivationCode:(NSString *)activationCode name:(NSString *)name password:(NSString *)password {
   PKRequest *request = [PKRequest requestWithURI:@"/user/activate_user" method:PKRequestMethodPOST];
   request.requiresAuthenticated = NO;
