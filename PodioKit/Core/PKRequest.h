@@ -84,6 +84,34 @@ extern PKRequestMethod const PKRequestMethodDELETE;
  */
 + (PKRequest *)requestWithURI:(NSString *)uri method:(PKRequestMethod)method objectMapping:(PKObjectMapping *)objectMapping;
 
+/**
+ @param uri The resource URI path.
+ @return A request with the GET method.
+ @see requestWithURI:method:
+ */
++ (PKRequest *)getRequestWithURI:(NSString *)uri;
+
+/**
+ @param uri The resource URI path.
+ @return A request with the PUT method.
+ @see requestWithURI:method:
+ */
++ (PKRequest *)putRequestWithURI:(NSString *)uri;
+
+/**
+ @param uri The resource URI path.
+ @return A request with the POST method.
+ @see requestWithURI:method:
+ */
++ (PKRequest *)postRequestWithURI:(NSString *)uri;
+
+/**
+ @param uri The resource URI path.
+ @return A request with the DELETE method.
+ @see requestWithURI:method:
+ */
++ (PKRequest *)deleteRequestWithURI:(NSString *)uri;
+
 /** Creates a request operation for this request and adds it to the network queue.
  
  @param completionBlock A block to be executed after the request operation completes and data has been mapped.

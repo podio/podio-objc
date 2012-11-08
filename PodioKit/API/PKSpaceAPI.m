@@ -51,4 +51,8 @@
   return request;
 }
 
++ (PKRequest *)requestToRemoveMemberWithUserId:(NSUInteger)userId fromSpaceWithId:(NSUInteger)spaceId {
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/space/%d/member/%d", spaceId, userId]];
+}
+
 @end

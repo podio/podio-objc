@@ -16,4 +16,6 @@
 
 + (PKRequest *)requestToAddMemberToSpaceWithId:(NSUInteger)spaceId role:(PKRole)role userIds:(NSArray *)userIds emails:(NSArray *)emails externalContacts:(NSDictionary *)externalContacts;
 
++ (PKRequest *)requestToRemoveMemberWithUserId:(NSUInteger)userId fromSpaceWithId:(NSUInteger)spaceId;
+
 @end

@@ -69,6 +69,22 @@ PKRequestMethod const PKRequestMethodDELETE = @"DELETE";
   return [[self alloc] initWithURI:uri method:method objectMapping:objectMapping];
 }
 
++ (PKRequest *)getRequestWithURI:(NSString *)uri {
+  return [self requestWithURI:uri method:PKRequestMethodGET];
+}
+
++ (PKRequest *)putRequestWithURI:(NSString *)uri {
+  return [self requestWithURI:uri method:PKRequestMethodPUT];
+}
+
++ (PKRequest *)postRequestWithURI:(NSString *)uri {
+  return [self requestWithURI:uri method:PKRequestMethodPOST];
+}
+
++ (PKRequest *)deleteRequestWithURI:(NSString *)uri {
+  return [self requestWithURI:uri method:PKRequestMethodDELETE];
+}
+
 - (PKRequestOperation *)startWithCompletionBlock:(PKRequestCompletionBlock)completionBlock {
   return [[PKRequestManager sharedManager] performRequest:self completion:completionBlock];
 }
