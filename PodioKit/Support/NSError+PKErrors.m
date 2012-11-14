@@ -13,6 +13,7 @@
 NSString * const PKPodioKitErrorDomain = @"PodioKitErrorDomain";
 NSString * const PKErrorStatusCodeKey = @"PKErrorStatusCodeKey";
 NSString * const PKErrorResponseDataKey = @"PKErrorResponseDataKey";
+NSString * const PKErrorPropagateKey = @"PKErrorPropagateKey";
 
 @implementation NSError (PKErrors)
 
@@ -48,14 +49,20 @@ NSString * const PKErrorResponseDataKey = @"PKErrorResponseDataKey";
   NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
   [userInfo setObject:NSLocalizedString(@"A server error occurred.", nil) forKey:NSLocalizedDescriptionKey];
   [userInfo setObject:@(statusCode) forKey:PKErrorStatusCodeKey];
-  
+
   if (parsedData && [parsedData isKindOfClass:[NSDictionary class]]) {
-    NSError *underlyingError = [NSError errorWithDomain:PKPodioKitErrorDomain code:statusCode userInfo:@{
+    NSNumber *propagate = [parsedData pk_objectForKey:@"error_propagate"];
+    NSString *description = [parsedData pk_objectForKey:@"error_description"];
+
+    if (propagate && description) {
+      NSError *underlyingError = [NSError errorWithDomain:PKPodioKitErrorDomain code:statusCode userInfo:@{
                                   PKErrorResponseDataKey : parsedData,
-                                  NSLocalizedDescriptionKey : [parsedData pk_objectForKey:@"error_description"]
-                                }];
-    
-    [userInfo setObject:underlyingError forKey:NSUnderlyingErrorKey];
+                                     PKErrorPropagateKey : propagate,
+                               NSLocalizedDescriptionKey : description,
+                                  }];
+      
+      [userInfo setObject:underlyingError forKey:NSUnderlyingErrorKey];
+    }
   }
   
   return [NSError errorWithDomain:PKPodioKitErrorDomain code:PKErrorCodeServerError userInfo:userInfo];
@@ -63,8 +70,13 @@ NSString * const PKErrorResponseDataKey = @"PKErrorResponseDataKey";
 
 - (NSString *)pk_serverSideDescription {
   NSString *description = nil;
+  
   if (self.code == PKErrorCodeServerError) {
-    description = [[[self userInfo] objectForKey:NSUnderlyingErrorKey] localizedDescription];
+    NSError *error = [[self userInfo] objectForKey:NSUnderlyingErrorKey];
+    
+    if ([error.userInfo[PKErrorPropagateKey] boolValue]) {
+      description = [error localizedDescription];
+    }
   }
   
   return description;

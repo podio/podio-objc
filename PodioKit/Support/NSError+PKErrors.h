@@ -12,6 +12,7 @@
 extern NSString * const PKPodioKitErrorDomain;
 extern NSString * const PKErrorStatusCodeKey;
 extern NSString * const PKErrorResponseDataKey;
+extern NSString * const PKErrorPropagateKey;
 
 @interface NSError (PKErrors)
 

@@ -37,7 +37,7 @@ NSString * const PKAPIClientNoInternetConnection = @"PKAPIClientNoInternetConnec
 // Notification user info keys
 NSString * const PKAPIClientRequestKey = @"Request";
 NSString * const PKAPIClientTokenKey = @"Token";
-NSString * const PKAPIClientResponseDataKey = @"ResponseData";
+NSString * const PKAPIClientErrorKey = @"Error";
 
 // Constants
 
@@ -231,14 +231,8 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
   
   [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
   
-  NSMutableDictionary *mutUserInfo = [NSMutableDictionary dictionary];
-  if (responseData != nil) {
-    [mutUserInfo setObject:responseData forKey:PKAPIClientResponseDataKey];
-  }
-  
-  NSDictionary *userInfo = [mutUserInfo copy];
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
+  NSError *error = [NSError pk_serverErrorWithStatusCode:0 parsedData:responseData];
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:@{PKAPIClientErrorKey: error}];
 }
 
 - (void)didRefreshToken:(PKOAuth2Token *)token {

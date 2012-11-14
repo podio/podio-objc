@@ -34,7 +34,7 @@ extern NSString * const PKAPIClientNoInternetConnection;
 // Notification user info keys
 extern NSString * const PKAPIClientRequestKey;
 extern NSString * const PKAPIClientTokenKey;
-extern NSString * const PKAPIClientResponseDataKey;
+extern NSString * const PKAPIClientErrorKey;
 
 /**
  Singleton class responsible for handling all API interaction, from authentication to request handling.
