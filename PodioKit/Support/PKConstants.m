@@ -680,6 +680,10 @@
     type = PKNotificationTypeBatchProcess;
   } else if ([string isEqualToString:kPKNotificationTypeBatchComplete]) {
     type = PKNotificationTypeBatchComplete;
+  } else if ([string isEqualToString:kPKNotificationTypeGrantCreate]) {
+    type = PKNotificationTypeGrantCreate;
+  } else if ([string isEqualToString:kPKNotificationTypeGrantDelete]) {
+    type = PKNotificationTypeGrantDelete;
   }
   
   return type;
