@@ -23,5 +23,6 @@ extern NSString * const PKErrorPropagateKey;
 + (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode parsedData:(id)parsedData;
 
 - (NSString *)pk_serverSideDescription;
+- (NSString *)pk_humanServerSideDescription;
 
 @end

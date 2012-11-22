@@ -69,12 +69,20 @@ NSString * const PKErrorPropagateKey = @"PKErrorPropagateKey";
 }
 
 - (NSString *)pk_serverSideDescription {
+  return [self pk_serverSideDescriptionPropagateRequired:NO];
+}
+
+- (NSString *)pk_humanServerSideDescription {
+  return [self pk_serverSideDescriptionPropagateRequired:YES];
+}
+
+- (NSString *)pk_serverSideDescriptionPropagateRequired:(BOOL)propagateRequired {
   NSString *description = nil;
   
   if (self.code == PKErrorCodeServerError) {
     NSError *error = [[self userInfo] objectForKey:NSUnderlyingErrorKey];
     
-    if ([error.userInfo[PKErrorPropagateKey] boolValue]) {
+    if (!propagateRequired || [error.userInfo[PKErrorPropagateKey] boolValue]) {
       description = [error localizedDescription];
     }
   }
