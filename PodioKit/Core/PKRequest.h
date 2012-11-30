@@ -49,8 +49,6 @@ extern PKRequestMethod const PKRequestMethodDELETE;
 @property (strong) NSPredicate *scopePredicate;
 @property NSUInteger offset;
 @property (copy) PKCustomMappingBlock mappingBlock;
-@property BOOL allowsConcurrent;
-@property BOOL requiresAuthenticated;
 
 /**
  @param uri The resource URI path.

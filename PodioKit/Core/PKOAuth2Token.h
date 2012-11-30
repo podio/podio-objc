@@ -19,6 +19,8 @@
 - (id)initWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn refData:(NSDictionary *)refData;
 + (id)tokenWithAccessToken:(NSString *)accessToken refreshToken:(NSString *)refreshToken transferToken:(NSString *)transferToken expiresOn:(NSDate *)expiresOn refData:(NSDictionary *)refData;
 
++ (id)tokenFromDictionary:(NSDictionary *)dictionary;
+
 - (BOOL)hasExpired;
 
 @end

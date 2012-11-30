@@ -28,8 +28,6 @@ PKRequestMethod const PKRequestMethodDELETE = @"DELETE";
 @synthesize scopePredicate = scopePredicate_;
 @synthesize offset = offset_;
 @synthesize mappingBlock = mappingBlock_;
-@synthesize allowsConcurrent = allowsConcurrent_;
-@synthesize requiresAuthenticated = requiresAuthenticated_;
 
 - (id)initWithURI:(NSString *)uri method:(PKRequestMethod)method {
   self = [super init];
@@ -44,8 +42,6 @@ PKRequestMethod const PKRequestMethodDELETE = @"DELETE";
     scopePredicate_ = nil;
     offset_ = 0;
     mappingBlock_ = nil;
-    allowsConcurrent_ = YES;
-    requiresAuthenticated_ = YES;
   }
   
   return self;
