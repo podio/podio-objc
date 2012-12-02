@@ -29,7 +29,7 @@
   NSString *password = self.passwordTextField.text;
   
   if ([email length] > 0 && [password length] > 0) {
-    [[PKAPIClient sharedClient] authenticateWithEmail:email password:password];
+    [[PKAPIClient sharedClient] authenticateWithEmail:email password:password completion:nil];
   }
 }
 

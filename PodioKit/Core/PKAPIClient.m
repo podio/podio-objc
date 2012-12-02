@@ -1,16 +1,16 @@
 //
-//  PKAPIClient.m
+//  PKAPIClient2.m
 //  PodioKit
 //
-//  Created by Sebastian Rehnby on 2011-07-01.
+//  Created by Sebastian Rehnby on 11/29/12.
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
 #import "PKAPIClient.h"
-#import "ASIHTTPRequest.h"
-#import "PKRequestOperation.h"
-#import "NSString+URL.h"
-#import "NSDictionary+URL.h"
+#import "PKHTTPRequestOperation.h"
+#import "AFJSONRequestOperation.h"
+#import "PKOAuth2Token.h"
+#import "NSError+PKErrors.h"
 
 // Notifications
 NSString * const PKAPIClientWillBeginAuthentication = @"PKAPIClientWillBeginAuthentication";
@@ -29,414 +29,306 @@ NSString * const PKAPIClientDidRefreshAccessToken = @"PKAPIClientDidRefreshAcces
 NSString * const PKAPIClientTokenRefreshFailed = @"PKAPIClientTokenRefreshFailed";
 NSString * const PKAPIClientNeedsReauthentication = @"PKAPIClientNeedsReauthentication";
 
-NSString * const PKAPIClientRequestFinished = @"PKAPIClientRequestFinished";
-NSString * const PKAPIClientRequestFailed = @"PKAPIClientRequestFailed";
-
-NSString * const PKAPIClientNoInternetConnection = @"PKAPIClientNoInternetConnection";
-
 // Notification user info keys
-NSString * const PKAPIClientRequestKey = @"Request";
 NSString * const PKAPIClientTokenKey = @"Token";
 NSString * const PKAPIClientErrorKey = @"Error";
 
-// Constants
-
-static NSString * const kDefaultBaseURL = @"https://api.podio.com";
-static NSString * const kDefaultFileUploadURL = @"https://upload.podio.com/upload.php";
-static NSString * const kDefaultFileDownloadURL = @"https://upload.podio.com/download.php";
-static NSString * const kOAuthRedirectURL = @"podio://oauth";
+static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
+static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com";
 
 @interface PKAPIClient ()
 
-@property (nonatomic, readonly) ASINetworkQueue *networkQueue;
-@property (nonatomic, readonly) ASINetworkQueue *serialNetworkQueue;
-@property (nonatomic, strong) PKOAuth2Client *oauthClient;
-@property (nonatomic, strong) NSMutableArray *pendingRequests;
-
-// Auth flow completion handlers
-- (void)didAuthenticateWithToken:(PKOAuth2Token *)token;
-- (void)authenticationFailedWithResponseData:(id)responseData;
-- (void)didRefreshToken:(PKOAuth2Token *)token;
-- (void)tokenRefreshFailedWithError:(NSError *)error;
-
-// Enqueueing requests
-- (void)startRequest:(ASIHTTPRequest *)request;
-- (void)resendPendingRequests;
-- (void)cancelPendingRequests;
-
-- (NSString *)authorizationHeader;
+@property (nonatomic, strong) NSMutableArray *pendingOperations;
+@property BOOL isRefreshing;
 
 @end
 
 @implementation PKAPIClient
 
-@synthesize baseURLString = baseURLString_;
-@synthesize fileUploadURLString = fileUploadURLString_;
-@synthesize fileDownloadURLString = fileDownloadURLString_;
-@synthesize userAgent = userAgent_;
-@synthesize authToken = authToken_;
-@synthesize oauthClient = oauthClient_;
-@synthesize pendingRequests = pendingRequests_;
-
-#pragma mark - Singleton
-
 + (PKAPIClient *)sharedClient {
-  static PKAPIClient * sharedInstance = nil;
-  static dispatch_once_t pred;
+  static id sharedClient;
+  static dispatch_once_t once;
   
-  dispatch_once(&pred, ^{
-    sharedInstance = [[self alloc] init];
+  dispatch_once(&once, ^{
+    sharedClient = [[self alloc] initWithAPIKey:nil apiSecret:nil];
   });
   
-  return sharedInstance;
+  return sharedClient;
 }
 
-- (id)init {
+- (id)initWithBaseURL:(NSURL *)url {
   @synchronized(self) {
-    self = [super init];
-    
-    // Shared request queue
-    networkQueue_ = nil;
-    serialNetworkQueue_ = nil;
-    
-    // OAuth
-    self.oauthClient = nil;
-    
-    authToken_ = nil;
-    
-    isRefreshingToken_ = NO;
-    isAuthenticating_ = NO;
-    
-    fileUploadURLString_ = [kDefaultFileUploadURL copy];
-    fileDownloadURLString_ = [kDefaultFileDownloadURL copy];
-    
-    pendingRequests_ = [[NSMutableArray alloc] init];
+    self = [super initWithBaseURL:url];
+    if (self) {
+      _uploadURLString = [kDefaultFileUploadURLString copy];
+      
+      [self registerHTTPOperationClass:[PKHTTPRequestOperation class]];
+      [self updateDefaultHeaders];
+    }
     
     return self;
   }
 }
 
-- (void)setBaseURLString:(NSString *)baseURLString {
-  NSURL *baseURL = [NSURL URLWithString:baseURLString];
-  if (baseURLString == nil) {
-    PKLogError(@"Invalid base URL: %@", baseURLString);
-    return;
+- (id)initWithAPIKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret {
+  self = [self initWithBaseURL:[NSURL URLWithString:kDefaultBaseURLString]];
+  if (self) {
+    _apiKey = [apiKey copy];
+    _apiSecret = [apiSecret copy];
   }
-  
-  if (baseURLString_ != nil) {
-    baseURLString_ = nil;
-  }
-  
-  baseURLString_ = [[NSString stringWithFormat:@"https://%@", [baseURL host]] copy];
+  return self;
 }
 
-- (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret {
-  [self configureWithClientId:clientId secret:secret baseURLString:kDefaultBaseURL];
-}
-
-- (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString {
-  self.baseURLString = baseURLString;
-  
-  self.oauthClient = [[PKOAuth2Client alloc] initWithClientID:clientId 
-                                                  clientSecret:secret 
-                                                      tokenURL:[NSString stringWithFormat:@"%@/oauth/token", self.baseURLString]];
-  self.oauthClient.delegate = self;
-}
-
-#pragma mark - Authorization
-
-- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password {
-  PKAssert(self.oauthClient != nil, @"API client not yet configured with OAuth2 client id and secret.");
-  
-  if (isAuthenticating_) {
-    PKLogDebug(@"Already in the process of authenticating.");
-    return;
-  }
-  
+- (void)configureWithAPIKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret {
   @synchronized(self) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
-    
-    isAuthenticating_ = YES;
-    [self.oauthClient authenticateWithUsername:email password:password];
+    self.apiKey = apiKey;
+    self.apiSecret = apiSecret;
   }
 }
 
-- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body {
-  PKAssert(self.oauthClient != nil, @"API client not yet configured with OAuth2 client id and secret.");
+#pragma mark - Properties
+
+- (void)setUserAgent:(NSString *)userAgent {
+  _userAgent = [userAgent copy];
+  [self updateDefaultHeaders];
+}
+
+- (void)setOauthToken:(PKOAuth2Token *)oauthToken {
+  _oauthToken = oauthToken;
+  [self updateDefaultHeaders];
   
-  if (isAuthenticating_) {
-    PKLogDebug(@"Already in the process of authenticating.");
-    return;
+  if (!oauthToken) {
+    [self cancelPendingOperations];
   }
-  
+}
+
+- (NSMutableArray *)pendingOperations {
   @synchronized(self) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
+    if (!_pendingOperations) {
+      _pendingOperations = [[NSMutableArray alloc] init];
+    }
     
-    isAuthenticating_ = YES;
-    [self.oauthClient authenticateWithGrantType:grantType body:body];
+    return _pendingOperations;
   }
 }
 
-- (void)refreshToken {
-  if ([self isAuthenticated]) {
-    [self refreshUsingRefreshToken:self.authToken.refreshToken];
+#pragma mark - Misc
+
+- (void)updateDefaultHeaders {
+  [self setDefaultHeader:@"User-Agent" value:self.userAgent];
+  
+  NSArray *languages = [NSLocale preferredLanguages];
+  NSString *language = [languages count] > 0 ? languages[0] : nil;
+  [self setDefaultHeader:@"Accept-Language" value:language];
+  
+  if (self.oauthToken) {
+    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"OAuth2 %@", self.oauthToken.accessToken]];
   } else {
-    [self tokenRefreshFailedWithError:[NSError pk_notAuthenticatedError]];
+    [self setAuthorizationHeaderWithUsername:self.apiKey password:self.apiSecret];
   }
 }
 
-- (void)refreshUsingRefreshToken:(NSString *)refreshToken {
-  if (isRefreshingToken_) {
-    PKLogDebug(@"Already in the process of refreshing token.");
-    return;
-  }
-  
-  @synchronized(self) {
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillRefreshAccessToken object:self];
-    
-    isRefreshingToken_ = YES;
-    [self.oauthClient refreshUsingRefreshToken:refreshToken];
-  }
-}
-
-- (void)handleUnauthorized {
-  self.authToken = nil;
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
-}
+#pragma mark - Authentication
 
 - (BOOL)isAuthenticated {
-  return self.authToken != nil;
+  return self.oauthToken != nil;
 }
 
-- (NSString *)URLStringForPath:(NSString *)path parameters:(NSDictionary *)parameters {
-  NSMutableString *urlString = urlString = [NSMutableString stringWithFormat:@"%@%@", self.baseURLString, path];
+- (void)authenticateWithPostBody:(NSDictionary *)postBody completion:(PKRequestCompletionBlock)completion {
+  @synchronized(self) {
+    PKAssert(self.apiKey != nil, @"Missing API key.");
+    PKAssert(self.apiSecret != nil, @"Missing API secret.");
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
+    
+    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:postBody];
+    body[@"client_id"] = self.apiKey;
+    body[@"client_secret"] = self.apiSecret;
+
+    NSURLRequest *request = [self requestWithMethod:@"POST" path:@"/oauth/token" parameters:body];
+    AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON) {
+      
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
+      
+      if (response.statusCode == 200) {
+        self.oauthToken = [PKOAuth2Token tokenFromDictionary:JSON];
+        [self retryPendingOperations];
+        
+        if (self.isRefreshing) {
+          NSDictionary *userInfo = @{PKAPIClientTokenKey: self.oauthToken};
+          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self userInfo:userInfo];
+        } else {
+          NSDictionary *userInfo = self.oauthToken ? @{PKAPIClientTokenKey: self.oauthToken} : nil;
+          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self userInfo:userInfo];
+        }
+      } else {
+        self.oauthToken = nil;
+
+        if (self.isRefreshing) {
+          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:self];
+          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
+        } else {
+          NSError *serverError = [NSError pk_serverErrorWithStatusCode:0 parsedData:JSON];
+          NSDictionary *userInfo = @{PKAPIClientErrorKey: serverError};
+          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
+        }
+      }
+      
+      // TODO: Parse response
+      
+      if (completion) {
+        completion(nil, nil);
+      }
+    } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id JSON) {
+      [self cancelPendingOperations];
+      
+      if (self.isRefreshing) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:self];
+      } else {
+        NSDictionary *userInfo = @{PKAPIClientErrorKey: error};
+        [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
+      }
+      
+      if (completion) {
+        completion(error, nil);
+      }
+    }];
   
-  if (parameters != nil && [parameters count] > 0) {
-    [urlString appendFormat:@"?%@", [parameters pk_escapedURLStringFromComponents]];
+    [self enqueueHTTPRequestOperation:operation];
+  }
+}
+
+- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body completion:(PKRequestCompletionBlock)completion {
+  PKAssert(grantType != nil, @"Missing grant type.");
+  
+  NSMutableDictionary *grantBody = [[NSMutableDictionary alloc] initWithDictionary:body];
+  grantBody[@"grant_type"] = grantType;
+  
+  [self authenticateWithPostBody:grantBody completion:completion];
+}
+
+- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKRequestCompletionBlock)completion {
+  PKAssert(email != nil, @"Missing email.");
+  PKAssert(password != nil, @"Missing password.");
+  
+  [self authenticateWithGrantType:@"password" body:@{@"username": email, @"password": password} completion:completion];
+}
+
+- (void)refreshOAuthTokenWithRefreshToken:(NSString *)refreshToken completion:(PKRequestCompletionBlock)completion {
+  PKAssert(refreshToken != nil, @"Missing refresh token.");
+  
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillRefreshAccessToken object:self];
+  
+  self.isRefreshing = YES;
+  [self authenticateWithGrantType:@"refresh_token" body:@{@"refresh_token": refreshToken} completion:^(NSError *error, PKRequestResult *result) {
+    self.isRefreshing = NO;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self];
+  }];
+}
+
+- (void)refreshOAuthToken {
+  if (!self.oauthToken) {
+    PKLogWarn(@"Can't refresh, missing existing token.");
+    return;
   }
   
-  return urlString;
-}
-
-- (void)didAuthenticateWithToken:(PKOAuth2Token *)token {
-  isAuthenticating_ = NO;
-  self.authToken = token; // Keep token
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
-}
-
-- (void)authenticationFailedWithResponseData:(id)responseData {
-  isAuthenticating_ = NO;
-  self.authToken = nil; // Reset token
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
-  
-  NSError *error = [NSError pk_serverErrorWithStatusCode:0 parsedData:responseData];
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:@{PKAPIClientErrorKey: error}];
-}
-
-- (void)didRefreshToken:(PKOAuth2Token *)token {
-  isRefreshingToken_ = NO;
-  self.authToken = token; // Keep token
-  
-  [self resendPendingRequests];
-  
-  NSDictionary *userInfo = @{PKAPIClientTokenKey: token};
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self userInfo:userInfo];
-}
-
-- (void)tokenRefreshFailedWithError:(NSError *)error {
-  isRefreshingToken_ = NO;
-  
-  [self cancelPendingRequests];
-  
-  if (![error.domain isEqualToString:NetworkRequestErrorDomain]) {
-    // Server side error, re-authenticate
-    self.authToken = nil;
-    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
-  }
-  
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:self];
+  [self refreshOAuthTokenWithRefreshToken:self.oauthToken.refreshToken completion:nil];
 }
 
 #pragma mark - Requests
 
-- (ASINetworkQueue *)networkQueue {
-  if (networkQueue_ == nil) {
-    networkQueue_ = [[ASINetworkQueue alloc] init];
-    networkQueue_.maxConcurrentOperationCount = NSOperationQueueDefaultMaxConcurrentOperationCount;
-    networkQueue_.shouldCancelAllRequestsOnFailure = NO;
- 		[networkQueue_ go];
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method
+                                      path:(NSString *)path
+                                parameters:(NSDictionary *)parameters
+                                      body:(id)body {
+  
+  
+  NSMutableURLRequest *request = [super requestWithMethod:method path:path parameters:nil];
+  if ([parameters count] > 0) {
+    request.URL = [NSURL URLWithString:[[request.URL absoluteString] stringByAppendingFormat:@"?%@", AFQueryStringFromParametersWithEncoding(parameters, self.stringEncoding)]];
   }
   
-  return networkQueue_;
+  if (body && ![method isEqualToString:PKRequestMethodGET] && ![method isEqualToString:PKRequestMethodDELETE]) {
+    NSString *charset = (__bridge NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(self.stringEncoding));
+    NSError *error = nil;
+    
+    [request setValue:[NSString stringWithFormat:@"application/json; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
+    [request setHTTPBody:[NSJSONSerialization dataWithJSONObject:body options:0 error:&error]];
+    
+    if (error) {
+      PKLogError(@"Failed to serialize body to JSON, %@", [error localizedDescription]);
+    }
+  }
+  
+  return request;
 }
 
-- (ASINetworkQueue *)serialNetworkQueue {
-  if (serialNetworkQueue_ == nil) {
-    serialNetworkQueue_ = [[ASINetworkQueue alloc] init];
-    networkQueue_.maxConcurrentOperationCount = 1;
-    networkQueue_.shouldCancelAllRequestsOnFailure = NO;
- 		[serialNetworkQueue_ go];
-  }
+- (NSMutableURLRequest *)uploadRequestWithBodyConstructionBlock:(void (^)(id <AFMultipartFormData> formData))constructionBlock {
+  NSMutableURLRequest *request = [self multipartFormRequestWithMethod:PKRequestMethodPOST path:@"/file/" parameters:nil constructingBodyWithBlock:constructionBlock];
   
-  return serialNetworkQueue_;
+  return request;
 }
 
-- (BOOL)addRequestOperation:(PKRequestOperation *)operation {
-  if (operation.requiresAuthenticated && ![self isAuthenticated]) {
-    operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
-    return NO;
-  }
-  
-  operation.delegate = self;
-  
-  [operation addRequestHeader:@"User-Agent" value:self.userAgent];
-  
-  NSArray *languages = [NSLocale preferredLanguages];
-  if ([languages count] > 0) {
-    [operation addRequestHeader:@"Accept-Language" value:languages[0]];
-  }
-  
-  if (operation.requiresAuthenticated) {
-    // Use OAuth
-    [operation addRequestHeader:@"Authorization" value:[self authorizationHeader]];
-  } else {
-    // Use trusted authentication with HTTP Basic Auth
-    operation.username = self.oauthClient.clientID;
-    operation.password = self.oauthClient.clientSecret;
-    operation.authenticationScheme = (NSString *)kCFHTTPAuthenticationSchemeBasic;
-  }
-  
-  if (![self.authToken hasExpired]) {
-    [self startRequest:operation];
-  } else {
-    // Token expired, keep request until token is refreshed
-    [self.pendingRequests addObject:operation];
-    [self refreshToken];
-  }
-  
-  return YES;
+- (NSMutableURLRequest *)uploadRequestWithFilePath:(NSString *)path fileName:(NSString *)fileName {
+  return [self uploadRequestWithBodyConstructionBlock:^(id<AFMultipartFormData> formData) {
+    NSError *error = nil;
+    [formData appendPartWithFileURL:[NSURL URLWithString:path] name:fileName error:&error];
+    if (error) {
+      PKLogError(@"Failed to construct request to upload file at path %@", path);
+    }
+  }];
 }
 
-- (BOOL)addFileOperation:(PKFileOperation *)operation {  
+- (NSMutableURLRequest *)uploadRequestWithData:(NSData *)data fileName:(NSString *)fileName {
+  return [self uploadRequestWithBodyConstructionBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:data name:fileName];
+  }];
+}
+
+#pragma mark - Operations
+
+- (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion {
+  PKHTTPRequestOperation *operation = (PKHTTPRequestOperation *)[self HTTPRequestOperationWithRequest:request success:nil failure:nil];
+  operation.requestCompletionBlock = completion;
+  
+  return operation; 
+}
+
+- (BOOL)performOperation:(PKHTTPRequestOperation *)operation {
   if (![self isAuthenticated]) {
     operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
     return NO;
   }
   
-  operation.delegate = self;
-  
-  [operation addRequestHeader:@"User-Agent" value:self.userAgent];
-  [operation addRequestHeader:@"AccessToken" value:self.authToken.accessToken];
-  [operation addRequestHeader:@"RefreshToken" value:self.authToken.refreshToken];
-  
-  // Enqueue
-  if (![self.authToken hasExpired]) {
-    [self startRequest:operation];
+  if (![self.oauthToken hasExpired]) {
+    [self enqueueHTTPRequestOperation:operation];
   } else {
     // Token expired, keep request until token is refreshed
-    [self.pendingRequests addObject:operation];
-    [self refreshToken];
+    [self.pendingOperations addObject:operation];
+    [self refreshOAuthToken];
   }
   
   return YES;
 }
 
-- (void)startRequest:(ASIHTTPRequest *)request {
-#ifdef DEBUG
-  PKLogDebug(@"Request URL: %@", [request.url absoluteString]);
-  PKLogDebug(@"Headers:");
-  
-  if ([[request requestHeaders] count] > 0) {
-    [[request requestHeaders] enumerateKeysAndObjectsUsingBlock:^(id name, id value, BOOL *stop) {
-      PKLogDebug(@"  %@: %@", name, value); 
-    }];
+- (void)retryPendingOperations {
+  for (PKHTTPRequestOperation *operation in self.pendingOperations) {
+    // Update authorization header in case the token changed, e.g. due to a refresh
+    [operation setValue:[self defaultValueForHeader:@"Authorization"] forHeader:@"Authorization"];
+    [self enqueueHTTPRequestOperation:operation];
   }
   
-  if ([request.postBody length] > 0) {
-    PKLogDebug(@"Body: %@", [[NSString alloc] initWithData:request.postBody encoding:NSUTF8StringEncoding]);
-  }
-#endif
-  
-  if ([request isKindOfClass:[PKRequestOperation class]] && ![(PKRequestOperation *)request allowsConcurrent]) {
-    [self.serialNetworkQueue addOperation:request];
-  } else {
-    [self.networkQueue addOperation:request];
-  }
+  [self.pendingOperations removeAllObjects];
 }
 
-- (void)resendPendingRequests {
-  [self.pendingRequests enumerateObjectsUsingBlock:^(id request, NSUInteger idx, BOOL *stop) {
-    // Update authorization header with new token
-    
-    if ([request isKindOfClass:[PKFileOperation class]]) {
-      // File operation
-      [request addRequestHeader:@"AccessToken" value:self.authToken.accessToken];
-      [request addRequestHeader:@"RefreshToken" value:self.authToken.refreshToken];
-    } else {
-      // Regular
-      [request addRequestHeader:@"Authorization" value:[self authorizationHeader]];
-    }
-    
-    [self startRequest:request];
-  }];
-  
-  [self.pendingRequests removeAllObjects];
-}
-
-- (void)cancelPendingRequests {
-  [self.pendingRequests enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    PKRequestOperation *operation = obj;
-    operation.requestCompletionBlock([NSError pk_requestCancelledError], nil);
-  }];
-  
-  [self.pendingRequests removeAllObjects];
-}
-
-- (NSString *)authorizationHeader {
-  return [NSString stringWithFormat:@"OAuth2 %@", [self.authToken.accessToken pk_escapedURLString]];
-}
-
-#pragma mark - ASIHTTPRequestDelegate
-
-- (void)requestFinished:(ASIHTTPRequest *)request {
-  if (request.responseStatusCode == 401) {
-    [self handleUnauthorized];
+- (void)cancelPendingOperations {
+  for (PKHTTPRequestOperation *operation in self.pendingOperations) {
+    [operation cancel];
   }
   
-  NSDictionary *userInfo = @{PKAPIClientRequestKey: request};
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFinished object:self userInfo:userInfo];
-}
-
-- (void)requestFailed:(ASIHTTPRequest *)request {  
-  if (request.responseStatusCode == 401) {
-    [self handleUnauthorized];
-  }
-  
-  NSDictionary *userInfo = @{PKAPIClientRequestKey: request};
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFailed object:self userInfo:userInfo];
-}
-
-#pragma mark - PKOAuth2ClientDelegate
-
-- (void)oauthClient:(PKOAuth2Client *)oauthClient didReceiveToken:(PKOAuth2Token *)token {
-  [self didAuthenticateWithToken:token];
-  
-  NSDictionary *userInfo = @{PKAPIClientTokenKey: token};
-  [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self userInfo:userInfo];
-}
-
-- (void)oauthClientAuthenticationDidFail:(PKOAuth2Client *)oauthClient responseData:(id)responseData {
-  [self authenticationFailedWithResponseData:responseData];
-}
-
-- (void)oauthClient:(PKOAuth2Client *)oauthClient didRefreshToken:(PKOAuth2Token *)token {
-  [self didRefreshToken:token];
-}
-
-- (void)oauthClientTokenRefreshDidFail:(PKOAuth2Client *)oauthClient error:(NSError *)error {
-  [self tokenRefreshFailedWithError:error];
+  [self.pendingOperations removeAllObjects];
 }
 
 @end

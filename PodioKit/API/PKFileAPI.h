@@ -13,8 +13,10 @@
 
 @interface PKFileAPI : PKBaseAPI
 
-+ (PKFileOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
-+ (PKFileOperation *)uploadFileWithImage:(UIImage *)image fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName delegate:(id)delegate completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)uploadFileWithImage:(UIImage *)image fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)uploadFileWithImage:(UIImage *)image fileName:(NSString *)fileName delegate:(id)delegate completion:(PKRequestCompletionBlock)completion;
 
 + (PKRequestOperation *)downloadFileWithURLString:(NSString *)urlString savePath:(NSString *)savePath delegate:(id)delegate completion:(PKRequestCompletionBlock)completion;
 

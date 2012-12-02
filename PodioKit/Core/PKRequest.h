@@ -10,6 +10,8 @@
 #import "PKRequestResult.h"
 #import "PKObjectMapper.h"
 
+@class PKHTTPRequestOperation;
+
 typedef void (^PKRequestCompletionBlock)(NSError *error, PKRequestResult *result);
 
 typedef NSString * PKRequestMethod;
@@ -23,21 +25,7 @@ extern PKRequestMethod const PKRequestMethodDELETE;
 
 /** A class describing an API request. A request is used by PKRequestManager to create and enque a new PKRequestOperation instance.
  */
-@interface PKRequest : NSObject {
-
-@private
-  NSString *uri_;
-  PKRequestMethod method_;
-  NSMutableDictionary *parameters_;
-  id body_;
-  PKObjectMapping *objectMapping_;
-  NSDictionary *userInfo_;
-  
-  NSPredicate *scopePredicate_;
-  NSUInteger offset_;
-  
-  PKCustomMappingBlock mappingBlock_;
-}
+@interface PKRequest : NSObject
 
 @property (copy) NSString *uri;
 @property (copy) PKRequestMethod method;
@@ -115,6 +103,6 @@ extern PKRequestMethod const PKRequestMethodDELETE;
  @param completionBlock A block to be executed after the request operation completes and data has been mapped.
  @return The request operation that was added to the network queue. This reference 
  */
-- (PKRequestOperation *)startWithCompletionBlock:(PKRequestCompletionBlock)completionBlock;
+- (PKHTTPRequestOperation *)startWithCompletionBlock:(PKRequestCompletionBlock)completionBlock;
 
 @end

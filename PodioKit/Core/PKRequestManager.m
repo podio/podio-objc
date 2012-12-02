@@ -42,11 +42,11 @@
 
 #pragma mark - Impl
 
-- (PKAPIClient2 *)apiClient {
-  return apiClient_ != nil ? apiClient_ : [PKAPIClient2 sharedClient];
+- (PKAPIClient *)apiClient {
+  return apiClient_ != nil ? apiClient_ : [PKAPIClient sharedClient];
 }
 
-- (void)configureWithClient:(PKAPIClient2 *)client mappingCoordinator:(PKMappingCoordinator *)coordinator {
+- (void)configureWithClient:(PKAPIClient *)client mappingCoordinator:(PKMappingCoordinator *)coordinator {
   apiClient_ = client;
   mappingCoordinator_ = coordinator;  
 }
@@ -56,12 +56,12 @@
 - (PKHTTPRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion {
   PKAssert(self.mappingCoordinator != nil, @"No mapping coordinator set.");
   
-  // TODO: Handle POST/GET parameters body correctly
-  NSDictionary *parameters = request.parameters;
+  NSURLRequest *urlRequest = [self.apiClient requestWithMethod:request.method
+                                                          path:request.uri
+                                                    parameters:request.parameters
+                                                          body:request.body];
   
-  NSURLRequest *urlRequst = [self.apiClient requestWithMethod:request.method path:request.uri parameters:parameters];
   PKHTTPRequestOperation *operation = [self.apiClient operationWithRequest:urlRequest completion:completion];
-  
   operation.requestCompletionBlock = completion;
   operation.objectDataPathComponents = request.objectDataPathComponents;
   

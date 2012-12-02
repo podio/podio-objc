@@ -8,7 +8,7 @@
 
 #import "PKRequest.h"
 #import "PKObjectMapping.h"
-#import "PKRequestOperation.h"
+#import "PKHTTPRequestOperation.h"
 #import "PKRequestManager.h"
 
 PKRequestMethod const PKRequestMethodGET = @"GET";
@@ -81,7 +81,7 @@ PKRequestMethod const PKRequestMethodDELETE = @"DELETE";
   return [self requestWithURI:uri method:PKRequestMethodDELETE];
 }
 
-- (PKRequestOperation *)startWithCompletionBlock:(PKRequestCompletionBlock)completionBlock {
+- (PKHTTPRequestOperation *)startWithCompletionBlock:(PKRequestCompletionBlock)completionBlock {
   return [[PKRequestManager sharedManager] performRequest:self completion:completionBlock];
 }
 

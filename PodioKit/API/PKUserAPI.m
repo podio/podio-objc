@@ -27,7 +27,6 @@
 
 + (PKRequest *)requestToCreateInactiveUserEmail:(NSString *)email locale:(NSString *)locale timeZone:(NSString *)timeZone options:(NSDictionary *)options {
   PKRequest *request = [PKRequest requestWithURI:@"/user/inactive/" method:PKRequestMethodPOST];
-  request.requiresAuthenticated = NO;
   
   request.body = [NSMutableDictionary dictionary];
   [request.body setObject:email forKey:@"mail"];
@@ -43,7 +42,6 @@
 
 + (PKRequest *)requestForActivationStatusWithCode:(NSString *)activationCode {
   PKRequest *request = [PKRequest requestWithURI:@"/user/status/activation" method:PKRequestMethodGET];
-  request.requiresAuthenticated = NO;
   request.parameters[@"activation_code"] = activationCode;
   
   return request;
@@ -51,7 +49,6 @@
 
 + (PKRequest *)requestToActivateUserWithActivationCode:(NSString *)activationCode name:(NSString *)name password:(NSString *)password {
   PKRequest *request = [PKRequest requestWithURI:@"/user/activate_user" method:PKRequestMethodPOST];
-  request.requiresAuthenticated = NO;
   request.body = @{
     @"activation_code": activationCode,
     @"name": name,
@@ -63,7 +60,6 @@
 
 + (PKRequest *)requestToRecoverPasswordForEmail:(NSString *)email {
   PKRequest *request = [PKRequest requestWithURI:@"/user/recover_password" method:PKRequestMethodPOST];
-  request.requiresAuthenticated = NO;
   request.body = @{@"mail": email};
   
   return request;
