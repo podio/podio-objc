@@ -129,4 +129,14 @@
   return request;
 }
 
++ (PKRequest *)requestForReferencesToItemWithId:(NSUInteger)itemId fieldId:(NSUInteger)fieldId limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/item/%d/reference/field/%d", itemId, fieldId]];
+  
+  if (limit > 0) {
+    request.parameters[@"limit"] = [NSString stringWithFormat:@"%d", limit];
+  }
+  
+  return request;
+}
+
 @end
