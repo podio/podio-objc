@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.frameworks          = 'CoreData'
   s.requires_arc        = true
 
-  s.dependency 'ASIHTTPRequest', '1.8.1'
+  s.dependency 'AFNetworking', '1.0.1'
 end

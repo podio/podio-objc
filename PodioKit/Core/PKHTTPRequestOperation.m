@@ -10,10 +10,10 @@
 #import "PKObjectMapper.h"
 #import "NSDictionary+PKAdditions.h"
 
-NSString * const PKAPIClientRequestFinished = @"PKAPIClientRequestFinished";
-NSString * const PKAPIClientRequestFailed = @"PKAPIClientRequestFailed";
+NSString * const PKHTTPRequestOperationFinished = @"PKHTTPRequestOperationFinished";
+NSString * const PKHTTPRequestOperationFailed = @"PKHTTPRequestOperationFailed";
 
-NSString * const PKAPIClientRequestKey = @"Request";
+NSString * const PKHTTPRequestOperationRequestKey = @"Request";
 
 @interface PKHTTPRequestOperation ()
 
@@ -52,22 +52,21 @@ NSString * const PKAPIClientRequestKey = @"Request";
       return;
     }
     
-    if (!self.error) {
-      id resultData = nil;
-      id parsedData = nil;
-      id objectData = nil;
-      NSError *requestError = nil;
+    id parsedData = nil;
+    id resultData = nil;
+    id objectData = nil;
+    NSError *error = nil;
+    
+    if ([self.responseData length] > 0) {
+      NSError *parseError = nil;
+      parsedData = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&parseError];
       
-      if ([self.responseData length] > 0) {
-        NSError *parseError = nil;
-        parsedData = [NSJSONSerialization JSONObjectWithData:self.responseData options:0 error:&parseError];
-        
-        if (parseError) {
-          PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
-          requestError = [NSError pk_responseParseError];
-        }
+      if (parseError) {
+        PKLogError(@"Failed to parse response data: %@, %@", parseError, [parseError userInfo]);
       }
-      
+    }
+    
+    if (!self.error) {
       PKLogDebug(@"Request finished with status code: %d", self.response.statusCode);
       
       if (self.response.statusCode >= 200 && self.response.statusCode <= 206) {
@@ -84,36 +83,37 @@ NSString * const PKAPIClientRequestKey = @"Request";
             }
           }
         }
-      } else {
+      }
+      
+      dispatch_async(dispatch_get_main_queue(), ^{
+        NSDictionary *userInfo = @{PKHTTPRequestOperationRequestKey: self};
+        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFinished object:self userInfo:userInfo];
+      });
+    } else {
+      if (self.response.statusCode > 0) {
         // Failed on server side
         PKLogDebug(@"Request failed with body: %@", self.responseString);
-        requestError = [NSError pk_serverErrorWithStatusCode:self.response.statusCode parsedData:parsedData];
+        error = [NSError pk_serverErrorWithStatusCode:self.response.statusCode parsedData:parsedData];
+      } else {
+        error = self.error;
       }
       
-      PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.response.statusCode
-                                                                 responseData:self.responseData
-                                                                   parsedData:parsedData
-                                                                   objectData:objectData
-                                                                   resultData:resultData];
-      
-      // Completion handler on main thread
-      if (requestCompletionBlock) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-          requestCompletionBlock(requestError, result);
-        });
-      }
-      
-      NSDictionary *userInfo = @{PKAPIClientRequestKey: self};
-      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFinished object:self userInfo:userInfo];
-    } else {
-      if (requestCompletionBlock) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-          requestCompletionBlock(self.error, nil);
-        });
-      }
-      
-      NSDictionary *userInfo = @{PKAPIClientRequestKey: self};
-      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientRequestFailed object:self userInfo:userInfo];
+      dispatch_async(dispatch_get_main_queue(), ^{
+        NSDictionary *userInfo = @{PKHTTPRequestOperationRequestKey: self};
+        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFailed object:self userInfo:userInfo];
+      });
+    }
+    
+    PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.response.statusCode
+                                                               responseData:self.responseData
+                                                                 parsedData:parsedData
+                                                                 objectData:objectData
+                                                                 resultData:resultData];
+    
+    if (requestCompletionBlock) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        requestCompletionBlock(error, result);
+      });
     }
   };
 #pragma clang diagnostic pop

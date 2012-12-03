@@ -32,8 +32,9 @@ extern NSString * const PKAPIClientErrorKey;
 
 @property (copy) NSString *apiKey;
 @property (copy) NSString *apiSecret;
-@property (nonatomic, copy) NSString *userAgent;
+@property (nonatomic, copy) NSString *baseURLString;
 @property (copy) NSString *uploadURLString;
+@property (nonatomic, copy) NSString *userAgent;
 
 @property (nonatomic, strong) PKOAuth2Token *oauthToken;
 
@@ -48,6 +49,8 @@ extern NSString * const PKAPIClientErrorKey;
 
 - (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body completion:(PKRequestCompletionBlock)completion;
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKRequestCompletionBlock)completion;
+
+- (void)refreshOAuthToken;
 
 // Requests
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method

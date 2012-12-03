@@ -10,10 +10,10 @@
 #import "PKRequest.h"
 
 // Notifications
-extern NSString * const PKAPIClientRequestFinished;
-extern NSString * const PKAPIClientRequestFailed;
+extern NSString * const PKHTTPRequestOperationFinished;
+extern NSString * const PKHTTPRequestOperationFailed;
 
-extern NSString * const PKAPIClientRequestKey;
+extern NSString * const PKHTTPRequestOperationRequestKey;
 
 @class PKObjectMapper;
 
