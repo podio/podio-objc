@@ -13,7 +13,7 @@
 NSString * const PKHTTPRequestOperationFinished = @"PKHTTPRequestOperationFinished";
 NSString * const PKHTTPRequestOperationFailed = @"PKHTTPRequestOperationFailed";
 
-NSString * const PKHTTPRequestOperationRequestKey = @"Request";
+NSString * const PKHTTPRequestOperationKey = @"Request";
 
 @interface PKHTTPRequestOperation ()
 
@@ -86,7 +86,7 @@ NSString * const PKHTTPRequestOperationRequestKey = @"Request";
       }
       
       dispatch_async(dispatch_get_main_queue(), ^{
-        NSDictionary *userInfo = @{PKHTTPRequestOperationRequestKey: self};
+        NSDictionary *userInfo = @{PKHTTPRequestOperationKey: self};
         [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFinished object:self userInfo:userInfo];
       });
     } else {
@@ -99,7 +99,7 @@ NSString * const PKHTTPRequestOperationRequestKey = @"Request";
       }
       
       dispatch_async(dispatch_get_main_queue(), ^{
-        NSDictionary *userInfo = @{PKHTTPRequestOperationRequestKey: self};
+        NSDictionary *userInfo = @{PKHTTPRequestOperationKey: self};
         [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFailed object:self userInfo:userInfo];
       });
     }

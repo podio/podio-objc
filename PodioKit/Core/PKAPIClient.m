@@ -11,6 +11,7 @@
 #import "AFJSONRequestOperation.h"
 #import "PKOAuth2Token.h"
 #import "NSError+PKErrors.h"
+#import "NSURLRequest+PKDescription.h"
 
 // Notifications
 NSString * const PKAPIClientWillBeginAuthentication = @"PKAPIClientWillBeginAuthentication";
@@ -41,6 +42,7 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
 @property (nonatomic) NSURL *baseURL;
 @property (nonatomic, strong) NSMutableArray *pendingOperations;
 @property BOOL isRefreshing;
+@property (strong) id requestFailedObserver;
 
 @end
 
@@ -65,6 +67,17 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
       
       [self registerHTTPOperationClass:[PKHTTPRequestOperation class]];
       [self updateDefaultHeaders];
+      
+      // If any request receives a 401, we need to rauthenticate
+      _requestFailedObserver = [[NSNotificationCenter defaultCenter] addObserverForName:PKHTTPRequestOperationFailed
+                                                                                 object:nil
+                                                                                  queue:[NSOperationQueue mainQueue]
+                                                                             usingBlock:^(NSNotification *note) {
+        PKHTTPRequestOperation *operation = [note.userInfo objectForKey:PKHTTPRequestOperationKey];
+        if ([[self.operationQueue operations] containsObject:operation] && operation.response.statusCode == 401) {
+          [self needsAuthentication];
+        }
+      }];
     }
     
     return self;
@@ -80,10 +93,9 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
   return self;
 }
 
-- (void)configureWithAPIKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret {
-  @synchronized(self) {
-    self.apiKey = apiKey;
-    self.apiSecret = apiSecret;
+- (void)dealloc {
+  if (_requestFailedObserver) {
+    [[NSNotificationCenter defaultCenter] removeObserver:_requestFailedObserver];
   }
 }
 
@@ -120,6 +132,15 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
   }
 }
 
+#pragma mark - Configuration
+
+- (void)configureWithAPIKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret {
+  @synchronized(self) {
+    self.apiKey = apiKey;
+    self.apiSecret = apiSecret;
+  }
+}
+
 #pragma mark - Misc
 
 - (void)updateDefaultHeaders {
@@ -136,10 +157,63 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
   }
 }
 
+#pragma mark - Events
+
+- (void)willAuthenticate {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
+  });
+}
+
+- (void)didAuthenticateWithToken:(PKOAuth2Token *)token error:(NSError *)error {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
+    
+    if (!error) {
+      NSDictionary *userInfo = token ? @{PKAPIClientTokenKey: token} : nil;
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self userInfo:userInfo];
+    } else {
+      NSDictionary *userInfo = @{PKAPIClientErrorKey: error};
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
+    }
+  });
+}
+
+- (void)willRefreshToken {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillRefreshAccessToken object:self];
+  });
+}
+
+- (void)didRefreshToken:(PKOAuth2Token *)token error:(NSError *)error {
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (!error) {
+      NSDictionary *userInfo = token ? @{PKAPIClientTokenKey: token} : nil;
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken object:self userInfo:userInfo];
+    } else {
+      NSDictionary *userInfo = @{PKAPIClientErrorKey: error};
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:self userInfo:userInfo];
+      
+      if ([error.domain isEqualToString:PKPodioKitErrorDomain] && error.code == PKErrorCodeServerError) {
+        // Error from server, re-authenticate
+        [self needsAuthentication];
+      }
+    }
+  });
+}
+
 #pragma mark - Authentication
 
 - (BOOL)isAuthenticated {
   return self.oauthToken != nil;
+}
+
+- (void)needsAuthentication {
+  self.oauthToken = nil;
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
+  });
 }
 
 - (void)authenticateWithPostBody:(NSDictionary *)postBody completion:(PKRequestCompletionBlock)completion {
@@ -148,9 +222,9 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
     PKAssert(self.apiSecret != nil, @"Missing API secret.");
     
     if (self.isRefreshing) {
-      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillRefreshAccessToken object:self];
+      [self willRefreshToken];
     } else {
-      [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientWillBeginAuthentication object:self];
+      [self willAuthenticate];
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:postBody];
@@ -162,37 +236,22 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
     [mutRequest setValue:nil forHTTPHeaderField:@"Authorization"];
     
     PKHTTPRequestOperation *operation = [PKHTTPRequestOperation operationWithRequest:mutRequest completion:^(NSError *error, PKRequestResult *result) {
-      
       if (!error) {
         self.oauthToken = [PKOAuth2Token tokenFromDictionary:result.parsedData];
         [self retryPendingOperations];
         
         if (self.isRefreshing) {
-          NSDictionary *userInfo = @{PKAPIClientTokenKey: self.oauthToken};
-          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidRefreshAccessToken
-                                                              object:self userInfo:userInfo];
+          [self didRefreshToken:self.oauthToken error:nil];
         } else {
-          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
-          
-          NSDictionary *userInfo = self.oauthToken ? @{PKAPIClientTokenKey: self.oauthToken} : nil;
-          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidAuthenticateUser object:self userInfo:userInfo];
+          [self didAuthenticateWithToken:self.oauthToken error:nil];
         }
       } else {
         [self cancelPendingOperations];
         
-        NSDictionary *userInfo = @{PKAPIClientErrorKey: error};
-        
         if (self.isRefreshing) {
-          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientTokenRefreshFailed object:self userInfo:userInfo];
-          
-          if ([error.domain isEqualToString:PKPodioKitErrorDomain] && error.code == PKErrorCodeServerError) {
-            // Error from server, re-authenticate
-            self.oauthToken = nil;
-            [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientNeedsReauthentication object:self];
-          }
+          [self didRefreshToken:nil error:error];
         } else {
-          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientDidFinishAuthentication object:self];
-          [[NSNotificationCenter defaultCenter] postNotificationName:PKAPIClientAuthenticationFailed object:self userInfo:userInfo];
+          [self didAuthenticateWithToken:nil error:error];
         }
       }
       
@@ -252,6 +311,8 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
     request.URL = [NSURL URLWithString:[[request.URL absoluteString] stringByAppendingFormat:@"?%@", AFQueryStringFromParametersWithEncoding(parameters, self.stringEncoding)]];
   }
   
+  request.HTTPShouldUsePipelining = YES;
+  
   if (body && ![method isEqualToString:PKRequestMethodGET] && ![method isEqualToString:PKRequestMethodDELETE]) {
     NSString *charset = (__bridge NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(self.stringEncoding));
     NSError *error = nil;
@@ -305,6 +366,9 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
   }
   
   if (![self.oauthToken hasExpired]) {
+    PKLogDebug(@"Performing request:");
+    PKLogDebug(@"%@", [operation.request pk_description]);
+    
     [self enqueueHTTPRequestOperation:operation];
   } else {
     // Token expired, keep request until token is refreshed
@@ -316,9 +380,15 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
 }
 
 - (void)retryPendingOperations {
+  PKLogDebug(@"Retrying %d requests...", [self.pendingOperations count]);
+  
   for (PKHTTPRequestOperation *operation in self.pendingOperations) {
     // Update authorization header in case the token changed, e.g. due to a refresh
     [operation setValue:[self defaultValueForHeader:@"Authorization"] forHeader:@"Authorization"];
+    
+    PKLogDebug(@"Retrying request:");
+    PKLogDebug(@"%@", [operation.request pk_description]);
+    
     [self enqueueHTTPRequestOperation:operation];
   }
   
@@ -326,6 +396,8 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
 }
 
 - (void)cancelPendingOperations {
+  PKLogDebug(@"Cancelling %d requests...", [self.pendingOperations count]);
+  
   for (PKHTTPRequestOperation *operation in self.pendingOperations) {
     [operation cancel];
   }

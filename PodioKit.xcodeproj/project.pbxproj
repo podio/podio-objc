@@ -248,6 +248,8 @@
 		508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D212A14FBB875002593A4 /* PKSpaceAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		508D212D14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
 		508D212E14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
+		509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 509867A8166CAEE100CEAA8C /* NSURLRequest+PKDescription.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */; };
 		509D6939152CA7A40033291C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F814345E9C00360855 /* UIKit.framework */; };
 		509D693A152CA7A40033291C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
 		509D693B152CA7A40033291C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F614345E5000360855 /* CoreGraphics.framework */; };
@@ -613,6 +615,8 @@
 		508D211C14FBB332002593A4 /* PKSpaceCreateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceCreateData.m; sourceTree = "<group>"; };
 		508D212A14FBB875002593A4 /* PKSpaceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceAPI.h; sourceTree = "<group>"; };
 		508D212B14FBB875002593A4 /* PKSpaceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceAPI.m; sourceTree = "<group>"; };
+		509867A8166CAEE100CEAA8C /* NSURLRequest+PKDescription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURLRequest+PKDescription.h"; sourceTree = "<group>"; };
+		509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURLRequest+PKDescription.m"; sourceTree = "<group>"; };
 		509D6937152CA7A40033291C /* DemoApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		509D693E152CA7A40033291C /* DemoApp-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "DemoApp-Info.plist"; sourceTree = "<group>"; };
 		509D6940152CA7A40033291C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1204,6 +1208,8 @@
 				5028CBF1145E92DD0003A097 /* NSManagedObject+ActiveRecord.m */,
 				5026A2B9147114B70051D7C8 /* NSError+PKErrors.h */,
 				5026A2BA147114B70051D7C8 /* NSError+PKErrors.m */,
+				509867A8166CAEE100CEAA8C /* NSURLRequest+PKDescription.h */,
+				509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1597,6 +1603,7 @@
 				50D681721668031D008AEA0A /* AFXMLRequestOperation.h in Headers */,
 				50D681741668031D008AEA0A /* UIImageView+AFNetworking.h in Headers */,
 				50D681831668955C008AEA0A /* PKHTTPRequestOperation.h in Headers */,
+				509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1855,6 +1862,7 @@
 				50D681731668031D008AEA0A /* AFXMLRequestOperation.m in Sources */,
 				50D681751668031D008AEA0A /* UIImageView+AFNetworking.m in Sources */,
 				50D681841668955C008AEA0A /* PKHTTPRequestOperation.m in Sources */,
+				509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

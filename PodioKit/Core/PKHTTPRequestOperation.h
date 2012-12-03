@@ -13,7 +13,7 @@
 extern NSString * const PKHTTPRequestOperationFinished;
 extern NSString * const PKHTTPRequestOperationFailed;
 
-extern NSString * const PKHTTPRequestOperationRequestKey;
+extern NSString * const PKHTTPRequestOperationKey;
 
 @class PKObjectMapper;
 

@@ -139,3 +139,5 @@
 #import "NSString+Hash.h"
 #import "NSString+PKAdditions.h"
 #import "NSString+URL.h"
+#import "NSURLRequest+PKDescription.h"
+
