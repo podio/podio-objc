@@ -22,7 +22,7 @@
 
   if (delegate && [delegate respondsToSelector:@selector(setProgress:)]) {
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-      float progress = totalBytesExpectedToWrite > 0 ? totalBytesWritten / totalBytesExpectedToWrite : 0.0f;
+      float progress = totalBytesExpectedToWrite > 0 ? (float)totalBytesWritten / (float)totalBytesExpectedToWrite : 0.0f;
       [delegate setProgress:progress];
     }];
   }
@@ -40,13 +40,13 @@
   PKAPIClient *client = [[PKRequestManager sharedManager] apiClient];
   
   NSData *data = UIImageJPEGRepresentation(image, 0.8f);
-  NSURLRequest *request = [client uploadRequestWithData:data fileName:fileName];
+  NSURLRequest *request = [client uploadRequestWithData:data mimeType:@"image/jpeg" fileName:fileName];
   
   PKHTTPRequestOperation *operation = [client operationWithRequest:request completion:completion];
   
   if (delegate && [delegate respondsToSelector:@selector(setProgress:)]) {
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
-      float progress = totalBytesExpectedToWrite > 0 ? totalBytesWritten / totalBytesExpectedToWrite : 0.0f;
+      float progress = totalBytesExpectedToWrite > 0 ? (float)totalBytesWritten / (float)totalBytesExpectedToWrite : 0.0f;
       [delegate setProgress:progress];
     }];
   }
@@ -65,7 +65,7 @@
   
   if (delegate && [delegate respondsToSelector:@selector(setProgress:)]) {
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
-      float progress = totalBytesExpectedToRead > 0 ? totalBytesRead / totalBytesExpectedToRead : 0.0f;
+      float progress = totalBytesExpectedToRead > 0 ? (float)totalBytesRead / (float)totalBytesExpectedToRead : 0.0f;
       [delegate setProgress:progress];
     }];
   }

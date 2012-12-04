@@ -60,7 +60,7 @@ extern NSString * const PKAPIClientErrorKey;
                                       body:(id)body;
 
 - (NSMutableURLRequest *)uploadRequestWithFilePath:(NSString *)path fileName:(NSString *)fileName;
-- (NSMutableURLRequest *)uploadRequestWithData:(NSData *)data fileName:(NSString *)fileName;
+- (NSMutableURLRequest *)uploadRequestWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName;
 
 // Operations
 - (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion;

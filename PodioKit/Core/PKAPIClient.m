@@ -336,17 +336,20 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
 
 - (NSMutableURLRequest *)uploadRequestWithFilePath:(NSString *)path fileName:(NSString *)fileName {
   return [self uploadRequestWithBodyConstructionBlock:^(id<AFMultipartFormData> formData) {
+    [formData appendPartWithFormData:[fileName dataUsingEncoding:NSUTF8StringEncoding] name:@"filename"];
+
     NSError *error = nil;
-    [formData appendPartWithFileURL:[NSURL URLWithString:path] name:fileName error:&error];
+    [formData appendPartWithFileURL:[NSURL URLWithString:path] name:@"source" error:&error];
     if (error) {
       PKLogError(@"Failed to construct request to upload file at path %@", path);
     }
   }];
 }
 
-- (NSMutableURLRequest *)uploadRequestWithData:(NSData *)data fileName:(NSString *)fileName {
+- (NSMutableURLRequest *)uploadRequestWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName {
   return [self uploadRequestWithBodyConstructionBlock:^(id<AFMultipartFormData> formData) {
-    [formData appendPartWithFormData:data name:fileName];
+    [formData appendPartWithFormData:[fileName dataUsingEncoding:NSUTF8StringEncoding] name:@"filename"];
+    [formData appendPartWithFileData:data name:@"source" fileName:fileName mimeType:mimeType];
   }];
 }
 
