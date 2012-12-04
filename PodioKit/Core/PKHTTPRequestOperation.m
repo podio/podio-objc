@@ -17,6 +17,7 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
 
 @interface PKHTTPRequestOperation ()
 
+@property (nonatomic, copy, readonly) PKRequestCompletionBlock requestCompletionBlock;
 @property (nonatomic, strong) NSURLRequest *request;
 
 @end
@@ -25,7 +26,7 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
 
 + (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion {
   PKHTTPRequestOperation *operation = [[self alloc] initWithRequest:request];
-  operation.requestCompletionBlock = completion;
+  [operation setRequestCompletionBlock:completion];
   
   return operation;
 }
@@ -34,21 +35,17 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
   return YES;
 }
 
-#pragma mark - Properties
+#pragma mark - Impl
 
 - (void)setRequestCompletionBlock:(PKRequestCompletionBlock)requestCompletionBlock {
+  _requestCompletionBlock = [requestCompletionBlock copy];
+  
   // completionBlock is manually nilled out in AFURLConnectionOperation to break the retain cycle.
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-retain-cycles"
   self.completionBlock = ^{
     if ([self isCancelled]) {
-      // Completion handler on main thread
-      if (requestCompletionBlock) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-          requestCompletionBlock([NSError pk_requestCancelledError], nil);
-        });
-      }
-      
+      [self completeWithResult:nil error:[NSError pk_requestCancelledError]];
       return;
     }
     
@@ -110,16 +107,18 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
                                                                  objectData:objectData
                                                                  resultData:resultData];
     
-    if (requestCompletionBlock) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        requestCompletionBlock(error, result);
-      });
-    }
+    [self completeWithResult:result error:error];
   };
 #pragma clang diagnostic pop
 }
 
-#pragma mark - Impl
+- (void)completeWithResult:(PKRequestResult *)result error:(NSError *)error {
+  if (self.requestCompletionBlock) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      self.requestCompletionBlock(error, result);
+    });
+  }
+}
 
 - (void)setValue:(NSString *)value forHeader:(NSString *)header {
   NSMutableURLRequest *mutableRequest = [self.request mutableCopy];

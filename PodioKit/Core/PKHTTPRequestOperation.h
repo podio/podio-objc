@@ -21,9 +21,11 @@ extern NSString * const PKHTTPRequestOperationKey;
 
 @property (strong) PKObjectMapper *objectMapper;
 @property (copy) NSArray *objectDataPathComponents;
-@property (nonatomic, copy) PKRequestCompletionBlock requestCompletionBlock;
 
 + (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion;
+
+- (void)setRequestCompletionBlock:(PKRequestCompletionBlock)requestCompletionBlock;
+- (void)completeWithResult:(PKRequestResult *)result error:(NSError *)error;
 
 - (void)setValue:(NSString *)value forHeader:(NSString *)header;
 

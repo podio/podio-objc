@@ -354,14 +354,14 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
 
 - (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion {
   PKHTTPRequestOperation *operation = (PKHTTPRequestOperation *)[self HTTPRequestOperationWithRequest:request success:nil failure:nil];
-  operation.requestCompletionBlock = completion;
+  [operation setRequestCompletionBlock:completion];
   
   return operation; 
 }
 
 - (BOOL)performOperation:(PKHTTPRequestOperation *)operation {
   if (![self isAuthenticated]) {
-    operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    [operation completeWithResult:nil error:[NSError pk_notAuthenticatedError]];
     return NO;
   }
   
