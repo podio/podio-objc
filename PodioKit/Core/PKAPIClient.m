@@ -285,7 +285,9 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (BOOL)addRequestOperation:(PKRequestOperation *)operation {
   if (operation.requiresAuthenticated && ![self isAuthenticated]) {
-    operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    if (operation.requestCompletionBlock) {
+      operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    }
     return NO;
   }
   
@@ -321,7 +323,9 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 
 - (BOOL)addFileOperation:(PKFileOperation *)operation {  
   if (![self isAuthenticated]) {
-    operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    if (operation.requestCompletionBlock) {
+      operation.requestCompletionBlock([NSError pk_notAuthenticatedError], nil);
+    }
     return NO;
   }
   
@@ -388,7 +392,9 @@ static NSString * const kOAuthRedirectURL = @"podio://oauth";
 - (void)cancelPendingRequests {
   [self.pendingRequests enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     PKRequestOperation *operation = obj;
-    operation.requestCompletionBlock([NSError pk_requestCancelledError], nil);
+    if (operation.requestCompletionBlock) {
+      operation.requestCompletionBlock([NSError pk_requestCancelledError], nil);
+    }
   }];
   
   [self.pendingRequests removeAllObjects];

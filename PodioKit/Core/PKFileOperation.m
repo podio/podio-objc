@@ -90,8 +90,7 @@ static NSTimeInterval const kTimeout = 30;
                                                                resultData:resultData];
   
   // Completion handler on main thread
-  if (self.requestCompletionBlock != nil) {
-    
+  if (self.requestCompletionBlock) {
     dispatch_async(dispatch_get_main_queue(), ^{
       self.requestCompletionBlock(requestError, result);
     });
@@ -111,8 +110,7 @@ static NSTimeInterval const kTimeout = 30;
     PKLogError(@"Request debug info:\n  Method: %@\n  URL: %@\n  Headers: %@", [self requestMethod], [[self url] absoluteString], [self requestHeaders]);
     
     // Completion handler on main thread
-    if (self.requestCompletionBlock != nil) {
-      
+    if (self.requestCompletionBlock) {
       dispatch_async(dispatch_get_main_queue(), ^{
         self.requestCompletionBlock(error, nil);
       });
