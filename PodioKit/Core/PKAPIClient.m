@@ -12,6 +12,7 @@
 #import "PKOAuth2Token.h"
 #import "NSError+PKErrors.h"
 #import "NSURLRequest+PKDescription.h"
+#import "NSString+PKRandom.h"
 
 // Notifications
 NSString * const PKAPIClientWillBeginAuthentication = @"PKAPIClientWillBeginAuthentication";
@@ -36,6 +37,8 @@ NSString * const PKAPIClientErrorKey = @"Error";
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
 static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com";
+
+static NSUInteger kRequestIdLength = 8;
 
 @interface PKAPIClient ()
 
@@ -358,6 +361,9 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
 - (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion {
   PKHTTPRequestOperation *operation = (PKHTTPRequestOperation *)[self HTTPRequestOperationWithRequest:request success:nil failure:nil];
   [operation setRequestCompletionBlock:completion];
+  
+  NSString *requestId = [NSString pk_randomHexStringOfLength:kRequestIdLength];
+  [operation setValue:requestId forHeader:@"X-Podio-Request-Id"];
   
   return operation; 
 }

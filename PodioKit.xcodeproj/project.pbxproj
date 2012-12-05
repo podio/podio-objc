@@ -380,6 +380,8 @@
 		50D681841668955C008AEA0A /* PKHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */; };
 		50D737FE166F4505009233FF /* PKOAuth2Token.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D737FC166F4504009233FF /* PKOAuth2Token.h */; };
 		50D737FF166F4505009233FF /* PKOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D737FD166F4504009233FF /* PKOAuth2Token.m */; };
+		50D73811166F6D09009233FF /* NSString+PKRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D7380F166F6D08009233FF /* NSString+PKRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50D73812166F6D09009233FF /* NSString+PKRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73810166F6D09009233FF /* NSString+PKRandom.m */; };
 		50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DB5BA6150A55B500B5E489 /* PKContactAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50DB5BA9150A55B500B5E489 /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
 		50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
@@ -716,6 +718,8 @@
 		50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHTTPRequestOperation.m; sourceTree = "<group>"; };
 		50D737FC166F4504009233FF /* PKOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKOAuth2Token.h; sourceTree = "<group>"; };
 		50D737FD166F4504009233FF /* PKOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKOAuth2Token.m; sourceTree = "<group>"; };
+		50D7380F166F6D08009233FF /* NSString+PKRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKRandom.h"; sourceTree = "<group>"; };
+		50D73810166F6D09009233FF /* NSString+PKRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKRandom.m"; sourceTree = "<group>"; };
 		50DB5BA6150A55B500B5E489 /* PKContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKContactAPI.h; sourceTree = "<group>"; };
 		50DB5BA7150A55B500B5E489 /* PKContactAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKContactAPI.m; sourceTree = "<group>"; };
 		50DFDB7514E1989D00D2C5B6 /* PKExternalMeetingData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKExternalMeetingData.h; sourceTree = "<group>"; };
@@ -1195,6 +1199,8 @@
 				5026A2BA147114B70051D7C8 /* NSError+PKErrors.m */,
 				509867A8166CAEE100CEAA8C /* NSURLRequest+PKDescription.h */,
 				509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */,
+				50D7380F166F6D08009233FF /* NSString+PKRandom.h */,
+				50D73810166F6D09009233FF /* NSString+PKRandom.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1572,6 +1578,7 @@
 				50D681831668955C008AEA0A /* PKHTTPRequestOperation.h in Headers */,
 				509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */,
 				50D737FE166F4505009233FF /* PKOAuth2Token.h in Headers */,
+				50D73811166F6D09009233FF /* NSString+PKRandom.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1828,6 +1835,7 @@
 				50D681841668955C008AEA0A /* PKHTTPRequestOperation.m in Sources */,
 				509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */,
 				50D737FF166F4505009233FF /* PKOAuth2Token.m in Sources */,
+				50D73812166F6D09009233FF /* NSString+PKRandom.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
