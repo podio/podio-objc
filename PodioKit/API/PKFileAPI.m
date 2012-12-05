@@ -8,6 +8,14 @@
 
 #import "PKFileAPI.h"
 
+// Informal protocol to suppress warnings when calling setProgress: on an id object
+// since no PodioKit classes respond to it, but UIKit classes like UIProgressView does.
+@interface NSObject (PKFileAPIProgressDelegate)
+
+- (void)setProgress:(float)progress;
+
+@end
+
 @implementation PKFileAPI
 
 + (PKHTTPRequestOperation *)uploadFileWithPath:(NSString *)path fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion {
@@ -20,7 +28,7 @@
   
   PKHTTPRequestOperation *operation = [client operationWithRequest:request completion:completion];
 
-  if (delegate && [delegate respondsToSelector:@selector(setProgress:)]) {
+  if ([delegate respondsToSelector:@selector(setProgress:)]) {
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
       float progress = totalBytesExpectedToWrite > 0 ? (float)totalBytesWritten / (float)totalBytesExpectedToWrite : 0.0f;
       [delegate setProgress:progress];
@@ -32,19 +40,17 @@
   return operation;
 }
 
-+ (PKHTTPRequestOperation *)uploadFileWithImage:(UIImage *)image fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion {
-  return [self uploadFileWithImage:image fileName:fileName delegate:nil completion:completion];
++ (PKHTTPRequestOperation *)uploadFileWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion {
+  return [self uploadFileWithData:data mimeType:mimeType fileName:fileName delegate:nil completion:completion];
 }
 
-+ (PKHTTPRequestOperation *)uploadFileWithImage:(UIImage *)image fileName:(NSString *)fileName delegate:(id)delegate completion:(PKRequestCompletionBlock)completion {
++ (PKHTTPRequestOperation *)uploadFileWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName delegate:(id)delegate completion:(PKRequestCompletionBlock)completion {
   PKAPIClient *client = [[PKRequestManager sharedManager] apiClient];
   
-  NSData *data = UIImageJPEGRepresentation(image, 0.8f);
-  NSURLRequest *request = [client uploadRequestWithData:data mimeType:@"image/jpeg" fileName:fileName];
-  
+  NSURLRequest *request = [client uploadRequestWithData:data mimeType:mimeType fileName:fileName];
   PKHTTPRequestOperation *operation = [client operationWithRequest:request completion:completion];
   
-  if (delegate && [delegate respondsToSelector:@selector(setProgress:)]) {
+  if ([delegate respondsToSelector:@selector(setProgress:)]) {
     [operation setUploadProgressBlock:^(NSUInteger bytesWritten, long long totalBytesWritten, long long totalBytesExpectedToWrite) {
       float progress = totalBytesExpectedToWrite > 0 ? (float)totalBytesWritten / (float)totalBytesExpectedToWrite : 0.0f;
       [delegate setProgress:progress];
@@ -63,10 +69,12 @@
   PKHTTPRequestOperation *operation = [PKHTTPRequestOperation operationWithRequest:request completion:completion];
   operation.outputStream = [NSOutputStream outputStreamToFileAtPath:savePath append:NO];
   
-  if (delegate && [delegate respondsToSelector:@selector(setProgress:)]) {
+  if ([delegate respondsToSelector:@selector(setProgress:)]) {
     [operation setDownloadProgressBlock:^(NSUInteger bytesRead, long long totalBytesRead, long long totalBytesExpectedToRead) {
       float progress = totalBytesExpectedToRead > 0 ? (float)totalBytesRead / (float)totalBytesExpectedToRead : 0.0f;
-      [delegate setProgress:progress];
+      if ([delegate respondsToSelector:@selector(setProgress:)]) {
+        [delegate setProgress:progress];
+      }
     }];
   }
   
@@ -83,6 +91,10 @@
                   @"ref_id": @(referenceId)};
   
   return request;
+}
+
++ (PKRequest *)requestToDeleteFileWithId:(NSUInteger)fileId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d", fileId] method:PKRequestMethodDELETE];
 }
 
 + (PKRequest *)requestForFilesForLinkedAccountWithId:(NSUInteger)linkedAccountId externalFolderId:(NSString *)externalFolderId limit:(NSUInteger)limit {
@@ -104,10 +116,6 @@
   request.body = @{@"external_file_id": externalFileId};
   
   return request;
-}
-
-+ (PKRequest *)requestToDeleteFileWithId:(NSUInteger)fileId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d", fileId] method:PKRequestMethodDELETE];
 }
 
 @end

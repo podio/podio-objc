@@ -18,14 +18,12 @@
 
 #pragma mark - Client
 
-#import "PKOAuth2Client.h"
 #import "PKOAuth2Token.h"
 #import "PKAPIClient.h"
-#import "PKRequestOperation.h"
-#import "PKFileOperation.h"
 #import "PKRequest.h"
 #import "PKRequestManager.h"
 #import "PKRequestResult.h"
+#import "PKHTTPRequestOperation.h"
 
 #pragma mark - APIs
 
