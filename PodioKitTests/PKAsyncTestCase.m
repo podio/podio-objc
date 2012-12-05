@@ -9,7 +9,13 @@
 #import "PKAsyncTestCase.h"
 
 
-static NSTimeInterval const kDefaultTimeout = 60.0;
+static NSTimeInterval const kDefaultTimeout = 10.0;
+
+@interface PKAsyncTestCase ()
+
+@property (nonatomic, copy) NSDate *timeoutDate;
+
+@end
 
 @implementation PKAsyncTestCase
 
@@ -18,16 +24,18 @@ static NSTimeInterval const kDefaultTimeout = 60.0;
 }
 
 - (BOOL)waitForCompletion:(NSTimeInterval)timeoutSeconds {
-  NSDate *timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutSeconds];
+  self.timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutSeconds];
+  
+  waitingCount++;
   
   do {
-    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:timeoutDate];
-    if([timeoutDate timeIntervalSinceNow] < 0.0)
+    [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:self.timeoutDate];
+    if([self.timeoutDate timeIntervalSinceNow] < 0.0)
       break;
-  } while (!done);
+  } while (waitingCount > 0);
   
   // Store completed value
-  BOOL result = done;
+  BOOL result = waitingCount == 0;
   [self reset];
   
   STAssertTrue(result, @"Timed out.");
@@ -36,11 +44,30 @@ static NSTimeInterval const kDefaultTimeout = 60.0;
 }
 
 - (void)didFinish {
-  done = YES;
+  waitingCount--;
 }
 
 - (void)reset {
-  done = NO;
+  waitingCount = 0;
+}
+
+- (void)expectNotificiationWithName:(NSString *)name object:(id)object inBlock:(void (^)(void))block {
+  __block BOOL didReceiveNotification = NO;
+  id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name
+                                                                  object:object
+                                                                   queue:[NSOperationQueue mainQueue]
+                                                              usingBlock:^(NSNotification *note) {
+    didReceiveNotification = YES;
+    [self didFinish];
+  }];
+  
+  block();
+  
+  [self waitForCompletion];
+  
+  [[NSNotificationCenter defaultCenter] removeObserver:observer];
+  
+  STAssertTrue(didReceiveNotification, @"Expected notification %@ not received from object %@.", name, object);
 }
 
 @end

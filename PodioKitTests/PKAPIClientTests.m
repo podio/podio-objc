@@ -82,19 +82,20 @@ static NSString * const kAPISecret = @"test-api-secret";
 }
 
 - (void)testRefreshFailed {
+  
   NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
   self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:soonExpiredDict];
   
   [self stubResponseForPath:@"/oauth/token" withJSONObject:nil statusCode:400];
   
-  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    STAssertNotNil(error, @"Error should not be nil");
-    [self didFinish];
+  [self expectNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
+    [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+      STAssertNotNil(error, @"Error should not be nil");
+      [self didFinish];
+    }];
+    
+    [self waitForCompletion];
   }];
-  
-  [self waitForCompletion];
-  
-  // TODO: Test taht needs reauthentication notification is emitted
   
   STAssertNil(self.apiClient.oauthToken, @"Token should have been reset when the refresh failed");
 }
@@ -119,14 +120,15 @@ static NSString * const kAPISecret = @"test-api-secret";
   self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:[self validTokenResponse]];
   
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
-  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    STAssertNotNil(error, @"Error should not be nil");
-    [self didFinish];
+  
+  [self expectNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
+    [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+      STAssertNotNil(error, @"Error should not be nil");
+      [self didFinish];
+    }];
+    
+    [self waitForCompletion];
   }];
-  
-  [self waitForCompletion];
-  
-  // TODO: Test taht needs reauthentication notification is emitted
   
   STAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we got a 401");
 }

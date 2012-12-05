@@ -45,7 +45,6 @@
 		502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB814458C93004F4185 /* PKTaskMappingTests.m */; };
-		502B9CD214A9BAD9009510F1 /* PKTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B9CD114A9BAD8009510F1 /* PKTestCase.m */; };
 		5030C05C1435E76300027F07 /* PKAppFieldContactData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C01E1435E76300027F07 /* PKAppFieldContactData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C05D1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
 		5030C05E1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
@@ -438,8 +437,6 @@
 		502B5FAD1445729D004F4185 /* PKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKObjectMapping.m; sourceTree = "<group>"; };
 		502B5FB714458C93004F4185 /* PKTaskMappingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskMappingTests.h; sourceTree = "<group>"; };
 		502B5FB814458C93004F4185 /* PKTaskMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMappingTests.m; sourceTree = "<group>"; };
-		502B9CD014A9BAD8009510F1 /* PKTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestCase.h; sourceTree = "<group>"; };
-		502B9CD114A9BAD8009510F1 /* PKTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestCase.m; sourceTree = "<group>"; };
 		5030C01E1435E76300027F07 /* PKAppFieldContactData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldContactData.h; sourceTree = "<group>"; };
 		5030C01F1435E76300027F07 /* PKAppFieldContactData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldContactData.m; sourceTree = "<group>"; };
 		5030C0201435E76300027F07 /* PKAppFieldMoneyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldMoneyData.h; sourceTree = "<group>"; };
@@ -1039,8 +1036,6 @@
 			isa = PBXGroup;
 			children = (
 				507CA05E1503E42700678F9D /* PKTestAssert.h */,
-				502B9CD014A9BAD8009510F1 /* PKTestCase.h */,
-				502B9CD114A9BAD8009510F1 /* PKTestCase.m */,
 				50F4FBD6144C088000317E62 /* PKAsyncTestCase.h */,
 				50F4FBD7144C088000317E62 /* PKAsyncTestCase.m */,
 				50D73870166F7C59009233FF /* API Client */,
@@ -1864,7 +1859,6 @@
 				50FCC3AB14A1E2580001E6F4 /* PKTestItemFieldMapping.m in Sources */,
 				50FCC3AE14A1E75C0001E6F4 /* PKTestItemApp.m in Sources */,
 				50FCC3B114A1E7DE0001E6F4 /* PKTestItemAppMapping.m in Sources */,
-				502B9CD214A9BAD9009510F1 /* PKTestCase.m in Sources */,
 				5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */,
 				50DFDB7914E1989D00D2C5B6 /* PKExternalMeetingData.m in Sources */,
 				508D211F14FBB332002593A4 /* PKSpaceCreateData.m in Sources */,
