@@ -65,6 +65,17 @@
   return request;
 }
 
++ (PKRequest *)requestforProfile {
+  return [PKRequest getRequestWithURI:@"/user/profile/"];
+}
+
++ (PKRequest *)requestToUpdateProfileWithFieldsAndValues:(NSDictionary *)fieldsAndValues {
+  PKRequest *request = [PKRequest putRequestWithURI:@"/user/profile/"];
+  request.body = fieldsAndValues;
+  
+  return request;
+}
+
 + (PKRequest *)requestToUpdateProfileFieldWithKey:(NSString *)key value:(id)value {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/user/profile/%@", key] method:PKRequestMethodPUT];
   request.body = @{@"value": value};

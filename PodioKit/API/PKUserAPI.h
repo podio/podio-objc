@@ -22,6 +22,8 @@
 
 + (PKRequest *)requestToRecoverPasswordForEmail:(NSString *)email;
 
++ (PKRequest *)requestforProfile;
++ (PKRequest *)requestToUpdateProfileWithFieldsAndValues:(NSDictionary *)fieldsAndValues;
 + (PKRequest *)requestToUpdateProfileFieldWithKey:(NSString *)key value:(id)value;
 + (PKRequest *)requestToUpdateProfileAvatarWithFileId:(NSUInteger)fileId;
 
