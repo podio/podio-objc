@@ -81,6 +81,17 @@ static NSString * const kAPISecret = @"test-api-secret";
   STAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
 }
 
+- (void)testRequestHeadersPresent {
+  self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:[self validTokenResponse]];
+  
+  NSURLRequest *request = [self.apiClient requestWithMethod:PKRequestMethodGET path:@"/some/path" parameters:nil body:nil];
+  PKHTTPRequestOperation *operation = [self.apiClient operationWithRequest:request completion:nil];
+  
+  STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"X-Podio-Request-Id"], @"Missing header 'X-Podio-Request-Id'");
+  STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Authorization"], @"Missing header 'Authorization'");
+  STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Accept-Language"], @"Missing header 'Accept-Language'");
+}
+
 #pragma mark - Helpers
 
 - (void)stubResponseForPath:(NSString *)path withJSONObject:(id)object statusCode:(NSUInteger)statusCode {

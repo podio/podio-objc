@@ -13,5 +13,6 @@
 - (void)testAuthenticate;
 - (void)testRefreshWhenTokenInvalid;
 - (void)testDontRefreshWhenTokenValid;
+- (void)testRequestHeadersPresent;
 
 @end
