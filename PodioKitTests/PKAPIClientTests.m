@@ -47,8 +47,8 @@ static NSString * const kAPISecret = @"test-api-secret";
 
 - (void)testRefreshWhenTokenInvalid {
   // Token will expire very soon
-  NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
   NSDictionary *validDict = [self validTokenResponse];
+  NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
   self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:soonExpiredDict];
   
   [self stubResponseForPath:@"/oauth/token" withJSONObject:validDict statusCode:200];
@@ -81,6 +81,69 @@ static NSString * const kAPISecret = @"test-api-secret";
   STAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
 }
 
+- (void)testRefreshFailed {
+  NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
+  self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:soonExpiredDict];
+  
+  [self stubResponseForPath:@"/oauth/token" withJSONObject:nil statusCode:400];
+  
+  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+    STAssertNotNil(error, @"Error should not be nil");
+    [self didFinish];
+  }];
+  
+  [self waitForCompletion];
+  
+  // TODO: Test taht needs reauthentication notification is emitted
+  
+  STAssertNil(self.apiClient.oauthToken, @"Token should have been reset when the refresh failed");
+}
+
+- (void)testRefreshFailedDueToNetwork {
+  NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
+  self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:soonExpiredDict];
+  
+  [self stubResponseForPath:@"/oauth/token" withJSONObject:nil statusCode:0]; // No status code from server
+  
+  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+    STAssertNotNil(error, @"Error should not be nil");
+    [self didFinish];
+  }];
+  
+  [self waitForCompletion];
+  
+  STAssertNotNil(self.apiClient.oauthToken, @"Token should not be reset since this was not a server error");
+}
+
+- (void)testUnauthorized {
+  self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:[self validTokenResponse]];
+  
+  [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
+  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+    STAssertNotNil(error, @"Error should not be nil");
+    [self didFinish];
+  }];
+  
+  [self waitForCompletion];
+  
+  // TODO: Test taht needs reauthentication notification is emitted
+  
+  STAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we got a 401");
+}
+
+- (void)testNotAuthenticated {
+  [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
+  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+    STAssertNotNil(error, @"Error should not be nil");
+    STAssertTrue(error.code == PKErrorCodeNotAuthenticated, @"Should receive not authenticated error");
+    [self didFinish];
+  }];
+  
+  [self waitForCompletion];
+  
+  STAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we are not authenticated");
+}
+
 - (void)testRequestHeadersPresent {
   self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:[self validTokenResponse]];
   
@@ -97,7 +160,8 @@ static NSString * const kAPISecret = @"test-api-secret";
 - (void)stubResponseForPath:(NSString *)path withJSONObject:(id)object statusCode:(NSUInteger)statusCode {
   [OHHTTPStubs addRequestHandler:^OHHTTPStubsResponse *(NSURLRequest *request, BOOL onlyCheck) {
     if ([request.URL.path isEqualToString:path]) {
-      return [OHHTTPStubsResponse responseWithData:[NSJSONSerialization dataWithJSONObject:object options:0 error:nil]
+      id data = object ? [NSJSONSerialization dataWithJSONObject:object options:0 error:nil] : nil;
+      return [OHHTTPStubsResponse responseWithData:data
                                         statusCode:statusCode
                                       responseTime:0
                                            headers:nil];

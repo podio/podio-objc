@@ -71,14 +71,17 @@ static NSUInteger kRequestIdLength = 8;
       [self registerHTTPOperationClass:[PKHTTPRequestOperation class]];
       [self updateDefaultHeaders];
       
+      __weak PKAPIClient *weakSelf = self;
+      
       // If any request receives a 401, we need to rauthenticate
       _requestFailedObserver = [[NSNotificationCenter defaultCenter] addObserverForName:PKHTTPRequestOperationFailed
                                                                                  object:nil
                                                                                   queue:[NSOperationQueue mainQueue]
                                                                              usingBlock:^(NSNotification *note) {
         PKHTTPRequestOperation *operation = [note.userInfo objectForKey:PKHTTPRequestOperationKey];
-        if ([[self.operationQueue operations] containsObject:operation] && operation.response.statusCode == 401) {
-          [self needsAuthentication];
+                                                                               NSLog(@"Operations %@", [weakSelf.operationQueue operations]);
+        if (operation.response.statusCode == 401) {
+          [weakSelf needsAuthentication];
         }
       }];
     }
@@ -408,7 +411,7 @@ static NSUInteger kRequestIdLength = 8;
   PKLogDebug(@"Cancelling %d requests...", [self.pendingOperations count]);
   
   for (PKHTTPRequestOperation *operation in self.pendingOperations) {
-    [operation cancel];
+    [operation completeWithResult:nil error:[NSError pk_requestCancelledError]];
   }
   
   [self.pendingOperations removeAllObjects];

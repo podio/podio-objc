@@ -13,6 +13,10 @@
 - (void)testAuthenticate;
 - (void)testRefreshWhenTokenInvalid;
 - (void)testDontRefreshWhenTokenValid;
+- (void)testRefreshFailed;
+- (void)testRefreshFailedDueToNetwork;
+- (void)testUnauthorized;
+- (void)testNotAuthenticated;
 - (void)testRequestHeadersPresent;
 
 @end
