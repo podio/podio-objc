@@ -339,9 +339,9 @@ static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com"
     [formData appendPartWithFormData:[fileName dataUsingEncoding:NSUTF8StringEncoding] name:@"filename"];
 
     NSError *error = nil;
-    [formData appendPartWithFileURL:[NSURL URLWithString:path] name:@"source" error:&error];
+    [formData appendPartWithFileURL:[NSURL fileURLWithPath:path] name:@"source" error:&error];
     if (error) {
-      PKLogError(@"Failed to construct request to upload file at path %@", path);
+      PKLogError(@"Failed to construct request to upload file at path %@, %@", path, [error localizedDescription]);
     }
   }];
 }
