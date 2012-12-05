@@ -30,6 +30,8 @@ static NSTimeInterval const kDefaultTimeout = 60.0;
   BOOL result = done;
   [self reset];
   
+  STAssertTrue(result, @"Timed out.");
+  
   return result;
 }
 

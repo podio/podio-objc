@@ -231,8 +231,8 @@ static NSUInteger kRequestIdLength = 8;
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:postBody];
-    body[@"client_id"] = self.apiKey;
-    body[@"client_secret"] = self.apiSecret;
+    body[@"client_id"] = @"podiokit-demo";
+    body[@"client_secret"] = @"MXcTgxzJB8Opa2MjEPr4Q9HGxlJJqSn4y6hm05eW489P6HFGM9YUIvo1vpyF3RkV";
 
     NSURLRequest *request = [self requestWithMethod:@"POST" path:@"/oauth/token" parameters:body];
     NSMutableURLRequest *mutRequest = [request mutableCopy];
