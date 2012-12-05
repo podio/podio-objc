@@ -10,6 +10,10 @@
 
 @implementation PKSpaceAPI
 
++ (PKRequest *)requestForSpaceWithId:(NSUInteger)spaceId {
+  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/space/%d", spaceId]];
+}
+
 + (PKRequest *)requestToJoinSpaceWithId:(NSUInteger)spaceId {
   return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/join", spaceId] method:PKRequestMethodPOST];
 }

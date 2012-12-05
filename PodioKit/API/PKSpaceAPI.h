@@ -10,6 +10,8 @@
 
 @interface PKSpaceAPI : PKBaseAPI
 
++ (PKRequest *)requestForSpaceWithId:(NSUInteger)spaceId;
+
 + (PKRequest *)requestToJoinSpaceWithId:(NSUInteger)spaceId;
 + (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId;
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId;
