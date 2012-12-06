@@ -39,6 +39,22 @@ static NSString * const PKOAuth2TokenRefData = @"RefData";
   return [[self alloc] initWithAccessToken:accessToken refreshToken:refreshToken transferToken:transferToken expiresOn:expiresOn refData:refData];
 }
 
++ (id)tokenFromDictionary:(NSDictionary *)dictionary {
+  NSString *accessToken = [dictionary objectForKey:@"access_token"];
+  NSString *refreshToken = [dictionary objectForKey:@"refresh_token"];
+  NSString *transferToken = [dictionary objectForKey:@"transfer_token"];
+  
+  NSTimeInterval expiresIn = [[dictionary objectForKey:@"expires_in"] intValue];
+  NSDate *expiresOn = [NSDate dateWithTimeIntervalSinceNow:expiresIn];
+  
+  NSDictionary *refData = [dictionary objectForKey:@"ref"];
+  
+  return [PKOAuth2Token tokenWithAccessToken:accessToken
+                                refreshToken:refreshToken
+                               transferToken:transferToken
+                                   expiresOn:expiresOn
+                                     refData:refData];
+}
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super init];

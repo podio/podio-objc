@@ -1,17 +1,13 @@
 //
-//  PKAPIClient.h
+//  PKAPIClient2.h
 //  PodioKit
 //
-//  Created by Sebastian Rehnby on 2011-07-01.
+//  Created by Sebastian Rehnby on 11/29/12.
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import "ASINetworkQueue.h"
-#import "PKRequestOperation.h"
-#import "PKFileOperation.h"
-#import "PKOAuth2Client.h"
-
+#import "AFHTTPClient.h"
+#import "PKRequest.h"
 
 // Notifications
 extern NSString * const PKAPIClientWillBeginAuthentication;
@@ -26,118 +22,49 @@ extern NSString * const PKAPIClientDidRefreshAccessToken;
 extern NSString * const PKAPIClientTokenRefreshFailed;
 extern NSString * const PKAPIClientNeedsReauthentication;
 
-extern NSString * const PKAPIClientRequestFinished;
-extern NSString * const PKAPIClientRequestFailed;
-
-extern NSString * const PKAPIClientNoInternetConnection;
-
 // Notification user info keys
-extern NSString * const PKAPIClientRequestKey;
 extern NSString * const PKAPIClientTokenKey;
 extern NSString * const PKAPIClientErrorKey;
 
-/**
- Singleton class responsible for handling all API interaction, from authentication to request handling.
- */
-@interface PKAPIClient : NSObject <ASIHTTPRequestDelegate, PKOAuth2ClientDelegate> {
+@class PKHTTPRequestOperation, PKOAuth2Token;
 
- @private
-  NSString *baseURLString_;
-  NSString *fileUploadURLString_;
-  NSString *fileDownloadURLString_;
-  NSString *userAgent_;
-  
-  ASINetworkQueue *networkQueue_;
-  ASINetworkQueue *serialNetworkQueue_;
-  PKOAuth2Client *oauthClient_;
-  PKOAuth2Token *authToken_;
-  
-  NSMutableArray *pendingRequests_;
-  
-  BOOL isRefreshingToken_;
-  BOOL isAuthenticating_;
-}
+@interface PKAPIClient : AFHTTPClient
 
+@property (copy) NSString *apiKey;
+@property (copy) NSString *apiSecret;
 @property (nonatomic, copy) NSString *baseURLString;
-@property (nonatomic, copy) NSString *fileUploadURLString;
-@property (nonatomic, copy) NSString *fileDownloadURLString;
+@property (copy) NSString *uploadURLString;
 @property (nonatomic, copy) NSString *userAgent;
-@property (nonatomic, strong) PKOAuth2Token *authToken;
+
+@property (nonatomic, strong) PKOAuth2Token *oauthToken;
+
+- (id)initWithAPIKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret;
+
+- (void)configureWithAPIKey:(NSString *)apiKey apiSecret:(NSString *)apiSecret;
 
 + (PKAPIClient *)sharedClient;
 
- 
-
-/** Configures the client for API access with the base URL string of [https://api.podio.com](https://api.podio.com)
- 
- @param clientId A Podio API client id.
- @param secret A Podio API client secret for the corresponding client id.
- @see configureWithClientId:secret:baseURLString:
- */
-- (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret;
-
-/** Configures the client for API access.
- 
- @param clientId A Podio API client id.
- @param secret A Podio API client secret for the corresponding client id.
- @param baseURLString The Podio API base URL string.
- */
-- (void)configureWithClientId:(NSString *)clientId secret:(NSString *)secret baseURLString:(NSString *)baseURLString;
-
-/** Authenticate a user with username/password.
- 
- @param email The username.
- @param password The password.
- */
-- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password;
-
-/** Authenticate a user with a custom grant type.
- 
- @param grantType The grant type.
- @param body The POST body parameters.
- */
-- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body;
-
-/** Force a access token refresh with the current refresh token.
- */
-- (void)refreshToken;
-
-/** Force a access token refresh with a particular refresh token.
- 
- @param refreshToken The refresh token to use to refresh the access token.
- */
-- (void)refreshUsingRefreshToken:(NSString *)refreshToken;
-
-/** Checks if there client has a valid token.
- 
- @return YES if there is a valid token.
- */
+// Authentication
 - (BOOL)isAuthenticated;
+- (void)needsAuthentication;
 
-/** Call when the API returns unauthorized HTTP response.
- */
-- (void)handleUnauthorized;
+- (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body completion:(PKRequestCompletionBlock)completion;
+- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKRequestCompletionBlock)completion;
 
-/** Returns the full URL string for a path and a number of query parameters based on the configured base URL.
- 
- @param path The resource path.
- @param parameters A dictionary of query parameters. The query parameter values have to be of type NSString.
- @return The full URL string.
- */
-- (NSString *)URLStringForPath:(NSString *)path parameters:(NSDictionary *)parameters;
+- (void)refreshOAuthToken;
 
-/** Add a request operation to the network queue.
- 
- @param operation The request operation.
- @return YES if the operation was added to the queue.
- */
-- (BOOL)addRequestOperation:(PKRequestOperation *)operation;
+// Requests
+- (NSMutableURLRequest *)requestWithMethod:(NSString *)method
+                                      path:(NSString *)path
+                                parameters:(NSDictionary *)parameters
+                                      body:(id)body;
 
-/** Add a file operation to the network queue.
- 
- @param operation The file operation.
- @return YES if the operation was added to the queue.
- */
-- (BOOL)addFileOperation:(PKFileOperation *)operation;
+- (NSMutableURLRequest *)uploadRequestWithFilePath:(NSString *)path fileName:(NSString *)fileName;
+- (NSMutableURLRequest *)uploadRequestWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName;
+
+// Operations
+- (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion;
+
+- (BOOL)performOperation:(PKHTTPRequestOperation *)operation;
 
 @end

@@ -15,7 +15,6 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 
 @interface PKAppDelegate ()
 
-@property (nonatomic, strong) PKOAuth2Token *authToken;
 @property (nonatomic, strong) PKTaskListViewController *taskListController;
 
 - (void)presentLoginScreenAnimated:(BOOL)animated;
@@ -31,17 +30,16 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 @implementation PKAppDelegate
 
 @synthesize window = window_;
-@synthesize authToken = authToken_;
 @synthesize taskListController = taskListController_;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {  
   // Configure PodioKit. Define your API client id and secret in the DemoApp-Configuration.plist file
   NSString *configPath = [[NSBundle mainBundle] pathForResource:@"DemoApp-Configuration" ofType:@"plist"];
   NSDictionary *config = [NSDictionary dictionaryWithContentsOfFile:configPath];
-  NSString *clientId = [config objectForKey:@"APIClientID"];
-  NSString *clientSecret = [config objectForKey:@"APIClientSecret"];
+  NSString *apiKey = [config objectForKey:@"APIKey"];
+  NSString *apiSecret = [config objectForKey:@"APISecret"];
   
-  [[PKAPIClient sharedClient] configureWithClientId:clientId secret:clientSecret];
+  [[PKAPIClient sharedClient] configureWithAPIKey:apiKey apiSecret:apiSecret];
   [[PKAPIClient sharedClient] setUserAgent:kUserAgent];
   
   // A mapping provider is required to look up the domain object class for an object mapping used to map the 
@@ -72,7 +70,7 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
-  if (self.authToken == nil) {
+  if ([PKAPIClient sharedClient].oauthToken == nil) {
     [self presentLoginScreenAnimated:NO];
   }
 }
@@ -85,7 +83,7 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 }
 
 - (void)logout {
-  self.authToken = nil;
+  [PKAPIClient sharedClient].oauthToken = nil;
   [self presentLoginScreenAnimated:YES];
 }
 
@@ -94,8 +92,7 @@ static NSString * const kUserAgent = @"PodioKit DemoApp/1.0";
 - (void)didAuthenticateUserNotification:(NSNotification *)notification {
   [self.window.rootViewController dismissViewControllerAnimated:YES completion:nil];
   
-  self.authToken = [notification.userInfo objectForKey:PKAPIClientTokenKey];
-  self.taskListController.userId = [[self.authToken.refData pk_objectForKey:@"id"] unsignedIntegerValue];
+  self.taskListController.userId = [[[PKAPIClient sharedClient].oauthToken.refData pk_objectForKey:@"id"] unsignedIntegerValue];
   
   // Successful authentication, refresh tasks
   [self.taskListController refreshTasks];

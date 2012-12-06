@@ -53,14 +53,16 @@
 
 #pragma mark - Request
 
-- (PKRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion {
+- (PKHTTPRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion {
   PKAssert(self.mappingCoordinator != nil, @"No mapping coordinator set.");
   
-  NSString *urlString = [self.apiClient URLStringForPath:request.uri parameters:request.parameters];
-  PKRequestOperation *operation = [PKRequestOperation operationWithURLString:urlString method:request.method body:request.body];
+  NSURLRequest *urlRequest = [self.apiClient requestWithMethod:request.method
+                                                          path:request.uri
+                                                    parameters:request.parameters
+                                                          body:request.body];
+  
+  PKHTTPRequestOperation *operation = [self.apiClient operationWithRequest:urlRequest completion:completion];
   operation.requestCompletionBlock = completion;
-  operation.allowsConcurrent = request.allowsConcurrent;
-  operation.requiresAuthenticated = request.requiresAuthenticated;
   operation.objectDataPathComponents = request.objectDataPathComponents;
   
   if (request.objectMapping != nil) {
@@ -72,8 +74,7 @@
     operation.objectMapper = mapper;
   }
   
-  // Enqueue
-  BOOL success = [self.apiClient addRequestOperation:operation];
+  BOOL success = [self.apiClient performOperation:operation];
   
   return success ? operation : nil;
 }

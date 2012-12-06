@@ -9,14 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "PKAPIClient.h"
 #import "PKMappingCoordinator.h"
-#import "PKRequestOperation.h"
+#import "PKHTTPRequestOperation.h"
 
-@interface PKRequestManager : NSObject {
-
- @private
-  PKAPIClient *apiClient_;
-  PKMappingCoordinator *mappingCoordinator_;
-}
+@interface PKRequestManager : NSObject
 
 @property (nonatomic, strong) PKAPIClient *apiClient;
 @property (nonatomic, strong) PKMappingCoordinator *mappingCoordinator;
@@ -25,6 +20,6 @@
 
 - (void)configureWithClient:(PKAPIClient *)client mappingCoordinator:(PKMappingCoordinator *)coordinator;
 
-- (PKRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion;
+- (PKHTTPRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion;
 
 @end

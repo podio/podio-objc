@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 #pragma mark - General
 
@@ -16,14 +18,12 @@
 
 #pragma mark - Client
 
-#import "PKOAuth2Client.h"
 #import "PKOAuth2Token.h"
 #import "PKAPIClient.h"
-#import "PKRequestOperation.h"
-#import "PKFileOperation.h"
 #import "PKRequest.h"
 #import "PKRequestManager.h"
 #import "PKRequestResult.h"
+#import "PKHTTPRequestOperation.h"
 
 #pragma mark - APIs
 
@@ -137,3 +137,6 @@
 #import "NSString+Hash.h"
 #import "NSString+PKAdditions.h"
 #import "NSString+URL.h"
+#import "NSURLRequest+PKDescription.h"
+#import "NSString+PKRandom.h"
+
