@@ -79,7 +79,6 @@ static NSUInteger kRequestIdLength = 8;
                                                                                   queue:[NSOperationQueue mainQueue]
                                                                              usingBlock:^(NSNotification *note) {
         PKHTTPRequestOperation *operation = [note.userInfo objectForKey:PKHTTPRequestOperationKey];
-                                                                               NSLog(@"Operations %@", [weakSelf.operationQueue operations]);
         if (operation.response.statusCode == 401) {
           [weakSelf needsAuthentication];
         }
@@ -287,12 +286,18 @@ static NSUInteger kRequestIdLength = 8;
 }
 
 - (void)refreshOAuthTokenWithRefreshToken:(NSString *)refreshToken completion:(PKRequestCompletionBlock)completion {
-  PKAssert(refreshToken != nil, @"Missing refresh token.");
-  
-  self.isRefreshing = YES;
-  [self authenticateWithGrantType:@"refresh_token" body:@{@"refresh_token": refreshToken} completion:^(NSError *error, PKRequestResult *result) {
-    self.isRefreshing = NO;
-  }];
+  @synchronized(self) {
+    PKAssert(refreshToken != nil, @"Missing refresh token.");
+    
+    if (self.isRefreshing) {
+      return;
+    }
+    
+    self.isRefreshing = YES;
+    [self authenticateWithGrantType:@"refresh_token" body:@{@"refresh_token": refreshToken} completion:^(NSError *error, PKRequestResult *result) {
+      self.isRefreshing = NO;
+    }];
+  }
 }
 
 - (void)refreshOAuthToken {
