@@ -57,7 +57,9 @@ The easiest way to get started is to take a look at the DemoApp project. However
 
 Before using PodioKit, you need to configure it. A good place to do this is in `application:didFinishLaunchingWithOptions:` in your app delegate. To get basic functionality and be able to make simple API requests, you just need the following:
 
-	[[PKAPIClient sharedClient] configureWithClientId:clientId secret:clientSecret];
+	[[PKAPIClient sharedClient] configureWithAPIKey:@"my-api-key" apiSecret:@"my-api-secret"];
+
+You can generate an API key from your Podio account settings page, under _API keys_.
 
 ### Making a Simple API request
 
