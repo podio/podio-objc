@@ -380,8 +380,7 @@ static NSUInteger kRequestIdLength = 8;
   }
   
   if (![self.oauthToken hasExpired]) {
-    PKLogDebug(@"Performing request:");
-    PKLogDebug(@"%@", [operation.request pk_description]);
+    PKLogDebug(@"Performing request:\n%@", [operation.request pk_description]);
     
     [self enqueueHTTPRequestOperation:operation];
   } else {
@@ -400,8 +399,7 @@ static NSUInteger kRequestIdLength = 8;
     // Update authorization header in case the token changed, e.g. due to a refresh
     [operation setValue:[self defaultValueForHeader:@"Authorization"] forHeader:@"Authorization"];
     
-    PKLogDebug(@"Retrying request:");
-    PKLogDebug(@"%@", [operation.request pk_description]);
+    PKLogDebug(@"Retrying request:\n%@", [operation.request pk_description]);
     
     [self enqueueHTTPRequestOperation:operation];
   }
