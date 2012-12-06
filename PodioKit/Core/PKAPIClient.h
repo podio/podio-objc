@@ -1,5 +1,5 @@
 //
-//  PKAPIClient2.h
+//  PKAPIClient.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 11/29/12.
@@ -33,7 +33,6 @@ extern NSString * const PKAPIClientErrorKey;
 @property (copy) NSString *apiKey;
 @property (copy) NSString *apiSecret;
 @property (nonatomic, copy) NSString *baseURLString;
-@property (copy) NSString *uploadURLString;
 @property (nonatomic, copy) NSString *userAgent;
 
 @property (nonatomic, strong) PKOAuth2Token *oauthToken;

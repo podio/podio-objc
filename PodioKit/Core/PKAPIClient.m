@@ -1,5 +1,5 @@
 //
-//  PKAPIClient2.m
+//  PKAPIClient.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 11/29/12.
@@ -36,7 +36,6 @@ NSString * const PKAPIClientTokenKey = @"Token";
 NSString * const PKAPIClientErrorKey = @"Error";
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
-static NSString * const kDefaultFileUploadURLString = @"https://files.podio.com";
 
 static NSUInteger kRequestIdLength = 8;
 
@@ -66,8 +65,6 @@ static NSUInteger kRequestIdLength = 8;
   @synchronized(self) {
     self = [super initWithBaseURL:url];
     if (self) {
-      _uploadURLString = [kDefaultFileUploadURLString copy];
-      
       [self registerHTTPOperationClass:[PKHTTPRequestOperation class]];
       [self updateDefaultHeaders];
       
