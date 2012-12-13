@@ -91,6 +91,7 @@ static NSUInteger kRequestIdLength = 8;
   if (self) {
     _apiKey = [apiKey copy];
     _apiSecret = [apiSecret copy];
+    [self updateDefaultHeaders];
   }
   return self;
 }
@@ -140,6 +141,7 @@ static NSUInteger kRequestIdLength = 8;
   @synchronized(self) {
     self.apiKey = apiKey;
     self.apiSecret = apiSecret;
+    [self updateDefaultHeaders];
   }
 }
 
@@ -230,8 +232,8 @@ static NSUInteger kRequestIdLength = 8;
     }
     
     NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:postBody];
-    body[@"client_id"] = @"podiokit-demo";
-    body[@"client_secret"] = @"MXcTgxzJB8Opa2MjEPr4Q9HGxlJJqSn4y6hm05eW489P6HFGM9YUIvo1vpyF3RkV";
+    body[@"client_id"] = self.apiKey;
+    body[@"client_secret"] = self.apiSecret;
 
     NSURLRequest *request = [self requestWithMethod:@"POST" path:@"/oauth/token" parameters:body];
     NSMutableURLRequest *mutRequest = [request mutableCopy];
@@ -374,19 +376,20 @@ static NSUInteger kRequestIdLength = 8;
 }
 
 - (BOOL)performOperation:(PKHTTPRequestOperation *)operation {
-  if (![self isAuthenticated]) {
-    [operation completeWithResult:nil error:[NSError pk_notAuthenticatedError]];
-    return NO;
-  }
-  
-  if (![self.oauthToken hasExpired]) {
-    PKLogDebug(@"Performing request:\n%@", [operation.request pk_description]);
-    
-    [self enqueueHTTPRequestOperation:operation];
+  if ([self isAuthenticated]) {
+    // authorized request
+    if (![self.oauthToken hasExpired]) {
+      PKLogDebug(@"Performing request:\n%@", [operation.request pk_description]);
+      [self enqueueHTTPRequestOperation:operation];
+    } else {
+      // Token expired, keep request until token is refreshed
+      [self.pendingOperations addObject:operation];
+      [self refreshOAuthToken];
+    }
   } else {
-    // Token expired, keep request until token is refreshed
-    [self.pendingOperations addObject:operation];
-    [self refreshOAuthToken];
+    // non-authorized request
+    PKLogDebug(@"Performing request:\n%@", [operation.request pk_description]);
+    [self enqueueHTTPRequestOperation:operation];
   }
   
   return YES;
