@@ -19,7 +19,7 @@
 }
 
 + (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member_request/%d", spaceId, requestId] method:PKRequestMethodPUT];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member_request/%d/accept", spaceId, requestId] method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId {
