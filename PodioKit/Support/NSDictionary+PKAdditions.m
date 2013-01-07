@@ -46,10 +46,8 @@
   NSMutableDictionary *mutDictionary = [[NSMutableDictionary alloc] init];
   [mutDictionary addEntriesFromDictionary:self];
   [mutDictionary addEntriesFromDictionary:dictionary];
-  
-  NSDictionary *newDictionary = [NSDictionary dictionaryWithDictionary:mutDictionary];
-  
-  return newDictionary;
+
+  return [mutDictionary copy];
 }
 
 @end
