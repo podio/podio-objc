@@ -17,7 +17,7 @@
 @implementation PKSearchAPI
 
 + (PKRequest *)requestForSearchWithURI:(NSString *)uri query:(NSString *)query offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest postRequestWithURI:uri];
   
   request.offset = offset;
   request.body = [NSMutableDictionary dictionaryWithObject:query forKey:@"query"];
