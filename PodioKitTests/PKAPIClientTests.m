@@ -137,7 +137,6 @@ static NSString * const kAPISecret = @"test-api-secret";
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
   [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
     STAssertNotNil(error, @"Error should not be nil");
-    STAssertTrue(error.code == PKErrorCodeNotAuthenticated, @"Should receive not authenticated error");
     [self didFinish];
   }];
   
