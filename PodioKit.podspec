@@ -15,5 +15,5 @@ Pod::Spec.new do |s|
   s.frameworks          = 'CoreData'
   s.requires_arc        = true
 
-  s.dependency 'AFNetworking', '1.0.1'
+  s.dependency 'AFNetworking', '1.1.0'
 end
