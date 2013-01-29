@@ -260,7 +260,7 @@ static NSUInteger kRequestIdLength = 8;
       }
       
       if (completion) {
-        completion(nil, nil);
+        completion(error, result);
       }
     }];
   
