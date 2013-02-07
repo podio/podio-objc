@@ -13,6 +13,7 @@
 + (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds;
 + (PKRequest *)requestForConversationWithId:(NSUInteger)conversationId;
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text;
++ (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text fileIds:(NSArray *)fileIds;
 + (PKRequest *)requestToAddParticipantWithUserId:(NSUInteger)userId toConversationWithId:(NSUInteger)conversationId;
 
 @end

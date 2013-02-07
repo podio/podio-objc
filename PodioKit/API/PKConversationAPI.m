@@ -27,9 +27,19 @@
 }
 
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text {
+  return [self requestToReplyToConversationWithId:conversationId withText:text fileIds:nil];
+}
+
++ (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text fileIds:(NSArray *)fileIds {
   NSString * uri = [NSString stringWithFormat:@"/conversation/%d/reply", conversationId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
-  request.body = @{@"text": text};
+  
+  request.body = [[NSMutableDictionary alloc] init];
+  request.body[@"text"] = text;
+  
+  if ([fileIds count] > 0) {
+    request.body[@"file_ids"] = fileIds;
+  }
   
   return request;
 }
