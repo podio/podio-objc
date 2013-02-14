@@ -36,6 +36,7 @@ NSString * const PKAPIClientTokenKey = @"Token";
 NSString * const PKAPIClientErrorKey = @"Error";
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
+static NSString * const kOauthTokenPath = @"/oauth/token";
 
 static NSUInteger kRequestIdLength = 8;
 
@@ -220,26 +221,15 @@ static NSUInteger kRequestIdLength = 8;
   });
 }
 
-- (void)authenticateWithPostBody:(NSDictionary *)postBody completion:(PKRequestCompletionBlock)completion {
+- (void)authenticateWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion {
   @synchronized(self) {
-    PKAssert(self.apiKey != nil, @"Missing API key.");
-    PKAssert(self.apiSecret != nil, @"Missing API secret.");
-    
     if (self.isRefreshing) {
       [self willRefreshToken];
     } else {
       [self willAuthenticate];
     }
     
-    NSMutableDictionary *body = [[NSMutableDictionary alloc] initWithDictionary:postBody];
-    body[@"client_id"] = self.apiKey;
-    body[@"client_secret"] = self.apiSecret;
-
-    NSURLRequest *request = [self requestWithMethod:@"POST" path:@"/oauth/token" parameters:body];
-    NSMutableURLRequest *mutRequest = [request mutableCopy];
-    [mutRequest setValue:nil forHTTPHeaderField:@"Authorization"];
-    
-    PKHTTPRequestOperation *operation = [PKHTTPRequestOperation operationWithRequest:mutRequest completion:^(NSError *error, PKRequestResult *result) {
+    PKHTTPRequestOperation *operation = [PKHTTPRequestOperation operationWithRequest:request completion:^(NSError *error, PKRequestResult *result) {
       if (!error) {
         self.oauthToken = [PKOAuth2Token tokenFromDictionary:result.parsedData];
         [self retryPendingOperations];
@@ -263,25 +253,36 @@ static NSUInteger kRequestIdLength = 8;
         completion(error, result);
       }
     }];
-  
+    
     [self enqueueHTTPRequestOperation:operation];
   }
 }
 
 - (void)authenticateWithGrantType:(NSString *)grantType body:(NSDictionary *)body completion:(PKRequestCompletionBlock)completion {
   PKAssert(grantType != nil, @"Missing grant type.");
+  PKAssert(self.apiKey != nil, @"Missing API key.");
+  PKAssert(self.apiSecret != nil, @"Missing API secret.");
   
-  NSMutableDictionary *grantBody = [[NSMutableDictionary alloc] initWithDictionary:body];
-  grantBody[@"grant_type"] = grantType;
+  NSMutableDictionary *fullBody = [[NSMutableDictionary alloc] initWithDictionary:body];
+  fullBody[@"grant_type"] = grantType;
   
-  [self authenticateWithPostBody:grantBody completion:completion];
+  NSURLRequest *request = [self requestWithMethod:@"POST" path:kOauthTokenPath parameters:fullBody];
+  [self authenticateWithRequest:request completion:completion];
 }
 
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKRequestCompletionBlock)completion {
   PKAssert(email != nil, @"Missing email.");
   PKAssert(password != nil, @"Missing password.");
-  
   [self authenticateWithGrantType:@"password" body:@{@"username": email, @"password": password} completion:completion];
+}
+
+- (void)authenticateWithSSOBody:(NSDictionary *)body completion:(PKRequestCompletionBlock)completion {
+  PKAssert(body != nil, @"Missing SSO body.");
+  PKAssert(self.apiKey != nil, @"Missing API key.");
+  PKAssert(self.apiSecret != nil, @"Missing API secret.");
+  
+  NSURLRequest *request = [self requestWithMethod:@"POST" path:kOauthTokenPath parameters:@{@"grant_type": @"sso"} body:body];
+  [self authenticateWithRequest:request completion:completion];
 }
 
 - (void)refreshOAuthTokenWithRefreshToken:(NSString *)refreshToken completion:(PKRequestCompletionBlock)completion {
