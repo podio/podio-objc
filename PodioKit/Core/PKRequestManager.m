@@ -7,7 +7,6 @@
 //
 
 #import "PKRequestManager.h"
-#import "NSString+Hash.h"
 
 @interface PKRequestManager ()
 

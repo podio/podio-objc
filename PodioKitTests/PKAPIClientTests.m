@@ -14,6 +14,7 @@
 
 static NSString * const kAPIKey = @"test-api-key";
 static NSString * const kAPISecret = @"test-api-secret";
+static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2V5OnRlc3QtYXBpLXNlY3JldA==";
 
 @interface PKAPIClientTests ()
 
@@ -82,7 +83,6 @@ static NSString * const kAPISecret = @"test-api-secret";
 }
 
 - (void)testRefreshFailed {
-  
   NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
   self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:soonExpiredDict];
   
@@ -154,6 +154,27 @@ static NSString * const kAPISecret = @"test-api-secret";
   STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"X-Podio-Request-Id"], @"Missing header 'X-Podio-Request-Id'");
   STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Authorization"], @"Missing header 'Authorization'");
   STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Accept-Language"], @"Missing header 'Accept-Language'");
+}
+
+- (void)testAuthorizationHeaderForEmailAndPasswordAuthenticationRequest {
+  NSURLRequest *request = [self.apiClient requestForAuthenticationWithEmail:@"email@email.com" password:@"p4ssw0rD"];
+  NSString *authHeader = [request.allHTTPHeaderFields valueForKey:@"Authorization"];
+  STAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
+}
+
+- (void)testAuthorizationHeaderForSSOAuthenticationRequest {
+  NSURLRequest *request = [self.apiClient requestForAuthenticationWithSSOBody:@{@"provider" : @"facebook"}];
+  NSString *authHeader = [request.allHTTPHeaderFields valueForKey:@"Authorization"];
+  STAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
+}
+
+- (void)testAuthorizationHeaderForRefreshRequest {
+  NSDictionary *soonExpiredDict = [self soonExpiredTokenResponse];
+  self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:soonExpiredDict];
+  NSURLRequest *request = [self.apiClient requestForRefreshWithRefreshToken:self.apiClient.oauthToken.refreshToken];
+  
+  NSString *authHeader = [request.allHTTPHeaderFields valueForKey:@"Authorization"];
+  STAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
 }
 
 #pragma mark - Helpers

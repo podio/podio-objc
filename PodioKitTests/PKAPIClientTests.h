@@ -18,5 +18,8 @@
 - (void)testUnauthorized;
 - (void)testNotAuthenticated;
 - (void)testRequestHeadersPresent;
+- (void)testAuthorizationHeaderForEmailAndPasswordAuthenticationRequest;
+- (void)testAuthorizationHeaderForSSOAuthenticationRequest;
+- (void)testAuthorizationHeaderForRefreshRequest;
 
 @end

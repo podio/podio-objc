@@ -45,6 +45,12 @@
 		502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB814458C93004F4185 /* PKTaskMappingTests.m */; };
+		502CFD5316D11D55002C59E1 /* NSString+PKBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CFD5116D11D55002C59E1 /* NSString+PKBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		502CFD5416D11D55002C59E1 /* NSString+PKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */; };
+		502CFD5716D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CFD5516D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		502CFD5816D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */; };
+		502CFD5916D12012002C59E1 /* NSString+PKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */; };
+		502CFD5A16D12015002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */; };
 		5030C05C1435E76300027F07 /* PKAppFieldContactData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C01E1435E76300027F07 /* PKAppFieldContactData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C05D1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
 		5030C05E1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
@@ -437,6 +443,10 @@
 		502B5FAD1445729D004F4185 /* PKObjectMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKObjectMapping.m; sourceTree = "<group>"; };
 		502B5FB714458C93004F4185 /* PKTaskMappingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskMappingTests.h; sourceTree = "<group>"; };
 		502B5FB814458C93004F4185 /* PKTaskMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMappingTests.m; sourceTree = "<group>"; };
+		502CFD5116D11D55002C59E1 /* NSString+PKBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKBase64.h"; sourceTree = "<group>"; };
+		502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKBase64.m"; sourceTree = "<group>"; };
+		502CFD5516D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+PKAuthHeader.h"; sourceTree = "<group>"; };
+		502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+PKAuthHeader.m"; sourceTree = "<group>"; };
 		5030C01E1435E76300027F07 /* PKAppFieldContactData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldContactData.h; sourceTree = "<group>"; };
 		5030C01F1435E76300027F07 /* PKAppFieldContactData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldContactData.m; sourceTree = "<group>"; };
 		5030C0201435E76300027F07 /* PKAppFieldMoneyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldMoneyData.h; sourceTree = "<group>"; };
@@ -1159,6 +1169,10 @@
 				509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */,
 				50D7380F166F6D08009233FF /* NSString+PKRandom.h */,
 				50D73810166F6D09009233FF /* NSString+PKRandom.m */,
+				502CFD5116D11D55002C59E1 /* NSString+PKBase64.h */,
+				502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */,
+				502CFD5516D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h */,
+				502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1518,6 +1532,8 @@
 				509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */,
 				50D737FE166F4505009233FF /* PKOAuth2Token.h in Headers */,
 				50D73811166F6D09009233FF /* NSString+PKRandom.h in Headers */,
+				502CFD5316D11D55002C59E1 /* NSString+PKBase64.h in Headers */,
+				502CFD5716D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1767,6 +1783,8 @@
 				509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */,
 				50D737FF166F4505009233FF /* PKOAuth2Token.m in Sources */,
 				50D73812166F6D09009233FF /* NSString+PKRandom.m in Sources */,
+				502CFD5416D11D55002C59E1 /* NSString+PKBase64.m in Sources */,
+				502CFD5816D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1885,6 +1903,8 @@
 				50D7386E166F7C2C009233FF /* OHHTTPStubsResponse.m in Sources */,
 				50D73873166F7C71009233FF /* PKAPIClientTests.m in Sources */,
 				508A6BAA166F8F7500B0FAB4 /* NSString+PKRandom.m in Sources */,
+				502CFD5916D12012002C59E1 /* NSString+PKBase64.m in Sources */,
+				502CFD5A16D12015002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

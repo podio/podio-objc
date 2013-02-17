@@ -47,6 +47,11 @@ extern NSString * const PKAPIClientErrorKey;
 - (BOOL)isAuthenticated;
 - (void)needsAuthentication;
 
+- (NSURLRequest *)requestForAuthenticationWithSSOBody:(NSDictionary *)body;
+- (NSURLRequest *)requestForAuthenticationWithGrantType:(NSString *)grantType body:(NSDictionary *)body;
+- (NSURLRequest *)requestForAuthenticationWithEmail:(NSString *)email password:(NSString *)password;
+- (NSURLRequest *)requestForRefreshWithRefreshToken:(NSString *)refreshToken;
+
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKRequestCompletionBlock)completion;
 - (void)authenticateWithSSOBody:(NSDictionary *)body completion:(PKRequestCompletionBlock)completion;
 

@@ -139,4 +139,6 @@
 #import "NSString+URL.h"
 #import "NSURLRequest+PKDescription.h"
 #import "NSString+PKRandom.h"
+#import "NSString+PKBase64.h"
+#import "NSMutableURLRequest+PKAuthHeader.h"
 
