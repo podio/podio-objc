@@ -556,6 +556,15 @@
     case PKReferenceTypeMeeting:
       string = kPKReferenceTypeMeeting;
       break;
+    case PKReferenceTypeBatch:
+      string = kPKReferenceTypeBatch;
+      break;
+    case PKReferenceTypeSystem:
+      string = kPKReferenceTypeSystem;
+      break;
+    case PKReferenceTypeSpaceMemberRequest:
+      string = kPKReferenceTypeSpaceMemberRequest;
+      break;
     default:
       break;
   }
