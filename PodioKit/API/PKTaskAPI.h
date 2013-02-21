@@ -43,7 +43,8 @@
                              responsible:(NSUInteger)responsible 
                                isPrivate:(BOOL)isPrivate 
                              referenceId:(NSUInteger)referenceId 
-                           referenceType:(PKReferenceType)referenceType;
+                           referenceType:(PKReferenceType)referenceType
+                                 fileIds:(NSArray *)fileIds;
 
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId;
 

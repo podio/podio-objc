@@ -157,7 +157,7 @@
     [body setObject:@(isPrivate) forKey:@"private"];
   }
   
-  if ([fileIds count] > 0) {
+  if (fileIds) {
     [body setObject:fileIds forKey:@"file_ids"];
   }
   
@@ -173,7 +173,8 @@
                              responsible:(NSUInteger)responsible 
                                isPrivate:(BOOL)isPrivate 
                              referenceId:(NSUInteger)referenceId 
-                           referenceType:(PKReferenceType)referenceType {
+                           referenceType:(PKReferenceType)referenceType
+                                 fileIds:(NSArray *)fileIds {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKRequestMethodPUT];
   
   NSMutableDictionary *body = [NSMutableDictionary dictionary];
@@ -195,6 +196,10 @@
     [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
     [body setObject:@(referenceId) forKey:@"ref_id"];
     [body setObject:@(isPrivate) forKey:@"private"];
+  }
+  
+  if (fileIds) {
+    [body setObject:fileIds forKey:@"file_ids"];
   }
   
   request.body = body;

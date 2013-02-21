@@ -67,7 +67,7 @@
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodPOST];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
-  if (fileIds != nil && [fileIds count] > 0) {
+  if (fileIds) {
     [request.body setObject:fileIds forKey:@"file_ids"];
   }
   
@@ -86,7 +86,7 @@
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodPUT];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
-  if (fileIds != nil && [fileIds count] > 0) {
+  if (fileIds) {
     [request.body setObject:fileIds forKey:@"file_ids"];
   }
   
