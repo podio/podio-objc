@@ -12,6 +12,7 @@
 
 @property (nonatomic) NSInteger appId;
 @property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *itemName;
 @property (nonatomic, copy) NSString *icon;
 
 @end

@@ -10,12 +10,14 @@
 
 static NSString * const PKReferenceAppDataAppId = @"AppId";
 static NSString * const PKReferenceAppDataName = @"Name";
+static NSString * const PKReferenceAppDataItemName = @"ItemName";
 static NSString * const PKReferenceAppDataIcon = @"Icon";
 
 @implementation PKReferenceAppData
 
 @synthesize appId = appId_;
 @synthesize name = name_;
+@synthesize itemName = itemName_;
 @synthesize icon = icon_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -23,6 +25,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
   if (self) {
     appId_ = [aDecoder decodeIntForKey:PKReferenceAppDataAppId];
     name_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataName] copy];
+    itemName_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataItemName] copy];
     icon_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataIcon] copy];
   }
   return self;
@@ -32,6 +35,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:appId_ forKey:PKReferenceAppDataAppId];
   [aCoder encodeObject:name_ forKey:PKReferenceAppDataName];
+  [aCoder encodeObject:itemName_ forKey:PKReferenceAppDataItemName];
   [aCoder encodeObject:icon_ forKey:PKReferenceAppDataIcon];
 }
 
@@ -43,6 +47,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
   
   data.appId = [[dict pk_objectForKey:@"app_id"] integerValue];
   data.name = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"name"];
+  data.itemName = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"item_name"];
   data.icon = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"icon"];
   
   return data;
