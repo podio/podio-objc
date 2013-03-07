@@ -52,4 +52,56 @@
   return request;
 }
 
+
++ (PKRequest *)requestForConversationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest getRequestWithURI:@"/conversation/"];
+  request.offset = offset;
+  
+  request.parameters[@"offset"] = @(offset);
+  
+  if (limit > 0) {
+    request.parameters[@"limit"] = @(limit);
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestForConversationsWithFlag:(PKConversationFlag)flag offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = nil;
+  
+  switch (flag) {
+    case PKConversationFlagStarred:
+      request = [PKRequest getRequestWithURI:@"/conversation/starred/"];
+      break;
+    case PKConversationFlagUnread:
+      request = [PKRequest getRequestWithURI:@"/conversation/unread/"];
+      break;
+    default:
+      break;
+  }
+  
+  request.offset = offset;
+  
+  request.parameters[@"offset"] = @(offset);
+  
+  if (limit > 0) {
+    request.parameters[@"limit"] = @(limit);
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestForEventsForConversationWithId:(NSUInteger)conversationId offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/event/", conversationId]];
+  request.offset = offset;
+  
+  request.parameters[@"offset"] = @(offset);
+  
+  if (limit > 0) {
+    request.parameters[@"limit"] = @(limit);
+  }
+  
+  return request;
+}
+
 @end
