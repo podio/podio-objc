@@ -308,8 +308,6 @@ static NSString * const kPKAppFieldStatusActive = @"active";
 static NSString * const kPKAppFieldStatusInactive = @"inactive";
 static NSString * const kPKAppFieldStatusDeleted = @"deleted";
 
-#pragma mark - Item
-
 // Item revision
 typedef enum {
   PKItemRevisionTypeNone = 0,
@@ -335,6 +333,17 @@ static NSString * const kPKAppFieldMappingMeetingTime = @"meeting_time";
 static NSString * const kPKAppFieldMappingMeetingParticipants = @"meeting_participants";
 static NSString * const kPKAppFieldMappingMeetingAgenda = @"meeting_agenda";
 static NSString * const kPKAppFieldMappingMeetingLocation = @"meeting_location";
+
+#pragma mark - Conversation
+
+typedef enum {
+  PKConversationTypeNone,
+  PKConversationTypeDirect,
+  PKConversationTypeGroup,
+} PKConversationType;
+
+static NSString * const kPKConversationTypeDirect = @"direct";
+static NSString * const kPKConversationTypeGroup = @"group";
 
 #pragma mark - Stream
 
@@ -665,6 +674,9 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 // App
 + (PKAppType)appTypeForString:(NSString *)string;
 + (PKAppFieldMapping)appFieldMappingForString:(NSString *)string;
+
+// Conversation
++ (PKConversationType)conversationTypeForString:(NSString *)string;
 
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string;

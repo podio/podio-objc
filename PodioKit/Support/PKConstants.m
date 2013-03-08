@@ -153,6 +153,19 @@
   return mapping;
 }
 
+// Conversation
++ (PKConversationType)conversationTypeForString:(NSString *)string {
+  PKConversationType type = PKConversationTypeNone;
+  
+  if ([string isEqualToString:kPKConversationTypeDirect]) {
+    type = PKConversationTypeDirect;
+  } else if ([string isEqualToString:kPKConversationTypeGroup]) {
+    type = PKConversationTypeGroup;
+  }
+  
+  return type;
+}
+
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string {
   PKStreamActivityType type = PKStreamActivityTypeNone;
