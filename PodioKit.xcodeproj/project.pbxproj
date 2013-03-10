@@ -145,6 +145,8 @@
 		5053634314FF962B0068622A /* PKProviderData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5053634114FF962B0068622A /* PKProviderData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5053634414FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
 		5053634514FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
+		505395C916EA214F00D1E99E /* PKReferenceAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 505395C716EA214F00D1E99E /* PKReferenceAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		505395CA16EA214F00D1E99E /* PKReferenceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 505395C816EA214F00D1E99E /* PKReferenceAPI.m */; };
 		5059533C149634B70046685A /* PKConversationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5059533A149634B70046685A /* PKConversationAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5059533D149634B70046685A /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
 		5059533E149634B70046685A /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
@@ -515,6 +517,8 @@
 		5048937915400A0400022E6C /* PKAppFieldDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldDataFactory.m; sourceTree = "<group>"; };
 		5053634114FF962B0068622A /* PKProviderData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKProviderData.h; sourceTree = "<group>"; };
 		5053634214FF962B0068622A /* PKProviderData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKProviderData.m; sourceTree = "<group>"; };
+		505395C716EA214F00D1E99E /* PKReferenceAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceAPI.h; sourceTree = "<group>"; };
+		505395C816EA214F00D1E99E /* PKReferenceAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceAPI.m; sourceTree = "<group>"; };
 		5059533A149634B70046685A /* PKConversationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKConversationAPI.h; sourceTree = "<group>"; };
 		5059533B149634B70046685A /* PKConversationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKConversationAPI.m; sourceTree = "<group>"; };
 		50599EF01455A024001F5201 /* PKAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAssert.h; sourceTree = "<group>"; };
@@ -1246,6 +1250,8 @@
 				50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */,
 				507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */,
 				507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */,
+				505395C716EA214F00D1E99E /* PKReferenceAPI.h */,
+				505395C816EA214F00D1E99E /* PKReferenceAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1541,6 +1547,7 @@
 				502CFD5316D11D55002C59E1 /* NSString+PKBase64.h in Headers */,
 				502CFD5716D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h in Headers */,
 				50FD7A8E16D3AADD001773EC /* PKSpaceInviteData.h in Headers */,
+				505395C916EA214F00D1E99E /* PKReferenceAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1793,6 +1800,7 @@
 				502CFD5416D11D55002C59E1 /* NSString+PKBase64.m in Sources */,
 				502CFD5816D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
 				50FD7A8F16D3AADD001773EC /* PKSpaceInviteData.m in Sources */,
+				505395CA16EA214F00D1E99E /* PKReferenceAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

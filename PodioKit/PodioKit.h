@@ -47,6 +47,7 @@
 #import "PKAppAPI.h"
 #import "PKViewAPI.h"
 #import "PKEmbedAPI.h"
+#import "PKReferenceAPI.h"
 
 #pragma mark - Mapping
 

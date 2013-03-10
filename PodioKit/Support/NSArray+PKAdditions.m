@@ -15,7 +15,10 @@
   NSMutableArray *mutArray = [[NSMutableArray alloc] initWithCapacity:[self count]];
   
   [self enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-    [mutArray addObject:block(obj)];
+    id obj2 = block(obj);
+    if (obj2) {
+      [mutArray addObject:obj2];
+    }
   }];
   
   NSArray *array = [mutArray copy];
