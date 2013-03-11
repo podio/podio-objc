@@ -41,7 +41,7 @@
       data = [PKReferenceRatingData dataFromDictionary:dict];
       break;
     case PKReferenceTypeProfile:
-      data = [PKReferenceProfileData dataFromDictionary:dict];
+      data = [PKReferenceProfileData dataFromDictionary:[dict pk_objectForKey:@"user"]];
       break;
     case PKReferenceTypeTaskAction:
       data = [PKReferenceTaskActionData dataFromDictionary:dict];

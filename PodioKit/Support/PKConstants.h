@@ -345,6 +345,17 @@ typedef enum {
 static NSString * const kPKConversationTypeDirect = @"direct";
 static NSString * const kPKConversationTypeGroup = @"group";
 
+typedef enum {
+  PKConversationEventActionNone,
+  PKConversationEventActionMessage,
+  PKConversationEventActionParticipantAdd,
+  PKConversationEventActionParticipantLeave,
+} PKConversationEventAction;
+
+static NSString * const kPKConversationEventActionMessage = @"message";
+static NSString * const kPKConversationEventActionParticipantAdd = @"participant_add";
+static NSString * const kPKConversationEventActionParticipantLeave = @"participant_leave";
+
 #pragma mark - Stream
 
 typedef enum {
@@ -677,6 +688,7 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 
 // Conversation
 + (PKConversationType)conversationTypeForString:(NSString *)string;
++ (PKConversationEventAction)conversationEventActionForString:(NSString *)string;
 
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string;

@@ -51,12 +51,11 @@ static NSString * const PKReferenceProfileDataAvatarId = @"AvatarId";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKReferenceProfileData *data = [self data];
   
-  NSDictionary *userDict = [dict pk_objectForKey:@"user"];
-  data.profileId = [[userDict pk_objectForKey:@"profile_id"] integerValue];
-  data.userId = [[userDict pk_objectForKey:@"user_id"] integerValue];
-  data.name = [userDict pk_objectForKey:@"name"];
-  data.type = [PKConstants referenceTypeForString:[userDict pk_objectForKey:@"type"]];
-  data.avatarId = [[userDict pk_objectForKey:@"avatar"] integerValue];
+  data.profileId = [[dict pk_objectForKey:@"profile_id"] integerValue];
+  data.userId = [[dict pk_objectForKey:@"user_id"] integerValue];
+  data.name = [dict pk_objectForKey:@"name"];
+  data.type = [PKConstants referenceTypeForString:[dict pk_objectForKey:@"type"]];
+  data.avatarId = [[dict pk_objectForKey:@"avatar"] integerValue];
   
   return data;
 }

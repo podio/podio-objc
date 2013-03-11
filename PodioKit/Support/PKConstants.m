@@ -166,6 +166,20 @@
   return type;
 }
 
++ (PKConversationEventAction)conversationEventActionForString:(NSString *)string {
+  PKConversationEventAction action = PKConversationEventActionNone;
+  
+  if ([string isEqualToString:kPKConversationEventActionMessage]) {
+    action = PKConversationEventActionMessage;
+  } else if ([string isEqualToString:kPKConversationEventActionParticipantAdd]) {
+    action = PKConversationEventActionParticipantAdd;
+  } else if ([string isEqualToString:kPKConversationEventActionParticipantLeave]) {
+    action = PKConversationEventActionParticipantLeave;
+  }
+  
+  return action;
+}
+
 // Stream
 + (PKStreamActivityType)streamActivityTypeForString:(NSString *)string {
   PKStreamActivityType type = PKStreamActivityTypeNone;
