@@ -66,9 +66,13 @@ static NSString * const PKEmbedDataFileMimeTypeKey = @"FileMimeType";
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {
+  NSDictionary *embedDict = [dict pk_objectForKey:@"embed"];
+  if (!embedDict) {
+    return nil;
+  }
+  
   PKEmbedData *data = [self data];
   
-  NSDictionary *embedDict = [dict pk_objectForKey:@"embed"];
   data.embedId = [[embedDict pk_objectForKey:@"embed_id"] integerValue];
   data.type = [embedDict pk_objectForKey:@"type"];
   data.title = [embedDict pk_objectForKey:@"title"];

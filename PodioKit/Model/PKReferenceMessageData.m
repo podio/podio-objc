@@ -12,28 +12,30 @@
 static NSString * const PKStreamItemDataMessageId = @"MessageId";
 static NSString * const PKStreamItemDataText = @"Text";
 static NSString * const PKStreamItemDataIsReply = @"IsReply";
+static NSString * const PKStreamItemDataFiles = @"Files";
+static NSString * const PKStreamItemDataEmbed = @"Embed";
 
 @implementation PKReferenceMessageData
-
-@synthesize messageId = messageId_;
-@synthesize text = text_;
-@synthesize isReply = isReply_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    messageId_ = [aDecoder decodeIntegerForKey:PKStreamItemDataMessageId];
-    text_ = [[aDecoder decodeObjectForKey:PKStreamItemDataText] copy];
-    isReply_ = [aDecoder decodeBoolForKey:PKStreamItemDataIsReply];
+    _messageId = [aDecoder decodeIntegerForKey:PKStreamItemDataMessageId];
+    _text = [[aDecoder decodeObjectForKey:PKStreamItemDataText] copy];
+    _isReply = [aDecoder decodeBoolForKey:PKStreamItemDataIsReply];
+    _files = [[aDecoder decodeObjectForKey:PKStreamItemDataFiles] copy];
+    _embed = [aDecoder decodeObjectForKey:PKStreamItemDataEmbed];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:messageId_ forKey:PKStreamItemDataMessageId];
-  [aCoder encodeObject:text_ forKey:PKStreamItemDataText];
-  [aCoder encodeBool:isReply_ forKey:PKStreamItemDataIsReply];
+  [aCoder encodeInteger:_messageId forKey:PKStreamItemDataMessageId];
+  [aCoder encodeObject:_text forKey:PKStreamItemDataText];
+  [aCoder encodeBool:_isReply forKey:PKStreamItemDataIsReply];
+  [aCoder encodeObject:_files forKey:PKStreamItemDataFiles];
+  [aCoder encodeObject:_embed forKey:PKStreamItemDataEmbed];
 }
 
 
@@ -45,6 +47,8 @@ static NSString * const PKStreamItemDataIsReply = @"IsReply";
   data.messageId = [[dict pk_objectForKey:@"message_id"] integerValue];
   data.text = [dict pk_objectForKey:@"text"];
   data.isReply = [[dict pk_objectForKey:@"reply"] boolValue];
+  data.files = [PKFileData dataObjectsFromArray:[dict pk_objectForKey:@"files"]];
+  data.embed = [PKEmbedData dataFromDictionary:dict];
   
   return data;
 }

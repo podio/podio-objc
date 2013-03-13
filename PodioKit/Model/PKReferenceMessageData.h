@@ -7,17 +7,15 @@
 //
 
 #import "PKObjectData.h"
+#import "PKEmbedData.h"
+#import "PKFileData.h"
 
-@interface PKReferenceMessageData : PKObjectData {
-  
-@private
-  NSInteger messageId_;
-  NSString *text_;
-  BOOL isReply_;
-}
+@interface PKReferenceMessageData : PKObjectData
 
 @property (nonatomic) NSInteger messageId;
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic) BOOL isReply;
+@property (nonatomic, copy) NSArray *files;
+@property (nonatomic, strong) PKEmbedData *embed;
 
 @end
