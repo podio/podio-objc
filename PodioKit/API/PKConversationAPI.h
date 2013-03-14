@@ -9,6 +9,7 @@
 #import "PKBaseAPI.h"
 
 typedef NS_ENUM(NSUInteger, PKConversationFlag) {
+  PKConversationFlagNone,
   PKConversationFlagStarred,
   PKConversationFlagUnread,
 };

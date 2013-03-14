@@ -54,16 +54,7 @@
 
 
 + (PKRequest *)requestForConversationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest getRequestWithURI:@"/conversation/"];
-  request.offset = offset;
-  
-  request.parameters[@"offset"] = @(offset);
-  
-  if (limit > 0) {
-    request.parameters[@"limit"] = @(limit);
-  }
-  
-  return request;
+  return [self requestForConversationsWithFlag:PKConversationFlagNone offset:offset limit:limit];
 }
 
 + (PKRequest *)requestForConversationsWithFlag:(PKConversationFlag)flag offset:(NSUInteger)offset limit:(NSUInteger)limit {
@@ -77,6 +68,7 @@
       request = [PKRequest getRequestWithURI:@"/conversation/unread/"];
       break;
     default:
+      request = [PKRequest getRequestWithURI:@"/conversation/"];
       break;
   }
   
