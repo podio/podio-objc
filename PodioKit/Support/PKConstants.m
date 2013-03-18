@@ -405,6 +405,8 @@
     type = PKReferenceTypeOrg;
   } else if ([string isEqualToString:kPKReferenceTypeConversation]) {
     type = PKReferenceTypeConversation;
+  } else if ([string isEqualToString:kPKReferenceTypeMessage]) {
+    type = PKReferenceTypeMessage;
   } else if ([string isEqualToString:kPKReferenceTypeNotification]) {
     type = PKReferenceTypeNotification;
   } else if ([string isEqualToString:kPKReferenceTypeFile]) {
