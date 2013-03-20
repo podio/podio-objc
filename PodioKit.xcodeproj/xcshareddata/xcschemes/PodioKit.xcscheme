@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5065BEE714335AB900360855"
-               BuildableName = "libPodioKit.a"
+               BuildableName = "PodioKit"
                BlueprintName = "PodioKit"
                ReferencedContainer = "container:PodioKit.xcodeproj">
             </BuildableReference>
