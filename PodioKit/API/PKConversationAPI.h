@@ -27,4 +27,9 @@ typedef NS_ENUM(NSUInteger, PKConversationFlag) {
 
 + (PKRequest *)requestForEventsForConversationWithId:(NSUInteger)conversationId offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKRequest *)requestToStarConversationWithId:(NSUInteger)conversationId;
++ (PKRequest *)requestToUnstarConversationWithId:(NSUInteger)conversationId;
++ (PKRequest *)requestToReadConversationWithId:(NSUInteger)conversationId;
++ (PKRequest *)requestToUnreadConversationWithId:(NSUInteger)conversationId;
+
 @end

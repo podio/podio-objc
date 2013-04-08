@@ -96,4 +96,20 @@
   return request;
 }
 
++ (PKRequest *)requestToStarConversationWithId:(NSUInteger)conversationId {
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/star", conversationId]];
+}
+
++ (PKRequest *)requestToUnstarConversationWithId:(NSUInteger)conversationId {
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/star", conversationId]];
+}
+
++ (PKRequest *)requestToReadConversationWithId:(NSUInteger)conversationId {
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/read", conversationId]];
+}
+
++ (PKRequest *)requestToUnreadConversationWithId:(NSUInteger)conversationId {
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/read", conversationId]];
+}
+
 @end
