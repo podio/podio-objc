@@ -31,7 +31,7 @@
 }
 
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text fileIds:(NSArray *)fileIds {
-  NSString * uri = [NSString stringWithFormat:@"/conversation/%d/reply", conversationId];
+  NSString * uri = [NSString stringWithFormat:@"/conversation/%d/reply/v2", conversationId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
   
   request.body = [[NSMutableDictionary alloc] init];
@@ -94,6 +94,10 @@
   }
   
   return request;
+}
+
++ (PKRequest *)requestForEventWithId:(NSUInteger)eventId {
+  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/conversation/event/%d", eventId]];
 }
 
 + (PKRequest *)requestToStarConversationWithId:(NSUInteger)conversationId {
