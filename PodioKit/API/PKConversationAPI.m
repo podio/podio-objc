@@ -116,4 +116,8 @@
   return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/read", conversationId]];
 }
 
++ (PKRequest *)requestToLeaveConversationWithId:(NSUInteger)conversationId {
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/leave", conversationId]];
+}
+
 @end

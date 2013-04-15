@@ -33,4 +33,6 @@ typedef NS_ENUM(NSUInteger, PKConversationFlag) {
 + (PKRequest *)requestToReadConversationWithId:(NSUInteger)conversationId;
 + (PKRequest *)requestToUnreadConversationWithId:(NSUInteger)conversationId;
 
++ (PKRequest *)requestToLeaveConversationWithId:(NSUInteger)conversationId;
+
 @end
