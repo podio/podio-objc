@@ -12,11 +12,18 @@
 
 + (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds {
   PKAssert(text != nil && [text length] > 0, @"Missing message text");
-  PKAssert(subject != nil && [subject length] > 0, @"Missing message subject");
   PKAssert(participantUserIds != nil && [participantUserIds count] > 0, @"Missing message participants");
   
   PKRequest *request = [PKRequest requestWithURI:@"/conversation/" method:PKRequestMethodPOST];
-  request.body = @{@"text": text, @"subject": subject, @"participants": participantUserIds};
+  NSMutableDictionary *body = [[NSMutableDictionary alloc] init];
+  body[@"text"] = text;
+  body[@"participants"] = participantUserIds;
+  
+  if ([subject length] > 0) {
+    body[@"subject"] = subject;
+  }
+  
+  request.body = body;
   
   return request;
 }
