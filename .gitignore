@@ -29,3 +29,6 @@ Icon?
 # appledoc
 docset-installed.txt
 */docset
+
+# AppCode
+.idea
