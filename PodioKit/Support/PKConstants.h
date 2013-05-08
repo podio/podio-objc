@@ -62,10 +62,6 @@ typedef NS_ENUM(NSUInteger, PKRight) {
   PKRightReference       = 1 << 28,
   PKRightViewAdmins      = 1 << 29,
   PKRightDownload        = 1 << 30,
-  PKRightViewMembers     = 1 << 31,
-  PKRightAutoJoin        = 1 << 32,
-  PKRightGrant           = 1 << 33,
-  PKRightViewStructure   = 1 << 34,
 };
 
 #pragma mark - Role

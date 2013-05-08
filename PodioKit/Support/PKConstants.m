@@ -322,14 +322,6 @@
       rightsMask |= PKRightViewAdmins;
     } else if ([obj isEqualToString:@"download"]) {
       rightsMask |= PKRightDownload;
-    } else if ([obj isEqualToString:@"view_members"]) {
-      rightsMask |= PKRightViewMembers;
-    } else if ([obj isEqualToString:@"auto_join"]) {
-      rightsMask |= PKRightAutoJoin;
-    } else if ([obj isEqualToString:@"grant"]) {
-      rightsMask |= PKRightAddAnswer;
-    } else if ([obj isEqualToString:@"view_structure"]) {
-      rightsMask |= PKRightViewStructure;
     }
   }];
   
