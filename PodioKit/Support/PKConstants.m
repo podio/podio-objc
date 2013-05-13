@@ -175,6 +175,10 @@
     action = PKConversationEventActionParticipantAdd;
   } else if ([string isEqualToString:kPKConversationEventActionParticipantLeave]) {
     action = PKConversationEventActionParticipantLeave;
+  } else if ([string isEqualToString:kPKConversationEventActionLiveStart]) {
+    action = PKConversationEventActionLiveStart;
+  } else if ([string isEqualToString:kPKConversationEventActionLiveEnd]) {
+    action = PKConversationEventActionLiveEnd;
   }
   
   return action;

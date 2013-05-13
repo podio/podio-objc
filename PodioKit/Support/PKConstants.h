@@ -346,11 +346,15 @@ typedef enum {
   PKConversationEventActionMessage,
   PKConversationEventActionParticipantAdd,
   PKConversationEventActionParticipantLeave,
+  PKConversationEventActionLiveStart,
+  PKConversationEventActionLiveEnd,
 } PKConversationEventAction;
 
 static NSString * const kPKConversationEventActionMessage = @"message";
 static NSString * const kPKConversationEventActionParticipantAdd = @"participant_add";
 static NSString * const kPKConversationEventActionParticipantLeave = @"participant_leave";
+static NSString * const kPKConversationEventActionLiveStart = @"live_start";
+static NSString * const kPKConversationEventActionLiveEnd = @"live_end";
 
 #pragma mark - Stream
 
