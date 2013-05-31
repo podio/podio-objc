@@ -14,6 +14,8 @@ NSString * const PKHTTPRequestOperationFinished = @"PKHTTPRequestOperationFinish
 NSString * const PKHTTPRequestOperationFailed = @"PKHTTPRequestOperationFailed";
 
 NSString * const PKHTTPRequestOperationKey = @"Request";
+NSString * const PKHTTPRequestResultKey = @"Result";
+NSString * const PKHTTPRequestErrorKey = @"Error";
 
 @interface PKHTTPRequestOperation ()
 
@@ -81,11 +83,6 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
           }
         }
       }
-      
-      dispatch_async(dispatch_get_main_queue(), ^{
-        NSDictionary *userInfo = @{PKHTTPRequestOperationKey: self};
-        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFinished object:self userInfo:userInfo];
-      });
     } else {
       if (self.response.statusCode > 0) {
         // Failed on server side
@@ -94,11 +91,6 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
       } else {
         error = self.error;
       }
-      
-      dispatch_async(dispatch_get_main_queue(), ^{
-        NSDictionary *userInfo = @{PKHTTPRequestOperationKey: self};
-        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFailed object:self userInfo:userInfo];
-      });
     }
     
     PKRequestResult *result = [PKRequestResult resultWithResponseStatusCode:self.response.statusCode
@@ -106,6 +98,23 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
                                                                  parsedData:parsedData
                                                                  objectData:objectData
                                                                  resultData:resultData];
+    
+    // Notify
+    NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
+    userInfo[PKHTTPRequestOperationKey] = self;
+    
+    if (result) userInfo[PKHTTPRequestResultKey] = result;
+    if (error) userInfo[PKHTTPRequestErrorKey] = error;
+    
+    if (!error) {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFinished object:self userInfo:[userInfo copy]];
+      });
+    } else {
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFailed object:self userInfo:[userInfo copy]];
+      });
+    }
     
     [self completeWithResult:result error:error];
   };
