@@ -6,7 +6,7 @@
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "AFHTTPClient.h"
+#import <AFNetworking/AFNetworking.h>
 #import "PKRequest.h"
 
 // Notifications

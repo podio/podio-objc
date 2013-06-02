@@ -53,8 +53,6 @@
 #pragma mark - Request
 
 - (PKHTTPRequestOperation *)performRequest:(PKRequest *)request completion:(PKRequestCompletionBlock)completion {
-  PKAssert(self.mappingCoordinator != nil, @"No mapping coordinator set.");
-  
   NSURLRequest *urlRequest = [self.apiClient requestWithMethod:request.method
                                                           path:request.uri
                                                     parameters:request.parameters
@@ -64,7 +62,7 @@
   operation.requestCompletionBlock = completion;
   operation.objectDataPathComponents = request.objectDataPathComponents;
   
-  if (request.objectMapping != nil) {
+  if (request.objectMapping != nil && self.mappingCoordinator != nil) {
     PKObjectMapper *mapper = [self.mappingCoordinator objectMapper];
     mapper.mapping = request.objectMapping;
     mapper.mappingBlock = request.mappingBlock;

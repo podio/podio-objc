@@ -32,3 +32,6 @@ docset-installed.txt
 
 # AppCode
 .idea
+
+# CocoaPods
+Pods

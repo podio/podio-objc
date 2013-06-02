@@ -7,22 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
+		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
 		5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5009E23D1667C8040018EC75 /* PKAPIClient.h */; };
 		5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
-		5009E2411667C8040018EC75 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
 		500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = 500EA927153F20830049F224 /* PKReferenceBatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		500EA92A153F20830049F224 /* PKReferenceBatchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 500EA928153F20830049F224 /* PKReferenceBatchData.m */; };
 		500EA92E153F20F10049F224 /* PKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500EA92C153F20F10049F224 /* PKLoginViewController.m */; };
 		500EA92F153F20F10049F224 /* PKLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500EA92D153F20F10049F224 /* PKLoginViewController.xib */; };
 		501BF17E14386AFE009764A3 /* PKFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 501BF17C14386AFE009764A3 /* PKFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501BF17F14386AFE009764A3 /* PKFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17D14386AFE009764A3 /* PKFileData.m */; };
-		501BF18014386AFE009764A3 /* PKFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17D14386AFE009764A3 /* PKFileData.m */; };
 		501FDEDD1548095E002B6413 /* PKItemParticipantsData.h in Headers */ = {isa = PBXBuildFile; fileRef = 501FDEDB1548095E002B6413 /* PKItemParticipantsData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FDEDC1548095E002B6413 /* PKItemParticipantsData.m */; };
-		501FDEDF1548095E002B6413 /* PKItemParticipantsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FDEDC1548095E002B6413 /* PKItemParticipantsData.m */; };
 		5021CD2C14458FAE00A7013D /* PKDefaultObjectRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 5021CD2A14458FAE00A7013D /* PKDefaultObjectRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5021CD2D14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */; };
-		5021CD2E14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */; };
 		5021CD31144594DB00A7013D /* GetActiveTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 5021CD30144594DB00A7013D /* GetActiveTasks.json */; };
 		5026A2BB147114B70051D7C8 /* NSError+PKErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 5026A2B9147114B70051D7C8 /* NSError+PKErrors.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5026A2BC147114B70051D7C8 /* NSError+PKErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026A2BA147114B70051D7C8 /* NSError+PKErrors.m */; };
@@ -30,126 +28,87 @@
 		5026A2C0147116BC0051D7C8 /* PKRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026A2BE147116BC0051D7C8 /* PKRequestResult.m */; };
 		5028CBEA145E90D40003A097 /* PKObjectMapper.h in Headers */ = {isa = PBXBuildFile; fileRef = 5028CBE8145E90D40003A097 /* PKObjectMapper.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5028CBEB145E90D40003A097 /* PKObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBE9145E90D40003A097 /* PKObjectMapper.m */; };
-		5028CBEC145E90D40003A097 /* PKObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBE9145E90D40003A097 /* PKObjectMapper.m */; };
 		5028CBEE145E921A0003A097 /* PKStandaloneMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBED145E921A0003A097 /* PKStandaloneMapping.m */; };
-		5028CBEF145E921A0003A097 /* PKStandaloneMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBED145E921A0003A097 /* PKStandaloneMapping.m */; };
 		5028CBF2145E92DD0003A097 /* NSManagedObject+ActiveRecord.h in Headers */ = {isa = PBXBuildFile; fileRef = 5028CBF0145E92DD0003A097 /* NSManagedObject+ActiveRecord.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5028CBF3145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF1145E92DD0003A097 /* NSManagedObject+ActiveRecord.m */; };
-		5028CBF4145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF1145E92DD0003A097 /* NSManagedObject+ActiveRecord.m */; };
 		5028CBF6145E939A0003A097 /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
-		5028CBF7145E939A0003A097 /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
 		5028CBFA145E96620003A097 /* PKCoreDataMappingCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5028CBF8145E96620003A097 /* PKCoreDataMappingCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5028CBFB145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */; };
-		5028CBFC145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */; };
 		502B5FAE1445729D004F4185 /* PKObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 502B5FAC1445729D004F4185 /* PKObjectMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
-		502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
 		502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FB814458C93004F4185 /* PKTaskMappingTests.m */; };
 		502CFD5316D11D55002C59E1 /* NSString+PKBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CFD5116D11D55002C59E1 /* NSString+PKBase64.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		502CFD5416D11D55002C59E1 /* NSString+PKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */; };
 		502CFD5716D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 502CFD5516D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		502CFD5816D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */; };
-		502CFD5916D12012002C59E1 /* NSString+PKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */; };
-		502CFD5A16D12015002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */; };
 		5030C05C1435E76300027F07 /* PKAppFieldContactData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C01E1435E76300027F07 /* PKAppFieldContactData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C05D1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
-		5030C05E1435E76300027F07 /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
 		5030C05F1435E76300027F07 /* PKAppFieldMoneyData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0201435E76300027F07 /* PKAppFieldMoneyData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0601435E76300027F07 /* PKAppFieldMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0211435E76300027F07 /* PKAppFieldMoneyData.m */; };
-		5030C0611435E76300027F07 /* PKAppFieldMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0211435E76300027F07 /* PKAppFieldMoneyData.m */; };
 		5030C0621435E76300027F07 /* PKAppFieldOptionsData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0221435E76300027F07 /* PKAppFieldOptionsData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0631435E76300027F07 /* PKAppFieldOptionsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0231435E76300027F07 /* PKAppFieldOptionsData.m */; };
-		5030C0641435E76300027F07 /* PKAppFieldOptionsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0231435E76300027F07 /* PKAppFieldOptionsData.m */; };
 		5030C0651435E76300027F07 /* PKEmbedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0241435E76300027F07 /* PKEmbedData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0661435E76300027F07 /* PKEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0251435E76300027F07 /* PKEmbedData.m */; };
-		5030C0671435E76300027F07 /* PKEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0251435E76300027F07 /* PKEmbedData.m */; };
 		5030C0681435E76300027F07 /* PKQuestionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0261435E76300027F07 /* PKQuestionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0691435E76300027F07 /* PKQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0271435E76300027F07 /* PKQuestionData.m */; };
-		5030C06A1435E76300027F07 /* PKQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0271435E76300027F07 /* PKQuestionData.m */; };
 		5030C06B1435E76300027F07 /* PKQuestionOptionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0281435E76300027F07 /* PKQuestionOptionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C06C1435E76300027F07 /* PKQuestionOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0291435E76300027F07 /* PKQuestionOptionData.m */; };
-		5030C06D1435E76300027F07 /* PKQuestionOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0291435E76300027F07 /* PKQuestionOptionData.m */; };
 		5030C06E1435E76300027F07 /* PKReferenceSpaceData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C02A1435E76300027F07 /* PKReferenceSpaceData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0711435E76300027F07 /* PKStreamActionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C02C1435E76300027F07 /* PKStreamActionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0721435E76300027F07 /* PKStreamActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02D1435E76300027F07 /* PKStreamActionData.m */; };
-		5030C0731435E76300027F07 /* PKStreamActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02D1435E76300027F07 /* PKStreamActionData.m */; };
 		5030C0741435E76300027F07 /* PKReferenceAnswerData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C02E1435E76300027F07 /* PKReferenceAnswerData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0751435E76300027F07 /* PKReferenceAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */; };
-		5030C0761435E76300027F07 /* PKReferenceAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */; };
 		5030C0771435E76300027F07 /* PKReferenceCommentData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0301435E76300027F07 /* PKReferenceCommentData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0781435E76300027F07 /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
-		5030C0791435E76300027F07 /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
 		5030C0801435E76300027F07 /* PKReferenceRatingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0361435E76300027F07 /* PKReferenceRatingData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0811435E76300027F07 /* PKReferenceRatingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0371435E76300027F07 /* PKReferenceRatingData.m */; };
-		5030C0821435E76300027F07 /* PKReferenceRatingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0371435E76300027F07 /* PKReferenceRatingData.m */; };
 		5030C0831435E76300027F07 /* PKReferenceStatusData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0381435E76300027F07 /* PKReferenceStatusData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0861435E76300027F07 /* PKReferenceTaskActionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03A1435E76300027F07 /* PKReferenceTaskActionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0871435E76300027F07 /* PKReferenceTaskActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */; };
-		5030C0881435E76300027F07 /* PKReferenceTaskActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */; };
 		5030C0891435E76300027F07 /* PKReferenceTaskData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C03C1435E76300027F07 /* PKReferenceTaskData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C08A1435E76300027F07 /* PKReferenceTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKReferenceTaskData.m */; };
-		5030C08B1435E76300027F07 /* PKReferenceTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKReferenceTaskData.m */; };
 		5030C08F1435E76300027F07 /* PKStreamItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0401435E76300027F07 /* PKStreamItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0901435E76300027F07 /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
-		5030C0911435E76300027F07 /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
 		5030C0921435E76300027F07 /* PKStreamStatusData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0421435E76300027F07 /* PKStreamStatusData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0931435E76300027F07 /* PKStreamStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0431435E76300027F07 /* PKStreamStatusData.m */; };
-		5030C0941435E76300027F07 /* PKStreamStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0431435E76300027F07 /* PKStreamStatusData.m */; };
 		5030C0951435E76300027F07 /* PKStreamTaskData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0441435E76300027F07 /* PKStreamTaskData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0961435E76300027F07 /* PKStreamTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0451435E76300027F07 /* PKStreamTaskData.m */; };
-		5030C0971435E76300027F07 /* PKStreamTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0451435E76300027F07 /* PKStreamTaskData.m */; };
 		5030C0991435E76300027F07 /* PKItemFieldValueItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0471435E76300027F07 /* PKItemFieldValueItemData.m */; };
-		5030C09A1435E76300027F07 /* PKItemFieldValueItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0471435E76300027F07 /* PKItemFieldValueItemData.m */; };
 		5030C09B1435E76300027F07 /* PKItemFieldValueCalculationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0481435E76300027F07 /* PKItemFieldValueCalculationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C09C1435E76300027F07 /* PKItemFieldValueCalculationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0491435E76300027F07 /* PKItemFieldValueCalculationData.m */; };
-		5030C09D1435E76300027F07 /* PKItemFieldValueCalculationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0491435E76300027F07 /* PKItemFieldValueCalculationData.m */; };
 		5030C09E1435E76300027F07 /* PKItemFieldValueContactData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C04A1435E76300027F07 /* PKItemFieldValueContactData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C09F1435E76300027F07 /* PKItemFieldValueContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04B1435E76300027F07 /* PKItemFieldValueContactData.m */; };
-		5030C0A01435E76300027F07 /* PKItemFieldValueContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04B1435E76300027F07 /* PKItemFieldValueContactData.m */; };
 		5030C0A11435E76300027F07 /* PKObjectData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C04C1435E76300027F07 /* PKObjectData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0A21435E76300027F07 /* PKObjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04D1435E76300027F07 /* PKObjectData.m */; };
-		5030C0A31435E76300027F07 /* PKObjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04D1435E76300027F07 /* PKObjectData.m */; };
 		5030C0A41435E76300027F07 /* PKItemFieldValueDateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C04E1435E76300027F07 /* PKItemFieldValueDateData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0A51435E76300027F07 /* PKItemFieldValueDateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */; };
-		5030C0A61435E76300027F07 /* PKItemFieldValueDateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */; };
 		5030C0A71435E76300027F07 /* PKItemFieldValueEmbedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0501435E76300027F07 /* PKItemFieldValueEmbedData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0A81435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */; };
-		5030C0A91435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */; };
 		5030C0AD1435E76300027F07 /* PKItemFieldValueMediaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0541435E76300027F07 /* PKItemFieldValueMediaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0AE1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0551435E76300027F07 /* PKItemFieldValueMediaData.m */; };
-		5030C0AF1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0551435E76300027F07 /* PKItemFieldValueMediaData.m */; };
 		5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
-		5030C0B21435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
 		5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0CC1435E92800027F07 /* PKStreamDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0C41435E92800027F07 /* PKStreamDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C51435E92800027F07 /* PKStreamDataFactory.m */; };
-		5030C0CE1435E92800027F07 /* PKStreamDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C51435E92800027F07 /* PKStreamDataFactory.m */; };
 		5032336214FD3F2C0028D887 /* PKExternalFileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032336014FD3F2C0028D887 /* PKExternalFileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032336314FD3F2C0028D887 /* PKExternalFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032336114FD3F2C0028D887 /* PKExternalFileData.m */; };
-		5032336414FD3F2C0028D887 /* PKExternalFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032336114FD3F2C0028D887 /* PKExternalFileData.m */; };
 		5032BAB8144489CB00B7F7C7 /* PKBaseObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BAB6144489CB00B7F7C7 /* PKBaseObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
-		5032BABA144489CB00B7F7C7 /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
 		5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAC614448E1500B7F7C7 /* PKTestTask.m */; };
 		5032BACE1444907800B7F7C7 /* PKTestTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */; };
 		5032BAD6144491A500B7F7C7 /* PKTaskAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5032BAD4144491A500B7F7C7 /* PKTaskAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
-		5032BAD8144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
 		50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50458F381507734300FA66A6 /* PKByLineData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
-		50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
 		5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5048937815400A0400022E6C /* PKAppFieldDataFactory.h */; };
 		5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
-		5048937C15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
 		5053634314FF962B0068622A /* PKProviderData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5053634114FF962B0068622A /* PKProviderData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5053634414FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
-		5053634514FF962B0068622A /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
 		505395C916EA214F00D1E99E /* PKReferenceAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 505395C716EA214F00D1E99E /* PKReferenceAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		505395CA16EA214F00D1E99E /* PKReferenceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 505395C816EA214F00D1E99E /* PKReferenceAPI.m */; };
 		5059533C149634B70046685A /* PKConversationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5059533A149634B70046685A /* PKConversationAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5059533D149634B70046685A /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
-		5059533E149634B70046685A /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
 		50599F081456B3B5001F5201 /* PKObjectRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 50599F071456B3B5001F5201 /* PKObjectRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505C4F98155C96C30081850F /* DemoApp-Configuration.plist */; };
 		505F7E471445EFBC00727A1D /* GetTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 505F7E461445EFBC00727A1D /* GetTask.json */; };
@@ -157,64 +116,45 @@
 		5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
 		5065BEFA14335ABA00360855 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEF914335ABA00360855 /* SenTestingKit.framework */; };
 		5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
-		5065BF0214335ABA00360855 /* libPodioKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEE814335AB900360855 /* libPodioKit.a */; };
 		5065BF451433627900360855 /* PKRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF3E1433627900360855 /* PKRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF461433627900360855 /* PKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF3F1433627900360855 /* PKRequest.m */; };
-		5065BF471433627900360855 /* PKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF3F1433627900360855 /* PKRequest.m */; };
 		5065BF481433627900360855 /* PKRequestManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF401433627900360855 /* PKRequestManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF491433627900360855 /* PKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF411433627900360855 /* PKRequestManager.m */; };
-		5065BF4A1433627900360855 /* PKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF411433627900360855 /* PKRequestManager.m */; };
 		5065BF531433632200360855 /* PKMappingCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF511433632200360855 /* PKMappingCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF541433632200360855 /* PKMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingCoordinator.m */; };
-		5065BF551433632200360855 /* PKMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingCoordinator.m */; };
 		5065BF581433632C00360855 /* PKMappingProvider.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF561433632C00360855 /* PKMappingProvider.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF591433632C00360855 /* PKMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF571433632C00360855 /* PKMappingProvider.m */; };
-		5065BF5A1433632C00360855 /* PKMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF571433632C00360855 /* PKMappingProvider.m */; };
 		5065BF68143363EC00360855 /* PKCoreDataRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF66143363EC00360855 /* PKCoreDataRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF69143363EC00360855 /* PKCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF67143363EC00360855 /* PKCoreDataRepository.m */; };
-		5065BF6A143363EC00360855 /* PKCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF67143363EC00360855 /* PKCoreDataRepository.m */; };
 		5065BF6C1433640C00360855 /* PKMappableObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF6B1433640C00360855 /* PKMappableObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF831433649A00360855 /* PKAttributeMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF731433649A00360855 /* PKAttributeMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF841433649A00360855 /* PKAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF741433649A00360855 /* PKAttributeMapping.m */; };
-		5065BF851433649A00360855 /* PKAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF741433649A00360855 /* PKAttributeMapping.m */; };
 		5065BF891433649A00360855 /* PKCompoundMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF771433649A00360855 /* PKCompoundMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF8A1433649A00360855 /* PKCompoundMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF781433649A00360855 /* PKCompoundMapping.m */; };
-		5065BF8B1433649A00360855 /* PKCompoundMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF781433649A00360855 /* PKCompoundMapping.m */; };
 		5065BF8F1433649A00360855 /* PKPropertyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF7B1433649A00360855 /* PKPropertyMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF901433649A00360855 /* PKPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF7C1433649A00360855 /* PKPropertyMapping.m */; };
-		5065BF911433649A00360855 /* PKPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF7C1433649A00360855 /* PKPropertyMapping.m */; };
 		5065BF921433649A00360855 /* PKRelationshipMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF7D1433649A00360855 /* PKRelationshipMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF931433649A00360855 /* PKRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF7E1433649A00360855 /* PKRelationshipMapping.m */; };
-		5065BF941433649A00360855 /* PKRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF7E1433649A00360855 /* PKRelationshipMapping.m */; };
 		5065BF951433649A00360855 /* PKStandaloneMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF7F1433649A00360855 /* PKStandaloneMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF981433649A00360855 /* PKValueMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF811433649A00360855 /* PKValueMapping.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF991433649A00360855 /* PKValueMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF821433649A00360855 /* PKValueMapping.m */; };
-		5065BF9A1433649A00360855 /* PKValueMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF821433649A00360855 /* PKValueMapping.m */; };
 		5065BFB11433650E00360855 /* PKManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFAF1433650E00360855 /* PKManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFB21433650E00360855 /* PKManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB01433650E00360855 /* PKManagedObject.m */; };
-		5065BFB31433650E00360855 /* PKManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB01433650E00360855 /* PKManagedObject.m */; };
 		5065BFB61433654B00360855 /* NSManagedObject+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFB41433654B00360855 /* NSManagedObject+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFB71433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB51433654B00360855 /* NSManagedObject+PKAdditions.m */; };
-		5065BFB81433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB51433654B00360855 /* NSManagedObject+PKAdditions.m */; };
 		5065BFF1143366C100360855 /* NSArray+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFED143366C100360855 /* NSArray+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFF2143366C100360855 /* NSArray+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFEE143366C100360855 /* NSArray+PKAdditions.m */; };
-		5065BFF3143366C100360855 /* NSArray+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFEE143366C100360855 /* NSArray+PKAdditions.m */; };
 		5065BFF4143366C100360855 /* NSSet+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFEF143366C100360855 /* NSSet+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFF5143366C100360855 /* NSSet+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFF0143366C100360855 /* NSSet+PKAdditions.m */; };
-		5065BFF6143366C100360855 /* NSSet+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFF0143366C100360855 /* NSSet+PKAdditions.m */; };
 		5065BFF9143366DD00360855 /* NSString+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFF7143366DD00360855 /* NSString+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFFA143366DD00360855 /* NSString+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFF8143366DD00360855 /* NSString+PKAdditions.m */; };
-		5065BFFB143366DD00360855 /* NSString+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFF8143366DD00360855 /* NSString+PKAdditions.m */; };
 		5065BFFE1433670800360855 /* NSDictionary+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BFFC1433670800360855 /* NSDictionary+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BFFF1433670800360855 /* NSDictionary+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFFD1433670800360855 /* NSDictionary+PKAdditions.m */; };
-		5065C0001433670800360855 /* NSDictionary+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFFD1433670800360855 /* NSDictionary+PKAdditions.m */; };
 		5065C0271433697D00360855 /* NSManagedObjectContext+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065C0251433697D00360855 /* NSManagedObjectContext+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065C0281433697D00360855 /* NSManagedObjectContext+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0261433697D00360855 /* NSManagedObjectContext+PKAdditions.m */; };
-		5065C0291433697D00360855 /* NSManagedObjectContext+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0261433697D00360855 /* NSManagedObjectContext+PKAdditions.m */; };
 		5065C031143369EF00360855 /* PKConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065C02F143369EF00360855 /* PKConstants.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065C0CB143453BE00360855 /* NSDate+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065C0C9143453BE00360855 /* NSDate+PKAdditions.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065C0CC143453BE00360855 /* NSDate+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0CA143453BE00360855 /* NSDate+PKAdditions.m */; };
-		5065C0CD143453BE00360855 /* NSDate+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0CA143453BE00360855 /* NSDate+PKAdditions.m */; };
 		5065C0F514345CF700360855 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F414345CF300360855 /* CoreData.framework */; };
 		5065C0F714345E5100360855 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F614345E5000360855 /* CoreGraphics.framework */; };
 		5065C0F914345E9E00360855 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F814345E9C00360855 /* UIKit.framework */; };
@@ -227,24 +167,17 @@
 		507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */; };
 		507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */; };
 		507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
-		507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
 		5082225D14FC3E66005056A1 /* PodioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082225B14FC3E66005056A1 /* PodioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
-		50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
 		5084B57A14DEF5F0002FC8DB /* PKLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5084B57814DEF5F0002FC8DB /* PKLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5084B57B14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
-		5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
 		50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50858ABB15120EAC00ED8A6E /* PKAppAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50858ABE15120EAD00ED8A6E /* PKAppAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50858ABC15120EAD00ED8A6E /* PKAppAPI.m */; };
-		50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50858ABC15120EAD00ED8A6E /* PKAppAPI.m */; };
-		508A6BAA166F8F7500B0FAB4 /* NSString+PKRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73810166F6D09009233FF /* NSString+PKRandom.m */; };
 		508D211D14FBB332002593A4 /* PKSpaceCreateData.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D211B14FBB332002593A4 /* PKSpaceCreateData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		508D211E14FBB332002593A4 /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
-		508D211F14FBB332002593A4 /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
 		508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 508D212A14FBB875002593A4 /* PKSpaceAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		508D212D14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
-		508D212E14FBB875002593A4 /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
 		509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */ = {isa = PBXBuildFile; fileRef = 509867A8166CAEE100CEAA8C /* NSURLRequest+PKDescription.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */; };
 		509D6939152CA7A40033291C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F814345E9C00360855 /* UIKit.framework */; };
@@ -256,16 +189,12 @@
 		509D6974152CF6E10033291C /* PKDefaultMappingCoordinator.h in Headers */ = {isa = PBXBuildFile; fileRef = 509D6972152CF6E10033291C /* PKDefaultMappingCoordinator.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		509D6975152CF6E10033291C /* PKDefaultMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */; };
 		50A16D8D148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */; };
-		50A16D8E148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */; };
 		50A16D9D148F4A4800AF86C4 /* PKReferenceItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A16D9B148F4A4500AF86C4 /* PKReferenceItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A16D9E148F4A4800AF86C4 /* PKReferenceItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D9C148F4A4700AF86C4 /* PKReferenceItemData.m */; };
-		50A16D9F148F4A4800AF86C4 /* PKReferenceItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D9C148F4A4700AF86C4 /* PKReferenceItemData.m */; };
 		50A16DA2148F4A5A00AF86C4 /* PKReferenceMessageData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A16DA0148F4A5900AF86C4 /* PKReferenceMessageData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A16DA3148F4A5A00AF86C4 /* PKReferenceMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */; };
-		50A16DA4148F4A5A00AF86C4 /* PKReferenceMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */; };
 		50A5FB33143B0FEA00674360 /* PKItemFieldValueDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */; };
-		50A5FB35143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */; };
 		50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE896E14A132E4004E027E /* PKQuestionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897114A13573004E027E /* PKItemFieldValueItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897414A1366B004E027E /* PKItemFieldValueOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */; };
@@ -274,8 +203,6 @@
 		50AE898014A13950004E027E /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
 		50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B2A40A15666EFB00DC6C65 /* PKViewAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
-		50B2A40E15666EFB00DC6C65 /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
-		50B317DC152F7477002E73F2 /* libPodioKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEE814335AB900360855 /* libPodioKit.a */; };
 		50B317DD152F749B002E73F2 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0F414345CF300360855 /* CoreData.framework */; };
 		50B317DE152F74D6002E73F2 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FC14345F0D00360855 /* MobileCoreServices.framework */; };
 		50B317DF152F74E8002E73F2 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FD14345F0D00360855 /* SystemConfiguration.framework */; };
@@ -286,103 +213,56 @@
 		50B317EA152F77EC002E73F2 /* PKTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B317E9152F77EC002E73F2 /* PKTaskListViewController.m */; };
 		50B319CF150F8F2700EAD7C7 /* PKAppStoreAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319CD150F8F2700EAD7C7 /* PKAppStoreAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B319D0150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
-		50B319D1150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
 		50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319DF150F98AE00EAD7C7 /* PKShareData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B319E2150F98AE00EAD7C7 /* PKShareData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E0150F98AE00EAD7C7 /* PKShareData.m */; };
-		50B319E3150F98AE00EAD7C7 /* PKShareData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E0150F98AE00EAD7C7 /* PKShareData.m */; };
 		50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B319E4150F98E800EAD7C7 /* PKShareCategoryData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */; };
-		50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */; };
 		50B529F7148FC06800E05852 /* PKReferenceAlertData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B529F5148FC06800E05852 /* PKReferenceAlertData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B529F8148FC06800E05852 /* PKReferenceAlertData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B529F6148FC06800E05852 /* PKReferenceAlertData.m */; };
-		50B529F9148FC06800E05852 /* PKReferenceAlertData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B529F6148FC06800E05852 /* PKReferenceAlertData.m */; };
 		50BBF53A1439B365002522D6 /* NSString+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BBF5381439B365002522D6 /* NSString+Hash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBF5391439B365002522D6 /* NSString+Hash.m */; };
-		50BBF53C1439B365002522D6 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBF5391439B365002522D6 /* NSString+Hash.m */; };
-		50C7FC2A1446D1CD006E00B8 /* Reachability.h in Headers */ = {isa = PBXBuildFile; fileRef = 50C7FBF91446D1CD006E00B8 /* Reachability.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		50C7FC2B1446D1CD006E00B8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBFA1446D1CD006E00B8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		50C7FC2C1446D1CD006E00B8 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 50C7FBFA1446D1CD006E00B8 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		50CC1CDE14878100000B57EA /* PKReferenceAppData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1CDC148780FF000B57EA /* PKReferenceAppData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1CDF14878100000B57EA /* PKReferenceAppData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1CDD148780FF000B57EA /* PKReferenceAppData.m */; };
-		50CC1CE114878109000B57EA /* PKReferenceAppData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1CDD148780FF000B57EA /* PKReferenceAppData.m */; };
 		50CC1CE414878124000B57EA /* PKReferenceProfileData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1CE214878123000B57EA /* PKReferenceProfileData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1CE514878124000B57EA /* PKReferenceProfileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1CE314878124000B57EA /* PKReferenceProfileData.m */; };
-		50CC1CE614878124000B57EA /* PKReferenceProfileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1CE314878124000B57EA /* PKReferenceProfileData.m */; };
 		50CC1D54148CDA3A000B57EA /* PKBaseAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D42148CDA33000B57EA /* PKBaseAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D55148CDA3A000B57EA /* PKBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D43148CDA33000B57EA /* PKBaseAPI.m */; };
-		50CC1D56148CDA3A000B57EA /* PKBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D43148CDA33000B57EA /* PKBaseAPI.m */; };
 		50CC1D57148CDA3A000B57EA /* PKCommentAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D44148CDA33000B57EA /* PKCommentAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D58148CDA3A000B57EA /* PKCommentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D45148CDA34000B57EA /* PKCommentAPI.m */; };
-		50CC1D59148CDA3A000B57EA /* PKCommentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D45148CDA34000B57EA /* PKCommentAPI.m */; };
 		50CC1D5A148CDA3A000B57EA /* PKFileAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D46148CDA34000B57EA /* PKFileAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D5B148CDA3A000B57EA /* PKFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D47148CDA35000B57EA /* PKFileAPI.m */; };
-		50CC1D5C148CDA3A000B57EA /* PKFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D47148CDA35000B57EA /* PKFileAPI.m */; };
 		50CC1D5D148CDA3A000B57EA /* PKItemAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D48148CDA35000B57EA /* PKItemAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D5E148CDA3A000B57EA /* PKItemAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D49148CDA35000B57EA /* PKItemAPI.m */; };
-		50CC1D5F148CDA3A000B57EA /* PKItemAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D49148CDA35000B57EA /* PKItemAPI.m */; };
 		50CC1D60148CDA3A000B57EA /* PKNotificationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D4A148CDA36000B57EA /* PKNotificationAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D61148CDA3A000B57EA /* PKNotificationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4B148CDA36000B57EA /* PKNotificationAPI.m */; };
-		50CC1D62148CDA3A000B57EA /* PKNotificationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4B148CDA36000B57EA /* PKNotificationAPI.m */; };
 		50CC1D63148CDA3A000B57EA /* PKOrganizationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D4C148CDA37000B57EA /* PKOrganizationAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D64148CDA3A000B57EA /* PKOrganizationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4D148CDA37000B57EA /* PKOrganizationAPI.m */; };
-		50CC1D65148CDA3A000B57EA /* PKOrganizationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4D148CDA37000B57EA /* PKOrganizationAPI.m */; };
 		50CC1D67148CDA3A000B57EA /* PKQuestionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4F148CDA37000B57EA /* PKQuestionAPI.m */; };
-		50CC1D68148CDA3A000B57EA /* PKQuestionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4F148CDA37000B57EA /* PKQuestionAPI.m */; };
 		50CC1D69148CDA3A000B57EA /* PKRatingAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D50148CDA37000B57EA /* PKRatingAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D6A148CDA3A000B57EA /* PKRatingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D51148CDA39000B57EA /* PKRatingAPI.m */; };
-		50CC1D6B148CDA3A000B57EA /* PKRatingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D51148CDA39000B57EA /* PKRatingAPI.m */; };
 		50CC1D6C148CDA3A000B57EA /* PKStreamAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1D52148CDA3A000B57EA /* PKStreamAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50CC1D6D148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
-		50CC1D6E148CDA3A000B57EA /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
 		50D33178150226D40054B777 /* PKSearchResultData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D33176150226D40054B777 /* PKSearchResultData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50D33179150226D40054B777 /* PKSearchResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D33177150226D40054B777 /* PKSearchResultData.m */; };
-		50D3317A150226D40054B777 /* PKSearchResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D33177150226D40054B777 /* PKSearchResultData.m */; };
-		50D681631668031D008AEA0A /* AFHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D6814E1668031D008AEA0A /* AFHTTPClient.h */; };
-		50D681641668031D008AEA0A /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6814F1668031D008AEA0A /* AFHTTPClient.m */; };
-		50D681651668031D008AEA0A /* AFHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681501668031D008AEA0A /* AFHTTPRequestOperation.h */; };
-		50D681661668031D008AEA0A /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681511668031D008AEA0A /* AFHTTPRequestOperation.m */; };
-		50D681671668031D008AEA0A /* AFImageRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681521668031D008AEA0A /* AFImageRequestOperation.h */; };
-		50D681681668031D008AEA0A /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681531668031D008AEA0A /* AFImageRequestOperation.m */; };
-		50D681691668031D008AEA0A /* AFJSONRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681541668031D008AEA0A /* AFJSONRequestOperation.h */; };
-		50D6816A1668031D008AEA0A /* AFJSONRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681551668031D008AEA0A /* AFJSONRequestOperation.m */; };
-		50D6816B1668031D008AEA0A /* AFNetworkActivityIndicatorManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681561668031D008AEA0A /* AFNetworkActivityIndicatorManager.h */; };
-		50D6816C1668031D008AEA0A /* AFNetworkActivityIndicatorManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681571668031D008AEA0A /* AFNetworkActivityIndicatorManager.m */; };
-		50D6816D1668031D008AEA0A /* AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681581668031D008AEA0A /* AFNetworking.h */; };
-		50D6816E1668031D008AEA0A /* AFPropertyListRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681591668031D008AEA0A /* AFPropertyListRequestOperation.h */; };
-		50D6816F1668031D008AEA0A /* AFPropertyListRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6815A1668031D008AEA0A /* AFPropertyListRequestOperation.m */; };
-		50D681701668031D008AEA0A /* AFURLConnectionOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D6815B1668031D008AEA0A /* AFURLConnectionOperation.h */; };
-		50D681711668031D008AEA0A /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6815C1668031D008AEA0A /* AFURLConnectionOperation.m */; };
-		50D681721668031D008AEA0A /* AFXMLRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D6815D1668031D008AEA0A /* AFXMLRequestOperation.h */; };
-		50D681731668031D008AEA0A /* AFXMLRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D6815E1668031D008AEA0A /* AFXMLRequestOperation.m */; };
-		50D681741668031D008AEA0A /* UIImageView+AFNetworking.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681611668031D008AEA0A /* UIImageView+AFNetworking.h */; };
-		50D681751668031D008AEA0A /* UIImageView+AFNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681621668031D008AEA0A /* UIImageView+AFNetworking.m */; };
 		50D681831668955C008AEA0A /* PKHTTPRequestOperation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D681811668955B008AEA0A /* PKHTTPRequestOperation.h */; };
 		50D681841668955C008AEA0A /* PKHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */; };
 		50D737FE166F4505009233FF /* PKOAuth2Token.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D737FC166F4504009233FF /* PKOAuth2Token.h */; };
 		50D737FF166F4505009233FF /* PKOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D737FD166F4504009233FF /* PKOAuth2Token.m */; };
 		50D73811166F6D09009233FF /* NSString+PKRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D7380F166F6D08009233FF /* NSString+PKRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50D73812166F6D09009233FF /* NSString+PKRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73810166F6D09009233FF /* NSString+PKRandom.m */; };
-		50D7386D166F7C2C009233FF /* OHHTTPStubs.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73868166F7C2C009233FF /* OHHTTPStubs.m */; };
-		50D7386E166F7C2C009233FF /* OHHTTPStubsResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D7386A166F7C2C009233FF /* OHHTTPStubsResponse.m */; };
 		50D73873166F7C71009233FF /* PKAPIClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73872166F7C71009233FF /* PKAPIClientTests.m */; };
 		50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DB5BA6150A55B500B5E489 /* PKContactAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50DB5BA9150A55B500B5E489 /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
-		50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
 		50DFDB7714E1989D00D2C5B6 /* PKExternalMeetingData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DFDB7514E1989D00D2C5B6 /* PKExternalMeetingData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50DFDB7814E1989D00D2C5B6 /* PKExternalMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKExternalMeetingData.m */; };
-		50DFDB7914E1989D00D2C5B6 /* PKExternalMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKExternalMeetingData.m */; };
 		50E494D814FD2B7F007D5C32 /* PKLinkedAccountAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E494D614FD2B7F007D5C32 /* PKLinkedAccountAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50E494D914FD2B7F007D5C32 /* PKLinkedAccountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */; };
-		50E494DA14FD2B7F007D5C32 /* PKLinkedAccountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */; };
 		50ED3E7B15010E3000079432 /* PKSearchAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50ED3E7915010E3000079432 /* PKSearchAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50ED3E7C15010E3000079432 /* PKSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3E7A15010E3000079432 /* PKSearchAPI.m */; };
-		50ED3E7D15010E3000079432 /* PKSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3E7A15010E3000079432 /* PKSearchAPI.m */; };
 		50F4FBC81448892700317E62 /* NSDictionary+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F4FBC61448892700317E62 /* NSDictionary+URL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50F4FBC91448892700317E62 /* NSDictionary+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC71448892700317E62 /* NSDictionary+URL.m */; };
-		50F4FBCA1448892700317E62 /* NSDictionary+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC71448892700317E62 /* NSDictionary+URL.m */; };
 		50F4FBCD14488A4800317E62 /* NSString+URL.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F4FBCB14488A4800317E62 /* NSString+URL.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50F4FBCE14488A4800317E62 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBCC14488A4800317E62 /* NSString+URL.m */; };
-		50F4FBCF14488A4800317E62 /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBCC14488A4800317E62 /* NSString+URL.m */; };
 		50F4FBD8144C088000317E62 /* PKAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBD7144C088000317E62 /* PKAsyncTestCase.m */; };
 		50FCC39C14A1C9960001E6F4 /* PKObjectMapperTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FCC39B14A1C9960001E6F4 /* PKObjectMapperTests.m */; };
 		50FCC39F14A1D4D90001E6F4 /* PKTestItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FCC39E14A1D4D90001E6F4 /* PKTestItem.m */; };
@@ -396,27 +276,13 @@
 		50FD7A8F16D3AADD001773EC /* PKSpaceInviteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7A8D16D3AADD001773EC /* PKSpaceInviteData.m */; };
 		50FEF578150E7CB2003B5306 /* PKUserAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FEF576150E7CB2003B5306 /* PKUserAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FEF579150E7CB2003B5306 /* PKUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEF577150E7CB2003B5306 /* PKUserAPI.m */; };
-		50FEF57A150E7CB2003B5306 /* PKUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEF577150E7CB2003B5306 /* PKUserAPI.m */; };
+		6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		5065BF0014335ABA00360855 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5065BEDF14335AB900360855 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5065BEE714335AB900360855;
-			remoteInfo = PodioKit;
-		};
-		50B317D9152F7406002E73F2 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 5065BEDF14335AB900360855 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 5065BEE714335AB900360855;
-			remoteInfo = PodioKit;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
+		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
+		38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.xcconfig"; path = "Pods/Pods-demoapp.xcconfig"; sourceTree = SOURCE_ROOT; };
 		5009E23D1667C8040018EC75 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
 		5009E23E1667C8040018EC75 /* PKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClient.m; sourceTree = "<group>"; };
 		500EA927153F20830049F224 /* PKReferenceBatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceBatchData.h; sourceTree = "<group>"; };
@@ -637,8 +503,6 @@
 		50B529F6148FC06800E05852 /* PKReferenceAlertData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceAlertData.m; sourceTree = "<group>"; };
 		50BBF5381439B365002522D6 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		50BBF5391439B365002522D6 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
-		50C7FBF91446D1CD006E00B8 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
-		50C7FBFA1446D1CD006E00B8 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		50CC1CDC148780FF000B57EA /* PKReferenceAppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceAppData.h; sourceTree = "<group>"; };
 		50CC1CDD148780FF000B57EA /* PKReferenceAppData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceAppData.m; sourceTree = "<group>"; };
 		50CC1CE214878123000B57EA /* PKReferenceProfileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceProfileData.h; sourceTree = "<group>"; };
@@ -662,37 +526,12 @@
 		50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamAPI.m; sourceTree = "<group>"; };
 		50D33176150226D40054B777 /* PKSearchResultData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSearchResultData.h; sourceTree = "<group>"; };
 		50D33177150226D40054B777 /* PKSearchResultData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSearchResultData.m; sourceTree = "<group>"; };
-		50D6814E1668031D008AEA0A /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
-		50D6814F1668031D008AEA0A /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
-		50D681501668031D008AEA0A /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
-		50D681511668031D008AEA0A /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
-		50D681521668031D008AEA0A /* AFImageRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFImageRequestOperation.h; sourceTree = "<group>"; };
-		50D681531668031D008AEA0A /* AFImageRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFImageRequestOperation.m; sourceTree = "<group>"; };
-		50D681541668031D008AEA0A /* AFJSONRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFJSONRequestOperation.h; sourceTree = "<group>"; };
-		50D681551668031D008AEA0A /* AFJSONRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFJSONRequestOperation.m; sourceTree = "<group>"; };
-		50D681561668031D008AEA0A /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityIndicatorManager.h; sourceTree = "<group>"; };
-		50D681571668031D008AEA0A /* AFNetworkActivityIndicatorManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityIndicatorManager.m; sourceTree = "<group>"; };
-		50D681581668031D008AEA0A /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
-		50D681591668031D008AEA0A /* AFPropertyListRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFPropertyListRequestOperation.h; sourceTree = "<group>"; };
-		50D6815A1668031D008AEA0A /* AFPropertyListRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFPropertyListRequestOperation.m; sourceTree = "<group>"; };
-		50D6815B1668031D008AEA0A /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
-		50D6815C1668031D008AEA0A /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
-		50D6815D1668031D008AEA0A /* AFXMLRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFXMLRequestOperation.h; sourceTree = "<group>"; };
-		50D6815E1668031D008AEA0A /* AFXMLRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFXMLRequestOperation.m; sourceTree = "<group>"; };
-		50D6815F1668031D008AEA0A /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		50D681601668031D008AEA0A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
-		50D681611668031D008AEA0A /* UIImageView+AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+AFNetworking.h"; sourceTree = "<group>"; };
-		50D681621668031D008AEA0A /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
 		50D681811668955B008AEA0A /* PKHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKHTTPRequestOperation.h; sourceTree = "<group>"; };
 		50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHTTPRequestOperation.m; sourceTree = "<group>"; };
 		50D737FC166F4504009233FF /* PKOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKOAuth2Token.h; sourceTree = "<group>"; };
 		50D737FD166F4504009233FF /* PKOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKOAuth2Token.m; sourceTree = "<group>"; };
 		50D7380F166F6D08009233FF /* NSString+PKRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKRandom.h"; sourceTree = "<group>"; };
 		50D73810166F6D09009233FF /* NSString+PKRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKRandom.m"; sourceTree = "<group>"; };
-		50D73867166F7C2C009233FF /* OHHTTPStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubs.h; sourceTree = "<group>"; };
-		50D73868166F7C2C009233FF /* OHHTTPStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubs.m; sourceTree = "<group>"; };
-		50D73869166F7C2C009233FF /* OHHTTPStubsResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OHHTTPStubsResponse.h; sourceTree = "<group>"; };
-		50D7386A166F7C2C009233FF /* OHHTTPStubsResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OHHTTPStubsResponse.m; sourceTree = "<group>"; };
 		50D73871166F7C71009233FF /* PKAPIClientTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClientTests.h; sourceTree = "<group>"; };
 		50D73872166F7C71009233FF /* PKAPIClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClientTests.m; sourceTree = "<group>"; };
 		50DB5BA6150A55B500B5E489 /* PKContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKContactAPI.h; sourceTree = "<group>"; };
@@ -729,6 +568,10 @@
 		50FD7A8D16D3AADD001773EC /* PKSpaceInviteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceInviteData.m; sourceTree = "<group>"; };
 		50FEF576150E7CB2003B5306 /* PKUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKUserAPI.h; sourceTree = "<group>"; };
 		50FEF577150E7CB2003B5306 /* PKUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKUserAPI.m; sourceTree = "<group>"; };
+		5E996E3E8F6E4306A302F7F8 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A370E68741D44C408A3BBD91 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -737,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */,
+				0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -753,7 +597,7 @@
 				5065C0F514345CF700360855 /* CoreData.framework in Frameworks */,
 				5065BEFA14335ABA00360855 /* SenTestingKit.framework in Frameworks */,
 				5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */,
-				5065BF0214335ABA00360855 /* libPodioKit.a in Frameworks */,
+				0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -769,7 +613,7 @@
 				509D693A152CA7A40033291C /* Foundation.framework in Frameworks */,
 				509D693B152CA7A40033291C /* CoreGraphics.framework in Frameworks */,
 				50B317E1152F7510002E73F2 /* libz.dylib in Frameworks */,
-				50B317DC152F7477002E73F2 /* libPodioKit.a in Frameworks */,
+				6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -995,9 +839,11 @@
 				5065BEED14335AB900360855 /* PodioKit */,
 				5065BF0314335ABA00360855 /* PodioKitTests */,
 				509D693C152CA7A40033291C /* DemoApp */,
-				5065BFBB1433660200360855 /* Vendor */,
 				5065BEEA14335AB900360855 /* Frameworks */,
 				5065BEE914335AB900360855 /* Products */,
+				0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */,
+				C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */,
+				3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -1025,6 +871,10 @@
 				5065BEEB14335AB900360855 /* Foundation.framework */,
 				5065BEF914335ABA00360855 /* SenTestingKit.framework */,
 				507CA06A1503E8B500678F9D /* libz.dylib */,
+				5E996E3E8F6E4306A302F7F8 /* libPods-podiokit.a */,
+				38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */,
+				749AC896ECA24D14812290D5 /* libPods-podiokittests.a */,
+				A370E68741D44C408A3BBD91 /* libPods-podiokit.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1185,16 +1035,6 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		5065BFBB1433660200360855 /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				50D73865166F7C2C009233FF /* OHHTTPStubs */,
-				50D6814D1668031D008AEA0A /* AFNetworking */,
-				50C7FBF81446D1CD006E00B8 /* Reachability */,
-			);
-			path = Vendor;
-			sourceTree = "<group>";
-		};
 		5065C0A91434535300360855 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -1341,15 +1181,6 @@
 			name = "App Store";
 			sourceTree = "<group>";
 		};
-		50C7FBF81446D1CD006E00B8 /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				50C7FBF91446D1CD006E00B8 /* Reachability.h */,
-				50C7FBFA1446D1CD006E00B8 /* Reachability.m */,
-			);
-			path = Reachability;
-			sourceTree = "<group>";
-		};
 		50D33174150226A70054B777 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -1357,45 +1188,6 @@
 				50D33177150226D40054B777 /* PKSearchResultData.m */,
 			);
 			name = Search;
-			sourceTree = "<group>";
-		};
-		50D6814D1668031D008AEA0A /* AFNetworking */ = {
-			isa = PBXGroup;
-			children = (
-				50D6814E1668031D008AEA0A /* AFHTTPClient.h */,
-				50D6814F1668031D008AEA0A /* AFHTTPClient.m */,
-				50D681501668031D008AEA0A /* AFHTTPRequestOperation.h */,
-				50D681511668031D008AEA0A /* AFHTTPRequestOperation.m */,
-				50D681521668031D008AEA0A /* AFImageRequestOperation.h */,
-				50D681531668031D008AEA0A /* AFImageRequestOperation.m */,
-				50D681541668031D008AEA0A /* AFJSONRequestOperation.h */,
-				50D681551668031D008AEA0A /* AFJSONRequestOperation.m */,
-				50D681561668031D008AEA0A /* AFNetworkActivityIndicatorManager.h */,
-				50D681571668031D008AEA0A /* AFNetworkActivityIndicatorManager.m */,
-				50D681581668031D008AEA0A /* AFNetworking.h */,
-				50D681591668031D008AEA0A /* AFPropertyListRequestOperation.h */,
-				50D6815A1668031D008AEA0A /* AFPropertyListRequestOperation.m */,
-				50D6815B1668031D008AEA0A /* AFURLConnectionOperation.h */,
-				50D6815C1668031D008AEA0A /* AFURLConnectionOperation.m */,
-				50D6815D1668031D008AEA0A /* AFXMLRequestOperation.h */,
-				50D6815E1668031D008AEA0A /* AFXMLRequestOperation.m */,
-				50D6815F1668031D008AEA0A /* LICENSE */,
-				50D681601668031D008AEA0A /* README.md */,
-				50D681611668031D008AEA0A /* UIImageView+AFNetworking.h */,
-				50D681621668031D008AEA0A /* UIImageView+AFNetworking.m */,
-			);
-			path = AFNetworking;
-			sourceTree = "<group>";
-		};
-		50D73865166F7C2C009233FF /* OHHTTPStubs */ = {
-			isa = PBXGroup;
-			children = (
-				50D73867166F7C2C009233FF /* OHHTTPStubs.h */,
-				50D73868166F7C2C009233FF /* OHHTTPStubs.m */,
-				50D73869166F7C2C009233FF /* OHHTTPStubsResponse.h */,
-				50D7386A166F7C2C009233FF /* OHHTTPStubsResponse.m */,
-			);
-			path = OHHTTPStubs;
 			sourceTree = "<group>";
 		};
 		50D73870166F7C59009233FF /* API Client */ = {
@@ -1479,7 +1271,6 @@
 				5032BAD6144491A500B7F7C7 /* PKTaskAPI.h in Headers */,
 				502B5FAE1445729D004F4185 /* PKObjectMapping.h in Headers */,
 				5021CD2C14458FAE00A7013D /* PKDefaultObjectRepository.h in Headers */,
-				50C7FC2A1446D1CD006E00B8 /* Reachability.h in Headers */,
 				50F4FBC81448892700317E62 /* NSDictionary+URL.h in Headers */,
 				50F4FBCD14488A4800317E62 /* NSString+URL.h in Headers */,
 				50599F081456B3B5001F5201 /* PKObjectRepository.h in Headers */,
@@ -1530,16 +1321,6 @@
 				50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */,
 				507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */,
 				5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */,
-				50D681631668031D008AEA0A /* AFHTTPClient.h in Headers */,
-				50D681651668031D008AEA0A /* AFHTTPRequestOperation.h in Headers */,
-				50D681671668031D008AEA0A /* AFImageRequestOperation.h in Headers */,
-				50D681691668031D008AEA0A /* AFJSONRequestOperation.h in Headers */,
-				50D6816B1668031D008AEA0A /* AFNetworkActivityIndicatorManager.h in Headers */,
-				50D6816D1668031D008AEA0A /* AFNetworking.h in Headers */,
-				50D6816E1668031D008AEA0A /* AFPropertyListRequestOperation.h in Headers */,
-				50D681701668031D008AEA0A /* AFURLConnectionOperation.h in Headers */,
-				50D681721668031D008AEA0A /* AFXMLRequestOperation.h in Headers */,
-				50D681741668031D008AEA0A /* UIImageView+AFNetworking.h in Headers */,
 				50D681831668955C008AEA0A /* PKHTTPRequestOperation.h in Headers */,
 				509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */,
 				50D737FE166F4505009233FF /* PKOAuth2Token.h in Headers */,
@@ -1558,9 +1339,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit" */;
 			buildPhases = (
+				6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */,
 				5065BEE414335AB900360855 /* Sources */,
 				5065BEE514335AB900360855 /* Frameworks */,
 				5065BEE614335AB900360855 /* Headers */,
+				731FF3E696474B17A611C090 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1575,15 +1358,16 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5065BF1214335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKitTests" */;
 			buildPhases = (
+				27F93053B7144DFE92793ECB /* Check Pods Manifest.lock */,
 				5065BEF314335ABA00360855 /* Sources */,
 				5065BEF414335ABA00360855 /* Frameworks */,
 				5065BEF514335ABA00360855 /* Resources */,
 				5065BEF614335ABA00360855 /* ShellScript */,
+				8C3D8EE53B594E2CBA1DD531 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				5065BF0114335ABA00360855 /* PBXTargetDependency */,
 			);
 			name = PodioKitTests;
 			productName = PodioKitTests;
@@ -1594,14 +1378,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 509D694A152CA7A40033291C /* Build configuration list for PBXNativeTarget "DemoApp" */;
 			buildPhases = (
+				4C6164ADE2804FF4829C6130 /* Check Pods Manifest.lock */,
 				509D6933152CA7A40033291C /* Sources */,
 				509D6934152CA7A40033291C /* Frameworks */,
 				509D6935152CA7A40033291C /* Resources */,
+				429376E2D80B4047A88E7D6D /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				50B317DA152F7406002E73F2 /* PBXTargetDependency */,
 			);
 			name = DemoApp;
 			productName = DemoApp;
@@ -1661,6 +1446,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		27F93053B7144DFE92793ECB /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		429376E2D80B4047A88E7D6D /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-demoapp-resources.sh\"\n";
+		};
+		4C6164ADE2804FF4829C6130 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
 		5065BEF614335ABA00360855 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1673,6 +1500,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+		};
+		731FF3E696474B17A611C090 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-podiokit-resources.sh\"\n";
+		};
+		8C3D8EE53B594E2CBA1DD531 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-podiokittests-resources.sh\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1730,7 +1599,6 @@
 				5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
 				502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */,
 				5021CD2D14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */,
-				50C7FC2B1446D1CD006E00B8 /* Reachability.m in Sources */,
 				50F4FBC91448892700317E62 /* NSDictionary+URL.m in Sources */,
 				50F4FBCE14488A4800317E62 /* NSString+URL.m in Sources */,
 				5028CBEB145E90D40003A097 /* PKObjectMapper.m in Sources */,
@@ -1784,15 +1652,6 @@
 				50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
 				507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */,
 				5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */,
-				50D681641668031D008AEA0A /* AFHTTPClient.m in Sources */,
-				50D681661668031D008AEA0A /* AFHTTPRequestOperation.m in Sources */,
-				50D681681668031D008AEA0A /* AFImageRequestOperation.m in Sources */,
-				50D6816A1668031D008AEA0A /* AFJSONRequestOperation.m in Sources */,
-				50D6816C1668031D008AEA0A /* AFNetworkActivityIndicatorManager.m in Sources */,
-				50D6816F1668031D008AEA0A /* AFPropertyListRequestOperation.m in Sources */,
-				50D681711668031D008AEA0A /* AFURLConnectionOperation.m in Sources */,
-				50D681731668031D008AEA0A /* AFXMLRequestOperation.m in Sources */,
-				50D681751668031D008AEA0A /* UIImageView+AFNetworking.m in Sources */,
 				50D681841668955C008AEA0A /* PKHTTPRequestOperation.m in Sources */,
 				509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */,
 				50D737FF166F4505009233FF /* PKOAuth2Token.m in Sources */,
@@ -1808,83 +1667,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5065BF471433627900360855 /* PKRequest.m in Sources */,
-				5065BF4A1433627900360855 /* PKRequestManager.m in Sources */,
-				5065BF551433632200360855 /* PKMappingCoordinator.m in Sources */,
-				5065BF5A1433632C00360855 /* PKMappingProvider.m in Sources */,
-				5065BF6A143363EC00360855 /* PKCoreDataRepository.m in Sources */,
-				5065BF851433649A00360855 /* PKAttributeMapping.m in Sources */,
-				5065BF8B1433649A00360855 /* PKCompoundMapping.m in Sources */,
-				5065BF911433649A00360855 /* PKPropertyMapping.m in Sources */,
-				5065BF941433649A00360855 /* PKRelationshipMapping.m in Sources */,
-				5065BF9A1433649A00360855 /* PKValueMapping.m in Sources */,
-				5065BFB31433650E00360855 /* PKManagedObject.m in Sources */,
-				5065BFB81433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */,
-				5065BFF3143366C100360855 /* NSArray+PKAdditions.m in Sources */,
-				5065BFF6143366C100360855 /* NSSet+PKAdditions.m in Sources */,
-				5065BFFB143366DD00360855 /* NSString+PKAdditions.m in Sources */,
-				5065C0001433670800360855 /* NSDictionary+PKAdditions.m in Sources */,
-				5065C0291433697D00360855 /* NSManagedObjectContext+PKAdditions.m in Sources */,
-				5065C0CD143453BE00360855 /* NSDate+PKAdditions.m in Sources */,
-				5030C05E1435E76300027F07 /* PKAppFieldContactData.m in Sources */,
-				5030C0611435E76300027F07 /* PKAppFieldMoneyData.m in Sources */,
-				5030C0641435E76300027F07 /* PKAppFieldOptionsData.m in Sources */,
-				5030C0671435E76300027F07 /* PKEmbedData.m in Sources */,
-				5030C06A1435E76300027F07 /* PKQuestionData.m in Sources */,
-				5030C06D1435E76300027F07 /* PKQuestionOptionData.m in Sources */,
-				5030C0731435E76300027F07 /* PKStreamActionData.m in Sources */,
-				5030C0761435E76300027F07 /* PKReferenceAnswerData.m in Sources */,
-				5030C0791435E76300027F07 /* PKReferenceCommentData.m in Sources */,
-				5030C0821435E76300027F07 /* PKReferenceRatingData.m in Sources */,
-				5030C0881435E76300027F07 /* PKReferenceTaskActionData.m in Sources */,
-				5030C08B1435E76300027F07 /* PKReferenceTaskData.m in Sources */,
-				5030C0911435E76300027F07 /* PKStreamItemData.m in Sources */,
-				5030C0941435E76300027F07 /* PKStreamStatusData.m in Sources */,
-				5030C0971435E76300027F07 /* PKStreamTaskData.m in Sources */,
-				5030C09A1435E76300027F07 /* PKItemFieldValueItemData.m in Sources */,
-				5030C09D1435E76300027F07 /* PKItemFieldValueCalculationData.m in Sources */,
-				5030C0A01435E76300027F07 /* PKItemFieldValueContactData.m in Sources */,
-				5030C0A31435E76300027F07 /* PKObjectData.m in Sources */,
-				5030C0A61435E76300027F07 /* PKItemFieldValueDateData.m in Sources */,
-				5030C0A91435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */,
-				5030C0AF1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */,
-				5030C0B21435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */,
-				5030C0CE1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
-				501BF18014386AFE009764A3 /* PKFileData.m in Sources */,
-				50BBF53C1439B365002522D6 /* NSString+Hash.m in Sources */,
-				50A5FB35143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
-				5032BABA144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
 				5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */,
 				5032BACE1444907800B7F7C7 /* PKTestTaskMapping.m in Sources */,
-				5032BAD8144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
-				502B5FB01445729D004F4185 /* PKObjectMapping.m in Sources */,
 				502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */,
-				5021CD2E14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */,
-				50C7FC2C1446D1CD006E00B8 /* Reachability.m in Sources */,
-				50F4FBCA1448892700317E62 /* NSDictionary+URL.m in Sources */,
-				50F4FBCF14488A4800317E62 /* NSString+URL.m in Sources */,
 				50F4FBD8144C088000317E62 /* PKAsyncTestCase.m in Sources */,
-				5028CBEC145E90D40003A097 /* PKObjectMapper.m in Sources */,
-				5028CBEF145E921A0003A097 /* PKStandaloneMapping.m in Sources */,
-				5028CBF4145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */,
-				5028CBF7145E939A0003A097 /* PKConstants.m in Sources */,
-				5028CBFC145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */,
-				50CC1CE114878109000B57EA /* PKReferenceAppData.m in Sources */,
-				50CC1CE614878124000B57EA /* PKReferenceProfileData.m in Sources */,
-				50CC1D56148CDA3A000B57EA /* PKBaseAPI.m in Sources */,
-				50CC1D59148CDA3A000B57EA /* PKCommentAPI.m in Sources */,
-				50CC1D5C148CDA3A000B57EA /* PKFileAPI.m in Sources */,
-				50CC1D5F148CDA3A000B57EA /* PKItemAPI.m in Sources */,
-				50CC1D62148CDA3A000B57EA /* PKNotificationAPI.m in Sources */,
-				50CC1D65148CDA3A000B57EA /* PKOrganizationAPI.m in Sources */,
-				50CC1D68148CDA3A000B57EA /* PKQuestionAPI.m in Sources */,
-				50CC1D6B148CDA3A000B57EA /* PKRatingAPI.m in Sources */,
-				50CC1D6E148CDA3A000B57EA /* PKStreamAPI.m in Sources */,
-				50A16D8E148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */,
-				50A16D9F148F4A4800AF86C4 /* PKReferenceItemData.m in Sources */,
-				50A16DA4148F4A5A00AF86C4 /* PKReferenceMessageData.m in Sources */,
-				50B529F9148FC06800E05852 /* PKReferenceAlertData.m in Sources */,
-				5059533E149634B70046685A /* PKConversationAPI.m in Sources */,
 				50FCC39C14A1C9960001E6F4 /* PKObjectMapperTests.m in Sources */,
 				50FCC39F14A1D4D90001E6F4 /* PKTestItem.m in Sources */,
 				50FCC3A214A1D5550001E6F4 /* PKTestItemMapping.m in Sources */,
@@ -1893,34 +1679,7 @@
 				50FCC3AB14A1E2580001E6F4 /* PKTestItemFieldMapping.m in Sources */,
 				50FCC3AE14A1E75C0001E6F4 /* PKTestItemApp.m in Sources */,
 				50FCC3B114A1E7DE0001E6F4 /* PKTestItemAppMapping.m in Sources */,
-				5084B57C14DEF5F0002FC8DB /* PKLog.m in Sources */,
-				50DFDB7914E1989D00D2C5B6 /* PKExternalMeetingData.m in Sources */,
-				508D211F14FBB332002593A4 /* PKSpaceCreateData.m in Sources */,
-				508D212E14FBB875002593A4 /* PKSpaceAPI.m in Sources */,
-				50E494DA14FD2B7F007D5C32 /* PKLinkedAccountAPI.m in Sources */,
-				5032336414FD3F2C0028D887 /* PKExternalFileData.m in Sources */,
-				507F7A1914FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */,
-				5053634514FF962B0068622A /* PKProviderData.m in Sources */,
-				50ED3E7D15010E3000079432 /* PKSearchAPI.m in Sources */,
-				50D3317A150226D40054B777 /* PKSearchResultData.m in Sources */,
-				50458F3C1507734300FA66A6 /* PKByLineData.m in Sources */,
-				50DB5BAA150A55B500B5E489 /* PKContactAPI.m in Sources */,
-				50FEF57A150E7CB2003B5306 /* PKUserAPI.m in Sources */,
-				50B319D1150F8F2700EAD7C7 /* PKAppStoreAPI.m in Sources */,
-				50B319E3150F98AE00EAD7C7 /* PKShareData.m in Sources */,
-				50B319E8150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */,
-				50858ABF15120EAD00ED8A6E /* PKAppAPI.m in Sources */,
-				50836208152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
-				501FDEDF1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
-				5048937C15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
-				50B2A40E15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
-				5009E2411667C8040018EC75 /* PKAPIClient.m in Sources */,
-				50D7386D166F7C2C009233FF /* OHHTTPStubs.m in Sources */,
-				50D7386E166F7C2C009233FF /* OHHTTPStubsResponse.m in Sources */,
 				50D73873166F7C71009233FF /* PKAPIClientTests.m in Sources */,
-				508A6BAA166F8F7500B0FAB4 /* NSString+PKRandom.m in Sources */,
-				502CFD5916D12012002C59E1 /* NSString+PKBase64.m in Sources */,
-				502CFD5A16D12015002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1938,19 +1697,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		5065BF0114335ABA00360855 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5065BEE714335AB900360855 /* PodioKit */;
-			targetProxy = 5065BF0014335ABA00360855 /* PBXContainerItemProxy */;
-		};
-		50B317DA152F7406002E73F2 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 5065BEE714335AB900360855 /* PodioKit */;
-			targetProxy = 50B317D9152F7406002E73F2 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		509D693F152CA7A40033291C /* InfoPlist.strings */ = {
@@ -2005,6 +1751,7 @@
 		};
 		5065BF1014335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/PodioKit.dst;
@@ -2019,7 +1766,7 @@
 					"DEBUG=1",
 				);
 				GCC_THUMB_SUPPORT = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)";
 			};
@@ -2027,6 +1774,7 @@
 		};
 		5065BF1114335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -2036,7 +1784,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
-				OTHER_LDFLAGS = "-ObjC";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)";
 				VALIDATE_PRODUCT = YES;
@@ -2045,6 +1793,7 @@
 		};
 		5065BF1314335ABA00360855 /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2063,6 +1812,7 @@
 		};
 		5065BF1414335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */;
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -2081,6 +1831,7 @@
 		};
 		509D6948152CA7A40033291C /* Development */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -2104,6 +1855,7 @@
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -2112,6 +1864,7 @@
 		};
 		509D6949152CA7A40033291C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
@@ -2125,6 +1878,7 @@
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
+					"$(inherited)",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				VALIDATE_PRODUCT = YES;

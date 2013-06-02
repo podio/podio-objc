@@ -6,9 +6,6 @@
   #import <Foundation/Foundation.h>
   #import <SystemConfiguration/SystemConfiguration.h>
   #import <MobileCoreServices/MobileCoreServices.h>
-  #import "PKLog.h"
-  #import "PKAssert.h"
-  #import "PKConstants.h"
-  #import "NSError+PKErrors.h"
+  #import <PodioKit/PodioKit.h>
   #import "PKTestAssert.h"
 #endif
