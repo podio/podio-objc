@@ -11,21 +11,21 @@
 @implementation PKItemAPI
 
 + (PKRequest *)requestForItemWithId:(NSUInteger)itemId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld", (unsigned long)itemId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestToDeleteItemWithId:(NSUInteger)itemId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodDELETE];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld", (unsigned long)itemId] method:PKRequestMethodDELETE];
 }
 
 + (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId filters:(NSDictionary *)filters offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKRequest *request = nil;
   if (filters) {
-    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/filter/", appId] method:PKRequestMethodPOST];
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/filter/", (unsigned long)appId] method:PKRequestMethodPOST];
   } else if (viewId > 0) {
-    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/filter/%d/", appId, viewId] method:PKRequestMethodPOST];
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/filter/%ld/", (unsigned long)appId, (unsigned long)viewId] method:PKRequestMethodPOST];
   } else {
-    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodGET];
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/", (unsigned long)appId] method:PKRequestMethodGET];
   }
   
   request.offset = offset;
@@ -52,11 +52,11 @@
     [request.parameters setObject:@"created_on" forKey:@"sort_by"];
     
     if (offset > 0) {
-      [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+      [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)offset] forKey:@"offset"];
     }
     
     if (limit > 0) {
-      [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+      [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
     }
   }
   
@@ -64,7 +64,7 @@
 }
 
 + (PKRequest *)requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%d/", appId] method:PKRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/", (unsigned long)appId] method:PKRequestMethodPOST];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
   if (fileIds) {
@@ -75,7 +75,7 @@
 }
 
 + (PKRequest *)requestToUpdateItemFields:(NSArray *)fields itemId:(NSUInteger)itemId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/value", itemId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld/value", (unsigned long)itemId] method:PKRequestMethodPUT];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
   
@@ -83,7 +83,7 @@
 }
 
 + (PKRequest *)requestToUpdateItemWithId:(NSUInteger)itemId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d", itemId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
   if (fileIds) {
@@ -96,7 +96,7 @@
 + (PKRequest *)requestToSetParticipationForItemWithId:(NSUInteger)itemId status:(PKMeetingParticipantStatus)status {
   PKAssert(status != PKMeetingParticipantStatusNone, @"Participation is invalid, %d", status);
   
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%d/participation", itemId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld/participation", (unsigned long)itemId] method:PKRequestMethodPUT];
   
   NSString *statusString = [PKConstants stringForMeetingParticipantStatus:status];
   request.body = @{@"status": statusString};
@@ -105,7 +105,7 @@
 }
 
 + (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemIds:(NSArray *)notItemIds sortType:(PKItemAPISortType)sortType {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%d/find", fieldId] method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/field/%ld/find", (unsigned long)fieldId] method:PKRequestMethodGET];
 
   switch (sortType) {
     case PKItemAPISortTypeCreatedOn:
@@ -130,10 +130,10 @@
 }
 
 + (PKRequest *)requestForReferencesToItemWithId:(NSUInteger)itemId fieldId:(NSUInteger)fieldId limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/item/%d/reference/field/%d", itemId, fieldId]];
+  PKRequest *request = [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/item/%ld/reference/field/%ld", (unsigned long)itemId, (unsigned long)fieldId]];
   
   if (limit > 0) {
-    request.parameters[@"limit"] = [NSString stringWithFormat:@"%d", limit];
+    request.parameters[@"limit"] = [NSString stringWithFormat:@"%ld", (unsigned long)limit];
   }
   
   return request;

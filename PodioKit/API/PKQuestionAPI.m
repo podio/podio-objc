@@ -11,7 +11,7 @@
 @implementation PKQuestionAPI
 
 + (PKRequest *)requestToAnswerQuestionWithId:(NSUInteger)questionId withOptionId:(NSUInteger)optionId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-	NSString * uri = [NSString stringWithFormat:@"/question/%d/%@/%d/", questionId, [PKConstants stringForReferenceType:referenceType], referenceId];
+	NSString * uri = [NSString stringWithFormat:@"/question/%ld/%@/%ld/", (unsigned long)questionId, [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 	request.body = @{@"question_option_id": @(optionId)};
   

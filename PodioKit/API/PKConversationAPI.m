@@ -29,7 +29,7 @@
 }
 
 + (PKRequest *)requestForConversationWithId:(NSUInteger)conversationId {
-  NSString * uri = [NSString stringWithFormat:@"/conversation/%d", conversationId];
+  NSString * uri = [NSString stringWithFormat:@"/conversation/%ld", (unsigned long)conversationId];
   return [PKRequest requestWithURI:uri method:PKRequestMethodGET];
 }
 
@@ -38,7 +38,7 @@
 }
 
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text fileIds:(NSArray *)fileIds {
-  NSString * uri = [NSString stringWithFormat:@"/conversation/%d/reply/v2", conversationId];
+  NSString * uri = [NSString stringWithFormat:@"/conversation/%ld/reply/v2", (unsigned long)conversationId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
   
   request.body = [[NSMutableDictionary alloc] init];
@@ -52,7 +52,7 @@
 }
 
 + (PKRequest *)requestToAddParticipantWithUserId:(NSUInteger)userId toConversationWithId:(NSUInteger)conversationId {
-  NSString * uri = [NSString stringWithFormat:@"/conversation/%d/participant/", conversationId];
+  NSString * uri = [NSString stringWithFormat:@"/conversation/%ld/participant/", (unsigned long)conversationId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
   request.body = @{@"user_id": @(userId)};
   
@@ -91,7 +91,7 @@
 }
 
 + (PKRequest *)requestForEventsForConversationWithId:(NSUInteger)conversationId offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/event/", conversationId]];
+  PKRequest *request = [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/conversation/%ld/event/", (unsigned long)conversationId]];
   request.offset = offset;
   
   request.parameters[@"offset"] = @(offset);
@@ -104,27 +104,27 @@
 }
 
 + (PKRequest *)requestForEventWithId:(NSUInteger)eventId {
-  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/conversation/event/%d", eventId]];
+  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/conversation/event/%ld", (unsigned long)eventId]];
 }
 
 + (PKRequest *)requestToStarConversationWithId:(NSUInteger)conversationId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/star", conversationId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%ld/star", (unsigned long)conversationId]];
 }
 
 + (PKRequest *)requestToUnstarConversationWithId:(NSUInteger)conversationId {
-  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/star", conversationId]];
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%ld/star", (unsigned long)conversationId]];
 }
 
 + (PKRequest *)requestToReadConversationWithId:(NSUInteger)conversationId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/read", conversationId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%ld/read", (unsigned long)conversationId]];
 }
 
 + (PKRequest *)requestToUnreadConversationWithId:(NSUInteger)conversationId {
-  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/read", conversationId]];
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/conversation/%ld/read", (unsigned long)conversationId]];
 }
 
 + (PKRequest *)requestToLeaveConversationWithId:(NSUInteger)conversationId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%d/leave", conversationId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/conversation/%ld/leave", (unsigned long)conversationId]];
 }
 
 @end

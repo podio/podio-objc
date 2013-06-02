@@ -23,7 +23,7 @@
 }
 
 + (PKRequest *)requestToUpdateOrganizationWithId:(NSUInteger)organizationId name:(NSString *)name {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/org/%d", organizationId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/org/%ld", (unsigned long)organizationId] method:PKRequestMethodPUT];
   request.body = @{@"name": name};
   
   return request;

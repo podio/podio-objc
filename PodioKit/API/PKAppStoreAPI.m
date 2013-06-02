@@ -33,7 +33,7 @@
 
 + (PKRequest *)requestForSharesInCategoryWithId:(NSUInteger)categoryId type:(PKAppStoreAPIShareType)type sortOrder:(PKAppStoreAPISortOrder)sortOrder 
                                        language:(NSString *)language offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%d/", categoryId] method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/category/%ld/", (unsigned long)categoryId] method:PKRequestMethodGET];
   
   NSString *typeString = nil;
   switch (type) {
@@ -78,11 +78,11 @@
   }
   
   if (offset > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)offset] forKey:@"offset"];
   }
   
   if (limit > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   }
   
   return request;
@@ -93,7 +93,7 @@
 }
 
 + (PKRequest *)requestToInstallShareWithId:(NSUInteger)shareId spaceId:(NSUInteger)spaceId dependencies:(NSArray *)dependencies {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%d/install/v2", shareId] method:PKRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/app_store/%ld/install/v2", (unsigned long)shareId] method:PKRequestMethodPOST];
   
   request.body = [NSMutableDictionary dictionaryWithObject:@(spaceId) forKey:@"space_id"];
   

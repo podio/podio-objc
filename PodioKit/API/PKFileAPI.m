@@ -85,7 +85,7 @@
 }
 
 + (PKRequest *)requestToAttachFileWithId:(NSUInteger)fileId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d/attach", fileId] method:PKRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%ld/attach", (unsigned long)fileId] method:PKRequestMethodPOST];
   
   request.body = @{@"ref_type": [PKConstants stringForReferenceType:referenceType], 
                   @"ref_id": @(referenceId)};
@@ -94,25 +94,25 @@
 }
 
 + (PKRequest *)requestToDeleteFileWithId:(NSUInteger)fileId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%d", fileId] method:PKRequestMethodDELETE];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/%ld", (unsigned long)fileId] method:PKRequestMethodDELETE];
 }
 
 + (PKRequest *)requestForFilesForLinkedAccountWithId:(NSUInteger)linkedAccountId externalFolderId:(NSString *)externalFolderId limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%d/", linkedAccountId]  method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%ld/", (unsigned long)linkedAccountId]  method:PKRequestMethodGET];
   
   if (externalFolderId != nil) {
     [request.parameters setObject:externalFolderId forKey:@"external_folder_id"];
   }
   
   if (limit > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   }
   
   return request;
 }
 
 + (PKRequest *)requestToUploadLinkedAccountFileWithExternalFileId:(NSString *)externalFileId linkedAccountId:(NSUInteger)linkedAccountId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%d/", linkedAccountId]  method:PKRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/file/linked_account/%ld/", (unsigned long)linkedAccountId]  method:PKRequestMethodPOST];
   request.body = @{@"external_file_id": externalFileId};
   
   return request;

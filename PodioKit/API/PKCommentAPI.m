@@ -15,7 +15,7 @@
 }
 
 + (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType fileIds:(NSArray *)fileIds {
-	NSString * uri = [NSString stringWithFormat:@"/comment/%@/%d/", [PKConstants stringForReferenceType:referenceType], referenceId];
+	NSString * uri = [NSString stringWithFormat:@"/comment/%@/%ld/", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST objectMapping:nil];
   
 	request.body = [[NSMutableDictionary alloc] init];

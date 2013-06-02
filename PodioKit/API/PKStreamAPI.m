@@ -19,8 +19,8 @@
   request.offset = offset;
   
   NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     [NSString stringWithFormat:@"%d", offset], @"offset",
-                                     [NSString stringWithFormat:@"%d", limit], @"limit", nil];
+                                     [NSString stringWithFormat:@"%ld", (unsigned long)offset], @"offset",
+                                     [NSString stringWithFormat:@"%ld", (unsigned long)limit], @"limit", nil];
   
   if (dateFrom != nil) {
     [parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_from"];
@@ -40,12 +40,12 @@
                                      limit:(NSUInteger)limit 
                                   dateFrom:(NSDate *)dateFrom 
                                     dateTo:(NSDate *)dateTo {  
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/space/%d/v2/", spaceId] method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/space/%ld/v2/", (unsigned long)spaceId] method:PKRequestMethodGET];
   request.offset = offset;
   
   NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     [NSString stringWithFormat:@"%d", offset], @"offset",
-                                     [NSString stringWithFormat:@"%d", limit], @"limit", nil];
+                                     [NSString stringWithFormat:@"%ld", (unsigned long)offset], @"offset",
+                                     [NSString stringWithFormat:@"%ld", (unsigned long)limit], @"limit", nil];
   
   if (dateFrom != nil) {
     [parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_from"];
@@ -65,12 +65,12 @@
                                             limit:(NSUInteger)limit 
                                          dateFrom:(NSDate *)dateFrom 
                                            dateTo:(NSDate *)dateTo {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/org/%d/v2/", organizationId] method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/stream/org/%ld/v2/", (unsigned long)organizationId] method:PKRequestMethodGET];
   request.offset = offset;
   
   NSMutableDictionary *parameters = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-                                     [NSString stringWithFormat:@"%d", offset], @"offset",
-                                     [NSString stringWithFormat:@"%d", limit], @"limit", nil];
+                                     [NSString stringWithFormat:@"%ld", (unsigned long)offset], @"offset",
+                                     [NSString stringWithFormat:@"%ld", (unsigned long)limit], @"limit", nil];
   
   if (dateFrom != nil) {
     [parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_from"];
@@ -86,7 +86,7 @@
 }
 
 + (PKRequest *)requestForStreamObjectWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-  NSString * uri = [NSString stringWithFormat:@"/stream/%@/%d/v2", [PKConstants stringForReferenceType:referenceType], referenceId];
+  NSString * uri = [NSString stringWithFormat:@"/stream/%@/%ld/v2", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   return [PKRequest requestWithURI:uri method:PKRequestMethodGET];
 }
 

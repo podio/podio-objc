@@ -11,7 +11,7 @@
 @implementation PKRatingAPI
 
 + (PKRequest *)requestForLikeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-	NSString * uri = [NSString stringWithFormat:@"/rating/%@/%d/like", [PKConstants stringForReferenceType:referenceType], referenceId];
+	NSString * uri = [NSString stringWithFormat:@"/rating/%@/%ld/like", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST objectMapping:nil];
 	request.body = @{@"value": @1};
   
@@ -19,7 +19,7 @@
 }
 
 + (PKRequest *)requestForUnlikeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-	NSString *uri = [NSString stringWithFormat:@"/rating/%@/%d/like", [PKConstants stringForReferenceType:referenceType], referenceId];
+	NSString *uri = [NSString stringWithFormat:@"/rating/%@/%ld/like", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodDELETE objectMapping:nil];
   
   return request;

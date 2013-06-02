@@ -11,21 +11,21 @@
 @implementation PKSpaceAPI
 
 + (PKRequest *)requestForSpaceWithId:(NSUInteger)spaceId {
-  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/space/%d", spaceId]];
+  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/space/%ld", (unsigned long)spaceId]];
 }
 
 + (PKRequest *)requestToJoinSpaceWithId:(NSUInteger)spaceId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/join", spaceId] method:PKRequestMethodPOST];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%ld/join", (unsigned long)spaceId] method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member_request/%d/accept", spaceId, requestId] method:PKRequestMethodPOST];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%ld/member_request/%ld/accept", (unsigned long)spaceId, (unsigned long)requestId] method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId {
   PKAssert(name != nil, @"Space name cannot be nil");
   PKAssert([name length] > 0, @"Space name cannot be empty");
-  PKAssert(organizationId > 0, @"Invalid organization id %d", organizationId);
+  PKAssert(organizationId > 0, @"Invalid organization id %ld", (unsigned long)organizationId);
   
   PKRequest *request = [PKRequest requestWithURI:@"/space/" method:PKRequestMethodPOST];
   
@@ -35,7 +35,7 @@
 }
 
 + (PKRequest *)requestToAddMemberToSpaceWithId:(NSUInteger)spaceId role:(PKRole)role userIds:(NSArray *)userIds emails:(NSArray *)emails externalContacts:(NSDictionary *)externalContacts {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%d/member/", spaceId] method:PKRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%ld/member/", (unsigned long)spaceId] method:PKRequestMethodPOST];
   
   request.body = [NSMutableDictionary dictionary];
   request.body[@"role"] = [PKConstants stringForRole:role];
@@ -56,7 +56,7 @@
 }
 
 + (PKRequest *)requestToRemoveMemberWithUserId:(NSUInteger)userId fromSpaceWithId:(NSUInteger)spaceId {
-  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/space/%d/member/%d", spaceId, userId]];
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/space/%ld/member/%ld", (unsigned long)spaceId, (unsigned long)userId]];
 }
 
 @end

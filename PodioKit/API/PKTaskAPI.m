@@ -12,7 +12,7 @@
 @implementation PKTaskAPI
 
 + (PKRequest *)requestForTaskWithId:(NSUInteger)taskId {
-  NSString *uri = [NSString stringWithFormat:@"/task/%d", taskId];
+  NSString *uri = [NSString stringWithFormat:@"/task/%ld", (unsigned long)taskId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET];
   
   return request;
@@ -21,10 +21,10 @@
 + (PKRequest *)requestForTasksWithParameters:(NSDictionary *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKRequest *request = [PKRequest requestWithURI:@"/task/" method:PKRequestMethodGET];
   
-  [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+  [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)offset] forKey:@"offset"];
   
   if (limit > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   }
   
   [request.parameters addEntriesFromDictionary:parameters];
@@ -36,7 +36,7 @@
   NSMutableDictionary *parameters = [NSMutableDictionary dictionary];
   [parameters setObject:@"due_date" forKey:@"grouping"];
   [parameters setObject:@"full" forKey:@"view"];
-  [parameters setObject:[NSString stringWithFormat:@"%d", userId] forKey:@"responsible"];
+  [parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)userId] forKey:@"responsible"];
   [parameters setObject:@"0" forKey:@"completed"];
   
   return [self requestForTasksWithParameters:parameters offset:offset limit:limit];
@@ -63,22 +63,22 @@
 }
 
 + (PKRequest *)requestToAssignTaskWithId:(NSUInteger)taskId toUserWithId:(NSUInteger)userId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/assign", taskId] method:PKRequestMethodPOST];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/assign", (unsigned long)taskId] method:PKRequestMethodPOST];
   request.body = @{@"responsible": @(userId)};
   
   return request;
 }
 
 + (PKRequest *)requestToCompleteTaskWithId:(NSUInteger)taskId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/complete", taskId] method:PKRequestMethodPOST];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/complete", (unsigned long)taskId] method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToIncompleteTaskWithId:(NSUInteger)taskId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/incomplete", taskId] method:PKRequestMethodPOST];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/incomplete", (unsigned long)taskId] method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToUpdateReferenceForTaskWithId:(NSUInteger)taskId referenceType:(PKReferenceType)referenceType referenceId:(NSUInteger)referenceId {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/ref", taskId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/ref", (unsigned long)taskId] method:PKRequestMethodPUT];
   request.body = @{@"ref_type": [PKConstants stringForReferenceType:referenceType], 
                   @"ref_id": @(referenceId)};
   
@@ -86,28 +86,28 @@
 }
 
 + (PKRequest *)requestToUpdatePrivacyForTaskWithId:(NSUInteger)taskId isPrivate:(BOOL)isPrivate {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/private", taskId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/private", (unsigned long)taskId] method:PKRequestMethodPUT];
   request.body = @{@"private": @(isPrivate)};
   
   return request;
 }
 
 + (PKRequest *)requestToUpdateTextForTaskWithId:(NSUInteger)taskId text:(NSString *)text {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/text", taskId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/text", (unsigned long)taskId] method:PKRequestMethodPUT];
   request.body = @{@"text": text};
   
   return request;
 }
 
 + (PKRequest *)requestToUpdateDescriptionForTaskWithId:(NSUInteger)taskId description:(NSString *)description {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/description", taskId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/description", (unsigned long)taskId] method:PKRequestMethodPUT];
   request.body = @{@"description": description};
   
   return request;
 }
 
 + (PKRequest *)requestToUpdateDueDateForTaskWithId:(NSUInteger)taskId dueDate:(NSDate *)dueDate {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d/due_on", taskId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/due_on", (unsigned long)taskId] method:PKRequestMethodPUT];
   
   if (dueDate != nil) {
     request.body = @{@"due_on": [[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString]};
@@ -131,7 +131,7 @@
   PKRequest *request = nil;
   
   if (hasReference) {
-    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%@/%d/", [PKConstants stringForReferenceType:referenceType], referenceId] method:PKRequestMethodPOST];
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%@/%ld/", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId] method:PKRequestMethodPOST];
   } else {
     request = [PKRequest requestWithURI:@"/task/" method:PKRequestMethodPOST];
   }
@@ -175,7 +175,7 @@
                              referenceId:(NSUInteger)referenceId 
                            referenceType:(PKReferenceType)referenceType
                                  fileIds:(NSArray *)fileIds {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKRequestMethodPUT];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld", (unsigned long)taskId] method:PKRequestMethodPUT];
   
   NSMutableDictionary *body = [NSMutableDictionary dictionary];
   [body setObject:text forKey:@"text"];
@@ -208,7 +208,7 @@
 }
 
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%d", taskId] method:PKRequestMethodDELETE];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld", (unsigned long)taskId] method:PKRequestMethodDELETE];
 }
 
 + (PKRequest *)requestForTaskTotalsWithTime:(PKTaskTotalsTime)time {
@@ -238,7 +238,7 @@
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET];
   
   if (spaceId > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", spaceId] forKey:@"space_id"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)spaceId] forKey:@"space_id"];
   }
   
   return request;

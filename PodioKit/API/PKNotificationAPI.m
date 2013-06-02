@@ -16,8 +16,8 @@
   request.parameters = [NSMutableDictionary dictionaryWithDictionary:options];
   
   request.offset = offset;
-  [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
-  [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+  [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)offset] forKey:@"offset"];
+  [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   
   if (dateFrom != nil) {
     [request.parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"created_from"];
@@ -54,11 +54,11 @@
 }
 
 + (PKRequest *)requestForNotificationWithNotificationId:(NSUInteger)notificationId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/notification/%d/v2", notificationId] method:PKRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/notification/%ld/v2", (unsigned long)notificationId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestToMarkNotificationAsViewedWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-  NSString *uri = [NSString stringWithFormat:@"/notification/%@/%d/viewed", [PKConstants stringForReferenceType:referenceType], referenceId];
+  NSString *uri = [NSString stringWithFormat:@"/notification/%@/%ld/viewed", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
@@ -67,12 +67,12 @@
 }
 
 + (PKRequest *)requestToStarNotificationWithId:(NSUInteger)notificationId {
-  NSString *uri = [NSString stringWithFormat:@"/notification/%d/star", notificationId];
+  NSString *uri = [NSString stringWithFormat:@"/notification/%ld/star", (unsigned long)notificationId];
   return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
 + (PKRequest *)requestToUnstarNotificationWithId:(NSUInteger)notificationId {
-  NSString *uri = [NSString stringWithFormat:@"/notification/%d/star", notificationId];
+  NSString *uri = [NSString stringWithFormat:@"/notification/%ld/star", (unsigned long)notificationId];
   return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
 }
 

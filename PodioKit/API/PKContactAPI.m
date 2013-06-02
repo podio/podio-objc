@@ -38,11 +38,11 @@
   }
   
   if (offset > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", offset] forKey:@"offset"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)offset] forKey:@"offset"];
   }
   
   if (limit > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   }
   
   return request;
@@ -53,28 +53,28 @@
 }
 
 + (PKRequest *)requestForContactsInSpaceWithId:(NSUInteger)spaceId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  NSString *uri = [NSString stringWithFormat:@"/contact/space/%d/", spaceId];
+  NSString *uri = [NSString stringWithFormat:@"/contact/space/%ld/", (unsigned long)spaceId];
   return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes excludeSelf:excludeSelf offset:offset limit:limit];
 }
 
 + (PKRequest *)requestForContactsInOrganizationWithId:(NSUInteger)orgId type:(PKRequestContactType)type contactTypes:(NSArray *)contactTypes excludeSelf:(BOOL)excludeSelf offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  NSString *uri = [NSString stringWithFormat:@"/contact/org/%d/", orgId];
+  NSString *uri = [NSString stringWithFormat:@"/contact/org/%ld/", (unsigned long)orgId];
   return [self requestForContactsWithURI:uri type:type contactTypes:contactTypes excludeSelf:excludeSelf offset:offset limit:limit];
 }
 
 + (PKRequest *)requestForContactWithProfileId:(NSUInteger)profileId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/%d/v2", profileId] method:PKRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/%ld/v2", (unsigned long)profileId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForContactWithUserId:(NSUInteger)userId {
-  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/user/%d", userId] method:PKRequestMethodGET];
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/user/%ld", (unsigned long)userId] method:PKRequestMethodGET];
 }
 
 + (PKRequest *)requestForContactsForLinkedAccountWithId:(NSUInteger)linkedAccountId limit:(NSUInteger)limit {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/linked_account/%d", linkedAccountId] method:PKRequestMethodGET];
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/contact/linked_account/%ld", (unsigned long)linkedAccountId] method:PKRequestMethodGET];
   
   if (limit > 0) {
-    [request.parameters setObject:[NSString stringWithFormat:@"%d", limit] forKey:@"limit"];
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   }
   
   return request;
