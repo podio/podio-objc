@@ -18,7 +18,7 @@ Note that development happens on the master branch, which means it is not guaran
 Simply add the following line to your Podfile:
 
 ```ruby
-pod 'PodioKit', '1.0.0'
+pod 'PodioKit'
 ```
 	
 If you feel adventurous and want to use the bleeding edge master branch, add the following line instead:
