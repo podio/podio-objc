@@ -1710,13 +1710,14 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		5065BF0D14335ABA00360855 /* Development */ = {
+		5065BF0D14335ABA00360855 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = "DEBUG=1";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_THUMB_SUPPORT = NO;
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
@@ -1729,7 +1730,7 @@
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
-			name = Development;
+			name = Debug;
 		};
 		5065BF0E14335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1749,7 +1750,7 @@
 			};
 			name = Release;
 		};
-		5065BF1014335ABA00360855 /* Development */ = {
+		5065BF1014335ABA00360855 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */;
 			buildSettings = {
@@ -1761,16 +1762,12 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
-					"DEBUG=1",
-				);
 				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PUBLIC_HEADERS_FOLDER_PATH = "$(PRODUCT_NAME)";
 			};
-			name = Development;
+			name = Debug;
 		};
 		5065BF1114335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1791,7 +1788,7 @@
 			};
 			name = Release;
 		};
-		5065BF1314335ABA00360855 /* Development */ = {
+		5065BF1314335ABA00360855 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */;
 			buildSettings = {
@@ -1808,7 +1805,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
-			name = Development;
+			name = Debug;
 		};
 		5065BF1414335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1829,7 +1826,7 @@
 			};
 			name = Release;
 		};
-		509D6948152CA7A40033291C /* Development */ = {
+		509D6948152CA7A40033291C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */;
 			buildSettings = {
@@ -1860,7 +1857,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
-			name = Development;
+			name = Debug;
 		};
 		509D6949152CA7A40033291C /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1892,7 +1889,7 @@
 		5065BEE214335AB900360855 /* Build configuration list for PBXProject "PodioKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5065BF0D14335ABA00360855 /* Development */,
+				5065BF0D14335ABA00360855 /* Debug */,
 				5065BF0E14335ABA00360855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1901,7 +1898,7 @@
 		5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5065BF1014335ABA00360855 /* Development */,
+				5065BF1014335ABA00360855 /* Debug */,
 				5065BF1114335ABA00360855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1910,7 +1907,7 @@
 		5065BF1214335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKitTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5065BF1314335ABA00360855 /* Development */,
+				5065BF1314335ABA00360855 /* Debug */,
 				5065BF1414335ABA00360855 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -1919,7 +1916,7 @@
 		509D694A152CA7A40033291C /* Build configuration list for PBXNativeTarget "DemoApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				509D6948152CA7A40033291C /* Development */,
+				509D6948152CA7A40033291C /* Debug */,
 				509D6949152CA7A40033291C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
