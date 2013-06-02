@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <SystemConfiguration/SystemConfiguration.h>
 
 #pragma mark - General
 
