@@ -195,6 +195,7 @@
 		50A16DA3148F4A5A00AF86C4 /* PKReferenceMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */; };
 		50A5FB33143B0FEA00674360 /* PKItemFieldValueDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */; };
+		50A8B300175BE365001000A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A8B2FF175BE365001000A6 /* Default-568h@2x.png */; };
 		50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE896E14A132E4004E027E /* PKQuestionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897114A13573004E027E /* PKItemFieldValueItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897414A1366B004E027E /* PKItemFieldValueOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */; };
@@ -479,6 +480,7 @@
 		50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMessageData.m; sourceTree = "<group>"; };
 		50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueDataFactory.h; sourceTree = "<group>"; };
 		50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueDataFactory.m; sourceTree = "<group>"; };
+		50A8B2FF175BE365001000A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		50AE896E14A132E4004E027E /* PKQuestionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKQuestionAPI.h; sourceTree = "<group>"; };
 		50AE897114A13573004E027E /* PKItemFieldValueItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueItemData.h; sourceTree = "<group>"; };
 		50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueOptionData.m; sourceTree = "<group>"; };
@@ -836,6 +838,7 @@
 		5065BEDD14335AB900360855 = {
 			isa = PBXGroup;
 			children = (
+				50A8B2FF175BE365001000A6 /* Default-568h@2x.png */,
 				5065BEED14335AB900360855 /* PodioKit */,
 				5065BF0314335ABA00360855 /* PodioKitTests */,
 				509D693C152CA7A40033291C /* DemoApp */,
@@ -1440,6 +1443,7 @@
 				509D6941152CA7A40033291C /* InfoPlist.strings in Resources */,
 				500EA92F153F20F10049F224 /* PKLoginViewController.xib in Resources */,
 				505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */,
+				50A8B300175BE365001000A6 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
