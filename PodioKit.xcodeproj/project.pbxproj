@@ -480,7 +480,7 @@
 		50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMessageData.m; sourceTree = "<group>"; };
 		50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueDataFactory.h; sourceTree = "<group>"; };
 		50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueDataFactory.m; sourceTree = "<group>"; };
-		50A8B2FF175BE365001000A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		50A8B2FF175BE365001000A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		50AE896E14A132E4004E027E /* PKQuestionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKQuestionAPI.h; sourceTree = "<group>"; };
 		50AE897114A13573004E027E /* PKItemFieldValueItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueItemData.h; sourceTree = "<group>"; };
 		50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueOptionData.m; sourceTree = "<group>"; };
@@ -838,7 +838,6 @@
 		5065BEDD14335AB900360855 = {
 			isa = PBXGroup;
 			children = (
-				50A8B2FF175BE365001000A6 /* Default-568h@2x.png */,
 				5065BEED14335AB900360855 /* PodioKit */,
 				5065BF0314335ABA00360855 /* PodioKitTests */,
 				509D693C152CA7A40033291C /* DemoApp */,
@@ -1156,6 +1155,7 @@
 				50B317E3152F7605002E73F2 /* PKDemoTask.m */,
 				50B317E5152F76AA002E73F2 /* PKDemoTaskMapping.h */,
 				50B317E6152F76AA002E73F2 /* PKDemoTaskMapping.m */,
+				50A8B32A175BF3EB001000A6 /* Resources */,
 				509D693D152CA7A40033291C /* Supporting Files */,
 			);
 			path = DemoApp;
@@ -1171,6 +1171,14 @@
 				509D6944152CA7A40033291C /* DemoApp-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		50A8B32A175BF3EB001000A6 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50A8B2FF175BE365001000A6 /* Default-568h@2x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		50B319DD150F989800EAD7C7 /* App Store */ = {
