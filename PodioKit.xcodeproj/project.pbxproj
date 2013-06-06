@@ -220,6 +220,8 @@
 		50B319E7150F98E800EAD7C7 /* PKShareCategoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */; };
 		50B529F7148FC06800E05852 /* PKReferenceAlertData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B529F5148FC06800E05852 /* PKReferenceAlertData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50B529F8148FC06800E05852 /* PKReferenceAlertData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B529F6148FC06800E05852 /* PKReferenceAlertData.m */; };
+		50B8989F1760A55B006B5BE7 /* PKLiveAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B8989D1760A55B006B5BE7 /* PKLiveAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50B898A01760A55B006B5BE7 /* PKLiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8989E1760A55B006B5BE7 /* PKLiveAPI.m */; };
 		50BBF53A1439B365002522D6 /* NSString+Hash.h in Headers */ = {isa = PBXBuildFile; fileRef = 50BBF5381439B365002522D6 /* NSString+Hash.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBF5391439B365002522D6 /* NSString+Hash.m */; };
 		50CC1CDE14878100000B57EA /* PKReferenceAppData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CC1CDC148780FF000B57EA /* PKReferenceAppData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -503,6 +505,8 @@
 		50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKShareCategoryData.m; sourceTree = "<group>"; };
 		50B529F5148FC06800E05852 /* PKReferenceAlertData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceAlertData.h; sourceTree = "<group>"; };
 		50B529F6148FC06800E05852 /* PKReferenceAlertData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceAlertData.m; sourceTree = "<group>"; };
+		50B8989D1760A55B006B5BE7 /* PKLiveAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLiveAPI.h; sourceTree = "<group>"; };
+		50B8989E1760A55B006B5BE7 /* PKLiveAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLiveAPI.m; sourceTree = "<group>"; };
 		50BBF5381439B365002522D6 /* NSString+Hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Hash.h"; sourceTree = "<group>"; };
 		50BBF5391439B365002522D6 /* NSString+Hash.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Hash.m"; sourceTree = "<group>"; };
 		50CC1CDC148780FF000B57EA /* PKReferenceAppData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceAppData.h; sourceTree = "<group>"; };
@@ -1094,6 +1098,8 @@
 				507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */,
 				505395C716EA214F00D1E99E /* PKReferenceAPI.h */,
 				505395C816EA214F00D1E99E /* PKReferenceAPI.m */,
+				50B8989D1760A55B006B5BE7 /* PKLiveAPI.h */,
+				50B8989E1760A55B006B5BE7 /* PKLiveAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1340,6 +1346,7 @@
 				502CFD5716D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h in Headers */,
 				50FD7A8E16D3AADD001773EC /* PKSpaceInviteData.h in Headers */,
 				505395C916EA214F00D1E99E /* PKReferenceAPI.h in Headers */,
+				50B8989F1760A55B006B5BE7 /* PKLiveAPI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1672,6 +1679,7 @@
 				502CFD5816D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
 				50FD7A8F16D3AADD001773EC /* PKSpaceInviteData.m in Sources */,
 				505395CA16EA214F00D1E99E /* PKReferenceAPI.m in Sources */,
+				50B898A01760A55B006B5BE7 /* PKLiveAPI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

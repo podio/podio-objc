@@ -179,6 +179,12 @@
     action = PKConversationEventActionLiveStart;
   } else if ([string isEqualToString:kPKConversationEventActionLiveEnd]) {
     action = PKConversationEventActionLiveEnd;
+  } else if ([string isEqualToString:kPKConversationEventActionLiveAccept]) {
+    action = PKConversationEventActionLiveAccept;
+  } else if ([string isEqualToString:kPKConversationEventActionLiveDecline]) {
+    action = PKConversationEventActionLiveDecline;
+  } else if ([string isEqualToString:kPKConversationEventActionSubjectChange]) {
+    action = PKConversationEventActionSubjectChange;
   }
   
   return action;
