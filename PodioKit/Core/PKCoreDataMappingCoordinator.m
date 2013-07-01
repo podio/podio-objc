@@ -8,6 +8,7 @@
 
 #import "PKCoreDataMappingCoordinator.h"
 #import "PKCoreDataRepository.h"
+#import "NSArray+PKAdditions.h"
 
 @interface PKCoreDataMappingCoordinator ()
 
@@ -59,6 +60,16 @@
 
   NSManagedObjectContext *context = self.managedObjectContext;
   [context performBlock:^{
+    // Turn updated objects into faults
+    NSArray *updatedObjectIds = [[notification.userInfo objectForKey:@"updated"] valueForKey:@"objectID"];
+    
+    [updatedObjectIds enumerateObjectsUsingBlock:^(id objectId, NSUInteger idx, BOOL *stop) {
+      id managedObject = [context objectRegisteredForID:objectId];
+      if (managedObject) {
+        [context refreshObject:managedObject mergeChanges:YES];
+      }
+    }];
+    
     [context mergeChangesFromContextDidSaveNotification:notification];
   }];
 }
