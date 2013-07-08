@@ -480,6 +480,7 @@ typedef enum {
   PKReferenceTypeBatch,
   PKReferenceTypeSystem,
   PKReferenceTypeSpaceMemberRequest,
+  PKReferenceTypeLive,
 } PKReferenceType;
 
 static NSString * const kPKReferenceTypeApp = @"app";
@@ -525,6 +526,7 @@ static NSString * const kPKReferenceTypeMeeting = @"meeting";
 static NSString * const kPKReferenceTypeBatch = @"batch";
 static NSString * const kPKReferenceTypeSystem = @"system";
 static NSString * const kPKReferenceTypeSpaceMemberRequest = @"space_member_request";
+static NSString * const kPKReferenceTypeLive = @"live";
 
 #pragma mark - Notifications
 

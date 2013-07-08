@@ -461,6 +461,8 @@
     type = PKReferenceTypeSystem;
   } else if ([string isEqualToString:kPKReferenceTypeSpaceMemberRequest]) {
     type = PKReferenceTypeSpaceMemberRequest;
+  } else if ([string isEqualToString:kPKReferenceTypeLive]) {
+    type = PKReferenceTypeLive;
   }
     
   return type;
@@ -595,6 +597,9 @@
       break;
     case PKReferenceTypeSpaceMemberRequest:
       string = kPKReferenceTypeSpaceMemberRequest;
+      break;
+    case PKReferenceTypeLive:
+      string = kPKReferenceTypeLive;
       break;
     default:
       break;
