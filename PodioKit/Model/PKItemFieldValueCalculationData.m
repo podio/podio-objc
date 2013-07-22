@@ -7,6 +7,7 @@
 //
 
 #import "PKItemFieldValueCalculationData.h"
+#import "NSNumber+PKFormat.h"
 
 
 static NSString * const PKItemFieldValueCalculationDataValueKey = @"Value";
@@ -38,7 +39,7 @@ static NSString * const PKItemFieldValueCalculationDataUnitKey = @"Unit";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueCalculationData *data = [self data];
   
-  data.value = [dict pk_numberFromStringForKey:@"value"];
+  data.value = [NSNumber pk_numberFromStringWithUSLocale:[dict pk_objectForKey:@"value"]];
 
   return data;
 }

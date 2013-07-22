@@ -13,8 +13,6 @@
 
 - (id)pk_objectForKey:(id)key;
 
-- (id)pk_numberFromStringForKey:(id)key;
-
 - (id)pk_objectForPathComponents:(NSArray *)pathComponents;
 
 - (NSDictionary *)pk_dictionaryByMergingDictionary:(NSDictionary *)dictionary;

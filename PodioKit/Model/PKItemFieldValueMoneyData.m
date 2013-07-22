@@ -7,7 +7,7 @@
 //
 
 #import "PKItemFieldValueMoneyData.h"
-
+#import "NSNumber+PKFormat.h"
 
 static NSString * const PKItemFieldValueMoneyDataAmountKey = @"Amount";
 static NSString * const PKItemFieldValueMoneyDataCurrencyKey = @"Currency";
@@ -38,7 +38,7 @@ static NSString * const PKItemFieldValueMoneyDataCurrencyKey = @"Currency";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueMoneyData *data = [self data];
   
-  data.amount = @([[dict pk_objectForKey:@"value"] floatValue]);
+  data.amount = [NSNumber pk_numberFromStringWithUSLocale:[dict pk_objectForKey:@"value"]];
   data.currency = [dict pk_objectForKey:@"currency"];
   
   return data;

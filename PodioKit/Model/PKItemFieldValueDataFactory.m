@@ -17,6 +17,7 @@
 #import "PKItemFieldValueCalculationData.h"
 #import "PKItemFieldValueOptionData.h"
 #import "NSDictionary+PKAdditions.h"
+#import "NSNumber+PKFormat.h"
 
 @implementation PKItemFieldValueDataFactory
 
@@ -52,7 +53,7 @@
       data = [PKItemFieldValueCalculationData dataFromDictionary:dict];
       break;
     case PKAppFieldTypeNumber:
-      data = [dict pk_numberFromStringForKey:@"value"];
+      data = [NSNumber pk_numberFromStringWithUSLocale:[dict pk_objectForKey:@"value"]];
       break;
     case PKAppFieldTypeState: {
       PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];

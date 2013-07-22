@@ -17,16 +17,6 @@
   return ![obj isKindOfClass:[NSNull class]] ? obj : nil;
 }
 
-- (id)pk_numberFromStringForKey:(id)key {
-  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
-  NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-  [formatter setLocale:locale];
-  
-  NSNumber *number = [formatter numberFromString:[self pk_objectForKey:key]];
-  
-  return number;
-}
-
 - (id)pk_objectForPathComponents:(NSArray *)pathComponents {
   id value = self;
   if (pathComponents != nil) {
