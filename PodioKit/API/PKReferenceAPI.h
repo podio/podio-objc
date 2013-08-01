@@ -16,4 +16,6 @@ typedef NS_ENUM(NSUInteger, PKReferenceTarget) {
 
 + (PKRequest *)requestToSearchReferenceWithTarget:(PKReferenceTarget)target targetParameters:(NSDictionary *)targetParameters query:(NSString *)query limit:(NSUInteger)limit;
 
++ (PKRequest *)requestToResolveURLString:(NSString *)URLString;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "PKReferenceAPI.h"
+#import "NSString+URL.h"
 
 @implementation PKReferenceAPI
 
@@ -33,6 +34,16 @@
   
   if ([targetParameters count] > 0) {
     request.body[@"target_params"] = targetParameters;
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestToResolveURLString:(NSString *)URLString {
+  PKRequest *request = [PKRequest getRequestWithURI:@"/reference/resolve"];
+  
+  if (URLString) {
+    request.parameters[@"url"] = URLString;
   }
   
   return request;
