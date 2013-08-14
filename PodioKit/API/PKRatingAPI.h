@@ -13,5 +13,6 @@
 
 + (PKRequest *)requestForLikeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 + (PKRequest *)requestForUnlikeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
++ (PKRequest *)requestForLikedByProfilesWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType limit:(NSUInteger)limit;
 
 @end

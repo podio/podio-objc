@@ -25,4 +25,15 @@
   return request;
 }
 
++ (PKRequest *)requestForLikedByProfilesWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType limit:(NSUInteger)limit {
+  NSString *uri = [NSString stringWithFormat:@"/rating/%@/%ld/liked_by/", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET objectMapping:nil];
+
+  if (limit > 0) {
+    [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
+  }
+
+  return request;
+}
+
 @end
