@@ -5,6 +5,13 @@
 #ifdef __OBJC__
   #import <Foundation/Foundation.h>
   #import <SystemConfiguration/SystemConfiguration.h>
+
+#if TARGET_OS_IPHONE
+  #import <MobileCoreServices/MobileCoreServices.h>
+#elif TARGET_OS_MAC
+  #import <CoreServices/CoreServices.h>
+#endif
+
   #import "PKLog.h"
   #import "PKAssert.h"
   #import "PKConstants.h"
