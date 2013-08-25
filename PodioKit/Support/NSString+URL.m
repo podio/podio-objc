@@ -19,4 +19,12 @@
   return escapedString;
 }
 
+- (NSString *)pk_unescapedURLString {
+  NSString *escapedString = (__bridge_transfer NSString *) CFURLCreateStringByReplacingPercentEscapesUsingEncoding(NULL,
+                                                                                                                   (__bridge CFStringRef)self,
+                                                                                                                   CFSTR(""),
+                                                                                                                   kCFStringEncodingUTF8);
+  return escapedString;
+}
+
 @end

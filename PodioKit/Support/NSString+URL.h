@@ -12,4 +12,6 @@
 
 - (NSString *)pk_escapedURLString;
 
+- (NSString *)pk_unescapedURLString;
+
 @end
