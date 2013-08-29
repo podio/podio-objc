@@ -38,15 +38,15 @@
 }
 
 + (PKRequest *)requestForSearchInOrganizationWithId:(NSUInteger)orgId query:(NSString *)query offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  return [self requestForSearchWithURI:[NSString stringWithFormat:@"/search/org/%ld", (unsigned long)orgId] query:query offset:offset limit:limit];
+  return [self requestForSearchWithURI:[NSString stringWithFormat:@"/search/org/%ld/", (unsigned long)orgId] query:query offset:offset limit:limit];
 }
 
 + (PKRequest *)requestForSearchInSpaceWithId:(NSUInteger)spaceId query:(NSString *)query offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  return [self requestForSearchWithURI:[NSString stringWithFormat:@"/search/space/%ld", (unsigned long)spaceId] query:query offset:offset limit:limit];
+  return [self requestForSearchWithURI:[NSString stringWithFormat:@"/search/space/%ld/", (unsigned long)spaceId] query:query offset:offset limit:limit];
 }
 
 + (PKRequest *)requestForSearchInAppWithId:(NSUInteger)appId query:(NSString *)query offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  return [self requestForSearchWithURI:[NSString stringWithFormat:@"/search/app/%ld", (unsigned long)appId] query:query offset:offset limit:limit];
+  return [self requestForSearchWithURI:[NSString stringWithFormat:@"/search/app/%ld/", (unsigned long)appId] query:query offset:offset limit:limit];
 }
 
 @end
