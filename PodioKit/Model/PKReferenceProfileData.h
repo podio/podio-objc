@@ -8,20 +8,15 @@
 
 #import "PKObjectData.h"
 
+@class PKFileData;
 
-@interface PKReferenceProfileData : PKObjectData {
-  
-@private
-  NSInteger profileId_;
-  NSInteger userId_;
-  NSString *name_;
-  NSInteger avatarId_;
-}
+@interface PKReferenceProfileData : PKObjectData
 
 @property (nonatomic) NSInteger profileId;
 @property (nonatomic) NSInteger userId;
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic) PKReferenceType type;
 @property (nonatomic) NSInteger avatarId;
+@property (nonatomic, strong) PKFileData *image;
 
 @end
