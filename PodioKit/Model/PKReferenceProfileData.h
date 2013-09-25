@@ -18,5 +18,6 @@
 @property (nonatomic) PKReferenceType type;
 @property (nonatomic) NSInteger avatarId;
 @property (nonatomic, strong) PKFileData *image;
+@property (nonatomic, assign) BOOL removable;
 
 @end

@@ -15,6 +15,7 @@ static NSString * const PKReferenceProfileDataName = @"Name";
 static NSString * const PKReferenceProfileDataType = @"Type";
 static NSString * const PKReferenceProfileDataAvatarId = @"AvatarId";
 static NSString * const PKReferenceProfileDataImage = @"Image";
+static NSString * const PKReferenceProfileDataRemovable = @"Removable";
 
 @implementation PKReferenceProfileData
 
@@ -27,6 +28,7 @@ static NSString * const PKReferenceProfileDataImage = @"Image";
     _type = [aDecoder decodeIntForKey:PKReferenceProfileDataType];
     _avatarId = [aDecoder decodeIntForKey:PKReferenceProfileDataAvatarId];
     _image = [aDecoder decodeObjectOfClass:[PKFileData class] forKey:PKReferenceProfileDataImage];
+    _removable = [aDecoder decodeBoolForKey:PKReferenceProfileDataRemovable];
   }
   return self;
 }
@@ -39,6 +41,7 @@ static NSString * const PKReferenceProfileDataImage = @"Image";
   [aCoder encodeInteger:_type forKey:PKReferenceProfileDataType];
   [aCoder encodeInteger:_avatarId forKey:PKReferenceProfileDataAvatarId];
   [aCoder encodeObject:_image forKey:PKReferenceProfileDataImage];
+  [aCoder encodeBool:_removable forKey:PKReferenceProfileDataRemovable];
 }
 
 
@@ -53,6 +56,7 @@ static NSString * const PKReferenceProfileDataImage = @"Image";
   data.type = [PKConstants referenceTypeForString:[dict pk_objectForKey:@"type"]];
   data.avatarId = [[dict pk_objectForKey:@"avatar"] integerValue];
   data.image = [PKFileData dataFromDictionary:[dict pk_objectForKey:@"image"]];
+  data.removable = [[dict pk_objectForKey:@"removable"] boolValue];
   
   return data;
 }
