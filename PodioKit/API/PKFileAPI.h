@@ -14,10 +14,13 @@
 
 + (PKHTTPRequestOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
 + (PKHTTPRequestOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName delegate:(id)delegate completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)uploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName progression:(PKRequestProgressionBlock)progression completion:(PKRequestCompletionBlock)completion;
 + (PKHTTPRequestOperation *)uploadFileWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName completion:(PKRequestCompletionBlock)completion;
 + (PKHTTPRequestOperation *)uploadFileWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName delegate:(id)delegate completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)uploadFileWithData:(NSData *)data mimeType:(NSString *)mimeType fileName:(NSString *)fileName progression:(PKRequestProgressionBlock)progression completion:(PKRequestCompletionBlock)completion;
 
 + (PKHTTPRequestOperation *)downloadFileWithURLString:(NSString *)urlString savePath:(NSString *)savePath delegate:(id)delegate completion:(PKRequestCompletionBlock)completion;
++ (PKHTTPRequestOperation *)downloadFileWithURLString:(NSString *)urlString savePath:(NSString *)savePath progression:(PKRequestProgressionBlock)progression completion:(PKRequestCompletionBlock)completion;
 
 + (PKRequest *)requestToAttachFileWithId:(NSUInteger)fileId referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 + (PKRequest *)requestToDeleteFileWithId:(NSUInteger)fileId;

@@ -27,6 +27,9 @@ extern NSString * const PKHTTPRequestErrorKey;
 + (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion;
 
 - (void)setRequestCompletionBlock:(PKRequestCompletionBlock)requestCompletionBlock;
+- (void)setRequestUploadProgressionBlock:(PKRequestProgressionBlock)requestUploadProgressionBlock;
+- (void)setRequestDownloadProgressionBlock:(PKRequestProgressionBlock)requestDownloadProgressionBlock;
+
 - (void)completeWithResult:(PKRequestResult *)result error:(NSError *)error;
 
 - (void)setValue:(NSString *)value forHeader:(NSString *)header;

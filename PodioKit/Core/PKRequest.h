@@ -13,6 +13,7 @@
 @class PKHTTPRequestOperation;
 
 typedef void (^PKRequestCompletionBlock)(NSError *error, PKRequestResult *result);
+typedef void (^PKRequestProgressionBlock)(float progression); // from 0.0f to 1.0f
 
 typedef NSString * PKRequestMethod;
 

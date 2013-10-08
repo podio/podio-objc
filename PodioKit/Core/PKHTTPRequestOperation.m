@@ -20,6 +20,8 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
 @interface PKHTTPRequestOperation ()
 
 @property (nonatomic, copy, readonly) PKRequestCompletionBlock requestCompletionBlock;
+@property (nonatomic, copy, readonly) PKRequestProgressionBlock requestUploadProgressionBlock;
+@property (nonatomic, copy, readonly) PKRequestProgressionBlock requestDownloadProgressionBlock;
 @property (nonatomic, strong) NSURLRequest *request;
 
 @end
@@ -119,6 +121,29 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
     [self completeWithResult:result error:error];
   };
 #pragma clang diagnostic pop
+}
+
+- (void (^)(NSUInteger, long long, long long))operationProgressBlockForRequestProgressionBlock:(PKRequestProgressionBlock)progressionBlock {
+  if (!progressionBlock) {
+    return nil;
+  }
+
+  return ^(NSUInteger bytes, long long totalBytes, long long totalBytesExpected) {
+    float progress = totalBytesExpected > 0 ? (float)totalBytes / (float)totalBytesExpected : 0.0f;
+    progressionBlock(progress);
+  };
+}
+
+- (void)setRequestUploadProgressionBlock:(PKRequestProgressionBlock)requestUploadProgressionBlock {
+  _requestUploadProgressionBlock = [requestUploadProgressionBlock copy];
+
+  [self setUploadProgressBlock:[self operationProgressBlockForRequestProgressionBlock:requestUploadProgressionBlock]];
+}
+
+- (void)setRequestDownloadProgressionBlock:(PKRequestProgressionBlock)requestDownloadProgressionBlock {
+  _requestDownloadProgressionBlock = [requestDownloadProgressionBlock copy];
+
+  [self setDownloadProgressBlock:[self operationProgressBlockForRequestProgressionBlock:requestDownloadProgressionBlock]];
 }
 
 - (void)completeWithResult:(PKRequestResult *)result error:(NSError *)error {
