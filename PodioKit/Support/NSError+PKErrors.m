@@ -14,6 +14,7 @@ NSString * const PKPodioKitErrorDomain = @"PodioKitErrorDomain";
 NSString * const PKErrorStatusCodeKey = @"PKErrorStatusCodeKey";
 NSString * const PKErrorResponseDataKey = @"PKErrorResponseDataKey";
 NSString * const PKErrorPropagateKey = @"PKErrorPropagateKey";
+NSString * const PKErrorErrorIdKey = @"PKErrorErrorIdKey";
 
 @implementation NSError (PKErrors)
 
@@ -51,11 +52,13 @@ NSString * const PKErrorPropagateKey = @"PKErrorPropagateKey";
   [userInfo setObject:@(statusCode) forKey:PKErrorStatusCodeKey];
 
   if (parsedData && [parsedData isKindOfClass:[NSDictionary class]]) {
+    NSString *errorId = [parsedData pk_objectForKey:@"error"];
     NSNumber *propagate = [parsedData pk_objectForKey:@"error_propagate"];
     NSString *description = [parsedData pk_objectForKey:@"error_description"];
 
     if (propagate && description) {
       NSError *underlyingError = [NSError errorWithDomain:PKPodioKitErrorDomain code:statusCode userInfo:@{
+                                       PKErrorErrorIdKey : errorId,
                                   PKErrorResponseDataKey : parsedData,
                                      PKErrorPropagateKey : propagate,
                                NSLocalizedDescriptionKey : description,
@@ -88,6 +91,23 @@ NSString * const PKErrorPropagateKey = @"PKErrorPropagateKey";
   }
   
   return description;
+}
+
+- (NSString *)pk_serverSideErrorId {
+  NSString *errorId = nil;
+  
+  if (self.code == PKErrorCodeServerError) {
+    NSError *error = [[self userInfo] objectForKey:NSUnderlyingErrorKey];
+    if (error) {
+      errorId = error.userInfo[PKErrorErrorIdKey];
+    }
+  }
+  
+  return errorId;
+}
+
+- (BOOL)pk_isServerSideErrorWithId:(NSString *)errorId {
+  return [[self pk_serverSideErrorId] isEqualToString:errorId];
 }
 
 @end

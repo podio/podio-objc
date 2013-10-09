@@ -13,6 +13,7 @@ extern NSString * const PKPodioKitErrorDomain;
 extern NSString * const PKErrorStatusCodeKey;
 extern NSString * const PKErrorResponseDataKey;
 extern NSString * const PKErrorPropagateKey;
+extern NSString * const PKErrorErrorIdKey;
 
 @interface NSError (PKErrors)
 
@@ -24,5 +25,7 @@ extern NSString * const PKErrorPropagateKey;
 
 - (NSString *)pk_serverSideDescription;
 - (NSString *)pk_humanServerSideDescription;
+- (NSString *)pk_serverSideErrorId;
+- (BOOL)pk_isServerSideErrorWithId:(NSString *)errorId;
 
 @end
