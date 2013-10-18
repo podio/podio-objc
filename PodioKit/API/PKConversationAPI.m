@@ -11,6 +11,10 @@
 @implementation PKConversationAPI
 
 + (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds {
+  return [self requestToSendMessageWithText:text subject:subject participantUserIds:participantUserIds fileIds:nil];
+}
+
++ (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds fileIds:(NSArray *)fileIds {
   PKAssert(text != nil && [text length] > 0, @"Missing message text");
   PKAssert(participantUserIds != nil && [participantUserIds count] > 0, @"Missing message participants");
   
@@ -21,6 +25,10 @@
   
   if ([subject length] > 0) {
     body[@"subject"] = subject;
+  }
+
+  if ([fileIds count] > 0) {
+    body[@"file_ids"] = fileIds;
   }
   
   request.body = body;

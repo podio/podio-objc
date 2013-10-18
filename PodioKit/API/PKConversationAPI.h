@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, PKConversationFlag) {
 @interface PKConversationAPI : PKBaseAPI
 
 + (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds;
++ (PKRequest *)requestToSendMessageWithText:(NSString *)text subject:(NSString *)subject participantUserIds:(NSArray *)participantUserIds fileIds:(NSArray *)fileIds;
 + (PKRequest *)requestForConversationWithId:(NSUInteger)conversationId;
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text;
 + (PKRequest *)requestToReplyToConversationWithId:(NSUInteger)conversationId withText:(NSString *)text fileIds:(NSArray *)fileIds;
