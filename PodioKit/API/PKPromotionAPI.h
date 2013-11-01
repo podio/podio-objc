@@ -10,7 +10,7 @@
 
 @interface PKPromotionAPI : PKBaseAPI
 
-+ (PKRequest *)requestForPromotionInContextType:(NSString *)context;
++ (PKRequest *)requestForPromotionInContext:(PKPromotionContext)context;
 + (PKRequest *)requestToClickPromotionWithId:(NSUInteger)promotionId;
 + (PKRequest *)requestToEndPromotionWithId:(NSUInteger)promotionId;
 

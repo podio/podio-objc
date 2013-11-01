@@ -10,16 +10,16 @@
 
 @implementation PKPromotionAPI
 
-+ (PKRequest *)requestForPromotionInContextType:(NSString *)context {
++ (PKRequest *)requestForPromotionInContext:(PKPromotionContext)context {
   return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/promotion/%@", [PKConstants stringForPromotionContext:context]]];
 }
 
 + (PKRequest *)requestToClickPromotionWithId:(NSUInteger)promotionId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%ld/click", promotionId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%d/click", promotionId]];
 }
 
 + (PKRequest *)requestToEndPromotionWithId:(NSUInteger)promotionId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%ld/end", promotionId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%d/end", promotionId]];
 }
 
 @end
