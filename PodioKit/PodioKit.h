@@ -47,6 +47,7 @@
 #import "PKEmbedAPI.h"
 #import "PKReferenceAPI.h"
 #import "PKLiveAPI.h"
+#import "PKPromotionAPI.h"
 
 #pragma mark - Mapping
 

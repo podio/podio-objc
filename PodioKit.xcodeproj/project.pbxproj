@@ -167,6 +167,8 @@
 		5065C0FF14345F1000360855 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FD14345F0D00360855 /* SystemConfiguration.framework */; };
 		507CA05C1503E3E800678F9D /* PKAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = 50599EF01455A024001F5201 /* PKAssert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
+		507D09FB1823EB3600AFBFB1 /* PKPromotionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		507D09FC1823EB3600AFBFB1 /* PKPromotionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D09FA1823EB3600AFBFB1 /* PKPromotionAPI.m */; };
 		507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */; };
 		507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */; };
 		507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */; };
@@ -456,6 +458,8 @@
 		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPromotionAPI.h; sourceTree = "<group>"; };
+		507D09FA1823EB3600AFBFB1 /* PKPromotionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKPromotionAPI.m; sourceTree = "<group>"; };
 		507E009C15B57F0B00FA66C9 /* PKEmbedAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKEmbedAPI.h; sourceTree = "<group>"; };
 		507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKEmbedAPI.m; sourceTree = "<group>"; };
 		507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountData.h; sourceTree = "<group>"; };
@@ -1118,6 +1122,8 @@
 				505395C816EA214F00D1E99E /* PKReferenceAPI.m */,
 				50B8989D1760A55B006B5BE7 /* PKLiveAPI.h */,
 				50B8989E1760A55B006B5BE7 /* PKLiveAPI.m */,
+				507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */,
+				507D09FA1823EB3600AFBFB1 /* PKPromotionAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1359,6 +1365,7 @@
 				50D681831668955C008AEA0A /* PKHTTPRequestOperation.h in Headers */,
 				509867AA166CAEE100CEAA8C /* NSURLRequest+PKDescription.h in Headers */,
 				50D737FE166F4505009233FF /* PKOAuth2Token.h in Headers */,
+				507D09FB1823EB3600AFBFB1 /* PKPromotionAPI.h in Headers */,
 				50D73811166F6D09009233FF /* NSString+PKRandom.h in Headers */,
 				502CFD5316D11D55002C59E1 /* NSString+PKBase64.h in Headers */,
 				502CFD5716D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.h in Headers */,
@@ -1697,6 +1704,7 @@
 				502CFD5416D11D55002C59E1 /* NSString+PKBase64.m in Sources */,
 				502CFD5816D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
 				50FD7A8F16D3AADD001773EC /* PKSpaceInviteData.m in Sources */,
+				507D09FC1823EB3600AFBFB1 /* PKPromotionAPI.m in Sources */,
 				505395CA16EA214F00D1E99E /* PKReferenceAPI.m in Sources */,
 				50B898A01760A55B006B5BE7 /* PKLiveAPI.m in Sources */,
 				5025D8D7179D24AB00F8753E /* NSNumber+PKFormat.m in Sources */,

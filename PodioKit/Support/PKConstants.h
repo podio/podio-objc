@@ -638,6 +638,42 @@ static NSString * const kPKBatchPluginAppImport = @"app_import";
 static NSString * const kPKBatchPluginAppExport = @"app_export";
 static NSString * const kPKBatchPluginAppConnectionLoad = @"connection_load";
 
+#pragma mark - Promotions
+
+typedef enum {
+  PKPromotionContextGlobalHome,
+  PKPromotionContextSpaceHome,
+  PKPromotionContextEmployeeNetworkHome,
+  PKPromotionContextDemoHome,
+  PKPromotionContextTasks,
+  PKPromotionContextContacts,
+  PKPromotionContextCalendar,
+  PKPromotionContextConversations,
+  PKPromotionContextCreateItem,
+  PKPromotionContextEditItem,
+  PKPromotionContextAppView,
+  PKPromotionContextTaskModal,
+  PKPromotionContextConversationModal,
+  PKPromotionContextInvitationModal,
+  PKPromotionContextNotifications,
+} PKPromotionContext;
+
+static NSString * const kPKPromotionContextGlobalHome = @"global_home";
+static NSString * const kPKPromotionContextSpaceHome = @"space_home";
+static NSString * const kPKPromotionContextEmployeeNetworkHome = @"emp_network_home";
+static NSString * const kPKPromotionContextDemoHome = @"demo_home";
+static NSString * const kPKPromotionContextTasks = @"tasks";
+static NSString * const kPKPromotionContextContacts = @"contacts";
+static NSString * const kPKPromotionContextCalendar = @"calendar";
+static NSString * const kPKPromotionContextConversations = @"conversations";
+static NSString * const kPKPromotionContextCreateItem = @"create_item";
+static NSString * const kPKPromotionContextEditItem = @"edit_item";
+static NSString * const kPKPromotionContextAppView = @"app_view";
+static NSString * const kPKPromotionContextTaskModal = @"task_modal";
+static NSString * const kPKPromotionContextConversationModal = @"conversation_modal";
+static NSString * const kPKPromotionContextInvitationModal = @"invitation_modal";
+static NSString * const kPKPromotionContextNotifications = @"notifications";
+
 #pragma mark - Avatars
 
 typedef enum {
@@ -745,6 +781,9 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 + (NSString *)stringForAppFieldType:(PKAppFieldType)type;
 + (PKAppFieldStatus)appFieldStatusForString:(NSString *)string;
 + (NSString *)stringForAppFieldStatus:(PKAppFieldStatus)status;
+
+// Promotions
++ (NSString *)stringForPromotionContext:(PKPromotionContext)context;
 
 // Images
 + (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina;

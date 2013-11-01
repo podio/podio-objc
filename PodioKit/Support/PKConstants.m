@@ -973,6 +973,64 @@
   return string;
 }
 
+#pragma mark - Promotions
+
++ (NSString *)stringForPromotionContext:(PKPromotionContext)context {
+  NSString *string = nil;
+
+  switch (context) {
+    case PKPromotionContextGlobalHome:
+      string = kPKPromotionContextGlobalHome;
+      break;
+    case PKPromotionContextSpaceHome:
+      string = kPKPromotionContextSpaceHome;
+      break;
+    case PKPromotionContextEmployeeNetworkHome:
+      string = kPKPromotionContextEmployeeNetworkHome;
+      break;
+    case PKPromotionContextDemoHome:
+      string = kPKPromotionContextDemoHome;
+      break;
+    case PKPromotionContextTasks:
+      string = kPKPromotionContextTasks;
+      break;
+    case PKPromotionContextContacts:
+      string = kPKPromotionContextContacts;
+      break;
+    case PKPromotionContextCalendar:
+      string = kPKPromotionContextCalendar;
+      break;
+    case PKPromotionContextConversations:
+      string = kPKPromotionContextConversations;
+      break;
+    case PKPromotionContextCreateItem:
+      string = kPKPromotionContextCreateItem;
+      break;
+    case PKPromotionContextEditItem:
+      string = kPKPromotionContextEditItem;
+      break;
+    case PKPromotionContextAppView:
+      string = kPKPromotionContextAppView;
+      break;
+    case PKPromotionContextTaskModal:
+      string = kPKPromotionContextTaskModal;
+      break;
+    case PKPromotionContextConversationModal:
+      string = kPKPromotionContextConversationModal;
+      break;
+    case PKPromotionContextInvitationModal:
+      string = kPKPromotionContextInvitationModal;
+      break;
+    case PKPromotionContextNotifications:
+      string = kPKPromotionContextNotifications;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
 #pragma mark - Images
 
 + (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina {
