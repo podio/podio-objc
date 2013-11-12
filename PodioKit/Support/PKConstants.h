@@ -641,6 +641,7 @@ static NSString * const kPKBatchPluginAppConnectionLoad = @"connection_load";
 #pragma mark - Promotions
 
 typedef enum {
+  PKPromotionContextNone,
   PKPromotionContextGlobalHome,
   PKPromotionContextSpaceHome,
   PKPromotionContextEmployeeNetworkHome,
@@ -784,6 +785,7 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 
 // Promotions
 + (NSString *)stringForPromotionContext:(PKPromotionContext)context;
++ (PKPromotionContext)promotionContextForString:(NSString *)string;
 
 // Images
 + (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina;

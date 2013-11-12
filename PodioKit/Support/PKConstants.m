@@ -1031,6 +1031,44 @@
   return string;
 }
 
++ (PKPromotionContext)promotionContextForString:(NSString *)string {
+  PKPromotionContext context = PKPromotionContextNone;
+  
+  if ([string isEqualToString:kPKPromotionContextGlobalHome]) {
+    context = PKPromotionContextGlobalHome;
+  } else if ([string isEqualToString:kPKPromotionContextSpaceHome]) {
+    context = PKPromotionContextSpaceHome;
+  } else if ([string isEqualToString:kPKPromotionContextEmployeeNetworkHome]) {
+    context = PKPromotionContextEmployeeNetworkHome;
+  } else if ([string isEqualToString:kPKPromotionContextDemoHome]) {
+    context = PKPromotionContextDemoHome;
+  } else if ([string isEqualToString:kPKPromotionContextTasks]) {
+    context = PKPromotionContextTasks;
+  } else if ([string isEqualToString:kPKPromotionContextContacts]) {
+    context = PKPromotionContextContacts;
+  } else if ([string isEqualToString:kPKPromotionContextCalendar]) {
+    context = PKPromotionContextCalendar;
+  } else if ([string isEqualToString:kPKPromotionContextConversations]) {
+    context = PKPromotionContextConversations;
+  } else if ([string isEqualToString:kPKPromotionContextCreateItem]) {
+    context = PKPromotionContextCreateItem;
+  } else if ([string isEqualToString:kPKPromotionContextEditItem]) {
+    context = PKPromotionContextEditItem;
+  } else if ([string isEqualToString:kPKPromotionContextAppView]) {
+    context = PKPromotionContextAppView;
+  } else if ([string isEqualToString:kPKPromotionContextTaskModal]) {
+    context = PKPromotionContextTaskModal;
+  } else if ([string isEqualToString:kPKPromotionContextConversationModal]) {
+    context = PKPromotionContextConversationModal;
+  } else if ([string isEqualToString:kPKPromotionContextInvitationModal]) {
+    context = PKPromotionContextInvitationModal;
+  } else if ([string isEqualToString:kPKPromotionContextNotifications]) {
+    context = PKPromotionContextNotifications;
+  }
+  
+  return context;
+}
+
 #pragma mark - Images
 
 + (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina {
