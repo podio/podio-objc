@@ -1024,6 +1024,9 @@
     case PKPromotionContextNotifications:
       string = kPKPromotionContextNotifications;
       break;
+    case PKPromotionContextiOSGlobalStream:
+      string = kPKPromotionContextiOSGlobalStream;
+      break;
     default:
       break;
   }
@@ -1064,9 +1067,31 @@
     context = PKPromotionContextInvitationModal;
   } else if ([string isEqualToString:kPKPromotionContextNotifications]) {
     context = PKPromotionContextNotifications;
+  } else if ([string isEqualToString:kPKPromotionContextiOSGlobalStream]) {
+    context = PKPromotionContextiOSGlobalStream;
   }
   
   return context;
+}
+
++ (PKPromotionDisplayType)promotionDisplayTypeForString:(NSString *)string {
+  PKPromotionDisplayType displayType = PKPromotionDisplayTypeNone;
+  
+  if ([string isEqualToString:kPKPromotionDisplayTypeBaloon]) {
+    displayType = PKPromotionDisplayTypeBaloon;
+  } else if ([string isEqualToString:kPKPromotionDisplayTypeBanner]) {
+    displayType = PKPromotionDisplayTypeBanner;
+  } else if ([string isEqualToString:kPKPromotionDisplayTypeFeatureTour]) {
+    displayType = PKPromotionDisplayTypeFeatureTour;
+  } else if ([string isEqualToString:kPKPromotionDisplayTypeNetPromoterScore]) {
+    displayType = PKPromotionDisplayTypeNetPromoterScore;
+  } else if ([string isEqualToString:kPKPromotionDisplayTypeOlarkChat]) {
+    displayType = PKPromotionDisplayTypeOlarkChat;
+  } else if ([string isEqualToString:kPKPromotionDisplayTypeiOSBanner]) {
+    displayType = PKPromotionDisplayTypeiOSBanner;
+  }
+  
+  return displayType;
 }
 
 #pragma mark - Images

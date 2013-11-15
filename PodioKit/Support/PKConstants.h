@@ -657,6 +657,7 @@ typedef enum {
   PKPromotionContextConversationModal,
   PKPromotionContextInvitationModal,
   PKPromotionContextNotifications,
+  PKPromotionContextiOSGlobalStream,
 } PKPromotionContext;
 
 static NSString * const kPKPromotionContextGlobalHome = @"global_home";
@@ -674,6 +675,24 @@ static NSString * const kPKPromotionContextTaskModal = @"task_modal";
 static NSString * const kPKPromotionContextConversationModal = @"conversation_modal";
 static NSString * const kPKPromotionContextInvitationModal = @"invitation_modal";
 static NSString * const kPKPromotionContextNotifications = @"notifications";
+static NSString * const kPKPromotionContextiOSGlobalStream = @"ios_global_stream";
+
+typedef enum {
+  PKPromotionDisplayTypeNone,
+  PKPromotionDisplayTypeBaloon,
+  PKPromotionDisplayTypeBanner,
+  PKPromotionDisplayTypeFeatureTour,
+  PKPromotionDisplayTypeNetPromoterScore,
+  PKPromotionDisplayTypeOlarkChat,
+  PKPromotionDisplayTypeiOSBanner,
+} PKPromotionDisplayType;
+
+static NSString * const kPKPromotionDisplayTypeBaloon = @"baloon";
+static NSString * const kPKPromotionDisplayTypeBanner = @"banner";
+static NSString * const kPKPromotionDisplayTypeFeatureTour = @"feature_tour";
+static NSString * const kPKPromotionDisplayTypeNetPromoterScore = @"net_promoter_score";
+static NSString * const kPKPromotionDisplayTypeOlarkChat = @"olark_chat";
+static NSString * const kPKPromotionDisplayTypeiOSBanner = @"ios_banner";
 
 #pragma mark - Avatars
 
@@ -786,6 +805,7 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 // Promotions
 + (NSString *)stringForPromotionContext:(PKPromotionContext)context;
 + (PKPromotionContext)promotionContextForString:(NSString *)string;
++ (PKPromotionDisplayType)promotionDisplayTypeForString:(NSString *)string;
 
 // Images
 + (NSString *)stringForImageSize:(PKImageSize)imageSize isRetina:(BOOL)isRetina;
