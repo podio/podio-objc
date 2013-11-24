@@ -12,10 +12,6 @@
 
 + (NSString *)pk_generateUUID;
 
-- (BOOL)pk_isHTML;
-
-- (NSString *)pk_stringByReplacingNewlinesWithHTMLBreaks;
-
 - (NSString *)pk_stringByCapitalizingFirstCharacter;
 
 + (NSString *)pk_stringByRepeatingString:(NSString *)repeatString times:(NSUInteger)times;

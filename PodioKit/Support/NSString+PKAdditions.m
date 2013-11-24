@@ -17,18 +17,6 @@
   return (__bridge_transfer NSString *)string;
 }
 
-- (BOOL)pk_isHTML {
-  NSRange range = [self rangeOfString:@"(<\\w+>?).+(</\\w+>)" options:NSRegularExpressionSearch | NSRegularExpressionCaseInsensitive];
-  NSRange brRange = [self rangeOfString:@"(<\\w+(\\s+/)?>)" options:NSRegularExpressionSearch | NSRegularExpressionCaseInsensitive];
-  BOOL isHTML = range.location != NSNotFound || brRange.location != NSNotFound;
-  
-  return isHTML;
-}
-
-- (NSString *)pk_stringByReplacingNewlinesWithHTMLBreaks {
-  return [self stringByReplacingOccurrencesOfString:@"\n" withString:@"<br />"];
-}
-
 - (NSString *)pk_stringByCapitalizingFirstCharacter {
   NSString *capitalizedString = nil;
   if ([self length] > 0) {
