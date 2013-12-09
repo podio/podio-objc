@@ -9,7 +9,17 @@
 #import "PKBaseAPI.h"
 
 typedef NS_ENUM(NSUInteger, PKReferenceTarget) {
+  PKReferenceTargetTaskReference,
+  PKReferenceTargetTaskResponsible,
+  PKReferenceTargetAlert,
+  PKReferenceTargetConversation,
+  PKReferenceTargetConversationPresence,
+  PKReferenceTargetGrant,
   PKReferenceTargetItemField,
+  PKReferenceTargetItemCreatedBy,
+  PKReferenceTargetItemCreatedVia,
+  PKReferenceTargetItemTags,
+  PKReferenceTargetGlobalNav,
 };
 
 @interface PKReferenceAPI : PKBaseAPI

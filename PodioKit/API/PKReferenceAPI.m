@@ -15,13 +15,10 @@
   PKRequest *request = [PKRequest postRequestWithURI:@"/reference/search"];
   
   request.body = [NSMutableDictionary dictionary];
-  
-  switch (target) {
-    case PKReferenceTargetItemField:
-      request.body[@"target"] = @"item_field";
-      break;
-    default:
-      break;
+
+  NSString *targetString = [self stringForReferenceTarget:target];
+  if (targetString) {
+    request.body[@"target"] = targetString;
   }
 
   if ([query length] > 0) {
@@ -47,6 +44,49 @@
   }
   
   return request;
+}
+
++ (NSString *)stringForReferenceTarget:(PKReferenceTarget)target {
+  NSString *reference = nil;
+  switch (target) {
+    case PKReferenceTargetTaskReference:
+      reference = @"task_reference";
+      break;
+    case PKReferenceTargetTaskResponsible:
+      reference = @"task_responsible";
+      break;
+    case PKReferenceTargetAlert:
+      reference = @"alert";
+      break;
+    case PKReferenceTargetConversation:
+      reference = @"conversation";
+      break;
+    case PKReferenceTargetConversationPresence:
+      reference = @"conversation_presence";
+      break;
+    case PKReferenceTargetGrant:
+      reference = @"grant";
+      break;
+    case PKReferenceTargetItemField:
+      reference = @"item_field";
+      break;
+    case PKReferenceTargetItemCreatedBy:
+      reference = @"item_created_by";
+      break;
+    case PKReferenceTargetItemCreatedVia:
+      reference = @"item_created_via";
+      break;
+    case PKReferenceTargetItemTags:
+      reference = @"item_tags";
+      break;
+    case PKReferenceTargetGlobalNav:
+      reference = @"global_nav";
+      break;
+    default:
+      break;
+  }
+
+  return reference;
 }
 
 @end
