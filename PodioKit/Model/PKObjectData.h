@@ -14,13 +14,9 @@
     
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder;
++ (instancetype)data;
 
-- (void)encodeWithCoder:(NSCoder *)aCoder;
-
-+ (id)data;
-
-+ (id)dataFromDictionary:(NSDictionary *)dict;
++ (instancetype)dataFromDictionary:(NSDictionary *)dict;
 
 + (NSArray *)dataObjectsFromArray:(NSArray *)dicts;
 

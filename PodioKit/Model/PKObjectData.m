@@ -12,21 +12,18 @@
 
 @implementation PKObjectData
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-  self = [super init];
-  if (self) {
-  }
-  return self;
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
+  return [super init];
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
 }
 
-+ (id)data {
-  return [[self alloc] init];
++ (instancetype)data {
+  return [self new];
 }
 
-+ (id)dataFromDictionary:(NSDictionary *)dict {
++ (instancetype)dataFromDictionary:(NSDictionary *)dict {
   return nil;
 }
 

@@ -36,7 +36,6 @@ static NSString * const PKReferenceSpaceDataName = @"Name";
   [aCoder encodeObject:name_ forKey:PKReferenceSpaceDataName];
 }
 
-
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {
@@ -45,6 +44,8 @@ static NSString * const PKReferenceSpaceDataName = @"Name";
   data.spaceId = [[dict pk_objectForKey:@"space_id"] integerValue];
   data.type = [PKConstants spaceTypeForString:[dict pk_objectForKey:@"type"]];
   data.name = [dict pk_objectForKey:@"name"];
+  data.organization = [PKReferenceOrganizationData dataFromDictionary:[dict pk_objectForKey:@"org"]];
+  data.memberCount = [[dict pk_objectForKey:@"member_count"] integerValue];
   
   return data;
 }
