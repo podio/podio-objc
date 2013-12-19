@@ -11,12 +11,14 @@
 @implementation PKCommentAPI
 
 + (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
-  return [self requestForPostCommentWithText:text referenceId:referenceId referenceType:referenceType fileIds:nil];
+  return [self requestForPostCommentWithText:text referenceId:referenceId referenceType:referenceType fileIds:nil alertInvite:NO];
 }
 
-+ (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType fileIds:(NSArray *)fileIds {
++ (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType fileIds:(NSArray *)fileIds alertInvite:(BOOL)alertInvite {
 	NSString * uri = [NSString stringWithFormat:@"/comment/%@/%ld/", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPOST objectMapping:nil];
+  
+  request.parameters[@"alert_invite"] = @(alertInvite);
   
 	request.body = [[NSMutableDictionary alloc] init];
   request.body[@"value"] = text;

@@ -94,10 +94,13 @@
                                     fileIds:(NSArray *)fileIds 
                                     embedId:(NSUInteger)embedId 
                                 embedFileId:(NSUInteger)embedFileId 
-                                    spaceId:(NSUInteger)spaceId {
+                                    spaceId:(NSUInteger)spaceId
+                                alertInvite:(BOOL)alertInvite {
   PKRequest *request = [PKRequest requestWithURI:@"/status/" 
                                           method:PKRequestMethodPOST 
                                    objectMapping:nil];
+  
+  request.parameters[@"alert_invite"] = @(alertInvite);
   
   NSMutableDictionary * body = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(spaceId), @"space_id", text, @"value", nil];
   

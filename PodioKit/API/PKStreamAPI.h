@@ -34,6 +34,7 @@
                                     fileIds:(NSArray *)fileIds 
                                     embedId:(NSUInteger)embedId 
                                 embedFileId:(NSUInteger)embedFileId 
-                                    spaceId:(NSUInteger)spaceId;
+                                    spaceId:(NSUInteger)spaceId
+                                alertInvite:(BOOL)alertInvite;
 
 @end
