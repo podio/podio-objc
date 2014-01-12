@@ -1,11 +1,11 @@
 PODS:
-  - AFNetworking (1.1.0)
+  - AFNetworking (1.3.3)
   - OHHTTPStubs (1.1.1)
   - PodioKit (1.1.0):
-    - AFNetworking (= 1.1.0)
+    - AFNetworking (= 1.3.3)
 
 DEPENDENCIES:
-  - AFNetworking (= 1.1.0)
+  - AFNetworking (= 1.3.3)
   - OHHTTPStubs (= 1.1.1)
   - PodioKit (from `.`)
 
@@ -14,8 +14,8 @@ EXTERNAL SOURCES:
     :path: .
 
 SPEC CHECKSUMS:
-  AFNetworking: 761a418233d280c1e0580bcb76ff9cb4c3073d17
+  AFNetworking: 61fdd49e2ffe6380378df37b3b6e70630bb9dd66
   OHHTTPStubs: cb1cef742f2fba18b192fb92ede52a69cf3a04d5
-  PodioKit: 11d2c751937e011864e2e74e050e722e1fe0592c
+  PodioKit: 055960e5418032589f05c61ec7a0c29048f776c6
 
-COCOAPODS: 0.20.2
+COCOAPODS: 0.26.2

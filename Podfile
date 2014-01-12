@@ -3,7 +3,7 @@ platform :ios, '5.0'
 target :podiokit do
   link_with 'PodioKit'
   
-  pod 'AFNetworking', '1.1.0'
+  pod 'AFNetworking', '1.3.3'
 end
 
 target :podiokittests do
