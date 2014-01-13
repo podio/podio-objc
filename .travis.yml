@@ -1,6 +1,7 @@
 language: objective-c
+cache: bundler
 branches:
   only:
     - 2.0-develop
-gemfile:
-  - Gemfile
+script:
+  - rake test
