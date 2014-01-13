@@ -17,18 +17,18 @@
 
 - (void)testNumberToString {
   NSString *string = [@43.4565 pk_numberStringWithUSLocale];
-  STAssertTrue([string isEqualToString:@"43.4565"], @"String did not match expected 43.4565, got %@", string);
+  expect(string).to.equal(@"43.4565");
   
-  NSString *string2 = [@32 pk_numberStringWithUSLocale];
-  STAssertTrue([string2 isEqualToString:@"32"], @"String did not match expected 32, got %@", string2);
+  string = [@32 pk_numberStringWithUSLocale];
+  expect(string).to.equal(@"32");
 }
 
 - (void)testStringToNumber {
   NSNumber *number = [NSNumber pk_numberFromStringWithUSLocale:@"43.4565"];
-  STAssertTrue([number isEqualToNumber:@43.4565], @"Number did not match expected 43.4565, got %@", number);
+  expect(number).to.equal(@43.4565);
 
-  NSNumber *number2 = [NSNumber pk_numberFromStringWithUSLocale:@"32"];
-  STAssertTrue([number2 isEqualToNumber:@32], @"Number did not match expected 32, got %@", number2);
+  number = [NSNumber pk_numberFromStringWithUSLocale:@"32"];
+  expect(number).to.equal(@32);
 }
 
 @end

@@ -459,7 +459,6 @@
 		5065C0FA14345ECB00360855 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5065C0FC14345F0D00360855 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKPromotionAPI.h; sourceTree = "<group>"; };
@@ -934,7 +933,6 @@
 		5065BF0314335ABA00360855 /* PodioKitTests */ = {
 			isa = PBXGroup;
 			children = (
-				507CA05E1503E42700678F9D /* PKTestAssert.h */,
 				50F4FBD6144C088000317E62 /* PKAsyncTestCase.h */,
 				50F4FBD7144C088000317E62 /* PKAsyncTestCase.m */,
 				50D73870166F7C59009233FF /* API Client */,

@@ -11,7 +11,9 @@ target :podiokittests do
   
   pod 'PodioKit', :path => '.'
   
-  pod 'OHHTTPStubs', '1.1.1'
+  pod 'OHHTTPStubs'
+  pod 'Expecta'
+  pod 'OCMock'
 end
 
 target :demoapp do

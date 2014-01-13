@@ -11,18 +11,6 @@
 #import "PKDefaultObjectRepository.h"
 #import "PKTestTaskMapping.h"
 #import "PKTestTask.h"
-#import "PKAssert.h"
-
-
-@interface PKTaskMappingTests ()
-
-- (PKObjectMapper *)createObjectMapperWithMapping:(PKObjectMapping *)mapping;
-
-- (id)dataWithContentsOfJSONFile:(NSString *)filename;
-
-- (void)validateTask:(PKTestTask *)task;
-
-@end
 
 @implementation PKTaskMappingTests
 
@@ -57,8 +45,8 @@
   };
   
   NSArray *result = [mapper performMappingWithData:data];
+  expect(result).to.haveCountOf(5);
   
-  PKAssertEquals([result count], 5);
   [result enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
     [self validateTask:obj];
   }];
@@ -73,16 +61,16 @@
   };
   
   id task = [mapper performMappingWithData:data];
-  STAssertTrue([task isKindOfClass:[PKTestTask class]], @"Wrong class, expected PKTask, got %@", [task class]);
+  expect(task).to.beInstanceOf([PKTestTask class]);
   [self validateTask:task];
 }
 
 - (void)validateTask:(PKTestTask *)task {
-  PKAssertGreaterThanZero(task.taskId);
-  PKAssertNotNil(task.text);
-  PKAssertGreaterThanZero(task.type);
-  PKAssertGreaterThanZero(task.status);
-  PKAssertNotNil(task.createdOn);
+  expect(task.taskId).to.beGreaterThan(0);
+  expect(task.text).notTo.beNil();
+  expect(task.type).to.beGreaterThan(0);
+  expect(task.status).to.beGreaterThan(0);
+  expect(task.createdOn).notTo.beNil();
 }
 
 @end
