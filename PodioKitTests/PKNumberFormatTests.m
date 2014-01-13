@@ -6,10 +6,10 @@
 //  Copyright (c) 2013 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 #import "NSNumber+PKFormat.h"
 
-@interface PKNumberFormatTests : SenTestCase
+@interface PKNumberFormatTests : XCTestCase
 
 @end
 

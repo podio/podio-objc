@@ -29,7 +29,7 @@
   NSURL *fileURL = [[NSBundle bundleForClass:[self class]] URLForResource:filename withExtension:@"json"];
   
   id data = [NSJSONSerialization JSONObjectWithData:[NSData dataWithContentsOfURL:fileURL] options:0 error:nil];
-  STAssertNotNil(data, @"Unable to parse JSON data from file %@", filename);
+  XCTAssertNotNil(data, @"Unable to parse JSON data from file %@", filename);
   
   return data;
 }

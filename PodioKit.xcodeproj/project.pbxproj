@@ -105,6 +105,7 @@
 		5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
 		50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50458F381507734300FA66A6 /* PKByLineData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
+		50485955188461CF0088AF2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50485954188461CF0088AF2C /* XCTest.framework */; };
 		5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5048937815400A0400022E6C /* PKAppFieldDataFactory.h */; };
 		5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
 		504B33AA18583D9100149125 /* PKReferenceOrganizationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 504B33A818583D9100149125 /* PKReferenceOrganizationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -120,7 +121,6 @@
 		505F7E471445EFBC00727A1D /* GetTask.json in Resources */ = {isa = PBXBuildFile; fileRef = 505F7E461445EFBC00727A1D /* GetTask.json */; };
 		50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50620AAD14BC8CA60060A786 /* InfoPlist.strings */; };
 		5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
-		5065BEFA14335ABA00360855 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEF914335ABA00360855 /* SenTestingKit.framework */; };
 		5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
 		5065BF451433627900360855 /* PKRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5065BF3E1433627900360855 /* PKRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5065BF461433627900360855 /* PKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF3F1433627900360855 /* PKRequest.m */; };
@@ -393,6 +393,7 @@
 		5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskAPI.m; sourceTree = "<group>"; };
 		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
 		50458F391507734300FA66A6 /* PKByLineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKByLineData.m; sourceTree = "<group>"; };
+		50485954188461CF0088AF2C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		5048937815400A0400022E6C /* PKAppFieldDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldDataFactory.h; sourceTree = "<group>"; };
 		5048937915400A0400022E6C /* PKAppFieldDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldDataFactory.m; sourceTree = "<group>"; };
 		504B33A818583D9100149125 /* PKReferenceOrganizationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceOrganizationData.h; sourceTree = "<group>"; };
@@ -411,8 +412,7 @@
 		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEEB14335AB900360855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5065BEEF14335ABA00360855 /* PodioKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodioKit-Prefix.pch"; sourceTree = "<group>"; };
-		5065BEF814335ABA00360855 /* PodioKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodioKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5065BEF914335ABA00360855 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		5065BEF814335ABA00360855 /* PodioKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodioKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BF0514335ABA00360855 /* PodioKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PodioKitTests-Info.plist"; sourceTree = "<group>"; };
 		5065BF3E1433627900360855 /* PKRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKRequest.h; sourceTree = "<group>"; };
 		5065BF3F1433627900360855 /* PKRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKRequest.m; sourceTree = "<group>"; };
@@ -588,7 +588,6 @@
 		50FD7A8D16D3AADD001773EC /* PKSpaceInviteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceInviteData.m; sourceTree = "<group>"; };
 		50FEF576150E7CB2003B5306 /* PKUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKUserAPI.h; sourceTree = "<group>"; };
 		50FEF577150E7CB2003B5306 /* PKUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKUserAPI.m; sourceTree = "<group>"; };
-		5E996E3E8F6E4306A302F7F8 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A370E68741D44C408A3BBD91 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -609,13 +608,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */,
+				50485955188461CF0088AF2C /* XCTest.framework in Frameworks */,
 				5065C0FE14345F1000360855 /* MobileCoreServices.framework in Frameworks */,
 				5065C0FF14345F1000360855 /* SystemConfiguration.framework in Frameworks */,
 				5065C0FB14345ECB00360855 /* CFNetwork.framework in Frameworks */,
 				5065C0F914345E9E00360855 /* UIKit.framework in Frameworks */,
 				5065C0F714345E5100360855 /* CoreGraphics.framework in Frameworks */,
 				5065C0F514345CF700360855 /* CoreData.framework in Frameworks */,
-				5065BEFA14335ABA00360855 /* SenTestingKit.framework in Frameworks */,
 				5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */,
 				0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */,
 			);
@@ -883,7 +882,7 @@
 			isa = PBXGroup;
 			children = (
 				5065BEE814335AB900360855 /* libPodioKit.a */,
-				5065BEF814335ABA00360855 /* PodioKitTests.octest */,
+				5065BEF814335ABA00360855 /* PodioKitTests.xctest */,
 				509D6937152CA7A40033291C /* DemoApp.app */,
 			);
 			name = Products;
@@ -892,6 +891,7 @@
 		5065BEEA14335AB900360855 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				50485954188461CF0088AF2C /* XCTest.framework */,
 				5065C0FC14345F0D00360855 /* MobileCoreServices.framework */,
 				5065C0FD14345F0D00360855 /* SystemConfiguration.framework */,
 				5065C0FA14345ECB00360855 /* CFNetwork.framework */,
@@ -899,9 +899,7 @@
 				5065C0F614345E5000360855 /* CoreGraphics.framework */,
 				5065C0F414345CF300360855 /* CoreData.framework */,
 				5065BEEB14335AB900360855 /* Foundation.framework */,
-				5065BEF914335ABA00360855 /* SenTestingKit.framework */,
 				507CA06A1503E8B500678F9D /* libz.dylib */,
-				5E996E3E8F6E4306A302F7F8 /* libPods-podiokit.a */,
 				38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */,
 				749AC896ECA24D14812290D5 /* libPods-podiokittests.a */,
 				A370E68741D44C408A3BBD91 /* libPods-podiokit.a */,
@@ -1420,8 +1418,8 @@
 			);
 			name = PodioKitTests;
 			productName = PodioKitTests;
-			productReference = 5065BEF814335ABA00360855 /* PodioKitTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 5065BEF814335ABA00360855 /* PodioKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 		509D6936152CA7A40033291C /* DemoApp */ = {
 			isa = PBXNativeTarget;
@@ -1449,7 +1447,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = PK;
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Citrix Systems, Inc.";
 			};
 			buildConfigurationList = 5065BEE214335AB900360855 /* Build configuration list for PBXProject "PodioKit" */;
@@ -1780,6 +1778,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = YES;
 				SDKROOT = iphoneos;
@@ -1850,7 +1849,8 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKitTests/PodioKitTests-Prefix.pch";
@@ -1859,7 +1859,6 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PodioKitTests/PodioKitTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -1869,7 +1868,8 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKitTests/PodioKitTests-Prefix.pch";
@@ -1878,7 +1878,6 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				INFOPLIST_FILE = "PodioKitTests/PodioKitTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
@@ -1887,7 +1886,6 @@
 			baseConfigurationReference = 3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1920,7 +1918,6 @@
 			baseConfigurationReference = 3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

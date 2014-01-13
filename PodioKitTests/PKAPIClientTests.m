@@ -43,7 +43,7 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   
   [self waitForCompletion];
   
-  STAssertNotNil(self.apiClient.oauthToken, @"Token should not be nil");
+  XCTAssertNotNil(self.apiClient.oauthToken, @"Token should not be nil");
 }
 
 - (void)testRefreshWhenTokenInvalid {
@@ -56,13 +56,13 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:200];
   
   [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    STAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
+    XCTAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
     [self didFinish];
   }];
   
   [self waitForCompletion];
   
-  STAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
+  XCTAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
 }
 
 - (void)testDontRefreshWhenTokenValid {
@@ -73,13 +73,13 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:200];
   
   [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    STAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
+    XCTAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
     [self didFinish];
   }];
   
   [self waitForCompletion];
   
-  STAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
+  XCTAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
 }
 
 - (void)testRefreshFailed {
@@ -90,14 +90,14 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   
   [self expectNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
     [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-      STAssertNotNil(error, @"Error should not be nil");
+      XCTAssertNotNil(error, @"Error should not be nil");
       [self didFinish];
     }];
     
     [self waitForCompletion];
   }];
   
-  STAssertNil(self.apiClient.oauthToken, @"Token should have been reset when the refresh failed");
+  XCTAssertNil(self.apiClient.oauthToken, @"Token should have been reset when the refresh failed");
 }
 
 - (void)testRefreshFailedDueToNetwork {
@@ -107,13 +107,13 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   [self stubResponseForPath:@"/oauth/token" withJSONObject:nil statusCode:0]; // No status code from server
   
   [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    STAssertNotNil(error, @"Error should not be nil");
+    XCTAssertNotNil(error, @"Error should not be nil");
     [self didFinish];
   }];
   
   [self waitForCompletion];
   
-  STAssertNotNil(self.apiClient.oauthToken, @"Token should not be reset since this was not a server error");
+  XCTAssertNotNil(self.apiClient.oauthToken, @"Token should not be reset since this was not a server error");
 }
 
 - (void)testUnauthorized {
@@ -123,26 +123,26 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   
   [self expectNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
     [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-      STAssertNotNil(error, @"Error should not be nil");
+      XCTAssertNotNil(error, @"Error should not be nil");
       [self didFinish];
     }];
     
     [self waitForCompletion];
   }];
   
-  STAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we got a 401");
+  XCTAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we got a 401");
 }
 
 - (void)testNotAuthenticated {
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
   [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    STAssertNotNil(error, @"Error should not be nil");
+    XCTAssertNotNil(error, @"Error should not be nil");
     [self didFinish];
   }];
   
   [self waitForCompletion];
   
-  STAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we are not authenticated");
+  XCTAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we are not authenticated");
 }
 
 - (void)testRequestHeadersPresent {
@@ -151,21 +151,21 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   NSURLRequest *request = [self.apiClient requestWithMethod:PKRequestMethodGET path:@"/some/path" parameters:nil body:nil];
   PKHTTPRequestOperation *operation = [self.apiClient operationWithRequest:request completion:nil];
   
-  STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"X-Podio-Request-Id"], @"Missing header 'X-Podio-Request-Id'");
-  STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Authorization"], @"Missing header 'Authorization'");
-  STAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Accept-Language"], @"Missing header 'Accept-Language'");
+  XCTAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"X-Podio-Request-Id"], @"Missing header 'X-Podio-Request-Id'");
+  XCTAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Authorization"], @"Missing header 'Authorization'");
+  XCTAssertNotNil([operation.request.allHTTPHeaderFields valueForKey:@"Accept-Language"], @"Missing header 'Accept-Language'");
 }
 
 - (void)testAuthorizationHeaderForEmailAndPasswordAuthenticationRequest {
   NSURLRequest *request = [self.apiClient requestForAuthenticationWithEmail:@"email@email.com" password:@"p4ssw0rD"];
   NSString *authHeader = [request.allHTTPHeaderFields valueForKey:@"Authorization"];
-  STAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
+  XCTAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
 }
 
 - (void)testAuthorizationHeaderForSSOAuthenticationRequest {
   NSURLRequest *request = [self.apiClient requestForAuthenticationWithSSOBody:@{@"provider" : @"facebook"}];
   NSString *authHeader = [request.allHTTPHeaderFields valueForKey:@"Authorization"];
-  STAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
+  XCTAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
 }
 
 - (void)testAuthorizationHeaderForRefreshRequest {
@@ -174,7 +174,7 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   NSURLRequest *request = [self.apiClient requestForRefreshWithRefreshToken:self.apiClient.oauthToken.refreshToken];
   
   NSString *authHeader = [request.allHTTPHeaderFields valueForKey:@"Authorization"];
-  STAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
+  XCTAssertTrue([authHeader isEqualToString:kBasicAuthHeaderForAPIKeySecret], @"Authorization header should be Basic auth with base64 encoded API key/secret, was %@", authHeader);
 }
 
 #pragma mark - Helpers

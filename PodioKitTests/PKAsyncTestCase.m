@@ -38,7 +38,7 @@ static NSTimeInterval const kDefaultTimeout = 10.0;
   BOOL result = waitingCount == 0;
   [self reset];
   
-  STAssertTrue(result, @"Timed out.");
+  XCTAssertTrue(result, @"Timed out.");
   
   return result;
 }
@@ -67,7 +67,7 @@ static NSTimeInterval const kDefaultTimeout = 10.0;
   
   [[NSNotificationCenter defaultCenter] removeObserver:observer];
   
-  STAssertTrue(didReceiveNotification, @"Expected notification %@ not received from object %@.", name, object);
+  XCTAssertTrue(didReceiveNotification, @"Expected notification %@ not received from object %@.", name, object);
 }
 
 @end
