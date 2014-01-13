@@ -44,6 +44,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cocoapods (~> 0.29.0)
+  cocoapods
   getopt
   xcpretty
