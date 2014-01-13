@@ -20,6 +20,20 @@
                ReferencedContainer = "container:PodioKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5065BEF714335ABA00360855"
+               BuildableName = "PodioKitTests.octest"
+               BlueprintName = "PodioKitTests"
+               ReferencedContainer = "container:PodioKit.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
