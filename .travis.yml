@@ -3,4 +3,4 @@ branches:
   only:
     - 2.0-develop
 before_install:
-    - gem install cocoapods
+    - bundle install
