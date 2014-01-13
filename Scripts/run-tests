@@ -41,6 +41,5 @@ raw = opts['raw'] || false
 cmd = "xcodebuild -scheme #{SCHEME} -workspace #{WORKSPACE} -destination \"#{destination}\" -sdk \"#{sdk}\" test"
 cmd << "| xcpretty -c; exit ${PIPESTATUS[0]}" unless raw
 
-result = system(cmd)
-
-exit 1 unless result
+code = system(cmd)
+exit code if code != 0
