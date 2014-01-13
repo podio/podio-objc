@@ -2,5 +2,3 @@ language: objective-c
 branches:
   only:
     - 2.0-develop
-before_install:
-    - bundle install
