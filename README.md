@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/podio/podio-ios.png?branch=2.0-develop)](https://travis-ci.org/podio/podio-ios)
+
 # PodioKit
 
 PodioKit is a Objective-C client library for the Podio API. It provides an easy interface for interacting with the Podio API and is responsible for request management and data mapping. If can be used as is or in combination with a storage layer like Core Data.
