@@ -1,6 +1,13 @@
 # do not echo sh commands
 verbose(false)
 
+SCRIPTS = './Scripts'
+
+desc "Run the PodioKit unit test suite"
+task :test do
+  sh "#{SCRIPTS}/run-tests"
+end
+
 namespace :docs do
   desc "Generate PodioKit documentation using appledoc"
   task :generate do

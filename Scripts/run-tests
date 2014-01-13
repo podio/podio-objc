@@ -1,0 +1,46 @@
+#!/usr/bin/env ruby
+#
+# Runs the PodioKit unit test suite.
+#
+# Usage:
+#
+# ./run-tests [--device <ipad|iphone>] [--ios <6|7>] [--raw]
+#
+
+require 'getopt/long'
+
+SCHEME = 'PodioKit'
+WORKSPACE = 'PodioKit.xcworkspace'
+
+def sdk_for_version(version)
+  case version
+    when '6' then 'iphonesimulator6.0'
+    else 'iphonesimulator7.0'
+  end
+end
+
+def destination_for_device(device)
+  device_name = case device
+    when 'ipad' then 'iPad Retina'
+    else 'iPhone Retina (4-inch)'
+  end
+  
+  return "platform=iOS Simulator,name=#{device_name}"
+end
+
+opts = Getopt::Long.getopts(
+  ['--device', Getopt::OPTIONAL],
+  ['--ios', Getopt::OPTIONAL],
+  ['--raw', Getopt::BOOLEAN]
+)
+
+destination = destination_for_device(opts['device'])
+sdk = sdk_for_version(opts['ios'])
+raw = opts['raw'] || false
+
+cmd = "xcodebuild -scheme #{SCHEME} -workspace #{WORKSPACE} -destination \"#{destination}\" -sdk \"#{sdk}\" test"
+cmd << "| xcpretty -c; exit ${PIPESTATUS[0]}" unless raw
+
+result = system(cmd)
+
+exit 1 unless result
