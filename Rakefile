@@ -4,9 +4,17 @@ verbose(false)
 SCRIPTS = './Scripts'
 
 desc "Run the PodioKit unit test suite"
-task :test do
-  sh "#{SCRIPTS}/run-tests"
-  sh "#{SCRIPTS}/coverage-report"
+task :test => 'test:run'
+
+namespace :test do
+  task :run do
+    sh "#{SCRIPTS}/run-tests"
+  end
+  
+  desc "Generate a coverage report from the last test run"
+  task :coverage do
+    sh "#{SCRIPTS}/coverage-report"
+  end
 end
 
 namespace :docs do

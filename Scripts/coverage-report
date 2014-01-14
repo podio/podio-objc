@@ -34,6 +34,8 @@ def copy_coverage_files(search_dir, reports_dir)
     next if name.include?('Test')
   
     new_path = File.join(reports_dir, name)
+    puts "Copying report #{name}..."
+  
     FileUtils.copy(path, new_path)
   end
   

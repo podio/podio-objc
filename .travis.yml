@@ -5,6 +5,7 @@ branches:
     - 2.0-develop
 script:
   - rake test
+  - rake test:coverage
 rvm:
   - 1.9.3
 gemfile:
