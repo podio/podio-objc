@@ -6,4 +6,4 @@ branches:
 script:
   - rake test
 rvm:
-  - 2.0.0p353
+  - ruby-2.0.0-p353
