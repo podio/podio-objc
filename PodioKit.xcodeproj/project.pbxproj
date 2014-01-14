@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
-		5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5009E23D1667C8040018EC75 /* PKAPIClient.h */; };
+		5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5009E23D1667C8040018EC75 /* PKAPIClient.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
 		500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = 500EA927153F20830049F224 /* PKReferenceBatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		500EA92A153F20830049F224 /* PKReferenceBatchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 500EA928153F20830049F224 /* PKReferenceBatchData.m */; };
@@ -106,6 +106,121 @@
 		50458F3A1507734300FA66A6 /* PKByLineData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50458F381507734300FA66A6 /* PKByLineData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50458F3B1507734300FA66A6 /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
 		50485955188461CF0088AF2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50485954188461CF0088AF2C /* XCTest.framework */; };
+		5048595F18853DF40088AF2C /* PKCoverageTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048595E18853DF40088AF2C /* PKCoverageTestObserver.m */; };
+		50485962188541B60088AF2C /* XCTestProbe+PKRegisterObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 50485961188541B60088AF2C /* XCTestProbe+PKRegisterObserver.m */; };
+		50485966188548440088AF2C /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
+		50485967188548440088AF2C /* PKOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D737FD166F4504009233FF /* PKOAuth2Token.m */; };
+		50485968188548440088AF2C /* PKHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */; };
+		50485969188548440088AF2C /* PKRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF3F1433627900360855 /* PKRequest.m */; };
+		5048596A188548440088AF2C /* PKRequestManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF411433627900360855 /* PKRequestManager.m */; };
+		5048596B188548440088AF2C /* PKRequestResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026A2BE147116BC0051D7C8 /* PKRequestResult.m */; };
+		5048596C188548A10088AF2C /* PKObjectMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 502B5FAD1445729D004F4185 /* PKObjectMapping.m */; };
+		5048596D188548A10088AF2C /* PKAttributeMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF741433649A00360855 /* PKAttributeMapping.m */; };
+		5048596E188548A10088AF2C /* PKCompoundMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF781433649A00360855 /* PKCompoundMapping.m */; };
+		5048596F188548A10088AF2C /* PKPropertyMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF7C1433649A00360855 /* PKPropertyMapping.m */; };
+		50485970188548A10088AF2C /* PKValueMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF821433649A00360855 /* PKValueMapping.m */; };
+		50485971188548A10088AF2C /* PKRelationshipMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF7E1433649A00360855 /* PKRelationshipMapping.m */; };
+		50485972188548A10088AF2C /* PKStandaloneMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBED145E921A0003A097 /* PKStandaloneMapping.m */; };
+		50485973188548A10088AF2C /* PKManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB01433650E00360855 /* PKManagedObject.m */; };
+		50485974188548A10088AF2C /* PKCoreDataRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF67143363EC00360855 /* PKCoreDataRepository.m */; };
+		50485975188548A10088AF2C /* PKCoreDataMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF9145E96620003A097 /* PKCoreDataMappingCoordinator.m */; };
+		50485976188548A10088AF2C /* PKObjectMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBE9145E90D40003A097 /* PKObjectMapper.m */; };
+		50485977188548A10088AF2C /* PKMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF521433632200360855 /* PKMappingCoordinator.m */; };
+		50485978188548A10088AF2C /* PKMappingProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BF571433632C00360855 /* PKMappingProvider.m */; };
+		50485979188548A90088AF2C /* PKBaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D43148CDA33000B57EA /* PKBaseAPI.m */; };
+		5048597A188548A90088AF2C /* PKCommentAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D45148CDA34000B57EA /* PKCommentAPI.m */; };
+		5048597B188548A90088AF2C /* PKFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D47148CDA35000B57EA /* PKFileAPI.m */; };
+		5048597C188548A90088AF2C /* PKItemAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D49148CDA35000B57EA /* PKItemAPI.m */; };
+		5048597D188548A90088AF2C /* PKNotificationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4B148CDA36000B57EA /* PKNotificationAPI.m */; };
+		5048597E188548A90088AF2C /* PKOrganizationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4D148CDA37000B57EA /* PKOrganizationAPI.m */; };
+		5048597F188548A90088AF2C /* PKQuestionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D4F148CDA37000B57EA /* PKQuestionAPI.m */; };
+		50485980188548A90088AF2C /* PKRatingAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D51148CDA39000B57EA /* PKRatingAPI.m */; };
+		50485981188548A90088AF2C /* PKStreamAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1D53148CDA3A000B57EA /* PKStreamAPI.m */; };
+		50485982188548A90088AF2C /* PKTaskAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAD5144491A500B7F7C7 /* PKTaskAPI.m */; };
+		50485983188548A90088AF2C /* PKConversationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5059533B149634B70046685A /* PKConversationAPI.m */; };
+		50485984188548A90088AF2C /* PKSpaceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D212B14FBB875002593A4 /* PKSpaceAPI.m */; };
+		50485985188548A90088AF2C /* PKLinkedAccountAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E494D714FD2B7F007D5C32 /* PKLinkedAccountAPI.m */; };
+		50485986188548A90088AF2C /* PKSearchAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50ED3E7A15010E3000079432 /* PKSearchAPI.m */; };
+		50485987188548A90088AF2C /* PKContactAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DB5BA7150A55B500B5E489 /* PKContactAPI.m */; };
+		50485988188548A90088AF2C /* PKUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEF577150E7CB2003B5306 /* PKUserAPI.m */; };
+		50485989188548A90088AF2C /* PKAppStoreAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319CE150F8F2700EAD7C7 /* PKAppStoreAPI.m */; };
+		5048598A188548A90088AF2C /* PKAppAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50858ABC15120EAD00ED8A6E /* PKAppAPI.m */; };
+		5048598B188548A90088AF2C /* PKViewAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B2A40B15666EFB00DC6C65 /* PKViewAPI.m */; };
+		5048598C188548A90088AF2C /* PKEmbedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */; };
+		5048598D188548A90088AF2C /* PKReferenceAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 505395C816EA214F00D1E99E /* PKReferenceAPI.m */; };
+		5048598E188548A90088AF2C /* PKLiveAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B8989E1760A55B006B5BE7 /* PKLiveAPI.m */; };
+		5048598F188548A90088AF2C /* PKPromotionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507D09FA1823EB3600AFBFB1 /* PKPromotionAPI.m */; };
+		50485990188548C30088AF2C /* PKBaseObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */; };
+		50485991188548C30088AF2C /* PKObjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04D1435E76300027F07 /* PKObjectData.m */; };
+		50485992188548C30088AF2C /* PKSearchResultData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D33177150226D40054B777 /* PKSearchResultData.m */; };
+		50485993188548C30088AF2C /* PKItemFieldValueDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */; };
+		50485994188548C30088AF2C /* PKItemFieldValueItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0471435E76300027F07 /* PKItemFieldValueItemData.m */; };
+		50485995188548C30088AF2C /* PKItemFieldValueCalculationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0491435E76300027F07 /* PKItemFieldValueCalculationData.m */; };
+		50485996188548C30088AF2C /* PKItemFieldValueContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04B1435E76300027F07 /* PKItemFieldValueContactData.m */; };
+		50485997188548C30088AF2C /* PKItemFieldValueDateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */; };
+		50485998188548C30088AF2C /* PKItemFieldValueEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */; };
+		50485999188548C30088AF2C /* PKItemFieldValueMediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0551435E76300027F07 /* PKItemFieldValueMediaData.m */; };
+		5048599A188548C30088AF2C /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
+		5048599B188548C30088AF2C /* PKItemFieldValueOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */; };
+		5048599C188548C30088AF2C /* PKItemParticipantsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FDEDC1548095E002B6413 /* PKItemParticipantsData.m */; };
+		5048599D188548EF0088AF2C /* PKSpaceCreateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 508D211C14FBB332002593A4 /* PKSpaceCreateData.m */; };
+		5048599E188548EF0088AF2C /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
+		5048599F188548EF0088AF2C /* PKSpaceInviteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FD7A8D16D3AADD001773EC /* PKSpaceInviteData.m */; };
+		504859A0188548EF0088AF2C /* PKStreamDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0C51435E92800027F07 /* PKStreamDataFactory.m */; };
+		504859A1188548EF0088AF2C /* PKStreamActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02D1435E76300027F07 /* PKStreamActionData.m */; };
+		504859A2188548EF0088AF2C /* PKStreamItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0411435E76300027F07 /* PKStreamItemData.m */; };
+		504859A3188548EF0088AF2C /* PKStreamStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0431435E76300027F07 /* PKStreamStatusData.m */; };
+		504859A4188548EF0088AF2C /* PKStreamTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0451435E76300027F07 /* PKStreamTaskData.m */; };
+		504859A5188548EF0088AF2C /* PKReferenceDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897C14A138EE004E027E /* PKReferenceDataFactory.m */; };
+		504859A6188548EF0088AF2C /* PKReferenceSpaceData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AE897F14A1394F004E027E /* PKReferenceSpaceData.m */; };
+		504859A7188548EF0088AF2C /* PKReferenceAppData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1CDD148780FF000B57EA /* PKReferenceAppData.m */; };
+		504859A8188548EF0088AF2C /* PKReferenceProfileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CC1CE314878124000B57EA /* PKReferenceProfileData.m */; };
+		504859A9188548EF0088AF2C /* PKReferenceTaskActionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03B1435E76300027F07 /* PKReferenceTaskActionData.m */; };
+		504859AA188548EF0088AF2C /* PKReferenceStatusData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D8C148EA13700AF86C4 /* PKReferenceStatusData.m */; };
+		504859AB188548EF0088AF2C /* PKReferenceItemData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16D9C148F4A4700AF86C4 /* PKReferenceItemData.m */; };
+		504859AC188548EF0088AF2C /* PKReferenceMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */; };
+		504859AD188548EF0088AF2C /* PKReferenceCommentData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0311435E76300027F07 /* PKReferenceCommentData.m */; };
+		504859AE188548EF0088AF2C /* PKReferenceRatingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0371435E76300027F07 /* PKReferenceRatingData.m */; };
+		504859AF188548EF0088AF2C /* PKReferenceAlertData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B529F6148FC06800E05852 /* PKReferenceAlertData.m */; };
+		504859B0188548EF0088AF2C /* PKReferenceBatchData.m in Sources */ = {isa = PBXBuildFile; fileRef = 500EA928153F20830049F224 /* PKReferenceBatchData.m */; };
+		504859B1188548EF0088AF2C /* PKReferenceAnswerData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C02F1435E76300027F07 /* PKReferenceAnswerData.m */; };
+		504859B2188548EF0088AF2C /* PKReferenceTaskData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C03D1435E76300027F07 /* PKReferenceTaskData.m */; };
+		504859B3188548EF0088AF2C /* PKReferenceOrganizationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 504B33A918583D9100149125 /* PKReferenceOrganizationData.m */; };
+		504859B4188548EF0088AF2C /* PKQuestionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0271435E76300027F07 /* PKQuestionData.m */; };
+		504859B5188548EF0088AF2C /* PKQuestionOptionData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0291435E76300027F07 /* PKQuestionOptionData.m */; };
+		504859B6188548EF0088AF2C /* PKEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0251435E76300027F07 /* PKEmbedData.m */; };
+		504859B7188548EF0088AF2C /* PKFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17D14386AFE009764A3 /* PKFileData.m */; };
+		504859B8188548EF0088AF2C /* PKExternalFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032336114FD3F2C0028D887 /* PKExternalFileData.m */; };
+		504859B9188548EF0088AF2C /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
+		504859BA188548EF0088AF2C /* PKProviderData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053634214FF962B0068622A /* PKProviderData.m */; };
+		504859BB188548EF0088AF2C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
+		504859BC188548EF0088AF2C /* PKAppFieldContactData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C01F1435E76300027F07 /* PKAppFieldContactData.m */; };
+		504859BD188548EF0088AF2C /* PKAppFieldMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0211435E76300027F07 /* PKAppFieldMoneyData.m */; };
+		504859BE188548EF0088AF2C /* PKAppFieldOptionsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0231435E76300027F07 /* PKAppFieldOptionsData.m */; };
+		504859BF188548EF0088AF2C /* PKExternalMeetingData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DFDB7614E1989D00D2C5B6 /* PKExternalMeetingData.m */; };
+		504859C0188548EF0088AF2C /* PKShareData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E0150F98AE00EAD7C7 /* PKShareData.m */; };
+		504859C1188548EF0088AF2C /* PKShareCategoryData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B319E5150F98E800EAD7C7 /* PKShareCategoryData.m */; };
+		504859C2188548EF0088AF2C /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
+		504859C3188548EF0088AF2C /* PKDefaultObjectRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */; };
+		504859C4188548EF0088AF2C /* PKDefaultMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */; };
+		504859C5188548EF0088AF2C /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
+		504859C6188548EF0088AF2C /* PKLog.m in Sources */ = {isa = PBXBuildFile; fileRef = 5084B57914DEF5F0002FC8DB /* PKLog.m */; };
+		504859C7188548EF0088AF2C /* NSString+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFF8143366DD00360855 /* NSString+PKAdditions.m */; };
+		504859C8188548EF0088AF2C /* NSArray+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFEE143366C100360855 /* NSArray+PKAdditions.m */; };
+		504859C9188548EF0088AF2C /* NSDictionary+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFFD1433670800360855 /* NSDictionary+PKAdditions.m */; };
+		504859CA188548EF0088AF2C /* NSSet+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFF0143366C100360855 /* NSSet+PKAdditions.m */; };
+		504859CB188548EF0088AF2C /* NSManagedObject+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065BFB51433654B00360855 /* NSManagedObject+PKAdditions.m */; };
+		504859CC188548EF0088AF2C /* NSManagedObjectContext+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0261433697D00360855 /* NSManagedObjectContext+PKAdditions.m */; };
+		504859CD188548EF0088AF2C /* NSDate+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5065C0CA143453BE00360855 /* NSDate+PKAdditions.m */; };
+		504859CE188548EF0088AF2C /* NSString+Hash.m in Sources */ = {isa = PBXBuildFile; fileRef = 50BBF5391439B365002522D6 /* NSString+Hash.m */; };
+		504859CF188548EF0088AF2C /* NSDictionary+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBC71448892700317E62 /* NSDictionary+URL.m */; };
+		504859D0188548EF0088AF2C /* NSString+URL.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F4FBCC14488A4800317E62 /* NSString+URL.m */; };
+		504859D1188548EF0088AF2C /* NSManagedObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF1145E92DD0003A097 /* NSManagedObject+ActiveRecord.m */; };
+		504859D2188548EF0088AF2C /* NSError+PKErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 5026A2BA147114B70051D7C8 /* NSError+PKErrors.m */; };
+		504859D3188548EF0088AF2C /* NSURLRequest+PKDescription.m in Sources */ = {isa = PBXBuildFile; fileRef = 509867A9166CAEE100CEAA8C /* NSURLRequest+PKDescription.m */; };
+		504859D4188548EF0088AF2C /* NSString+PKRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73810166F6D09009233FF /* NSString+PKRandom.m */; };
+		504859D5188548EF0088AF2C /* NSString+PKBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5216D11D55002C59E1 /* NSString+PKBase64.m */; };
+		504859D6188548EF0088AF2C /* NSMutableURLRequest+PKAuthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */; };
 		5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 5048937815400A0400022E6C /* PKAppFieldDataFactory.h */; };
 		5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 5048937915400A0400022E6C /* PKAppFieldDataFactory.m */; };
 		504B33AA18583D9100149125 /* PKReferenceOrganizationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 504B33A818583D9100149125 /* PKReferenceOrganizationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -394,6 +509,10 @@
 		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
 		50458F391507734300FA66A6 /* PKByLineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKByLineData.m; sourceTree = "<group>"; };
 		50485954188461CF0088AF2C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		5048595D18853DF40088AF2C /* PKCoverageTestObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCoverageTestObserver.h; sourceTree = "<group>"; };
+		5048595E18853DF40088AF2C /* PKCoverageTestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCoverageTestObserver.m; sourceTree = "<group>"; };
+		50485960188541B60088AF2C /* XCTestProbe+PKRegisterObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestProbe+PKRegisterObserver.h"; sourceTree = "<group>"; };
+		50485961188541B60088AF2C /* XCTestProbe+PKRegisterObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestProbe+PKRegisterObserver.m"; sourceTree = "<group>"; };
 		5048937815400A0400022E6C /* PKAppFieldDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldDataFactory.h; sourceTree = "<group>"; };
 		5048937915400A0400022E6C /* PKAppFieldDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldDataFactory.m; sourceTree = "<group>"; };
 		504B33A818583D9100149125 /* PKReferenceOrganizationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceOrganizationData.h; sourceTree = "<group>"; };
@@ -862,6 +981,17 @@
 			name = Misc;
 			sourceTree = "<group>";
 		};
+		5048595C18853DC70088AF2C /* Observers */ = {
+			isa = PBXGroup;
+			children = (
+				5048595D18853DF40088AF2C /* PKCoverageTestObserver.h */,
+				5048595E18853DF40088AF2C /* PKCoverageTestObserver.m */,
+				50485960188541B60088AF2C /* XCTestProbe+PKRegisterObserver.h */,
+				50485961188541B60088AF2C /* XCTestProbe+PKRegisterObserver.m */,
+			);
+			name = Observers;
+			sourceTree = "<group>";
+		};
 		5065BEDD14335AB900360855 = {
 			isa = PBXGroup;
 			children = (
@@ -931,6 +1061,7 @@
 		5065BF0314335ABA00360855 /* PodioKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				5048595C18853DC70088AF2C /* Observers */,
 				50F4FBD6144C088000317E62 /* PKAsyncTestCase.h */,
 				50F4FBD7144C088000317E62 /* PKAsyncTestCase.m */,
 				50D73870166F7C59009233FF /* API Client */,
@@ -1719,21 +1850,136 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				504859B7188548EF0088AF2C /* PKFileData.m in Sources */,
+				504859CE188548EF0088AF2C /* NSString+Hash.m in Sources */,
+				504859CD188548EF0088AF2C /* NSDate+PKAdditions.m in Sources */,
+				50485981188548A90088AF2C /* PKStreamAPI.m in Sources */,
+				5048598C188548A90088AF2C /* PKEmbedAPI.m in Sources */,
+				504859CF188548EF0088AF2C /* NSDictionary+URL.m in Sources */,
+				504859B6188548EF0088AF2C /* PKEmbedData.m in Sources */,
+				5048598A188548A90088AF2C /* PKAppAPI.m in Sources */,
+				50485985188548A90088AF2C /* PKLinkedAccountAPI.m in Sources */,
+				504859AD188548EF0088AF2C /* PKReferenceCommentData.m in Sources */,
+				5048598B188548A90088AF2C /* PKViewAPI.m in Sources */,
 				5032BAC914448E1500B7F7C7 /* PKTestTask.m in Sources */,
 				5032BACE1444907800B7F7C7 /* PKTestTaskMapping.m in Sources */,
+				504859C3188548EF0088AF2C /* PKDefaultObjectRepository.m in Sources */,
+				5048597E188548A90088AF2C /* PKOrganizationAPI.m in Sources */,
+				504859A3188548EF0088AF2C /* PKStreamStatusData.m in Sources */,
+				50485989188548A90088AF2C /* PKAppStoreAPI.m in Sources */,
+				504859B2188548EF0088AF2C /* PKReferenceTaskData.m in Sources */,
+				50485994188548C30088AF2C /* PKItemFieldValueItemData.m in Sources */,
+				5048597C188548A90088AF2C /* PKItemAPI.m in Sources */,
+				5048599A188548C30088AF2C /* PKItemFieldValueMoneyData.m in Sources */,
+				504859BA188548EF0088AF2C /* PKProviderData.m in Sources */,
+				50485977188548A10088AF2C /* PKMappingCoordinator.m in Sources */,
+				504859D1188548EF0088AF2C /* NSManagedObject+ActiveRecord.m in Sources */,
+				5048596C188548A10088AF2C /* PKObjectMapping.m in Sources */,
+				504859A1188548EF0088AF2C /* PKStreamActionData.m in Sources */,
+				504859CB188548EF0088AF2C /* NSManagedObject+PKAdditions.m in Sources */,
+				50485970188548A10088AF2C /* PKValueMapping.m in Sources */,
+				50485984188548A90088AF2C /* PKSpaceAPI.m in Sources */,
+				504859BD188548EF0088AF2C /* PKAppFieldMoneyData.m in Sources */,
+				504859B0188548EF0088AF2C /* PKReferenceBatchData.m in Sources */,
+				504859BC188548EF0088AF2C /* PKAppFieldContactData.m in Sources */,
+				504859D0188548EF0088AF2C /* NSString+URL.m in Sources */,
+				504859C5188548EF0088AF2C /* PKConstants.m in Sources */,
+				5048595F18853DF40088AF2C /* PKCoverageTestObserver.m in Sources */,
+				50485969188548440088AF2C /* PKRequest.m in Sources */,
+				50485975188548A10088AF2C /* PKCoreDataMappingCoordinator.m in Sources */,
+				50485992188548C30088AF2C /* PKSearchResultData.m in Sources */,
+				50485999188548C30088AF2C /* PKItemFieldValueMediaData.m in Sources */,
+				504859C6188548EF0088AF2C /* PKLog.m in Sources */,
+				504859C2188548EF0088AF2C /* PKByLineData.m in Sources */,
+				5048597D188548A90088AF2C /* PKNotificationAPI.m in Sources */,
+				50485997188548C30088AF2C /* PKItemFieldValueDateData.m in Sources */,
+				504859CC188548EF0088AF2C /* NSManagedObjectContext+PKAdditions.m in Sources */,
+				5048597B188548A90088AF2C /* PKFileAPI.m in Sources */,
+				504859BF188548EF0088AF2C /* PKExternalMeetingData.m in Sources */,
+				50485995188548C30088AF2C /* PKItemFieldValueCalculationData.m in Sources */,
+				5048598F188548A90088AF2C /* PKPromotionAPI.m in Sources */,
+				50485991188548C30088AF2C /* PKObjectData.m in Sources */,
+				504859A7188548EF0088AF2C /* PKReferenceAppData.m in Sources */,
+				504859AA188548EF0088AF2C /* PKReferenceStatusData.m in Sources */,
+				5048596F188548A10088AF2C /* PKPropertyMapping.m in Sources */,
+				50485967188548440088AF2C /* PKOAuth2Token.m in Sources */,
+				50485968188548440088AF2C /* PKHTTPRequestOperation.m in Sources */,
+				5048596B188548440088AF2C /* PKRequestResult.m in Sources */,
+				504859A4188548EF0088AF2C /* PKStreamTaskData.m in Sources */,
+				504859BE188548EF0088AF2C /* PKAppFieldOptionsData.m in Sources */,
+				5048596E188548A10088AF2C /* PKCompoundMapping.m in Sources */,
+				504859C1188548EF0088AF2C /* PKShareCategoryData.m in Sources */,
+				50485993188548C30088AF2C /* PKItemFieldValueDataFactory.m in Sources */,
+				504859B9188548EF0088AF2C /* PKLinkedAccountData.m in Sources */,
 				502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */,
+				50485980188548A90088AF2C /* PKRatingAPI.m in Sources */,
+				50485962188541B60088AF2C /* XCTestProbe+PKRegisterObserver.m in Sources */,
+				5048598E188548A90088AF2C /* PKLiveAPI.m in Sources */,
+				504859A5188548EF0088AF2C /* PKReferenceDataFactory.m in Sources */,
 				50F4FBD8144C088000317E62 /* PKAsyncTestCase.m in Sources */,
+				504859CA188548EF0088AF2C /* NSSet+PKAdditions.m in Sources */,
 				50FCC39C14A1C9960001E6F4 /* PKObjectMapperTests.m in Sources */,
+				5048597A188548A90088AF2C /* PKCommentAPI.m in Sources */,
+				504859A2188548EF0088AF2C /* PKStreamItemData.m in Sources */,
+				50485974188548A10088AF2C /* PKCoreDataRepository.m in Sources */,
+				504859A0188548EF0088AF2C /* PKStreamDataFactory.m in Sources */,
 				50FCC39F14A1D4D90001E6F4 /* PKTestItem.m in Sources */,
+				504859B5188548EF0088AF2C /* PKQuestionOptionData.m in Sources */,
 				50FCC3A214A1D5550001E6F4 /* PKTestItemMapping.m in Sources */,
+				50485986188548A90088AF2C /* PKSearchAPI.m in Sources */,
+				504859D5188548EF0088AF2C /* NSString+PKBase64.m in Sources */,
+				504859AC188548EF0088AF2C /* PKReferenceMessageData.m in Sources */,
+				5048598D188548A90088AF2C /* PKReferenceAPI.m in Sources */,
+				504859AE188548EF0088AF2C /* PKReferenceRatingData.m in Sources */,
+				504859A6188548EF0088AF2C /* PKReferenceSpaceData.m in Sources */,
+				504859C9188548EF0088AF2C /* NSDictionary+PKAdditions.m in Sources */,
+				5048599E188548EF0088AF2C /* PKSpaceMemberRequestData.m in Sources */,
+				50485983188548A90088AF2C /* PKConversationAPI.m in Sources */,
+				504859B3188548EF0088AF2C /* PKReferenceOrganizationData.m in Sources */,
+				50485998188548C30088AF2C /* PKItemFieldValueEmbedData.m in Sources */,
+				5048596A188548440088AF2C /* PKRequestManager.m in Sources */,
+				504859AF188548EF0088AF2C /* PKReferenceAlertData.m in Sources */,
+				50485982188548A90088AF2C /* PKTaskAPI.m in Sources */,
+				504859AB188548EF0088AF2C /* PKReferenceItemData.m in Sources */,
+				504859C8188548EF0088AF2C /* NSArray+PKAdditions.m in Sources */,
 				50FCC3A514A1D6250001E6F4 /* PKTestMappingProvider.m in Sources */,
+				50485966188548440088AF2C /* PKAPIClient.m in Sources */,
 				50FCC3A814A1E0520001E6F4 /* PKTestItemField.m in Sources */,
+				504859D6188548EF0088AF2C /* NSMutableURLRequest+PKAuthHeader.m in Sources */,
+				50485979188548A90088AF2C /* PKBaseAPI.m in Sources */,
+				50485971188548A10088AF2C /* PKRelationshipMapping.m in Sources */,
+				5048597F188548A90088AF2C /* PKQuestionAPI.m in Sources */,
+				50485996188548C30088AF2C /* PKItemFieldValueContactData.m in Sources */,
+				50485990188548C30088AF2C /* PKBaseObject.m in Sources */,
+				5048599C188548C30088AF2C /* PKItemParticipantsData.m in Sources */,
+				504859BB188548EF0088AF2C /* PKAppFieldDataFactory.m in Sources */,
+				50485972188548A10088AF2C /* PKStandaloneMapping.m in Sources */,
+				50485987188548A90088AF2C /* PKContactAPI.m in Sources */,
+				5048599F188548EF0088AF2C /* PKSpaceInviteData.m in Sources */,
+				504859B1188548EF0088AF2C /* PKReferenceAnswerData.m in Sources */,
+				504859D2188548EF0088AF2C /* NSError+PKErrors.m in Sources */,
+				504859D3188548EF0088AF2C /* NSURLRequest+PKDescription.m in Sources */,
+				504859B8188548EF0088AF2C /* PKExternalFileData.m in Sources */,
+				5048596D188548A10088AF2C /* PKAttributeMapping.m in Sources */,
+				504859D4188548EF0088AF2C /* NSString+PKRandom.m in Sources */,
+				504859A9188548EF0088AF2C /* PKReferenceTaskActionData.m in Sources */,
 				50FCC3AB14A1E2580001E6F4 /* PKTestItemFieldMapping.m in Sources */,
 				50FCC3AE14A1E75C0001E6F4 /* PKTestItemApp.m in Sources */,
 				50FCC3B114A1E7DE0001E6F4 /* PKTestItemAppMapping.m in Sources */,
+				504859C7188548EF0088AF2C /* NSString+PKAdditions.m in Sources */,
+				5048599D188548EF0088AF2C /* PKSpaceCreateData.m in Sources */,
 				50D73873166F7C71009233FF /* PKAPIClientTests.m in Sources */,
+				50485988188548A90088AF2C /* PKUserAPI.m in Sources */,
+				504859B4188548EF0088AF2C /* PKQuestionData.m in Sources */,
+				504859C0188548EF0088AF2C /* PKShareData.m in Sources */,
+				504859C4188548EF0088AF2C /* PKDefaultMappingCoordinator.m in Sources */,
 				5025D8DB179D26B800F8753E /* PKNumberFormatTests.m in Sources */,
+				50485978188548A10088AF2C /* PKMappingProvider.m in Sources */,
+				50485973188548A10088AF2C /* PKManagedObject.m in Sources */,
+				504859A8188548EF0088AF2C /* PKReferenceProfileData.m in Sources */,
+				50485976188548A10088AF2C /* PKObjectMapper.m in Sources */,
 				5025D8DC179D287700F8753E /* NSNumber+PKFormat.m in Sources */,
+				5048599B188548C30088AF2C /* PKItemFieldValueOptionData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1852,6 +2098,8 @@
 					"$(inherited)",
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 				);
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "PodioKitTests/PodioKitTests-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = "$(inherited)";
