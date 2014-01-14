@@ -6,4 +6,7 @@ branches:
 script:
   - rake test
 rvm:
-  - ruby-2.0.0-p247
+  - 1.9.3
+gemfile:
+  - Gemfile
+		
