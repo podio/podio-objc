@@ -5,3 +5,5 @@ branches:
     - 2.0-develop
 script:
   - rake test
+rvm:
+  - 2.0.0p353
