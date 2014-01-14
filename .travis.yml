@@ -8,5 +8,4 @@ script:
 rvm:
   - 1.9.3
 gemfile:
-  - Gemfile
-		
+  - Gemfile		
