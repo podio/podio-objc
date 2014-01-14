@@ -6,6 +6,7 @@ SCRIPTS = './Scripts'
 desc "Run the PodioKit unit test suite"
 task :test do
   sh "#{SCRIPTS}/run-tests"
+  sh "#{SCRIPTS}/coverage-report"
 end
 
 namespace :docs do
