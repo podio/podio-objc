@@ -1,5 +1,5 @@
 //
-//  PKCoverageTestObserver.h
+//  XCTestProbe+PKRegisterObserver.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 14/01/14.
@@ -8,6 +8,6 @@
 
 #import <XCTest/XCTest.h>
 
-@interface PKCoverageTestObserver : XCTestObserver
+@interface XCTestProbe (PKTRegisterObserver)
 
 @end

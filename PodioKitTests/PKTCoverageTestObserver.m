@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKCoverageTestObserver.h"
+#import "PKTCoverageTestObserver.h"
 
 extern void __gcov_flush(void);
 
-@implementation PKCoverageTestObserver
+@implementation PKTCoverageTestObserver
 
 - (void)stopObserving {
   [super stopObserving];
