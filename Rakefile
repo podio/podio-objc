@@ -13,10 +13,7 @@ namespace :test do
   
   desc "Generate a coverage report from the last test run"
   task :coverage do
-    opts = ''
-    opts << " --publish #{ENV['publish']}" if ENV['publish']
-    
-    sh "#{SCRIPTS}/coverage-report#{opts}"
+    sh "#{SCRIPTS}/coverage-report"
   end
 end
 
