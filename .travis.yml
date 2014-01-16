@@ -1,12 +1,15 @@
 language: objective-c
+rvm:
+  - 1.9.3
+gemfile:
+  - Gemfile
 cache: bundler
 branches:
   only:
     - 2.0-develop
+before_script:
+  - sudo easy_install cpp-coveralls
 script:
-  - rake test
-  - rake test:coverage
-rvm:
-  - 1.9.3
-gemfile:
-  - Gemfile		
+  - rake test:run
+after_success:
+  - rake test:coverage publish=yes
