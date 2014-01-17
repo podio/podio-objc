@@ -29,7 +29,7 @@ extern NSString * const PKAPIClientErrorKey;
 
 @class PKHTTPRequestOperation, PKOAuth2Token;
 
-@interface PKAPIClient : AFHTTPClient
+@interface PKAPIClient : AFHTTPRequestOperationManager
 
 @property (copy) NSString *apiKey;
 @property (copy) NSString *apiSecret;

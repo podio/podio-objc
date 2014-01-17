@@ -1,5 +1,5 @@
 //
-//  PKCoverageTestObserver.m
+//  PKTCoverageTestObserver.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 14/01/14.

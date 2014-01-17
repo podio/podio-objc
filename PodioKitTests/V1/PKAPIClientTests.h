@@ -6,9 +6,9 @@
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKAsyncTestCase.h"
+#import "PKTAsyncTestCase.h"
 
-@interface PKAPIClientTests : PKAsyncTestCase
+@interface PKAPIClientTests : PKTAsyncTestCase
 
 - (void)testAuthenticate;
 - (void)testRefreshWhenTokenInvalid;

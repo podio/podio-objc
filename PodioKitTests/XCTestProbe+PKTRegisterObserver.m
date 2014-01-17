@@ -16,8 +16,7 @@
   
   // HACK: We need to register the coverage observer to make sure it's called at the end of the
   // test suite run, in order to flush the coverage data to .gcda files.
-  NSString *observerString = [NSString stringWithFormat:@"XCTestLog,%@", NSStringFromClass([PKTCoverageTestObserver class])];
-	[[NSUserDefaults standardUserDefaults] setValue:observerString forKey:XCTestObserverClassKey];
+  [[NSUserDefaults standardUserDefaults] setValue:@"XCTestLog,PKTCoverageTestObserver" forKey:XCTestObserverClassKey];
 }
 
 @end

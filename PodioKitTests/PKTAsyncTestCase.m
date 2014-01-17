@@ -1,69 +1,74 @@
 //
-//  PKAsyncTestCase.m
+//  PKTAsyncTestCase.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 10/17/11.
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKAsyncTestCase.h"
+#import "PKTAsyncTestCase.h"
 
 
 static NSTimeInterval const kDefaultTimeout = 10.0;
 
-@interface PKAsyncTestCase ()
+@interface PKTAsyncTestCase ()
 
+@property (nonatomic) NSUInteger count;
 @property (nonatomic, copy) NSDate *timeoutDate;
 
 @end
 
-@implementation PKAsyncTestCase
+@implementation PKTAsyncTestCase
 
-- (BOOL)waitForCompletion {
-  return [self waitForCompletion:kDefaultTimeout];
+- (void)waitForCompletionWithBlock:(void (^)(void))block {
+  return [self waitForCompletion:kDefaultTimeout block:block];
 }
 
-- (BOOL)waitForCompletion:(NSTimeInterval)timeoutSeconds {
+
+- (void)waitForCompletion:(NSTimeInterval)timeoutSeconds block:(void (^)(void))block {
   self.timeoutDate = [NSDate dateWithTimeIntervalSinceNow:timeoutSeconds];
   
-  waitingCount++;
+  NSUInteger completionCount = self.count;
+  self.count++;
   
+  block();
+  
+  // Wait for `finish` to be called
   do {
     [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:self.timeoutDate];
     if([self.timeoutDate timeIntervalSinceNow] < 0.0)
       break;
-  } while (waitingCount > 0);
+  } while (self.count > completionCount);
   
   // Store completed value
-  BOOL result = waitingCount == 0;
+  BOOL didComplete = self.count == completionCount;
   [self reset];
   
-  XCTAssertTrue(result, @"Timed out.");
-  
-  return result;
+  XCTAssertTrue(didComplete, @"Asynchronous block did not complete as expected.");
 }
 
-- (void)didFinish {
-  waitingCount--;
+- (void)finish {
+  self.count--;
 }
 
 - (void)reset {
-  waitingCount = 0;
+  self.count = 0;
 }
 
-- (void)expectNotificiationWithName:(NSString *)name object:(id)object inBlock:(void (^)(void))block {
+- (void)waitForNotificiationWithName:(NSString *)name object:(id)object inBlock:(void (^)(void))block {
   __block BOOL didReceiveNotification = NO;
+
   id observer = [[NSNotificationCenter defaultCenter] addObserverForName:name
                                                                   object:object
                                                                    queue:[NSOperationQueue mainQueue]
                                                               usingBlock:^(NSNotification *note) {
     didReceiveNotification = YES;
-    [self didFinish];
+    [self finish];
   }];
   
-  block();
-  
-  [self waitForCompletion];
+  [self waitForCompletionWithBlock:^{
+    block();
+  }];
   
   [[NSNotificationCenter defaultCenter] removeObserver:observer];
   

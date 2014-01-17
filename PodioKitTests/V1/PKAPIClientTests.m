@@ -8,7 +8,7 @@
 
 #import "PKAPIClientTests.h"
 #import "OHHTTPStubs.h"
-#import "PKAPIClient.h"
+#import "PKTAPIClient.h"
 #import "PKRequestManager.h"
 #import "PKOAuth2Token.h"
 
@@ -37,11 +37,11 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
 - (void)testAuthenticate {
   [self stubResponseForPath:@"/oauth/token" withJSONObject:[self validTokenResponse] statusCode:200];
   
-  [self.apiClient authenticateWithEmail:@"me@pdio.com" password:@"Myp4$$w0rD" completion:^(NSError *error, PKRequestResult *result) {
-    [self didFinish];
+  [self waitForCompletionWithBlock:^{
+    [self.apiClient authenticateWithEmail:@"me@pdio.com" password:@"Myp4$$w0rD" completion:^(NSError *error, PKRequestResult *result) {
+      [self finish];
+    }];
   }];
-  
-  [self waitForCompletion];
   
   XCTAssertNotNil(self.apiClient.oauthToken, @"Token should not be nil");
 }
@@ -55,12 +55,12 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   [self stubResponseForPath:@"/oauth/token" withJSONObject:validDict statusCode:200];
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:200];
   
-  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    XCTAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
-    [self didFinish];
+  [self waitForCompletionWithBlock:^{
+    [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+      XCTAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
+      [self finish];
+    }];
   }];
-  
-  [self waitForCompletion];
   
   XCTAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
 }
@@ -71,13 +71,13 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   self.apiClient.oauthToken = [PKOAuth2Token tokenFromDictionary:validDict];
   
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:200];
-  
-  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    XCTAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
-    [self didFinish];
+
+  [self waitForCompletionWithBlock:^{
+    [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+      XCTAssertNil(error, @"Error should be nil, got %@", [error localizedDescription]);
+      [self finish];
+    }];
   }];
-  
-  [self waitForCompletion];
   
   XCTAssertTrue([self.apiClient.oauthToken.accessToken isEqualToString:validDict[@"access_token"]], @"Wrong token, should be %@", validDict[@"access_token"]);
 }
@@ -88,13 +88,11 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   
   [self stubResponseForPath:@"/oauth/token" withJSONObject:nil statusCode:400];
   
-  [self expectNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
+  [self waitForNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
     [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
       XCTAssertNotNil(error, @"Error should not be nil");
-      [self didFinish];
+      [self finish];
     }];
-    
-    [self waitForCompletion];
   }];
   
   XCTAssertNil(self.apiClient.oauthToken, @"Token should have been reset when the refresh failed");
@@ -106,12 +104,12 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   
   [self stubResponseForPath:@"/oauth/token" withJSONObject:nil statusCode:0]; // No status code from server
   
-  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    XCTAssertNotNil(error, @"Error should not be nil");
-    [self didFinish];
+  [self waitForCompletionWithBlock:^{
+    [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+      XCTAssertNotNil(error, @"Error should not be nil");
+      [self finish];
+    }];
   }];
-  
-  [self waitForCompletion];
   
   XCTAssertNotNil(self.apiClient.oauthToken, @"Token should not be reset since this was not a server error");
 }
@@ -121,13 +119,11 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
   
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
   
-  [self expectNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
+  [self waitForNotificiationWithName:PKAPIClientNeedsReauthentication object:self.apiClient inBlock:^{
     [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
       XCTAssertNotNil(error, @"Error should not be nil");
-      [self didFinish];
+      [self finish];
     }];
-    
-    [self waitForCompletion];
   }];
   
   XCTAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we got a 401");
@@ -135,12 +131,13 @@ static NSString * const kBasicAuthHeaderForAPIKeySecret = @"Basic dGVzdC1hcGkta2
 
 - (void)testNotAuthenticated {
   [self stubResponseForPath:@"/text" withJSONObject:@{@"text": @"some text"} statusCode:401];
-  [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
-    XCTAssertNotNil(error, @"Error should not be nil");
-    [self didFinish];
-  }];
   
-  [self waitForCompletion];
+  [self waitForCompletionWithBlock:^{
+    [[PKRequest getRequestWithURI:@"/text"] startWithCompletionBlock:^(NSError *error, PKRequestResult *result) {
+      XCTAssertNotNil(error, @"Error should not be nil");
+      [self finish];
+    }];
+  }];
   
   XCTAssertNil(self.apiClient.oauthToken, @"Token should have been reset because we are not authenticated");
 }
