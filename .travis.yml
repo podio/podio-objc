@@ -8,6 +8,7 @@ branches:
   only:
     - 2.0-develop
 before_script:
+	- sudo easy_install pyyaml
   - sudo easy_install cpp-coveralls
 script:
   - rake test:run
