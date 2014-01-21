@@ -24,6 +24,7 @@
 		5014C583188817550002C68D /* PKTClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55B188806E50002C68D /* PKTClientTests.m */; };
 		5014C585188817550002C68D /* XCTestProbe+PKTRegisterObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 50485961188541B60088AF2C /* XCTestProbe+PKTRegisterObserver.m */; };
 		5014C58818881E070002C68D /* PKTCoverageTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C58618881E070002C68D /* PKTCoverageTestObserver.m */; };
+		5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032B0B5188EB6DC0080046B /* PKTRequestTests.m */; };
 		50485955188461CF0088AF2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50485954188461CF0088AF2C /* XCTest.framework */; };
 		505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505C4F98155C96C30081850F /* DemoApp-Configuration.plist */; };
 		50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50620AAD14BC8CA60060A786 /* InfoPlist.strings */; };
@@ -156,6 +157,8 @@
 		5030C0C51435E92800027F07 /* PKStreamDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKStreamDataFactory.m; sourceTree = "<group>"; };
 		5032336014FD3F2C0028D887 /* PKExternalFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKExternalFileData.h; sourceTree = "<group>"; };
 		5032336114FD3F2C0028D887 /* PKExternalFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKExternalFileData.m; sourceTree = "<group>"; };
+		5032B0B5188EB6DC0080046B /* PKTRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestTests.m; sourceTree = "<group>"; };
+		5032B0B7188ED0130080046B /* PKTClient+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PKTClient+Test.h"; sourceTree = "<group>"; };
 		5032BAB6144489CB00B7F7C7 /* PKBaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKBaseObject.h; sourceTree = "<group>"; };
 		5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBaseObject.m; sourceTree = "<group>"; };
 		5032BAC514448E1500B7F7C7 /* PKTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTask.h; sourceTree = "<group>"; };
@@ -740,6 +743,8 @@
 				5014C571188812540002C68D /* PKTAsyncTestCase.h */,
 				5014C572188812540002C68D /* PKTAsyncTestCase.m */,
 				5014C55B188806E50002C68D /* PKTClientTests.m */,
+				5032B0B7188ED0130080046B /* PKTClient+Test.h */,
+				5032B0B5188EB6DC0080046B /* PKTRequestTests.m */,
 				5048595C18853DC70088AF2C /* Observers */,
 				5014C55A188804A40002C68D /* V1 */,
 				5065BF0414335ABA00360855 /* Supporting Files */,
@@ -1304,6 +1309,7 @@
 				5014C57F188817430002C68D /* PKTRequest.m in Sources */,
 				5014C581188817430002C68D /* PKTResponse.m in Sources */,
 				5014C58818881E070002C68D /* PKTCoverageTestObserver.m in Sources */,
+				5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

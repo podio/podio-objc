@@ -7,8 +7,15 @@
 //
 
 #import "PKTClient.h"
+#import "PKTRequest.h"
+#import "PKTResponse.h"
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
+
+static NSString * const kHTTPMethodGET = @"GET";
+static NSString * const kHTTPMethodPOST = @"POST";
+static NSString * const kHTTPMethodPUT = @"PUT";
+static NSString * const kHTTPMethodDELETE = @"DELETE";
 
 @interface PKTClient ()
 
@@ -33,9 +40,62 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
   return self;
 }
 
+#pragma mark - Public
+
 - (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  
+  NSURLSessionTask *task = [self taskWithRequest:request completion:completion];
+  [task resume];
 }
 
+#pragma mark - Private
+
++ (NSString *)HTTPMethodForMethod:(PKTRequestMethod)method {
+  NSString *string = nil;
+  
+  switch (method) {
+    case PKTRequestMethodGET:
+      string = kHTTPMethodGET;
+      break;
+    case PKTRequestMethodPOST:
+      string = kHTTPMethodPOST;
+      break;
+    case PKTRequestMethodPUT:
+      string = kHTTPMethodPUT;
+      break;
+    case PKTRequestMethodDELETE:
+      string = kHTTPMethodDELETE;
+      break;
+    default:
+      break;
+  }
+  
+  return string;
+}
+
+- (NSURLRequest *)URLRequestForRequest:(PKTRequest *)request {
+  NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:self.baseURL] absoluteString];
+  NSString *method = [[self class] HTTPMethodForMethod:request.method];
+  
+  NSMutableURLRequest *urlRequest = [self.requestSerializer
+                                  requestWithMethod:method
+                                  URLString:urlString
+                                  parameters:request.parameters
+                                  error:nil];
+  
+  return [urlRequest copy];
+}
+
+- (NSURLSessionTask *)taskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+  NSURLRequest *urlRequest = [self URLRequestForRequest:request];
+  
+  return [self dataTaskWithRequest:urlRequest completionHandler:^(NSURLResponse *urlResponse, id responseObject, NSError *error) {
+    PKTResponse *response = nil;
+    if (!error) {
+      response = [PKTResponse new];
+    }
+    
+    if (completion) completion(response, error);
+  }];
+}
 
 @end

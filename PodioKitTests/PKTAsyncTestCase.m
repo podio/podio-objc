@@ -9,7 +9,7 @@
 #import "PKTAsyncTestCase.h"
 
 
-static NSTimeInterval const kDefaultTimeout = 10.0;
+static NSTimeInterval const kDefaultTimeout = 5.0;
 
 @interface PKTAsyncTestCase ()
 
