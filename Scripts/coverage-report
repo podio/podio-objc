@@ -65,7 +65,7 @@ def publish_to_coveralls(reports_dir)
   puts "=> Publishing coverage reports to coveralls.io..."
   
   full_reports_dir = File.expand_path(reports_dir)
-  system "coveralls --no-gcov --root #{full_reports_dir} --verbose"
+  system "coveralls --root #{full_reports_dir} --verbose"
   
   puts "=> Successfully published coverage report files to coveralls.io."
 end
