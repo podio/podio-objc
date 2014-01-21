@@ -1,26 +1,26 @@
 PODS:
-  - AFNetworking (2.0.3):
+  - AFNetworking (2.1.0):
     - AFNetworking/NSURLConnection
     - AFNetworking/NSURLSession
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
     - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.0.3):
+  - AFNetworking/NSURLConnection (2.1.0):
     - AFNetworking/Reachability
     - AFNetworking/Security
     - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.0.3):
+  - AFNetworking/NSURLSession (2.1.0):
     - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.0.3)
-  - AFNetworking/Security (2.0.3)
-  - AFNetworking/Serialization (2.0.3)
-  - AFNetworking/UIKit (2.0.3):
+  - AFNetworking/Reachability (2.1.0)
+  - AFNetworking/Security (2.1.0)
+  - AFNetworking/Serialization (2.1.0)
+  - AFNetworking/UIKit (2.1.0):
     - AFNetworking/NSURLConnection
   - Expecta (0.2.3)
   - OCMock (2.2.2)
-  - OHHTTPStubs (1.1.1)
-  - PodioKit (1.1.0):
+  - OHHTTPStubs (3.1.0)
+  - PodioKit (2.0):
     - AFNetworking (~> 2.0)
 
 DEPENDENCIES:
@@ -35,10 +35,10 @@ EXTERNAL SOURCES:
     :path: .
 
 SPEC CHECKSUMS:
-  AFNetworking: e499052cbf3d743e9bb727bb37adb9dc2547ba15
+  AFNetworking: c7d7901a83f631414c7eda1737261f696101a5cd
   Expecta: dbc4a27fabb853bdd2e907e33f11ee43a9a47d0c
   OCMock: ffba68873fd32cfd35d885bddad23bfa816da4a3
-  OHHTTPStubs: cb1cef742f2fba18b192fb92ede52a69cf3a04d5
-  PodioKit: a9308a0b2e780f8ca3ab723b4a1ec21beaa91999
+  OHHTTPStubs: d67c42c0212f0883ddb8592375aa0dc00dc50a36
+  PodioKit: ae3bbba93ecc2ff7a74d30b4d0cc0fffc1b21033
 
 COCOAPODS: 0.29.0
