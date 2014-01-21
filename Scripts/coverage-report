@@ -61,11 +61,10 @@ def generate_html_report(reports_dir, html_dir)
   puts "=> HTML report successfully generated at #{html_full_path}."
 end
 
-def publish_to_coveralls(reports_dir)
+def publish_to_coveralls
   puts "=> Publishing coverage reports to coveralls.io..."
   
-  full_reports_dir = File.expand_path(reports_dir)
-  system "coveralls -r #{full_reports_dir} --verbose"
+  system "coveralls --no-gcov --verbose"
   
   puts "=> Successfully published coverage report files to coveralls.io."
 end
@@ -74,5 +73,5 @@ copy_coverage_files(derived_data, reports_dir)
 generate_html_report(reports_dir, html_dir)
 
 if (publish)
-  publish_to_coveralls(reports_dir)
+  publish_to_coveralls
 end
