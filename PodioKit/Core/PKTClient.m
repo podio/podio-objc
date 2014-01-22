@@ -9,6 +9,7 @@
 #import "PKTClient.h"
 #import "PKTRequest.h"
 #import "PKTResponse.h"
+#import "PKTRequestSerializer.h"
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
 
@@ -36,7 +37,8 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
   
   _apiKey = [key copy];
   _apiSecret = [secret copy];
-  self.requestSerializer = [AFJSONRequestSerializer serializer];
+
+  self.requestSerializer = [PKTRequestSerializer serializer];
   
   return self;
 }

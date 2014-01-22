@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSString (PKRandom)
+@interface NSString (PKTRandom)
 
-+ (NSString *)pk_randomHexStringOfLength:(NSUInteger)length;
++ (instancetype)pkt_randomHexStringOfLength:(NSUInteger)length;
 
 @end

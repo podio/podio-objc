@@ -70,6 +70,7 @@ static NSString * const kAPISecret = @"test-secret";
   expect(urlRequest.URL.path).to.equal(request.path);
   expect(urlRequest.HTTPMethod).to.equal(@"GET");
   expect([[urlRequest URL] pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
+  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
 }
 
 - (void)testURLRequestForPOSTRequest {
@@ -83,6 +84,8 @@ static NSString * const kAPISecret = @"test-secret";
   id bodyParameters = [NSJSONSerialization JSONObjectWithData:[urlRequest HTTPBody] options:0 error:&error];
   bodyParameters = [NSDictionary dictionaryWithDictionary:bodyParameters];
   expect(bodyParameters).to.pkt_beSupersetOf(request.parameters);
+  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
+  expect([urlRequest allHTTPHeaderFields][@"Content-Type"]).to.equal(@"application/json; charset=utf-8");
 }
 
 - (void)testURLRequestForPUTRequest {
@@ -96,6 +99,8 @@ static NSString * const kAPISecret = @"test-secret";
   NSDictionary *bodyParameters = [[NSJSONSerialization JSONObjectWithData:[urlRequest HTTPBody] options:0 error:&error] copy];
   bodyParameters = [NSDictionary dictionaryWithDictionary:bodyParameters];
   expect(bodyParameters).to.pkt_beSupersetOf(request.parameters);
+  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
+  expect([urlRequest allHTTPHeaderFields][@"Content-Type"]).to.equal(@"application/json; charset=utf-8");
 }
 
 - (void)testURLRequestForDELETERequest {
@@ -105,6 +110,7 @@ static NSString * const kAPISecret = @"test-secret";
   expect(urlRequest.URL.path).to.equal(request.path);
   expect(urlRequest.HTTPMethod).to.equal(@"DELETE");
   expect([[urlRequest URL] pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
+  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
 }
 
 @end

@@ -1,18 +1,16 @@
 //
-//  NSString+PKRandom.m
+//  NSString+PKTRandom.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 12/5/12.
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "NSString+PKRandom.h"
+#import "NSString+PKTRandom.h"
 
-#define NUMBER_OF_CHARS 8
+@implementation NSString (PKTRandom)
 
-@implementation NSString (PKRandom)
-
-+ (NSString *)pk_randomHexStringOfLength:(NSUInteger)length {
++ (instancetype)pkt_randomHexStringOfLength:(NSUInteger)length {
   char data[length];
   
   for (NSUInteger i = 0; i < length; ++i) {
