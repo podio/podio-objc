@@ -15,11 +15,11 @@
 }
 
 + (PKRequest *)requestToClickPromotionWithId:(NSUInteger)promotionId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%d/click", promotionId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%lu/click", (unsigned long)promotionId]];
 }
 
 + (PKRequest *)requestToEndPromotionWithId:(NSUInteger)promotionId {
-  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%d/end", promotionId]];
+  return [PKRequest postRequestWithURI:[NSString stringWithFormat:@"/promotion/%lu/end", (unsigned long)promotionId]];
 }
 
 @end
