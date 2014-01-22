@@ -43,7 +43,13 @@ static NSUInteger kRequestIdLength = 8;
 
 @interface PKAPIClient ()
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-property-synthesis"
+
 @property (nonatomic) NSURL *baseURL;
+
+#pragma clang diagnostic pop
+
 @property (nonatomic, strong) NSMutableArray *pendingOperations;
 @property BOOL isRefreshing;
 @property (strong) id requestFailedObserver;

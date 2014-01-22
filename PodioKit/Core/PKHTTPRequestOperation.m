@@ -22,7 +22,13 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
 @property (nonatomic, copy, readonly) PKRequestCompletionBlock requestCompletionBlock;
 @property (nonatomic, copy, readonly) PKRequestProgressionBlock requestUploadProgressionBlock;
 @property (nonatomic, copy, readonly) PKRequestProgressionBlock requestDownloadProgressionBlock;
+
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-property-synthesis"
+
 @property (nonatomic, strong) NSURLRequest *request;
+
+#pragma clang diagnostic pop
 
 @end
 
