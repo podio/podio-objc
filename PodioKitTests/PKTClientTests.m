@@ -14,7 +14,6 @@
 #import "PKTResponse.h"
 #import "PKTClient+Test.h"
 #import "NSURL+PKTParamatersHandling.h"
-#import "NSString+PKTURL.h"
 
 static NSString * const kAPIKey = @"test-key";
 static NSString * const kAPISecret = @"test-secret";
@@ -80,8 +79,10 @@ static NSString * const kAPISecret = @"test-secret";
   expect(urlRequest.URL.path).to.equal(request.path);
   expect(urlRequest.HTTPMethod).to.equal(@"POST");
 
-  NSString *bodyString = [[NSString alloc] initWithData:[urlRequest HTTPBody] encoding:NSUTF8StringEncoding];
-  expect([bodyString pkt_URLQueryParameters]).to.pkt_beSupersetOf(request.parameters);
+  NSError *error = nil;
+  id bodyParameters = [NSJSONSerialization JSONObjectWithData:[urlRequest HTTPBody] options:0 error:&error];
+  bodyParameters = [NSDictionary dictionaryWithDictionary:bodyParameters];
+  expect(bodyParameters).to.pkt_beSupersetOf(request.parameters);
 }
 
 - (void)testURLRequestForPUTRequest {
@@ -91,8 +92,10 @@ static NSString * const kAPISecret = @"test-secret";
   expect(urlRequest.URL.path).to.equal(request.path);
   expect(urlRequest.HTTPMethod).to.equal(@"PUT");
 
-  NSString *bodyString = [[NSString alloc] initWithData:[urlRequest HTTPBody] encoding:NSUTF8StringEncoding];
-  expect([bodyString pkt_URLQueryParameters]).to.pkt_beSupersetOf(request.parameters);
+  NSError *error = nil;
+  NSDictionary *bodyParameters = [[NSJSONSerialization JSONObjectWithData:[urlRequest HTTPBody] options:0 error:&error] copy];
+  bodyParameters = [NSDictionary dictionaryWithDictionary:bodyParameters];
+  expect(bodyParameters).to.pkt_beSupersetOf(request.parameters);
 }
 
 - (void)testURLRequestForDELETERequest {

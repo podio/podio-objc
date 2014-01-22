@@ -51,9 +51,10 @@
 		50B317E7152F76AA002E73F2 /* PKDemoTaskMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B317E6152F76AA002E73F2 /* PKDemoTaskMapping.m */; };
 		50B317EA152F77EC002E73F2 /* PKTaskListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B317E9152F77EC002E73F2 /* PKTaskListViewController.m */; };
 		6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */; };
-		E45ED48F188FF670003A020A /* NSString+PKTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED48E188FF670003A020A /* NSString+PKTURL.m */; };
-		E45F9644188FED6F009791A0 /* NSURL+PKTParamatersHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9643188FED6F009791A0 /* NSURL+PKTParamatersHandling.m */; };
+		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
+		E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */; };
+		E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F82189016D00046192A /* NSString+PKTURL.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -370,12 +371,13 @@
 		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A370E68741D44C408A3BBD91 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
-		E45ED48D188FF670003A020A /* NSString+PKTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURL.h"; sourceTree = "<group>"; };
-		E45ED48E188FF670003A020A /* NSString+PKTURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURL.m"; sourceTree = "<group>"; };
-		E45F9642188FED6F009791A0 /* NSURL+PKTParamatersHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PKTParamatersHandling.h"; sourceTree = "<group>"; };
-		E45F9643188FED6F009791A0 /* NSURL+PKTParamatersHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTParamatersHandling.m"; sourceTree = "<group>"; };
+		E45ED49318900372003A020A /* NSString+PKTURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURLTests.m"; sourceTree = "<group>"; };
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
+		E49B6F7E189016C20046192A /* NSURL+PKTParamatersHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PKTParamatersHandling.h"; sourceTree = "<group>"; };
+		E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTParamatersHandling.m"; sourceTree = "<group>"; };
+		E49B6F81189016D00046192A /* NSString+PKTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURL.h"; sourceTree = "<group>"; };
+		E49B6F82189016D00046192A /* NSString+PKTURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURL.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1066,18 +1068,10 @@
 			name = Meetings;
 			sourceTree = "<group>";
 		};
-		E45ED48C188FF5FE003A020A /* NSString */ = {
-			isa = PBXGroup;
-			children = (
-				E45ED48D188FF670003A020A /* NSString+PKTURL.h */,
-				E45ED48E188FF670003A020A /* NSString+PKTURL.m */,
-			);
-			name = NSString;
-			sourceTree = "<group>";
-		};
 		E45ED490189000EB003A020A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				E45ED49318900372003A020A /* NSString+PKTURLTests.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1098,32 +1092,14 @@
 		E45F963F188FEC8B009791A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				E45F9640188FEC9D009791A0 /* Categories */,
 			);
 			path = Support;
-			sourceTree = "<group>";
-		};
-		E45F9640188FEC9D009791A0 /* Categories */ = {
-			isa = PBXGroup;
-			children = (
-				E45ED48C188FF5FE003A020A /* NSString */,
-				E45F9641188FECA8009791A0 /* NSURL */,
-			);
-			name = Categories;
-			sourceTree = "<group>";
-		};
-		E45F9641188FECA8009791A0 /* NSURL */ = {
-			isa = PBXGroup;
-			children = (
-				E45F9642188FED6F009791A0 /* NSURL+PKTParamatersHandling.h */,
-				E45F9643188FED6F009791A0 /* NSURL+PKTParamatersHandling.m */,
-			);
-			name = NSURL;
 			sourceTree = "<group>";
 		};
 		E45F9645188FF1C0009791A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				E49B6F7B1890169E0046192A /* Categories */,
 				E45F9647188FF1FC009791A0 /* Matchers */,
 				5048595C18853DC70088AF2C /* Observers */,
 			);
@@ -1147,6 +1123,33 @@
 				E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */,
 			);
 			name = Matchers;
+			sourceTree = "<group>";
+		};
+		E49B6F7B1890169E0046192A /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				E49B6F7D189016B10046192A /* NSString */,
+				E49B6F7C189016A60046192A /* NSURL */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		E49B6F7C189016A60046192A /* NSURL */ = {
+			isa = PBXGroup;
+			children = (
+				E49B6F7E189016C20046192A /* NSURL+PKTParamatersHandling.h */,
+				E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */,
+			);
+			name = NSURL;
+			sourceTree = "<group>";
+		};
+		E49B6F7D189016B10046192A /* NSString */ = {
+			isa = PBXGroup;
+			children = (
+				E49B6F81189016D00046192A /* NSString+PKTURL.h */,
+				E49B6F82189016D00046192A /* NSString+PKTURL.m */,
+			);
+			name = NSString;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1390,11 +1393,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				5014C582188817550002C68D /* PKTAsyncTestCase.m in Sources */,
-				E45F9644188FED6F009791A0 /* NSURL+PKTParamatersHandling.m in Sources */,
+				E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */,
+				E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */,
 				5014C583188817550002C68D /* PKTClientTests.m in Sources */,
 				5014C585188817550002C68D /* XCTestProbe+PKTRegisterObserver.m in Sources */,
-				E45ED48F188FF670003A020A /* NSString+PKTURL.m in Sources */,
 				5014C57D188817430002C68D /* PKTClient.m in Sources */,
+				E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */,
 				5014C57F188817430002C68D /* PKTRequest.m in Sources */,
 				5014C581188817430002C68D /* PKTResponse.m in Sources */,
 				E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */,

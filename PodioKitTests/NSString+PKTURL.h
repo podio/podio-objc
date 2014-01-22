@@ -13,6 +13,4 @@
 - (instancetype)pkt_escapedURLString;
 - (instancetype)pkt_unescapedURLString;
 
-- (NSDictionary *)pkt_URLQueryParameters;
-
 @end

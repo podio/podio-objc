@@ -27,21 +27,4 @@
   return unescapedString;
 }
 
-- (NSDictionary *)pkt_URLQueryParameters {
-  NSMutableDictionary *params = [NSMutableDictionary new];
-
-  NSArray *chunks = [self componentsSeparatedByString:@"&"];
-  for (id obj in chunks) {
-    NSArray *parts = [obj componentsSeparatedByString:@"="];
-
-    if ([parts count] == 2) {
-      NSString *name = parts[0];
-      NSString *value = parts[1];
-      params[name] = [value pkt_unescapedURLString];
-    }
-  }
-
-  return [params copy];
-}
-
 @end

@@ -36,6 +36,7 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
   
   _apiKey = [key copy];
   _apiSecret = [secret copy];
+  self.requestSerializer = [AFJSONRequestSerializer serializer];
   
   return self;
 }
