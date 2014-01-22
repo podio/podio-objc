@@ -24,7 +24,7 @@ static NSString * const PKExternalMeetingDataURL = @"URL";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    type_ = [aDecoder decodeIntegerForKey:PKExternalMeetingDataType];
+    type_ = [aDecoder decodeIntForKey:PKExternalMeetingDataType];
     externalId_ = [[aDecoder decodeObjectForKey:PKExternalMeetingDataExternalId] copy];
     info_ = [[aDecoder decodeObjectForKey:PKExternalMeetingDataInfo] copy];
     url_ = [[aDecoder decodeObjectForKey:PKExternalMeetingDataURL] copy];
@@ -34,7 +34,7 @@ static NSString * const PKExternalMeetingDataURL = @"URL";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:type_ forKey:PKExternalMeetingDataType];
+  [aCoder encodeInt:type_ forKey:PKExternalMeetingDataType];
   [aCoder encodeObject:externalId_ forKey:PKExternalMeetingDataExternalId];
   [aCoder encodeObject:info_ forKey:PKExternalMeetingDataInfo];
   [aCoder encodeObject:url_ forKey:PKExternalMeetingDataURL];

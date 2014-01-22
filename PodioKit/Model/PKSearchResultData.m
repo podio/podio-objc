@@ -32,7 +32,7 @@ static NSString * const PKSearchResultDataSpaceName = @"spaceName";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    referenceType_ = [aDecoder decodeIntegerForKey:PKSearchResultDataReferenceType];
+    referenceType_ = [aDecoder decodeIntForKey:PKSearchResultDataReferenceType];
     referenceId_ = [aDecoder decodeIntegerForKey:PKSearchResultDataReferenceId];
     title_ = [[aDecoder decodeObjectForKey:PKSearchResultDataTitle] copy];
     appName_ = [[aDecoder decodeObjectForKey:PKSearchResultDataAppName] copy];
@@ -46,7 +46,7 @@ static NSString * const PKSearchResultDataSpaceName = @"spaceName";
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:referenceType_ forKey:PKSearchResultDataReferenceType];
+  [aCoder encodeInt:referenceType_ forKey:PKSearchResultDataReferenceType];
   [aCoder encodeInteger:referenceId_ forKey:PKSearchResultDataReferenceId];
   [aCoder encodeObject:title_ forKey:PKSearchResultDataTitle];
   [aCoder encodeObject:appName_ forKey:PKSearchResultDataAppName];

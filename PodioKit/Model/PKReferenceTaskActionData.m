@@ -22,7 +22,7 @@ static NSString * const PKReferenceTaskActionDataChanged = @"Changed";
   self = [super initWithCoder:aDecoder];
   if (self) {
     taskActionId_ = [aDecoder decodeIntegerForKey:PKReferenceTaskActionDataTaskActionId];
-    type_ = [aDecoder decodeIntegerForKey:PKReferenceTaskActionDataType];
+    type_ = [aDecoder decodeIntForKey:PKReferenceTaskActionDataType];
     changed_ = [[aDecoder decodeObjectForKey:PKReferenceTaskActionDataChanged] copy];
   }
   return self;
@@ -31,7 +31,7 @@ static NSString * const PKReferenceTaskActionDataChanged = @"Changed";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:taskActionId_ forKey:PKReferenceTaskActionDataTaskActionId];
-  [aCoder encodeInteger:type_ forKey:PKReferenceTaskActionDataType];
+  [aCoder encodeInt:type_ forKey:PKReferenceTaskActionDataType];
   [aCoder encodeObject:changed_ forKey:PKReferenceTaskActionDataChanged];
 }
 

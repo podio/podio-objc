@@ -34,7 +34,7 @@ static NSString * const PKReferenceTaskDataResponsibleName = @"ResponsibleName";
   self = [super initWithCoder:aDecoder];
   if (self) {
     taskId_ = [aDecoder decodeIntegerForKey:PKReferenceTaskDataTaskId];
-    status_ = [aDecoder decodeIntegerForKey:PKReferenceTaskDataStatus];
+    status_ = [aDecoder decodeIntForKey:PKReferenceTaskDataStatus];
     text_ = [[aDecoder decodeObjectForKey:PKReferenceTaskDataText] copy];
     description_ = [[aDecoder decodeObjectForKey:PKReferenceTaskDataDescription] copy];
     dueDate_ = [[aDecoder decodeObjectForKey:PKReferenceTaskDataDueDate] copy];
@@ -48,7 +48,7 @@ static NSString * const PKReferenceTaskDataResponsibleName = @"ResponsibleName";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:taskId_ forKey:PKReferenceTaskDataTaskId];
-  [aCoder encodeInteger:status_ forKey:PKReferenceTaskDataStatus];
+  [aCoder encodeInt:status_ forKey:PKReferenceTaskDataStatus];
   [aCoder encodeObject:text_ forKey:PKReferenceTaskDataText];
   [aCoder encodeObject:description_ forKey:PKReferenceTaskDataDescription];
   [aCoder encodeObject:dueDate_ forKey:PKReferenceTaskDataDueDate];

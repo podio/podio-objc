@@ -26,8 +26,8 @@ static NSString * const PKStreamActionDataReference = @"Reference";
   self = [super initWithCoder:aDecoder];
   if (self) {
     actionId_ = [aDecoder decodeIntegerForKey:PKStreamActionDataActionId];
-    type_ = [aDecoder decodeIntegerForKey:PKStreamActionDataType];
-    referenceType_ = [aDecoder decodeIntegerForKey:PKStreamActionDataReferenceType];
+    type_ = [aDecoder decodeIntForKey:PKStreamActionDataType];
+    referenceType_ = [aDecoder decodeIntForKey:PKStreamActionDataReferenceType];
     reference_ = [aDecoder decodeObjectForKey:PKStreamActionDataReference];
   }
   return self;
@@ -36,8 +36,8 @@ static NSString * const PKStreamActionDataReference = @"Reference";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:actionId_ forKey:PKStreamActionDataActionId];
-  [aCoder encodeInteger:type_ forKey:PKStreamActionDataType];
-  [aCoder encodeInteger:referenceType_ forKey:PKStreamActionDataReferenceType];
+  [aCoder encodeInt:type_ forKey:PKStreamActionDataType];
+  [aCoder encodeInt:referenceType_ forKey:PKStreamActionDataReferenceType];
   [aCoder encodeObject:reference_ forKey:PKStreamActionDataReference];
 }
 

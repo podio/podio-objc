@@ -22,7 +22,7 @@ static NSString * const PKReferenceRatingDataValue = @"Value";
   self = [super initWithCoder:aDecoder];
   if (self) {
     ratingId_ = [aDecoder decodeIntegerForKey:PKReferenceRatingDataRatingId];
-    type_ = [aDecoder decodeIntegerForKey:PKReferenceRatingDataType];
+    type_ = [aDecoder decodeIntForKey:PKReferenceRatingDataType];
     value_ = [[aDecoder decodeObjectForKey:PKReferenceRatingDataValue] copy];
   }
   return self;
@@ -31,7 +31,7 @@ static NSString * const PKReferenceRatingDataValue = @"Value";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:ratingId_ forKey:PKReferenceRatingDataRatingId];
-  [aCoder encodeInteger:type_ forKey:PKReferenceRatingDataType];
+  [aCoder encodeInt:type_ forKey:PKReferenceRatingDataType];
   [aCoder encodeObject:value_ forKey:PKReferenceRatingDataValue];
 }
 

@@ -31,7 +31,7 @@ static NSString * const PKByLineDataAvatarImage = @"AvatarImage";
     byId_ = [aDecoder decodeIntegerForKey:PKByLineDataId];
     type_ = [[aDecoder decodeObjectForKey:PKByLineDataType] copy];
     name_ = [[aDecoder decodeObjectForKey:PKByLineDataName] copy];
-    avatarType_ = [aDecoder decodeIntegerForKey:PKByLineDataAvatarType];
+    avatarType_ = [aDecoder decodeIntForKey:PKByLineDataAvatarType];
     avatarId_ = [aDecoder decodeIntegerForKey:PKByLineDataAvatarId];
     avatarImage_ = [aDecoder decodeObjectForKey:PKByLineDataAvatarImage];
   }
@@ -43,7 +43,7 @@ static NSString * const PKByLineDataAvatarImage = @"AvatarImage";
   [aCoder encodeInteger:byId_ forKey:PKByLineDataId];
   [aCoder encodeObject:type_ forKey:PKByLineDataType];
   [aCoder encodeObject:name_ forKey:PKByLineDataName];
-  [aCoder encodeInteger:avatarType_ forKey:PKByLineDataAvatarType];
+  [aCoder encodeInt:avatarType_ forKey:PKByLineDataAvatarType];
   [aCoder encodeInteger:avatarId_ forKey:PKByLineDataAvatarId];
   [aCoder encodeObject:avatarImage_ forKey:PKByLineDataAvatarImage];
 }

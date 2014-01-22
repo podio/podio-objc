@@ -24,7 +24,7 @@ static NSString * const PKSpaceMemberRequestDataStatus = @"Status";
   if (self) {
     requestId_ = [aDecoder decodeIntegerForKey:PKSpaceMemberRequestDataRequestId];
     spaceId_ = [aDecoder decodeIntegerForKey:PKSpaceMemberRequestDataSpaceId];
-    status_ = [aDecoder decodeIntegerForKey:PKSpaceMemberRequestDataStatus];
+    status_ = [aDecoder decodeIntForKey:PKSpaceMemberRequestDataStatus];
   }
   return self;
 }
@@ -33,7 +33,7 @@ static NSString * const PKSpaceMemberRequestDataStatus = @"Status";
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:requestId_ forKey:PKSpaceMemberRequestDataRequestId];
   [aCoder encodeInteger:spaceId_ forKey:PKSpaceMemberRequestDataSpaceId];
-  [aCoder encodeInteger:status_ forKey:PKSpaceMemberRequestDataStatus];
+  [aCoder encodeInt:status_ forKey:PKSpaceMemberRequestDataStatus];
 }
 
 #pragma mark - Factory methods

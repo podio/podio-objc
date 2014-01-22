@@ -18,14 +18,14 @@ static NSString * const PKSpaceCreateDataStatus = @"Status";
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    status_ = [aDecoder decodeIntegerForKey:PKSpaceCreateDataStatus];
+    status_ = [aDecoder decodeIntForKey:PKSpaceCreateDataStatus];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInteger:status_ forKey:PKSpaceCreateDataStatus];
+  [aCoder encodeInt:status_ forKey:PKSpaceCreateDataStatus];
 }
 
 #pragma mark - Factory methods

@@ -34,7 +34,7 @@ static NSString * const PKStreamTaskDataResponsibleName = @"ResponsibleName";
   self = [super initWithCoder:aDecoder];
   if (self) {
     taskId_ = [aDecoder decodeIntegerForKey:PKStreamTaskDataTaskId];
-    status_ = [aDecoder decodeIntegerForKey:PKStreamTaskDataStatus];
+    status_ = [aDecoder decodeIntForKey:PKStreamTaskDataStatus];
     text_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataText] copy];
     description_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataDescription] copy];
     dueDate_ = [[aDecoder decodeObjectForKey:PKStreamTaskDataDueDate] copy];
@@ -48,7 +48,7 @@ static NSString * const PKStreamTaskDataResponsibleName = @"ResponsibleName";
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
   [aCoder encodeInteger:taskId_ forKey:PKStreamTaskDataTaskId];
-  [aCoder encodeInteger:status_ forKey:PKStreamTaskDataStatus];
+  [aCoder encodeInt:status_ forKey:PKStreamTaskDataStatus];
   [aCoder encodeObject:text_ forKey:PKStreamTaskDataText];
   [aCoder encodeObject:description_ forKey:PKStreamTaskDataDescription];
   [aCoder encodeObject:dueDate_ forKey:PKStreamTaskDataDueDate];
