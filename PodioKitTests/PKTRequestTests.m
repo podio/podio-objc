@@ -17,30 +17,37 @@
 
 - (void)testGETRequest {
   NSString *path = @"/some/path";
-  PKTRequest *request = [PKTRequest GETRequestWithPath:path];
+  NSDictionary *params = @{@"param1": @"someValue", @"param2": @"someOtherValue"};
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:params];
   expect(request.method).to.equal(PKTRequestMethodGET);
   expect(request.path).to.equal(path);
+  expect(request.parameters).to.equal(params);
 }
 
 - (void)testPOSTRequest {
   NSString *path = @"/some/path";
-  PKTRequest *request = [PKTRequest POSTRequestWithPath:path];
+  NSDictionary *params = @{@"param1": @"someValue", @"param2": @"someOtherValue"};
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:params];
   expect(request.method).to.equal(PKTRequestMethodPOST);
   expect(request.path).to.equal(path);
+  expect(request.parameters).to.equal(params);
 }
 
 - (void)testPUTRequest {
   NSString *path = @"/some/path";
-  PKTRequest *request = [PKTRequest PUTRequestWithPath:path];
+  NSDictionary *params = @{@"param1": @"someValue", @"param2": @"someOtherValue"};
+  PKTRequest *request = [PKTRequest PUTRequestWithPath:path parameters:params];
   expect(request.method).to.equal(PKTRequestMethodPUT);
   expect(request.path).to.equal(path);
 }
 
 - (void)testDELETERequest {
   NSString *path = @"/some/path";
-  PKTRequest *request = [PKTRequest DELETERequestWithPath:path];
+  NSDictionary *params = @{@"param1": @"someValue", @"param2": @"someOtherValue"};
+  PKTRequest *request = [PKTRequest DELETERequestWithPath:path parameters:params];
   expect(request.method).to.equal(PKTRequestMethodDELETE);
   expect(request.path).to.equal(path);
+  expect(request.parameters).to.equal(params);
 }
 
 @end

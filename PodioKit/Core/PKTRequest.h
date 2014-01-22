@@ -21,9 +21,9 @@ typedef NS_ENUM(NSUInteger, PKTRequestMethod) {
 @property (nonatomic, copy, readonly) NSString *path;
 @property (nonatomic, copy, readonly) NSDictionary *parameters;
 
-+ (instancetype)GETRequestWithPath:(NSString *)path;
-+ (instancetype)POSTRequestWithPath:(NSString *)path;
-+ (instancetype)PUTRequestWithPath:(NSString *)path;
-+ (instancetype)DELETERequestWithPath:(NSString *)path;
++ (instancetype)GETRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
++ (instancetype)POSTRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
++ (instancetype)PUTRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
++ (instancetype)DELETERequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
 
 @end

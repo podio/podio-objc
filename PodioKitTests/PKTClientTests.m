@@ -8,16 +8,18 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
-#import "PKTAsyncTestCase.h"
+#import <OCMock/OCMArg.h>
 #import "PKTClient.h"
 #import "PKTRequest.h"
 #import "PKTResponse.h"
 #import "PKTClient+Test.h"
+#import "NSURL+PKTParamatersHandling.h"
+#import "NSString+PKTURL.h"
 
 static NSString * const kAPIKey = @"test-key";
 static NSString * const kAPISecret = @"test-secret";
 
-@interface PKTClientTests : PKTAsyncTestCase
+@interface PKTClientTests : XCTestCase
 
 @property (nonatomic, strong) PKTClient *testClient;
 
@@ -46,7 +48,7 @@ static NSString * const kAPISecret = @"test-secret";
 }
 
 - (void)testPerformSuccessfulRequest {
-  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/user/status"];
+  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/user/status" parameters:[OCMArg any]];
 
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [request.URL.host isEqualToString:self.testClient.baseURL.host];
@@ -55,32 +57,51 @@ static NSString * const kAPISecret = @"test-secret";
   }];
   
   __block BOOL completed = NO;
-  [self waitForCompletionWithBlock:^{
-    [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
-      completed = YES;
-      [self finish];
-    }];
+  [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+    completed = YES;
   }];
-  
-  expect(completed).to.beTruthy();
+
+  expect(completed).will.beTruthy();
 }
 
-- (void)testHTTPMethod {
-  expect([PKTClient HTTPMethodForMethod:PKTRequestMethodGET]).to.equal(@"GET");
-  expect([PKTClient HTTPMethodForMethod:PKTRequestMethodPOST]).to.equal(@"POST");
-  expect([PKTClient HTTPMethodForMethod:PKTRequestMethodPUT]).to.equal(@"PUT");
-  expect([PKTClient HTTPMethodForMethod:PKTRequestMethodDELETE]).to.equal(@"DELETE");
-}
-
-- (void)testURLRequestForRequest {
-  NSString *path = @"/some/path";
-  PKTRequest *request = [PKTRequest GETRequestWithPath:path];
+- (void)testURLRequestForGETRequest {
+  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
   
   NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
-  expect(urlRequest.URL.path).to.equal(path);
+  expect(urlRequest.URL.path).to.equal(request.path);
   expect(urlRequest.HTTPMethod).to.equal(@"GET");
-  
-  // TODO: Check parameters
+  expect([[urlRequest URL] pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
+}
+
+- (void)testURLRequestForPOSTRequest {
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
+  expect(urlRequest.URL.path).to.equal(request.path);
+  expect(urlRequest.HTTPMethod).to.equal(@"POST");
+
+  NSString *bodyString = [[NSString alloc] initWithData:[urlRequest HTTPBody] encoding:NSUTF8StringEncoding];
+  expect([bodyString pkt_URLQueryParameters]).to.pkt_beSupersetOf(request.parameters);
+}
+
+- (void)testURLRequestForPUTRequest {
+  PKTRequest *request = [PKTRequest PUTRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
+  expect(urlRequest.URL.path).to.equal(request.path);
+  expect(urlRequest.HTTPMethod).to.equal(@"PUT");
+
+  NSString *bodyString = [[NSString alloc] initWithData:[urlRequest HTTPBody] encoding:NSUTF8StringEncoding];
+  expect([bodyString pkt_URLQueryParameters]).to.pkt_beSupersetOf(request.parameters);
+}
+
+- (void)testURLRequestForDELETERequest {
+  PKTRequest *request = [PKTRequest DELETERequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
+  expect(urlRequest.URL.path).to.equal(request.path);
+  expect(urlRequest.HTTPMethod).to.equal(@"DELETE");
+  expect([[urlRequest URL] pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
 }
 
 @end
