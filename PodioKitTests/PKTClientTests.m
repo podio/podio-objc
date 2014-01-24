@@ -8,7 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
-#import <OCMock/OCMArg.h>
 #import "PKTClient.h"
 #import "PKTRequest.h"
 #import "PKTResponse.h"
@@ -47,7 +46,7 @@ static NSString * const kAPISecret = @"test-secret";
 }
 
 - (void)testPerformSuccessfulRequest {
-  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/user/status" parameters:[OCMArg any]];
+  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/user/status" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [request.URL.host isEqualToString:self.testClient.baseURL.host];
