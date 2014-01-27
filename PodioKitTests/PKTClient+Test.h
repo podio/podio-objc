@@ -8,8 +8,6 @@
 
 @interface PKTClient (Test)
 
-+ (NSString *)HTTPMethodForMethod:(PKTRequestMethod)method;
-
 - (NSURLRequest *)URLRequestForRequest:(PKTRequest *)request;
 
 @end
