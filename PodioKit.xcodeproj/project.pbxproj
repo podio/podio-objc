@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
+		50064DEE1896FE8B00EF1E97 /* PKTSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 50064DEC1896FE8B00EF1E97 /* PKTSessionManager.h */; };
+		50064DEF1896FE8B00EF1E97 /* PKTSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */; };
+		50064DF01896FE8B00EF1E97 /* PKTSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */; };
+		50064DF21896FE9C00EF1E97 /* PKTSessionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */; };
 		500EA92E153F20F10049F224 /* PKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500EA92C153F20F10049F224 /* PKLoginViewController.m */; };
 		500EA92F153F20F10049F224 /* PKLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500EA92D153F20F10049F224 /* PKLoginViewController.xib */; };
 		5014C55F188809390002C68D /* PKTClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C55D188809390002C68D /* PKTClient.h */; };
@@ -66,6 +70,9 @@
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
 		38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.xcconfig"; path = "Pods/Pods-demoapp.xcconfig"; sourceTree = SOURCE_ROOT; };
+		50064DEC1896FE8B00EF1E97 /* PKTSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTSessionManager.h; sourceTree = "<group>"; };
+		50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTSessionManager.m; sourceTree = "<group>"; };
+		50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTSessionManagerTests.m; sourceTree = "<group>"; };
 		5009E23D1667C8040018EC75 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
 		5009E23E1667C8040018EC75 /* PKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClient.m; sourceTree = "<group>"; };
 		500EA927153F20830049F224 /* PKReferenceBatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceBatchData.h; sourceTree = "<group>"; };
@@ -1092,6 +1099,8 @@
 				5014C56D18880B250002C68D /* PKTResponse.m */,
 				E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */,
 				E49B6F8518901ACF0046192A /* PKTRequestSerializer.m */,
+				50064DEC1896FE8B00EF1E97 /* PKTSessionManager.h */,
+				50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1120,6 +1129,7 @@
 				5014C55B188806E50002C68D /* PKTClientTests.m */,
 				5032B0B7188ED0130080046B /* PKTClient+Test.h */,
 				5032B0B5188EB6DC0080046B /* PKTRequestTests.m */,
+				50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1187,6 +1197,7 @@
 				5014C55F188809390002C68D /* PKTClient.h in Headers */,
 				5014C56918880B050002C68D /* PKTRequest.h in Headers */,
 				E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */,
+				50064DEE1896FE8B00EF1E97 /* PKTSessionManager.h in Headers */,
 				5014C56E18880B250002C68D /* PKTResponse.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1412,6 +1423,7 @@
 				E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				5014C579188816F10002C68D /* PKTRequest.m in Sources */,
 				5014C57B188816F10002C68D /* PKTResponse.m in Sources */,
+				50064DEF1896FE8B00EF1E97 /* PKTSessionManager.m in Sources */,
 				E49B6F8718901ACF0046192A /* PKTRequestSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1424,6 +1436,7 @@
 				E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */,
 				E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */,
 				E49B6F8818901AD20046192A /* PKTRequestSerializer.m in Sources */,
+				50064DF21896FE9C00EF1E97 /* PKTSessionManagerTests.m in Sources */,
 				5014C583188817550002C68D /* PKTClientTests.m in Sources */,
 				5014C585188817550002C68D /* XCTestProbe+PKTRegisterObserver.m in Sources */,
 				5014C57D188817430002C68D /* PKTClient.m in Sources */,
@@ -1433,6 +1446,7 @@
 				E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */,
 				5014C58818881E070002C68D /* PKTCoverageTestObserver.m in Sources */,
+				50064DF01896FE8B00EF1E97 /* PKTSessionManager.m in Sources */,
 				5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
