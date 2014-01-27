@@ -17,7 +17,11 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 @property (nonatomic, copy, readonly) NSString *apiKey;
 @property (nonatomic, copy, readonly) NSString *apiSecret;
 
++ (instancetype)sharedClient;
+
 - (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret;
+
+- (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
 - (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header;
 

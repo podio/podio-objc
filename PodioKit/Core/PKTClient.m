@@ -27,23 +27,42 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
 
 @implementation PKTClient
 
-- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret {
-  NSParameterAssert(key);
-  NSParameterAssert(secret);
++ (instancetype)sharedClient {
+  static PKTClient *sharedClient;
+  static dispatch_once_t once;
   
-  NSURL *baseURL = [[NSURL alloc] initWithString:kDefaultBaseURLString];
-  self = [super initWithBaseURL:baseURL];
-  if (!self) return nil;
+  dispatch_once(&once, ^{
+    sharedClient = [[self alloc] init];
+  });
   
-  _apiKey = [key copy];
-  _apiSecret = [secret copy];
+  return sharedClient;
+}
 
-  self.requestSerializer = [PKTRequestSerializer serializer];
-  
-  return self;
+- (instancetype)init {
+  return [self initWithAPIKey:nil secret:nil];
+}
+
+- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret {
+  @synchronized(self) {
+    NSURL *baseURL = [[NSURL alloc] initWithString:kDefaultBaseURLString];
+    self = [super initWithBaseURL:baseURL];
+    if (!self) return nil;
+    
+    _apiKey = [key copy];
+    _apiSecret = [secret copy];
+
+    self.requestSerializer = [PKTRequestSerializer serializer];
+    
+    return self;
+  }
 }
 
 #pragma mark - Public
+
+- (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {
+  self.apiKey = key;
+  self.apiSecret = secret;
+}
 
 - (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header {
   [self.requestSerializer setValue:value forHTTPHeaderField:header];

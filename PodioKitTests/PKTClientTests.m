@@ -38,11 +38,24 @@ static NSString * const kAPISecret = @"test-secret";
 #pragma mark - Tests
 
 - (void)testInit {
-  PKTClient *client = [[PKTClient alloc] initWithAPIKey:kAPISecret secret:kAPISecret];
+  PKTClient *client = [[PKTClient alloc] initWithAPIKey:kAPIKey secret:kAPISecret];
 
-  expect(client.apiKey).to.equal(kAPISecret);
+  expect(client.apiKey).to.equal(kAPIKey);
   expect(client.apiSecret).to.equal(kAPISecret);
   expect([client.baseURL absoluteString]).to.equal(@"https://api.podio.com");
+}
+
+- (void)testSetupClient {
+  PKTClient *client = [PKTClient new];
+  [client setupWithAPIKey:kAPIKey secret:kAPISecret];
+  
+  expect(client.apiKey).to.equal(kAPIKey);
+  expect(client.apiSecret).to.equal(kAPISecret);
+  expect([client.baseURL absoluteString]).to.equal(@"https://api.podio.com");
+}
+
+- (void)testSharedInstance {
+  expect([PKTClient sharedClient]).to.equal([PKTClient sharedClient]);
 }
 
 - (void)testPerformSuccessfulRequest {
