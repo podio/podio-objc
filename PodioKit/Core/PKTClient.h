@@ -19,6 +19,8 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 
 - (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
+- (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header;
+
 - (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 @end

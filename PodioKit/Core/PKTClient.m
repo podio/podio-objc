@@ -45,6 +45,10 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
 
 #pragma mark - Public
 
+- (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header {
+  [self.requestSerializer setValue:value forHTTPHeaderField:header];
+}
+
 - (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   NSURLSessionTask *task = [self taskWithRequest:request completion:completion];
   [task resume];

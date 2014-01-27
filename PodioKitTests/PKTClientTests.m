@@ -112,4 +112,12 @@ static NSString * const kAPISecret = @"test-secret";
   expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
 }
 
+- (void)testSetCustomHeader {
+  PKTRequest *request = [PKTRequest PUTRequestWithPath:@"/some/path" parameters:nil];
+  
+  [self.testClient setValue:@"Header value" forHTTPHeader:@"X-Test-Header"];
+  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
+  expect([urlRequest allHTTPHeaderFields][@"X-Test-Header"]).to.equal(@"Header value");
+}
+
 @end
