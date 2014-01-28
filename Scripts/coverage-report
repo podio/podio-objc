@@ -3,7 +3,6 @@
 require 'etc'
 require 'fileutils'
 require 'getopt/long'
-require_relative 'string_ext'
 
 DEFAULT_DERIVED_DATA = "#{Etc.getpwuid.dir}/Library/Developer/Xcode/DerivedData/"
 DEFAULT_OUTPUT = "Coverage"
@@ -11,14 +10,12 @@ DEFAULT_OUTPUT = "Coverage"
 opts = Getopt::Long.getopts(
   ['--derived-data', Getopt::OPTIONAL],
   ['--out', Getopt::OPTIONAL],
-  ['--publish', Getopt::OPTIONAL]
 )
 
 derived_data = opts['derived-data'] || DEFAULT_DERIVED_DATA
 output = opts['out'] || DEFAULT_OUTPUT
 reports_dir = "#{output}/reports"
 html_dir = "#{output}/html"
-publish = opts['publish'].to_bool
 
 def copy_coverage_files(search_dir, reports_dir)
   FileUtils.remove_dir(reports_dir, true) if Dir.exists?(reports_dir)
@@ -61,17 +58,5 @@ def generate_html_report(reports_dir, html_dir)
   puts "=> HTML report successfully generated at #{html_full_path}."
 end
 
-def publish_to_coveralls
-  puts "=> Publishing coverage reports to coveralls.io..."
-  
-  system "coveralls --no-gcov"
-  
-  puts "=> Successfully published coverage report files to coveralls.io."
-end
-
 copy_coverage_files(derived_data, reports_dir)
 generate_html_report(reports_dir, html_dir)
-
-if (publish)
-  publish_to_coveralls
-end
