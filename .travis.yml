@@ -13,5 +13,4 @@ before_script:
 script:
   - rake test:run
 after_success:
-  - rake test:coverage
-  - coveralls --exclude Pods --exclude Scripts --exclude PodioKit/V1 --exclude PodioKitTests/V1 
+  - rake test:coverage publish=yes
