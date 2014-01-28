@@ -70,23 +70,17 @@ def publish_to_coveralls(reports_dir, gcov_dir)
   FileUtils.mkdir_p gcov_dir
   
   Find.find(reports_dir) do |gcda_file|
-
     if gcda_file.match(/\.gcda\Z/)
+        gcda_location = File.dirname(gcda_file)
+        system "gcov '#{gcda_file}' -o '#{gcda_location}'"
       
-        #get just the folder name
-        gcov_location = File.dirname(gcda_file)
-      
-        #process the file
-        system "gcov '#{gcda_file}' -o '#{gcov_location}'"
-      
-        # filter the resulting output
         Dir.glob("*.gcov") do |gcov_file|
           FileUtils.mv(gcov_file, gcov_dir)
         end
      end
   end
 
-  system "coveralls --no-gcov --root #{gcov_dir} --verbose"
+  system "coveralls --no-gcov --verbose"
   
   puts "=> Successfully published coverage report files to coveralls.io."
 end
