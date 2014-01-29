@@ -52,10 +52,7 @@ static NSString * const kAuthenticationGrantTypeRefreshToken = @"refresh_token";
   NSMutableDictionary *body = [NSMutableDictionary dictionaryWithDictionary:parameters];
   body[kAuthenticationGrantTypeKey] = grantType;
 
-  PKTRequest *request = [PKTRequest POSTRequestWithPath:kAuthenticationPath parameters:[body copy]];
-  request.authorizationType = PKTRequestAuthorizationTypeAPIKeys;
-
-  return request;
+  return [PKTRequest POSTRequestWithPath:kAuthenticationPath parameters:[body copy]];
 }
 
 @end

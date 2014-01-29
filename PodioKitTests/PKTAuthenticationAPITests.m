@@ -27,7 +27,6 @@
   expect(request.parameters[@"username"]).to.equal(email);
   expect(request.parameters[@"password"]).to.equal(password);
   expect(request.parameters[@"grant_type"]).to.equal(@"password");
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeAPIKeys);
 }
 
 - (void)testRequestForAuthenticationWithAppIDAndToken {
@@ -42,7 +41,6 @@
   expect(request.parameters[@"app_id"]).to.equal(appID);
   expect(request.parameters[@"app_token"]).to.equal(appToken);
   expect(request.parameters[@"grant_type"]).to.equal(@"app");
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeAPIKeys);
 }
 
 - (void)testRequestForRefreshToken {
@@ -54,7 +52,6 @@
   expect(request.path).to.equal(@"/oauth/token");
   expect(request.parameters[@"refresh_token"]).to.equal(refreshToken);
   expect(request.parameters[@"grant_type"]).to.equal(@"refresh_token");
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeAPIKeys);
 }
 
 @end

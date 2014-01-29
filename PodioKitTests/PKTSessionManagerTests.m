@@ -10,41 +10,82 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "PKTSessionManager.h"
 #import "PKTClient.h"
+#import "PKTOAuth2Token.h"
 
 @interface PKTSessionManagerTests : XCTestCase
+
+@property (nonatomic, strong) PKTSessionManager *testSessionManager;
 
 @end
 
 @implementation PKTSessionManagerTests
 
-- (void)testSharedInstance {
-  expect([PKTSessionManager sharedManager]).to.equal([PKTSessionManager sharedManager]);
-}
+- (void)setUp {
+  [super setUp];
+  PKTClient *client = [[PKTClient alloc] initWithAPIKey:@"apiKey" secret:@"apiSecret"];
+  self.testSessionManager = [[PKTSessionManager alloc] initWithClient:client];
 
-- (void)testAuthenticationWithEmailAndPassword {
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [request.URL.host isEqualToString:[PKTClient sharedClient].baseURL.host];
+    return [request.URL.host isEqualToString:self.testSessionManager.client.baseURL.host];
   } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
     return [OHHTTPStubsResponse responseWithData:nil statusCode:200 headers:nil];
   }];
+}
 
-  PKTSessionManager *sessionManager = [PKTSessionManager new];
+- (void)tearDown {
+  self.testSessionManager = nil;
+  [super tearDown];
+}
 
-  __block PKTOAuth2Token *oauthToken = nil;
-  [sessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:^(PKTOAuth2Token *token, NSError *error) {
-    oauthToken = token;
-  }];
+#pragma mark - Tests
 
-  expect(oauthToken).willNot.beNil;
-  expect(oauthToken).will.equal(sessionManager.oauthToken);
+- (void)testSharedInstance {
+  expect([PKTSessionManager sharedManager]).to.equal([PKTSessionManager sharedManager]);
+  expect([PKTSessionManager sharedManager].client).to.equal([PKTClient sharedClient]);
+}
+
+- (void)testInitWithClient {
+  PKTClient *client = [[PKTClient alloc] initWithAPIKey:@"apiKey" secret:@"apiSecret"];
+
+  PKTSessionManager *manager = [[PKTSessionManager alloc] initWithClient:client];
+  expect(manager.client).to.equal(client);
+}
+
+- (void)testAuthenticationWithEmailAndPassword {
+  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
+
+  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
+
+//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
+//  expect(self.testSessionManager.oauthToken).willNot.beNil;
 }
 
 - (void)testAuthenticationWithAppIDAndToken {
-  // TODO
+  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
+
+  [self.testSessionManager authenticateWithAppID:@"someAppID" token:@"someAppToken" completion:nil];
+
+//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
+//  expect(self.testSessionManager.oauthToken).willNot.beNil;
 }
 
 - (void)testRefreshToken {
-  // TODO
+  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
+
+  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
+
+//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
+//  expect(self.testSessionManager.oauthToken).willNot.beNil;
+//
+//  PKTOAuth2Token *token = self.testSessionManager.oauthToken;
+//
+//  [self.testSessionManager refreshSessionToken:nil];
+//
+//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
+//  expect(self.testSessionManager.oauthToken.accessToken).will.equal(token.accessToken);
+//  expect(self.testSessionManager.oauthToken.refreshToken).will.equal(token.refreshToken);
+//  expect(self.testSessionManager.oauthToken.refData).will.equal(token.refData);
+//  expect(self.testSessionManager.oauthToken.expiresOn).willNot.equal(token.expiresOn);
 }
 
 @end

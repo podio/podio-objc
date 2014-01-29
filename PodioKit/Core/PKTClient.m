@@ -69,6 +69,15 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
   [self.requestSerializer setValue:value forHTTPHeaderField:header];
 }
 
+- (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken {
+  NSParameterAssert(accessToken);
+  [(PKTRequestSerializer *)self.requestSerializer setAuthorizationHeaderFieldWithOAuth2AccessToken:accessToken];
+}
+
+- (void)setAuthorizationHeaderWithAPICredentials {
+  [self.requestSerializer setAuthorizationHeaderFieldWithUsername:self.apiKey password:self.apiSecret];
+}
+
 - (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   NSURLSessionTask *task = [self taskWithRequest:request completion:completion];
   [task resume];
@@ -103,21 +112,6 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
   @synchronized(self.requestSerializer) {
     NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:self.baseURL] absoluteString];
     NSString *method = [[self class] HTTPMethodForMethod:request.method];
-
-    switch (request.authorizationType) {
-      case PKTRequestAuthorizationTypeAPIKeys:
-        [self.requestSerializer setAuthorizationHeaderFieldWithUsername:self.apiKey password:self.apiSecret];
-        break;
-      case PKTRequestAuthorizationTypeOAuthToken:
-        if ([PKTSessionManager sharedManager].isAuthenticated) {
-          [self.requestSerializer setAuthorizationHeaderFieldWithToken:[PKTSessionManager sharedManager].oauthToken.accessToken];
-        }
-        break;
-      case PKTRequestAuthorizationTypeNone:
-      default:
-        [self.requestSerializer clearAuthorizationHeader];
-        break;
-    }
 
     NSError *error = nil;
     NSMutableURLRequest *urlRequest = [self.requestSerializer

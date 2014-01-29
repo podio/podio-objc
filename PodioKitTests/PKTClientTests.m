@@ -127,14 +127,41 @@ static NSString * const kAPISecret = @"test-secret";
 
 - (void)testSetCustomHeader {
   PKTRequest *request = [PKTRequest PUTRequestWithPath:@"/some/path" parameters:nil];
-  
+
   [self.testClient setValue:@"Header value" forHTTPHeader:@"X-Test-Header"];
   NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
   expect([urlRequest allHTTPHeaderFields][@"X-Test-Header"]).to.equal(@"Header value");
 }
 
-- (void)testAuthorizationHeader {
-  // TODO
+- (void)testSetAuthorizationHeaderWithAPICredentials {
+  NSURLRequest *urlRequest;
+
+  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+  urlRequest = [self.testClient URLRequestForRequest:request];
+  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.beNil;
+
+  [self.testClient setAuthorizationHeaderWithAPICredentials];
+
+  urlRequest = [self.testClient URLRequestForRequest:request];
+  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.contain(@"Basic ");
+  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).notTo.contain(self.testClient.apiKey);
+  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).notTo.contain(self.testClient.apiSecret);
+  expect([[urlRequest allHTTPHeaderFields][@"Authorization"] length]).to.beGreaterThan([@"Basic " length]);
+}
+
+- (void)testSetAuthorizationHeaderWithOAuth2AccessToken {
+  NSURLRequest *urlRequest;
+
+  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+  urlRequest = [self.testClient URLRequestForRequest:request];
+  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.beNil;
+
+  NSString *accessToken = @"anAccessToken";
+  [self.testClient setAuthorizationHeaderWithOAuth2AccessToken:accessToken];
+
+  urlRequest = [self.testClient URLRequestForRequest:request];
+  NSString *expectedHTTPHeader = [NSString stringWithFormat:@"OAuth2 %@", accessToken];
+  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.contain(expectedHTTPHeader);
 }
 
 @end

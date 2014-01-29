@@ -7,20 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "PKTOAuth2Token.h"
+#import "PKTClient.h"
 
-typedef void(^PKTSessionAuthenticationBlock)(PKTOAuth2Token *token, NSError *error);
+@class PKTOAuth2Token;
 
 @interface PKTSessionManager : NSObject
 
+@property (nonatomic, strong, readonly) PKTClient *client;
 @property (nonatomic, strong, readonly) PKTOAuth2Token *oauthToken;
 @property (nonatomic, assign, readonly) BOOL isAuthenticated;
 
 + (instancetype)sharedManager;
 
-- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKTSessionAuthenticationBlock)completion;
-- (void)authenticateWithAppID:(NSString *)appID token:(NSString *)appToken completion:(PKTSessionAuthenticationBlock)completion;
+- (instancetype)initWithClient:(PKTClient *)client;
 
-- (void)refreshSession:(PKTSessionAuthenticationBlock)completion;
+- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
+- (void)authenticateWithAppID:(NSString *)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
+
+- (void)refreshSessionToken:(PKTRequestCompletionBlock)completion;
 
 @end

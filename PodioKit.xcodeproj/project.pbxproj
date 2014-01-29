@@ -62,6 +62,7 @@
 		E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */; };
 		E49B6F8718901ACF0046192A /* PKTRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F8518901ACF0046192A /* PKTRequestSerializer.m */; };
 		E49B6F8818901AD20046192A /* PKTRequestSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F8518901ACF0046192A /* PKTRequestSerializer.m */; };
+		E4A0535C1898FA6600853F9B /* PKTRequestSerializerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A0535B1898FA6600853F9B /* PKTRequestSerializerTests.m */; };
 		E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73810166F6D09009233FF /* NSString+PKTRandom.m */; };
 		E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D73810166F6D09009233FF /* NSString+PKTRandom.m */; };
 		E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */ = {isa = PBXBuildFile; fileRef = E4BABDC91897F9DA00E9149A /* PKTOAuth2Token.h */; };
@@ -355,8 +356,8 @@
 		50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKHTTPRequestOperation.m; sourceTree = "<group>"; };
 		50D737FC166F4504009233FF /* PKOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKOAuth2Token.h; sourceTree = "<group>"; };
 		50D737FD166F4504009233FF /* PKOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKOAuth2Token.m; sourceTree = "<group>"; };
-		50D7380F166F6D08009233FF /* NSString+PKTRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+PKTRandom.h"; path = "../V1/Support/NSString+PKTRandom.h"; sourceTree = "<group>"; };
-		50D73810166F6D09009233FF /* NSString+PKTRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+PKTRandom.m"; path = "../V1/Support/NSString+PKTRandom.m"; sourceTree = "<group>"; };
+		50D7380F166F6D08009233FF /* NSString+PKTRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTRandom.h"; sourceTree = "<group>"; };
+		50D73810166F6D09009233FF /* NSString+PKTRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandom.m"; sourceTree = "<group>"; };
 		50D73871166F7C71009233FF /* PKAPIClientTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClientTests.h; sourceTree = "<group>"; };
 		50D73872166F7C71009233FF /* PKAPIClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClientTests.m; sourceTree = "<group>"; };
 		50DB5BA6150A55B500B5E489 /* PKContactAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKContactAPI.h; sourceTree = "<group>"; };
@@ -403,6 +404,8 @@
 		E49B6F82189016D00046192A /* NSString+PKTURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURL.m"; sourceTree = "<group>"; };
 		E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRequestSerializer.h; sourceTree = "<group>"; };
 		E49B6F8518901ACF0046192A /* PKTRequestSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestSerializer.m; sourceTree = "<group>"; };
+		E4A0535B1898FA6600853F9B /* PKTRequestSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestSerializerTests.m; sourceTree = "<group>"; };
+		E4A0535D1898FB6F00853F9B /* PKTRequestSerializer+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PKTRequestSerializer+Test.h"; sourceTree = "<group>"; };
 		E4BABDC91897F9DA00E9149A /* PKTOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTOAuth2Token.h; sourceTree = "<group>"; };
 		E4BABDCA1897F9DA00E9149A /* PKTOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTOAuth2Token.m; sourceTree = "<group>"; };
 		E4BABDCE1897FBD900E9149A /* PKTOAuth2TokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTOAuth2TokenTests.m; sourceTree = "<group>"; };
@@ -1154,6 +1157,8 @@
 				5032B0B5188EB6DC0080046B /* PKTRequestTests.m */,
 				50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */,
 				E4BABDCE1897FBD900E9149A /* PKTOAuth2TokenTests.m */,
+				E4A0535B1898FA6600853F9B /* PKTRequestSerializerTests.m */,
+				E4A0535D1898FB6F00853F9B /* PKTRequestSerializer+Test.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1486,6 +1491,7 @@
 				E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */,
 				E49B6F8818901AD20046192A /* PKTRequestSerializer.m in Sources */,
 				50064DF21896FE9C00EF1E97 /* PKTSessionManagerTests.m in Sources */,
+				E4A0535C1898FA6600853F9B /* PKTRequestSerializerTests.m in Sources */,
 				E4BABDD31898070100E9149A /* PKTAuthenticationAPITests.m in Sources */,
 				5014C583188817550002C68D /* PKTClientTests.m in Sources */,
 				E4BABDD8189807DA00E9149A /* PKTBaseAPI.m in Sources */,

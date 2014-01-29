@@ -10,4 +10,6 @@
 
 @interface PKTRequestSerializer : AFJSONRequestSerializer
 
+- (void)setAuthorizationHeaderFieldWithOAuth2AccessToken:(NSString *)accessToken;
+
 @end

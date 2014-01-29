@@ -22,7 +22,6 @@
   expect(request.method).to.equal(PKTRequestMethodGET);
   expect(request.path).to.equal(path);
   expect(request.parameters).to.equal(params);
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeNone);
 }
 
 - (void)testPOSTRequest {
@@ -32,7 +31,6 @@
   expect(request.method).to.equal(PKTRequestMethodPOST);
   expect(request.path).to.equal(path);
   expect(request.parameters).to.equal(params);
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeNone);
 }
 
 - (void)testPUTRequest {
@@ -41,7 +39,6 @@
   PKTRequest *request = [PKTRequest PUTRequestWithPath:path parameters:params];
   expect(request.method).to.equal(PKTRequestMethodPUT);
   expect(request.path).to.equal(path);
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeNone);
 }
 
 - (void)testDELETERequest {
@@ -51,7 +48,6 @@
   expect(request.method).to.equal(PKTRequestMethodDELETE);
   expect(request.path).to.equal(path);
   expect(request.parameters).to.equal(params);
-  expect(request.authorizationType).to.equal(PKTRequestAuthorizationTypeNone);
 }
 
 @end
