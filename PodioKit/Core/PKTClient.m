@@ -100,35 +100,37 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
 }
 
 - (NSURLRequest *)URLRequestForRequest:(PKTRequest *)request {
-  NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:self.baseURL] absoluteString];
-  NSString *method = [[self class] HTTPMethodForMethod:request.method];
+  @synchronized(self.requestSerializer) {
+    NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:self.baseURL] absoluteString];
+    NSString *method = [[self class] HTTPMethodForMethod:request.method];
 
-  switch (request.authorizationType) {
-    case PKTRequestAuthorizationTypeAPIKeys:
-      [self.requestSerializer setAuthorizationHeaderFieldWithUsername:self.apiKey password:self.apiSecret];
-      break;
-    case PKTRequestAuthorizationTypeOAuthToken:
-      if ([PKTSessionManager sharedManager].isAuthenticated) {
-        [self.requestSerializer setAuthorizationHeaderFieldWithToken:[PKTSessionManager sharedManager].oauthToken.accessToken];
-      }
-      break;
-    case PKTRequestAuthorizationTypeNone:
-    default:
-      [self.requestSerializer clearAuthorizationHeader];
-      break;
-  }
+    switch (request.authorizationType) {
+      case PKTRequestAuthorizationTypeAPIKeys:
+        [self.requestSerializer setAuthorizationHeaderFieldWithUsername:self.apiKey password:self.apiSecret];
+        break;
+      case PKTRequestAuthorizationTypeOAuthToken:
+        if ([PKTSessionManager sharedManager].isAuthenticated) {
+          [self.requestSerializer setAuthorizationHeaderFieldWithToken:[PKTSessionManager sharedManager].oauthToken.accessToken];
+        }
+        break;
+      case PKTRequestAuthorizationTypeNone:
+      default:
+        [self.requestSerializer clearAuthorizationHeader];
+        break;
+    }
 
-  NSError *error = nil;
-  NSMutableURLRequest *urlRequest = [self.requestSerializer
-                                  requestWithMethod:method
-                                  URLString:urlString
-                                  parameters:request.parameters
-                                  error:&error];
-  if (error) {
-    // TODO: handle error case
+    NSError *error = nil;
+    NSMutableURLRequest *urlRequest = [self.requestSerializer
+                                       requestWithMethod:method
+                                       URLString:urlString
+                                       parameters:request.parameters
+                                       error:&error];
+    if (error) {
+      // TODO: handle error case
+    }
+    
+    return [urlRequest copy];
   }
-  
-  return [urlRequest copy];
 }
 
 - (NSURLSessionTask *)taskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
