@@ -12,6 +12,9 @@
 static NSString * const kHeaderRequestId = @"X-Podio-Request-Id";
 static NSUInteger const kRequestIdLength = 8;
 
+static NSString * const kHeaderAuthorization = @"Authorization";
+static NSString * const kAuthorizationTokenFormat = @"OAuth2 %@";
+
 @implementation PKTRequestSerializer
 
 - (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(NSDictionary *)parameters error:(NSError *__autoreleasing *)error {
@@ -20,6 +23,12 @@ static NSUInteger const kRequestIdLength = 8;
   [request setValue:[self generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
 
   return request;
+}
+
+- (void)setAuthorizationHeaderFieldWithToken:(NSString *)token {
+  NSParameterAssert(token);
+
+  [self setValue:[NSString stringWithFormat:kAuthorizationTokenFormat, token] forHTTPHeaderField:kHeaderAuthorization];
 }
 
 #pragma mark - Private

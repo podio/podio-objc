@@ -133,4 +133,8 @@ static NSString * const kAPISecret = @"test-secret";
   expect([urlRequest allHTTPHeaderFields][@"X-Test-Header"]).to.equal(@"Header value");
 }
 
+- (void)testAuthorizationHeader {
+  // TODO
+}
+
 @end
