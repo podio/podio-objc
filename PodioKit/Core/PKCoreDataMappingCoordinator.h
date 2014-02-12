@@ -12,11 +12,7 @@
 #import "PKMappingProvider.h"
 
 
-@interface PKCoreDataMappingCoordinator : PKMappingCoordinator <PKObjectMapperDelegate> {
-
- @private
-  NSManagedObjectContext *managedObjectContext_;
-}
+@interface PKCoreDataMappingCoordinator : PKMappingCoordinator <PKObjectMapperDelegate>
 
 @property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 

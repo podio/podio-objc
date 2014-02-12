@@ -17,6 +17,10 @@ NSString * const PKHTTPRequestOperationKey = @"Request";
 NSString * const PKHTTPRequestResultKey = @"Result";
 NSString * const PKHTTPRequestErrorKey = @"Error";
 
+static char * const kMappingQueueLabel = "com.podio.podiokit.mapping";
+
+static dispatch_queue_t sMappingQueue = NULL;
+
 @interface PKHTTPRequestOperation ()
 
 @property (nonatomic, copy, readonly) PKRequestCompletionBlock requestCompletionBlock;
@@ -47,6 +51,12 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
 
 #pragma mark - Impl
 
++ (void)initialize {
+  if (self == [PKHTTPRequestOperation class]) {
+    sMappingQueue = dispatch_queue_create(kMappingQueueLabel,  DISPATCH_QUEUE_SERIAL);
+  }
+}
+
 - (void)setRequestCompletionBlock:(PKRequestCompletionBlock)requestCompletionBlock {
   _requestCompletionBlock = [requestCompletionBlock copy];
   
@@ -59,10 +69,10 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
       return;
     }
     
-    id parsedData = nil;
-    id resultData = nil;
-    id objectData = nil;
     NSError *error = nil;
+    id parsedData = nil;
+    id objectData = nil;
+    __block id resultData = nil;
     
     if ([self.responseData length] > 0) {
       NSError *parseError = nil;
@@ -85,9 +95,11 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
           
           // Should map response?
           if (self.objectMapper != nil) {
-            @autoreleasepool {
-              resultData = [self.objectMapper performMappingWithData:objectData];
-            }
+            dispatch_sync(sMappingQueue, ^{
+              @autoreleasepool {
+                resultData = [self.objectMapper performMappingWithData:objectData];
+              }
+            });
           }
         }
       }
@@ -106,23 +118,6 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
                                                                  parsedData:parsedData
                                                                  objectData:objectData
                                                                  resultData:resultData];
-    
-    // Notify
-    NSMutableDictionary *userInfo = [[NSMutableDictionary alloc] init];
-    userInfo[PKHTTPRequestOperationKey] = self;
-    
-    if (result) userInfo[PKHTTPRequestResultKey] = result;
-    if (error) userInfo[PKHTTPRequestErrorKey] = error;
-    
-    if (!error) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFinished object:self userInfo:[userInfo copy]];
-      });
-    } else {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFailed object:self userInfo:[userInfo copy]];
-      });
-    }
     
     [self completeWithResult:result error:error];
   };
@@ -153,11 +148,23 @@ NSString * const PKHTTPRequestErrorKey = @"Error";
 }
 
 - (void)completeWithResult:(PKRequestResult *)result error:(NSError *)error {
-  if (self.requestCompletionBlock) {
-    dispatch_async(dispatch_get_main_queue(), ^{
+  NSMutableDictionary *userInfo = [NSMutableDictionary new];
+  userInfo[PKHTTPRequestOperationKey] = self;
+  
+  if (result) userInfo[PKHTTPRequestResultKey] = result;
+  if (error) userInfo[PKHTTPRequestErrorKey] = error;
+  
+  dispatch_async(dispatch_get_main_queue(), ^{
+    if (!error) {
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFinished object:self userInfo:[userInfo copy]];
+    } else {
+      [[NSNotificationCenter defaultCenter] postNotificationName:PKHTTPRequestOperationFailed object:self userInfo:[userInfo copy]];
+    }
+    
+    if (self.requestCompletionBlock) {
       self.requestCompletionBlock(error, result);
-    });
-  }
+    }
+  });
 }
 
 - (void)setValue:(NSString *)value forHeader:(NSString *)header {

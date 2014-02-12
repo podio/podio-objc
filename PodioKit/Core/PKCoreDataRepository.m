@@ -12,30 +12,12 @@
 
 @implementation PKCoreDataRepository
 
-@synthesize managedObjectContext = managedObjectContext_;
-
-- (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
   self = [super init];
   if (self) {
-    managedObjectContext_ = nil;
-    persistentStoreCoordinator_ = persistentStoreCoordinator;
+    _managedObjectContext = managedObjectContext;
   }
   return self;
-}
-
-+ (id)repositoryWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator {
-  return [[[self class] alloc] initWithPersistentStoreCoordinator:persistentStoreCoordinator];
-}
-
-#pragma mark - Impl
-
-- (NSManagedObjectContext *)managedObjectContext {
-  if (managedObjectContext_ == nil) {
-    managedObjectContext_ = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
-    managedObjectContext_.persistentStoreCoordinator = persistentStoreCoordinator_;
-  }
-  
-  return managedObjectContext_;
 }
 
 #pragma mark - PKObjectRepository methods

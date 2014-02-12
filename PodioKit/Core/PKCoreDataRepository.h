@@ -10,17 +10,10 @@
 #import <CoreData/CoreData.h>
 #import "PKObjectRepository.h"
 
-@interface PKCoreDataRepository : NSObject <PKObjectRepository> {
+@interface PKCoreDataRepository : NSObject <PKObjectRepository>
 
- @private
-  NSPersistentStoreCoordinator *persistentStoreCoordinator_;
-  NSManagedObjectContext *managedObjectContext_;
-}
+@property (nonatomic, strong, readonly) NSManagedObjectContext *managedObjectContext;
 
-@property (nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-
-- (id)initWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
-
-+ (id)repositoryWithPersistentStoreCoordinator:(NSPersistentStoreCoordinator *)persistentStoreCoordinator;
+- (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

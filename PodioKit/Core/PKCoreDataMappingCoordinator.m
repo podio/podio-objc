@@ -13,24 +13,26 @@
 
 @interface PKCoreDataMappingCoordinator ()
 
+@property (nonatomic, strong, readonly) NSManagedObjectContext *parentBackgroundContext;
+
 - (void)mappingContextDidSave:(NSNotification *)notification;
 
 @end
 
 @implementation PKCoreDataMappingCoordinator
 
-@synthesize managedObjectContext = managedObjectContext_;
-
 - (id)initWithManagedObjectContext:(NSManagedObjectContext *)managedObjectContext 
                    mappingProvider:(PKMappingProvider *)mappingProvider {
   self = [super initWithMappingProvider:mappingProvider];
   if (self) {
-    PKAssert(managedObjectContext.concurrencyType == NSMainQueueConcurrencyType, @"The object context must have a concurrency type NSMainQueueConcurrencyType");
-    managedObjectContext_ = managedObjectContext;
+    _managedObjectContext = managedObjectContext;
+    
+    _parentBackgroundContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+    _parentBackgroundContext.persistentStoreCoordinator = _managedObjectContext.persistentStoreCoordinator;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(mappingContextDidSave:)
                                                  name:NSManagedObjectContextDidSaveNotification 
-                                               object:nil];
+                                               object:_parentBackgroundContext];
   }
   
   return self;
@@ -43,7 +45,11 @@
 - (PKObjectMapper *)objectMapper {
   PKAssert(self.mappingProvider != nil, @"No mapping provider set.");
   
-  PKCoreDataRepository *repository = [[PKCoreDataRepository alloc] initWithPersistentStoreCoordinator:self.managedObjectContext.persistentStoreCoordinator];
+  // Create background worker context for mapping
+  NSManagedObjectContext *mapperContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSPrivateQueueConcurrencyType];
+  mapperContext.parentContext = self.parentBackgroundContext;
+  
+  PKCoreDataRepository *repository = [[PKCoreDataRepository alloc] initWithManagedObjectContext:mapperContext];
   
   PKObjectMapper *mapper = [[PKObjectMapper alloc] initWithProvider:self.mappingProvider repository:repository];
   mapper.delegate = self;
@@ -52,15 +58,10 @@
 }
 
 - (void)mappingContextDidSave:(NSNotification *)notification {
-  NSManagedObjectContext *savedContext = notification.object;
-  
-  // Only merge from other contexts
-  if (savedContext == self.managedObjectContext) {
-    return;
-  }
-
+  // Merge changes from background context to main context
   NSManagedObjectContext *context = self.managedObjectContext;
-  [context performBlock:^{
+  
+  [context performBlockAndWait:^{
     // Turn updated objects into faults
     NSSet *updatedObjectIds = [[notification.userInfo objectForKey:@"updated"] valueForKey:@"objectID"];
     [updatedObjectIds enumerateObjectsUsingBlock:^(id objectID, BOOL *stop) {
@@ -85,11 +86,25 @@
     PKLogDebug(@"Updated object count: %d", [[context updatedObjects] count]);
     PKLogDebug(@"Deleted object count: %d", [[context deletedObjects] count]);
     
-    // Save context
-    NSError *error = nil;
-    if (![context save:&error]) {
-      PKLogError(@"ERROR: Failed to save mapper context: %@, %@", error, [error userInfo]);
-    }
+    // Save worker context
+    [context performBlockAndWait:^{
+      NSError *error = nil;
+
+      if ([context save:&error]) {
+        NSManagedObjectContext *parentContext = context.parentContext;
+        
+        // Save parent context
+        [parentContext performBlockAndWait:^{
+          NSError *error2 = nil;
+
+          if (![parentContext save:&error2]) {
+            PKLogError(@"ERROR: Failed to save parent mapper context: %@", error2);
+          }
+        }];
+      } else {
+        PKLogError(@"ERROR: Failed to mapper context: %@", error);
+      }
+    }];
   }
 }
 
