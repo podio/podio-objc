@@ -71,6 +71,18 @@ NSString * const PKErrorErrorIdKey = @"PKErrorErrorIdKey";
   return [NSError errorWithDomain:PKPodioKitErrorDomain code:PKErrorCodeServerError userInfo:userInfo];
 }
 
+- (NSError *)pk_underlyingError {
+  return [[self userInfo] objectForKey:NSUnderlyingErrorKey];
+}
+
+- (BOOL)pk_isServerSideError {
+  return [self.domain isEqualToString:PKPodioKitErrorDomain] && self.code == PKErrorCodeServerError;
+}
+
+- (BOOL)pk_isNetworkError {
+  return [self.domain isEqualToString:NSURLErrorDomain];
+}
+
 - (NSString *)pk_serverSideDescription {
   return [self pk_serverSideDescriptionPropagateRequired:NO];
 }
@@ -82,8 +94,8 @@ NSString * const PKErrorErrorIdKey = @"PKErrorErrorIdKey";
 - (NSString *)pk_serverSideDescriptionPropagateRequired:(BOOL)propagateRequired {
   NSString *description = nil;
   
-  if (self.code == PKErrorCodeServerError) {
-    NSError *error = [[self userInfo] objectForKey:NSUnderlyingErrorKey];
+  if ([self pk_isServerSideError]) {
+    NSError *error = [self pk_underlyingError];
     
     if (!propagateRequired || [error.userInfo[PKErrorPropagateKey] boolValue]) {
       description = [error localizedDescription];
@@ -96,8 +108,8 @@ NSString * const PKErrorErrorIdKey = @"PKErrorErrorIdKey";
 - (NSString *)pk_serverSideErrorId {
   NSString *errorId = nil;
   
-  if (self.code == PKErrorCodeServerError) {
-    NSError *error = [[self userInfo] objectForKey:NSUnderlyingErrorKey];
+  if ([self pk_isServerSideError]) {
+    NSError *error = [self pk_underlyingError];
     if (error) {
       errorId = error.userInfo[PKErrorErrorIdKey];
     }
@@ -108,6 +120,23 @@ NSString * const PKErrorErrorIdKey = @"PKErrorErrorIdKey";
 
 - (BOOL)pk_isServerSideErrorWithId:(NSString *)errorId {
   return [[self pk_serverSideErrorId] isEqualToString:errorId];
+}
+
+- (NSInteger)pk_serverSideErrorStatusCode {
+  NSInteger statusCode = 0;
+  
+  if ([self pk_isServerSideError]) {
+    NSError *serverError = [self pk_underlyingError];
+    if (serverError) {
+      statusCode = serverError.code;
+    }
+  }
+  
+  return statusCode;
+}
+
+- (BOOL)pk_isServerSideErrorWithStatusCode:(NSUInteger)statusCode {
+  return [self pk_serverSideErrorStatusCode] == statusCode;
 }
 
 @end

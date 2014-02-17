@@ -23,9 +23,16 @@ extern NSString * const PKErrorErrorIdKey;
 + (NSError *)pk_responseParseError;
 + (NSError *)pk_serverErrorWithStatusCode:(NSUInteger)statusCode parsedData:(id)parsedData;
 
+- (NSError *)pk_underlyingError;
+- (BOOL)pk_isServerSideError;
+- (BOOL)pk_isNetworkError;
+
 - (NSString *)pk_serverSideDescription;
 - (NSString *)pk_humanServerSideDescription;
 - (NSString *)pk_serverSideErrorId;
 - (BOOL)pk_isServerSideErrorWithId:(NSString *)errorId;
+
+- (NSInteger)pk_serverSideErrorStatusCode;
+- (BOOL)pk_isServerSideErrorWithStatusCode:(NSUInteger)statusCode;
 
 @end
