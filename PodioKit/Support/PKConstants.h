@@ -373,6 +373,7 @@ typedef enum {
   PKStreamActivityTypeUpdate,
   PKStreamActivityTypeTask,
   PKStreamActivityTypeAnswer,
+  PKStreamActivityTypeParticipation,
 } PKStreamActivityType;
 
 static NSString * const kPKStreamActivityTypeComment = @"comment";
@@ -382,6 +383,7 @@ static NSString * const kPKStreamActivityTypeCreation = @"creation";
 static NSString * const kPKStreamActivityTypeUpdate = @"update";
 static NSString * const kPKStreamActivityTypeTask = @"task";
 static NSString * const kPKStreamActivityTypeAnswer = @"answer";
+static NSString * const kPKStreamActivityTypeParticipation = @"participation";
 
 #pragma mark - Action
 
