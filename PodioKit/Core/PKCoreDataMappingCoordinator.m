@@ -48,7 +48,9 @@
 
 - (void)mappingContextDidSave:(NSNotification *)notification {
   // Ignore save notifications from main context
-  if (notification.object == self.managedObjectContext) return;
+  NSManagedObjectContext *savedContext = notification.object;
+  if (savedContext == self.managedObjectContext ||
+      savedContext.concurrencyType != NSPrivateQueueConcurrencyType) return;
   
   // Merge changes from background context to main context
   NSManagedObjectContext *context = self.managedObjectContext;
