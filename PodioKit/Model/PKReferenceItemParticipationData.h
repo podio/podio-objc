@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <PodioKit/PodioKit.h>
+#import "PKObjectData.h"
 
 @interface PKReferenceItemParticipationData : PKObjectData
+
+@property (nonatomic) PKMeetingParticipantStatus status;
 
 @end
