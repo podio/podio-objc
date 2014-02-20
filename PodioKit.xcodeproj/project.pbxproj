@@ -203,6 +203,8 @@
 		50A16DA3148F4A5A00AF86C4 /* PKReferenceMessageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */; };
 		50A5FB33143B0FEA00674360 /* PKItemFieldValueDataFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */; };
+		50A661A618B61A95005F4587 /* PKReferenceItemParticipationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50A661A418B61A95005F4587 /* PKReferenceItemParticipationData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		50A661A718B61A95005F4587 /* PKReferenceItemParticipationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50A661A518B61A95005F4587 /* PKReferenceItemParticipationData.m */; };
 		50A8B300175BE365001000A6 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 50A8B2FF175BE365001000A6 /* Default-568h@2x.png */; };
 		50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE896E14A132E4004E027E /* PKQuestionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AE897114A13573004E027E /* PKItemFieldValueItemData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -497,6 +499,8 @@
 		50A16DA1148F4A5A00AF86C4 /* PKReferenceMessageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceMessageData.m; sourceTree = "<group>"; };
 		50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueDataFactory.h; sourceTree = "<group>"; };
 		50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueDataFactory.m; sourceTree = "<group>"; };
+		50A661A418B61A95005F4587 /* PKReferenceItemParticipationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceItemParticipationData.h; sourceTree = "<group>"; };
+		50A661A518B61A95005F4587 /* PKReferenceItemParticipationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceItemParticipationData.m; sourceTree = "<group>"; };
 		50A8B2FF175BE365001000A6 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		50AE896E14A132E4004E027E /* PKQuestionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKQuestionAPI.h; sourceTree = "<group>"; };
 		50AE897114A13573004E027E /* PKItemFieldValueItemData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueItemData.h; sourceTree = "<group>"; };
@@ -798,6 +802,8 @@
 				5030C03D1435E76300027F07 /* PKReferenceTaskData.m */,
 				504B33A818583D9100149125 /* PKReferenceOrganizationData.h */,
 				504B33A918583D9100149125 /* PKReferenceOrganizationData.m */,
+				50A661A418B61A95005F4587 /* PKReferenceItemParticipationData.h */,
+				50A661A518B61A95005F4587 /* PKReferenceItemParticipationData.m */,
 			);
 			name = Reference;
 			sourceTree = "<group>";
@@ -1277,6 +1283,7 @@
 				5065BF951433649A00360855 /* PKStandaloneMapping.h in Headers */,
 				5065BF981433649A00360855 /* PKValueMapping.h in Headers */,
 				5065BFB11433650E00360855 /* PKManagedObject.h in Headers */,
+				50A661A618B61A95005F4587 /* PKReferenceItemParticipationData.h in Headers */,
 				5065BFB61433654B00360855 /* NSManagedObject+PKAdditions.h in Headers */,
 				5065BFF1143366C100360855 /* NSArray+PKAdditions.h in Headers */,
 				5065BFF4143366C100360855 /* NSSet+PKAdditions.h in Headers */,
@@ -1612,6 +1619,7 @@
 				5065BF901433649A00360855 /* PKPropertyMapping.m in Sources */,
 				5065BF931433649A00360855 /* PKRelationshipMapping.m in Sources */,
 				5065BF991433649A00360855 /* PKValueMapping.m in Sources */,
+				50A661A718B61A95005F4587 /* PKReferenceItemParticipationData.m in Sources */,
 				5065BFB21433650E00360855 /* PKManagedObject.m in Sources */,
 				5065BFB71433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */,
 				5065BFF2143366C100360855 /* NSArray+PKAdditions.m in Sources */,

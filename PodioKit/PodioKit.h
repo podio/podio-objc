@@ -124,6 +124,7 @@
 #import "PKItemParticipantsData.h"
 #import "PKSpaceInviteData.h"
 #import "PKReferenceOrganizationData.h"
+#import "PKReferenceItemParticipationData.h"
 #import "PKAppFieldDataFactory.h"
 
 #pragma mark - Categories
