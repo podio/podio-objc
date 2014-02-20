@@ -738,6 +738,8 @@
     type = PKNotificationTypeGrantDelete;
   } else if ([string isEqualToString:kPKNotificationTypeSpaceDelete]) {
     type = PKNotificationTypeSpaceDelete;
+  } else if ([string isEqualToString:kPKNotificationTypeParticipation]) {
+    type = PKNotificationTypeParticipation;
   }
   
   return type;

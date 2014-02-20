@@ -566,6 +566,7 @@ typedef enum {
   PKNotificationTypeGrantCreate,
   PKNotificationTypeGrantDelete,
   PKNotificationTypeSpaceDelete,
+  PKNotificationTypeParticipation,
 } PKNotificationType;
 
 static NSString * const kPKNotificationTypeAlert = @"alert";
@@ -598,6 +599,8 @@ static NSString * const kPKNotificationTypeBatchComplete = @"batch_complete";
 static NSString * const kPKNotificationTypeGrantCreate = @"grant_create";
 static NSString * const kPKNotificationTypeGrantDelete = @"grant_delete";
 static NSString * const kPKNotificationTypeSpaceDelete = @"space_delete";
+static NSString * const kPKNotificationTypeParticipation = @"participation";
+
 
 #pragma mark - Meetings
 
