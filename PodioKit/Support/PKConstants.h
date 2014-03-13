@@ -83,13 +83,13 @@ static NSString * const kPKRoleAdmin = @"admin";
 typedef enum {
   PKSpaceTypeNone = 0,
   PKSpaceTypeRegular,
-  PKSpaceTypeEmployeeNetwork,
   PKSpaceTypeDemo,
+  PKSpaceTypeEmployeeNetwork,
 } PKSpaceType;
 
 static NSString * const kPKSpaceTypeRegular = @"regular";
-static NSString * const kPKSpaceTypeEmployeeNetwork = @"emp_network";
 static NSString * const kPKSpaceTypeDemo = @"demo";
+static NSString * const kPKSpaceTypeEmployeeNetwork = @"emp_network";
 
 typedef enum {
   PKSpaceCreateStatusNone = 0,
