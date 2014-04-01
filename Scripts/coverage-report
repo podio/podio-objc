@@ -17,7 +17,7 @@ opts = Getopt::Long.getopts(
 
 derived_data = opts['derived-data'] || DEFAULT_DERIVED_DATA
 output = opts['out'] || DEFAULT_OUTPUT
-publish = opts['publish'].to_bool
+publish = opts['publish'] ? opts['publish'].to_bool : false
 reports_dir = "#{output}/reports"
 html_dir = "#{output}/html"
 gcov_dir = "#{output}/gcov"
