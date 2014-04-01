@@ -26,8 +26,6 @@
 		5014C581188817430002C68D /* PKTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C56D18880B250002C68D /* PKTResponse.m */; };
 		5014C582188817550002C68D /* PKTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C572188812540002C68D /* PKTAsyncTestCase.m */; };
 		5014C583188817550002C68D /* PKTClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55B188806E50002C68D /* PKTClientTests.m */; };
-		5014C585188817550002C68D /* XCTestProbe+PKTRegisterObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 50485961188541B60088AF2C /* XCTestProbe+PKTRegisterObserver.m */; };
-		5014C58818881E070002C68D /* PKTCoverageTestObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C58618881E070002C68D /* PKTCoverageTestObserver.m */; };
 		5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032B0B5188EB6DC0080046B /* PKTRequestTests.m */; };
 		50485955188461CF0088AF2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50485954188461CF0088AF2C /* XCTest.framework */; };
 		505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505C4F98155C96C30081850F /* DemoApp-Configuration.plist */; };
@@ -112,8 +110,6 @@
 		5014C56D18880B250002C68D /* PKTResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTResponse.m; sourceTree = "<group>"; };
 		5014C571188812540002C68D /* PKTAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAsyncTestCase.h; sourceTree = "<group>"; };
 		5014C572188812540002C68D /* PKTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTestCase.m; sourceTree = "<group>"; };
-		5014C58618881E070002C68D /* PKTCoverageTestObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTCoverageTestObserver.m; sourceTree = "<group>"; };
-		5014C58718881E070002C68D /* PKTCoverageTestObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCoverageTestObserver.h; sourceTree = "<group>"; };
 		501BF17C14386AFE009764A3 /* PKFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKFileData.h; sourceTree = "<group>"; };
 		501BF17D14386AFE009764A3 /* PKFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFileData.m; sourceTree = "<group>"; };
 		501FDEDB1548095E002B6413 /* PKItemParticipantsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemParticipantsData.h; sourceTree = "<group>"; };
@@ -209,8 +205,6 @@
 		50458F381507734300FA66A6 /* PKByLineData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKByLineData.h; sourceTree = "<group>"; };
 		50458F391507734300FA66A6 /* PKByLineData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKByLineData.m; sourceTree = "<group>"; };
 		50485954188461CF0088AF2C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		50485960188541B60088AF2C /* XCTestProbe+PKTRegisterObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "XCTestProbe+PKTRegisterObserver.h"; sourceTree = "<group>"; };
-		50485961188541B60088AF2C /* XCTestProbe+PKTRegisterObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "XCTestProbe+PKTRegisterObserver.m"; sourceTree = "<group>"; };
 		5048937815400A0400022E6C /* PKAppFieldDataFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldDataFactory.h; sourceTree = "<group>"; };
 		5048937915400A0400022E6C /* PKAppFieldDataFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldDataFactory.m; sourceTree = "<group>"; };
 		504B33A818583D9100149125 /* PKReferenceOrganizationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceOrganizationData.h; sourceTree = "<group>"; };
@@ -723,17 +717,6 @@
 			name = Misc;
 			sourceTree = "<group>";
 		};
-		5048595C18853DC70088AF2C /* Observers */ = {
-			isa = PBXGroup;
-			children = (
-				5014C58618881E070002C68D /* PKTCoverageTestObserver.m */,
-				5014C58718881E070002C68D /* PKTCoverageTestObserver.h */,
-				50485960188541B60088AF2C /* XCTestProbe+PKTRegisterObserver.h */,
-				50485961188541B60088AF2C /* XCTestProbe+PKTRegisterObserver.m */,
-			);
-			name = Observers;
-			sourceTree = "<group>";
-		};
 		5065BEDD14335AB900360855 = {
 			isa = PBXGroup;
 			children = (
@@ -1184,7 +1167,6 @@
 			children = (
 				E49B6F7B1890169E0046192A /* Categories */,
 				E45F9647188FF1FC009791A0 /* Matchers */,
-				5048595C18853DC70088AF2C /* Observers */,
 			);
 			name = Support;
 			sourceTree = "<group>";
@@ -1547,7 +1529,6 @@
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
 				5014C583188817550002C68D /* PKTClientTests.m in Sources */,
 				E4BABDD8189807DA00E9149A /* PKTBaseAPI.m in Sources */,
-				5014C585188817550002C68D /* XCTestProbe+PKTRegisterObserver.m in Sources */,
 				50FB3D6F18EB5D020021DB48 /* PKTObject.m in Sources */,
 				5014C57D188817430002C68D /* PKTClient.m in Sources */,
 				E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */,
@@ -1557,7 +1538,6 @@
 				E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */,
 				50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */,
-				5014C58818881E070002C68D /* PKTCoverageTestObserver.m in Sources */,
 				50064DF01896FE8B00EF1E97 /* PKTSessionManager.m in Sources */,
 				5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */,
 				E4BABDCF1897FBD900E9149A /* PKTOAuth2TokenTests.m in Sources */,
