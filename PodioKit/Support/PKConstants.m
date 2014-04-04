@@ -1098,6 +1098,8 @@
     displayType = PKPromotionDisplayTypeOlarkChat;
   } else if ([string isEqualToString:kPKPromotionDisplayTypeiOSBanner]) {
     displayType = PKPromotionDisplayTypeiOSBanner;
+  } else if ([string isEqualToString:kPKPromotionDisplayTypeiOSNetPromoterScore]) {
+    displayType = PKPromotionDisplayTypeiOSNetPromoterScore;
   }
   
   return displayType;

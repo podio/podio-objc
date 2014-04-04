@@ -692,6 +692,7 @@ typedef enum {
   PKPromotionDisplayTypeNetPromoterScore,
   PKPromotionDisplayTypeOlarkChat,
   PKPromotionDisplayTypeiOSBanner,
+  PKPromotionDisplayTypeiOSNetPromoterScore,
 } PKPromotionDisplayType;
 
 static NSString * const kPKPromotionDisplayTypeBaloon = @"baloon";
@@ -700,6 +701,7 @@ static NSString * const kPKPromotionDisplayTypeFeatureTour = @"feature_tour";
 static NSString * const kPKPromotionDisplayTypeNetPromoterScore = @"net_promoter_score";
 static NSString * const kPKPromotionDisplayTypeOlarkChat = @"olark_chat";
 static NSString * const kPKPromotionDisplayTypeiOSBanner = @"ios_banner";
+static NSString * const kPKPromotionDisplayTypeiOSNetPromoterScore = @"ios_net_promoter_score";
 
 #pragma mark - Avatars
 
