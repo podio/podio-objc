@@ -80,7 +80,7 @@ def publish_to_coveralls(reports_dir, gcov_dir)
      end
   end
 
-  system "coveralls --no-gcov --verbose"
+  system "coveralls --no-gcov --verbose --root '#{gcov_dir}'"
   
   puts "=> Successfully published coverage report files to coveralls.io."
 end
