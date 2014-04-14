@@ -11,4 +11,7 @@
 
 @interface PKTObject : NSObject
 
++ (PKTClient *)client;
++ (void)setClient:(PKTClient *)client;
+
 @end

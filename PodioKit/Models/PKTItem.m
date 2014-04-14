@@ -47,7 +47,7 @@
 #pragma mark - Public
 
 + (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  [[PKTClient sharedClient] performRequest:request completion:completion];
+  [self.client performRequest:request completion:completion];
 }
 
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(PKTRequestCompletionBlock)completion {

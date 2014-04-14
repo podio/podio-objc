@@ -8,6 +8,28 @@
 
 #import "PKTObject.h"
 
+static PKTClient *sClient = nil;
+
 @implementation PKTObject
+
++ (PKTClient *)client {
+  @synchronized(self) {
+    PKTClient *client = nil;
+    
+    if (sClient) {
+      client = sClient;
+    } else {
+      client = [PKTClient sharedClient];
+    }
+    
+    return client;
+  }
+}
+
++ (void)setClient:(PKTClient *)client {
+  @synchronized(self) {
+    sClient = client;
+  }
+}
 
 @end
