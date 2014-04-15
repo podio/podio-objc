@@ -7,12 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import <OHHTTPStubs/OHHTTPStubs.h>
+#import "PKTStubs.h"
 #import "PKTClient.h"
 #import "PKTRequest.h"
 #import "PKTResponse.h"
-#import "PKTClient+Test.h"
-#import "NSURL+PKTParamatersHandling.h"
 
 static NSString * const kAPIKey = @"test-key";
 static NSString * const kAPISecret = @"test-secret";
@@ -32,6 +30,7 @@ static NSString * const kAPISecret = @"test-secret";
 
 - (void)tearDown {
   self.testClient = nil;
+  [Expecta setAsynchronousTestTimeout:1];
   [super tearDown];
 }
 
@@ -59,109 +58,142 @@ static NSString * const kAPISecret = @"test-secret";
 }
 
 - (void)testPerformSuccessfulRequest {
-  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/user/status" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+  NSString *path = @"/user/status";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
-  [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [request.URL.host isEqualToString:self.testClient.baseURL.host];
-  } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
-    return [OHHTTPStubsResponse responseWithData:nil statusCode:200 headers:nil];
+  stubResponseWithStatusCode(path, 200);
+
+  __block BOOL completed = NO;
+  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+    if (!error) {
+      completed = YES;
+    }
   }];
-  
+
+  expect(task).notTo.beNil();
+  expect(completed).will.beTruthy();
+}
+
+- (void)testPerformUnsuccessfulRequest {
+  NSString *path = @"/user/status";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  stubResponseWithStatusCode(path, 500);
+
+  __block BOOL errorOccured = NO;
+  [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+    if (error) {
+      errorOccured = YES;
+    }
+  }];
+
+  expect(errorOccured).will.beTruthy();
+}
+
+- (void)testTimeoutRequest {
+  NSString *path = @"/user/status";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  [Expecta setAsynchronousTestTimeout:5];
+  stubResponseWithTime(path, 2, 0);
+
   __block BOOL completed = NO;
   [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
 
+  expect(completed).will.beFalsy();
+}
+
+- (void)testCancelRequest {
+  NSString *path = @"/user/status";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  [Expecta setAsynchronousTestTimeout:5];
+  stubResponseWithTime(path, 5, 0);
+
+  __block BOOL cancelled = NO;
+  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+    if (error.code == NSURLErrorCancelled) {
+      cancelled = YES;
+    }
+  }];
+
+  expect(task).notTo.beNil();
+
+  [task cancel];
+
+  expect(cancelled).will.beTruthy();
+}
+
+- (void)testSuspendRequest {
+  NSString *path = @"/user/status";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  [Expecta setAsynchronousTestTimeout:5];
+  stubResponseWithTime(path, 5, 0);
+
+  __block BOOL completed = NO;
+  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+    completed = YES;
+  }];
+
+  expect(task).notTo.beNil();
+
+  [task suspend];
+
+  expect(completed).will.beFalsy();
+}
+
+- (void)testResumeRequest {
+  NSString *path = @"/user/status";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+
+  [Expecta setAsynchronousTestTimeout:5];
+  stubResponseWithTime(path, 5, 0);
+
+  __block BOOL completed = NO;
+  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+    completed = YES;
+  }];
+
+  expect(task).notTo.beNil();
+
+  [task suspend];
+
+  expect(completed).will.beFalsy();
+
+  wait(10);
+
+  [task resume];
+
   expect(completed).will.beTruthy();
 }
 
-- (void)testURLRequestForGETRequest {
-  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
-  
-  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
-  expect(urlRequest.URL.path).to.equal(request.path);
-  expect(urlRequest.HTTPMethod).to.equal(@"GET");
-  expect([[urlRequest URL] pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
-  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
-}
-
-- (void)testURLRequestForPOSTRequest {
-  PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
-
-  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
-  expect(urlRequest.URL.path).to.equal(request.path);
-  expect(urlRequest.HTTPMethod).to.equal(@"POST");
-
-  NSError *error = nil;
-  id bodyParameters = [NSJSONSerialization JSONObjectWithData:[urlRequest HTTPBody] options:0 error:&error];
-  bodyParameters = [NSDictionary dictionaryWithDictionary:bodyParameters];
-  expect(bodyParameters).to.pkt_beSupersetOf(request.parameters);
-  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
-  expect([urlRequest allHTTPHeaderFields][@"Content-Type"]).to.equal(@"application/json; charset=utf-8");
-}
-
-- (void)testURLRequestForPUTRequest {
-  PKTRequest *request = [PKTRequest PUTRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
-
-  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
-  expect(urlRequest.URL.path).to.equal(request.path);
-  expect(urlRequest.HTTPMethod).to.equal(@"PUT");
-
-  NSError *error = nil;
-  NSDictionary *bodyParameters = [[NSJSONSerialization JSONObjectWithData:[urlRequest HTTPBody] options:0 error:&error] copy];
-  bodyParameters = [NSDictionary dictionaryWithDictionary:bodyParameters];
-  expect(bodyParameters).to.pkt_beSupersetOf(request.parameters);
-  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
-  expect([urlRequest allHTTPHeaderFields][@"Content-Type"]).to.equal(@"application/json; charset=utf-8");
-}
-
-- (void)testURLRequestForDELETERequest {
-  PKTRequest *request = [PKTRequest DELETERequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
-
-  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
-  expect(urlRequest.URL.path).to.equal(request.path);
-  expect(urlRequest.HTTPMethod).to.equal(@"DELETE");
-  expect([[urlRequest URL] pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
-  expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
-}
-
 - (void)testSetCustomHeader {
-  PKTRequest *request = [PKTRequest PUTRequestWithPath:@"/some/path" parameters:nil];
-
   [self.testClient setValue:@"Header value" forHTTPHeader:@"X-Test-Header"];
-  NSURLRequest *urlRequest = [self.testClient URLRequestForRequest:request];
-  expect([urlRequest allHTTPHeaderFields][@"X-Test-Header"]).to.equal(@"Header value");
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"X-Test-Header"]).to.equal(@"Header value");
 }
 
 - (void)testSetAuthorizationHeaderWithAPICredentials {
-  NSURLRequest *urlRequest;
-
-  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
-  urlRequest = [self.testClient URLRequestForRequest:request];
-  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.beNil;
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.beNil;
 
   [self.testClient setAuthorizationHeaderWithAPICredentials];
 
-  urlRequest = [self.testClient URLRequestForRequest:request];
-  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.contain(@"Basic ");
-  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).notTo.contain(self.testClient.apiKey);
-  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).notTo.contain(self.testClient.apiSecret);
-  expect([[urlRequest allHTTPHeaderFields][@"Authorization"] length]).to.beGreaterThan([@"Basic " length]);
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.contain(@"Basic ");
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).notTo.contain(self.testClient.apiKey);
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).notTo.contain(self.testClient.apiSecret);
+  expect([self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"] length]).to.beGreaterThan([@"Basic " length]);
 }
 
 - (void)testSetAuthorizationHeaderWithOAuth2AccessToken {
-  NSURLRequest *urlRequest;
-
-  PKTRequest *request = [PKTRequest GETRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
-  urlRequest = [self.testClient URLRequestForRequest:request];
-  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.beNil;
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.beNil;
 
   NSString *accessToken = @"anAccessToken";
   [self.testClient setAuthorizationHeaderWithOAuth2AccessToken:accessToken];
 
-  urlRequest = [self.testClient URLRequestForRequest:request];
   NSString *expectedHTTPHeader = [NSString stringWithFormat:@"OAuth2 %@", accessToken];
-  expect([urlRequest allHTTPHeaderFields][@"Authorization"]).to.contain(expectedHTTPHeader);
+  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.contain(expectedHTTPHeader);
 }
 
 @end
