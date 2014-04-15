@@ -14,11 +14,6 @@
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
 
-static NSString * const kHTTPMethodGET = @"GET";
-static NSString * const kHTTPMethodPOST = @"POST";
-static NSString * const kHTTPMethodPUT = @"PUT";
-static NSString * const kHTTPMethodDELETE = @"DELETE";
-
 @interface PKTClient ()
 
 @property (nonatomic, copy, readwrite) NSString *apiKey;
@@ -78,61 +73,22 @@ static NSString * const kHTTPMethodDELETE = @"DELETE";
   [self.requestSerializer setAuthorizationHeaderFieldWithUsername:self.apiKey password:self.apiSecret];
 }
 
-- (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+- (NSURLSessionTask *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   NSURLSessionTask *task = [self taskWithRequest:request completion:completion];
   [task resume];
+
+  return task;
 }
 
 #pragma mark - Private
 
-+ (NSString *)HTTPMethodForMethod:(PKTRequestMethod)method {
-  NSString *string = nil;
-  
-  switch (method) {
-    case PKTRequestMethodGET:
-      string = kHTTPMethodGET;
-      break;
-    case PKTRequestMethodPOST:
-      string = kHTTPMethodPOST;
-      break;
-    case PKTRequestMethodPUT:
-      string = kHTTPMethodPUT;
-      break;
-    case PKTRequestMethodDELETE:
-      string = kHTTPMethodDELETE;
-      break;
-    default:
-      break;
-  }
-  
-  return string;
-}
-
-- (NSURLRequest *)URLRequestForRequest:(PKTRequest *)request {
-  @synchronized(self.requestSerializer) {
-    NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:self.baseURL] absoluteString];
-    NSString *method = [[self class] HTTPMethodForMethod:request.method];
-
-    NSError *error = nil;
-    NSMutableURLRequest *urlRequest = [self.requestSerializer
-                                       requestWithMethod:method
-                                       URLString:urlString
-                                       parameters:request.parameters
-                                       error:&error];
-    if (error) {
-      // TODO: handle error case
-    }
-    
-    return [urlRequest copy];
-  }
-}
-
 - (NSURLSessionTask *)taskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  NSURLRequest *urlRequest = [self URLRequestForRequest:request];
+  NSURLRequest *urlRequest = [(PKTRequestSerializer *)self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
   
   return [self dataTaskWithRequest:urlRequest completionHandler:^(NSURLResponse *urlResponse, id responseObject, NSError *error) {
     PKTResponse *response = nil;
     if (!error) {
+      // TODO: parse response
       response = [PKTResponse new];
     }
     
