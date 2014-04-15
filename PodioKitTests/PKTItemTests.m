@@ -27,4 +27,13 @@
   expect(item.fields).to.equal(expectedFields);
 }
 
+- (void)testItemFromDictionary {
+  NSDictionary *dict = @{@"item_id": @1234,
+                         @"title"  : @"Some item title"};
+  
+  PKTItem *item = [[PKTItem alloc] initWithDictionary:dict];
+  expect(item.itemID).to.equal(1234);
+  expect(item.title).to.equal(@"Some item title");
+}
+
 @end

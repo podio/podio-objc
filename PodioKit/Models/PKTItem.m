@@ -44,6 +44,14 @@
   return [self.mutFields copy];
 }
 
+#pragma mark - PKTModel
+
++ (NSDictionary *)dictionaryKeyPathsForPropertyNames {
+  return @{
+    @"itemID": @"item_id"
+  };
+}
+
 #pragma mark - Public
 
 + (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {

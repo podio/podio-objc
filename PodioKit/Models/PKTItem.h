@@ -12,6 +12,7 @@
 
 @property (nonatomic, readonly) NSUInteger itemID;
 @property (nonatomic, readonly) NSUInteger appID;
+@property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSDictionary *fields;
 
 + (instancetype)itemForAppWithID:(NSUInteger)appID;

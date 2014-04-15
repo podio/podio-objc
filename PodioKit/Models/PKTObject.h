@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "PKTModel.h"
 #import "PKTClient.h"
 
-@interface PKTObject : NSObject
+@interface PKTObject : PKTModel
 
 + (PKTClient *)client;
 + (void)setClient:(PKTClient *)client;
