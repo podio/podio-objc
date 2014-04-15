@@ -25,7 +25,7 @@
 }
 
 - (void)testUsesCustomClient {
-  PKTClient *client = [[PKTClient alloc] initWithAPIKey:@"my-key" secret:@"my-secret"];
+  PKTClient *client = [PKTClient new];
   [PKTObject setClient:client];
   
   expect([PKTObject client]).to.equal(client);

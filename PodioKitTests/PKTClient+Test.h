@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTSessionManager.h"
+#import "PKTClient.h"
 
-@interface PKTSessionManager (Test)
+@interface PKTClient (Test)
 
 - (void)refreshSessionToken:(PKTRequestCompletionBlock)completion;
 

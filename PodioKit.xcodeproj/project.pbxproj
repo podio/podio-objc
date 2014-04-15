@@ -9,23 +9,23 @@
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
-		50064DEE1896FE8B00EF1E97 /* PKTSessionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 50064DEC1896FE8B00EF1E97 /* PKTSessionManager.h */; };
-		50064DEF1896FE8B00EF1E97 /* PKTSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */; };
-		50064DF01896FE8B00EF1E97 /* PKTSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */; };
-		50064DF21896FE9C00EF1E97 /* PKTSessionManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */; };
+		50064DEE1896FE8B00EF1E97 /* PKTClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 50064DEC1896FE8B00EF1E97 /* PKTClient.h */; };
+		50064DEF1896FE8B00EF1E97 /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTClient.m */; };
+		50064DF01896FE8B00EF1E97 /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTClient.m */; };
+		50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DF11896FE9C00EF1E97 /* PKTClientTests.m */; };
 		500EA92E153F20F10049F224 /* PKLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 500EA92C153F20F10049F224 /* PKLoginViewController.m */; };
 		500EA92F153F20F10049F224 /* PKLoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 500EA92D153F20F10049F224 /* PKLoginViewController.xib */; };
-		5014C55F188809390002C68D /* PKTClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C55D188809390002C68D /* PKTClient.h */; };
+		5014C55F188809390002C68D /* PKTHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C55D188809390002C68D /* PKTHTTPClient.h */; };
 		5014C56918880B050002C68D /* PKTRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C56718880B050002C68D /* PKTRequest.h */; };
 		5014C56E18880B250002C68D /* PKTResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C56C18880B250002C68D /* PKTResponse.h */; };
-		5014C577188816F10002C68D /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55E188809390002C68D /* PKTClient.m */; };
+		5014C577188816F10002C68D /* PKTHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55E188809390002C68D /* PKTHTTPClient.m */; };
 		5014C579188816F10002C68D /* PKTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C56818880B050002C68D /* PKTRequest.m */; };
 		5014C57B188816F10002C68D /* PKTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C56D18880B250002C68D /* PKTResponse.m */; };
-		5014C57D188817430002C68D /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55E188809390002C68D /* PKTClient.m */; };
+		5014C57D188817430002C68D /* PKTHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55E188809390002C68D /* PKTHTTPClient.m */; };
 		5014C57F188817430002C68D /* PKTRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C56818880B050002C68D /* PKTRequest.m */; };
 		5014C581188817430002C68D /* PKTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C56D18880B250002C68D /* PKTResponse.m */; };
 		5014C582188817550002C68D /* PKTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C572188812540002C68D /* PKTAsyncTestCase.m */; };
-		5014C583188817550002C68D /* PKTClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55B188806E50002C68D /* PKTClientTests.m */; };
+		5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55B188806E50002C68D /* PKTHTTPClientTests.m */; };
 		5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5032B0B5188EB6DC0080046B /* PKTRequestTests.m */; };
 		50485955188461CF0088AF2C /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50485954188461CF0088AF2C /* XCTest.framework */; };
 		505C4F99155C96C30081850F /* DemoApp-Configuration.plist in Resources */ = {isa = PBXBuildFile; fileRef = 505C4F98155C96C30081850F /* DemoApp-Configuration.plist */; };
@@ -120,9 +120,9 @@
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
 		38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.xcconfig"; path = "Pods/Pods-demoapp.xcconfig"; sourceTree = SOURCE_ROOT; };
-		50064DEC1896FE8B00EF1E97 /* PKTSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTSessionManager.h; sourceTree = "<group>"; };
-		50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTSessionManager.m; sourceTree = "<group>"; };
-		50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTSessionManagerTests.m; sourceTree = "<group>"; };
+		50064DEC1896FE8B00EF1E97 /* PKTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTClient.h; sourceTree = "<group>"; };
+		50064DED1896FE8B00EF1E97 /* PKTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClient.m; sourceTree = "<group>"; };
+		50064DF11896FE9C00EF1E97 /* PKTClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClientTests.m; sourceTree = "<group>"; };
 		5009E23D1667C8040018EC75 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
 		5009E23E1667C8040018EC75 /* PKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClient.m; sourceTree = "<group>"; };
 		500EA927153F20830049F224 /* PKReferenceBatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceBatchData.h; sourceTree = "<group>"; };
@@ -130,9 +130,9 @@
 		500EA92B153F20F10049F224 /* PKLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLoginViewController.h; sourceTree = "<group>"; };
 		500EA92C153F20F10049F224 /* PKLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLoginViewController.m; sourceTree = "<group>"; };
 		500EA92D153F20F10049F224 /* PKLoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PKLoginViewController.xib; sourceTree = "<group>"; };
-		5014C55B188806E50002C68D /* PKTClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClientTests.m; sourceTree = "<group>"; };
-		5014C55D188809390002C68D /* PKTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTClient.h; sourceTree = "<group>"; };
-		5014C55E188809390002C68D /* PKTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClient.m; sourceTree = "<group>"; };
+		5014C55B188806E50002C68D /* PKTHTTPClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPClientTests.m; sourceTree = "<group>"; };
+		5014C55D188809390002C68D /* PKTHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTHTTPClient.h; sourceTree = "<group>"; };
+		5014C55E188809390002C68D /* PKTHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPClient.m; sourceTree = "<group>"; };
 		5014C56718880B050002C68D /* PKTRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRequest.h; sourceTree = "<group>"; };
 		5014C56818880B050002C68D /* PKTRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequest.m; sourceTree = "<group>"; };
 		5014C56C18880B250002C68D /* PKTResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTResponse.h; sourceTree = "<group>"; };
@@ -222,7 +222,6 @@
 		5032336014FD3F2C0028D887 /* PKExternalFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKExternalFileData.h; sourceTree = "<group>"; };
 		5032336114FD3F2C0028D887 /* PKExternalFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKExternalFileData.m; sourceTree = "<group>"; };
 		5032B0B5188EB6DC0080046B /* PKTRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestTests.m; sourceTree = "<group>"; };
-		5032B0B7188ED0130080046B /* PKTClient+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PKTClient+Test.h"; sourceTree = "<group>"; };
 		5032BAB6144489CB00B7F7C7 /* PKBaseObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKBaseObject.h; sourceTree = "<group>"; };
 		5032BAB7144489CB00B7F7C7 /* PKBaseObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKBaseObject.m; sourceTree = "<group>"; };
 		5032BAC514448E1500B7F7C7 /* PKTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTask.h; sourceTree = "<group>"; };
@@ -324,6 +323,8 @@
 		5082426B18FD5E2F009A1580 /* PKTModelValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTModelValueTransformerTests.m; sourceTree = "<group>"; };
 		5082426E18FD5EA6009A1580 /* PKTTestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTTestModel.h; sourceTree = "<group>"; };
 		5082426F18FD5EA6009A1580 /* PKTTestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTTestModel.m; sourceTree = "<group>"; };
+		5082427218FD6DE6009A1580 /* PKTClient+Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PKTClient+Test.h"; sourceTree = "<group>"; };
+		5082427318FD6E34009A1580 /* PKTStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTStubs.h; sourceTree = "<group>"; };
 		50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceMemberRequestData.h; sourceTree = "<group>"; };
 		50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceMemberRequestData.m; sourceTree = "<group>"; };
 		5084B57814DEF5F0002FC8DB /* PKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLog.h; sourceTree = "<group>"; };
@@ -470,7 +471,6 @@
 		E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRequestSerializer.h; sourceTree = "<group>"; };
 		E49B6F8518901ACF0046192A /* PKTRequestSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestSerializer.m; sourceTree = "<group>"; };
 		E4A0535B1898FA6600853F9B /* PKTRequestSerializerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestSerializerTests.m; sourceTree = "<group>"; };
-		E4A0535D1898FB6F00853F9B /* PKTRequestSerializer+Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PKTRequestSerializer+Test.h"; sourceTree = "<group>"; };
 		E4BABDC91897F9DA00E9149A /* PKTOAuth2Token.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTOAuth2Token.h; sourceTree = "<group>"; };
 		E4BABDCA1897F9DA00E9149A /* PKTOAuth2Token.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTOAuth2Token.m; sourceTree = "<group>"; };
 		E4BABDCE1897FBD900E9149A /* PKTOAuth2TokenTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTOAuth2TokenTests.m; sourceTree = "<group>"; };
@@ -1231,16 +1231,16 @@
 		E45F963E188FEC49009791A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5014C55D188809390002C68D /* PKTClient.h */,
-				5014C55E188809390002C68D /* PKTClient.m */,
+				50064DEC1896FE8B00EF1E97 /* PKTClient.h */,
+				50064DED1896FE8B00EF1E97 /* PKTClient.m */,
+				5014C55D188809390002C68D /* PKTHTTPClient.h */,
+				5014C55E188809390002C68D /* PKTHTTPClient.m */,
 				5014C56718880B050002C68D /* PKTRequest.h */,
 				5014C56818880B050002C68D /* PKTRequest.m */,
 				5014C56C18880B250002C68D /* PKTResponse.h */,
 				5014C56D18880B250002C68D /* PKTResponse.m */,
 				E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */,
 				E49B6F8518901ACF0046192A /* PKTRequestSerializer.m */,
-				50064DEC1896FE8B00EF1E97 /* PKTSessionManager.h */,
-				50064DED1896FE8B00EF1E97 /* PKTSessionManager.m */,
 				E4BABDC91897F9DA00E9149A /* PKTOAuth2Token.h */,
 				E4BABDCA1897F9DA00E9149A /* PKTOAuth2Token.m */,
 			);
@@ -1259,6 +1259,7 @@
 		E45F9645188FF1C0009791A0 /* Support */ = {
 			isa = PBXGroup;
 			children = (
+				5082427318FD6E34009A1580 /* PKTStubs.h */,
 				5082426618FC8D58009A1580 /* Transformers */,
 				E49B6F7B1890169E0046192A /* Categories */,
 				E45F9647188FF1FC009791A0 /* Matchers */,
@@ -1269,13 +1270,12 @@
 		E45F9646188FF1E9009791A0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5014C55B188806E50002C68D /* PKTClientTests.m */,
-				5032B0B7188ED0130080046B /* PKTClient+Test.h */,
+				5082427218FD6DE6009A1580 /* PKTClient+Test.h */,
+				50064DF11896FE9C00EF1E97 /* PKTClientTests.m */,
+				5014C55B188806E50002C68D /* PKTHTTPClientTests.m */,
 				5032B0B5188EB6DC0080046B /* PKTRequestTests.m */,
-				50064DF11896FE9C00EF1E97 /* PKTSessionManagerTests.m */,
 				E4BABDCE1897FBD900E9149A /* PKTOAuth2TokenTests.m */,
 				E4A0535B1898FA6600853F9B /* PKTRequestSerializerTests.m */,
-				E4A0535D1898FB6F00853F9B /* PKTRequestSerializer+Test.h */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1366,12 +1366,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5014C55F188809390002C68D /* PKTClient.h in Headers */,
+				5014C55F188809390002C68D /* PKTHTTPClient.h in Headers */,
 				50FB3D5D18EA0B8B0021DB48 /* PKTObject.h in Headers */,
 				5014C56918880B050002C68D /* PKTRequest.h in Headers */,
 				50FB3D6118EA0CDD0021DB48 /* PKTItem.h in Headers */,
 				E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */,
-				50064DEE1896FE8B00EF1E97 /* PKTSessionManager.h in Headers */,
+				50064DEE1896FE8B00EF1E97 /* PKTClient.h in Headers */,
 				5082426918FD5DFC009A1580 /* PKTModelValueTransformer.h in Headers */,
 				5082424C18FC70A5009A1580 /* PKTModel.h in Headers */,
 				5082425618FC8466009A1580 /* PKTReversibleBlockValueTransformer.h in Headers */,
@@ -1605,7 +1605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50FB3D5E18EA0B8B0021DB48 /* PKTObject.m in Sources */,
-				5014C577188816F10002C68D /* PKTClient.m in Sources */,
+				5014C577188816F10002C68D /* PKTHTTPClient.m in Sources */,
 				50B49F1018EE08F800B7EDF5 /* PKTApp.m in Sources */,
 				E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				E4BABDCC1897F9DA00E9149A /* PKTOAuth2Token.m in Sources */,
@@ -1619,7 +1619,7 @@
 				5082424D18FC70A5009A1580 /* PKTModel.m in Sources */,
 				5014C57B188816F10002C68D /* PKTResponse.m in Sources */,
 				5082426318FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
-				50064DEF1896FE8B00EF1E97 /* PKTSessionManager.m in Sources */,
+				50064DEF1896FE8B00EF1E97 /* PKTClient.m in Sources */,
 				E49B6F8718901ACF0046192A /* PKTRequestSerializer.m in Sources */,
 				50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */,
 				5082425218FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
@@ -1639,7 +1639,7 @@
 				50B49F1C18EE095500B7EDF5 /* PKTAppTests.m in Sources */,
 				50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */,
 				5082425818FC8466009A1580 /* PKTReversibleBlockValueTransformer.m in Sources */,
-				50064DF21896FE9C00EF1E97 /* PKTSessionManagerTests.m in Sources */,
+				50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */,
 				E4A0535C1898FA6600853F9B /* PKTRequestSerializerTests.m in Sources */,
 				E4BABDD31898070100E9149A /* PKTAuthenticationAPITests.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */,
@@ -1648,11 +1648,11 @@
 				5082426418FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
 				5082424918FC6C7D009A1580 /* PKTObjectTests.m in Sources */,
-				5014C583188817550002C68D /* PKTClientTests.m in Sources */,
+				5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */,
 				E4BABDD8189807DA00E9149A /* PKTBaseAPI.m in Sources */,
 				50FB3D6F18EB5D020021DB48 /* PKTObject.m in Sources */,
 				5082426C18FD5E2F009A1580 /* PKTModelValueTransformerTests.m in Sources */,
-				5014C57D188817430002C68D /* PKTClient.m in Sources */,
+				5014C57D188817430002C68D /* PKTHTTPClient.m in Sources */,
 				E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */,
 				50B49F1118EE08F800B7EDF5 /* PKTApp.m in Sources */,
 				E4BABDDD1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
@@ -1664,7 +1664,7 @@
 				E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */,
 				50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */,
 				5082425E18FC85F6009A1580 /* PKTReversibleBlockValueTransformerTests.m in Sources */,
-				50064DF01896FE8B00EF1E97 /* PKTSessionManager.m in Sources */,
+				50064DF01896FE8B00EF1E97 /* PKTClient.m in Sources */,
 				50B49F1618EE092100B7EDF5 /* PKTAppAPI.m in Sources */,
 				5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */,
 				E4BABDCF1897FBD900E9149A /* PKTOAuth2TokenTests.m in Sources */,

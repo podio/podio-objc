@@ -1,31 +1,32 @@
 //
-//  PKTClient.h
+//  PKTSessionManager.h
 //  PodioKit
 //
-//  Created by Sebastian Rehnby on 16/01/14.
+//  Created by Sebastian Rehnby on 27/01/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <AFNetworking/AFNetworking.h>
+#import <Foundation/Foundation.h>
+#import "PKTHTTPClient.h"
 
-@class PKTRequest, PKTResponse;
+@class PKTOAuth2Token;
 
-typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
-
-@interface PKTClient : AFHTTPSessionManager
+@interface PKTClient : NSObject
 
 @property (nonatomic, copy, readonly) NSString *apiKey;
 @property (nonatomic, copy, readonly) NSString *apiSecret;
+@property (nonatomic, strong, readonly) PKTHTTPClient *HTTPClient;
+@property (nonatomic, strong, readonly) PKTOAuth2Token *oauthToken;
+@property (nonatomic, assign, readonly) BOOL isAuthenticated;
 
 + (instancetype)sharedClient;
 
-- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret;
+- (instancetype)initWithHTTPClient:(PKTHTTPClient *)client;
 
 - (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
-- (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header;
-- (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken;
-- (void)setAuthorizationHeaderWithAPICredentials;
+- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
+- (void)authenticateWithAppID:(NSString *)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 
 - (NSURLSessionTask *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
