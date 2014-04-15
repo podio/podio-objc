@@ -8,7 +8,9 @@
 
 #import "PKTClient.h"
 #import "PKTOAuth2Token.h"
+#import "PKTResponse.h"
 #import "PKTAuthenticationAPI.h"
+#import "PKTMacros.h"
 
 static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 
@@ -104,15 +106,16 @@ static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 
 - (void)authenticateWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   @synchronized(self) {
-    __block __weak __typeof(&*self)weakSelf = self;
+    PKT_WEAK_SELF weakSelf = self;
+    
     [self.HTTPClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
-      __strong __typeof(&*weakSelf)strongSelf = weakSelf;
+      PKT_STRONG(weakSelf) strongSelf = weakSelf;
 
       PKTOAuth2Token *token = nil;
       if (!error) {
-        // TODO: map the response into a native object
-        //token = [PKTOAuth2Token tokenFromDictionary:response.];
+        token = [[PKTOAuth2Token alloc] initWithDictionary:response.parsedData];
       }
+      
       strongSelf.oauthToken = token;
 
       if (completion) {

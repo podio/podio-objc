@@ -15,24 +15,6 @@
 
 @implementation PKTOAuth2TokenTests
 
-- (void)testInitWithAccessTokenRefreshTokenTransferTokenExpiresOnRefData {
-  NSString *accessToken, *refreshToken, *transferToken;
-  accessToken = @"aToken";
-  refreshToken = @"anotherToken";
-  transferToken = @"someOtherToken";
-
-  NSDictionary *refData = @{@"test": @"value"};
-
-  NSDate *expiresOn = [NSDate dateWithTimeIntervalSinceNow:1234];
-
-  PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithAccessToken:accessToken refreshToken:refreshToken expiresOn:expiresOn refData:refData];
-
-  expect(token.accessToken).to.equal(accessToken);
-  expect(token.refreshToken).to.equal(refreshToken);
-  expect(token.refData).to.equal(refData);
-  expect(token.expiresOn).to.equal(expiresOn);
-}
-
 - (void)testTokenFromDictionary {
   NSDictionary *dictionary = @{
     @"access_token": @"some_token",
@@ -41,7 +23,7 @@
     @"ref": @{@"test": @"value"}
   };
 
-  PKTOAuth2Token *token = [PKTOAuth2Token tokenFromDictionary:dictionary];
+  PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithDictionary:dictionary];
 
   expect(token.accessToken).to.equal(dictionary[@"access_token"]);
   expect(token.refreshToken).to.equal(dictionary[@"refresh_token"]);

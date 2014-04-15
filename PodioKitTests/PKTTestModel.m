@@ -10,7 +10,7 @@
 
 @implementation PKTTestModel
 
-#pragma mark - MTModel
+#pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
