@@ -11,11 +11,11 @@
 @implementation PKTItemAPI
 
 + (PKTRequest *)requestForItemWithID:(NSUInteger)itemID {
-  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", itemID) parameters:nil];
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", (unsigned long)itemID) parameters:nil];
 }
 
 + (PKTRequest *)requestToCreateItemInAppWithID:(NSUInteger)appID fields:(NSDictionary *)fields files:(NSArray *)files tags:(NSArray *)tags {
-  NSString *path = PKTRequestPath(@"/item/app/%lu/", appID);
+  NSString *path = PKTRequestPath(@"/item/app/%lu/", (unsigned long)appID);
   PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:nil];
   
   request.body = [NSMutableDictionary new];
@@ -36,7 +36,7 @@
 }
 
 + (PKTRequest *)requestToUpdateItemWithID:(NSUInteger)itemID fields:(NSDictionary *)fields files:(NSArray *)files tags:(NSArray *)tags {
-  NSString *path = PKTRequestPath(@"/item/%lu", itemID);
+  NSString *path = PKTRequestPath(@"/item/%lu", (unsigned long)itemID);
   PKTRequest *request = [PKTRequest PUTRequestWithPath:path parameters:nil];
   
   request.body = [NSMutableDictionary new];

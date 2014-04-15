@@ -11,7 +11,7 @@
 @implementation PKTAppAPI
 
 + (PKTRequest *)requestForAppWithID:(NSUInteger)appID {
-  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/app/%lu", appID) parameters:nil];
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/app/%lu", (unsigned long)appID) parameters:nil];
 }
 
 @end
