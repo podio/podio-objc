@@ -11,6 +11,7 @@
 #import "PKTSessionManager.h"
 #import "PKTClient.h"
 #import "PKTOAuth2Token.h"
+#import "PKSessionManager+Test.h"
 
 @interface PKTSessionManagerTests : XCTestCase
 
@@ -25,6 +26,7 @@
   PKTClient *client = [[PKTClient alloc] initWithAPIKey:@"apiKey" secret:@"apiSecret"];
   self.testSessionManager = [[PKTSessionManager alloc] initWithClient:client];
 
+  
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [request.URL.host isEqualToString:self.testSessionManager.client.baseURL.host];
   } withStubResponse:^OHHTTPStubsResponse*(NSURLRequest *request) {
@@ -49,31 +51,33 @@
 
   PKTSessionManager *manager = [[PKTSessionManager alloc] initWithClient:client];
   expect(manager.client).to.equal(client);
+  expect(manager.oauthToken).to.beNil();
+  expect(manager.isAuthenticated).to.beFalsy();
 }
 
-- (void)testAuthenticationWithEmailAndPassword {
-  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
-
-  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
-
+//- (void)testAuthenticationWithEmailAndPassword {
+//  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
+//
+//  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
+//
 //  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
 //  expect(self.testSessionManager.oauthToken).willNot.beNil;
-}
-
-- (void)testAuthenticationWithAppIDAndToken {
-  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
-
-  [self.testSessionManager authenticateWithAppID:@"someAppID" token:@"someAppToken" completion:nil];
-
+//}
+//
+//- (void)testAuthenticationWithAppIDAndToken {
+//  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
+//
+//  [self.testSessionManager authenticateWithAppID:@"someAppID" token:@"someAppToken" completion:nil];
+//
 //  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
 //  expect(self.testSessionManager.oauthToken).willNot.beNil;
-}
-
-- (void)testRefreshToken {
-  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
-
-  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
-
+//}
+//
+//- (void)testRefreshToken {
+//  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
+//
+//  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
+//
 //  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
 //  expect(self.testSessionManager.oauthToken).willNot.beNil;
 //
@@ -86,6 +90,6 @@
 //  expect(self.testSessionManager.oauthToken.refreshToken).will.equal(token.refreshToken);
 //  expect(self.testSessionManager.oauthToken.refData).will.equal(token.refData);
 //  expect(self.testSessionManager.oauthToken.expiresOn).willNot.equal(token.expiresOn);
-}
+//}
 
 @end

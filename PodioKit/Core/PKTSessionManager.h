@@ -24,6 +24,4 @@
 - (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
 - (void)authenticateWithAppID:(NSString *)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 
-- (void)refreshSessionToken:(PKTRequestCompletionBlock)completion;
-
 @end

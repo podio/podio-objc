@@ -38,12 +38,16 @@ static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 
     _client = client;
 
-    [self setupAuthorizationHeader:[self isAuthenticated]];
+    [self updateAuthorizationHeader:[self isAuthenticated]];
 
     [self addObserver:self forKeyPath:NSStringFromSelector(@selector(isAuthenticated)) options:NSKeyValueObservingOptionNew context:kIsAuthenticatedContext];
     
     return self;
   }
+}
+
+- (id)init {
+  return [self initWithClient:nil];
 }
 
 - (void)dealloc {
@@ -108,10 +112,10 @@ static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 #pragma mark - State
 
 - (void)authenticationStateDidChange:(BOOL)isAuthenticated {
-  [self setupAuthorizationHeader:isAuthenticated];
+  [self updateAuthorizationHeader:isAuthenticated];
 }
 
-- (void)setupAuthorizationHeader:(BOOL)isAuthenticated {
+- (void)updateAuthorizationHeader:(BOOL)isAuthenticated {
   if (isAuthenticated) {
     [self.client setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
   } else {
@@ -130,9 +134,6 @@ static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 
 - (void)refreshSessionToken:(PKTRequestCompletionBlock)completion {
   NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
-  if ([self.oauthToken.refreshToken length] == 0) {
-    return;
-  }
 
   [self refreshSessionWithRefreshToken:self.oauthToken.refreshToken completion:completion];
 }
