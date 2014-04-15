@@ -8,8 +8,11 @@
 
 #import <AFNetworking/AFURLRequestSerialization.h>
 
+@class PKTRequest;
+
 @interface PKTRequestSerializer : AFJSONRequestSerializer
 
 - (void)setAuthorizationHeaderFieldWithOAuth2AccessToken:(NSString *)accessToken;
+- (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request relativeToURL:(NSURL *)baseURL;
 
 @end
