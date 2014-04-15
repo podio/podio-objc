@@ -75,6 +75,7 @@
 		6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */; };
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
+		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
 		E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */; };
 		E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F82189016D00046192A /* NSString+PKTURL.m */; };
 		E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */; };
@@ -427,6 +428,7 @@
 		E45ED49318900372003A020A /* NSString+PKTURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURLTests.m"; sourceTree = "<group>"; };
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
+		E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandomTests.m"; sourceTree = "<group>"; };
 		E49B6F7E189016C20046192A /* NSURL+PKTParamatersHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PKTParamatersHandling.h"; sourceTree = "<group>"; };
 		E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTParamatersHandling.m"; sourceTree = "<group>"; };
 		E49B6F81189016D00046192A /* NSString+PKTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURL.h"; sourceTree = "<group>"; };
@@ -1150,6 +1152,7 @@
 		E45ED490189000EB003A020A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */,
 				E45ED49318900372003A020A /* NSString+PKTURLTests.m */,
 			);
 			name = Categories;
@@ -1566,6 +1569,7 @@
 				E4BABDDD1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
 				5014C57F188817430002C68D /* PKTRequest.m in Sources */,
 				5014C581188817430002C68D /* PKTResponse.m in Sources */,
+				E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */,
 				E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */,
 				50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */,
