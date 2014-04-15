@@ -16,7 +16,7 @@
 @property (nonatomic, copy, readonly) NSString *apiKey;
 @property (nonatomic, copy, readonly) NSString *apiSecret;
 @property (nonatomic, strong, readonly) PKTHTTPClient *HTTPClient;
-@property (nonatomic, strong, readonly) PKTOAuth2Token *oauthToken;
+@property (nonatomic, strong, readwrite) PKTOAuth2Token *oauthToken;
 @property (nonatomic, assign, readonly) BOOL isAuthenticated;
 
 + (instancetype)sharedClient;

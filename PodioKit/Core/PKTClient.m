@@ -19,7 +19,6 @@ static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 
 @property (nonatomic, copy, readwrite) NSString *apiKey;
 @property (nonatomic, copy, readwrite) NSString *apiSecret;
-@property (nonatomic, strong, readwrite) PKTOAuth2Token *oauthToken;
 
 @end
 

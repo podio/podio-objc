@@ -62,6 +62,22 @@
   expect(client.apiSecret).to.equal(@"my-secret");
 }
 
+- (void)testSetOAuthToken {
+  PKTClient *client = [PKTClient new];
+  
+  NSDictionary *tokenDict = @{
+    @"access_token" : @"abc123",
+    @"refresh_token" : @"abc123",
+    @"expires_in" : @3600,
+    @"ref" : [NSNull null]
+  };
+  
+  PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithDictionary:tokenDict];
+  client.oauthToken = token;
+  
+  expect(client.oauthToken).to.equal(token);
+}
+
 //- (void)testAuthenticationWithEmailAndPassword {
 //  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
 //
