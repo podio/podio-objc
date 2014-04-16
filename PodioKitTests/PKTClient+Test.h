@@ -10,6 +10,6 @@
 
 @interface PKTClient (Test)
 
-- (void)refreshSessionToken:(PKTRequestCompletionBlock)completion;
+- (void)refreshToken:(PKTRequestCompletionBlock)completion;
 
 @end

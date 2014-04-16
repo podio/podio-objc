@@ -15,4 +15,6 @@
 @property (nonatomic, copy, readonly) NSDate *expiresOn;
 @property (nonatomic, copy, readonly) NSDictionary *refData;
 
+- (BOOL)willExpireWithinIntervalFromNow:(NSTimeInterval)expireInterval;
+
 @end

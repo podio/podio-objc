@@ -1,47 +1,60 @@
 //
-//  PKTStubs.h
+//  PKTHTTPStubs.m
 //  PodioKit
 //
-//  Created by Romain Briche on 30/01/14.
+//  Created by Sebastian Rehnby on 16/04/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import <OHHTTPStubs/OHHTTPStubs.h>
+#import "PKTHTTPStubs.h"
 
-void (^stubResponseFromFile)(NSString *, NSString *) = ^(NSString *path, NSString *responseFilename) {
+@implementation PKTHTTPStubs
+
++ (void)stubResponseForPath:(NSString *)path responseFilename:(NSString *)responseFilename {
   NSDictionary *headers = @{@"Content-Type": @"application/json; charset=utf-8"};
-
+  
 	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [[[request URL] path] isEqualToString:path];
   } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
 		return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInDocumentsDir(responseFilename) statusCode:200 headers:headers];
   }];
-};
+}
 
-void (^stubResponseFromObject)(NSString *, id) = ^(NSString *path, id responseObject) {
++ (void)stubResponseForPath:(NSString *)path responseObject:(id)responseObject {
   NSDictionary *headers = @{@"Content-Type": @"application/json; charset=utf-8"};
-
+  
 	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [[[request URL] path] isEqualToString:path];
   } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
     NSData *data = [NSJSONSerialization dataWithJSONObject:responseObject options:0 error:NULL];
 		return [OHHTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
   }];
-};
+}
 
-void (^stubResponseWithStatusCode)(NSString *, int) = ^(NSString *path, int statusCode) {
++ (void)stubResponseForPath:(NSString *)path statusCode:(int)statusCode {
 	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [[[request URL] path] isEqualToString:path];
   } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
 		return [OHHTTPStubsResponse responseWithData:[NSData data] statusCode:statusCode headers:nil];
   }];
-};
+}
 
-void (^stubResponseWithTime)(NSString *, int, int) = ^(NSString *path, int requestTime, int responseTime) {
++ (void)stubResponseForPath:(NSString *)path requestTime:(int)requestTime responseTime:(int)responseTime {
 	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [[[request URL] path] isEqualToString:path];
   } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
 		return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:200 headers:nil] requestTime:requestTime responseTime:responseTime];
   }];
-};
+}
+
++ (void)stubNetworkDownForPath:(NSString *)path {
+  [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+    return [[[request URL] path] isEqualToString:path];
+  } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
+    NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
+		return [OHHTTPStubsResponse responseWithError:error];
+  }];
+}
+
+@end

@@ -7,10 +7,10 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTStubs.h"
 #import "PKTHTTPClient.h"
 #import "PKTRequest.h"
 #import "PKTResponse.h"
+#import "PKTHTTPStubs.h"
 
 @interface PKTHTTPClientTests : XCTestCase
 
@@ -42,14 +42,16 @@
   NSString *path = @"/user/status";
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
-  stubResponseWithStatusCode(path, 200);
+  [PKTHTTPStubs stubResponseForPath:path statusCode:200];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (!error) {
       completed = YES;
     }
   }];
+  
+  [task resume];
 
   expect(task).notTo.beNil();
   expect(completed).will.beTruthy();
@@ -59,14 +61,16 @@
   NSString *path = @"/user/status";
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
-  stubResponseWithStatusCode(path, 500);
+  [PKTHTTPStubs stubResponseForPath:path statusCode:500];
 
   __block BOOL errorOccured = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (error) {
       errorOccured = YES;
     }
   }];
+  
+  [task resume];
 
   expect(errorOccured).will.beTruthy();
 }
@@ -76,12 +80,14 @@
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
   [Expecta setAsynchronousTestTimeout:5];
-  stubResponseWithTime(path, 2, 0);
+  [PKTHTTPStubs stubResponseForPath:path requestTime:2 responseTime:0];
 
   __block BOOL completed = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
+  
+  [task resume];
 
   expect(completed).will.beFalsy();
 }
@@ -91,14 +97,16 @@
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
   [Expecta setAsynchronousTestTimeout:5];
-  stubResponseWithTime(path, 5, 0);
+  [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL cancelled = NO;
-  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (error.code == NSURLErrorCancelled) {
       cancelled = YES;
     }
   }];
+  
+  [task resume];
 
   expect(task).notTo.beNil();
 
@@ -112,17 +120,17 @@
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
   [Expecta setAsynchronousTestTimeout:5];
-  stubResponseWithTime(path, 5, 0);
+  [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
-
+  
+  [task resume];
   expect(task).notTo.beNil();
 
   [task suspend];
-
   expect(completed).will.beFalsy();
 }
 
@@ -131,23 +139,22 @@
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
   [Expecta setAsynchronousTestTimeout:5];
-  stubResponseWithTime(path, 5, 0);
+  [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
 
+  [task resume];
   expect(task).notTo.beNil();
 
   [task suspend];
-
   expect(completed).will.beFalsy();
 
-  wait(10);
+  wait(2);
 
   [task resume];
-
   expect(completed).will.beTruthy();
 }
 

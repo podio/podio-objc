@@ -18,6 +18,6 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 - (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken;
 - (void)setAuthorizationHeaderWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
-- (NSURLSessionTask *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (NSURLSessionTask *)taskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 @end

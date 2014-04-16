@@ -31,4 +31,27 @@
   expect(token.refData).to.equal(dictionary[@"ref"]);
 }
 
+- (void)testWillExpireInTrue {
+  PKTOAuth2Token *token = [self tokenWithExpirationIntervalFromNow:100];
+  expect([token willExpireWithinIntervalFromNow:1000]).to.beTruthy();
+}
+
+- (void)testWillExpireInFalse {
+  PKTOAuth2Token *token = [self tokenWithExpirationIntervalFromNow:100];
+  expect([token willExpireWithinIntervalFromNow:10]).to.beFalsy();
+}
+
+#pragma mark - Helpers
+
+- (PKTOAuth2Token *)tokenWithExpirationIntervalFromNow:(NSTimeInterval)expiresIn {
+  NSDictionary *dictionary = @{
+      @"access_token": @"some_token",
+      @"refresh_token": @"some_other_token",
+      @"expires_in": @(expiresIn),
+      @"ref": @{@"test": @"value"}
+    };
+  
+  return [[PKTOAuth2Token alloc] initWithDictionary:dictionary];
+}
+
 @end

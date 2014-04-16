@@ -10,10 +10,9 @@
 
 @interface PKTResponse : NSObject
 
-@property (nonatomic, copy, readonly) NSData *data; // The raw response body
-@property (nonatomic, copy, readonly) NSString *stringData; // NSString representation of the response budy
-@property (nonatomic, copy, readonly) id parsedData; // Parsed response body, either NSDictionary or NSArray
+@property (nonatomic, assign, readonly) NSInteger statusCode;
+@property (nonatomic, copy, readonly) id resultObject;
 
-- (instancetype)initWithData:(NSData *)data;
+- (instancetype)initWithStatusCode:(NSInteger)statusCode resultObject:(id)resultObject;
 
 @end

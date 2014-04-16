@@ -11,6 +11,7 @@
 #import "PKTClient.h"
 #import "PKTHTTPClient.h"
 #import "PKTOAuth2Token.h"
+#import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
 
 @interface PKTClientTests : XCTestCase
@@ -24,7 +25,6 @@
 - (void)setUp {
   [super setUp];
   self.testClient = [PKTClient new];
-
   
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [request.URL.host isEqualToString:self.testClient.HTTPClient.baseURL.host];
@@ -65,54 +65,100 @@
 - (void)testSetOAuthToken {
   PKTClient *client = [PKTClient new];
   
-  NSDictionary *tokenDict = @{
-    @"access_token" : @"abc123",
-    @"refresh_token" : @"abc123",
-    @"expires_in" : @3600,
-    @"ref" : [NSNull null]
-  };
-  
-  PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithDictionary:tokenDict];
+  PKTOAuth2Token *token = [self dummyAuthToken];
   client.oauthToken = token;
   
   expect(client.oauthToken).to.equal(token);
 }
 
-//- (void)testAuthenticationWithEmailAndPassword {
-//  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
-//
-//  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
-//
-//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
-//  expect(self.testSessionManager.oauthToken).willNot.beNil;
-//}
-//
-//- (void)testAuthenticationWithAppIDAndToken {
-//  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
-//
-//  [self.testSessionManager authenticateWithAppID:@"someAppID" token:@"someAppToken" completion:nil];
-//
-//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
-//  expect(self.testSessionManager.oauthToken).willNot.beNil;
-//}
-//
-//- (void)testRefreshToken {
-//  expect(self.testSessionManager.isAuthenticated).to.beFalsy();
-//
-//  [self.testSessionManager authenticateWithEmail:@"some@email.com" password:@"password" completion:nil];
-//
-//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
-//  expect(self.testSessionManager.oauthToken).willNot.beNil;
-//
-//  PKTOAuth2Token *token = self.testSessionManager.oauthToken;
-//
-//  [self.testSessionManager refreshSessionToken:nil];
-//
-//  expect(self.testSessionManager.isAuthenticated).will.beTruthy();
-//  expect(self.testSessionManager.oauthToken.accessToken).will.equal(token.accessToken);
-//  expect(self.testSessionManager.oauthToken.refreshToken).will.equal(token.refreshToken);
-//  expect(self.testSessionManager.oauthToken.refData).will.equal(token.refData);
-//  expect(self.testSessionManager.oauthToken.expiresOn).willNot.equal(token.expiresOn);
-//}
+- (void)testSuccessfulRefreshTokenReplacesToken {
+  PKTOAuth2Token *initialToken = [self dummyAuthToken];
+  self.testClient.oauthToken = initialToken;
+  
+  NSDictionary *tokenDict = [self dummyAuthTokenDict];
+  [PKTHTTPStubs stubResponseForPath:@"/oauth/token" responseObject:tokenDict];
+  
+  __block BOOL completed = NO;
+  [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.isAuthenticated).to.beTruthy();
+  expect(self.testClient.oauthToken).notTo.equal(initialToken);
+}
+
+- (void)testTokenShouldBeNilAfterFailedRefreshDueToServerSideError {
+  PKTOAuth2Token *initialToken = [self dummyAuthToken];
+  self.testClient.oauthToken = initialToken;
+  
+  [PKTHTTPStubs stubResponseForPath:@"/oauth/token" statusCode:401];
+  
+  __block BOOL completed = NO;
+  [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.oauthToken).to.beNil();
+}
+
+- (void)testTokenShouldBeSameAfterFailedRefreshDueToNoInternet {
+  PKTOAuth2Token *initialToken = [self dummyAuthToken];
+  self.testClient.oauthToken = initialToken;
+  
+  [PKTHTTPStubs stubNetworkDownForPath:@"/oauth/token"];
+  
+  __block BOOL completed = NO;
+  [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.oauthToken).to.equal(initialToken);
+}
+
+- (void)testRequestWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
+
+}
+
+- (void)testMultipleRequestsWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
+
+}
+
+- (void)testRequestWithExpiredTokenShouldErrorAfterFailedTokenRefresh {
+  
+}
+
+- (void)testMultipleRequestsWithExpiredTokenShouldFinishAfterSuccessfulRefresh {
+  
+}
+
+- (void)testTaskShouldHaveUpdatedAuthorizationHeaderAfterSuccessfulTokenRefresh {
+
+}
+
+- (void)testAuthenticationWithEmailAndPassword {
+
+}
+
+- (void)testAuthenticationWithAppIDAndToken {
+
+}
+
+#pragma mark - Helpers
+
+- (NSDictionary *)dummyAuthTokenDict {
+  return @{
+    @"access_token" : @"abc123",
+    @"refresh_token" : @"abc123",
+    @"expires_in" : @3600,
+    @"ref" : @{@"key": @"value"}
+  };
+}
+
+- (PKTOAuth2Token *)dummyAuthToken {
+  return [[PKTOAuth2Token alloc] initWithDictionary:[self dummyAuthTokenDict]];
+}
 
 @end
