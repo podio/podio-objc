@@ -1220,6 +1220,15 @@
 			name = Meetings;
 			sourceTree = "<group>";
 		};
+		50FA507818FFC384009542B9 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				5082426E18FD5EA6009A1580 /* PKTTestModel.h */,
+				5082426F18FD5EA6009A1580 /* PKTTestModel.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		50FB3D5A18EA09CD0021DB48 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -1244,8 +1253,6 @@
 				50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */,
 				50B49F1B18EE095500B7EDF5 /* PKTAppTests.m */,
 				5082424818FC6C7D009A1580 /* PKTObjectTests.m */,
-				5082426E18FD5EA6009A1580 /* PKTTestModel.h */,
-				5082426F18FD5EA6009A1580 /* PKTTestModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1292,6 +1299,7 @@
 			children = (
 				5082427F18FECCEC009A1580 /* PKTHTTPStubs.h */,
 				5082428018FECCEC009A1580 /* PKTHTTPStubs.m */,
+				50FA507818FFC384009542B9 /* Models */,
 				5082426618FC8D58009A1580 /* Transformers */,
 				E49B6F7B1890169E0046192A /* Categories */,
 				E45F9647188FF1FC009791A0 /* Matchers */,
