@@ -10,12 +10,12 @@
 
 @implementation PKTResponse
 
-- (instancetype)initWithStatusCode:(NSInteger)statusCode resultObject:(id)resultObject {
+- (instancetype)initWithStatusCode:(NSInteger)statusCode body:(id)body {
   self = [super init];
   if (!self) return nil;
   
   _statusCode = statusCode;
-  _resultObject = resultObject;
+  _body = body;
   
   return self;
 }

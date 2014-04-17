@@ -138,7 +138,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
     PKTOAuth2Token *token = nil;
     if (!error) {
-      token = [[PKTOAuth2Token alloc] initWithDictionary:response.resultObject];
+      token = [[PKTOAuth2Token alloc] initWithDictionary:response.body];
     }
     
     if (response.statusCode > 0) {
@@ -160,7 +160,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   
   if (self.isAuthenticated) {
     // Authenticated request, might need token refresh
-    if ([self.oauthToken willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
+    if (![self.oauthToken willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
       task = [self performTaskWithRequest:request completion:completion];
     } else {
       task = [self enqueueTaskWithRequest:request completion:completion];

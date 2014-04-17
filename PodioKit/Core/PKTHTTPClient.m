@@ -54,7 +54,7 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
       statusCode = [(NSHTTPURLResponse *)urlResponse statusCode];
     }
     
-    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode resultObject:responseObject];
+    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
     
     if (completion) completion(response, error);
   }];

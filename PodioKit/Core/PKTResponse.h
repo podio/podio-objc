@@ -11,8 +11,8 @@
 @interface PKTResponse : NSObject
 
 @property (nonatomic, assign, readonly) NSInteger statusCode;
-@property (nonatomic, copy, readonly) id resultObject;
+@property (nonatomic, copy, readonly) id body;
 
-- (instancetype)initWithStatusCode:(NSInteger)statusCode resultObject:(id)resultObject;
+- (instancetype)initWithStatusCode:(NSInteger)statusCode body:(id)body;
 
 @end

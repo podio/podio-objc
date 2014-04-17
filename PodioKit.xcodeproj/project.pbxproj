@@ -86,6 +86,10 @@
 		50B49F1618EE092100B7EDF5 /* PKTAppAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F1318EE092100B7EDF5 /* PKTAppAPI.m */; };
 		50B49F1A18EE094A00B7EDF5 /* PKTAppAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F1918EE094A00B7EDF5 /* PKTAppAPITests.m */; };
 		50B49F1C18EE095500B7EDF5 /* PKTAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F1B18EE095500B7EDF5 /* PKTAppTests.m */; };
+		50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA507018FFC040009542B9 /* PKTUserAPI.h */; };
+		50FA507318FFC041009542B9 /* PKTUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507118FFC040009542B9 /* PKTUserAPI.m */; };
+		50FA507418FFC047009542B9 /* PKTUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507118FFC040009542B9 /* PKTUserAPI.m */; };
+		50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507518FFC279009542B9 /* PKTUserAPITests.m */; };
 		50FB3D5D18EA0B8B0021DB48 /* PKTObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FB3D5B18EA0B8B0021DB48 /* PKTObject.h */; };
 		50FB3D5E18EA0B8B0021DB48 /* PKTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */; };
 		50FB3D6118EA0CDD0021DB48 /* PKTItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FB3D5F18EA0CDD0021DB48 /* PKTItem.h */; };
@@ -441,6 +445,9 @@
 		50F4FBC71448892700317E62 /* NSDictionary+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+URL.m"; sourceTree = "<group>"; };
 		50F4FBCB14488A4800317E62 /* NSString+URL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URL.h"; sourceTree = "<group>"; };
 		50F4FBCC14488A4800317E62 /* NSString+URL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URL.m"; sourceTree = "<group>"; };
+		50FA507018FFC040009542B9 /* PKTUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTUserAPI.h; sourceTree = "<group>"; };
+		50FA507118FFC040009542B9 /* PKTUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPI.m; sourceTree = "<group>"; };
+		50FA507518FFC279009542B9 /* PKTUserAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPITests.m; sourceTree = "<group>"; };
 		50FB3D5B18EA0B8B0021DB48 /* PKTObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTObject.h; sourceTree = "<group>"; };
 		50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTObject.m; sourceTree = "<group>"; };
 		50FB3D5F18EA0CDD0021DB48 /* PKTItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTItem.h; sourceTree = "<group>"; };
@@ -1371,6 +1378,8 @@
 				50FB3D6418EA0DDE0021DB48 /* PKTItemAPI.m */,
 				50B49F1218EE092100B7EDF5 /* PKTAppAPI.h */,
 				50B49F1318EE092100B7EDF5 /* PKTAppAPI.m */,
+				50FA507018FFC040009542B9 /* PKTUserAPI.h */,
+				50FA507118FFC040009542B9 /* PKTUserAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1381,6 +1390,7 @@
 				E4BABDD21898070100E9149A /* PKTAuthenticationAPITests.m */,
 				50FB3D6818EB189B0021DB48 /* PKTItemAPITests.m */,
 				50B49F1918EE094A00B7EDF5 /* PKTAppAPITests.m */,
+				50FA507518FFC279009542B9 /* PKTUserAPITests.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1410,6 +1420,7 @@
 				50B49F1418EE092100B7EDF5 /* PKTAppAPI.h in Headers */,
 				5082426218FC8A84009A1580 /* NSObject+PKTIntrospection.h in Headers */,
 				50B49F0F18EE08F800B7EDF5 /* PKTApp.h in Headers */,
+				50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */,
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1638,6 +1649,7 @@
 				E4BABDCC1897F9DA00E9149A /* PKTOAuth2Token.m in Sources */,
 				E4BABDD7189807DA00E9149A /* PKTBaseAPI.m in Sources */,
 				5014C579188816F10002C68D /* PKTRequest.m in Sources */,
+				50FA507318FFC041009542B9 /* PKTUserAPI.m in Sources */,
 				5082426A18FD5DFC009A1580 /* PKTModelValueTransformer.m in Sources */,
 				E4BABDDC1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
 				5082425718FC8466009A1580 /* PKTReversibleBlockValueTransformer.m in Sources */,
@@ -1673,6 +1685,7 @@
 				E4BABDD31898070100E9149A /* PKTAuthenticationAPITests.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */,
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
+				50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */,
 				5082427018FD5EA6009A1580 /* PKTTestModel.m in Sources */,
 				5082426418FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
@@ -1701,6 +1714,7 @@
 				E4BABDCF1897FBD900E9149A /* PKTOAuth2TokenTests.m in Sources */,
 				E4BABDCD1897FA8600E9149A /* PKTOAuth2Token.m in Sources */,
 				5082427A18FD76D7009A1580 /* NSValueTransformer+PKTTransformers.m in Sources */,
+				50FA507418FFC047009542B9 /* PKTUserAPI.m in Sources */,
 				5082425318FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

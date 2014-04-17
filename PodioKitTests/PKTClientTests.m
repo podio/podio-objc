@@ -10,6 +10,9 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "PKTClient.h"
 #import "PKTHTTPClient.h"
+#import "PKTAuthenticationAPI.h"
+#import "PKTUserAPI.h"
+#import "PKTRequest.h"
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
@@ -76,7 +79,9 @@
   self.testClient.oauthToken = initialToken;
   
   NSDictionary *tokenDict = [self dummyAuthTokenDict];
-  [PKTHTTPStubs stubResponseForPath:@"/oauth/token" responseObject:tokenDict];
+  
+  PKTRequest *request = [PKTAuthenticationAPI requestToRefreshToken:self.testClient.oauthToken.refreshToken];
+  [PKTHTTPStubs stubResponseForPath:request.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
   [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
@@ -92,7 +97,8 @@
   PKTOAuth2Token *initialToken = [self dummyAuthToken];
   self.testClient.oauthToken = initialToken;
   
-  [PKTHTTPStubs stubResponseForPath:@"/oauth/token" statusCode:401];
+  PKTRequest *request = [PKTAuthenticationAPI requestToRefreshToken:self.testClient.oauthToken.refreshToken];
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:401];
   
   __block BOOL completed = NO;
   [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
@@ -107,7 +113,8 @@
   PKTOAuth2Token *initialToken = [self dummyAuthToken];
   self.testClient.oauthToken = initialToken;
   
-  [PKTHTTPStubs stubNetworkDownForPath:@"/oauth/token"];
+  PKTRequest *request = [PKTAuthenticationAPI requestToRefreshToken:self.testClient.oauthToken.refreshToken];
+  [PKTHTTPStubs stubNetworkDownForPath:request.path];
   
   __block BOOL completed = NO;
   [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
@@ -119,7 +126,27 @@
 }
 
 - (void)testRequestWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
-
+  // Make sure the current token is expired
+  PKTOAuth2Token *expiredToken = [self dummyAuthTokenWithExpirationSinceNow:-600]; // Expired 10 minutes ago
+  self.testClient.oauthToken = expiredToken;
+  
+  // Return a refreshed token
+  NSDictionary *refreshedTokenDict = [self dummyAuthTokenDictWithExpirationSinceNow:3600]; // Expires in 1h
+  PKTRequest *refreshRequest = [PKTAuthenticationAPI requestToRefreshToken:self.testClient.oauthToken.refreshToken];
+  [PKTHTTPStubs stubResponseForPath:refreshRequest.path responseObject:refreshedTokenDict];
+  
+  // Make a normal request that should finish after the refresh
+  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
+  
+  __block BOOL completed = NO;
+  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.oauthToken).toNot.equal(expiredToken);
+  expect([self.testClient.oauthToken willExpireWithinIntervalFromNow:10]).to.beFalsy();
 }
 
 - (void)testMultipleRequestsWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
@@ -149,16 +176,27 @@
 #pragma mark - Helpers
 
 - (NSDictionary *)dummyAuthTokenDict {
+  return [self dummyAuthTokenDictWithExpirationSinceNow:3600];
+}
+
+- (NSDictionary *)dummyAuthTokenDictWithExpirationSinceNow:(NSTimeInterval)expiration {
   return @{
     @"access_token" : @"abc123",
     @"refresh_token" : @"abc123",
-    @"expires_in" : @3600,
+    @"expires_in" : @(expiration),
     @"ref" : @{@"key": @"value"}
   };
 }
 
 - (PKTOAuth2Token *)dummyAuthToken {
-  return [[PKTOAuth2Token alloc] initWithDictionary:[self dummyAuthTokenDict]];
+  return [self dummyAuthTokenWithExpirationSinceNow:3600];
+}
+
+- (PKTOAuth2Token *)dummyAuthTokenWithExpirationSinceNow:(NSTimeInterval)expiration {
+  NSDictionary *dict = [self dummyAuthTokenDictWithExpirationSinceNow:expiration];
+  PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithDictionary:dict];
+  
+  return token;
 }
 
 @end

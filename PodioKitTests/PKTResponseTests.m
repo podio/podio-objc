@@ -16,10 +16,10 @@
 @implementation PKTResponseTests
 
 - (void)testInit {
-  NSDictionary *result = @{@"key" : @"value"};
-  PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:200 resultObject:result];
+  NSDictionary *body = @{@"key" : @"value"};
+  PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:200 body:body];
   expect(response.statusCode).to.equal(200);
-  expect(response.resultObject).to.equal(result);
+  expect(response.body).to.equal(body);
 }
 
 @end
