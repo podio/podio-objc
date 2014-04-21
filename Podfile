@@ -15,9 +15,3 @@ target :podiokittests do
   pod 'Expecta'
   pod 'OCMock'
 end
-
-target :demoapp do
-  link_with 'DemoApp'
-  
-  pod 'PodioKit', :path => '.'
-end
