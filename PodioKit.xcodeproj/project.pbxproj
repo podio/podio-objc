@@ -37,6 +37,11 @@
 		5065C0FE14345F1000360855 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FC14345F0D00360855 /* MobileCoreServices.framework */; };
 		5065C0FF14345F1000360855 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FD14345F0D00360855 /* SystemConfiguration.framework */; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
+		507CA7E019054FA0000D9F6E /* PodioKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 507CA7DF19054FA0000D9F6E /* PodioKitTests.m */; };
+		507CA7E319055030000D9F6E /* PodioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 507CA7E119055030000D9F6E /* PodioKit.h */; };
+		507CA7E419055030000D9F6E /* PodioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 507CA7E219055030000D9F6E /* PodioKit.m */; };
+		507CA7E519055030000D9F6E /* PodioKit.m in Sources */ = {isa = PBXBuildFile; fileRef = 507CA7E219055030000D9F6E /* PodioKit.m */; };
+		507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */ = {isa = PBXBuildFile; fileRef = 507CA7E61905560D000D9F6E /* PKTGlobalHeaders.h */; };
 		5082424918FC6C7D009A1580 /* PKTObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5082424818FC6C7D009A1580 /* PKTObjectTests.m */; };
 		5082424C18FC70A5009A1580 /* PKTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082424A18FC70A5009A1580 /* PKTModel.h */; };
 		5082424D18FC70A5009A1580 /* PKTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5082424B18FC70A5009A1580 /* PKTModel.m */; };
@@ -150,7 +155,11 @@
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PodioKit.h; path = PodioKit/PodioKit.h; sourceTree = "<group>"; };
+		507CA7DF19054FA0000D9F6E /* PodioKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodioKitTests.m; sourceTree = "<group>"; };
+		507CA7E119055030000D9F6E /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
+		507CA7E219055030000D9F6E /* PodioKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodioKit.m; sourceTree = "<group>"; };
+		507CA7E61905560D000D9F6E /* PKTGlobalHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTGlobalHeaders.h; sourceTree = "<group>"; };
+		5082225B14FC3E66005056A1 /* Support */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = Support; path = PodioKit/Support; sourceTree = "<group>"; };
 		5082424818FC6C7D009A1580 /* PKTObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTObjectTests.m; sourceTree = "<group>"; };
 		5082424A18FC70A5009A1580 /* PKTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTModel.h; sourceTree = "<group>"; };
 		5082424B18FC70A5009A1580 /* PKTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTModel.m; sourceTree = "<group>"; };
@@ -336,7 +345,7 @@
 			isa = PBXGroup;
 			children = (
 				5065BEED14335AB900360855 /* PodioKit */,
-				5082225B14FC3E66005056A1 /* PodioKit.h */,
+				5082225B14FC3E66005056A1 /* Support */,
 				5065BF0314335ABA00360855 /* PodioKitTests */,
 				5065BEEA14335AB900360855 /* Frameworks */,
 				5065BEE914335AB900360855 /* Products */,
@@ -375,6 +384,8 @@
 		5065BEED14335AB900360855 /* PodioKit */ = {
 			isa = PBXGroup;
 			children = (
+				507CA7E119055030000D9F6E /* PodioKit.h */,
+				507CA7E219055030000D9F6E /* PodioKit.m */,
 				E45F963E188FEC49009791A0 /* Core */,
 				E4BABDD0189805B400E9149A /* API */,
 				50FB3D5A18EA09CD0021DB48 /* Models */,
@@ -395,6 +406,7 @@
 		5065BF0314335ABA00360855 /* PodioKitTests */ = {
 			isa = PBXGroup;
 			children = (
+				507CA7DF19054FA0000D9F6E /* PodioKitTests.m */,
 				E45ED490189000EB003A020A /* Categories */,
 				E45F9646188FF1E9009791A0 /* Core */,
 				E4BABDD1189806DD00E9149A /* API */,
@@ -537,6 +549,7 @@
 			children = (
 				5082426518FC8D13009A1580 /* Transformers */,
 				E49B6F8918901C9B0046192A /* Categories */,
+				507CA7E61905560D000D9F6E /* PKTGlobalHeaders.h */,
 				5082427418FD7406009A1580 /* PKTMacros.h */,
 			);
 			path = Support;
@@ -664,6 +677,7 @@
 				5014C55F188809390002C68D /* PKTHTTPClient.h in Headers */,
 				50FB3D5D18EA0B8B0021DB48 /* PKTObject.h in Headers */,
 				5014C56918880B050002C68D /* PKTRequest.h in Headers */,
+				507CA7E319055030000D9F6E /* PodioKit.h in Headers */,
 				50FB3D6118EA0CDD0021DB48 /* PKTItem.h in Headers */,
 				E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */,
 				50064DEE1896FE8B00EF1E97 /* PKTClient.h in Headers */,
@@ -680,6 +694,7 @@
 				50B49F1418EE092100B7EDF5 /* PKTAppAPI.h in Headers */,
 				5082426218FC8A84009A1580 /* NSObject+PKTIntrospection.h in Headers */,
 				50B49F0F18EE08F800B7EDF5 /* PKTApp.h in Headers */,
+				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */,
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
 			);
@@ -845,6 +860,7 @@
 			files = (
 				50FB3D5E18EA0B8B0021DB48 /* PKTObject.m in Sources */,
 				5014C577188816F10002C68D /* PKTHTTPClient.m in Sources */,
+				507CA7E419055030000D9F6E /* PodioKit.m in Sources */,
 				50B49F1018EE08F800B7EDF5 /* PKTApp.m in Sources */,
 				E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				E4BABDCC1897F9DA00E9149A /* PKTOAuth2Token.m in Sources */,
@@ -872,6 +888,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				507CA7E519055030000D9F6E /* PodioKit.m in Sources */,
 				503B3ACC190514BF002BB703 /* NSMutableURLRequest+PKTHeaders.m in Sources */,
 				5014C582188817550002C68D /* PKTAsyncTestCase.m in Sources */,
 				E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */,
@@ -886,6 +903,7 @@
 				50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */,
 				E4A0535C1898FA6600853F9B /* PKTRequestSerializerTests.m in Sources */,
 				E4BABDD31898070100E9149A /* PKTAuthenticationAPITests.m in Sources */,
+				507CA7E019054FA0000D9F6E /* PodioKitTests.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */,
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
 				50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */,
