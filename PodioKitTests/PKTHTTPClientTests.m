@@ -139,7 +139,7 @@
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
 
   [Expecta setAsynchronousTestTimeout:5];
-  [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
+  [PKTHTTPStubs stubResponseForPath:path requestTime:2 responseTime:0];
 
   __block BOOL completed = NO;
   NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
@@ -152,7 +152,7 @@
   [task suspend];
   expect(completed).will.beFalsy();
 
-  wait(2);
+  wait(1);
 
   [task resume];
   expect(completed).will.beTruthy();
