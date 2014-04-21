@@ -11,6 +11,7 @@
 #import "PKTResponse.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTMacros.h"
+#import "NSMutableURLRequest+PKTHeaders.h"
 
 static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 static NSUInteger const kTokenExpirationLimit = 10 * 60; // 10 minutes
@@ -177,7 +178,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     task = [self performTaskWithRequest:request completion:completion];
   }
   
-  return nil;
+  return task;
 }
 
 - (NSURLSessionTask *)performTaskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
@@ -196,14 +197,26 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 - (void)processPendingTasks {
   for (NSURLSessionTask *task in self.pendingTasks) {
-    // TODO: Update auth header
+    // Update all pending tasks with the new oauth token
+    if ([task.originalRequest isKindOfClass:[NSMutableURLRequest class]]) {
+      [(NSMutableURLRequest *)task.originalRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+    }
+    
+    if ([task.currentRequest isKindOfClass:[NSMutableURLRequest class]]) {
+      [(NSMutableURLRequest *)task.currentRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+    }
+    
     [task resume];
   }
   
-  [self clearPendingTasks];
+  [self.pendingTasks removeAllObjects];
 }
 
 - (void)clearPendingTasks {
+  for (NSURLSessionTask *task in self.pendingTasks) {
+    [task cancel];
+  }
+  
   [self.pendingTasks removeAllObjects];
 }
 

@@ -125,7 +125,7 @@
   expect(self.testClient.oauthToken).to.equal(initialToken);
 }
 
-- (void)testRequestWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
+- (void)testMultipleRequestsWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
   // Make sure the current token is expired
   PKTOAuth2Token *expiredToken = [self dummyAuthTokenWithExpirationSinceNow:-600]; // Expired 10 minutes ago
   self.testClient.oauthToken = expiredToken;
@@ -137,32 +137,105 @@
   
   // Make a normal request that should finish after the refresh
   PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  
+  // Make 1st request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
   
-  __block BOOL completed = NO;
+  __block BOOL completed1 = NO;
+  __block BOOL isError1 = NO;
   [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    completed = YES;
+    completed1 = YES;
+    isError1 = error != nil;
   }];
   
-  expect(completed).will.beTruthy();
+  // Make 2nd request
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
+  
+  __block BOOL completed2 = NO;
+  __block BOOL isError2 = NO;
+  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    completed2 = YES;
+    isError2 = error != nil;
+  }];
+  
+  expect(completed1).will.beTruthy();
+  expect(isError1).to.beFalsy();
+  
+  expect(completed2).will.beTruthy();
+  expect(isError2).to.beFalsy();
+  
   expect(self.testClient.oauthToken).toNot.equal(expiredToken);
   expect([self.testClient.oauthToken willExpireWithinIntervalFromNow:10]).to.beFalsy();
 }
 
-- (void)testMultipleRequestsWithExpiredTokenShouldFinishAfterSuccessfulTokenRefresh {
-
-}
-
-- (void)testRequestWithExpiredTokenShouldErrorAfterFailedTokenRefresh {
+- (void)testMultipleRequestsWithExpiredTokenShouldFailAfterRefreshFailed {
+  // Make sure the current token is expired
+  PKTOAuth2Token *expiredToken = [self dummyAuthTokenWithExpirationSinceNow:-600]; // Expired 10 minutes ago
+  self.testClient.oauthToken = expiredToken;
   
-}
-
-- (void)testMultipleRequestsWithExpiredTokenShouldFinishAfterSuccessfulRefresh {
+  // Return a 401, failed to refresh token
+  PKTRequest *refreshRequest = [PKTAuthenticationAPI requestToRefreshToken:self.testClient.oauthToken.refreshToken];
+  [PKTHTTPStubs stubResponseForPath:refreshRequest.path statusCode:401];
   
+  // Make a normal request that should fail after the failed refresh
+  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  
+  // Make 1st request
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
+  
+  __block BOOL completed1 = NO;
+  __block BOOL isCancelError1 = NO;
+  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    completed1 = YES;
+    isCancelError1 = error != nil && error.code == NSURLErrorCancelled;
+  }];
+  
+  // Make 2nd request
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
+  
+  __block BOOL completed2 = NO;
+  __block BOOL isCancelError2 = NO;
+  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    completed2 = YES;
+    isCancelError2 = error != nil && error.code == NSURLErrorCancelled;
+  }];
+  
+  expect(completed1).will.beTruthy();
+  expect(isCancelError1).to.beTruthy();
+  
+  expect(completed2).will.beTruthy();
+  expect(isCancelError2).to.beTruthy();
 }
 
 - (void)testTaskShouldHaveUpdatedAuthorizationHeaderAfterSuccessfulTokenRefresh {
+  // Make sure the current token is expired
+  PKTOAuth2Token *expiredToken = [self dummyAuthTokenWithExpirationSinceNow:-600]; // Expired 10 minutes ago
+  self.testClient.oauthToken = expiredToken;
+  
+  // Return a refreshed token
+  NSMutableDictionary *refreshedTokenDict = [[self dummyAuthTokenDictWithExpirationSinceNow:3600] mutableCopy]; // Expires in 1h
+  refreshedTokenDict[@"access_token"] = @"new_access_token";
+  
+  PKTRequest *refreshRequest = [PKTAuthenticationAPI requestToRefreshToken:self.testClient.oauthToken.refreshToken];
+  [PKTHTTPStubs stubResponseForPath:refreshRequest.path responseObject:refreshedTokenDict];
+  
+  // Make a normal request that should fail after the failed refresh
+  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  
+  // Make 1st request
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
+  
+  __block BOOL completed = NO;
+  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  NSString *firstHeader = [task.currentRequest valueForHTTPHeaderField:@"Authorization"];
 
+  expect(completed).will.beTruthy();
+  
+  NSString *secondHeader = [task.currentRequest valueForHTTPHeaderField:@"Authorization"];
+  expect(secondHeader).toNot.equal(firstHeader);
 }
 
 - (void)testAuthenticationWithEmailAndPassword {

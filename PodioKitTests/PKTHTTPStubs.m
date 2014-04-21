@@ -11,49 +11,36 @@
 
 @implementation PKTHTTPStubs
 
-+ (void)stubResponseForPath:(NSString *)path responseFilename:(NSString *)responseFilename {
-  NSDictionary *headers = @{@"Content-Type": @"application/json; charset=utf-8"};
++ (void)stubResponseForPath:(NSString *)path block:(void (^)(PKTHTTPStubber *stubber))block {
+  PKTHTTPStubber *stubber = [PKTHTTPStubber stubberForPath:path];
   
-	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [[[request URL] path] isEqualToString:path];
-  } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-		return [OHHTTPStubsResponse responseWithFileAtPath:OHPathForFileInDocumentsDir(responseFilename) statusCode:200 headers:headers];
-  }];
+  if (block) block(stubber);
+  
+  [stubber stub];
 }
 
 + (void)stubResponseForPath:(NSString *)path responseObject:(id)responseObject {
-  NSDictionary *headers = @{@"Content-Type": @"application/json; charset=utf-8"};
-  
-	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [[[request URL] path] isEqualToString:path];
-  } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-    NSData *data = [NSJSONSerialization dataWithJSONObject:responseObject options:0 error:NULL];
-		return [OHHTTPStubsResponse responseWithData:data statusCode:200 headers:headers];
+  return [self stubResponseForPath:path block:^(PKTHTTPStubber *stubber) {
+    stubber.responseObject = responseObject;
   }];
 }
 
 + (void)stubResponseForPath:(NSString *)path statusCode:(int)statusCode {
-	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [[[request URL] path] isEqualToString:path];
-  } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-		return [OHHTTPStubsResponse responseWithData:[NSData data] statusCode:statusCode headers:nil];
+  return [self stubResponseForPath:path block:^(PKTHTTPStubber *stubber) {
+    stubber.statusCode = statusCode;
   }];
 }
 
 + (void)stubResponseForPath:(NSString *)path requestTime:(int)requestTime responseTime:(int)responseTime {
-	[OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [[[request URL] path] isEqualToString:path];
-  } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-		return [[OHHTTPStubsResponse responseWithData:[NSData data] statusCode:200 headers:nil] requestTime:requestTime responseTime:responseTime];
+  return [self stubResponseForPath:path block:^(PKTHTTPStubber *stubber) {
+    stubber.requestTime = requestTime;
+    stubber.responseTime = responseTime;
   }];
 }
 
 + (void)stubNetworkDownForPath:(NSString *)path {
-  [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
-    return [[[request URL] path] isEqualToString:path];
-  } withStubResponse:^OHHTTPStubsResponse *(NSURLRequest *request) {
-    NSError *error = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
-		return [OHHTTPStubsResponse responseWithError:error];
+  return [self stubResponseForPath:path block:^(PKTHTTPStubber *stubber) {
+    stubber.error = [NSError errorWithDomain:NSURLErrorDomain code:kCFURLErrorNotConnectedToInternet userInfo:nil];
   }];
 }
 
