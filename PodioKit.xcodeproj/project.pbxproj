@@ -159,7 +159,6 @@
 		507CA7E119055030000D9F6E /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
 		507CA7E219055030000D9F6E /* PodioKit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodioKit.m; sourceTree = "<group>"; };
 		507CA7E61905560D000D9F6E /* PKTGlobalHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTGlobalHeaders.h; sourceTree = "<group>"; };
-		5082225B14FC3E66005056A1 /* Support */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = folder; name = Support; path = PodioKit/Support; sourceTree = "<group>"; };
 		5082424818FC6C7D009A1580 /* PKTObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTObjectTests.m; sourceTree = "<group>"; };
 		5082424A18FC70A5009A1580 /* PKTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTModel.h; sourceTree = "<group>"; };
 		5082424B18FC70A5009A1580 /* PKTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTModel.m; sourceTree = "<group>"; };
@@ -345,7 +344,6 @@
 			isa = PBXGroup;
 			children = (
 				5065BEED14335AB900360855 /* PodioKit */,
-				5082225B14FC3E66005056A1 /* Support */,
 				5065BF0314335ABA00360855 /* PodioKitTests */,
 				5065BEEA14335AB900360855 /* Frameworks */,
 				5065BEE914335AB900360855 /* Products */,
