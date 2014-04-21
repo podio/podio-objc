@@ -30,9 +30,8 @@
 }
 
 - (void)testRequestForAuthenticationWithAppIDAndToken {
-  NSString *appID, *appToken;
-  appID = @"aAppId";
-  appToken = @"aAppToken";
+  NSUInteger appID = 1234;
+  NSString *appToken = @"aAppToken";
 
   PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
 

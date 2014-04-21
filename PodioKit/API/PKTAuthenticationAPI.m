@@ -30,11 +30,11 @@ static NSString * const kAuthenticationGrantTypeRefreshToken = @"refresh_token";
   return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypePassword parameters:@{kAuthenticationUsernameKey: email, kAuthenticationPasswordKey: password}];
 }
 
-+ (PKTRequest *)requestForAuthenticationWithAppID:(NSString *)appID token:(NSString *)appToken {
++ (PKTRequest *)requestForAuthenticationWithAppID:(NSUInteger)appID token:(NSString *)appToken {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
 
-  return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypeApp parameters:@{kAuthenticationAppIDKey: appID, kAuthenticationAppTokenKey: appToken}];
+  return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypeApp parameters:@{kAuthenticationAppIDKey: @(appID), kAuthenticationAppTokenKey: appToken}];
 }
 
 + (PKTRequest *)requestToRefreshToken:(NSString *)refreshToken {

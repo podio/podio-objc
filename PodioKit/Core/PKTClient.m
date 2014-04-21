@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 @property (nonatomic, copy, readwrite) NSString *apiKey;
 @property (nonatomic, copy, readwrite) NSString *apiSecret;
 @property (nonatomic, weak, readwrite) NSURLSessionTask *authenticationTask;
+@property (nonatomic, strong, readwrite) PKTRequest *savedAuthenticationRequest;
 @property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingTasks;
 
 @end
@@ -101,6 +102,8 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 - (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {
   self.apiKey = key;
   self.apiSecret = secret;
+  
+  [self updateAuthorizationHeader:self.isAuthenticated];
 }
 
 #pragma mark - Authentication
@@ -113,12 +116,19 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
 }
 
-- (void)authenticateWithAppID:(NSString *)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
+- (void)authenticateWithAppID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
 
   PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
   [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
+}
+
+- (void)authenticateAutomaticallyWithAppID:(NSUInteger)appID token:(NSString *)appToken {
+  NSParameterAssert(appID);
+  NSParameterAssert(appToken);
+  
+  self.savedAuthenticationRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appToken token:appToken];
 }
 
 - (void)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy completion:(PKTRequestCompletionBlock)completion {
@@ -154,6 +164,16 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   }];
 }
 
+- (void)authenticateWithSavedRequest:(PKTRequest *)request {
+  [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:^(PKTResponse *response, NSError *error) {
+    if (!error) {
+      [self processPendingTasks];
+    } else {
+      [self clearPendingTasks];
+    }
+  }];
+}
+
 #pragma mark - Requests
 
 - (NSURLSessionTask *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
@@ -165,14 +185,12 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
       task = [self performTaskWithRequest:request completion:completion];
     } else {
       task = [self enqueueTaskWithRequest:request completion:completion];
-      [self refreshToken:^(PKTResponse *response, NSError *error) {
-        if (!error) {
-          [self processPendingTasks];
-        } else {
-          [self clearPendingTasks];
-        }
-      }];
+      [self refreshToken];
     }
+  } else if (self.savedAuthenticationRequest) {
+    // Can self-authenticate, authenticate before performing request
+    task = [self enqueueTaskWithRequest:request completion:completion];
+    [self authenticateWithSavedRequest:self.savedAuthenticationRequest];
   } else {
     // Unauthenticated request
     task = [self performTaskWithRequest:request completion:completion];
@@ -197,7 +215,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 - (void)processPendingTasks {
   for (NSURLSessionTask *task in self.pendingTasks) {
-    // Update all pending tasks with the new oauth token
+    // Update all pending tasks with the new access token
     if ([task.originalRequest isKindOfClass:[NSMutableURLRequest class]]) {
       [(NSMutableURLRequest *)task.originalRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
     }
@@ -229,7 +247,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 - (void)updateAuthorizationHeader:(BOOL)isAuthenticated {
   if (isAuthenticated) {
     [self.HTTPClient setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
-  } else {
+  } else if (self.apiKey && self.apiSecret) {
     [self.HTTPClient setAuthorizationHeaderWithAPIKey:self.apiKey secret:self.apiSecret];
   }
 }
@@ -247,6 +265,16 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
 
   [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken completion:completion];
+}
+
+- (void)refreshToken {
+  [self refreshToken:^(PKTResponse *response, NSError *error) {
+    if (!error) {
+      [self processPendingTasks];
+    } else {
+      [self clearPendingTasks];
+    }
+  }];
 }
 
 #pragma mark - KVO

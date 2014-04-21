@@ -239,11 +239,53 @@
 }
 
 - (void)testAuthenticationWithEmailAndPassword {
-
+  NSDictionary *tokenDict = [self dummyAuthTokenDict];
+  PKTRequest *authRequest = [PKTAuthenticationAPI requestForAuthenticationWithEmail:@"me@domain.com" password:@"p4$$w0rD"];
+  [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
+  
+  __block BOOL completed = NO;
+  [self.testClient authenticateWithAppID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.oauthToken).toNot.beNil();
 }
 
 - (void)testAuthenticationWithAppIDAndToken {
+  NSDictionary *tokenDict = [self dummyAuthTokenDict];
+  PKTRequest *authRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:1234 token:@"app-token"];
+  [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
+  
+  __block BOOL completed = NO;
+  [self.testClient authenticateWithAppID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.oauthToken).toNot.beNil();
+}
 
+- (void)testAuthenticateAutomaticallyWithApp {
+  [self.testClient authenticateAutomaticallyWithAppID:1234 token:@"app-token"];
+  
+  NSDictionary *tokenDict = [self dummyAuthTokenDict];
+  PKTRequest *authRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:1234 token:@"app-token"];
+  [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
+  
+  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
+  
+  __block BOOL completed = NO;
+  __block BOOL isError = NO;
+  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    completed = YES;
+    isError = error != nil;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(isError).to.beFalsy();
+  expect(self.testClient.oauthToken).toNot.beNil();
 }
 
 #pragma mark - Helpers

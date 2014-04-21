@@ -12,7 +12,7 @@
 
 + (PKTRequest *)requestForAuthenticationWithEmail:(NSString *)email password:(NSString *)password;
 
-+ (PKTRequest *)requestForAuthenticationWithAppID:(NSString *)appID token:(NSString *)appToken;
++ (PKTRequest *)requestForAuthenticationWithAppID:(NSUInteger)appID token:(NSString *)appToken;
 
 + (PKTRequest *)requestToRefreshToken:(NSString *)refreshToken;
 
