@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
 gem 'getopt'
-gem 'cocoapods'
+gem 'cocoapods', '~> 0.32.1'
 gem 'xcpretty'
 gem 'travis-lint'
