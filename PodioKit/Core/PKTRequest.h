@@ -17,12 +17,18 @@ typedef NS_ENUM(NSUInteger, PKTRequestMethod) {
   PKTRequestMethodDELETE,
 };
 
+typedef NS_ENUM(NSUInteger, PKTRequestContentType) {
+  PKTRequestContentTypeJSON = 0,
+  PKTRequestContentTypeFormURLEncoded
+};
+
 @interface PKTRequest : NSObject
 
 @property (nonatomic, assign, readonly) PKTRequestMethod method;
 @property (nonatomic, copy, readonly) NSString *path;
 @property (nonatomic, copy, readonly) NSDictionary *parameters;
-@property (nonatomic, strong) id body;
+@property (nonatomic, strong, readwrite) id body;
+@property (nonatomic, assign, readwrite) PKTRequestContentType contentType;
 
 + (instancetype)GETRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
 + (instancetype)POSTRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;

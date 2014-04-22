@@ -10,7 +10,7 @@
 
 @class PKTRequest;
 
-@interface PKTRequestSerializer : AFJSONRequestSerializer
+@interface PKTRequestSerializer : AFHTTPRequestSerializer
 
 - (void)setAuthorizationHeaderFieldWithOAuth2AccessToken:(NSString *)accessToken;
 - (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request relativeToURL:(NSURL *)baseURL;

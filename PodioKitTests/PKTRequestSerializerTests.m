@@ -93,4 +93,13 @@
   expect([[urlRequest allHTTPHeaderFields][@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
 }
 
+- (void)testFormURLEncodedRequest {
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/some/path" parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+  request.contentType = PKTRequestContentTypeFormURLEncoded;
+  
+  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+  NSString *bodyString = [[NSString alloc] initWithData:urlRequest.HTTPBody encoding:NSUTF8StringEncoding];
+  expect(bodyString).to.equal(@"param1=someValue&param2=someOtherValue");
+}
+
 @end
