@@ -45,15 +45,15 @@
   [PKTHTTPStubs stubResponseForPath:path statusCode:200];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (!error) {
       completed = YES;
     }
   }];
   
-  [task resume];
+  [operation start];
 
-  expect(task).notTo.beNil();
+  expect(operation).notTo.beNil();
   expect(completed).will.beTruthy();
 }
 
@@ -64,13 +64,13 @@
   [PKTHTTPStubs stubResponseForPath:path statusCode:500];
 
   __block BOOL errorOccured = NO;
-  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (error) {
       errorOccured = YES;
     }
   }];
   
-  [task resume];
+  [operation start];
 
   expect(errorOccured).will.beTruthy();
 }
@@ -83,11 +83,11 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:2 responseTime:0];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
   
-  [task resume];
+  [operation start];
 
   expect(completed).will.beFalsy();
 }
@@ -100,17 +100,17 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL cancelled = NO;
-  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (error.code == NSURLErrorCancelled) {
       cancelled = YES;
     }
   }];
   
-  [task resume];
+  [operation start];
 
-  expect(task).notTo.beNil();
+  expect(operation).notTo.beNil();
 
-  [task cancel];
+  [operation cancel];
 
   expect(cancelled).will.beTruthy();
 }
@@ -123,14 +123,14 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
   
-  [task resume];
-  expect(task).notTo.beNil();
+  [operation start];
+  expect(operation).notTo.beNil();
 
-  [task suspend];
+  [operation pause];
   expect(completed).will.beFalsy();
 }
 
@@ -142,19 +142,19 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:2 responseTime:0];
 
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient taskWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
 
-  [task resume];
-  expect(task).notTo.beNil();
+  [operation start];
+  expect(operation).notTo.beNil();
 
-  [task suspend];
+  [operation pause];
   expect(completed).will.beFalsy();
 
   wait(1);
 
-  [task resume];
+  [operation resume];
   expect(completed).will.beTruthy();
 }
 

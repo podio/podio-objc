@@ -25,15 +25,15 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 @property (nonatomic, copy, readwrite) NSString *apiKey;
 @property (nonatomic, copy, readwrite) NSString *apiSecret;
-@property (nonatomic, weak, readwrite) NSURLSessionTask *authenticationTask;
+@property (nonatomic, weak, readwrite) AFHTTPRequestOperation *authenticationOperation;
 @property (nonatomic, strong, readwrite) PKTRequest *savedAuthenticationRequest;
-@property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingTasks;
+@property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingOperations;
 
 @end
 
 @implementation PKTClient
 
-@synthesize pendingTasks = _pendingTasks;
+@synthesize pendingOperations = _pendingOperations;
 
 + (instancetype)sharedClient {
   static PKTClient *sharedClient;
@@ -89,12 +89,12 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   [self didChangeValueForKey:isAuthenticatedKey];
 }
 
-- (NSMutableOrderedSet *)pendingTasks {
-  if (!_pendingTasks) {
-    _pendingTasks = [[NSMutableOrderedSet alloc] init];
+- (NSMutableOrderedSet *)pendingOperations {
+  if (!_pendingOperations) {
+    _pendingOperations = [[NSMutableOrderedSet alloc] init];
   }
   
-  return _pendingTasks;
+  return _pendingOperations;
 }
 
 #pragma mark - Configuration
@@ -133,18 +133,18 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 - (void)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy completion:(PKTRequestCompletionBlock)completion {
   if (requestPolicy == PKTClientAuthRequestPolicyIgnore) {
-    if (self.authenticationTask) {
+    if (self.authenticationOperation) {
       // Ignore this new authentation request, let the old one finish
       return;
     }
   } else if (requestPolicy == PKTClientAuthRequestPolicyCancelPrevious) {
     // Cancel any pending authentication task
-    [self.authenticationTask cancel];
+    [self.authenticationOperation cancel];
   }
   
   PKT_WEAK_SELF weakSelf = self;
   
-  self.authenticationTask = [self performTaskWithRequest:request completion:^(PKTResponse *response, NSError *error) {
+  self.authenticationOperation = [self performOperationkWithRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
 
     PKTOAuth2Token *token = nil;
@@ -160,73 +160,74 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
       completion(response, error);
     }
     
-    self.authenticationTask = nil;
+    strongSelf.authenticationOperation = nil;
   }];
 }
 
 - (void)authenticateWithSavedRequest:(PKTRequest *)request {
   [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:^(PKTResponse *response, NSError *error) {
     if (!error) {
-      [self processPendingTasks];
+      [self processPendingOperations];
     } else {
-      [self clearPendingTasks];
+      [self clearPendingOperations];
     }
   }];
 }
 
 #pragma mark - Requests
 
-- (NSURLSessionTask *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  NSURLSessionTask *task = nil;
+- (AFHTTPRequestOperation *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+  AFHTTPRequestOperation *operation = nil;
   
   if (self.isAuthenticated) {
     // Authenticated request, might need token refresh
     if (![self.oauthToken willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
-      task = [self performTaskWithRequest:request completion:completion];
+      operation = [self performOperationkWithRequest:request completion:completion];
     } else {
-      task = [self enqueueTaskWithRequest:request completion:completion];
+      operation = [self enqueueOperationWithRequest:request completion:completion];
       [self refreshToken];
     }
   } else if (self.savedAuthenticationRequest) {
     // Can self-authenticate, authenticate before performing request
-    task = [self enqueueTaskWithRequest:request completion:completion];
+    operation = [self enqueueOperationWithRequest:request completion:completion];
     [self authenticateWithSavedRequest:self.savedAuthenticationRequest];
   } else {
     // Unauthenticated request
-    task = [self performTaskWithRequest:request completion:completion];
+    operation = [self performOperationkWithRequest:request completion:completion];
   }
   
-  return task;
+  return operation;
 }
 
-- (NSURLSessionTask *)performTaskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  NSURLSessionTask *task = [self.HTTPClient taskWithRequest:request completion:completion];
-  [task resume];
+- (AFHTTPRequestOperation *)performOperationkWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+  AFHTTPRequestOperation *operation = [self.HTTPClient operationWithRequest:request completion:completion];
+  [operation start];
   
-  return task;
+  return operation;
 }
 
-- (NSURLSessionTask *)enqueueTaskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  NSURLSessionTask *task = [self.HTTPClient taskWithRequest:request completion:completion];
-  [self.pendingTasks addObject:task];
+- (AFHTTPRequestOperation *)enqueueOperationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+  AFHTTPRequestOperation *operation = [self.HTTPClient operationWithRequest:request completion:completion];
+  [self.pendingOperations addObject:operation];
   
-  return task;
+  return operation;
 }
 
-- (void)processPendingTasks {
-  for (NSURLSessionTask *task in self.pendingTasks) {
-    [task resume];
+- (void)processPendingOperations {
+  for (AFHTTPRequestOperation *operation in self.pendingOperations) {
+    [operation start];
   }
   
-  [self.pendingTasks removeAllObjects];
+  [self.pendingOperations removeAllObjects];
 }
 
-- (void)clearPendingTasks {
-  for (NSURLSessionTask *task in self.pendingTasks) {
-    [task cancel];
+- (void)clearPendingOperations {
+  for (AFHTTPRequestOperation *operation in self.pendingOperations) {
+    [operation cancel];
+    [operation start];
   }
   
-  [self.pendingTasks removeAllObjects];
+  [self.pendingOperations removeAllObjects];
 }
 
 #pragma mark - State
@@ -240,13 +241,9 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     [self.HTTPClient setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
     
     // Update all pending tasks with the new access token
-    for (NSURLSessionTask *task in self.pendingTasks) {
-      if ([task.originalRequest isKindOfClass:[NSMutableURLRequest class]]) {
-        [(NSMutableURLRequest *)task.originalRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
-      }
-      
-      if ([task.currentRequest isKindOfClass:[NSMutableURLRequest class]]) {
-        [(NSMutableURLRequest *)task.currentRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+    for (AFHTTPRequestOperation *operation in self.pendingOperations) {
+      if ([operation.request isKindOfClass:[NSMutableURLRequest class]]) {
+        [(NSMutableURLRequest *)operation.request pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
       }
     }
   } else if (self.apiKey && self.apiSecret) {
@@ -272,9 +269,9 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 - (void)refreshToken {
   [self refreshToken:^(PKTResponse *response, NSError *error) {
     if (!error) {
-      [self processPendingTasks];
+      [self processPendingOperations];
     } else {
-      [self clearPendingTasks];
+      [self clearPendingOperations];
     }
   }];
 }

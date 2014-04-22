@@ -45,16 +45,17 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
   [self.requestSerializer setAuthorizationHeaderFieldWithUsername:key password:secret];
 }
 
-- (NSURLSessionTask *)taskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+- (AFHTTPRequestOperation *)operationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   NSURLRequest *urlRequest = [(PKTRequestSerializer *)self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
   
-  return [self dataTaskWithRequest:urlRequest completionHandler:^(NSURLResponse *urlResponse, id responseObject, NSError *error) {
-    NSUInteger statusCode = 0;
-    if ([urlResponse isKindOfClass:[NSHTTPURLResponse class]]) {
-      statusCode = [(NSHTTPURLResponse *)urlResponse statusCode];
-    }
-    
+  return [self HTTPRequestOperationWithRequest:urlRequest success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSUInteger statusCode = operation.response.statusCode;
     PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
+    
+    if (completion) completion(response, nil);
+  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    NSUInteger statusCode = operation.response.statusCode;
+    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:operation.responseObject];
     
     if (completion) completion(response, error);
   }];

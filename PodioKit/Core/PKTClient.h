@@ -29,6 +29,6 @@
 - (void)authenticateWithAppID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 - (void)authenticateAutomaticallyWithAppID:(NSUInteger)appID token:(NSString *)appToken;
 
-- (NSURLSessionTask *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (AFHTTPRequestOperation *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 @end

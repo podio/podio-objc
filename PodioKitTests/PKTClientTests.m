@@ -226,15 +226,15 @@
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
   
   __block BOOL completed = NO;
-  NSURLSessionTask *task = [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
-  NSString *firstHeader = [task.currentRequest valueForHTTPHeaderField:@"Authorization"];
+  NSString *firstHeader = [operation.request valueForHTTPHeaderField:@"Authorization"];
 
   expect(completed).will.beTruthy();
   
-  NSString *secondHeader = [task.currentRequest valueForHTTPHeaderField:@"Authorization"];
+  NSString *secondHeader = [operation.request valueForHTTPHeaderField:@"Authorization"];
   expect(secondHeader).toNot.equal(firstHeader);
 }
 

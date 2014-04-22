@@ -12,12 +12,12 @@
 
 typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 
-@interface PKTHTTPClient : AFHTTPSessionManager
+@interface PKTHTTPClient : AFHTTPRequestOperationManager
 
 - (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header;
 - (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken;
 - (void)setAuthorizationHeaderWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
-- (NSURLSessionTask *)taskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (AFHTTPRequestOperation *)operationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 @end
