@@ -130,19 +130,10 @@
 		5014C56D18880B250002C68D /* PKTResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTResponse.m; sourceTree = "<group>"; };
 		5014C571188812540002C68D /* PKTAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAsyncTestCase.h; sourceTree = "<group>"; };
 		5014C572188812540002C68D /* PKTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTestCase.m; sourceTree = "<group>"; };
-		5021CD30144594DB00A7013D /* GetActiveTasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetActiveTasks.json; sourceTree = "<group>"; };
-		5025D8DA179D26B800F8753E /* PKNumberFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKNumberFormatTests.m; sourceTree = "<group>"; };
-		502B5FB714458C93004F4185 /* PKTaskMappingTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTaskMappingTests.h; sourceTree = "<group>"; };
-		502B5FB814458C93004F4185 /* PKTaskMappingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTaskMappingTests.m; sourceTree = "<group>"; };
 		5032B0B5188EB6DC0080046B /* PKTRequestTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestTests.m; sourceTree = "<group>"; };
-		5032BAC514448E1500B7F7C7 /* PKTestTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTask.h; sourceTree = "<group>"; };
-		5032BAC614448E1500B7F7C7 /* PKTestTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestTask.m; sourceTree = "<group>"; };
-		5032BACA1444907800B7F7C7 /* PKTestTaskMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestTaskMapping.h; sourceTree = "<group>"; };
-		5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestTaskMapping.m; sourceTree = "<group>"; };
 		503B3AC319050EC3002BB703 /* NSMutableURLRequest+PKTHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+PKTHeaders.h"; sourceTree = "<group>"; };
 		503B3AC419050EC3002BB703 /* NSMutableURLRequest+PKTHeaders.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+PKTHeaders.m"; sourceTree = "<group>"; };
 		50485954188461CF0088AF2C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		505F7E461445EFBC00727A1D /* GetTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetTask.json; sourceTree = "<group>"; };
 		50620AAD14BC8CA60060A786 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEEB14335AB900360855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -191,8 +182,6 @@
 		50B49F1B18EE095500B7EDF5 /* PKTAppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppTests.m; sourceTree = "<group>"; };
 		50D7380F166F6D08009233FF /* NSString+PKTRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTRandom.h"; sourceTree = "<group>"; };
 		50D73810166F6D09009233FF /* NSString+PKTRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandom.m"; sourceTree = "<group>"; };
-		50D73871166F7C71009233FF /* PKAPIClientTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClientTests.h; sourceTree = "<group>"; };
-		50D73872166F7C71009233FF /* PKAPIClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClientTests.m; sourceTree = "<group>"; };
 		50FA507018FFC040009542B9 /* PKTUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTUserAPI.h; sourceTree = "<group>"; };
 		50FA507118FFC040009542B9 /* PKTUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPI.m; sourceTree = "<group>"; };
 		50FA507518FFC279009542B9 /* PKTUserAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPITests.m; sourceTree = "<group>"; };
@@ -206,22 +195,6 @@
 		50FB3D6418EA0DDE0021DB48 /* PKTItemAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemAPI.m; sourceTree = "<group>"; };
 		50FB3D6818EB189B0021DB48 /* PKTItemAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemAPITests.m; sourceTree = "<group>"; };
 		50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemTests.m; sourceTree = "<group>"; };
-		50FCC39A14A1C9960001E6F4 /* PKObjectMapperTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKObjectMapperTests.h; sourceTree = "<group>"; };
-		50FCC39B14A1C9960001E6F4 /* PKObjectMapperTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKObjectMapperTests.m; sourceTree = "<group>"; };
-		50FCC39D14A1D4D90001E6F4 /* PKTestItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItem.h; sourceTree = "<group>"; };
-		50FCC39E14A1D4D90001E6F4 /* PKTestItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItem.m; sourceTree = "<group>"; };
-		50FCC3A014A1D5540001E6F4 /* PKTestItemMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItemMapping.h; sourceTree = "<group>"; };
-		50FCC3A114A1D5550001E6F4 /* PKTestItemMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemMapping.m; sourceTree = "<group>"; };
-		50FCC3A314A1D6250001E6F4 /* PKTestMappingProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestMappingProvider.h; sourceTree = "<group>"; };
-		50FCC3A414A1D6250001E6F4 /* PKTestMappingProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestMappingProvider.m; sourceTree = "<group>"; };
-		50FCC3A614A1E0520001E6F4 /* PKTestItemField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItemField.h; sourceTree = "<group>"; };
-		50FCC3A714A1E0520001E6F4 /* PKTestItemField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemField.m; sourceTree = "<group>"; };
-		50FCC3A914A1E2570001E6F4 /* PKTestItemFieldMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItemFieldMapping.h; sourceTree = "<group>"; };
-		50FCC3AA14A1E2580001E6F4 /* PKTestItemFieldMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemFieldMapping.m; sourceTree = "<group>"; };
-		50FCC3AC14A1E75C0001E6F4 /* PKTestItemApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItemApp.h; sourceTree = "<group>"; };
-		50FCC3AD14A1E75C0001E6F4 /* PKTestItemApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemApp.m; sourceTree = "<group>"; };
-		50FCC3AF14A1E7DD0001E6F4 /* PKTestItemAppMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestItemAppMapping.h; sourceTree = "<group>"; };
-		50FCC3B014A1E7DE0001E6F4 /* PKTestItemAppMapping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTestItemAppMapping.m; sourceTree = "<group>"; };
 		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A370E68741D44C408A3BBD91 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
@@ -274,63 +247,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5014C55A188804A40002C68D /* V1 */ = {
-			isa = PBXGroup;
-			children = (
-				50D73870166F7C59009233FF /* API Client */,
-				502B5FB614458BFA004F4185 /* Mapping */,
-				5025D8D8179D269F00F8753E /* Unit */,
-			);
-			path = V1;
-			sourceTree = "<group>";
-		};
-		5021CD2F144594B800A7013D /* Fixtures */ = {
-			isa = PBXGroup;
-			children = (
-				5021CD30144594DB00A7013D /* GetActiveTasks.json */,
-				505F7E461445EFBC00727A1D /* GetTask.json */,
-			);
-			name = Fixtures;
-			sourceTree = "<group>";
-		};
-		5025D8D8179D269F00F8753E /* Unit */ = {
-			isa = PBXGroup;
-			children = (
-				5025D8DA179D26B800F8753E /* PKNumberFormatTests.m */,
-			);
-			name = Unit;
-			sourceTree = "<group>";
-		};
-		502B5FB614458BFA004F4185 /* Mapping */ = {
-			isa = PBXGroup;
-			children = (
-				50FCC39A14A1C9960001E6F4 /* PKObjectMapperTests.h */,
-				50FCC39B14A1C9960001E6F4 /* PKObjectMapperTests.m */,
-				50FCC39D14A1D4D90001E6F4 /* PKTestItem.h */,
-				50FCC39E14A1D4D90001E6F4 /* PKTestItem.m */,
-				50FCC3A614A1E0520001E6F4 /* PKTestItemField.h */,
-				50FCC3A714A1E0520001E6F4 /* PKTestItemField.m */,
-				50FCC3AC14A1E75C0001E6F4 /* PKTestItemApp.h */,
-				50FCC3AD14A1E75C0001E6F4 /* PKTestItemApp.m */,
-				50FCC3A014A1D5540001E6F4 /* PKTestItemMapping.h */,
-				50FCC3A114A1D5550001E6F4 /* PKTestItemMapping.m */,
-				50FCC3A914A1E2570001E6F4 /* PKTestItemFieldMapping.h */,
-				50FCC3AA14A1E2580001E6F4 /* PKTestItemFieldMapping.m */,
-				50FCC3AF14A1E7DD0001E6F4 /* PKTestItemAppMapping.h */,
-				50FCC3B014A1E7DE0001E6F4 /* PKTestItemAppMapping.m */,
-				50FCC3A314A1D6250001E6F4 /* PKTestMappingProvider.h */,
-				50FCC3A414A1D6250001E6F4 /* PKTestMappingProvider.m */,
-				502B5FB714458C93004F4185 /* PKTaskMappingTests.h */,
-				502B5FB814458C93004F4185 /* PKTaskMappingTests.m */,
-				5032BAC514448E1500B7F7C7 /* PKTestTask.h */,
-				5032BAC614448E1500B7F7C7 /* PKTestTask.m */,
-				5032BACA1444907800B7F7C7 /* PKTestTaskMapping.h */,
-				5032BACB1444907800B7F7C7 /* PKTestTaskMapping.m */,
-				5021CD2F144594B800A7013D /* Fixtures */,
-			);
-			name = Mapping;
-			sourceTree = "<group>";
-		};
 		503B3AC219050E91002BB703 /* NSURLRequest */ = {
 			isa = PBXGroup;
 			children = (
@@ -412,7 +328,6 @@
 				E45F9645188FF1C0009791A0 /* Support */,
 				5014C571188812540002C68D /* PKTAsyncTestCase.h */,
 				5014C572188812540002C68D /* PKTAsyncTestCase.m */,
-				5014C55A188804A40002C68D /* V1 */,
 				5065BF0414335ABA00360855 /* Supporting Files */,
 			);
 			path = PodioKitTests;
@@ -467,15 +382,6 @@
 				5082427718FD76D7009A1580 /* NSValueTransformer+PKTTransformers.m */,
 			);
 			name = NSValueTransformer;
-			sourceTree = "<group>";
-		};
-		50D73870166F7C59009233FF /* API Client */ = {
-			isa = PBXGroup;
-			children = (
-				50D73871166F7C71009233FF /* PKAPIClientTests.h */,
-				50D73872166F7C71009233FF /* PKAPIClientTests.m */,
-			);
-			name = "API Client";
 			sourceTree = "<group>";
 		};
 		50FA507818FFC384009542B9 /* Models */ = {
