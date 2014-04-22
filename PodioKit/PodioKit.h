@@ -13,4 +13,8 @@
 
 + (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret;
 
++ (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
++ (void)authenticateWithAppID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
++ (void)authenticateAutomaticallyWithAppID:(NSUInteger)appID token:(NSString *)appToken;
+
 @end
