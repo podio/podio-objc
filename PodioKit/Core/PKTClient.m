@@ -128,7 +128,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
   
-  self.savedAuthenticationRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appToken token:appToken];
+  self.savedAuthenticationRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
 }
 
 - (void)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy completion:(PKTRequestCompletionBlock)completion {
