@@ -215,15 +215,6 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 - (void)processPendingTasks {
   for (NSURLSessionTask *task in self.pendingTasks) {
-    // Update all pending tasks with the new access token
-    if ([task.originalRequest isKindOfClass:[NSMutableURLRequest class]]) {
-      [(NSMutableURLRequest *)task.originalRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
-    }
-    
-    if ([task.currentRequest isKindOfClass:[NSMutableURLRequest class]]) {
-      [(NSMutableURLRequest *)task.currentRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
-    }
-    
     [task resume];
   }
   
@@ -247,6 +238,17 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 - (void)updateAuthorizationHeader:(BOOL)isAuthenticated {
   if (isAuthenticated) {
     [self.HTTPClient setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+    
+    // Update all pending tasks with the new access token
+    for (NSURLSessionTask *task in self.pendingTasks) {
+      if ([task.originalRequest isKindOfClass:[NSMutableURLRequest class]]) {
+        [(NSMutableURLRequest *)task.originalRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+      }
+      
+      if ([task.currentRequest isKindOfClass:[NSMutableURLRequest class]]) {
+        [(NSMutableURLRequest *)task.currentRequest pkt_setAuthorizationHeaderWithOAuth2AccessToken:self.oauthToken.accessToken];
+      }
+    }
   } else if (self.apiKey && self.apiSecret) {
     [self.HTTPClient setAuthorizationHeaderWithAPIKey:self.apiKey secret:self.apiSecret];
   }
