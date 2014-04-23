@@ -10,4 +10,13 @@
 
 @interface PKTApp : PKTObject
 
+@property (nonatomic, readonly) NSUInteger appID;
+@property (nonatomic, readonly) NSUInteger spaceID;
+@property (nonatomic, readonly) NSUInteger iconID;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *itemName;
+@property (nonatomic, copy, readonly) NSURL *link;
+
++ (void)fetchAppWithID:(NSUInteger)appID completion:(void (^)(PKTApp *app, NSError *error))completion;
+
 @end

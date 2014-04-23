@@ -10,11 +10,16 @@
 #import "PKTBlockValueTransformer.h"
 #import "PKTReversibleBlockValueTransformer.h"
 #import "PKTModelValueTransformer.h"
+#import "PKTURLValueTransformer.h"
+#import "PKTReferenceTypeValueTransformer.h"
 
 @interface NSValueTransformer (PKTTransformers)
 
 + (NSValueTransformer *)pkt_transformerWithBlock:(PKTValueTransformationBlock)block;
 + (NSValueTransformer *)pkt_transformerWithBlock:(PKTValueTransformationBlock)block reverseBlock:(PKTValueTransformationBlock)reverseBlock;
 + (NSValueTransformer *)pkt_transformerWithModelClass:(Class)modelClass;
+
++ (NSValueTransformer *)pkt_URLTransformer;
++ (NSValueTransformer *)pkt_referenceTypeTransformer;
 
 @end

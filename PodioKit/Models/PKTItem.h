@@ -14,10 +14,11 @@
 @property (nonatomic, readonly) NSUInteger appID;
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSDictionary *fields;
+@property (nonatomic, copy, readonly) NSArray *comments;
 
 + (instancetype)itemForAppWithID:(NSUInteger)appID;
 
-#pragma mark - Operations
+#pragma mark - API
 
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(PKTRequestCompletionBlock)completion;
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;

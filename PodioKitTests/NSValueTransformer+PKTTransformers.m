@@ -10,11 +10,11 @@
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTTestModel.h"
 
-@interface PKTValueTransformersTests : XCTestCase
+@interface NSValueTransformer_PKTTransformers : XCTestCase
 
 @end
 
-@implementation PKTValueTransformersTests
+@implementation NSValueTransformer_PKTTransformers
 
 - (void)testBlockTransformer {
   NSValueTransformer *transformer = [NSValueTransformer pkt_transformerWithBlock:^id(id value) {
@@ -38,6 +38,16 @@
   NSValueTransformer *transformer = [NSValueTransformer pkt_transformerWithModelClass:[PKTTestModel class]];
   
   expect(transformer).to.beInstanceOf([PKTModelValueTransformer class]);
+}
+
+- (void)testURLTransformer {
+  NSValueTransformer *transformer = [NSValueTransformer pkt_URLTransformer];
+  expect(transformer).to.beInstanceOf([PKTURLValueTransformer class]);
+}
+
+- (void)testReferenceTypeTransformer {
+  NSValueTransformer *transformer = [NSValueTransformer pkt_referenceTypeTransformer];
+  expect(transformer).to.beInstanceOf([PKTReferenceTypeValueTransformer class]);
 }
 
 @end

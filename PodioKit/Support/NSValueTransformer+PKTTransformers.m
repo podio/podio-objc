@@ -7,6 +7,7 @@
 //
 
 #import "NSValueTransformer+PKTTransformers.h"
+#import "PKTConstants.h"
 
 @implementation NSValueTransformer (PKTTransformers)
 
@@ -20,6 +21,18 @@
 
 + (NSValueTransformer *)pkt_transformerWithModelClass:(Class)modelClass {
   return [PKTModelValueTransformer transformerWithModelClass:modelClass];
+}
+
++ (NSValueTransformer *)pkt_transformerWithDictionary:(NSDictionary *)dictionary {
+  return [PKTDictionaryMappingValueTransformer transformerWithDictionary:dictionary];
+}
+
++ (NSValueTransformer *)pkt_URLTransformer {
+  return [[PKTURLValueTransformer alloc] init];
+}
+
++ (NSValueTransformer *)pkt_referenceTypeTransformer {
+  return [[PKTReferenceTypeValueTransformer alloc] init];
 }
 
 @end

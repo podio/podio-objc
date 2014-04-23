@@ -8,6 +8,8 @@
 
 #import "PKTItem.h"
 #import "PKTItemAPI.h"
+#import "PKTComment.h"
+#import "NSValueTransformer+PKTTransformers.h"
 
 @interface PKTItem ()
 
@@ -48,8 +50,13 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-    @"itemID": @"item_id"
+    @"itemID": @"item_id",
+    @"comments": @"comments"
   };
+}
+
++ (NSValueTransformer *)commentsValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTComment class]];
 }
 
 #pragma mark - Public
