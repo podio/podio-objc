@@ -13,14 +13,15 @@
 @property (nonatomic, readonly) NSUInteger itemID;
 @property (nonatomic, readonly) NSUInteger appID;
 @property (nonatomic, copy, readonly) NSString *title;
-@property (nonatomic, copy, readonly) NSDictionary *fields;
+@property (nonatomic, copy, readonly) NSArray *fields;
+@property (nonatomic, copy, readonly) NSArray *files;
 @property (nonatomic, copy, readonly) NSArray *comments;
 
 + (instancetype)itemForAppWithID:(NSUInteger)appID;
 
 #pragma mark - API
 
-+ (void)fetchItemWithID:(NSUInteger)itemID completion:(PKTRequestCompletionBlock)completion;
++ (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 
 #pragma mark - Subscripting for item fields

@@ -12,5 +12,9 @@
 #import "PKTResponse.h"
 
 #import "PKTAppAPI.h"
+#import "PKTItemAPI.h"
 
 #import "PKTApp.h"
+#import "PKTAppField.h"
+#import "PKTItem.h"
+#import "PKTItemField.h"

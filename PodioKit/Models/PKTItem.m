@@ -7,13 +7,16 @@
 //
 
 #import "PKTItem.h"
-#import "PKTItemAPI.h"
+#import "PKTItemField.h"
+#import "PKTFile.h"
 #import "PKTComment.h"
+#import "PKTItemAPI.h"
+#import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @interface PKTItem ()
 
-@property (nonatomic, strong) NSMutableDictionary *mutFields;
+@property (nonatomic, copy, readonly) NSArray *fileIDs;
 
 @end
 
@@ -34,16 +37,8 @@
 
 #pragma mark - Properties
 
-- (NSMutableDictionary *)mutFields {
-  if (!_mutFields) {
-    _mutFields = [NSMutableDictionary new];
-  }
-  
-  return _mutFields;
-}
-
-- (NSDictionary *)fields {
-  return [self.mutFields copy];
+- (NSArray *)fileIDs {
+  return [self.files valueForKey:@"fileID"];
 }
 
 #pragma mark - PKTModel
@@ -51,8 +46,19 @@
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
     @"itemID": @"item_id",
+    @"appID": @"app.app_id",
+    @"fields": @"fields",
+    @"files": @"files",
     @"comments": @"comments"
   };
+}
+
++ (NSValueTransformer *)fieldsValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTItemField class]];
+}
+
++ (NSValueTransformer *)filesValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
 }
 
 + (NSValueTransformer *)commentsValueTransformer {
@@ -65,38 +71,84 @@
   [self.client performRequest:request completion:completion];
 }
 
-+ (void)fetchItemWithID:(NSUInteger)itemID completion:(PKTRequestCompletionBlock)completion {
++ (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
   PKTRequest *request = [PKTItemAPI requestForItemWithID:itemID];
-  [self performRequest:request completion:completion];
+  [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    PKTItem *item = nil;
+    if (!error) {
+      item = [[PKTItem alloc] initWithDictionary:response.body];
+    }
+    
+    if (completion) completion(item, error);
+  }];
 }
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
   PKTRequest *request = nil;
   
+  NSDictionary *fields = [self preparedFieldValues];
+  NSArray *files = self.fileIDs;
+  
   if (self.itemID == 0) {
     request = [PKTItemAPI requestToCreateItemInAppWithID:self.appID
-                                                  fields:nil
-                                                   files:nil
+                                                  fields:fields
+                                                   files:files
                                                     tags:nil];
   } else {
     request = [PKTItemAPI requestToUpdateItemWithID:self.itemID
-                                                  fields:nil
-                                                   files:nil
+                                                  fields:fields
+                                                   files:files
                                                     tags:nil];
   }
   
   [[self class] performRequest:request completion:completion];
 }
 
+#pragma mark - Private
+
+- (PKTItemField *)fieldForExternalID:(NSString *)externalID {
+  PKTItemField *field = nil;
+  
+  for (PKTItemField *currentField in self.fields) {
+    if ([currentField.externalID isEqualToString:externalID]) {
+      field = currentField;
+    }
+  }
+  
+  return field;
+}
+
+- (NSDictionary *)preparedFieldValues {
+  NSMutableDictionary *mutFieldValues = [NSMutableDictionary new];
+  for (PKTItemField *field in self.fields) {
+    id values = [field preparedFieldValues];
+    if (values) {
+      mutFieldValues[field.externalID] = values;
+    }
+  }
+  
+  return [mutFieldValues copy];
+}
+
 #pragma mark - Subscripting support
 
 - (id)objectForKeyedSubscript:(id <NSCopying>)key {
-  return self.mutFields[key];
+  NSParameterAssert(key);
+  
+  NSString *externalID = (NSString *)key;
+  PKTItemField *field = [self fieldForExternalID:externalID];
+  
+  return [field firstValue];
 }
 
 - (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key {
+  NSParameterAssert(obj);
   NSParameterAssert(key);
-  self.mutFields[key] = obj;
+  
+  NSString *externalID = (NSString *)key;
+  PKTItemField *field = [self fieldForExternalID:externalID];
+  
+  [field setFirstValue:obj];
 }
 
 @end
