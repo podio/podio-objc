@@ -12,7 +12,7 @@
 
 @interface PKTModel ()
 
-@property (nonatomic, copy) NSArray *propertyNames;
+@property (nonatomic, copy, readonly) NSArray *codablePropertyNames;
 
 @end
 
@@ -31,7 +31,7 @@
   self = [super init];
   if (!self) return nil;
 
-  for (NSString *propertyName in self.propertyNames) {
+  for (NSString *propertyName in self.codablePropertyNames) {
     id value = [coder decodeObjectForKey:propertyName];
     [self setValue:value forKey:propertyName];
   }
@@ -40,20 +40,10 @@
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder {
-  for (NSString *propertyName in self.propertyNames) {
+  for (NSString *propertyName in self.codablePropertyNames) {
     id value = [self valueForKey:propertyName];
     [coder encodeObject:value forKey:propertyName];
   }
-}
-
-#pragma mark - Properties
-
-- (NSArray *)propertyNames {
-  if (!_propertyNames) {
-    _propertyNames = [self lookupPropertyNames];
-  }
-  
-  return _propertyNames;
 }
 
 #pragma mark - Public
@@ -65,7 +55,7 @@
 #pragma mark - Mapping
 
 - (void)updateValuesFromDictionary:(NSDictionary *)dictionary {
-  for (NSString *propertyName in self.propertyNames) {
+  for (NSString *propertyName in self.codablePropertyNames) {
     // Should this property be mapped?
     NSDictionary *keyPathMapping = [[self class] dictionaryKeyPathsForPropertyNames];
     NSString *keyPath = [keyPathMapping objectForKey:propertyName];
@@ -91,54 +81,58 @@
   }
 }
 
-- (NSDictionary *)dictionaryRepresentation {
-  // TODO: Serialize object into JSON again
-  return nil;
-}
-
 #pragma mark - Introspection
 
-- (NSArray *)lookupPropertyNames {
++ (NSArray *)codablePropertyNames {
+  unsigned int propertyCount;
+  objc_property_t *properties = class_copyPropertyList(self, &propertyCount);
+  
+  NSMutableArray *mutPropertyNames = [NSMutableArray arrayWithCapacity:propertyCount];
+  
+  for (int i = 0; i < propertyCount; ++i) {
+    // Find all properties, backed by an ivar and with a KVC-compliant name
+    objc_property_t property = properties[i];
+    const char *name = property_getName(property);
+    NSString *propertyName = @(name);
+    
+    // Check if there is a backing ivar
+    char *ivar = property_copyAttributeValue(property, "V");
+    if (ivar) {
+      // Check if ivar has KVC-compliant name, i.e. either propertyName or _propertyName
+      NSString *ivarName = @(ivar);
+      if ([ivarName isEqualToString:propertyName] ||
+          [ivarName isEqualToString:[@"_" stringByAppendingString:propertyName]]) {
+        // setValue:forKey: will work
+        [mutPropertyNames addObject:propertyName];
+      }
+      
+      free(ivar);
+    }
+  }
+  
+  free(properties);
+  
+  return [mutPropertyNames copy];
+}
+
+- (NSArray *)codablePropertyNames {
   NSArray *propertyNames = objc_getAssociatedObject([self class], _cmd);
   if (propertyNames) {
     return propertyNames;
   }
 
   NSMutableArray *mutPropertyNames = [NSMutableArray array];
-  
-  // Find all properties, backed by an ivar and with a KVC-compliant name in this class and any superclass
+
   Class klass = [self class];
   while (klass != [NSObject class]) {
-    unsigned int propertyCount;
-    objc_property_t *properties = class_copyPropertyList([self class], &propertyCount);
-    
-    for (int i = 0; i < propertyCount; ++i) {
-      objc_property_t property = properties[i];
-      const char *name = property_getName(property);
-      NSString *propertyName = @(name);
-      
-      // Check if there is a backing ivar
-      char *ivar = property_copyAttributeValue(property, "V");
-      if (ivar) {
-        // Check if ivar has KVC-compliant name, i.e. either propertyName or _propertyName
-        NSString *ivarName = @(ivar);
-        if ([ivarName isEqualToString:propertyName] ||
-            [ivarName isEqualToString:[@"_" stringByAppendingString:propertyName]]) {
-          // setValue:forKey: will work
-          [mutPropertyNames addObject:propertyName];
-        }
-        
-        free(ivar);
-      }
-    }
-    
-    free(properties);
+    NSArray *classPropertyNames = [klass codablePropertyNames];
+    [mutPropertyNames addObjectsFromArray:classPropertyNames];
     
     klass = [klass superclass];
   }
   
   propertyNames = [mutPropertyNames copy];
-  objc_setAssociatedObject([self class], _cmd, propertyNames, OBJC_ASSOCIATION_COPY_NONATOMIC);
+  objc_setAssociatedObject([self class], _cmd, propertyNames, OBJC_ASSOCIATION_COPY);
   
   return propertyNames;
 }

@@ -7,6 +7,8 @@
 //
 
 #import "PKTTestModel.h"
+#import "PKTNestedTestModel.h"
+#import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTTestModel
 
@@ -15,9 +17,19 @@
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
     @"objectID": @"object_id",
-    @"firstName": @"first_name",
-    @"lastName": @"last_name",
+    @"firstValue": @"first_value",
+    @"secondValue": @"second_value",
+    @"nestedObjects": @"nested_objects",
+    @"nestedObject": @"nested_object",
   };
+}
+
++ (NSValueTransformer *)nestedObjectsValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTNestedTestModel class]];
+}
+
++ (NSValueTransformer *)nestedObjectValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTNestedTestModel class]];
 }
 
 @end

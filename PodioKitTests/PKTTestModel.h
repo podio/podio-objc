@@ -8,10 +8,14 @@
 
 #import "PKTModel.h"
 
+@class PKTNestedTestModel;
+
 @interface PKTTestModel : PKTModel
 
 @property (nonatomic, readonly) NSUInteger objectID;
-@property (nonatomic, copy, readonly) NSString *firstName;
-@property (nonatomic, copy, readonly) NSString *lastName;
+@property (nonatomic, copy, readonly) NSString *firstValue;
+@property (nonatomic, copy, readonly) NSString *secondValue;
+@property (nonatomic, copy, readonly) NSArray *nestedObjects;
+@property (nonatomic, copy, readonly) PKTNestedTestModel *nestedObject;
 
 @end
