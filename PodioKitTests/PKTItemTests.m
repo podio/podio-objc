@@ -15,16 +15,4 @@
 
 @implementation PKTItemTests
 
-- (void)testSubscriptingForItemFields {
-  PKTItem *item = [PKTItem itemForAppWithID:123];
-  item[@"text"] = @"Some text";
-  item[@"number"] = @12;
-  
-  expect(item[@"text"]).to.equal(@"Some text");
-  expect(item[@"number"]).to.equal(@12);
-  
-  NSDictionary *expectedFields = @{@"text": @"Some text", @"number": @12};
-  expect(item.fields).to.equal(expectedFields);
-}
-
 @end
