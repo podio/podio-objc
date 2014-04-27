@@ -19,6 +19,7 @@
 + (NSValueTransformer *)pkt_transformerWithBlock:(PKTValueTransformationBlock)block reverseBlock:(PKTValueTransformationBlock)reverseBlock;
 + (NSValueTransformer *)pkt_transformerWithModelClass:(Class)modelClass;
 
++ (NSValueTransformer *)pkt_transformerWithDictionary:(NSDictionary *)dictionary;
 + (NSValueTransformer *)pkt_URLTransformer;
 + (NSValueTransformer *)pkt_referenceTypeTransformer;
 
