@@ -12,4 +12,6 @@
 
 + (id)pkt_valueByPerformingSelectorWithName:(NSString *)selectorName;
 
++ (id)pkt_valueByPerformingSelectorWithName:(NSString *)selectorName withObject:(id)object;
+
 @end

@@ -67,13 +67,16 @@
   }];
 }
 
-+ (NSValueTransformer *)fieldValuesValueTransformer {
++ (NSValueTransformer *)fieldValuesValueTransformerWithDictionary:(NSDictionary *)dictionary {
+  // Get the app field type
+  NSString *typeString = dictionary[@"type"];
+  PKTAppFieldType type = [[[self typeValueTransformer] transformedValue:typeString] unsignedIntegerValue];
+  
   return [NSValueTransformer pkt_transformerWithBlock:^id(NSArray *values) {
-    
     NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[values count]];
     
     for (id value in values) {
-      PKTItemFieldValue *fieldValue = [PKTItemFieldValue valueFromDictionary:value];
+      PKTItemFieldValue *fieldValue = [PKTItemFieldValue valueWithType:type valueDictionary:value];
       [fieldValues addObject:fieldValue];
     }
     

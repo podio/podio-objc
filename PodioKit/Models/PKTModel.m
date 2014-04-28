@@ -66,7 +66,7 @@
     id value = [dictionary valueForKeyPath:keyPath];
     if (value) {
       // Is there is a value transformer for this property?
-      NSValueTransformer *transformer = [[self class] valueTransformerForKey:propertyName];
+      NSValueTransformer *transformer = [[self class] valueTransformerForKey:propertyName dictionary:dictionary];
       if (transformer)  {
         value = [transformer transformedValue:value];
       }
@@ -139,9 +139,16 @@
 
 #pragma mark - Value transformation
 
-+ (NSValueTransformer *)valueTransformerForKey:(NSString *)key {
-  NSString *transformerSelectorName = [key stringByAppendingString:@"ValueTransformer"];
-  NSValueTransformer *transformer = [self pkt_valueByPerformingSelectorWithName:transformerSelectorName];
++ (NSValueTransformer *)valueTransformerForKey:(NSString *)key dictionary:(NSDictionary *)dictionary {
+  // Try the <propertyName>ValueTransformerWithDictionary: selector
+  NSString *transformerSelectorName = [key stringByAppendingString:@"ValueTransformerWithDictionary:"];
+  NSValueTransformer *transformer = [self pkt_valueByPerformingSelectorWithName:transformerSelectorName withObject:dictionary];
+  
+  // Try the <propertyName>ValueTransformer selector
+  if (!transformer) {
+    transformerSelectorName = [key stringByAppendingString:@"ValueTransformer"];
+    transformer = [self pkt_valueByPerformingSelectorWithName:transformerSelectorName];
+  }
   
   return transformer;
 }
