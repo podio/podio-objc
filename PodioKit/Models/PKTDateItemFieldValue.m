@@ -19,6 +19,7 @@ static NSDateFormatter *sFormatter = nil;
       sFormatter = [[NSDateFormatter alloc] init];
       sFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
       sFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+      sFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
     });
   }
 }
