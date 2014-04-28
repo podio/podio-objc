@@ -26,6 +26,6 @@
 - (void)removeValue:(id)value;
 - (void)removeValueAtIndex:(NSUInteger)index;
 
-- (id)preparedFieldValues;
+- (NSArray *)preparedValues;
 
 @end

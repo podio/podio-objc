@@ -7,6 +7,7 @@
 //
 
 #import "PKTItemField.h"
+#import "PKTItemFieldValue.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @interface PKTItemField ()
@@ -69,14 +70,14 @@
 + (NSValueTransformer *)fieldValuesValueTransformer {
   return [NSValueTransformer pkt_transformerWithBlock:^id(NSArray *values) {
     
-    NSMutableArray *mutValues = [NSMutableArray arrayWithCapacity:[values count]];
+    NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[values count]];
     
     for (id value in values) {
-      id flattenedValue = [self flattenedFieldValue:value];
-      [mutValues addObject:flattenedValue];
+      PKTItemFieldValue *fieldValue = [PKTItemFieldValue valueFromDictionary:value];
+      [fieldValues addObject:fieldValue];
     }
     
-    return mutValues;
+    return fieldValues;
   }];
 }
 
@@ -114,25 +115,18 @@
   [self.fieldValues removeObjectAtIndex:index];
 }
 
-- (id)preparedFieldValues {
+- (NSArray *)preparedValues {
   id value = nil;
-
-  // TODO: Format fields accoring to type
   
-  return value;
-}
-
-#pragma mark - Private
-
-+ (id)flattenedFieldValue:(id)value {
-  // Some field values come in the form of a dictionary with a "value" key. Flatten that.
-  id flattenedValue = value;
-  
-  if ([value isKindOfClass:[NSDictionary class]] && [value objectForKey:@"value"]) {
-    flattenedValue = [value objectForKey:@"value"];
+  NSMutableArray *fieldValues = [NSMutableArray new];
+  for (PKTItemFieldValue *value in self.fieldValues) {
+    NSDictionary *valueDict = value.valueDictionary;
+    if (valueDict) {
+      [fieldValues addObject:valueDict];
+    }
   }
   
-  return flattenedValue;
+  return value;
 }
 
 @end

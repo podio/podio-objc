@@ -121,10 +121,7 @@
 - (NSDictionary *)preparedFieldValues {
   NSMutableDictionary *mutFieldValues = [NSMutableDictionary new];
   for (PKTItemField *field in self.fields) {
-    id values = [field preparedFieldValues];
-    if (values) {
-      mutFieldValues[field.externalID] = values;
-    }
+    mutFieldValues[field.externalID] = [field preparedValues];
   }
   
   return [mutFieldValues copy];
