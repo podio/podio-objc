@@ -15,8 +15,6 @@
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary;
 
-+ (instancetype)valueFromDictionary:(NSDictionary *)valueDictionary;
-
 - (NSDictionary *)valueDictionary;
 
 @end

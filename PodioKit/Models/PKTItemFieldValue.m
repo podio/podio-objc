@@ -11,6 +11,11 @@
 #import "PKTDateItemFieldValue.h"
 #import "PKTMoneyItemFieldValue.h"
 #import "PKTEmbedItemFieldValue.h"
+#import "PKTFileItemFieldValue.h"
+#import "PKTAppItemFieldValue.h"
+#import "PKTContactItemFieldValue.h"
+#import "PKTCalculationItemFieldValue.h"
+#import "PKTCategoryItemFieldValue.h"
 
 @interface PKTItemFieldValue ()
 
@@ -34,16 +39,31 @@
   
   switch (type) {
     case PKTAppFieldTypeDate:
-      value = [PKTDateItemFieldValue valueFromDictionary:valueDictionary];
+      value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDictionary];
       break;
     case PKTAppFieldTypeMoney:
-      value = [PKTMoneyItemFieldValue valueFromDictionary:valueDictionary];
+      value = [[PKTMoneyItemFieldValue alloc] initFromValueDictionary:valueDictionary];
       break;
     case PKTAppFieldTypeEmbed:
-      value = [PKTEmbedItemFieldValue valueFromDictionary:valueDictionary];
+      value = [[PKTEmbedItemFieldValue alloc] initFromValueDictionary:valueDictionary];
+      break;
+    case PKTAppFieldTypeImage:
+      value = [[PKTFileItemFieldValue alloc] initFromValueDictionary:valueDictionary];
+      break;
+    case PKTAppFieldTypeApp:
+      value = [[PKTAppItemFieldValue alloc] initFromValueDictionary:valueDictionary];
+      break;
+    case PKTAppFieldTypeContact:
+      value = [[PKTContactItemFieldValue alloc] initFromValueDictionary:valueDictionary];
+      break;
+    case PKTAppFieldTypeCalculation:
+      value = [[PKTCalculationItemFieldValue alloc] initFromValueDictionary:valueDictionary];
+      break;
+    case PKTAppFieldTypeCategory:
+      value = [[PKTCategoryItemFieldValue alloc] initFromValueDictionary:valueDictionary];
       break;
     default:
-      value = [PKTBasicItemFieldValue valueFromDictionary:valueDictionary];
+      value = [[PKTBasicItemFieldValue alloc] initFromValueDictionary:valueDictionary];
       break;
   }
   
@@ -51,6 +71,7 @@
 }
 
 - (NSDictionary *)valueDictionary {
+  // Return nil by default, meaning it cannot be serialized back. e.g. calculation field
   return nil;
 }
 
