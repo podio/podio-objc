@@ -31,16 +31,16 @@
   [field setValues:@[@"First value", @"Second value"]];
   
   expect(field.values).to.haveCountOf(2);
-  expect([field valueAtIndex:0]).to.equal(@"First value");
-  expect([field valueAtIndex:1]).to.equal(@"Second value");
+  expect(field.values[0]).to.equal(@"First value");
+  expect(field.values[1]).to.equal(@"Second value");
 }
 
 - (void)testSetFirstValue {
   PKTItemField *field = [[PKTItemField alloc] init];
-  [field setFirstValue:@"Some text"];
+  field.value = @"Some text";
   
   expect(field.values).to.haveCountOf(1);
-  expect([field firstValue]).to.equal(@"Some text");
+  expect(field.value).to.equal(@"Some text");
 }
 
 - (void)testAddValue {
@@ -49,8 +49,8 @@
   [field addValue:@"Second value"];
   
   expect(field.values).to.haveCountOf(2);
-  expect([field valueAtIndex:0]).to.equal(@"First value");
-  expect([field valueAtIndex:1]).to.equal(@"Second value");
+  expect(field.values[0]).to.equal(@"First value");
+  expect(field.values[1]).to.equal(@"Second value");
 }
 
 - (void)testRemoveValue {
@@ -61,7 +61,7 @@
   [field removeValue:@"First value"];
   
   expect(field.values).to.haveCountOf(1);
-  expect([field valueAtIndex:0]).to.equal(@"Second value");
+  expect(field.values[0]).to.equal(@"Second value");
 }
 
 - (void)testRemoveValueAtIndex {
@@ -72,7 +72,7 @@
   [field removeValueAtIndex:0];
   
   expect(field.values).to.haveCountOf(1);
-  expect([field valueAtIndex:0]).to.equal(@"Second value");
+  expect(field.values[0]).to.equal(@"Second value");
 }
 
 @end

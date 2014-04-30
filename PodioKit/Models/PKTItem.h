@@ -26,8 +26,16 @@
 
 #pragma mark - Public
 
-- (void)setValue:(id)value forField:(NSString *)externalID;
+- (NSArray *)valuesForField:(NSString *)externalID;
+- (void)setValues:(NSArray *)values forField:(NSString *)externalID;
+
 - (id)valueForField:(NSString *)externalID;
+- (void)setValue:(id)value forField:(NSString *)externalID;
+
+- (void)addValue:(id)value forField:(NSString *)externalID;
+
+- (void)removeValue:(id)value forField:(NSString *)externalID;
+- (void)removeValueAtIndex:(NSUInteger)index forField:(NSString *)externalID;
 
 #pragma mark - Subscripting for item fields
 

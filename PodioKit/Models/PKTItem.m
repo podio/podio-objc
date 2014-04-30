@@ -174,31 +174,72 @@
 
 #pragma mark - Public
 
+- (id)valueForField:(NSString *)externalID {
+  return [[self valuesForField:externalID] firstObject];
+}
+
 - (void)setValue:(id)value forField:(NSString *)externalID {
   NSParameterAssert(value);
+  [self setValues:@[value] forField:externalID];
+}
+
+- (NSArray *)valuesForField:(NSString *)externalID {
+  NSParameterAssert(externalID);
+
+  NSArray *values = nil;
+  
+  PKTItemField *field = [self fieldForExternalID:externalID];
+  if (field) {
+    values = [field values];
+  } else {
+    values = [self valuesForUnsavedFieldWithExternalID:externalID];
+  }
+  
+  return values;
+}
+
+- (void)setValues:(NSArray *)values forField:(NSString *)externalID {
   NSParameterAssert(externalID);
   
   PKTItemField *field = [self fieldForExternalID:externalID];
   if (field) {
-    [field setFirstValue:value];
+    [field setValues:values];
   } else {
-    [self setValue:value forUnsavedFieldWithExternalID:externalID];
+    [self setValues:values forUnsavedFieldWithExternalID:externalID];
   }
 }
 
-- (id)valueForField:(NSString *)externalID {
+- (void)addValue:(id)value forField:(NSString *)externalID {
   NSParameterAssert(externalID);
-  
-  id value = nil;
   
   PKTItemField *field = [self fieldForExternalID:externalID];
   if (field) {
-    value = [field firstValue];
+    [field addValue:value];
   } else {
-    value = [self valueForUnsavedFieldWithExternalID:externalID];
+    [self addValue:value forUnsavedFieldWithExternalID:externalID];
   }
+}
+
+- (void)removeValue:(id)value forField:(NSString *)externalID {
+  NSParameterAssert(externalID);
   
-  return value;
+  PKTItemField *field = [self fieldForExternalID:externalID];
+  if (field) {
+    [field removeValue:value];
+  } else {
+    [self removeValue:value forUnsavedFieldWithExternalID:externalID];
+  }
+}
+
+- (void)removeValueAtIndex:(NSUInteger)index forField:(NSString *)externalID {
+  NSParameterAssert(externalID);
+  
+  PKTItemField *field = [self fieldForExternalID:externalID];
+  if (field) {
+    [field removeValueAtIndex:index];
+  } else {
+    [self removeValueAtIndex:index forUnsavedFieldWithExternalID:externalID];
+  }
 }
 
 #pragma mark - Private
@@ -257,12 +298,45 @@
   return field;
 }
 
-- (id)valueForUnsavedFieldWithExternalID:(NSString *)externalID {
+- (NSArray *)valuesForUnsavedFieldWithExternalID:(NSString *)externalID {
   return [self.unsavedFields objectForKey:externalID];
 }
 
-- (void)setValue:(id)value forUnsavedFieldWithExternalID:(NSString *)externalID {
-  [self.unsavedFields setObject:value forKey:externalID];
+- (void)setValues:(NSArray *)values forUnsavedFieldWithExternalID:(NSString *)externalID {
+  [self.unsavedFields setObject:values forKey:externalID];
+}
+
+- (void)addValue:(id)value forUnsavedFieldWithExternalID:(NSString *)externalID {
+  NSMutableArray *values = [[self valuesForUnsavedFieldWithExternalID:externalID] mutableCopy];
+  if (!values) {
+    values = [NSMutableArray new];
+  }
+  
+  [values addObject:value];
+  
+  [self setValues:[values copy] forUnsavedFieldWithExternalID:externalID];
+}
+
+- (void)removeValue:(id)value forUnsavedFieldWithExternalID:(NSString *)externalID {
+  NSMutableArray *values = [[self valuesForUnsavedFieldWithExternalID:externalID] mutableCopy];
+  if (!values) {
+    values = [NSMutableArray new];
+  }
+  
+  [values removeObject:value];
+  
+  [self setValues:[values copy] forUnsavedFieldWithExternalID:externalID];
+}
+
+- (void)removeValueAtIndex:(NSUInteger)index forUnsavedFieldWithExternalID:(NSString *)externalID {
+  NSMutableArray *values = [[self valuesForUnsavedFieldWithExternalID:externalID] mutableCopy];
+  if (!values) {
+    values = [NSMutableArray new];
+  }
+  
+  [values removeObjectAtIndex:index];
+  
+  [self setValues:[values copy] forUnsavedFieldWithExternalID:externalID];
 }
 
 - (NSDictionary *)preparedFieldValuesForItemFields:(NSArray *)fields {

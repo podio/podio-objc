@@ -10,15 +10,11 @@
 
 @interface PKTItemField : PKTAppField
 
-@property (nonatomic, copy, readonly) NSArray *values;
+@property (nonatomic, strong) id value; // The unboxed value
+@property (nonatomic, copy) NSArray *values; // The unboxed values
 
 - (instancetype)initWithAppField:(PKTAppField *)appField values:(NSArray *)values;
 
-- (id)valueAtIndex:(NSUInteger)index;
-- (id)firstValue;
-
-- (void)setValues:(NSArray *)values;
-- (void)setFirstValue:(id)value;
 - (void)addValue:(id)value;
 
 - (void)removeValue:(id)value;

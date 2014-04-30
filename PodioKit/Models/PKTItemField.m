@@ -49,10 +49,6 @@
 
 #pragma mark - Properties
 
-- (NSArray *)values {
-  return [self.fieldValues copy];
-}
-
 - (NSMutableArray *)fieldValues {
   if (!_fieldValues) {
     _fieldValues = [NSMutableArray new];
@@ -78,7 +74,6 @@
     return [self mutableFieldValuesForValues:values fieldType:type];
   }];
 }
-
 
 #pragma mark - Private
 
@@ -177,16 +172,28 @@
 
 #pragma mark - Public
 
-- (id)valueAtIndex:(NSUInteger)index {
-  PKTItemFieldValue *value = self.fieldValues[index];
+- (id)value {
+  PKTItemFieldValue *value = [self.fieldValues firstObject];
   
   return value.unboxedValue;
 }
 
-- (id)firstValue {
-  PKTItemFieldValue *value = [self.fieldValues firstObject];
+- (void)setValue:(id)value {
+  NSParameterAssert(value);
   
-  return value.unboxedValue;
+  PKTItemFieldValue *fieldValue = [self boxedValueForValue:value];
+  
+  [self.fieldValues removeAllObjects];
+  [self.fieldValues addObject:fieldValue];
+}
+
+- (NSArray *)values {
+  NSMutableArray *values = [NSMutableArray new];
+  for (PKTItemFieldValue *fieldValue in self.fieldValues) {
+    [values addObject:fieldValue.unboxedValue];
+  }
+  
+  return [values copy];
 }
 
 - (void)setValues:(NSArray *)values {
@@ -199,13 +206,6 @@
   }
   
   self.fieldValues = fieldValues;
-}
-
-- (void)setFirstValue:(id)value {
-  NSParameterAssert(value);
-  
-  PKTItemFieldValue *fieldValue = [self boxedValueForValue:value];
-  self.fieldValues[0] = fieldValue;
 }
 
 - (void)addValue:(id)value {

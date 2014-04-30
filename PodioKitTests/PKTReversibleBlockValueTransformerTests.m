@@ -16,7 +16,7 @@
 @implementation PKTReversibleBlockValueTransformerTests
 
 - (void)testTransformationWithReversibleBlock {
-  PKTBlockValueTransformer *transformer = [PKTReversibleBlockValueTransformer transformerWithBlock:^id(NSNumber *num) {
+  PKTReversibleBlockValueTransformer *transformer = [PKTReversibleBlockValueTransformer transformerWithBlock:^id(NSNumber *num) {
     return @([num integerValue] * [num integerValue]);
   } reverseBlock:^id(NSNumber *num) {
     return @(sqrt([num integerValue]));
