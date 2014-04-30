@@ -7,6 +7,7 @@
 //
 
 #import "PKTApp.h"
+#import "PKTAppField.h"
 #import "PKTAppAPI.h"
 #import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
@@ -23,11 +24,16 @@
            @"name": @"config.name",
            @"itemName": @"config.item_name",
            @"link" : @"link",
+           @"fields" : @"fields"
   };
 }
 
 + (NSValueTransformer *)linkValueTransformer {
   return [NSValueTransformer pkt_URLTransformer];
+}
+
++ (NSValueTransformer *)fieldsValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTAppField class]];
 }
 
 #pragma mark - API
@@ -42,6 +48,21 @@
     
     if (completion) completion(app, error);
   }];
+}
+
+#pragma mark - Public
+
+- (PKTAppField *)fieldWithExternalID:(NSString *)externalID {
+  __block PKTAppField *field = nil;
+  
+  [self.fields enumerateObjectsUsingBlock:^(PKTAppField *currentField, NSUInteger idx, BOOL *stop) {
+    if ([currentField.externalID isEqualToString:externalID]) {
+      field = currentField;
+      *stop = YES;
+    }
+  }];
+  
+  return field;
 }
 
 @end

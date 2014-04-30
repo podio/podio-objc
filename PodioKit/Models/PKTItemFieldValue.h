@@ -11,7 +11,7 @@
 
 @interface PKTItemFieldValue : PKTModel
 
-+ (instancetype)valueWithType:(PKTAppFieldType)type valueDictionary:(NSDictionary *)valueDictionary;
+@property (nonatomic, strong) id unboxedValue;
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary;
 

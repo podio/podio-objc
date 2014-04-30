@@ -19,4 +19,8 @@
   return self;
 }
 
+- (id)unboxedValue {
+  return self.value;
+}
+
 @end

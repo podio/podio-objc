@@ -8,21 +8,38 @@
 
 #import "PKTMoneyItemFieldValue.h"
 
+static NSString * const kValueKey = @"value";
+static NSString * const kCurrencyKey = @"currency";
+
 @implementation PKTMoneyItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
   self = [super init];
   if (!self) return nil;
   
-  _value = [valueDictionary[@"value"] copy];
-  _currency = [valueDictionary[@"currency"] copy];
+  _value = [valueDictionary[kValueKey] copy];
+  _currency = [valueDictionary[kCurrencyKey] copy];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"value" : self.value,
-           @"currency" : self.currency};
+  return @{kValueKey : self.value,
+           kCurrencyKey : self.currency};
+}
+
+- (void)setUnboxedValue:(id)unboxedValue {
+  NSAssert([unboxedValue isKindOfClass:[NSDictionary class]], @"The unboxed value for money value needs to be an NSDictionary.");
+  NSParameterAssert(unboxedValue[kValueKey]);
+  NSParameterAssert(unboxedValue[kCurrencyKey]);
+  
+  self.value = unboxedValue[kValueKey];
+  self.currency =unboxedValue[kCurrencyKey];
+}
+
+- (id)unboxedValue {
+  return @{kValueKey : self.value,
+           kCurrencyKey : self.currency};
 }
 
 @end

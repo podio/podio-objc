@@ -10,8 +10,8 @@
 
 @interface PKTItem : PKTObject
 
-@property (nonatomic, readonly) NSUInteger itemID;
-@property (nonatomic, readonly) NSUInteger appID;
+@property (nonatomic, assign, readonly) NSUInteger itemID;
+@property (nonatomic, assign, readonly) NSUInteger appID;
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSArray *fields;
 @property (nonatomic, copy, readonly) NSArray *files;
@@ -23,6 +23,11 @@
 
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
+
+#pragma mark - Public
+
+- (void)setValue:(id)value forField:(NSString *)externalID;
+- (id)valueForField:(NSString *)externalID;
 
 #pragma mark - Subscripting for item fields
 

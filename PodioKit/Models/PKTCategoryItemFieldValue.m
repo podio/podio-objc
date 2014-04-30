@@ -23,4 +23,13 @@
   return @{@"value" : self.optionID};
 }
 
+- (void)setUnboxedValue:(id)unboxedValue {
+  NSAssert([unboxedValue isKindOfClass:[NSNumber class]], @"The unboxed value for category value needs to be an NSNumber representing the option ID.");
+  self.optionID = unboxedValue;
+}
+
+- (id)unboxedValue {
+  return self.optionID;
+}
+
 @end

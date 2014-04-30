@@ -14,6 +14,8 @@
 
 @implementation PKTBasicItemFieldValue
 
+#pragma mark - PKTItemFieldValue
+
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
   self = [super init];
   if (!self) return nil;
@@ -25,6 +27,14 @@
 
 - (NSDictionary *)valueDictionary {
   return @{@"value" : self.value };
+}
+
+- (void)setUnboxedValue:(id)unboxedValue {
+  self.value = unboxedValue;
+}
+
+- (id)unboxedValue {
+  return self.value;
 }
 
 @end

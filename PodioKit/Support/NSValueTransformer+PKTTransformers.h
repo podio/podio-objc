@@ -22,5 +22,6 @@
 + (NSValueTransformer *)pkt_transformerWithDictionary:(NSDictionary *)dictionary;
 + (NSValueTransformer *)pkt_URLTransformer;
 + (NSValueTransformer *)pkt_referenceTypeTransformer;
++ (NSValueTransformer *)pkt_appFieldTypeTransformer;
 
 @end

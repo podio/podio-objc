@@ -7,15 +7,6 @@
 //
 
 #import "PKTItemFieldValue.h"
-#import "PKTBasicItemFieldValue.h"
-#import "PKTDateItemFieldValue.h"
-#import "PKTMoneyItemFieldValue.h"
-#import "PKTEmbedItemFieldValue.h"
-#import "PKTFileItemFieldValue.h"
-#import "PKTAppItemFieldValue.h"
-#import "PKTContactItemFieldValue.h"
-#import "PKTCalculationItemFieldValue.h"
-#import "PKTCategoryItemFieldValue.h"
 
 @interface PKTItemFieldValue ()
 
@@ -34,45 +25,44 @@
   return [[self alloc] initFromValueDictionary:valueDictionary];
 }
 
-+ (instancetype)valueWithType:(PKTAppFieldType)type valueDictionary:(NSDictionary *)valueDictionary {
-  PKTItemFieldValue *value = nil;
-  
-  switch (type) {
-    case PKTAppFieldTypeDate:
-      value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeMoney:
-      value = [[PKTMoneyItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeEmbed:
-      value = [[PKTEmbedItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeImage:
-      value = [[PKTFileItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeApp:
-      value = [[PKTAppItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeContact:
-      value = [[PKTContactItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeCalculation:
-      value = [[PKTCalculationItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    case PKTAppFieldTypeCategory:
-      value = [[PKTCategoryItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-    default:
-      value = [[PKTBasicItemFieldValue alloc] initFromValueDictionary:valueDictionary];
-      break;
-  }
-  
-  return value;
-}
-
 - (NSDictionary *)valueDictionary {
   // Return nil by default, meaning it cannot be serialized back. e.g. calculation field
   return nil;
+}
+
+- (void)setUnboxedValue:(id)unboxedValue {
+  [self raiseBoxingUnsupportedException];
+}
+
+- (id)unboxedValue {
+  [self raiseBoxingUnsupportedException];
+  return nil;
+}
+
+#pragma mark - Private
+
+- (void)raiseBoxingUnsupportedException {
+  NSString *reason = [NSString stringWithFormat:@"Boxing support not implemented for class: %@", [self class]];
+  [NSException exceptionWithName:@"BoxingUnsupportedException" reason:reason userInfo:nil];
+}
+
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)object {
+  BOOL equal = NO;
+  
+  if ([object isKindOfClass:[self class]] && self.unboxedValue) {
+    PKTItemFieldValue *value = object;
+    equal = [self.unboxedValue isEqual:value.unboxedValue];
+  } else {
+    equal = [super isEqual:object];
+  }
+  
+  return equal;
+}
+
+- (NSUInteger)hash {
+  return self.unboxedValue ? [self.unboxedValue hash] : [super hash];
 }
 
 @end

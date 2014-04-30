@@ -17,6 +17,15 @@
 
 @implementation PKTItemFieldTests
 
+- (void)testInitWithAppField {
+  PKTAppField *appField = [[PKTAppField alloc] initWithFieldID:123 externalID:@"title" type:PKTAppFieldTypeText];
+  PKTItemField *itemField = [[PKTItemField alloc] initWithAppField:appField values:@[@"Some text"]];
+  
+  expect(itemField.fieldID).to.equal(123);
+  expect(itemField.externalID).to.equal(@"title");
+  expect(itemField.type).to.equal(PKTAppFieldTypeText);
+}
+
 - (void)testSetValues {
   PKTItemField *field = [[PKTItemField alloc] init];
   [field setValues:@[@"First value", @"Second value"]];

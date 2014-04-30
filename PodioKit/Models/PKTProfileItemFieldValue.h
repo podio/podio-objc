@@ -1,5 +1,5 @@
 //
-//  PKTContactItemFieldValue.h
+//  PKTProfileItemFieldValue.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 28/04/14.
@@ -10,7 +10,7 @@
 
 @class PKTProfile;
 
-@interface PKTContactItemFieldValue : PKTItemFieldValue
+@interface PKTProfileItemFieldValue : PKTItemFieldValue
 
 @property (nonatomic, strong) PKTProfile *profile;
 

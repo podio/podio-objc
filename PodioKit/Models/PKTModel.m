@@ -54,10 +54,27 @@
 
 #pragma mark - Mapping
 
++ (NSDictionary *)dictionaryKeyPathsForPropertyNamesForClassAndSuperClasses {
+  NSMutableDictionary *keyPathsMapping = [NSMutableDictionary new];
+  
+  Class klass = self;
+  while (klass != [PKTModel class]) {
+    NSDictionary *klassKeyPaths = [klass dictionaryKeyPathsForPropertyNames];
+    if (klass) {
+      [keyPathsMapping addEntriesFromDictionary:klassKeyPaths];
+    }
+    
+    klass = [klass superclass];
+  }
+  
+  return [keyPathsMapping copy];
+}
+
 - (void)updateValuesFromDictionary:(NSDictionary *)dictionary {
+  NSDictionary *keyPathMapping = [[self class] dictionaryKeyPathsForPropertyNamesForClassAndSuperClasses];
+  
   for (NSString *propertyName in self.codablePropertyNames) {
     // Should this property be mapped?
-    NSDictionary *keyPathMapping = [[self class] dictionaryKeyPathsForPropertyNames];
     NSString *keyPath = [keyPathMapping objectForKey:propertyName];
     if (!keyPath) {
       keyPath = propertyName;

@@ -46,8 +46,8 @@
 		501D606A190EEAC8004D94C4 /* PKTAppItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6068190EEAC8004D94C4 /* PKTAppItemFieldValue.m */; };
 		501D606D190EEB9E004D94C4 /* PKTProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D606B190EEB9E004D94C4 /* PKTProfile.h */; };
 		501D606E190EEB9E004D94C4 /* PKTProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D606C190EEB9E004D94C4 /* PKTProfile.m */; };
-		501D6071190EEBDE004D94C4 /* PKTContactItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D606F190EEBDE004D94C4 /* PKTContactItemFieldValue.h */; };
-		501D6072190EEBDE004D94C4 /* PKTContactItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6070190EEBDE004D94C4 /* PKTContactItemFieldValue.m */; };
+		501D6071190EEBDE004D94C4 /* PKTProfileItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D606F190EEBDE004D94C4 /* PKTProfileItemFieldValue.h */; };
+		501D6072190EEBDE004D94C4 /* PKTProfileItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6070190EEBDE004D94C4 /* PKTProfileItemFieldValue.m */; };
 		501D6075190EEF77004D94C4 /* PKTCalculationItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6073190EEF77004D94C4 /* PKTCalculationItemFieldValue.h */; };
 		501D6076190EEF77004D94C4 /* PKTCalculationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6074190EEF77004D94C4 /* PKTCalculationItemFieldValue.m */; };
 		501D6079190EF02D004D94C4 /* PKTCategoryItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6077190EF02D004D94C4 /* PKTCategoryItemFieldValue.h */; };
@@ -58,7 +58,7 @@
 		501D6087190EF2EB004D94C4 /* PKTEmbedItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6059190E3E81004D94C4 /* PKTEmbedItemFieldValue.m */; };
 		501D6088190EF2EB004D94C4 /* PKTFileItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6064190EE9BA004D94C4 /* PKTFileItemFieldValue.m */; };
 		501D6089190EF2EB004D94C4 /* PKTAppItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6068190EEAC8004D94C4 /* PKTAppItemFieldValue.m */; };
-		501D608A190EF2EB004D94C4 /* PKTContactItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6070190EEBDE004D94C4 /* PKTContactItemFieldValue.m */; };
+		501D608A190EF2EB004D94C4 /* PKTProfileItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6070190EEBDE004D94C4 /* PKTProfileItemFieldValue.m */; };
 		501D608B190EF2EB004D94C4 /* PKTCalculationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6074190EEF77004D94C4 /* PKTCalculationItemFieldValue.m */; };
 		501D608C190EF2EB004D94C4 /* PKTCategoryItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6078190EF02D004D94C4 /* PKTCategoryItemFieldValue.m */; };
 		501D608D190EF2EB004D94C4 /* PKTEmbed.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D607C190EF21F004D94C4 /* PKTEmbed.m */; };
@@ -213,8 +213,8 @@
 		501D6068190EEAC8004D94C4 /* PKTAppItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppItemFieldValue.m; sourceTree = "<group>"; };
 		501D606B190EEB9E004D94C4 /* PKTProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTProfile.h; sourceTree = "<group>"; };
 		501D606C190EEB9E004D94C4 /* PKTProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTProfile.m; sourceTree = "<group>"; };
-		501D606F190EEBDE004D94C4 /* PKTContactItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTContactItemFieldValue.h; sourceTree = "<group>"; };
-		501D6070190EEBDE004D94C4 /* PKTContactItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTContactItemFieldValue.m; sourceTree = "<group>"; };
+		501D606F190EEBDE004D94C4 /* PKTProfileItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTProfileItemFieldValue.h; sourceTree = "<group>"; };
+		501D6070190EEBDE004D94C4 /* PKTProfileItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTProfileItemFieldValue.m; sourceTree = "<group>"; };
 		501D6073190EEF77004D94C4 /* PKTCalculationItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCalculationItemFieldValue.h; sourceTree = "<group>"; };
 		501D6074190EEF77004D94C4 /* PKTCalculationItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTCalculationItemFieldValue.m; sourceTree = "<group>"; };
 		501D6077190EF02D004D94C4 /* PKTCategoryItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCategoryItemFieldValue.h; sourceTree = "<group>"; };
@@ -376,8 +376,8 @@
 				501D6064190EE9BA004D94C4 /* PKTFileItemFieldValue.m */,
 				501D6067190EEAC8004D94C4 /* PKTAppItemFieldValue.h */,
 				501D6068190EEAC8004D94C4 /* PKTAppItemFieldValue.m */,
-				501D606F190EEBDE004D94C4 /* PKTContactItemFieldValue.h */,
-				501D6070190EEBDE004D94C4 /* PKTContactItemFieldValue.m */,
+				501D606F190EEBDE004D94C4 /* PKTProfileItemFieldValue.h */,
+				501D6070190EEBDE004D94C4 /* PKTProfileItemFieldValue.m */,
 				501D6073190EEF77004D94C4 /* PKTCalculationItemFieldValue.h */,
 				501D6074190EEF77004D94C4 /* PKTCalculationItemFieldValue.m */,
 				501D6077190EF02D004D94C4 /* PKTCategoryItemFieldValue.h */,
@@ -564,10 +564,10 @@
 				50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */,
 				50B49F0D18EE08F800B7EDF5 /* PKTApp.h */,
 				50B49F0E18EE08F800B7EDF5 /* PKTApp.m */,
-				50E6C80B190D5A6600F309B4 /* PKTAppField.h */,
-				50E6C80C190D5A6600F309B4 /* PKTAppField.m */,
 				50FB3D5F18EA0CDD0021DB48 /* PKTItem.h */,
 				50FB3D6018EA0CDD0021DB48 /* PKTItem.m */,
+				50E6C80B190D5A6600F309B4 /* PKTAppField.h */,
+				50E6C80C190D5A6600F309B4 /* PKTAppField.m */,
 				50E6C803190D4EA900F309B4 /* PKTItemField.h */,
 				50E6C804190D4EA900F309B4 /* PKTItemField.m */,
 				5039F64319070A1200A8A8F0 /* PKTComment.h */,
@@ -791,7 +791,7 @@
 				5039F650190712DC00A8A8F0 /* PKTReferenceTypeValueTransformer.h in Headers */,
 				5082426218FC8A84009A1580 /* NSObject+PKTIntrospection.h in Headers */,
 				50B49F0F18EE08F800B7EDF5 /* PKTApp.h in Headers */,
-				501D6071190EEBDE004D94C4 /* PKTContactItemFieldValue.h in Headers */,
+				501D6071190EEBDE004D94C4 /* PKTProfileItemFieldValue.h in Headers */,
 				501D6056190E3E64004D94C4 /* PKTMoneyItemFieldValue.h in Headers */,
 				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50E6C80D190D5A6600F309B4 /* PKTAppField.h in Headers */,
@@ -979,7 +979,7 @@
 				501D6076190EEF77004D94C4 /* PKTCalculationItemFieldValue.m in Sources */,
 				E4BABDDC1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
 				5082425718FC8466009A1580 /* PKTReversibleBlockValueTransformer.m in Sources */,
-				501D6072190EEBDE004D94C4 /* PKTContactItemFieldValue.m in Sources */,
+				501D6072190EEBDE004D94C4 /* PKTProfileItemFieldValue.m in Sources */,
 				50B49F1518EE092100B7EDF5 /* PKTAppAPI.m in Sources */,
 				501D6066190EE9BB004D94C4 /* PKTFileItemFieldValue.m in Sources */,
 				50FB3D6618EA0DDE0021DB48 /* PKTItemAPI.m in Sources */,
@@ -1063,7 +1063,7 @@
 				E4BABDDD1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
 				5014C57F188817430002C68D /* PKTRequest.m in Sources */,
 				5014C581188817430002C68D /* PKTResponse.m in Sources */,
-				501D608A190EF2EB004D94C4 /* PKTContactItemFieldValue.m in Sources */,
+				501D608A190EF2EB004D94C4 /* PKTProfileItemFieldValue.m in Sources */,
 				E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */,
 				E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				5082425A18FC8526009A1580 /* PKTBlockValueTransformerTests.m in Sources */,
