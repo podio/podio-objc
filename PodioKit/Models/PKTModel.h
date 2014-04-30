@@ -12,6 +12,8 @@
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
+- (void)updateFromDictionary:(NSDictionary *)dictionary;
+
 // Override in subclass to define how to map
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames;
 

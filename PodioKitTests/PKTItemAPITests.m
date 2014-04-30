@@ -26,9 +26,9 @@
   PKTRequest *request = [PKTItemAPI requestToCreateItemInAppWithID:13242 fields:fields files:files tags:tags];
   
   expect(request.path).to.equal(@"/item/app/13242/");
-  expect(request.body[@"fields"]).to.equal([fields copy]);
-  expect(request.body[@"files"]).to.equal(files);
-  expect(request.body[@"tags"]).to.equal(tags);
+  expect(request.parameters[@"fields"]).to.equal([fields copy]);
+  expect(request.parameters[@"files"]).to.equal(files);
+  expect(request.parameters[@"tags"]).to.equal(tags);
 }
 
 - (void)testRequestToUpdateItem {
@@ -42,9 +42,9 @@
   PKTRequest *request = [PKTItemAPI requestToUpdateItemWithID:333 fields:fields files:files tags:tags];
   
   expect(request.path).to.equal(@"/item/333");
-  expect(request.body[@"fields"]).to.equal([fields copy]);
-  expect(request.body[@"files"]).to.equal(files);
-  expect(request.body[@"tags"]).to.equal(tags);
+  expect(request.parameters[@"fields"]).to.equal([fields copy]);
+  expect(request.parameters[@"files"]).to.equal(files);
+  expect(request.parameters[@"tags"]).to.equal(tags);
 }
 
 - (void)testRequestToGetItem {

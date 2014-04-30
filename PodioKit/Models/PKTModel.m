@@ -22,7 +22,7 @@
   self = [super init];
   if (!self) return nil;
   
-  [self updateValuesFromDictionary:dictionary];
+  [self updateFromDictionary:dictionary];
   
   return self;
 }
@@ -70,7 +70,7 @@
   return [keyPathsMapping copy];
 }
 
-- (void)updateValuesFromDictionary:(NSDictionary *)dictionary {
+- (void)updateFromDictionary:(NSDictionary *)dictionary {
   NSDictionary *keyPathMapping = [[self class] dictionaryKeyPathsForPropertyNamesForClassAndSuperClasses];
   
   for (NSString *propertyName in self.codablePropertyNames) {

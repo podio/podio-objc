@@ -15,43 +15,43 @@
 }
 
 + (PKTRequest *)requestToCreateItemInAppWithID:(NSUInteger)appID fields:(NSDictionary *)fields files:(NSArray *)files tags:(NSArray *)tags {
-  NSString *path = PKTRequestPath(@"/item/app/%lu/", (unsigned long)appID);
-  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:nil];
-  
-  request.body = [NSMutableDictionary new];
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
   
   if ([fields count] > 0) {
-    request.body[@"fields"] = fields;
+    parameters[@"fields"] = fields;
   }
   
   if ([files count] > 0) {
-    request.body[@"files"] = files;
+    parameters[@"files"] = files;
   }
   
   if ([tags count] > 0) {
-    request.body[@"tags"] = tags;
+    parameters[@"tags"] = tags;
   }
+  
+  NSString *path = PKTRequestPath(@"/item/app/%lu/", (unsigned long)appID);
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:parameters];
   
   return request;
 }
 
 + (PKTRequest *)requestToUpdateItemWithID:(NSUInteger)itemID fields:(NSDictionary *)fields files:(NSArray *)files tags:(NSArray *)tags {
-  NSString *path = PKTRequestPath(@"/item/%lu", (unsigned long)itemID);
-  PKTRequest *request = [PKTRequest PUTRequestWithPath:path parameters:nil];
-  
-  request.body = [NSMutableDictionary new];
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
   
   if ([fields count] > 0) {
-    request.body[@"fields"] = fields;
+    parameters[@"fields"] = fields;
   }
   
   if ([files count] > 0) {
-    request.body[@"files"] = files;
+    parameters[@"files"] = files;
   }
   
   if ([tags count] > 0) {
-    request.body[@"tags"] = tags;
+    parameters[@"tags"] = tags;
   }
+  
+  NSString *path = PKTRequestPath(@"/item/%lu", (unsigned long)itemID);
+  PKTRequest *request = [PKTRequest PUTRequestWithPath:path parameters:parameters];
   
   return request;
 }

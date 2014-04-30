@@ -18,7 +18,7 @@
 
 @interface PKTItem ()
 
-@property (nonatomic, assign) NSUInteger itemID;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSMutableArray *mutFields;
 @property (nonatomic, strong, readonly) NSMutableDictionary *unsavedFields;
 @property (nonatomic, copy, readonly) NSArray *fileIDs;
@@ -162,10 +162,18 @@
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
     if (!error) {
-      strongSelf.itemID = [response.body[@"item_id"] unsignedIntegerValue];
+      if (strongSelf.itemID == 0) {
+        // Item created, update fully from response
+        [self updateFromDictionary:response.body];
+      } else {
+        // Item updated, set the new title returned
+        strongSelf.title = response.body[@"title"];
+        
+        // Just update the fields since the response doesn't contain the full object
+        strongSelf.mutFields = [itemFields mutableCopy];
+      }
       
-      // Update with the newly saved fields
-      strongSelf.mutFields = [itemFields mutableCopy];
+      [strongSelf.unsavedFields removeAllObjects];
     }
     
     if (completion) completion(response, error);
@@ -252,10 +260,10 @@
   NSArray *fields = nil;
   
   NSArray *unsavedItemFields = [self itemFieldsFromUnsavedFields:self.unsavedFields forApp:app error:error];
-  if (!error) {
+  if (!*error) {
     NSMutableArray *mutFields = [self.mutFields mutableCopy];
     [mutFields addObjectsFromArray:unsavedItemFields];
-    fields = [self.mutFields copy];
+    fields = [mutFields copy];
   }
   
   return fields;
