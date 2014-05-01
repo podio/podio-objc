@@ -14,6 +14,7 @@
 #import "PKTItemAPI.h"
 #import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
+#import "NSArray+PKTAdditions.h"
 
 @interface PKTItem ()
 
@@ -82,14 +83,9 @@
 
 + (NSValueTransformer *)mutFieldsValueTransformer {
   return [NSValueTransformer pkt_transformerWithBlock:^id(NSArray *values) {
-    NSMutableArray *mutFields = [NSMutableArray new];
-    
-    for (NSDictionary *value in values) {
-      PKTItemField *field = [[PKTItemField alloc] initWithDictionary:value];
-      [mutFields addObject:field];
-    }
-    
-    return mutFields;
+    return [values pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+      return [[PKTItemField alloc] initWithDictionary:itemDict];
+    }];
   }];
 }
 
@@ -120,10 +116,41 @@
   }];
 }
 
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion {
+  [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
+}
+
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion; {
+  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
+                                                                offset:offset
+                                                                 limit:limit
+                                                                sortBy:sortBy
+                                                            descending:descending
+                                                              remember:NO];
+  
+  [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    NSArray *items = nil;
+    NSUInteger filteredCount, totalCount = 0;
+
+    if (!error) {
+      filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
+      totalCount = [response.body[@"total"] unsignedIntegerValue];
+      NSArray *itemDicts = response.body[@"items"];
+      
+      items = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+        return [[PKTItem alloc] initWithDictionary:itemDict];
+      }];
+    }
+    
+    if (completion) completion(items, filteredCount, totalCount, error);
+  }];
+}
+
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
   [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
     if (!error) {
       NSArray *itemFields = [self allFieldsToSaveForApp:app];
+      
       if (!error) {
         [self saveWithItemFields:itemFields completion:completion];
       } else {
@@ -245,16 +272,9 @@
 #pragma mark - Private
 
 - (PKTItemField *)fieldForExternalID:(NSString *)externalID {
-  __block PKTItemField *field = nil;
-  
-  [self.fields enumerateObjectsUsingBlock:^(PKTItemField *currentField, NSUInteger idx, BOOL *stop) {
-    if ([currentField.externalID isEqualToString:externalID]) {
-      field = currentField;
-      *stop = YES;
-    }
+  return [self.fields pkt_firstObjectPassingTest:^BOOL(PKTItemField *currentField) {
+    return [currentField.externalID isEqualToString:externalID];
   }];
-  
-  return field;
 }
 
 /**

@@ -22,6 +22,11 @@
 #pragma mark - API
 
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
+
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion;
+
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion;
+
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 
 #pragma mark - Public

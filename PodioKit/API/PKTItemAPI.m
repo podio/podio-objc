@@ -14,6 +14,23 @@
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", (unsigned long)itemID) parameters:nil];
 }
 
++ (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending remember:(BOOL)remember {
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
+  parameters[@"offset"] = @(offset);
+  parameters[@"limit"] = @(limit);
+  parameters[@"sort_desc"] = @(descending);
+  parameters[@"remember"] = @(remember);
+  
+  if (sortBy) {
+    parameters[@"sort_by"] = sortBy;
+  }
+  
+  NSString *path = PKTRequestPath(@"/item/app/%lu/filter/", (unsigned long)appID);
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:parameters];
+  
+  return request;
+}
+
 + (PKTRequest *)requestToCreateItemInAppWithID:(NSUInteger)appID fields:(NSDictionary *)fields files:(NSArray *)files tags:(NSArray *)tags {
   NSMutableDictionary *parameters = [NSMutableDictionary new];
   
