@@ -15,6 +15,8 @@
 
 - (instancetype)initWithAppField:(PKTAppField *)appField values:(NSArray *)values;
 
++ (BOOL)isSupportedValue:value forFieldType:(PKTAppFieldType)fieldType error:(NSError **)error;
+
 - (void)addValue:(id)value;
 
 - (void)removeValue:(id)value;

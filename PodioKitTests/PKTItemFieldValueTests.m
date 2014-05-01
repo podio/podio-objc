@@ -16,6 +16,10 @@
 #import "PKTProfileItemFieldValue.h"
 #import "PKTCalculationItemFieldValue.h"
 #import "PKTCategoryItemFieldValue.h"
+#import "PKTEmbed.h"
+#import "PKTFile.h"
+#import "PKTItem.h"
+#import "PKTProfile.h"
 
 @interface PKTItemFieldValueTests : XCTestCase
 
@@ -68,7 +72,7 @@
   expect(value.unboxedValue).toNot.beNil();
 }
 
-- (void)testContactValue {
+- (void)testProfileValue {
   NSDictionary *valueDict = @{@"value" : @{@"profile_id" : @4444}};
   PKTProfileItemFieldValue *value = [[PKTProfileItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(@{@"value" : @4444});
@@ -87,6 +91,74 @@
   PKTCategoryItemFieldValue *value = [[PKTCategoryItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(@{@"value" : @123});
   expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testBoxedValueSupportForValidBasicValue {
+  expect([PKTBasicItemFieldValue supportsBoxingOfValue:@"Some text"]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidDateValue {
+  NSDictionary *value = @{@"start" : [NSDate date],
+                          @"end" : [NSDate date]};
+  expect([PKTDateItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidMoneyValue {
+  NSDictionary *value = @{@"value" : @125.5,
+                          @"currency" : @"DKK"};
+  expect([PKTMoneyItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidEmbedValue {
+  PKTEmbed *embed = [[PKTEmbed alloc] init];;
+  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:embed]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidFileValue {
+  PKTFile *file = [[PKTFile alloc] init];
+  expect([PKTFileItemFieldValue supportsBoxingOfValue:file]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidAppValue {
+  PKTItem *item = [[PKTItem alloc] init];
+  expect([PKTAppItemFieldValue supportsBoxingOfValue:item]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidProfileValue {
+  PKTProfile *profile = [[PKTProfile alloc] init];
+  expect([PKTProfileItemFieldValue supportsBoxingOfValue:profile]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidCategoryValue {
+  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@123]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForInvalidDateValue {
+  expect([PKTDateItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidMoneyValue {
+  expect([PKTMoneyItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidEmbedValue {
+  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidFileValue {
+  expect([PKTFileItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidAppValue {
+  expect([PKTAppItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidProfileValue {
+  expect([PKTProfileItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidCategoryValue {
+  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
 }
 
 @end

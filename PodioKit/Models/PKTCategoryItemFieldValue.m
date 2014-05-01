@@ -32,4 +32,8 @@
   return self.optionID;
 }
 
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[NSNumber class]];
+}
+
 @end

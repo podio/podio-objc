@@ -37,4 +37,8 @@
   return self.value;
 }
 
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return YES;
+}
+
 @end

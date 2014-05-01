@@ -30,12 +30,15 @@ static NSString * const kFileKey = @"file";
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  NSAssert([unboxedValue isKindOfClass:[PKTEmbed class]], @"The unboxed value for embed value needs to be a PKTEmbed.");
   self.embed = unboxedValue;
 }
 
 - (id)unboxedValue {
   return self.embed;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[PKTEmbed class]];
 }
 
 @end

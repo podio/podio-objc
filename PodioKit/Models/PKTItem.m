@@ -14,7 +14,6 @@
 #import "PKTItemAPI.h"
 #import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
-#import "PKTMacros.h"
 
 @interface PKTItem ()
 
@@ -122,15 +121,11 @@
 }
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
-  PKT_WEAK_SELF weakSelf = self;
-  
   [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
-    PKT_STRONG(weakSelf) strongSelf = weakSelf;
-    
     if (!error) {
-      NSArray *itemFields = [strongSelf allFieldsToSaveForApp:app error:&error];
+      NSArray *itemFields = [self allFieldsToSaveForApp:app];
       if (!error) {
-        [strongSelf saveWithItemFields:itemFields completion:completion];
+        [self saveWithItemFields:itemFields completion:completion];
       } else {
         if (completion) completion(nil, error);
       }
@@ -157,23 +152,20 @@
                                                tags:nil];
   }
   
-  PKT_WEAK_SELF weakSelf = self;
   [[self class] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    PKT_STRONG(weakSelf) strongSelf = weakSelf;
-    
     if (!error) {
-      if (strongSelf.itemID == 0) {
+      if (self.itemID == 0) {
         // Item created, update fully from response
         [self updateFromDictionary:response.body];
       } else {
         // Item updated, set the new title returned
-        strongSelf.title = response.body[@"title"];
+        self.title = response.body[@"title"];
         
         // Just update the fields since the response doesn't contain the full object
-        strongSelf.mutFields = [itemFields mutableCopy];
+        self.mutFields = [itemFields mutableCopy];
       }
       
-      [strongSelf.unsavedFields removeAllObjects];
+      [self.unsavedFields removeAllObjects];
     }
     
     if (completion) completion(response, error);
@@ -252,19 +244,31 @@
 
 #pragma mark - Private
 
+- (PKTItemField *)fieldForExternalID:(NSString *)externalID {
+  __block PKTItemField *field = nil;
+  
+  [self.fields enumerateObjectsUsingBlock:^(PKTItemField *currentField, NSUInteger idx, BOOL *stop) {
+    if ([currentField.externalID isEqualToString:externalID]) {
+      field = currentField;
+      *stop = YES;
+    }
+  }];
+  
+  return field;
+}
+
 /**
  * Joins the existing and unsaved fields into an array of PKTItemField objects, using the provided
  * app's fields as the template for the unsaved fields.
  */
-- (NSArray *)allFieldsToSaveForApp:(PKTApp *)app error:(NSError **)error {
+- (NSArray *)allFieldsToSaveForApp:(PKTApp *)app {
   NSArray *fields = nil;
   
-  NSArray *unsavedItemFields = [self itemFieldsFromUnsavedFields:self.unsavedFields forApp:app error:error];
-  if (!*error) {
-    NSMutableArray *mutFields = [self.mutFields mutableCopy];
-    [mutFields addObjectsFromArray:unsavedItemFields];
-    fields = [mutFields copy];
-  }
+  NSArray *unsavedItemFields = [self itemFieldsFromUnsavedFields:self.unsavedFields forApp:app];
+  
+  NSMutableArray *mutFields = [self.mutFields mutableCopy];
+  [mutFields addObjectsFromArray:unsavedItemFields];
+  fields = [mutFields copy];
   
   return fields;
 }
@@ -275,7 +279,7 @@
  *
  * @param usavedFields an NSDictionary with the external ID as the key, and an array of values as the value
  */
-- (NSArray *)itemFieldsFromUnsavedFields:(NSDictionary *)unsavedFields forApp:(PKTApp *)app error:(NSError **)error {
+- (NSArray *)itemFieldsFromUnsavedFields:(NSDictionary *)unsavedFields forApp:(PKTApp *)app {
   // TODO: Generate error for invalid fields
   
   NSMutableArray *validFields = [NSMutableArray new];
@@ -285,25 +289,28 @@
     
     if (appField) {
       NSArray *values = [value isKindOfClass:[NSArray class]] ? value : @[value];
+      for (id value in values) {
+        
+        NSError *error = nil;
+        if (![PKTItemField isSupportedValue:value forFieldType:appField.type error:&error]) {
+          NSString *reason = [NSString stringWithFormat:@"Invalid field value: %@", [error localizedDescription]];
+          NSException *exception = [NSException exceptionWithName:@"InvalidFieldValueException" reason:reason userInfo:nil];
+          
+          @throw exception;
+        }
+      }
+      
       PKTItemField *field = [[PKTItemField alloc] initWithAppField:appField values:values];
       [validFields addObject:field];
+    } else {
+      NSString *reason = [NSString stringWithFormat:@"No app field exists with external ID '%@'.", externalID];
+      NSException *exception = [NSException exceptionWithName:@"NoSuchAppFieldException" reason:reason userInfo:nil];
+      
+      @throw exception;
     }
   }];
   
   return [validFields copy];
-}
-
-- (PKTItemField *)fieldForExternalID:(NSString *)externalID {
-  __block PKTItemField *field = nil;
-
-  [self.fields enumerateObjectsUsingBlock:^(PKTItemField *currentField, NSUInteger idx, BOOL *stop) {
-    if ([currentField.externalID isEqualToString:externalID]) {
-      field = currentField;
-      *stop = YES;
-    }
-  }];
-  
-  return field;
 }
 
 - (NSArray *)valuesForUnsavedFieldWithExternalID:(NSString *)externalID {

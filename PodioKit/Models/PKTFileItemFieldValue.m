@@ -27,12 +27,15 @@
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  NSAssert([unboxedValue isKindOfClass:[PKTFile class]], @"The unboxed value for file value needs to be a PKTFile.");
   self.file = unboxedValue;
 }
 
 - (id)unboxedValue {
   return self.file;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[PKTFile class]];
 }
 
 @end

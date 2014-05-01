@@ -43,10 +43,6 @@ static NSDateFormatter *sFormatter = nil;
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  NSAssert([unboxedValue isKindOfClass:[NSDictionary class]], @"The unboxed value for date value needs to be an NSDictionary.");
-  NSParameterAssert(unboxedValue[kStartDateKey]);
-  NSParameterAssert(unboxedValue[kEndDateKey]);
-  
   self.startDate = unboxedValue[kStartDateKey];
   self.endDate =unboxedValue[kEndDateKey];
 }
@@ -54,6 +50,12 @@ static NSDateFormatter *sFormatter = nil;
 - (id)unboxedValue {
   return @{kStartDateKey : self.startDate,
            kEndDateKey : self.endDate};
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[NSDictionary class]] &&
+  [value[kStartDateKey] isKindOfClass:[NSDate class]] &&
+  [value[kEndDateKey] isKindOfClass:[NSDate class]];
 }
 
 #pragma mark - Private

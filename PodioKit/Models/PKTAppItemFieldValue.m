@@ -25,12 +25,15 @@
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  NSAssert([unboxedValue isKindOfClass:[PKTItem class]], @"The unboxed value for app value needs to be a PKTItem.");
   self.item = unboxedValue;
 }
 
 - (id)unboxedValue {
   return self.item;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[PKTItem class]];
 }
 
 @end

@@ -172,6 +172,17 @@
 
 #pragma mark - Public
 
++ (BOOL)isSupportedValue:value forFieldType:(PKTAppFieldType)fieldType error:(NSError **)error {
+  BOOL isSupported = NO;
+  
+  Class valueClass = [[self class] valueClassForFieldType:fieldType];
+  if ([valueClass isSubclassOfClass:[PKTItemFieldValue class]] && valueClass) {
+    isSupported = [valueClass supportsBoxingOfValue:value];
+  }
+  
+  return isSupported;
+}
+
 - (id)value {
   PKTItemFieldValue *value = [self.fieldValues firstObject];
   

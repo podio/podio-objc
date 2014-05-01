@@ -25,12 +25,15 @@
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  NSAssert([unboxedValue isKindOfClass:[PKTProfile class]], @"The unboxed value for profile value needs to be a PKTProfile.");
   self.profile = unboxedValue;
 }
 
 - (id)unboxedValue {
   return self.profile;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[PKTProfile class]];
 }
 
 @end

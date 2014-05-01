@@ -29,10 +29,6 @@ static NSString * const kCurrencyKey = @"currency";
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  NSAssert([unboxedValue isKindOfClass:[NSDictionary class]], @"The unboxed value for money value needs to be an NSDictionary.");
-  NSParameterAssert(unboxedValue[kValueKey]);
-  NSParameterAssert(unboxedValue[kCurrencyKey]);
-  
   self.value = unboxedValue[kValueKey];
   self.currency =unboxedValue[kCurrencyKey];
 }
@@ -40,6 +36,12 @@ static NSString * const kCurrencyKey = @"currency";
 - (id)unboxedValue {
   return @{kValueKey : self.value,
            kCurrencyKey : self.currency};
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return [value isKindOfClass:[NSDictionary class]] &&
+    [value[kValueKey] isKindOfClass:[NSNumber class]] &&
+    [value[kCurrencyKey] isKindOfClass:[NSString class]];
 }
 
 @end

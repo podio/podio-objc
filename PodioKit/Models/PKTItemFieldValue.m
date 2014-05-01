@@ -8,6 +8,8 @@
 
 #import "PKTItemFieldValue.h"
 
+NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
+
 @interface PKTItemFieldValue ()
 
 @end
@@ -37,6 +39,21 @@
 - (id)unboxedValue {
   [self raiseBoxingUnsupportedException];
   return nil;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return NO;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error {
+  BOOL supported = [self supportsBoxingOfValue:value];
+  
+  if (!supported) {
+    NSString *message = [NSString stringWithFormat:@"Value %@ not supported for class '%@'", value, NSStringFromClass(self)];
+    *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+  }
+  
+  return supported;
 }
 
 #pragma mark - Private
