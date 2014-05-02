@@ -1,6 +1,6 @@
 language: objective-c
 rvm:
-  - 1.9.3
+  - 2.0.0
 gemfile:
   - Gemfile
 cache: bundler
@@ -8,6 +8,7 @@ branches:
   only:
     - 2.0-develop
 before_script:
+  - export LANG=en_US.UTF-8
   - sudo easy_install pyyaml
   - sudo easy_install cpp-coveralls
 script:
