@@ -108,7 +108,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 #pragma mark - Authentication
 
-- (void)authenticateWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
+- (void)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
   NSParameterAssert(email);
   NSParameterAssert(password);
 
@@ -116,7 +116,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
 }
 
-- (void)authenticateWithAppID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
+- (void)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
 
@@ -124,7 +124,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
 }
 
-- (void)authenticateAutomaticallyWithAppID:(NSUInteger)appID token:(NSString *)appToken {
+- (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
   

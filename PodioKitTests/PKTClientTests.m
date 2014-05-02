@@ -244,7 +244,7 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient authenticateWithAppID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
@@ -258,7 +258,7 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient authenticateWithAppID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
@@ -267,7 +267,7 @@
 }
 
 - (void)testAuthenticateAutomaticallyWithApp {
-  [self.testClient authenticateAutomaticallyWithAppID:1234 token:@"app-token"];
+  [self.testClient authenticateAutomaticallyAsAppWithID:1234 token:@"app-token"];
   
   NSDictionary *tokenDict = [self dummyAuthTokenDict];
   PKTRequest *authRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:1234 token:@"app-token"];
