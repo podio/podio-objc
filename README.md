@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/podio/podio-ios.png?branch=2.0-develop)](https://travis-ci.org/podio/podio-ios) [![Coverage Status](https://coveralls.io/repos/podio/podio-ios/badge.png?branch=2.0-develop)](https://coveralls.io/r/podio/podio-ios?branch=2.0-develop)
 
-PodioKit is a Objective-C client library for the Podio API. It provides an easy way to integrate your iOS and Mac apps with Podio.
+PodioKit is a Objective-C client library for the [Podio API](https://developers.podio.com/). It provides an easy way to integrate your iOS and Mac apps with Podio.
 
 PodioKit uses ARC and supports iOS 6.0 or above and Mac OS X 10.8 and above.
 
@@ -50,6 +50,7 @@ The Podio API supports multiple ways of authenticating a client. The native SDKs
 
 * Authenticate with user/password
 * Authenticate as an app
+* Automatically authenticate as an app
 
 We will describe when and how to use these methods below. For more details on authentication and the Podio API, more information can be found [here](https://developers.podio.com/authentication).
 
@@ -91,17 +92,77 @@ Here is an example of how to authenticate as an app:
 }];
 ```
 
+### Automatically authenticate as an app
+
+Instead of explicitly authenticating as an app as shown in the example above, there is also an option to automatically authenticate as an app. This means that instead of choosing yourself when to authenticate the app, you simply provide PodioKit with the app ID and token and it will automatatically handle the authentication step when you try to make an API operation. This is usually the prefereable option as it means you do not have to handle the authentication step yourself. To authenticate automatically, just make the following call after setting up your API key and secret:
+
+```objective-c
+[PodioKit authenticateAutomaticallyAsAppWithID:123456 token:@"my-app-token"];
+```
+
 ### Create your first item
 
-// TODO
+[Apps](https://developers.podio.com/doc/applications) and [items](https://developers.podio.com/doc/items) are the corner stones of the Podio platform. An app is a container of multiple items. You can think of an app as a set of fields of different types, like the columns in a spreadsheet. The items in that app are then equivalent to the rows in the spreadsheet, i.e. the entires with one or more values for each field.
+
+There are mupltiple types of fields in an app:
+
+* Title
+* Text
+* Number
+* Image
+* Date
+* Relation
+* Contact
+* Money
+* Progress
+* Location
+* Duration
+* Embed
+* Calculation (read-only)
+* Category
+
+To create an item, simply use the `PKTItem` class provided by PodioKit:
+
+```objective-c
+PKTItem *item = [PKTItem itemForAppWithID:1234];
+item[@"title"] = @"My first item";
+item[@"description"] = @"This is my first item of many.";
+
+[item saveWithCompletion:^(PKTResponse *response, NSError *error) {
+  if (!error) {
+    NSLog(@"Item saved with ID: %@", @(item.itemID));
+  } else {
+    // Handle error...
+  }
+}];
+```
 
 ### Upload a file
 
-// TODO
+You can easily upload a file to Podio to attach to an item or comment. To do so, just use the upload methods provided by the `PKTFile` class. Here is an example on how you can upload a UIImage instance as a JPEG to Podio on iOS:
+
+```objective-c
+UIImage *image = [UIImage imageNamed:@"some-image.jpg"];
+NSData *data = UIImageJPEGRepresentation(image, 0.8f);
+
+[PKTFile uploadWithData:data fileName:@"image.jpg" mimeType:@"image/jpeg" completion:^(PKTFile *file, NSError *error) {
+  if (!error) {
+    NSLog(@"File uploaded with ID: %@", @(file.fileID));
+  }
+}];
+```
 
 ### Add a comment
 
-// TODO
+Podio supports commenting on many things including items, tasks, status posts etc. To add a new comment, use the methods provided by the `PKTComment` class:
+
+```objective-c
+[PKTComment addCommentForObjectWithText:@"My insightful comment" referenceID:1234 referenceType:PKTReferenceTypeItem completion:^(PKTComment *comment, NSError *error) {
+  if (!error) {
+    NSLog(@"Comment posted with ID: %@", @(comment.commentID));
+  }
+}];
+```
 
 ## Dependencies
 
