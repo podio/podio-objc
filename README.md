@@ -4,11 +4,11 @@
 
 PodioKit is a Objective-C client library for the [Podio API](https://developers.podio.com/). It provides an easy way to integrate your iOS and Mac apps with Podio.
 
-PodioKit uses ARC and supports iOS 6.0 or above and Mac OS X 10.8 and above.
+PodioKit uses ARC and supports iOS 6.0 or above and Mac OS X 10.8 and above. It depends on AFNetworking 2.x for the HTTP communication with the Podio API.
 
 To use the latest stable version, use one of the official [releases](https://github.com/podio/podio-ios/releases).
 
-### Integrate with an existing project
+## Integrate with an existing project
 
 We encourage you to use [CocoaPods](http://cocoapods.org/) to integrate PodioKit with your existing project. CocoaPods is a dependency manager for Objective-C that makes dealing with dependencies a breeze.
 
@@ -42,7 +42,7 @@ Once you have a key and secret, you need to configure PodioKit to use it. To do 
 [PodioKit setupWithAPIKey:@"my-api-key" secret:@"my-secret"];
 ```
 	
-That's it! You are now good to start using PodioKit. Have a look at our [example guides](https://github.com/podio/dev-docs/tree/master/Guides/Mobile) for some examples of what you can use it for.
+That's it! You are now good to start using PodioKit.
 
 ### Authentication
 
@@ -92,7 +92,7 @@ Here is an example of how to authenticate as an app:
 }];
 ```
 
-### Automatically authenticate as an app
+#### Automatically authenticate as an app
 
 Instead of explicitly authenticating as an app as shown in the example above, there is also an option to automatically authenticate as an app. This means that instead of choosing yourself when to authenticate the app, you simply provide PodioKit with the app ID and token and it will automatatically handle the authentication step when you try to make an API operation. This is usually the prefereable option as it means you do not have to handle the authentication step yourself. To authenticate automatically, just make the following call after setting up your API key and secret:
 
@@ -185,7 +185,3 @@ Podio supports commenting on many things including items, tasks, status posts et
   }
 }];
 ```
-
-## Dependencies
-
-PodioKit depends on AFNetworking 2.x for the HTTP communication with the Podio API.
