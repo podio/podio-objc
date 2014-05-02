@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PKTRequestFileData.h"
 
 #define PKTRequestPath(fmt, ...) [NSString stringWithFormat:fmt, ##__VA_ARGS__]
 
@@ -19,7 +20,8 @@ typedef NS_ENUM(NSUInteger, PKTRequestMethod) {
 
 typedef NS_ENUM(NSUInteger, PKTRequestContentType) {
   PKTRequestContentTypeJSON = 0,
-  PKTRequestContentTypeFormURLEncoded
+  PKTRequestContentTypeFormURLEncoded,
+  PKTRequestContentTypeMultipart
 };
 
 @interface PKTRequest : NSObject
@@ -27,6 +29,7 @@ typedef NS_ENUM(NSUInteger, PKTRequestContentType) {
 @property (nonatomic, assign, readonly) PKTRequestMethod method;
 @property (nonatomic, copy, readonly) NSString *path;
 @property (nonatomic, copy, readonly) NSDictionary *parameters;
+@property (nonatomic, strong) PKTRequestFileData *fileData;
 @property (nonatomic, assign, readwrite) PKTRequestContentType contentType;
 
 + (instancetype)GETRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;

@@ -102,4 +102,13 @@
   expect(bodyString).to.equal(@"param1=someValue&param2=someOtherValue");
 }
 
+- (void)testMultipartRequest {
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/some/path" parameters:@{@"param1" : @"someValue"}];
+  request.contentType = PKTRequestContentTypeMultipart;
+  request.fileData = [PKTRequestFileData fileDataWithData:[NSData data] name:@"name" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+  
+  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+  expect(urlRequest.allHTTPHeaderFields[@"Content-Type"]).to.contain(@"multipart/form-data");
+}
+
 @end

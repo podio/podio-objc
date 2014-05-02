@@ -78,6 +78,27 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
   return request;
 }
 
+- (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(NSDictionary *)parameters fileData:(PKTRequestFileData *)fileData error:(NSError *__autoreleasing *)error {
+  NSMutableURLRequest *request = [super multipartFormRequestWithMethod:method URLString:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
+    if (fileData.data) {
+      [formData appendPartWithFileData:fileData.data
+                                  name:fileData.name
+                              fileName:fileData.fileName
+                              mimeType:fileData.mimeType];
+    } else if (fileData.fileURL) {
+      [formData appendPartWithFileURL:fileData.fileURL
+                                 name:fileData.name
+                             fileName:fileData.fileName
+                             mimeType:fileData.mimeType
+                                error:nil];
+    }
+  } error:error];
+  
+  [request setValue:[self generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
+  
+  return request;
+}
+
 - (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request relativeToURL:(NSURL *)baseURL {
   @synchronized(self) {
     NSParameterAssert(request);
@@ -86,14 +107,24 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
     NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:baseURL] absoluteString];
     NSString *method = [[self class] HTTPMethodForMethod:request.method];
     
-    // Use content type of request
-    PKTRequestContentType contentType = self.requestContentType;
-    self.requestContentType = request.contentType;
+    NSMutableURLRequest *urlRequest = nil;
     
-    NSMutableURLRequest *urlRequest = [self requestWithMethod:method URLString:urlString parameters:request.parameters error:nil];
-    
-    // Reset content type
-    self.requestContentType = contentType;
+    if (request.contentType == PKTRequestContentTypeMultipart) {
+      urlRequest = [self multipartFormRequestWithMethod:method
+                                              URLString:urlString
+                                             parameters:request.parameters
+                                               fileData:request.fileData
+                                                  error:nil];
+    } else {
+      // Use content type of request
+      PKTRequestContentType contentType = self.requestContentType;
+      self.requestContentType = request.contentType;
+      
+      urlRequest = [self requestWithMethod:method URLString:urlString parameters:request.parameters error:nil];
+      
+      // Reset content type
+      self.requestContentType = contentType;
+    }
     
     return urlRequest;
   }
