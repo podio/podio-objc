@@ -40,11 +40,6 @@
 
 #pragma mrk - API
 
-+ (void)uploadWithImage:(PKTImage *)image fileName:(NSString *)fileName completion:(void (^)(PKTFile *file, NSError *error))completion {
-  NSData *data = UIImageJPEGRepresentation(image, 0.8f);
-  [self uploadWithData:data fileName:fileName mimeType:@"image/jpeg" completion:completion];
-}
-
 + (void)uploadWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType completion:(void (^)(PKTFile *file, NSError *error))completion {
   PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:fileName mimeType:mimeType];
   

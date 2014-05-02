@@ -8,8 +8,6 @@
 
 #import "PKTObject.h"
 
-#define PKTImage UIImage
-
 @interface PKTFile : PKTObject
 
 @property (nonatomic, assign, readonly) NSUInteger fileID;
@@ -23,8 +21,6 @@
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 
 #pragma mrk - API
-
-+ (void)uploadWithImage:(PKTImage *)image fileName:(NSString *)fileName completion:(void (^)(PKTFile *file, NSError *error))completion;
 
 + (void)uploadWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType completion:(void (^)(PKTFile *file, NSError *error))completion;
 
