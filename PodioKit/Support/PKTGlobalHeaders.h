@@ -14,9 +14,11 @@
 #import "PKTAppAPI.h"
 #import "PKTItemAPI.h"
 #import "PKTFileAPI.h"
+#import "PKTCommentAPI.h"
 
 #import "PKTApp.h"
 #import "PKTAppField.h"
 #import "PKTItem.h"
 #import "PKTItemField.h"
 #import "PKTFile.h"
+#import "PKTComment.h"
