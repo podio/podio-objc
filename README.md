@@ -46,7 +46,7 @@ That's it! You are now good to start using PodioKit. Have a look at our [example
 
 ### Authentication
 
-The Podio API supports multiple ways of authenticating a client. The native SDKs provides two primary options:
+The Podio API supports multiple ways of authenticating a client. PodioKit provides three primary options:
 
 * Authenticate with user/password
 * Authenticate as an app
