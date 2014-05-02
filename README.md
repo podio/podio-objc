@@ -67,6 +67,7 @@ Here is how to authenticate as a user:
 		// Failed to authenticate, double check your credentials
 	}
 }];
+```
 
 #### Authenticate as an app
 
@@ -79,8 +80,6 @@ The major benefit of this method is that it requires no log in action for the us
 To authenticate as the app, you need to find the app ID and token for your app. When logged into Podio, navigate to the app and click the small wrench icon in the top right. Then click "Developer" in the drop down menu that appears. That should take you to a page showing your app's ID and token.
 
 Here is an example of how to authenticate as an app:
-
-**iOS**
 
 ```objective-c
 [PodioKit authenticateAsAppWithID:123456 token:@"my-app-token" completion:^(PKTResponse *response, NSError *error) {
