@@ -100,7 +100,7 @@ Instead of explicitly authenticating as an app as shown in the example above, th
 [PodioKit authenticateAutomaticallyAsAppWithID:123456 token:@"my-app-token"];
 ```
 
-### Create your first item
+### Fetching items
 
 [Apps](https://developers.podio.com/doc/applications) and [items](https://developers.podio.com/doc/items) are the corner stones of the Podio platform. An app is a container of multiple items. You can think of an app as a set of fields of different types, like the columns in a spreadsheet. The items in that app are then equivalent to the rows in the spreadsheet, i.e. the entires with one or more values for each field.
 
@@ -121,7 +121,29 @@ There are mupltiple types of fields in an app:
 * Calculation (read-only)
 * Category
 
-To create an item, simply use the `PKTItem` class provided by PodioKit:
+To create an item, use the class method on `PKTItem`:
+
+```objective-c
+[PKTItem fetchItemWithID:1234 completion:^(PKTItem *item, NSError *error) {
+  if (!error) {
+    NSLog(@"Fetched item with ID: %@", @(item.itemID));
+  }
+}];
+```
+
+To fetch a list of items in an app, there is another handy method on `PKTItem`:
+
+```objective-c
+[PKTItem fetchItemsInAppWithID:1234 offset:0 limit:30 completion:^(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error) {
+  if (!error) {
+    NSLog(@"Fetched %@ items out of a total of @%", @(filteredCount), @(totalCount));
+  }
+}];
+```
+
+### Create a new item
+
+To create an item, simply use the class methods on `PKTItem`:
 
 ```objective-c
 PKTItem *item = [PKTItem itemForAppWithID:1234];
