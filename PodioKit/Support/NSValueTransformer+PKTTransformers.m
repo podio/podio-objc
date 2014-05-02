@@ -29,7 +29,11 @@
 }
 
 + (NSValueTransformer *)pkt_URLTransformer {
-  return [[PKTURLValueTransformer alloc] init];
+  return [PKTURLValueTransformer new];
+}
+
++ (NSValueTransformer *)pkt_dateValueTransformer {
+  return [PKTDateValueTransformer new];
 }
 
 + (NSValueTransformer *)pkt_referenceTypeTransformer {

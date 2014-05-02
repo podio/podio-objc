@@ -13,6 +13,14 @@
 @interface PKTFile : PKTObject
 
 @property (nonatomic, assign, readonly) NSUInteger fileID;
+@property (nonatomic, assign, readonly) NSUInteger size;
+@property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *description;
+@property (nonatomic, copy, readonly) NSString *mimeType;
+@property (nonatomic, copy, readonly) NSString *hostedBy;
+@property (nonatomic, copy, readonly) NSURL *link;
+@property (nonatomic, copy, readonly) NSURL *thumbnailLink;
+@property (nonatomic, copy, readonly) NSDate *createdOn;
 
 #pragma mrk - API
 

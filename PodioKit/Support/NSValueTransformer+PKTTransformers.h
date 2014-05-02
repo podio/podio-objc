@@ -12,6 +12,7 @@
 #import "PKTModelValueTransformer.h"
 #import "PKTURLValueTransformer.h"
 #import "PKTReferenceTypeValueTransformer.h"
+#import "PKTDateValueTransformer.h"
 
 @interface NSValueTransformer (PKTTransformers)
 
@@ -21,6 +22,7 @@
 
 + (NSValueTransformer *)pkt_transformerWithDictionary:(NSDictionary *)dictionary;
 + (NSValueTransformer *)pkt_URLTransformer;
++ (NSValueTransformer *)pkt_dateValueTransformer;
 + (NSValueTransformer *)pkt_referenceTypeTransformer;
 + (NSValueTransformer *)pkt_appFieldTypeTransformer;
 

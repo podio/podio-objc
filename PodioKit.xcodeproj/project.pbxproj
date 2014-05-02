@@ -73,6 +73,13 @@
 		503959F71912D037004C298C /* PKTFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959F51912D037004C298C /* PKTFileAPI.m */; };
 		503959F81912D037004C298C /* PKTFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959F51912D037004C298C /* PKTFileAPI.m */; };
 		503959FA191369D4004C298C /* PKTFileAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959F9191369D4004C298C /* PKTFileAPITests.m */; };
+		503959FD19137585004C298C /* PKTDateValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 503959FB19137585004C298C /* PKTDateValueTransformer.h */; };
+		503959FE19137586004C298C /* PKTDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959FC19137585004C298C /* PKTDateValueTransformer.m */; };
+		503959FF19137586004C298C /* PKTDateValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959FC19137585004C298C /* PKTDateValueTransformer.m */; };
+		50395A0319137762004C298C /* NSDateFormatter+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 50395A0119137762004C298C /* NSDateFormatter+PKTAdditions.h */; };
+		50395A0419137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50395A0219137762004C298C /* NSDateFormatter+PKTAdditions.m */; };
+		50395A0519137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50395A0219137762004C298C /* NSDateFormatter+PKTAdditions.m */; };
+		50395A081913F408004C298C /* PKTDateValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50395A071913F408004C298C /* PKTDateValueTransformerTests.m */; };
 		5039F63C1907052200A8A8F0 /* NSJSONSerialization+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5039F63B1907052200A8A8F0 /* NSJSONSerialization+PKTAdditions.m */; };
 		5039F64519070A1200A8A8F0 /* PKTComment.h in Headers */ = {isa = PBXBuildFile; fileRef = 5039F64319070A1200A8A8F0 /* PKTComment.h */; };
 		5039F64619070A1200A8A8F0 /* PKTComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 5039F64419070A1200A8A8F0 /* PKTComment.m */; };
@@ -239,6 +246,11 @@
 		503959F41912D037004C298C /* PKTFileAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTFileAPI.h; sourceTree = "<group>"; };
 		503959F51912D037004C298C /* PKTFileAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTFileAPI.m; sourceTree = "<group>"; };
 		503959F9191369D4004C298C /* PKTFileAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTFileAPITests.m; sourceTree = "<group>"; };
+		503959FB19137585004C298C /* PKTDateValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDateValueTransformer.h; sourceTree = "<group>"; };
+		503959FC19137585004C298C /* PKTDateValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDateValueTransformer.m; sourceTree = "<group>"; };
+		50395A0119137762004C298C /* NSDateFormatter+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+PKTAdditions.h"; sourceTree = "<group>"; };
+		50395A0219137762004C298C /* NSDateFormatter+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+PKTAdditions.m"; sourceTree = "<group>"; };
+		50395A071913F408004C298C /* PKTDateValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDateValueTransformerTests.m; sourceTree = "<group>"; };
 		5039F63A1907052200A8A8F0 /* NSJSONSerialization+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+PKTAdditions.h"; sourceTree = "<group>"; };
 		5039F63B1907052200A8A8F0 /* NSJSONSerialization+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+PKTAdditions.m"; sourceTree = "<group>"; };
 		5039F64319070A1200A8A8F0 /* PKTComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTComment.h; sourceTree = "<group>"; };
@@ -412,6 +424,15 @@
 			name = NSArray;
 			sourceTree = "<group>";
 		};
+		50395A0019137733004C298C /* NSDateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				50395A0119137762004C298C /* NSDateFormatter+PKTAdditions.h */,
+				50395A0219137762004C298C /* NSDateFormatter+PKTAdditions.m */,
+			);
+			name = NSDateFormatter;
+			sourceTree = "<group>";
+		};
 		5039F6401907087F00A8A8F0 /* NSJSONSerialization */ = {
 			isa = PBXGroup;
 			children = (
@@ -542,6 +563,8 @@
 				5039F64F190712DC00A8A8F0 /* PKTReferenceTypeValueTransformer.m */,
 				5039F6521907136600A8A8F0 /* PKTURLValueTransformer.h */,
 				5039F6531907136600A8A8F0 /* PKTURLValueTransformer.m */,
+				503959FB19137585004C298C /* PKTDateValueTransformer.h */,
+				503959FC19137585004C298C /* PKTDateValueTransformer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -555,6 +578,7 @@
 				5039F6561907146100A8A8F0 /* PKTURLValueTransformerTests.m */,
 				5039F65C1907152700A8A8F0 /* PKTReferenceTypeValueTransformerTests.m */,
 				5039F65E190715DD00A8A8F0 /* PKTDictionaryMappingValueTransformerTests.m */,
+				50395A071913F408004C298C /* PKTDateValueTransformerTests.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -733,6 +757,7 @@
 		E49B6F8918901C9B0046192A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				50395A0019137733004C298C /* NSDateFormatter */,
 				503959E919128FB1004C298C /* NSArray */,
 				503B3AC219050E91002BB703 /* NSURLRequest */,
 				5082427518FD76AE009A1580 /* NSValueTransformer */,
@@ -800,6 +825,7 @@
 				501D6048190E2B6A004D94C4 /* PKTItemFieldValue.h in Headers */,
 				5039F6541907136600A8A8F0 /* PKTURLValueTransformer.h in Headers */,
 				501D6079190EF02D004D94C4 /* PKTCategoryItemFieldValue.h in Headers */,
+				50395A0319137762004C298C /* NSDateFormatter+PKTAdditions.h in Headers */,
 				5039F64519070A1200A8A8F0 /* PKTComment.h in Headers */,
 				50FB3D6118EA0CDD0021DB48 /* PKTItem.h in Headers */,
 				E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */,
@@ -831,6 +857,7 @@
 				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50E6C80D190D5A6600F309B4 /* PKTAppField.h in Headers */,
 				50E6C809190D4EC200F309B4 /* PKTFile.h in Headers */,
+				503959FD19137585004C298C /* PKTDateValueTransformer.h in Headers */,
 				50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */,
 				50E6C805190D4EA900F309B4 /* PKTItemField.h in Headers */,
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
@@ -1036,9 +1063,11 @@
 				50E6C806190D4EA900F309B4 /* PKTItemField.m in Sources */,
 				50064DEF1896FE8B00EF1E97 /* PKTClient.m in Sources */,
 				501D6049190E2B6A004D94C4 /* PKTItemFieldValue.m in Sources */,
+				503959FE19137586004C298C /* PKTDateValueTransformer.m in Sources */,
 				501D607A190EF02D004D94C4 /* PKTCategoryItemFieldValue.m in Sources */,
 				E49B6F8718901ACF0046192A /* PKTRequestSerializer.m in Sources */,
 				50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */,
+				50395A0419137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				5082425218FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1059,6 +1088,7 @@
 				50B49F1A18EE094A00B7EDF5 /* PKTAppAPITests.m in Sources */,
 				5082424E18FC7B41009A1580 /* PKTModel.m in Sources */,
 				5039F659190714CD00A8A8F0 /* PKTReferenceTypeValueTransformer.m in Sources */,
+				50395A0519137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				503959FA191369D4004C298C /* PKTFileAPITests.m in Sources */,
 				50B49F1C18EE095500B7EDF5 /* PKTAppTests.m in Sources */,
 				50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */,
@@ -1075,6 +1105,7 @@
 				501D608C190EF2EB004D94C4 /* PKTCategoryItemFieldValue.m in Sources */,
 				501D6086190EF2EB004D94C4 /* PKTProfile.m in Sources */,
 				507CA7E019054FA0000D9F6E /* PodioKitTests.m in Sources */,
+				50395A081913F408004C298C /* PKTDateValueTransformerTests.m in Sources */,
 				501D608B190EF2EB004D94C4 /* PKTCalculationItemFieldValue.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */,
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
@@ -1100,6 +1131,7 @@
 				5082426C18FD5E2F009A1580 /* PKTModelValueTransformerTests.m in Sources */,
 				5014C57D188817430002C68D /* PKTHTTPClient.m in Sources */,
 				E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */,
+				503959FF19137586004C298C /* PKTDateValueTransformer.m in Sources */,
 				5082428118FECCEC009A1580 /* PKTHTTPStubs.m in Sources */,
 				50B49F1118EE08F800B7EDF5 /* PKTApp.m in Sources */,
 				E4BABDDD1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,

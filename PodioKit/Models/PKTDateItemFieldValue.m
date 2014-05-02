@@ -7,6 +7,7 @@
 //
 
 #import "PKTDateItemFieldValue.h"
+#import "NSDateFormatter+PKTAdditions.h"
 
 static NSString * const kStartDateKey = @"start";
 static NSString * const kEndDateKey = @"end";
@@ -19,10 +20,7 @@ static NSDateFormatter *sFormatter = nil;
   if (self == [PKTDateItemFieldValue class]) {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-      sFormatter = [[NSDateFormatter alloc] init];
-      sFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-      sFormatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-      sFormatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+      sFormatter = [NSDateFormatter pkt_UTCDateFormatter];
     });
   }
 }

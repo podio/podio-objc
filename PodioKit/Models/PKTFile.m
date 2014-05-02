@@ -9,6 +9,7 @@
 #import "PKTFile.h"
 #import "PKTFileAPI.h"
 #import "PKTResponse.h"
+#import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTFile
 
@@ -16,8 +17,25 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"fileID" : @"file_id"
+           @"fileID" : @"file_id",
+           @"mimeType" : @"mimetype",
+           @"hostedBy" : @"hosted_by",
+           @"link" : @"link",
+           @"thumbnailLink" : @"thumbnail_link",
+           @"createdOn" : @"created_on"
            };
+}
+
++ (NSValueTransformer *)linkValueTransformer {
+  return [NSValueTransformer pkt_URLTransformer];
+}
+
++ (NSValueTransformer *)thumbnailLinkValueTransformer {
+  return [NSValueTransformer pkt_URLTransformer];
+}
+
++ (NSValueTransformer *)createdOnValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
 }
 
 #pragma mrk - API
