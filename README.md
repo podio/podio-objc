@@ -184,6 +184,19 @@ NSData *data = UIImageJPEGRepresentation(image, 0.8f);
 }];
 ```
 
+To add a file to an item, use the `addFile:` method on `PKTItem`:
+
+```objective-c
+PKTItem *item = ...
+PKTFile *file = ...
+
+[item addFile:file];
+
+[item saveWithCompletion:^(PKTResponse *response, NSError *error){
+  // Item saved with the file added
+}];
+```
+
 ### Add a comment
 
 Podio supports commenting on many things including items, tasks, status posts etc. To add a new comment, use the methods provided by the `PKTComment` class:
