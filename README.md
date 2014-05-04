@@ -52,7 +52,17 @@ The Podio API supports multiple ways of authenticating a client. PodioKit provid
 * Authenticate as an app
 * Automatically authenticate as an app
 
-We will describe when and how to use these methods below. For more details on authentication and the Podio API, more information can be found [here](https://developers.podio.com/authentication).
+Each of them are described below. The client is considered to be authenticated once it has obtained a valid OAuth2 token. You can easily check if the client is authenticated:
+
+```objective-c
+if ([PodioKit isAuthenticated]) {
+  // The client is authenticated
+}
+```
+
+Whenver the the authentication state changes, the `PKTClientAuthenticationStateDidChangeNotification` notification is posted. This can be useful to observe for changing the state of your UI or show a login screen.
+
+For more details about authentication and the Podio API, more information can be found [here](https://developers.podio.com/authentication).
 
 #### Authenticate as a user
 
