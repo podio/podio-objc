@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "PKTHTTPClient.h"
 
+extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
+
 @class PKTOAuth2Token;
 
 @interface PKTClient : NSObject

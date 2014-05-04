@@ -27,4 +27,8 @@
   [[PKTClient sharedClient] authenticateAutomaticallyAsAppWithID:appID token:appToken];
 }
 
++ (BOOL)isAuthenticated {
+  return [[PKTClient sharedClient] isAuthenticated];
+}
+
 @end

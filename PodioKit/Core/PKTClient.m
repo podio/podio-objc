@@ -13,6 +13,8 @@
 #import "PKTMacros.h"
 #import "NSMutableURLRequest+PKTHeaders.h"
 
+NSString * const PKTClientAuthenticationStateDidChangeNotification = @"PKTClientAuthenticationStateDidChangeNotification";
+
 static void * kIsAuthenticatedContext = &kIsAuthenticatedContext;
 static NSUInteger const kTokenExpirationLimit = 10 * 60; // 10 minutes
 
@@ -234,6 +236,8 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 - (void)authenticationStateDidChange:(BOOL)isAuthenticated {
   [self updateAuthorizationHeader:isAuthenticated];
+  
+  [[NSNotificationCenter defaultCenter] postNotificationName:PKTClientAuthenticationStateDidChangeNotification object:self];
 }
 
 - (void)updateAuthorizationHeader:(BOOL)isAuthenticated {
