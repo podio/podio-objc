@@ -39,7 +39,7 @@
   }
   
   if ([files count] > 0) {
-    parameters[@"files"] = files;
+    parameters[@"file_ids"] = files;
   }
   
   if ([tags count] > 0) {
@@ -60,7 +60,7 @@
   }
   
   if ([files count] > 0) {
-    parameters[@"files"] = files;
+    parameters[@"file_ids"] = files;
   }
   
   if ([tags count] > 0) {
