@@ -27,7 +27,7 @@
   
   expect(request.path).to.equal(@"/item/app/13242/");
   expect(request.parameters[@"fields"]).to.equal([fields copy]);
-  expect(request.parameters[@"files"]).to.equal(files);
+  expect(request.parameters[@"file_ids"]).to.equal(files);
   expect(request.parameters[@"tags"]).to.equal(tags);
 }
 
@@ -43,7 +43,7 @@
   
   expect(request.path).to.equal(@"/item/333");
   expect(request.parameters[@"fields"]).to.equal([fields copy]);
-  expect(request.parameters[@"files"]).to.equal(files);
+  expect(request.parameters[@"file_ids"]).to.equal(files);
   expect(request.parameters[@"tags"]).to.equal(tags);
 }
 
