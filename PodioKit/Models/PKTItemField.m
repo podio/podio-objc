@@ -71,7 +71,7 @@
   PKTAppFieldType type = [[[NSValueTransformer pkt_appFieldTypeTransformer] transformedValue:typeString] unsignedIntegerValue];
   
   return [NSValueTransformer pkt_transformerWithBlock:^id(NSArray *values) {
-    return [self mutableFieldValuesForValues:values fieldType:type];
+    return [self mutableFieldValuesForValueDictionaries:values fieldType:type];
   }];
 }
 
