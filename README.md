@@ -1,6 +1,6 @@
 # PodioKit 
 
-[![Build Status](https://travis-ci.org/podio/podio-objc.png?branch=2.0-develop)](https://travis-ci.org/podio/podio-objc) [![Coverage Status](https://coveralls.io/repos/podio/podio-objc/badge.png?branch=2.0-develop)](https://coveralls.io/r/podio/podio-objc?branch=2.0-develop)
+[![Build Status](https://travis-ci.org/podio/podio-objc.png?branch=2.0-develop)](https://travis-ci.org/podio/podio-objc)
 
 PodioKit is a Objective-C client library for the [Podio API](https://developers.podio.com/). It provides an easy way to integrate your iOS and Mac apps with Podio.
 
