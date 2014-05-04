@@ -6,7 +6,7 @@ gemfile:
 cache: bundler
 branches:
   only:
-    - 2.0-develop
+    - master
 before_script:
   - export LANG=en_US.UTF-8
   - sudo easy_install pyyaml
