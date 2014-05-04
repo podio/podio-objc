@@ -1,0 +1,93 @@
+#!/usr/bin/env ruby
+
+require 'etc'
+require 'fileutils'
+require 'getopt/long'
+require 'find'
+require_relative 'string_ext'
+
+DEFAULT_DERIVED_DATA = "#{Etc.getpwuid.dir}/Library/Developer/Xcode/DerivedData/"
+DEFAULT_OUTPUT = "Coverage"
+
+opts = Getopt::Long.getopts(
+  ['--derived-data', Getopt::OPTIONAL],
+  ['--out', Getopt::OPTIONAL],
+  ['--publish', Getopt::OPTIONAL]
+)
+
+derived_data = opts['derived-data'] || DEFAULT_DERIVED_DATA
+output = opts['out'] || DEFAULT_OUTPUT
+publish = opts['publish'] ? opts['publish'].to_bool : false
+reports_dir = "#{output}/reports"
+html_dir = "#{output}/html"
+gcov_dir = "#{output}/gcov"
+
+def copy_coverage_files(search_dir, reports_dir)
+  FileUtils.remove_dir(reports_dir, true) if Dir.exists?(reports_dir)
+  FileUtils.mkdir_p(reports_dir)
+
+  puts "=> Looking for coverage reports in #{search_dir}"
+
+  gcda_files = Dir["#{search_dir}/**/*.gcda"];
+  gcno_files = Dir["#{search_dir}/**/*.gcno"];
+  files = gcda_files.concat(gcno_files)
+
+  files.each do |path|
+    name = File.basename(path)
+  
+    # Ignore test target classes
+    next if name.include?('Test')
+  
+    new_path = File.join(reports_dir, name)
+    puts "Copying report #{name}..."
+  
+    FileUtils.copy(path, new_path)
+  end
+  
+  full_reports_dir = File.expand_path(reports_dir)
+  puts "=> Successfully copied #{files.size} coverage report files from last build to #{full_reports_dir}."
+end
+
+def generate_html_report(reports_dir, html_dir)
+  puts "=> Generating HTML coverage report..."
+  
+  FileUtils.remove_dir(html_dir, true) if Dir.exists?(html_dir)
+  FileUtils.mkdir_p html_dir
+  
+  html_path = "#{html_dir}/index.html"
+
+  script_dir = File.expand_path(File.dirname(__FILE__))
+  system "#{script_dir}/gcovr -r . --object-directory=#{reports_dir} --html -o #{html_path}"
+
+  html_full_path = File.expand_path(html_path)
+  puts "=> HTML report successfully generated at #{html_full_path}."
+end
+
+def publish_to_coveralls(reports_dir, gcov_dir)
+  puts "=> Publishing coverage reports to coveralls.io..."
+  
+  FileUtils.remove_dir(gcov_dir, true) if Dir.exists?(gcov_dir)
+  FileUtils.mkdir_p gcov_dir
+  
+  Find.find(reports_dir) do |gcda_file|
+    if gcda_file.match(/\.gcda\Z/)
+        gcda_location = File.dirname(gcda_file)
+        system "gcov '#{gcda_file}' -o '#{gcda_location}'"
+      
+        Dir.glob("*.gcov") do |gcov_file|
+          FileUtils.mv(gcov_file, gcov_dir)
+        end
+     end
+  end
+
+  system "coveralls --no-gcov --verbose --root '#{gcov_dir}'"
+  
+  puts "=> Successfully published coverage report files to coveralls.io."
+end
+
+copy_coverage_files(derived_data, reports_dir)
+generate_html_report(reports_dir, html_dir)
+
+if (publish)
+  publish_to_coveralls(reports_dir, gcov_dir)
+end

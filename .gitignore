@@ -35,3 +35,6 @@ docset-installed.txt
 
 # CocoaPods
 Pods
+
+# Test coverage
+Coverage
