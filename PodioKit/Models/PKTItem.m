@@ -21,6 +21,7 @@
 @property (nonatomic, copy) NSString *title;
 @property (nonatomic, strong) NSMutableArray *mutFields;
 @property (nonatomic, strong, readonly) NSMutableDictionary *unsavedFields;
+@property (nonatomic, strong, readonly) NSMutableArray *mutFiles;
 @property (nonatomic, copy, readonly) NSArray *fileIDs;
 
 @end
@@ -28,6 +29,7 @@
 @implementation PKTItem
 
 @synthesize mutFields = _mutFields;
+@synthesize mutFiles = _mutFiles;
 @synthesize unsavedFields = _unsavedFields;
 
 - (instancetype)initWithAppID:(NSUInteger)appID {
@@ -47,6 +49,10 @@
 
 - (NSArray *)fields {
   return [self.mutFields copy];
+}
+
+- (NSArray *)files {
+  return [self.mutFiles copy];
 }
 
 - (NSArray *)fileIDs {
@@ -69,6 +75,14 @@
   return _mutFields;
 }
 
+- (NSMutableArray *)mutFiles {
+  if (!_mutFiles) {
+    _mutFiles = [NSMutableArray new];
+  }
+  
+  return _mutFiles;
+}
+
 #pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
@@ -76,21 +90,25 @@
     @"itemID": @"item_id",
     @"appID": @"app.app_id",
     @"mutFields": @"fields",
-    @"files": @"files",
+    @"mutFiles": @"files",
     @"comments": @"comments"
   };
 }
 
 + (NSValueTransformer *)mutFieldsValueTransformer {
   return [NSValueTransformer pkt_transformerWithBlock:^id(NSArray *values) {
-    return [values pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+    return [[values pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
       return [[PKTItemField alloc] initWithDictionary:itemDict];
-    }];
+    }] mutableCopy];
   }];
 }
 
-+ (NSValueTransformer *)filesValueTransformer {
-  return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
++ (NSValueTransformer *)mutFilesValueTransformer {
+  return [NSValueTransformer pkt_transformerWithBlock:^id(NSArray *values) {
+    return [[values pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+      return [[PKTFile alloc] initWithDictionary:itemDict];
+    }] mutableCopy];
+  }];
 }
 
 + (NSValueTransformer *)commentsValueTransformer {
@@ -266,6 +284,21 @@
     [field removeValueAtIndex:index];
   } else {
     [self removeValueAtIndex:index forUnsavedFieldWithExternalID:externalID];
+  }
+}
+
+- (void)addFile:(PKTFile *)file {
+  NSParameterAssert(file);
+  [self.mutFiles addObject:file];
+}
+
+- (void)removeFileWithID:(NSUInteger)fileID {
+  PKTFile *file = [self.mutFiles pkt_firstObjectPassingTest:^BOOL(PKTFile *file) {
+    return file.fileID == fileID;
+  }];
+  
+  if (file) {
+    [self.mutFiles removeObject:file];
   }
 }
 

@@ -8,6 +8,8 @@
 
 #import "PKTObject.h"
 
+@class PKTFile;
+
 @interface PKTItem : PKTObject
 
 @property (nonatomic, assign, readonly) NSUInteger itemID;
@@ -41,6 +43,9 @@
 
 - (void)removeValue:(id)value forField:(NSString *)externalID;
 - (void)removeValueAtIndex:(NSUInteger)index forField:(NSString *)externalID;
+
+- (void)addFile:(PKTFile *)file;
+- (void)removeFileWithID:(NSUInteger)filefileID;
 
 #pragma mark - Subscripting for item fields
 

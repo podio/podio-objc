@@ -82,15 +82,15 @@
     
     id value = [dictionary valueForKeyPath:keyPath];
     if (value) {
-      // Is there is a value transformer for this property?
-      NSValueTransformer *transformer = [[self class] valueTransformerForKey:propertyName dictionary:dictionary];
-      if (transformer)  {
-        value = [transformer transformedValue:value];
-      }
-      
       if (value == NSNull.null) {
         // NSNull should be treated as nil
         value = nil;
+      } else {
+        // Is there is a value transformer for this property?
+        NSValueTransformer *transformer = [[self class] valueTransformerForKey:propertyName dictionary:dictionary];
+        if (transformer)  {
+          value = [transformer transformedValue:value];
+        }
       }
       
       [self setValue:value forKey:propertyName];
