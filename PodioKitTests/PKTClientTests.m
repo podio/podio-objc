@@ -314,4 +314,10 @@
   return token;
 }
 
+- (void)testAuthenticationStateNotificationSentOnTokenChange {
+  expect(^{
+    self.testClient.oauthToken = [self dummyAuthToken];
+  }).to.notify(PKTClientAuthenticationStateDidChangeNotification);
+}
+
 @end
