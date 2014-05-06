@@ -8,14 +8,8 @@
 
 #import "PKObjectData.h"
 
-@interface PKItemFieldValueCalculationData : PKObjectData {
+@interface PKItemFieldValueCalculationData : PKObjectData
 
-@private
-  NSNumber *value_;
-  NSString *unit_;
-}
-
-@property (nonatomic, copy) NSNumber *value;
-@property (nonatomic, copy) NSString *unit;
+@property (nonatomic, copy, readonly) NSDictionary *valueDictionary;
 
 @end

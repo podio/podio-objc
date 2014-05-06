@@ -7,30 +7,29 @@
 //
 
 #import "PKItemFieldValueCalculationData.h"
-#import "NSNumber+PKFormat.h"
 
 
-static NSString * const PKItemFieldValueCalculationDataValueKey = @"Value";
-static NSString * const PKItemFieldValueCalculationDataUnitKey = @"Unit";
+static NSString * const PKItemFieldValueCalculationDataValueDictionaryKey = @"ValueDictionary";
+
+@interface PKItemFieldValueCalculationData ()
+
+@property (nonatomic, copy) NSDictionary *valueDictionary;
+
+@end
 
 @implementation PKItemFieldValueCalculationData
-
-@synthesize value = value_;
-@synthesize unit = unit_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    value_ = [[aDecoder decodeObjectForKey:PKItemFieldValueCalculationDataValueKey] copy];
-    unit_ = [[aDecoder decodeObjectForKey:PKItemFieldValueCalculationDataUnitKey] copy];
+    _valueDictionary = [[aDecoder decodeObjectForKey:PKItemFieldValueCalculationDataValueDictionaryKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:value_ forKey:PKItemFieldValueCalculationDataValueKey];
-  [aCoder encodeObject:unit_ forKey:PKItemFieldValueCalculationDataUnitKey];
+  [aCoder encodeObject:_valueDictionary forKey:PKItemFieldValueCalculationDataValueDictionaryKey];
 }
 
 
@@ -39,7 +38,7 @@ static NSString * const PKItemFieldValueCalculationDataUnitKey = @"Unit";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueCalculationData *data = [self data];
   
-  data.value = [NSNumber pk_numberFromStringWithUSLocale:[dict pk_objectForKey:@"value"]];
+  data.valueDictionary = dict;
 
   return data;
 }
