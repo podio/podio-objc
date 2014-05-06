@@ -1,0 +1,9 @@
+language: objective-c
+rvm:
+  - 2.0.0
+gemfile:
+  - Gemfile
+cache: bundler
+branches:
+  only:
+    - master
