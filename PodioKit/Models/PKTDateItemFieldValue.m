@@ -7,37 +7,26 @@
 //
 
 #import "PKTDateItemFieldValue.h"
-#import "NSDateFormatter+PKTAdditions.h"
+#import "NSDate+PKTAdditions.h"
 
 static NSString * const kStartDateKey = @"start";
 static NSString * const kEndDateKey = @"end";
 
-static NSDateFormatter *sFormatter = nil;
-
 @implementation PKTDateItemFieldValue
-
-+ (void)initialize {
-  if (self == [PKTDateItemFieldValue class]) {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      sFormatter = [NSDateFormatter pkt_UTCDateFormatter];
-    });
-  }
-}
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
   self = [super init];
   if (!self) return nil;
   
-  self.startDate = [[self class] dateFromString:valueDictionary[kStartDateKey]];
-  self.endDate = [[self class] dateFromString:valueDictionary[kEndDateKey]];
+  self.startDate = [NSDate pkt_dateFromUTCDateTimeString:valueDictionary[kStartDateKey]];
+  self.endDate = [NSDate pkt_dateFromUTCDateTimeString:valueDictionary[kEndDateKey]];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{kStartDateKey : [[self class] stringFromDate:self.startDate],
-           kEndDateKey : [[self class] stringFromDate:self.endDate]};
+  return @{kStartDateKey : [self.startDate pkt_UTCDateTimeString],
+           kEndDateKey : [self.endDate pkt_UTCDateTimeString]};
 }
 
 - (void)setUnboxedValue:(id)unboxedValue {
@@ -54,16 +43,6 @@ static NSDateFormatter *sFormatter = nil;
   return [value isKindOfClass:[NSDictionary class]] &&
   [value[kStartDateKey] isKindOfClass:[NSDate class]] &&
   [value[kEndDateKey] isKindOfClass:[NSDate class]];
-}
-
-#pragma mark - Private
-
-+ (NSDate *)dateFromString:(NSString *)dateString {
-  return [sFormatter dateFromString:dateString];
-}
-
-+ (NSString *)stringFromDate:(NSDate *)date {
-  return [sFormatter stringFromDate:date];
 }
 
 @end

@@ -13,6 +13,15 @@
 		50064DEF1896FE8B00EF1E97 /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTClient.m */; };
 		50064DF01896FE8B00EF1E97 /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTClient.m */; };
 		50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DF11896FE9C00EF1E97 /* PKTClientTests.m */; };
+		5006B076191C1E3B006FF388 /* PKTCalendarEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006B074191C1E3B006FF388 /* PKTCalendarEvent.h */; };
+		5006B077191C1E3B006FF388 /* PKTCalendarEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B075191C1E3B006FF388 /* PKTCalendarEvent.m */; };
+		5006B07A191C1F3B006FF388 /* PKTCalendarAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006B078191C1F3B006FF388 /* PKTCalendarAPI.h */; };
+		5006B07B191C1F3B006FF388 /* PKTCalendarAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B079191C1F3B006FF388 /* PKTCalendarAPI.m */; };
+		5006B07F191C200B006FF388 /* NSDate+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006B07D191C200B006FF388 /* NSDate+PKTAdditions.h */; };
+		5006B080191C200B006FF388 /* NSDate+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B07E191C200B006FF388 /* NSDate+PKTAdditions.m */; };
+		5006B081191C245C006FF388 /* NSDate+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B07E191C200B006FF388 /* NSDate+PKTAdditions.m */; };
+		5006B082191C245F006FF388 /* PKTCalendarEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B075191C1E3B006FF388 /* PKTCalendarEvent.m */; };
+		5006B083191C2463006FF388 /* PKTCalendarAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B079191C1F3B006FF388 /* PKTCalendarAPI.m */; };
 		5014C55F188809390002C68D /* PKTHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C55D188809390002C68D /* PKTHTTPClient.h */; };
 		5014C56918880B050002C68D /* PKTRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C56718880B050002C68D /* PKTRequest.h */; };
 		5014C56E18880B250002C68D /* PKTResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C56C18880B250002C68D /* PKTResponse.h */; };
@@ -207,6 +216,12 @@
 		50064DEC1896FE8B00EF1E97 /* PKTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTClient.h; sourceTree = "<group>"; };
 		50064DED1896FE8B00EF1E97 /* PKTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClient.m; sourceTree = "<group>"; };
 		50064DF11896FE9C00EF1E97 /* PKTClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClientTests.m; sourceTree = "<group>"; };
+		5006B074191C1E3B006FF388 /* PKTCalendarEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCalendarEvent.h; sourceTree = "<group>"; };
+		5006B075191C1E3B006FF388 /* PKTCalendarEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTCalendarEvent.m; sourceTree = "<group>"; };
+		5006B078191C1F3B006FF388 /* PKTCalendarAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCalendarAPI.h; sourceTree = "<group>"; };
+		5006B079191C1F3B006FF388 /* PKTCalendarAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTCalendarAPI.m; sourceTree = "<group>"; };
+		5006B07D191C200B006FF388 /* NSDate+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+PKTAdditions.h"; sourceTree = "<group>"; };
+		5006B07E191C200B006FF388 /* NSDate+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+PKTAdditions.m"; sourceTree = "<group>"; };
 		5014C55B188806E50002C68D /* PKTHTTPClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPClientTests.m; sourceTree = "<group>"; };
 		5014C55D188809390002C68D /* PKTHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTHTTPClient.h; sourceTree = "<group>"; };
 		5014C55E188809390002C68D /* PKTHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPClient.m; sourceTree = "<group>"; };
@@ -397,6 +412,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5006B07C191C1FFB006FF388 /* NSDate */ = {
+			isa = PBXGroup;
+			children = (
+				5006B07D191C200B006FF388 /* NSDate+PKTAdditions.h */,
+				5006B07E191C200B006FF388 /* NSDate+PKTAdditions.m */,
+			);
+			name = NSDate;
+			sourceTree = "<group>";
+		};
 		501D6053190E34BF004D94C4 /* Item Field Values */ = {
 			isa = PBXGroup;
 			children = (
@@ -623,6 +647,8 @@
 				50B49F0E18EE08F800B7EDF5 /* PKTApp.m */,
 				50FB3D5F18EA0CDD0021DB48 /* PKTItem.h */,
 				50FB3D6018EA0CDD0021DB48 /* PKTItem.m */,
+				5006B074191C1E3B006FF388 /* PKTCalendarEvent.h */,
+				5006B075191C1E3B006FF388 /* PKTCalendarEvent.m */,
 				50E6C80B190D5A6600F309B4 /* PKTAppField.h */,
 				50E6C80C190D5A6600F309B4 /* PKTAppField.m */,
 				50E6C803190D4EA900F309B4 /* PKTItemField.h */,
@@ -764,6 +790,7 @@
 		E49B6F8918901C9B0046192A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				5006B07C191C1FFB006FF388 /* NSDate */,
 				50395A0019137733004C298C /* NSDateFormatter */,
 				503959E919128FB1004C298C /* NSArray */,
 				503B3AC219050E91002BB703 /* NSURLRequest */,
@@ -800,6 +827,8 @@
 				503959F51912D037004C298C /* PKTFileAPI.m */,
 				50395A091914198B004C298C /* PKTCommentAPI.h */,
 				50395A0A1914198B004C298C /* PKTCommentAPI.m */,
+				5006B078191C1F3B006FF388 /* PKTCalendarAPI.h */,
+				5006B079191C1F3B006FF388 /* PKTCalendarAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -861,12 +890,15 @@
 				5014C56E18880B250002C68D /* PKTResponse.h in Headers */,
 				50B49F1418EE092100B7EDF5 /* PKTAppAPI.h in Headers */,
 				5039F650190712DC00A8A8F0 /* PKTReferenceTypeValueTransformer.h in Headers */,
+				5006B076191C1E3B006FF388 /* PKTCalendarEvent.h in Headers */,
 				5082426218FC8A84009A1580 /* NSObject+PKTIntrospection.h in Headers */,
+				5006B07A191C1F3B006FF388 /* PKTCalendarAPI.h in Headers */,
 				50B49F0F18EE08F800B7EDF5 /* PKTApp.h in Headers */,
 				501D6071190EEBDE004D94C4 /* PKTProfileItemFieldValue.h in Headers */,
 				501D6056190E3E64004D94C4 /* PKTMoneyItemFieldValue.h in Headers */,
 				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50E6C80D190D5A6600F309B4 /* PKTAppField.h in Headers */,
+				5006B07F191C200B006FF388 /* NSDate+PKTAdditions.h in Headers */,
 				50E6C809190D4EC200F309B4 /* PKTFile.h in Headers */,
 				503959FD19137585004C298C /* PKTDateValueTransformer.h in Headers */,
 				50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */,
@@ -1039,12 +1071,14 @@
 				501D607E190EF21F004D94C4 /* PKTEmbed.m in Sources */,
 				501D606E190EEB9E004D94C4 /* PKTProfile.m in Sources */,
 				50B49F1018EE08F800B7EDF5 /* PKTApp.m in Sources */,
+				5006B080191C200B006FF388 /* NSDate+PKTAdditions.m in Sources */,
 				503959F21912CC47004C298C /* PKTRequestFileData.m in Sources */,
 				E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				5039F6551907136600A8A8F0 /* PKTURLValueTransformer.m in Sources */,
 				E4BABDCC1897F9DA00E9149A /* PKTOAuth2Token.m in Sources */,
 				E4BABDD7189807DA00E9149A /* PKTBaseAPI.m in Sources */,
 				5014C579188816F10002C68D /* PKTRequest.m in Sources */,
+				5006B077191C1E3B006FF388 /* PKTCalendarEvent.m in Sources */,
 				503959ED19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */,
 				50E6C80A190D4EC200F309B4 /* PKTFile.m in Sources */,
 				50E6C80E190D5A6600F309B4 /* PKTAppField.m in Sources */,
@@ -1056,6 +1090,7 @@
 				E4BABDDC1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
 				5082425718FC8466009A1580 /* PKTReversibleBlockValueTransformer.m in Sources */,
 				501D6072190EEBDE004D94C4 /* PKTProfileItemFieldValue.m in Sources */,
+				5006B07B191C1F3B006FF388 /* PKTCalendarAPI.m in Sources */,
 				50B49F1518EE092100B7EDF5 /* PKTAppAPI.m in Sources */,
 				501D6066190EE9BB004D94C4 /* PKTFileItemFieldValue.m in Sources */,
 				50FB3D6618EA0DDE0021DB48 /* PKTItemAPI.m in Sources */,
@@ -1104,6 +1139,7 @@
 				503959FA191369D4004C298C /* PKTFileAPITests.m in Sources */,
 				50B49F1C18EE095500B7EDF5 /* PKTAppTests.m in Sources */,
 				50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */,
+				5006B082191C245F006FF388 /* PKTCalendarEvent.m in Sources */,
 				5082425818FC8466009A1580 /* PKTReversibleBlockValueTransformer.m in Sources */,
 				50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */,
 				503959F81912D037004C298C /* PKTFileAPI.m in Sources */,
@@ -1129,6 +1165,7 @@
 				5039F64D1907114F00A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
 				50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */,
 				5082427018FD5EA6009A1580 /* PKTTestModel.m in Sources */,
+				5006B083191C2463006FF388 /* PKTCalendarAPI.m in Sources */,
 				5082426418FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
 				5082424918FC6C7D009A1580 /* PKTObjectTests.m in Sources */,
@@ -1163,6 +1200,7 @@
 				50395A0F19141C4E004C298C /* PKTCommentAPITests.m in Sources */,
 				5082425E18FC85F6009A1580 /* PKTReversibleBlockValueTransformerTests.m in Sources */,
 				501D608D190EF2EB004D94C4 /* PKTEmbed.m in Sources */,
+				5006B081191C245C006FF388 /* NSDate+PKTAdditions.m in Sources */,
 				50064DF01896FE8B00EF1E97 /* PKTClient.m in Sources */,
 				50B49F1618EE092100B7EDF5 /* PKTAppAPI.m in Sources */,
 				5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */,

@@ -11,5 +11,6 @@
 @interface NSDateFormatter (PKTAdditions)
 
 + (NSDateFormatter *)pkt_UTCDateFormatter;
++ (NSDateFormatter *)pkt_UTCDateTimeFormatter;
 
 @end

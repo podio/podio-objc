@@ -7,26 +7,15 @@
 //
 
 #import "PKTDateValueTransformer.h"
-#import "NSDateFormatter+PKTAdditions.h"
-
-static NSDateFormatter * sDateFormatter = nil;
+#import "NSDate+PKTAdditions.h"
 
 @implementation PKTDateValueTransformer
 
-+ (void)initialize {
-  if (self == [PKTDateValueTransformer class]) {
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-      sDateFormatter = [NSDateFormatter pkt_UTCDateFormatter];
-    });
-  }
-}
-
 - (instancetype)init {
   return [super initWithBlock:^id(NSString *dateString) {
-    return [sDateFormatter dateFromString:dateString];
+    return [NSDate pkt_dateFromUTCDateTimeString:dateString];
   } reverseBlock:^id(NSDate *date) {
-    return [sDateFormatter stringFromDate:date];
+    return [date pkt_UTCDateTimeString];
   }];
 }
 

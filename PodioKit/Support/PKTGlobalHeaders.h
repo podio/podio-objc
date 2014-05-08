@@ -16,6 +16,7 @@
 #import "PKTFileAPI.h"
 #import "PKTCommentAPI.h"
 #import "PKTUserAPI.h"
+#import "PKTCalendarAPI.h"
 
 #import "PKTOAuth2Token.h"
 #import "PKTApp.h"
@@ -28,3 +29,4 @@
 #import "PKTFile.h"
 #import "PKTEmbed.h"
 #import "PKTItemFieldValue.h"
+#import "PKTCalendarEvent.h"
