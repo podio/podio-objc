@@ -9,11 +9,17 @@
 #import "PKTObject.h"
 
 @class PKTFile;
+@class PKTByLine;
+@class PKTApp;
 
 @interface PKTItem : PKTObject
 
 @property (nonatomic, assign, readonly) NSUInteger itemID;
 @property (nonatomic, assign, readonly) NSUInteger appID;
+@property (nonatomic, assign, readonly) NSUInteger appItemID;
+@property (nonatomic, strong, readonly) NSDate *createdOn;
+@property (nonatomic, strong, readonly) PKTByLine *createdBy;
+@property (nonatomic, strong, readonly) PKTApp *app;
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSArray *fields;
 @property (nonatomic, copy, readonly) NSArray *files;

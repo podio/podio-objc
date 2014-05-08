@@ -11,6 +11,7 @@
 #import "PKTFile.h"
 #import "PKTComment.h"
 #import "PKTApp.h"
+#import "PKTByLine.h"
 #import "PKTItemAPI.h"
 #import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
@@ -89,10 +90,25 @@
   return @{
     @"itemID": @"item_id",
     @"appID": @"app.app_id",
+    @"appItemID" : @"app_item_id",
+    @"createdOn" : @"created_on",
+    @"createdBy" : @"created_by",
     @"mutFields": @"fields",
     @"mutFiles": @"files",
     @"comments": @"comments"
   };
+}
+
++ (NSValueTransformer *)createdOnValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
+}
+
++ (NSValueTransformer *)createdByValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTByLine class]];
+}
+
++ (NSValueTransformer *)appValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTApp class]];
 }
 
 + (NSValueTransformer *)mutFieldsValueTransformer {
