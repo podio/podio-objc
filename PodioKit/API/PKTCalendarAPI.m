@@ -20,7 +20,7 @@
   }
   
   if (toDate) {
-    parameters[@"date_to"] = [fromDate pkt_UTCDateString];
+    parameters[@"date_to"] = [toDate pkt_UTCDateString];
   }
   
   if (priority > 0) {

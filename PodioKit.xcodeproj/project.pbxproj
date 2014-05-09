@@ -29,6 +29,7 @@
 		5006B091191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B08F191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m */; };
 		5006B092191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B08F191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m */; };
 		5006B096191CAE73006FF388 /* PKTAppFieldTypeValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B095191CAE73006FF388 /* PKTAppFieldTypeValueTransformerTests.m */; };
+		5006B098191CAF74006FF388 /* PKTCalendarAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006B097191CAF74006FF388 /* PKTCalendarAPITests.m */; };
 		5014C55F188809390002C68D /* PKTHTTPClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C55D188809390002C68D /* PKTHTTPClient.h */; };
 		5014C56918880B050002C68D /* PKTRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C56718880B050002C68D /* PKTRequest.h */; };
 		5014C56E18880B250002C68D /* PKTResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 5014C56C18880B250002C68D /* PKTResponse.h */; };
@@ -234,6 +235,7 @@
 		5006B08E191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppFieldTypeValueTransformer.h; sourceTree = "<group>"; };
 		5006B08F191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppFieldTypeValueTransformer.m; sourceTree = "<group>"; };
 		5006B095191CAE73006FF388 /* PKTAppFieldTypeValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppFieldTypeValueTransformerTests.m; sourceTree = "<group>"; };
+		5006B097191CAF74006FF388 /* PKTCalendarAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTCalendarAPITests.m; sourceTree = "<group>"; };
 		5014C55B188806E50002C68D /* PKTHTTPClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPClientTests.m; sourceTree = "<group>"; };
 		5014C55D188809390002C68D /* PKTHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTHTTPClient.h; sourceTree = "<group>"; };
 		5014C55E188809390002C68D /* PKTHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPClient.m; sourceTree = "<group>"; };
@@ -763,6 +765,7 @@
 				5032B0B5188EB6DC0080046B /* PKTRequestTests.m */,
 				E4A0535B1898FA6600853F9B /* PKTRequestSerializerTests.m */,
 				5082427D18FD7E19009A1580 /* PKTResponseTests.m */,
+				5006B097191CAF74006FF388 /* PKTCalendarAPITests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1154,6 +1157,7 @@
 				E49B6F8818901AD20046192A /* PKTRequestSerializer.m in Sources */,
 				50E6C819190D655A00F309B4 /* PKTAppField.m in Sources */,
 				50B49F1A18EE094A00B7EDF5 /* PKTAppAPITests.m in Sources */,
+				5006B098191CAF74006FF388 /* PKTCalendarAPITests.m in Sources */,
 				5082424E18FC7B41009A1580 /* PKTModel.m in Sources */,
 				5039F659190714CD00A8A8F0 /* PKTReferenceTypeValueTransformer.m in Sources */,
 				50395A0519137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
