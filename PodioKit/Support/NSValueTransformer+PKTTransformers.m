@@ -37,26 +37,11 @@
 }
 
 + (NSValueTransformer *)pkt_referenceTypeTransformer {
-  return [[PKTReferenceTypeValueTransformer alloc] init];
+  return [PKTReferenceTypeValueTransformer new];
 }
 
 + (NSValueTransformer *)pkt_appFieldTypeTransformer {
-  return [NSValueTransformer pkt_transformerWithDictionary:@{
-    @"title" : @(PKTAppFieldTypeTitle),
-    @"text" : @(PKTAppFieldTypeText),
-    @"number" : @(PKTAppFieldTypeNumber),
-    @"image" : @(PKTAppFieldTypeImage),
-    @"date" : @(PKTAppFieldTypeDate),
-    @"app" : @(PKTAppFieldTypeApp),
-    @"contact" : @(PKTAppFieldTypeContact),
-    @"money" : @(PKTAppFieldTypeMoney),
-    @"progress" : @(PKTAppFieldTypeProgress),
-    @"location" : @(PKTAppFieldTypeLocation),
-    @"duration" : @(PKTAppFieldTypeDuration),
-    @"embed" : @(PKTAppFieldTypeEmbed),
-    @"calculation" : @(PKTAppFieldTypeCalculation),
-    @"category" : @(PKTAppFieldTypeCategory),
-  }];
+  return [PKTAppFieldTypeValueTransformer new];
 }
 
 @end
