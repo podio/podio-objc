@@ -31,6 +31,18 @@
   return request;
 }
 
++ (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID remember:(BOOL)remember {
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
+  parameters[@"offset"] = @(offset);
+  parameters[@"limit"] = @(limit);
+  parameters[@"remember"] = @(remember);
+
+  NSString *path = PKTRequestPath(@"/item/app/%lu/filter/%lu/", (unsigned long)appID, (unsigned long)viewID);
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:parameters];
+
+  return request;
+}
+
 + (PKTRequest *)requestToCreateItemInAppWithID:(NSUInteger)appID fields:(NSDictionary *)fields files:(NSArray *)files tags:(NSArray *)tags {
   NSMutableDictionary *parameters = [NSMutableDictionary new];
   

@@ -68,4 +68,17 @@
   expect(request.parameters[@"remember"]).to.equal(@YES);
 }
 
+- (void)testRequestToGetFilteredItemsWithViewID {
+  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:123
+                                                                offset:60
+                                                                 limit:30
+                                                                viewID:456
+                                                              remember:YES];
+
+  expect(request.path).to.equal(@"/item/app/123/filter/456/");
+  expect(request.parameters[@"offset"]).to.equal(@60);
+  expect(request.parameters[@"limit"]).to.equal(@30);
+  expect(request.parameters[@"remember"]).to.equal(@YES);
+}
+
 @end

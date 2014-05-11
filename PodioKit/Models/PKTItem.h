@@ -12,6 +12,8 @@
 @class PKTByLine;
 @class PKTApp;
 
+typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error);
+
 @interface PKTItem : PKTObject
 
 @property (nonatomic, assign, readonly) NSUInteger itemID;
@@ -31,9 +33,11 @@
 
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion;
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion;
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion;
+
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 

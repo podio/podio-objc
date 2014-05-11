@@ -150,11 +150,11 @@
   }];
 }
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion {
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion {
   [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
 }
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(void (^)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error))completion; {
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion; {
   PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
@@ -162,6 +162,20 @@
                                                             descending:descending
                                                               remember:NO];
   
+  [self fetchFilteredItemsWithRequest:request completion:completion];
+}
+
++ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion {
+  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
+                                                                offset:offset
+                                                                 limit:limit
+                                                                viewID:viewID
+                                                              remember:NO];
+
+  [self fetchFilteredItemsWithRequest:request completion:completion];
+}
+
++ (void)fetchFilteredItemsWithRequest:(PKTRequest *)request completion:(PKTItemFilteredFetchCompletionBlock)completion {
   [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *items = nil;
     NSUInteger filteredCount, totalCount = 0;
@@ -170,12 +184,12 @@
       filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
       totalCount = [response.body[@"total"] unsignedIntegerValue];
       NSArray *itemDicts = response.body[@"items"];
-      
+
       items = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
         return [[PKTItem alloc] initWithDictionary:itemDict];
       }];
     }
-    
+
     if (completion) completion(items, filteredCount, totalCount, error);
   }];
 }
