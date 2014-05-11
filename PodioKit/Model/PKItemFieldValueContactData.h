@@ -10,17 +10,7 @@
 #import "PKObjectData.h"
 
 
-@interface PKItemFieldValueContactData : PKObjectData {
-
- @private
-  NSString *name_;
-  NSString *email_;
-  NSString *title_;
-  NSString *organization_;
-  NSInteger userId_;
-  NSInteger profileId_;
-  NSInteger avatarId_;
-}
+@interface PKItemFieldValueContactData : PKObjectData
 
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *email;

@@ -52,6 +52,19 @@ static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
   [aCoder encodeInteger:avatarId_ forKey:PKItemFieldValueContactDataAvatarIdKey];
 }
 
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)object {
+  if (![object isKindOfClass:[self class]]) return NO;
+  
+  PKItemFieldValueContactData *data = object;
+  
+  return data.profileId == self.profileId;
+}
+
+- (NSUInteger)hash {
+  return [@(self.profileId) hash];
+}
 
 #pragma mark - Factory methods
 
