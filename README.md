@@ -137,7 +137,7 @@ There are mupltiple types of fields in an app:
 * Calculation (read-only)
 * Category
 
-To create an item, use the class method on `PKTItem`:
+To fetch an item, use the class method on `PKTItem`:
 
 ```objective-c
 [PKTItem fetchItemWithID:1234 completion:^(PKTItem *item, NSError *error) {
