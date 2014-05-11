@@ -7,6 +7,7 @@
 //
 
 #import "PKTFileAPI.h"
+#import "NSValueTransformer+PKTConstants.h"
 
 @implementation PKTFileAPI
 
@@ -22,6 +23,18 @@
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/file/" parameters:@{@"filename" : fileName}];
   request.contentType = PKTRequestContentTypeMultipart;
   request.fileData = [PKTRequestFileData fileDataWithFileURL:fileURL name:@"source" fileName:fileName mimeType:mimeType];
+  
+  return request;
+}
+
++ (PKTRequest *)requestToAttachFileWithID:(NSUInteger)fileID referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType {
+  NSDictionary *parameters = @{
+    @"ref_type" : [NSValueTransformer pkt_stringFromReferenceType:referenceType],
+    @"ref_id" : @(referenceID),
+  };
+  
+  NSString *path = PKTRequestPath(@"/file/%lu/attach", (unsigned long)fileID);
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:parameters];
   
   return request;
 }

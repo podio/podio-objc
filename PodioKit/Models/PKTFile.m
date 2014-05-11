@@ -54,4 +54,12 @@
   }];
 }
 
+- (void)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(PKTRequestCompletionBlock)completion {
+  PKTRequest *request = [PKTFileAPI requestToAttachFileWithID:self.fileID referenceID:referenceID referenceType:referenceType];
+  
+  [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    if (completion) completion(response, error);
+  }];
+}
+
 @end

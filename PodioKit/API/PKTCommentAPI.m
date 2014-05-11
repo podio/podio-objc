@@ -7,7 +7,7 @@
 //
 
 #import "PKTCommentAPI.h"
-#import "NSValueTransformer+PKTTransformers.h"
+#import "NSValueTransformer+PKTConstants.h"
 
 @implementation PKTCommentAPI
 
@@ -16,7 +16,7 @@
   NSParameterAssert(referenceType != PKTReferenceTypeNone);
   NSParameterAssert(value);
   
-  NSString *refTypeString = [[NSValueTransformer pkt_referenceTypeTransformer] reverseTransformedValue:@(referenceType)];
+  NSString *refTypeString = [NSValueTransformer pkt_stringFromReferenceType:referenceType];
   NSString *path = PKTRequestPath(@"/comment/%@/%lu/", refTypeString, (unsigned long)referenceID);
   
   NSMutableDictionary *parameters = [NSMutableDictionary new];

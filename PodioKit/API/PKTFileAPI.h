@@ -7,10 +7,12 @@
 //
 
 #import "PKTBaseAPI.h"
+#import "PKTConstants.h"
 
 @interface PKTFileAPI : PKTBaseAPI
 
 + (PKTRequest *)requestToUploadFileWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
 + (PKTRequest *)requestToUploadFileWithURL:(NSURL *)fileURL fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
++ (PKTRequest *)requestToAttachFileWithID:(NSUInteger)fileID referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType;
 
 @end

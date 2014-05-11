@@ -43,4 +43,13 @@
   expect(request.fileData.mimeType).to.equal(@"image/jpeg");
 }
 
+- (void)testRequestToAttachFile {
+  PKTRequest *request = [PKTFileAPI requestToAttachFileWithID:123 referenceID:333 referenceType:PKTReferenceTypeItem];
+  
+  expect(request.path).to.equal(@"/file/123/attach");
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.parameters[@"ref_type"]).to.equal(@"item");
+  expect(request.parameters[@"ref_id"]).to.equal(@333);
+}
+
 @end
