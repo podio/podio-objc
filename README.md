@@ -197,6 +197,17 @@ PKTFile *file = ...
 }];
 ```
 
+You can also attach a file to any object by supplying its reference type and ID:
+
+```objective-c
+PKTFile *file = ...
+[file attachWithReferenceID:1234 referenceType:PKTReferenceTypeItem completion:^(PKTResponse *response, NSError *error) {
+  if (!error) {
+    // File successfully attached to item with ID 1234
+  }
+}];
+```
+
 ### Add a comment
 
 Podio supports commenting on many things including items, tasks, status posts etc. To add a new comment, use the methods provided by the `PKTComment` class:
