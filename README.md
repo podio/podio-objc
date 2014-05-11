@@ -22,6 +22,12 @@ pod 'PodioKit', '~> 2.0.0-beta'
 	
 Then run `pod install` from the command line.
 
+To use the latest changes from the master branch, provide the repo URL instead of the version in the Podfile like:
+
+```
+pod 'PodioKit', :git => 'https://github.com/podio/podio-objc.git'
+```
+
 After that you are ready to start using PodioKit by importing the main header file where you would like to use it in your project:
 
 ```objective-c
