@@ -16,7 +16,7 @@ First, make sure your have integrated CocoaPods with your project. If you do not
 
 Once CocoaPods is installed, add the following line to your `Podfile`:
 
-```
+```ruby
 pod 'PodioKit', '~> 2.0.0-beta'
 ```
 	
@@ -24,7 +24,7 @@ Then run `pod install` from the command line.
 
 To use the latest changes from the master branch, provide the repo URL instead of the version in the Podfile like:
 
-```
+```ruby
 pod 'PodioKit', :git => 'https://github.com/podio/podio-objc.git'
 ```
 
