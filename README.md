@@ -6,7 +6,7 @@ PodioKit is a Objective-C client library for the [Podio API](https://developers.
 
 PodioKit uses ARC and supports iOS 6.0 or above and Mac OS X 10.8 and above. It depends on AFNetworking 2.x for the HTTP communication with the Podio API.
 
-PodioKit 2.0 is currently in beta and being actively developed. To use the latest stable version, use one of the official 1.x [releases](https://github.com/podio/podio-objc/releases).
+PodioKit 2.0 is currently in beta and is being actively developed. To use the latest stable version, use one of the official 1.x [releases](https://github.com/podio/podio-objc/releases).
 
 ## Integrate with an existing project
 
