@@ -12,7 +12,14 @@
 @implementation NSValueTransformer (PKTConstants)
 
 + (PKTReferenceType)pkt_referenceTypeFromString:(NSString *)string {
-  return [[NSValueTransformer pkt_referenceTypeTransformer] transformedValue:string];
+  id referenceTypeValue = [[NSValueTransformer pkt_referenceTypeTransformer] transformedValue:string];
+
+  PKTReferenceType referenceType = PKTReferenceTypeNone;
+  if ([referenceTypeValue isKindOfClass:[NSNumber class]]) {
+    referenceType = [referenceTypeValue unsignedIntegerValue];
+  }
+
+  return referenceType;
 }
 
 + (NSString *)pkt_stringFromReferenceType:(PKTReferenceType)referenceType {
