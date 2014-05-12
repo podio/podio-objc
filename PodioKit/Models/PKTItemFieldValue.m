@@ -48,11 +48,11 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
 + (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error {
   BOOL supported = [self supportsBoxingOfValue:value];
   
-  if (!supported) {
+  if (!supported && error != NULL) {
     NSString *message = [NSString stringWithFormat:@"Value %@ not supported for class '%@'", value, NSStringFromClass(self)];
     *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
   }
-  
+
   return supported;
 }
 
