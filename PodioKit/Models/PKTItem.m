@@ -178,7 +178,7 @@
 + (void)fetchFilteredItemsWithRequest:(PKTRequest *)request completion:(PKTItemFilteredFetchCompletionBlock)completion {
   [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *items = nil;
-    NSUInteger filteredCount, totalCount = 0;
+    NSUInteger filteredCount = 0, totalCount = 0;
 
     if (!error) {
       filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
