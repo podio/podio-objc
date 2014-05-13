@@ -9,6 +9,7 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <AFNetworking/AFNetworking.h>
 #import "PKRequest.h"
+#import "PKOAuth2Token+PKAuthorizationHeader.h"
 
 // Notifications
 extern NSString * const PKAPIClientWillBeginAuthentication;

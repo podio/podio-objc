@@ -163,7 +163,7 @@ static NSUInteger kRequestIdLength = 8;
   [self setDefaultHeader:@"Accept-Language" value:language];
   
   if (self.oauthToken) {
-    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"OAuth2 %@", self.oauthToken.accessToken]];
+    [self setDefaultHeader:@"Authorization" value:[self.oauthToken pk_authorizationHeaderValue]];
   } else {
     [self setAuthorizationHeaderWithUsername:self.apiKey password:self.apiSecret];
   }

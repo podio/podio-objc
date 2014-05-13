@@ -19,6 +19,8 @@
 		501BF17F14386AFE009764A3 /* PKFileData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501BF17D14386AFE009764A3 /* PKFileData.m */; };
 		501FDEDD1548095E002B6413 /* PKItemParticipantsData.h in Headers */ = {isa = PBXBuildFile; fileRef = 501FDEDB1548095E002B6413 /* PKItemParticipantsData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */ = {isa = PBXBuildFile; fileRef = 501FDEDC1548095E002B6413 /* PKItemParticipantsData.m */; };
+		502066B41922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h in Headers */ = {isa = PBXBuildFile; fileRef = 502066B21922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		502066B51922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502066B31922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m */; };
 		5021CD2C14458FAE00A7013D /* PKDefaultObjectRepository.h in Headers */ = {isa = PBXBuildFile; fileRef = 5021CD2A14458FAE00A7013D /* PKDefaultObjectRepository.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5021CD2D14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */; };
 		5021CD31144594DB00A7013D /* GetActiveTasks.json in Resources */ = {isa = PBXBuildFile; fileRef = 5021CD30144594DB00A7013D /* GetActiveTasks.json */; };
@@ -307,6 +309,8 @@
 		501BF17D14386AFE009764A3 /* PKFileData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKFileData.m; sourceTree = "<group>"; };
 		501FDEDB1548095E002B6413 /* PKItemParticipantsData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemParticipantsData.h; sourceTree = "<group>"; };
 		501FDEDC1548095E002B6413 /* PKItemParticipantsData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemParticipantsData.m; sourceTree = "<group>"; };
+		502066B21922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PKOAuth2Token+PKAuthorizationHeader.h"; sourceTree = "<group>"; };
+		502066B31922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PKOAuth2Token+PKAuthorizationHeader.m"; sourceTree = "<group>"; };
 		5021CD2A14458FAE00A7013D /* PKDefaultObjectRepository.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDefaultObjectRepository.h; sourceTree = "<group>"; };
 		5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDefaultObjectRepository.m; sourceTree = "<group>"; };
 		5021CD30144594DB00A7013D /* GetActiveTasks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetActiveTasks.json; sourceTree = "<group>"; };
@@ -1071,6 +1075,8 @@
 				502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */,
 				5025D8D4179D24AB00F8753E /* NSNumber+PKFormat.h */,
 				5025D8D5179D24AB00F8753E /* NSNumber+PKFormat.m */,
+				502066B21922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h */,
+				502066B31922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1278,6 +1284,7 @@
 				5065BF6C1433640C00360855 /* PKMappableObject.h in Headers */,
 				5065BF831433649A00360855 /* PKAttributeMapping.h in Headers */,
 				5065BF891433649A00360855 /* PKCompoundMapping.h in Headers */,
+				502066B41922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h in Headers */,
 				5065BF8F1433649A00360855 /* PKPropertyMapping.h in Headers */,
 				5065BF921433649A00360855 /* PKRelationshipMapping.h in Headers */,
 				5065BF951433649A00360855 /* PKStandaloneMapping.h in Headers */,
@@ -1620,6 +1627,7 @@
 				5065BF931433649A00360855 /* PKRelationshipMapping.m in Sources */,
 				5065BF991433649A00360855 /* PKValueMapping.m in Sources */,
 				50A661A718B61A95005F4587 /* PKReferenceItemParticipationData.m in Sources */,
+				502066B51922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m in Sources */,
 				5065BFB21433650E00360855 /* PKManagedObject.m in Sources */,
 				5065BFB71433654B00360855 /* NSManagedObject+PKAdditions.m in Sources */,
 				5065BFF2143366C100360855 /* NSArray+PKAdditions.m in Sources */,
