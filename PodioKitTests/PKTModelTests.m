@@ -17,29 +17,7 @@
 @implementation PKTModelTests
 
 - (void)testInitWithDictionary {
-  NSDictionary *dictionary = @{
-    @"object_id": @12,
-    @"first_value": @"some text 1",
-    @"second_value": @"some text 2",
-    @"nested_objects":
-      @[
-        @{
-          @"object_id": @123,
-          @"first_value": @"some nested text 2",
-        },
-        @{
-          @"object_id": @124,
-          @"first_value": @"some nested text 2",
-        }
-      ],
-    @"nested_object":
-      @{
-        @"object_id": @125,
-        @"first_value": @"some nested text 3",
-      }
-  };
-  
-  PKTTestModel *obj = [[PKTTestModel alloc] initWithDictionary:dictionary];
+  PKTTestModel *obj = [self dummyTestModel];
   
   expect(obj.objectID).to.equal(12);
   expect(obj.firstValue).to.equal(@"some text 1");
@@ -52,6 +30,42 @@
   
   expect(obj.nestedObject).to.beInstanceOf([PKTNestedTestModel class]);
   expect(obj.nestedObject.objectID).to.equal(125);
+}
+
+- (void)testCopying {
+  PKTTestModel *obj = [self dummyTestModel];
+  PKTTestModel *copyObj = [obj copy];
+  expect(copyObj.objectID).to.equal(obj.objectID);
+  expect(copyObj.firstValue).to.equal(obj.firstValue);
+  expect(copyObj.secondValue).to.equal(obj.secondValue);
+}
+
+#pragma mark - Helpers
+
+- (PKTTestModel *)dummyTestModel {
+  NSDictionary *dictionary = @{
+                               @"object_id": @12,
+                               @"first_value": @"some text 1",
+                               @"second_value": @"some text 2",
+                               @"nested_objects":
+                                 @[
+                                   @{
+                                     @"object_id": @123,
+                                     @"first_value": @"some nested text 2",
+                                     },
+                                   @{
+                                     @"object_id": @124,
+                                     @"first_value": @"some nested text 2",
+                                     }
+                                   ],
+                               @"nested_object":
+                                 @{
+                                   @"object_id": @125,
+                                   @"first_value": @"some nested text 3",
+                                   }
+                               };
+  
+  return [[PKTTestModel alloc] initWithDictionary:dictionary];
 }
 
 @end

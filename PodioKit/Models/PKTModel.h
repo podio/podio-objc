@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PKTModel : NSObject <NSCoding>
+@interface PKTModel : NSObject <NSCoding, NSCopying>
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 

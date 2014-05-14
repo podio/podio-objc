@@ -27,6 +27,8 @@
   return self;
 }
 
+#pragma mark - NSCoding
+
 - (instancetype)initWithCoder:(NSCoder *)coder {
   self = [super init];
   if (!self) return nil;
@@ -44,6 +46,19 @@
     id value = [self valueForKey:propertyName];
     [coder encodeObject:value forKey:propertyName];
   }
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+  id copy = [[[self class] alloc] init];
+  
+  for (NSString *key in [self codablePropertyNames]) {
+    id value = [self valueForKey:key];
+    [copy setValue:value forKey:key];
+  }
+  
+  return copy;
 }
 
 #pragma mark - Public
