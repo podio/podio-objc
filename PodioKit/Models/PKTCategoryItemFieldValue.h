@@ -10,6 +10,4 @@
 
 @interface PKTCategoryItemFieldValue : PKTItemFieldValue
 
-@property (nonatomic, copy) NSNumber *optionID;
-
 @end

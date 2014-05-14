@@ -20,6 +20,8 @@
 #import "PKTFile.h"
 #import "PKTItem.h"
 #import "PKTProfile.h"
+#import "PKTDateRange.h"
+#import "PKTMoney.h"
 
 @interface PKTItemFieldValueTests : XCTestCase
 
@@ -98,14 +100,12 @@
 }
 
 - (void)testBoxedValueSupportForValidDateValue {
-  NSDictionary *value = @{@"start" : [NSDate date],
-                          @"end" : [NSDate date]};
+  PKTDateRange *value = [[PKTDateRange alloc] initWithStartDate:[NSDate date] endDate:[NSDate date]];
   expect([PKTDateItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidMoneyValue {
-  NSDictionary *value = @{@"value" : @125.5,
-                          @"currency" : @"DKK"};
+  PKTMoney *value = [[PKTMoney alloc] initWithAmount:@125.5 currency:@"DKK"];
   expect([PKTMoneyItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
 }
 

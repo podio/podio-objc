@@ -10,6 +10,4 @@
 
 @interface PKTCalculationItemFieldValue : PKTItemFieldValue
 
-@property (nonatomic, strong, readonly) id value;
-
 @end

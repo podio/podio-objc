@@ -8,10 +8,8 @@
 
 #import "PKTEmbedItemFieldValue.h"
 #import "PKTEmbed.h"
-#import "PKTFile.h"
 
 static NSString * const kEmbedKey = @"embed";
-static NSString * const kFileKey = @"file";
 
 @implementation PKTEmbedItemFieldValue
 
@@ -19,22 +17,15 @@ static NSString * const kFileKey = @"file";
   self = [super init];
   if (!self) return nil;
   
-  _embed = [[PKTEmbed alloc] initWithDictionary:valueDictionary[kEmbedKey]];
-  _file = [[PKTFile alloc] initWithDictionary:valueDictionary[kFileKey]];
+  self.unboxedValue = [[PKTEmbed alloc] initWithDictionary:valueDictionary[kEmbedKey]];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{kEmbedKey : @(self.embed.embedID)};
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.embed = unboxedValue;
-}
-
-- (id)unboxedValue {
-  return self.embed;
+  PKTEmbed *embed = self.unboxedValue;
+  
+  return @{kEmbedKey : @(embed.embedID)};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {

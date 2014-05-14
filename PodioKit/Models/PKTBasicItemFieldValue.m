@@ -20,21 +20,13 @@
   self = [super init];
   if (!self) return nil;
   
-  _value = valueDictionary[@"value"];
+  self.unboxedValue = valueDictionary[@"value"];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"value" : self.value };
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.value = unboxedValue;
-}
-
-- (id)unboxedValue {
-  return self.value;
+  return @{@"value" : self.unboxedValue };
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {

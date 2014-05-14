@@ -7,6 +7,7 @@
 //
 
 #import "PKTMoneyItemFieldValue.h"
+#import "PKTMoney.h"
 
 static NSString * const kValueKey = @"value";
 static NSString * const kCurrencyKey = @"currency";
@@ -17,31 +18,20 @@ static NSString * const kCurrencyKey = @"currency";
   self = [super init];
   if (!self) return nil;
   
-  _value = [valueDictionary[kValueKey] copy];
-  _currency = [valueDictionary[kCurrencyKey] copy];
+  self.unboxedValue = [[PKTMoney alloc] initWithDictionary:valueDictionary];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{kValueKey : self.value,
-           kCurrencyKey : self.currency};
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.value = unboxedValue[kValueKey];
-  self.currency =unboxedValue[kCurrencyKey];
-}
-
-- (id)unboxedValue {
-  return @{kValueKey : self.value,
-           kCurrencyKey : self.currency};
+  PKTMoney *money = self.unboxedValue;
+  
+  return @{kValueKey : money.amount,
+           kCurrencyKey : money.currency};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[NSDictionary class]] &&
-    [value[kValueKey] isKindOfClass:[NSNumber class]] &&
-    [value[kCurrencyKey] isKindOfClass:[NSString class]];
+  return [value isKindOfClass:[PKTMoney class]];
 }
 
 @end

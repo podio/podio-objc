@@ -7,6 +7,7 @@
 //
 
 #import "PKTDateItemFieldValue.h"
+#import "PKTDateRange.h"
 #import "NSDate+PKTAdditions.h"
 
 static NSString * const kStartDateKey = @"start";
@@ -18,31 +19,20 @@ static NSString * const kEndDateKey = @"end";
   self = [super init];
   if (!self) return nil;
   
-  self.startDate = [NSDate pkt_dateFromUTCDateTimeString:valueDictionary[kStartDateKey]];
-  self.endDate = [NSDate pkt_dateFromUTCDateTimeString:valueDictionary[kEndDateKey]];
+  self.unboxedValue = [[PKTDateRange alloc] initWithDictionary:valueDictionary];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{kStartDateKey : [self.startDate pkt_UTCDateTimeString],
-           kEndDateKey : [self.endDate pkt_UTCDateTimeString]};
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.startDate = unboxedValue[kStartDateKey];
-  self.endDate =unboxedValue[kEndDateKey];
-}
-
-- (id)unboxedValue {
-  return @{kStartDateKey : self.startDate,
-           kEndDateKey : self.endDate};
+  PKTDateRange *dateRange = self.unboxedValue;
+  
+  return @{kStartDateKey : [dateRange.startDate pkt_UTCDateTimeString],
+           kEndDateKey : [dateRange.endDate pkt_UTCDateTimeString]};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[NSDictionary class]] &&
-  [value[kStartDateKey] isKindOfClass:[NSDate class]] &&
-  [value[kEndDateKey] isKindOfClass:[NSDate class]];
+  return [value isKindOfClass:[PKTDateRange class]];
 }
 
 @end

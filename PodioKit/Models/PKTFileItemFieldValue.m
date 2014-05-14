@@ -17,21 +17,15 @@
   self = [super init];
   if (!self) return nil;
   
-  _file = [[PKTFile alloc] initWithDictionary:valueDictionary[@"value"]];
+  self.unboxedValue = [[PKTFile alloc] initWithDictionary:valueDictionary[@"value"]];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"value" : @(self.file.fileID)};
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.file = unboxedValue;
-}
-
-- (id)unboxedValue {
-  return self.file;
+  PKTFile *file = self.unboxedValue;
+  
+  return @{@"value" : @(file.fileID)};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {

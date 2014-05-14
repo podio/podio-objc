@@ -177,7 +177,7 @@
   
   Class valueClass = [[self class] valueClassForFieldType:fieldType];
   if ([valueClass isSubclassOfClass:[PKTItemFieldValue class]] && valueClass) {
-    isSupported = [valueClass supportsBoxingOfValue:value];
+    isSupported = [valueClass supportsBoxingOfValue:value error:error];
   }
   
   return isSupported;

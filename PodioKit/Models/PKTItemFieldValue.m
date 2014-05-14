@@ -27,40 +27,18 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
   return [[self alloc] initFromValueDictionary:valueDictionary];
 }
 
-- (NSDictionary *)valueDictionary {
-  // Return nil by default, meaning it cannot be serialized back. e.g. calculation field
-  return nil;
-}
+#pragma mark - Properties
 
 - (void)setUnboxedValue:(id)unboxedValue {
-  [self raiseBoxingUnsupportedException];
+  [self setUnboxedValue:unboxedValue validate:YES];
 }
 
-- (id)unboxedValue {
-  [self raiseBoxingUnsupportedException];
-  return nil;
-}
-
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return NO;
-}
-
-+ (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error {
-  BOOL supported = [self supportsBoxingOfValue:value];
-  
-  if (!supported && error != NULL) {
-    NSString *message = [NSString stringWithFormat:@"Value %@ not supported for class '%@'", value, NSStringFromClass(self)];
-    *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+- (void)setUnboxedValue:(id)unboxedValue validate:(BOOL)validate {
+  if (validate) {
+    [self validateUnboxedValue:unboxedValue];
   }
-
-  return supported;
-}
-
-#pragma mark - Private
-
-- (void)raiseBoxingUnsupportedException {
-  NSString *reason = [NSString stringWithFormat:@"Boxing support not implemented for class: %@", [self class]];
-  [NSException exceptionWithName:@"BoxingUnsupportedException" reason:reason userInfo:nil];
+  
+  _unboxedValue = unboxedValue;
 }
 
 #pragma mark - NSObject
@@ -80,6 +58,41 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
 
 - (NSUInteger)hash {
   return self.unboxedValue ? [self.unboxedValue hash] : [super hash];
+}
+
+#pragma mark - Public
+
+- (NSDictionary *)valueDictionary {
+  // Return nil by default, meaning it cannot be serialized back. e.g. calculation field
+  return nil;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value {
+  return NO;
+}
+
++ (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error {
+  BOOL supported = [self supportsBoxingOfValue:value];
+  
+  if (!supported && error != NULL) {
+    NSString *message = [NSString stringWithFormat:@"Boxing not supported for value %@ not supported for class '%@'", value, NSStringFromClass(self)];
+    *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+  }
+  
+  return supported;
+}
+
+#pragma mark - Private
+
+- (void)validateUnboxedValue:(id)unboxedValue {
+  NSError *error = nil;
+  
+  if (![[self class] supportsBoxingOfValue:unboxedValue error:&error]) {
+    NSException *ex = [NSException exceptionWithName:@"PKTBoxingUnsupportedException"
+                                              reason:[error localizedDescription]
+                                            userInfo:nil];
+    [ex raise];
+  }
 }
 
 @end

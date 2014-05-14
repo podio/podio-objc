@@ -33,3 +33,5 @@
 #import "PKTCalendarEvent.h"
 #import "PKTOrganization.h"
 #import "PKTWorkspace.h"
+#import "PKTDateRange.h"
+#import "PKTMoney.h"

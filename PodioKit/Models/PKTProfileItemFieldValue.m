@@ -15,21 +15,15 @@
   self = [super init];
   if (!self) return nil;
   
-  _profile = [[PKTProfile alloc] initWithDictionary:valueDictionary[@"value"]];
+  self.unboxedValue = [[PKTProfile alloc] initWithDictionary:valueDictionary[@"value"]];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"value" : @(self.profile.profileID)};
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.profile = unboxedValue;
-}
-
-- (id)unboxedValue {
-  return self.profile;
+  PKTProfile *profile = self.unboxedValue;
+  
+  return @{@"value" : @(profile.profileID)};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {

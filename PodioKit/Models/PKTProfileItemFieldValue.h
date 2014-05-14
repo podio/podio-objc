@@ -8,10 +8,6 @@
 
 #import "PKTItemFieldValue.h"
 
-@class PKTProfile;
-
 @interface PKTProfileItemFieldValue : PKTItemFieldValue
-
-@property (nonatomic, strong) PKTProfile *profile;
 
 @end

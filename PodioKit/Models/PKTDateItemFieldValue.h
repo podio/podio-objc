@@ -10,7 +10,4 @@
 
 @interface PKTDateItemFieldValue : PKTItemFieldValue
 
-@property (nonatomic, copy) NSDate *startDate; // UTC start date
-@property (nonatomic, copy) NSDate *endDate; // UTC end date
-
 @end

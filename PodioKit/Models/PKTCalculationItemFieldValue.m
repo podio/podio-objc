@@ -14,13 +14,10 @@
   self = [super init];
   if (!self) return nil;
   
-  _value = valueDictionary[@"value"];
+  // Skip validation since we are setting this internally
+  [self setUnboxedValue:valueDictionary[@"value"] validate:NO];
   
   return self;
-}
-
-- (id)unboxedValue {
-  return self.value;
 }
 
 @end

@@ -10,6 +10,4 @@
 
 @interface PKTBasicItemFieldValue : PKTItemFieldValue
 
-@property (nonatomic, strong) id value;
-
 @end

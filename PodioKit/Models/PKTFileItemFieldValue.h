@@ -8,10 +8,6 @@
 
 #import "PKTItemFieldValue.h"
 
-@class PKTFile;
-
 @interface PKTFileItemFieldValue : PKTItemFieldValue
-
-@property (nonatomic, strong) PKTFile *file;
 
 @end

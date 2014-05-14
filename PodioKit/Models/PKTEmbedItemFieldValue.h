@@ -8,12 +8,6 @@
 
 #import "PKTItemFieldValue.h"
 
-@class PKTEmbed;
-@class PKTFile;
-
 @interface PKTEmbedItemFieldValue : PKTItemFieldValue
-
-@property (nonatomic, strong) PKTEmbed *embed;
-@property (nonatomic, strong, readonly) PKTFile *file;
 
 @end

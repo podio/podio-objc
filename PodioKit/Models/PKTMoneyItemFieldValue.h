@@ -10,7 +10,4 @@
 
 @interface PKTMoneyItemFieldValue : PKTItemFieldValue
 
-@property (nonatomic, copy) NSNumber *value;
-@property (nonatomic, copy) NSString *currency;
-
 @end

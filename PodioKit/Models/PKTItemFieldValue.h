@@ -13,14 +13,18 @@ extern NSString * const PKTItemFieldValueErrorDomain;
 
 @interface PKTItemFieldValue : PKTModel
 
-@property (nonatomic, strong) id unboxedValue;
+@property (nonatomic, strong) id unboxedValue; // The underlying value object. Its type will depend on the field type.
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary;
 
-- (NSDictionary *)valueDictionary;
+- (void)setUnboxedValue:(id)unboxedValue validate:(BOOL)validate;
 
 + (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error;
 
+/** Override in subclass to validate that the value to be boxed is of a valid type */
 + (BOOL)supportsBoxingOfValue:(id)value;
+
+/** Override in subclass to serialize the boxed value into a dictionary to be saved as the field value */
+- (NSDictionary *)valueDictionary;
 
 @end

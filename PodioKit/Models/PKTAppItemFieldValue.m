@@ -15,21 +15,15 @@
   self = [super init];
   if (!self) return nil;
   
-  _item = [[PKTItem alloc] initWithDictionary:valueDictionary[@"value"]];
+  self.unboxedValue = [[PKTItem alloc] initWithDictionary:valueDictionary[@"value"]];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"value" : @(self.item.itemID)};
-}
-
-- (void)setUnboxedValue:(id)unboxedValue {
-  self.item = unboxedValue;
-}
-
-- (id)unboxedValue {
-  return self.item;
+  PKTItem *item = self.unboxedValue;
+  
+  return @{@"value" : @(item.itemID)};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {
