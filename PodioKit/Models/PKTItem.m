@@ -363,8 +363,6 @@
  * @param usavedFields an NSDictionary with the external ID as the key, and an array of values as the value
  */
 - (NSArray *)itemFieldsFromUnsavedFields:(NSDictionary *)unsavedFields forApp:(PKTApp *)app {
-  // TODO: Generate error for invalid fields
-  
   NSMutableArray *validFields = [NSMutableArray new];
   
   [unsavedFields enumerateKeysAndObjectsUsingBlock:^(NSString *externalID, id value, BOOL *stop) {
