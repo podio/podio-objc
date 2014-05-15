@@ -36,12 +36,4 @@
   expect(objs[2]).to.beInstanceOf([PKTTestModel class]);
 }
 
-- (void)testReverseTransformationOfSingleObject {
-  // TODO:
-}
-
-- (void)testReverseTransformationOfArrayOfObjects {
-  // TODO:
-}
-
 @end

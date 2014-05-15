@@ -37,10 +37,6 @@
 
 #pragma mark - NSValueTransformer
 
-+ (BOOL)allowsReverseTransformation {
-  return YES;
-}
-
 - (id)transformedValue:(id)value {
   id transformedValue = nil;
   
