@@ -17,6 +17,7 @@
 #import "PKTProfileItemFieldValue.h"
 #import "PKTCalculationItemFieldValue.h"
 #import "PKTCategoryItemFieldValue.h"
+#import "PKTDurationItemFieldValue.h"
 #import "PKTFile.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
@@ -126,6 +127,9 @@
       break;
     case PKTAppFieldTypeCategory:
       klass = [PKTCategoryItemFieldValue class];
+      break;
+    case PKTAppFieldTypeDuration:
+      klass = [PKTDurationItemFieldValue class];
       break;
     default:
       klass = [PKTBasicItemFieldValue class];

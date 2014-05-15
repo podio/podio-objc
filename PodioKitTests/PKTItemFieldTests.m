@@ -8,8 +8,6 @@
 
 #import <XCTest/XCTest.h>
 #import "PKTItemField.h"
-#import "PKTBasicItemFieldValue.h"
-#import "PKTDateItemFieldValue.h"
 
 @interface PKTItemFieldTests : XCTestCase
 

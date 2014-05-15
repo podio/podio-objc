@@ -16,12 +16,14 @@
 #import "PKTProfileItemFieldValue.h"
 #import "PKTCalculationItemFieldValue.h"
 #import "PKTCategoryItemFieldValue.h"
+#import "PKTDurationItemFieldValue.h"
 #import "PKTEmbed.h"
 #import "PKTFile.h"
 #import "PKTItem.h"
 #import "PKTProfile.h"
 #import "PKTDateRange.h"
 #import "PKTMoney.h"
+#import "PKTDuration.h"
 
 @interface PKTItemFieldValueTests : XCTestCase
 
@@ -133,6 +135,11 @@
   expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@123]).to.beTruthy();
 }
 
+- (void)testBoxedValueSupportForValidDurationValue {
+  PKTDuration *duration = [[PKTDuration alloc] initWithHours:3 minutes:23 seconds:55];
+  expect([PKTDurationItemFieldValue supportsBoxingOfValue:duration]).to.beTruthy();
+}
+
 - (void)testBoxedValueSupportForInvalidDateValue {
   expect([PKTDateItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
 }
@@ -159,6 +166,10 @@
 
 - (void)testBoxedValueSupportForInvalidCategoryValue {
   expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidDurationValue {
+  expect([PKTDurationItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
 }
 
 @end

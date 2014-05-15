@@ -212,6 +212,13 @@
 		50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */; };
 		50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6018EA0CDD0021DB48 /* PKTItem.m */; };
 		50FB3D6F18EB5D020021DB48 /* PKTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */; };
+		C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
+		C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADFA4CE84E4915BDC31ED /* PKTDuration.h */; };
+		C9FAD96B97CE26ABBEA2A76A /* PKTDurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADDA08780027507CACC53 /* PKTDurationTests.m */; };
+		C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */; };
+		C9FADBC1A39DD6160D2BC363 /* PKTDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */; };
+		C9FADF2268C5ADBAAA1ED9D3 /* PKTDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */; };
+		C9FADFCA8046F3CBFB1DBC53 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
 		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
@@ -407,6 +414,11 @@
 		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A370E68741D44C408A3BBD91 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDurationItemFieldValue.h; sourceTree = "<group>"; };
+		C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDurationItemFieldValue.m; sourceTree = "<group>"; };
+		C9FADDA08780027507CACC53 /* PKTDurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDurationTests.m; sourceTree = "<group>"; };
+		C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDuration.m; sourceTree = "<group>"; };
+		C9FADFA4CE84E4915BDC31ED /* PKTDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDuration.h; sourceTree = "<group>"; };
 		E45ED49318900372003A020A /* NSString+PKTURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURLTests.m"; sourceTree = "<group>"; };
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
@@ -486,6 +498,8 @@
 				501D6074190EEF77004D94C4 /* PKTCalculationItemFieldValue.m */,
 				501D6077190EF02D004D94C4 /* PKTCategoryItemFieldValue.h */,
 				501D6078190EF02D004D94C4 /* PKTCategoryItemFieldValue.m */,
+				C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */,
+				C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */,
 			);
 			name = "Item Field Values";
 			sourceTree = "<group>";
@@ -723,6 +737,8 @@
 				502066FF1923580B004721A1 /* PKTMoney.m */,
 				5020670219235F04004721A1 /* PKTDateRange.h */,
 				5020670319235F04004721A1 /* PKTDateRange.m */,
+				C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */,
+				C9FADFA4CE84E4915BDC31ED /* PKTDuration.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -737,6 +753,7 @@
 				50B49F1B18EE095500B7EDF5 /* PKTAppTests.m */,
 				501D6044190D841E004D94C4 /* PKTItemFieldTests.m */,
 				501D6061190ED520004D94C4 /* PKTItemFieldValueTests.m */,
+				C9FADDA08780027507CACC53 /* PKTDurationTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -975,6 +992,8 @@
 				50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */,
 				50E6C805190D4EA900F309B4 /* PKTItemField.h in Headers */,
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
+				C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */,
+				C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,6 +1214,8 @@
 				50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */,
 				50395A0419137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				5082425218FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
+				C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */,
+				C9FADF2268C5ADBAAA1ED9D3 /* PKTDuration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1300,6 +1321,9 @@
 				50395A0D1914198B004C298C /* PKTCommentAPI.m in Sources */,
 				50FA507418FFC047009542B9 /* PKTUserAPI.m in Sources */,
 				5082425318FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
+				C9FADFCA8046F3CBFB1DBC53 /* PKTDurationItemFieldValue.m in Sources */,
+				C9FADBC1A39DD6160D2BC363 /* PKTDuration.m in Sources */,
+				C9FAD96B97CE26ABBEA2A76A /* PKTDurationTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

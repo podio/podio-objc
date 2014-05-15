@@ -147,6 +147,9 @@
     completed1 = YES;
     isError1 = error != nil;
   }];
+
+  expect(completed1).will.beTruthy();
+  expect(isError1).to.beFalsy();
   
   // Make 2nd request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
@@ -157,9 +160,6 @@
     completed2 = YES;
     isError2 = error != nil;
   }];
-  
-  expect(completed1).will.beTruthy();
-  expect(isError1).to.beFalsy();
   
   expect(completed2).will.beTruthy();
   expect(isError2).to.beFalsy();
