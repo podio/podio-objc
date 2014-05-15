@@ -23,7 +23,7 @@
 }
 
 + (instancetype)requestWithPath:(NSString *)path parameters:(NSDictionary *)parameters method:(PKTRequestMethod)method {
-  return [[self alloc] initWithPath:path parameters:(NSDictionary *)parameters method:method];
+  return [[self alloc] initWithPath:path parameters:parameters method:method];
 }
 
 + (instancetype)GETRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters {
