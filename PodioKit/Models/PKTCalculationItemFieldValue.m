@@ -11,7 +11,7 @@
 @implementation PKTCalculationItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
   
   // Skip validation since we are setting this internally

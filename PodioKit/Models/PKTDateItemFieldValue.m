@@ -16,7 +16,7 @@ static NSString * const kEndDateKey = @"end";
 @implementation PKTDateItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
   
   self.unboxedValue = [[PKTDateRange alloc] initWithDictionary:valueDictionary];

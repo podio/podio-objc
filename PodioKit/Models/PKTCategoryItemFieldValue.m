@@ -12,7 +12,7 @@
 @implementation PKTCategoryItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
 
   self.unboxedValue = [[PKTCategoryOption alloc] initWithDictionary:valueDictionary[@"value"]];

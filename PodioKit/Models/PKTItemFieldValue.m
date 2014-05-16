@@ -23,10 +23,6 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
   return self;
 }
 
-+ (instancetype)valueFromDictionary:(NSDictionary *)valueDictionary {
-  return [[self alloc] initFromValueDictionary:valueDictionary];
-}
-
 #pragma mark - Properties
 
 - (void)setUnboxedValue:(id)unboxedValue {

@@ -15,7 +15,7 @@ static NSString * const kCurrencyKey = @"currency";
 @implementation PKTMoneyItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
   
   self.unboxedValue = [[PKTMoney alloc] initWithDictionary:valueDictionary];

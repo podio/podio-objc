@@ -14,7 +14,7 @@ static NSString * const kEmbedKey = @"embed";
 @implementation PKTEmbedItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
   
   self.unboxedValue = [[PKTEmbed alloc] initWithDictionary:valueDictionary[kEmbedKey]];

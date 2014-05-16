@@ -17,7 +17,7 @@
 #pragma mark - PKTItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
   
   self.unboxedValue = valueDictionary[@"value"];

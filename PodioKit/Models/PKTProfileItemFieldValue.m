@@ -12,7 +12,7 @@
 @implementation PKTProfileItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
-  self = [super init];
+  self = [super initWithDictionary:valueDictionary];
   if (!self) return nil;
   
   self.unboxedValue = [[PKTProfile alloc] initWithDictionary:valueDictionary[@"value"]];
