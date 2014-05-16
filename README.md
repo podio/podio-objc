@@ -120,22 +120,22 @@ Instead of explicitly authenticating as an app as shown in the example above, th
 
 [Apps](https://developers.podio.com/doc/applications) and [items](https://developers.podio.com/doc/items) are the corner stones of the Podio platform. An app is a container of multiple items. You can think of an app as a set of fields of different types, like the columns in a spreadsheet. The items in that app are then equivalent to the rows in the spreadsheet, i.e. the entires with one or more values for each field.
 
-There are mupltiple types of fields in an app:
+There are mupltiple types of fields in an app. A field supports a single or multiple values depending on its type. The available field types and their supported values are:
 
-* Title
-* Text
-* Number
-* Image
-* Date
-* Relation
-* Contact
-* Money
-* Progress
-* Location
-* Duration
-* Embed
-* Calculation (read-only)
-* Category
+* **Text**: Single value of `NSString`
+* **Category**: Multiple values of `PKTCategoryOption`
+* **Date**: Single value of `PKTDateRange`
+* **Relationship**: Multiple values of `PKTItem`
+* **Contact**: Multiple value of `PKTProfile`
+* **Number**: Single value of `NSNumber`
+* **Link**: Single value of `PKTEmbed`
+* **Image**: Multiple values of `PKTFile`
+* **Money**: Single value of `PKTMoney`
+* **Progress**: Single value of `NSNumber` (value between 0-100)
+* **Calculation**: Single value of `PKTCalculation` (read-only)
+* **Map**: Single value of `PKTLocation`
+* **Duration**: Single value of `PKTDuration`
+* **Title**: Single value of `NSString` (deprecated but might appear in order apps)
 
 To fetch an item, use the class method on `PKTItem`:
 
@@ -155,6 +155,28 @@ To fetch a list of items in an app, there is another handy method on `PKTItem`:
     NSLog(@"Fetched %@ items out of a total of @%", @(filteredCount), @(totalCount));
   }
 }];
+```
+
+To access the values of an item, you can either use the `-valueForField:(NSString *)externalID` method on `PKTItem`, or use subscripting directly:
+
+```objective-c
+PKTItem *item = ...
+
+PKTMoney *amount = item[@"amount"];
+// Is equivalient to
+PKTMoney *amount2 = [item valueForField:@"amount"];
+```
+
+The same works for updating field values:
+
+```objective-c
+PKTItem *item = ...
+
+PKTMoney *amount = [PKTMoney alloc] initWithAmount:@123 currency:@"USD"];
+
+item[@"amount"] = amount;
+// Is equivalient to:
+[item setValue:amount forField:@"amount"];
 ```
 
 ### Create a new item
