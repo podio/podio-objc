@@ -10,6 +10,7 @@
 
 
 typedef NS_ENUM(NSUInteger, PKTCategoryOptionStatus) {
+  PKTCategoryOptionStatusNone = 0,
   PKTCategoryOptionStatusActive,
   PKTCategoryOptionStatusDeleted
 };

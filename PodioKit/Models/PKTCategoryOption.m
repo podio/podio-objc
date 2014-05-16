@@ -18,7 +18,7 @@
   };
 }
 
-- (NSValueTransformer *)statusValueTransformer {
++ (NSValueTransformer *)statusValueTransformer {
   return [NSValueTransformer pkt_transformerWithDictionary:@{
       @"active" : @(PKTCategoryOptionStatusActive),
       @"status" : @(PKTCategoryOptionStatusDeleted)
