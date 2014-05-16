@@ -7,24 +7,27 @@
 //
 
 #import "PKTCategoryItemFieldValue.h"
+#import "PKTCategoryOption.h"
 
 @implementation PKTCategoryItemFieldValue
 
 - (instancetype)initFromValueDictionary:(NSDictionary *)valueDictionary {
   self = [super init];
   if (!self) return nil;
-  
-  self.unboxedValue = [valueDictionary[@"value"][@"id"] copy];
+
+  self.unboxedValue = [[PKTCategoryOption alloc] initWithDictionary:valueDictionary[@"value"]];
   
   return self;
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"value" : self.unboxedValue};
+  PKTCategoryOption *option = self.unboxedValue;
+
+  return @{@"value" : @(option.optionID)};
 }
 
 + (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[NSNumber class]];
+  return [value isKindOfClass:[PKTCategoryOption class]];
 }
 
 @end

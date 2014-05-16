@@ -12,7 +12,6 @@
 #import "PKTHTTPClient.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTUserAPI.h"
-#import "PKTRequest.h"
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"

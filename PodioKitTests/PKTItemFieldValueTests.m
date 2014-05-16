@@ -24,6 +24,7 @@
 #import "PKTDateRange.h"
 #import "PKTMoney.h"
 #import "PKTDuration.h"
+#import "PKTCategoryOption.h"
 
 @interface PKTItemFieldValueTests : XCTestCase
 
@@ -91,9 +92,20 @@
 }
 
 - (void)testCategoryValue {
-  NSDictionary *valueDict = @{@"value" : @{@"id" : @123}};
+  NSDictionary *valueDict = @{
+      @"value" : @{@"option_id" : @123,
+                   @"status" : @"active",
+                   @"text" : @"First option",
+                   @"color" : @"ff0000"}};
   PKTCategoryItemFieldValue *value = [[PKTCategoryItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(@{@"value" : @123});
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testDurationValue {
+  NSDictionary *valueDict = @{@"value" : @101010};
+  PKTDurationItemFieldValue *value = [[PKTDurationItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(@{@"value" : @101010});
   expect(value.unboxedValue).toNot.beNil();
 }
 
@@ -132,7 +144,8 @@
 }
 
 - (void)testBoxedValueSupportForValidCategoryValue {
-  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@123]).to.beTruthy();
+  PKTCategoryOption *option = [PKTCategoryOption new];
+  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:option]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidDurationValue {
