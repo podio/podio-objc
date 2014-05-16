@@ -8,6 +8,8 @@
 
 #import "PKTModel.h"
 
+@class PKTAppFieldConfig;
+
 typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
   PKTAppFieldTypeNone = 0,
   PKTAppFieldTypeTitle,
@@ -31,6 +33,7 @@ typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
 @property (nonatomic, assign, readonly) NSUInteger fieldID;
 @property (nonatomic, copy, readonly) NSString *externalID;
 @property (nonatomic, assign, readonly) PKTAppFieldType type;
+@property (nonatomic, strong, readonly) PKTAppFieldConfig *config;
 
 - (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type;
 

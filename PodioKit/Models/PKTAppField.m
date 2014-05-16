@@ -8,6 +8,7 @@
 
 #import "PKTAppField.h"
 #import "NSValueTransformer+PKTTransformers.h"
+#import "PKTAppFieldConfig.h"
 
 @implementation PKTAppField
 
@@ -34,6 +35,10 @@
 
 + (NSValueTransformer *)typeValueTransformer {
   return [NSValueTransformer pkt_appFieldTypeTransformer];
+}
+
++ (NSValueTransformer *)configValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTAppFieldConfig class]];
 }
 
 @end
