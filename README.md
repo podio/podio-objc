@@ -132,7 +132,7 @@ There are mupltiple types of fields in an app. A field supports a single or mult
 * **Image**: Multiple values of `PKTFile`
 * **Money**: Single value of `PKTMoney`
 * **Progress**: Single value of `NSNumber` (value between 0-100)
-* **Calculation**: Single value of `PKTCalculation` (read-only)
+* **Calculation**: Single value of `NSDictionary` (read-only)
 * **Map**: Single value of `NSString`
 * **Duration**: Single value of `PKTDuration`
 * **Title**: Single value of `NSString` (deprecated but might appear in order apps)
