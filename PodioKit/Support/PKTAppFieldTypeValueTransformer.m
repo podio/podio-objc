@@ -13,7 +13,6 @@
 
 - (instancetype)init {
   return [super initWithDictionary:@{
-    @"title" : @(PKTAppFieldTypeTitle),
     @"text" : @(PKTAppFieldTypeText),
     @"number" : @(PKTAppFieldTypeNumber),
     @"image" : @(PKTAppFieldTypeImage),

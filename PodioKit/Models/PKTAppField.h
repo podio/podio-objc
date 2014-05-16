@@ -12,7 +12,6 @@
 
 typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
   PKTAppFieldTypeNone = 0,
-  PKTAppFieldTypeTitle,
   PKTAppFieldTypeText,
   PKTAppFieldTypeNumber,
   PKTAppFieldTypeImage,

@@ -18,7 +18,6 @@
 
 - (void)testAppFieldTypValueTransformation {
   PKTAppFieldTypeValueTransformer *transformer = [PKTAppFieldTypeValueTransformer new];
-  expect([transformer transformedValue:@"title"]).to.equal(PKTAppFieldTypeTitle);
   expect([transformer transformedValue:@"text"]).to.equal(PKTAppFieldTypeText);
   expect([transformer transformedValue:@"number"]).to.equal(PKTAppFieldTypeNumber);
   expect([transformer transformedValue:@"image"]).to.equal(PKTAppFieldTypeImage);
