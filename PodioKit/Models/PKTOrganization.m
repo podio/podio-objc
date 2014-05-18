@@ -9,7 +9,6 @@
 #import "PKTOrganization.h"
 #import "PKTWorkspace.h"
 #import "PKTFile.h"
-#import "PKTResponse.h"
 #import "PKTOrganizationAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"

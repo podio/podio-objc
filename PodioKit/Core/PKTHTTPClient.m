@@ -7,8 +7,6 @@
 //
 
 #import "PKTHTTPClient.h"
-#import "PKTRequest.h"
-#import "PKTResponse.h"
 #import "PKTRequestSerializer.h"
 #import "PKTClient.h"
 

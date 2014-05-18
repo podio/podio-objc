@@ -9,6 +9,7 @@
 #import "PKTMacros.h"
 
 #import "PKTClient.h"
+#import "PKTRequest.h"
 #import "PKTResponse.h"
 
 #import "PKTAppAPI.h"

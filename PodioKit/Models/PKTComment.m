@@ -10,7 +10,6 @@
 #import "PKTEmbed.h"
 #import "PKTFile.h"
 #import "PKTCommentAPI.h"
-#import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTComment

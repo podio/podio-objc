@@ -9,7 +9,6 @@
 #import "PKTCalendarEvent.h"
 #import "PKTApp.h"
 #import "PKTCalendarAPI.h"
-#import "PKTResponse.h"
 #import "NSArray+PKTAdditions.h"
 #import "NSValueTransformer+PKTTransformers.h"
 

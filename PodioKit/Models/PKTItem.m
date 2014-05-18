@@ -13,7 +13,6 @@
 #import "PKTApp.h"
 #import "PKTByLine.h"
 #import "PKTItemAPI.h"
-#import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"
 

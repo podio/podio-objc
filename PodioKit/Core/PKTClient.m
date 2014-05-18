@@ -8,7 +8,6 @@
 
 #import "PKTClient.h"
 #import "PKTOAuth2Token.h"
-#import "PKTResponse.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTMacros.h"
 #import "NSMutableURLRequest+PKTHeaders.h"

@@ -7,8 +7,8 @@
 //
 
 #import <AFNetworking/AFNetworking.h>
-
-@class PKTRequest, PKTResponse;
+#import "PKTRequest.h"
+#import "PKTResponse.h"
 
 typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 

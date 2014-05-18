@@ -8,7 +8,6 @@
 
 #import "PKTFile.h"
 #import "PKTFileAPI.h"
-#import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTFile

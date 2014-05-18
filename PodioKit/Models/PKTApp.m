@@ -9,7 +9,6 @@
 #import "PKTApp.h"
 #import "PKTAppField.h"
 #import "PKTAppAPI.h"
-#import "PKTResponse.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTApp
