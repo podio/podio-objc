@@ -9,6 +9,7 @@
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTAppField.h"
 #import "PKTConstants.h"
+#import "PKTNumberValueTransformer.h"
 
 @implementation NSValueTransformer (PKTTransformers)
 
@@ -44,4 +45,7 @@
   return [PKTAppFieldTypeValueTransformer new];
 }
 
++ (NSValueTransformer *)pkt_numberValueTransformer {
+  return [PKTNumberValueTransformer new];
+}
 @end

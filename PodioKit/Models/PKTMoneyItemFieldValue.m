@@ -8,6 +8,7 @@
 
 #import "PKTMoneyItemFieldValue.h"
 #import "PKTMoney.h"
+#import "NSNumber+PKTAdditions.h"
 
 static NSString * const kValueKey = @"value";
 static NSString * const kCurrencyKey = @"currency";
@@ -26,7 +27,7 @@ static NSString * const kCurrencyKey = @"currency";
 - (NSDictionary *)valueDictionary {
   PKTMoney *money = self.unboxedValue;
   
-  return @{kValueKey : money.amount,
+  return @{kValueKey : [money.amount pkt_USNumberString],
            kCurrencyKey : money.currency};
 }
 

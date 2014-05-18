@@ -7,6 +7,7 @@
 //
 
 #import "PKTMoney.h"
+#import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTMoney
 
@@ -27,6 +28,10 @@
            @"amount" : @"value",
            @"currency" : @"currency"
            };
+}
+
++ (NSValueTransformer *)amountValueTransformer {
+  return [NSValueTransformer pkt_numberValueTransformer];
 }
 
 @end

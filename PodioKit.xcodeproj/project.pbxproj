@@ -209,22 +209,33 @@
 		50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */; };
 		50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6018EA0CDD0021DB48 /* PKTItem.m */; };
 		50FB3D6F18EB5D020021DB48 /* PKTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */; };
+		C9FAD0909FD16D61B423947B /* NSNumberFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */; };
 		C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADCA90121ED753BEBC4B3 /* PKTAppFieldConfig.m */; };
 		C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
+		C9FAD28F142CC7765648109C /* PKTNumberValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD6730D190BACF99137EF /* PKTNumberValueTransformer.h */; };
+		C9FAD3EE9E849D02CD801B5F /* PKTNumberValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */; };
+		C9FAD4AA445FD22C487A3963 /* PKTNumberValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD5036212A8EF74B70210 /* PKTNumberValueTransformerTests.m */; };
+		C9FAD4EC21B79273C9542F8B /* NSNumber+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD97F2AFFD6AF6E5EA57B /* NSNumber+PKTAdditions.m */; };
 		C9FAD5520897CD3F437A17E1 /* PKTItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD9382EC55885F331F4ED /* PKTItemFieldValue.h */; };
 		C9FAD5E0C1CD812506A25FBB /* PKTCategoryOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD604976FDA55CE665AB6 /* PKTCategoryOption.m */; };
 		C9FAD8430A2EFAB91834CE91 /* PKTAppFieldConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD5D70030C95F38C9C2B3 /* PKTAppFieldConfigTests.m */; };
 		C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADFA4CE84E4915BDC31ED /* PKTDuration.h */; };
 		C9FAD96B97CE26ABBEA2A76A /* PKTDurationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADDA08780027507CACC53 /* PKTDurationTests.m */; };
+		C9FADA4482A758EDAC72D210 /* NSNumberFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */; };
 		C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADD3B5E8AC41D6A6EB16C /* PKTCategoryOption.h */; };
+		C9FADABAC0F8E5C7AA861A12 /* PKTNumberValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */; };
 		C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */; };
+		C9FADBADB4E1ADF51A7396FB /* NSNumber+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADC69860FD7EE549B79CC /* NSNumber+PKTAdditions.h */; };
 		C9FADBC1A39DD6160D2BC363 /* PKTDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */; };
 		C9FADCD77D47E603D45B5F79 /* PKTCategoryOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD604976FDA55CE665AB6 /* PKTCategoryOption.m */; };
+		C9FADCF9C97F6D1DBC19D1F8 /* NSNumber+PKTAdditionsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD7778C8207A6A29CE920 /* NSNumber+PKTAdditionsTests.m */; };
 		C9FADDA57CEE89A266367B70 /* PKTItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD877BDD5E7CEFEB5C060 /* PKTItemFieldValue.m */; };
+		C9FADDB6A88831D6235765A4 /* NSNumber+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD97F2AFFD6AF6E5EA57B /* NSNumber+PKTAdditions.m */; };
 		C9FADEA42453EB01EF78216B /* PKTAppFieldConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADCA90121ED753BEBC4B3 /* PKTAppFieldConfig.m */; };
 		C9FADEC73A88FBD20E632A4F /* PKTAppFieldConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD10827B7B0E436013698 /* PKTAppFieldConfig.h */; };
 		C9FADF2268C5ADBAAA1ED9D3 /* PKTDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */; };
 		C9FADF66DCAA1D556BEB3C1F /* PKTItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD877BDD5E7CEFEB5C060 /* PKTItemFieldValue.m */; };
+		C9FADF76FAA6C3285E7DEAB8 /* NSNumberFormatter+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD455BAF5C8FA7B411046 /* NSNumberFormatter+PKTAdditions.h */; };
 		C9FADFCA8046F3CBFB1DBC53 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
@@ -421,11 +432,19 @@
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C9FAD10827B7B0E436013698 /* PKTAppFieldConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppFieldConfig.h; sourceTree = "<group>"; };
 		C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDurationItemFieldValue.h; sourceTree = "<group>"; };
+		C9FAD455BAF5C8FA7B411046 /* NSNumberFormatter+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+PKTAdditions.h"; sourceTree = "<group>"; };
+		C9FAD5036212A8EF74B70210 /* PKTNumberValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNumberValueTransformerTests.m; sourceTree = "<group>"; };
 		C9FAD5D70030C95F38C9C2B3 /* PKTAppFieldConfigTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppFieldConfigTests.m; sourceTree = "<group>"; };
 		C9FAD604976FDA55CE665AB6 /* PKTCategoryOption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTCategoryOption.m; sourceTree = "<group>"; };
+		C9FAD6730D190BACF99137EF /* PKTNumberValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNumberValueTransformer.h; sourceTree = "<group>"; };
 		C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDurationItemFieldValue.m; sourceTree = "<group>"; };
+		C9FAD7778C8207A6A29CE920 /* NSNumber+PKTAdditionsTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+PKTAdditionsTests.m"; sourceTree = "<group>"; };
 		C9FAD877BDD5E7CEFEB5C060 /* PKTItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemFieldValue.m; sourceTree = "<group>"; };
 		C9FAD9382EC55885F331F4ED /* PKTItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTItemFieldValue.h; sourceTree = "<group>"; };
+		C9FAD97F2AFFD6AF6E5EA57B /* NSNumber+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumber+PKTAdditions.m"; sourceTree = "<group>"; };
+		C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNumberValueTransformer.m; sourceTree = "<group>"; };
+		C9FADC69860FD7EE549B79CC /* NSNumber+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PKTAdditions.h"; sourceTree = "<group>"; };
+		C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumberFormatter+PKTAdditions.m"; sourceTree = "<group>"; };
 		C9FADCA90121ED753BEBC4B3 /* PKTAppFieldConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppFieldConfig.m; sourceTree = "<group>"; };
 		C9FADD3B5E8AC41D6A6EB16C /* PKTCategoryOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCategoryOption.h; sourceTree = "<group>"; };
 		C9FADDA08780027507CACC53 /* PKTDurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDurationTests.m; sourceTree = "<group>"; };
@@ -670,6 +689,8 @@
 				5039F6531907136600A8A8F0 /* PKTURLValueTransformer.m */,
 				503959FB19137585004C298C /* PKTDateValueTransformer.h */,
 				503959FC19137585004C298C /* PKTDateValueTransformer.m */,
+				C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */,
+				C9FAD6730D190BACF99137EF /* PKTNumberValueTransformer.h */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -685,6 +706,7 @@
 				5039F65E190715DD00A8A8F0 /* PKTDictionaryMappingValueTransformerTests.m */,
 				50395A071913F408004C298C /* PKTDateValueTransformerTests.m */,
 				5006B095191CAE73006FF388 /* PKTAppFieldTypeValueTransformerTests.m */,
+				C9FAD5036212A8EF74B70210 /* PKTNumberValueTransformerTests.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -775,12 +797,31 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		C9FADBEA1C55A3693C855D99 /* NSNumber */ = {
+			isa = PBXGroup;
+			children = (
+				C9FAD97F2AFFD6AF6E5EA57B /* NSNumber+PKTAdditions.m */,
+				C9FADC69860FD7EE549B79CC /* NSNumber+PKTAdditions.h */,
+			);
+			name = NSNumber;
+			sourceTree = "<group>";
+		};
+		C9FADEC42E583FB1D0FA41AC /* NSNumberFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */,
+				C9FAD455BAF5C8FA7B411046 /* NSNumberFormatter+PKTAdditions.h */,
+			);
+			name = NSNumberFormatter;
+			sourceTree = "<group>";
+		};
 		E45ED490189000EB003A020A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
 				E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */,
 				E45ED49318900372003A020A /* NSString+PKTURLTests.m */,
 				5082427B18FD76F9009A1580 /* NSValueTransformer+PKTTransformers.m */,
+				C9FAD7778C8207A6A29CE920 /* NSNumber+PKTAdditionsTests.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -891,6 +932,8 @@
 				5082427518FD76AE009A1580 /* NSValueTransformer */,
 				5082425F18FC8A6C009A1580 /* NSObject */,
 				E49B6F8A18901CA70046192A /* NSString */,
+				C9FADEC42E583FB1D0FA41AC /* NSNumberFormatter */,
+				C9FADBEA1C55A3693C855D99 /* NSNumber */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1013,6 +1056,9 @@
 				C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */,
 				C9FADEC73A88FBD20E632A4F /* PKTAppFieldConfig.h in Headers */,
 				C9FAD5520897CD3F437A17E1 /* PKTItemFieldValue.h in Headers */,
+				C9FAD28F142CC7765648109C /* PKTNumberValueTransformer.h in Headers */,
+				C9FADF76FAA6C3285E7DEAB8 /* NSNumberFormatter+PKTAdditions.h in Headers */,
+				C9FADBADB4E1ADF51A7396FB /* NSNumber+PKTAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1237,6 +1283,9 @@
 				C9FAD5E0C1CD812506A25FBB /* PKTCategoryOption.m in Sources */,
 				C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */,
 				C9FADF66DCAA1D556BEB3C1F /* PKTItemFieldValue.m in Sources */,
+				C9FADABAC0F8E5C7AA861A12 /* PKTNumberValueTransformer.m in Sources */,
+				C9FADA4482A758EDAC72D210 /* NSNumberFormatter+PKTAdditions.m in Sources */,
+				C9FADDB6A88831D6235765A4 /* NSNumber+PKTAdditions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1348,6 +1397,11 @@
 				C9FADEA42453EB01EF78216B /* PKTAppFieldConfig.m in Sources */,
 				C9FAD8430A2EFAB91834CE91 /* PKTAppFieldConfigTests.m in Sources */,
 				C9FADDA57CEE89A266367B70 /* PKTItemFieldValue.m in Sources */,
+				C9FAD3EE9E849D02CD801B5F /* PKTNumberValueTransformer.m in Sources */,
+				C9FAD4AA445FD22C487A3963 /* PKTNumberValueTransformerTests.m in Sources */,
+				C9FAD0909FD16D61B423947B /* NSNumberFormatter+PKTAdditions.m in Sources */,
+				C9FAD4EC21B79273C9542F8B /* NSNumber+PKTAdditions.m in Sources */,
+				C9FADCF9C97F6D1DBC19D1F8 /* NSNumber+PKTAdditionsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -48,7 +48,7 @@
 }
 
 - (void)testMoneyValue {
-  NSDictionary *valueDict = @{@"value" : @125.532,
+  NSDictionary *valueDict = @{@"value" : @"125.532",
                               @"currency" : @"DKK"};
   PKTMoneyItemFieldValue *value = [[PKTMoneyItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(valueDict);

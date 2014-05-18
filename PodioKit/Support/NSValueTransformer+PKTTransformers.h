@@ -26,5 +26,6 @@
 + (NSValueTransformer *)pkt_dateValueTransformer;
 + (NSValueTransformer *)pkt_referenceTypeTransformer;
 + (NSValueTransformer *)pkt_appFieldTypeTransformer;
++ (NSValueTransformer *)pkt_numberValueTransformer;
 
 @end
