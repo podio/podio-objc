@@ -20,6 +20,7 @@
 #import "PKTDurationItemFieldValue.h"
 #import "PKTFile.h"
 #import "NSValueTransformer+PKTTransformers.h"
+#import "PKTNumberItemFieldValue.h"
 
 @interface PKTItemField ()
 
@@ -101,42 +102,46 @@
 }
 
 + (Class)valueClassForFieldType:(PKTAppFieldType)fieldType {
-  Class klass = nil;
+  Class valueClass = nil;
   
   switch (fieldType) {
     case PKTAppFieldTypeDate:
-      klass = [PKTDateItemFieldValue class];
+      valueClass = [PKTDateItemFieldValue class];
       break;
     case PKTAppFieldTypeMoney:
-      klass = [PKTMoneyItemFieldValue class];
+      valueClass = [PKTMoneyItemFieldValue class];
       break;
     case PKTAppFieldTypeEmbed:
-      klass = [PKTEmbedItemFieldValue class];
+      valueClass = [PKTEmbedItemFieldValue class];
       break;
     case PKTAppFieldTypeImage:
-      klass = [PKTFileItemFieldValue class];
+      valueClass = [PKTFileItemFieldValue class];
       break;
     case PKTAppFieldTypeApp:
-      klass = [PKTAppItemFieldValue class];
+      valueClass = [PKTAppItemFieldValue class];
       break;
     case PKTAppFieldTypeContact:
-      klass = [PKTProfileItemFieldValue class];
+      valueClass = [PKTProfileItemFieldValue class];
       break;
     case PKTAppFieldTypeCalculation:
-      klass = [PKTCalculationItemFieldValue class];
+      valueClass = [PKTCalculationItemFieldValue class];
       break;
     case PKTAppFieldTypeCategory:
-      klass = [PKTCategoryItemFieldValue class];
+      valueClass = [PKTCategoryItemFieldValue class];
       break;
     case PKTAppFieldTypeDuration:
-      klass = [PKTDurationItemFieldValue class];
+      valueClass = [PKTDurationItemFieldValue class];
+      break;
+    case PKTAppFieldTypeNumber:
+    case PKTAppFieldTypeProgress:
+      valueClass = [PKTNumberItemFieldValue class];
       break;
     default:
-      klass = [PKTBasicItemFieldValue class];
+      valueClass = [PKTBasicItemFieldValue class];
       break;
   }
   
-  return klass;
+  return valueClass;
 }
 
 + (PKTItemFieldValue *)valueWithType:(PKTAppFieldType)type valueDictionary:(NSDictionary *)valueDictionary {

@@ -8,6 +8,18 @@
 
 #import <XCTest/XCTest.h>
 #import "PKTItemField.h"
+#import "PKTItemField+PKTTest.h"
+#import "PKTNumberItemFieldValue.h"
+#import "PKTBasicItemFieldValue.h"
+#import "PKTFileItemFieldValue.h"
+#import "PKTAppItemFieldValue.h"
+#import "PKTDateItemFieldValue.h"
+#import "PKTProfileItemFieldValue.h"
+#import "PKTMoneyItemFieldValue.h"
+#import "PKTDurationItemFieldValue.h"
+#import "PKTEmbedItemFieldValue.h"
+#import "PKTCalculationItemFieldValue.h"
+#import "PKTCategoryItemFieldValue.h"
 
 @interface PKTItemFieldTests : XCTestCase
 
@@ -71,6 +83,22 @@
   
   expect(field.values).to.haveCountOf(1);
   expect(field.values[0]).to.equal(@"Second value");
+}
+
+- (void)testValueClassForFieldType {
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeText]).to.equal([PKTBasicItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeNumber]).to.equal([PKTNumberItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeImage]).to.equal([PKTFileItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeDate]).to.equal([PKTDateItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeApp]).to.equal([PKTAppItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeContact]).to.equal([PKTProfileItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeMoney]).to.equal([PKTMoneyItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeProgress]).to.equal([PKTNumberItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeLocation]).to.equal([PKTBasicItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeDuration]).to.equal([PKTDurationItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeEmbed]).to.equal([PKTEmbedItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCalculation]).to.equal([PKTCalculationItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCategory]).to.equal([PKTCategoryItemFieldValue class]);
 }
 
 @end

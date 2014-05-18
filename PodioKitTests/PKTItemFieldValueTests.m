@@ -25,6 +25,7 @@
 #import "PKTMoney.h"
 #import "PKTDuration.h"
 #import "PKTCategoryOption.h"
+#import "PKTNumberItemFieldValue.h"
 
 @interface PKTItemFieldValueTests : XCTestCase
 
@@ -35,6 +36,13 @@
 - (void)testBasicValue {
   NSDictionary *valueDict = @{@"value" : @"This is a title"};
   PKTBasicItemFieldValue *value = [[PKTBasicItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(valueDict);
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testNumberValue {
+  NSDictionary *valueDict = @{@"value" : @"12324.43277"};
+  PKTNumberItemFieldValue *value = [[PKTNumberItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(valueDict);
   expect(value.unboxedValue).toNot.beNil();
 }
@@ -113,6 +121,10 @@
   expect([PKTBasicItemFieldValue supportsBoxingOfValue:@"Some text"]).to.beTruthy();
 }
 
+- (void)testBoxedValueSupportForValidNumberValue {
+  expect([PKTNumberItemFieldValue supportsBoxingOfValue:@32123.432]).to.beTruthy();
+}
+
 - (void)testBoxedValueSupportForValidDateValue {
   PKTDateRange *value = [[PKTDateRange alloc] initWithStartDate:[NSDate date] endDate:[NSDate date]];
   expect([PKTDateItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
@@ -151,6 +163,10 @@
 - (void)testBoxedValueSupportForValidDurationValue {
   PKTDuration *duration = [[PKTDuration alloc] initWithHours:3 minutes:23 seconds:55];
   expect([PKTDurationItemFieldValue supportsBoxingOfValue:duration]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForInvalidNumberValue {
+  expect([PKTNumberItemFieldValue supportsBoxingOfValue:@"32123.432"]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidDateValue {

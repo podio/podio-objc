@@ -12,7 +12,7 @@
 @implementation NSNumberFormatter (PKTAdditions)
 
 + (NSNumberFormatter *)pkt_USNumberFormatter {
-  NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+  NSNumberFormatter *formatter = [NSNumberFormatter new];
   formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
   formatter.numberStyle = NSNumberFormatterDecimalStyle;
   formatter.usesGroupingSeparator = NO;
