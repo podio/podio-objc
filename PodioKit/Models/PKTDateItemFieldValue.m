@@ -31,8 +31,8 @@ static NSString * const kEndDateKey = @"end";
            kEndDateKey : [dateRange.endDate pkt_UTCDateTimeString]};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTDateRange class]];
++ (Class)unboxedValueClass {
+  return [PKTDateRange class];
 }
 
 @end

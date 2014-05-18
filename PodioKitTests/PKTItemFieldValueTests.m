@@ -118,91 +118,97 @@
 }
 
 - (void)testBoxedValueSupportForValidStringValue {
-  expect([PKTStringItemFieldValue supportsBoxingOfValue:@"Some text"]).to.beTruthy();
+  expect([PKTStringItemFieldValue supportsBoxingOfValue:@"Some text" error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidNumberValue {
-  expect([PKTNumberItemFieldValue supportsBoxingOfValue:@32123.432]).to.beTruthy();
+  expect([PKTNumberItemFieldValue supportsBoxingOfValue:@32123.432 error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidDateValue {
   PKTDateRange *value = [[PKTDateRange alloc] initWithStartDate:[NSDate date] endDate:[NSDate date]];
-  expect([PKTDateItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
+  expect([PKTDateItemFieldValue supportsBoxingOfValue:value error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidMoneyValue {
   PKTMoney *value = [[PKTMoney alloc] initWithAmount:@125.5 currency:@"DKK"];
-  expect([PKTMoneyItemFieldValue supportsBoxingOfValue:value]).to.beTruthy();
+  expect([PKTMoneyItemFieldValue supportsBoxingOfValue:value error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidEmbedValue {
   PKTEmbed *embed = [[PKTEmbed alloc] init];;
-  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:embed]).to.beTruthy();
+  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:embed error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidFileValue {
   PKTFile *file = [[PKTFile alloc] init];
-  expect([PKTFileItemFieldValue supportsBoxingOfValue:file]).to.beTruthy();
+  expect([PKTFileItemFieldValue supportsBoxingOfValue:file error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidAppValue {
   PKTItem *item = [[PKTItem alloc] init];
-  expect([PKTAppItemFieldValue supportsBoxingOfValue:item]).to.beTruthy();
+  expect([PKTAppItemFieldValue supportsBoxingOfValue:item error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidProfileValue {
   PKTProfile *profile = [[PKTProfile alloc] init];
-  expect([PKTProfileItemFieldValue supportsBoxingOfValue:profile]).to.beTruthy();
+  expect([PKTProfileItemFieldValue supportsBoxingOfValue:profile error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidCategoryValue {
   PKTCategoryOption *option = [PKTCategoryOption new];
-  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:option]).to.beTruthy();
+  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:option error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidDurationValue {
   PKTDuration *duration = [[PKTDuration alloc] initWithHours:3 minutes:23 seconds:55];
-  expect([PKTDurationItemFieldValue supportsBoxingOfValue:duration]).to.beTruthy();
+  expect([PKTDurationItemFieldValue supportsBoxingOfValue:duration error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForInvalidStringValue {
-  expect([PKTStringItemFieldValue supportsBoxingOfValue:@32123]).to.beFalsy();
+  expect([PKTStringItemFieldValue supportsBoxingOfValue:@32123 error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidNumberValue {
-  expect([PKTNumberItemFieldValue supportsBoxingOfValue:@"32123.432"]).to.beFalsy();
+  expect([PKTNumberItemFieldValue supportsBoxingOfValue:@"32123.432" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidDateValue {
-  expect([PKTDateItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTDateItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidMoneyValue {
-  expect([PKTMoneyItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTMoneyItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidEmbedValue {
-  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidFileValue {
-  expect([PKTFileItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTFileItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidAppValue {
-  expect([PKTAppItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTAppItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidProfileValue {
-  expect([PKTProfileItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTProfileItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidCategoryValue {
-  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidDurationValue {
-  expect([PKTDurationItemFieldValue supportsBoxingOfValue:@"Invalid value"]).to.beFalsy();
+  expect([PKTDurationItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
+}
+
+- (void)testErrorForUnsupportedUnboxedValueClass {
+  NSError *error = nil;
+  [PKTStringItemFieldValue supportsBoxingOfValue:@123 error:&error];
+  expect(error).toNot.beNil();
 }
 
 @end

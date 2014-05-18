@@ -29,8 +29,8 @@
   return @{@"value" : self.unboxedValue };
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[NSString class]];
++ (Class)unboxedValueClass {
+  return [NSString class];
 }
 
 @end

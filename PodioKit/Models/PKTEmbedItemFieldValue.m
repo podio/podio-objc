@@ -28,8 +28,8 @@ static NSString * const kEmbedKey = @"embed";
   return @{kEmbedKey : @(embed.embedID)};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTEmbed class]];
++ (Class)unboxedValueClass {
+  return [PKTEmbed class];
 }
 
 @end

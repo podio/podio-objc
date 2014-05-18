@@ -26,8 +26,8 @@
   return @{@"value" : @(option.optionID)};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTCategoryOption class]];
++ (Class)unboxedValueClass {
+  return [PKTCategoryOption class];
 }
 
 @end

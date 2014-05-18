@@ -26,8 +26,8 @@
   return @{@"value" : @(profile.profileID)};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTProfile class]];
++ (Class)unboxedValueClass {
+  return [PKTProfile class];
 }
 
 @end

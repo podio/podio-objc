@@ -26,8 +26,8 @@
   return @{@"value" : @(item.itemID)};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTItem class]];
++ (Class)unboxedValueClass {
+  return [PKTItem class];
 }
 
 @end

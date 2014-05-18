@@ -28,8 +28,8 @@
   return @{@"value" : @(file.fileID)};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTFile class]];
++ (Class)unboxedValueClass {
+  return [PKTFile class];
 }
 
 @end

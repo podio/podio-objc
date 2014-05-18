@@ -27,8 +27,8 @@
   return @{@"value" : [number pkt_USNumberString]};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[NSNumber class]];
++ (Class)unboxedValueClass {
+  return [NSNumber class];
 }
 
 @end

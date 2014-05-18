@@ -31,8 +31,8 @@ static NSString * const kCurrencyKey = @"currency";
            kCurrencyKey : money.currency};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTMoney class]];
++ (Class)unboxedValueClass {
+  return [PKTMoney class];
 }
 
 @end

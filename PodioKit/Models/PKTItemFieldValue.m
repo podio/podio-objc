@@ -7,6 +7,7 @@
 //
 
 #import "PKTItemFieldValue.h"
+#import "NSArray+PKTAdditions.h"
 
 NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
 
@@ -63,19 +64,24 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
   return nil;
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return NO;
-}
-
 + (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error {
-  BOOL supported = [self supportsBoxingOfValue:value];
-  
-  if (!supported && error != NULL) {
-    NSString *message = [NSString stringWithFormat:@"Boxing not supported for value %@ not supported for class '%@'", value, NSStringFromClass(self)];
-    *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+  BOOL supported = YES;
+
+  Class supportedClass = [self unboxedValueClass];
+  if (supportedClass && ![value isKindOfClass:supportedClass]) {
+    supported = NO;
+
+    if (error) {
+      NSString *message = [NSString stringWithFormat:@"Field value '%@' is not of expected class '%@' for value class '%@'.", value, NSStringFromClass(supportedClass), NSStringFromClass(self)];
+      *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+    }
   }
   
   return supported;
+}
+
++ (Class)unboxedValueClass {
+  return nil;
 }
 
 #pragma mark - Private

@@ -21,8 +21,8 @@ extern NSString * const PKTItemFieldValueErrorDomain;
 
 + (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error;
 
-/** Override in subclass to validate that the value to be boxed is of a valid type */
-+ (BOOL)supportsBoxingOfValue:(id)value;
+/** Override in subclass to return the expected unboxed value type */
++ (Class)unboxedValueClass;
 
 /** Override in subclass to serialize the boxed value into a dictionary to be saved as the field value */
 - (NSDictionary *)valueDictionary;

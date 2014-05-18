@@ -28,9 +28,8 @@
   return @{@"value" : @(duration.totalSeconds)};
 }
 
-+ (BOOL)supportsBoxingOfValue:(id)value {
-  return [value isKindOfClass:[PKTDuration class]];
++ (Class)unboxedValueClass {
+  return [PKTDuration class];
 }
-
 
 @end
