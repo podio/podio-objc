@@ -8,7 +8,7 @@
 
 #import "PKTItemField.h"
 #import "PKTItemFieldValue.h"
-#import "PKTBasicItemFieldValue.h"
+#import "PKTStringItemFieldValue.h"
 #import "PKTDateItemFieldValue.h"
 #import "PKTMoneyItemFieldValue.h"
 #import "PKTEmbedItemFieldValue.h"
@@ -24,29 +24,30 @@
 
 @interface PKTItemField ()
 
-@property (nonatomic, assign) NSUInteger fieldID;
-@property (nonatomic, copy) NSString *externalID;
-@property (nonatomic, assign) PKTAppFieldType type;
 @property (nonatomic, strong) NSMutableArray *fieldValues;
 
 @end
 
 @implementation PKTItemField
 
-@synthesize fieldID = _fieldID;
-@synthesize externalID = _externalID;
-@synthesize type = _type;
+- (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type values:(NSArray *)values {
+  self = [super initWithFieldID:fieldID externalID:externalID type:type];
+  if (!self) return nil;
+
+  _fieldValues = [values mutableCopy];
+
+  return self;
+}
 
 - (instancetype)initWithAppField:(PKTAppField *)appField values:(NSArray *)values {
-  self = [super init];
-  if (!self) return nil;
-  
-  _fieldID = appField.fieldID;
-  _externalID = [appField.externalID copy];
-  _type = appField.type;
-  _fieldValues = [[self class] mutableFieldValuesForValues:values fieldType:appField.type];
-  
-  return self;
+  NSArray *fieldValues = [[self class] mutableFieldValuesForValues:values fieldType:appField.type];
+  PKTItemField *field = [self initWithFieldID:appField.fieldID externalID:appField.externalID type:appField.type values:fieldValues];
+
+  return field;
+}
+
+- (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type {
+  return [self initWithFieldID:fieldID externalID:externalID type:type values:nil];
 }
 
 #pragma mark - Properties
@@ -136,8 +137,11 @@
     case PKTAppFieldTypeProgress:
       valueClass = [PKTNumberItemFieldValue class];
       break;
+    case PKTAppFieldTypeText:
+    case PKTAppFieldTypeLocation:
+      valueClass = [PKTStringItemFieldValue class];
+      break;
     default:
-      valueClass = [PKTBasicItemFieldValue class];
       break;
   }
   

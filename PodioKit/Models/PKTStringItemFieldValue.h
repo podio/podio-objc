@@ -1,5 +1,5 @@
 //
-//  PKTBasicItemFieldValue.h
+//  PKTStringItemFieldValue.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 28/04/14.
@@ -8,6 +8,6 @@
 
 #import "PKTItemFieldValue.h"
 
-@interface PKTBasicItemFieldValue : PKTItemFieldValue
+@interface PKTStringItemFieldValue : PKTItemFieldValue
 
 @end

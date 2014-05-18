@@ -10,7 +10,7 @@
 #import "PKTItemField.h"
 #import "PKTItemField+PKTTest.h"
 #import "PKTNumberItemFieldValue.h"
-#import "PKTBasicItemFieldValue.h"
+#import "PKTStringItemFieldValue.h"
 #import "PKTFileItemFieldValue.h"
 #import "PKTAppItemFieldValue.h"
 #import "PKTDateItemFieldValue.h"
@@ -37,7 +37,7 @@
 }
 
 - (void)testSetValues {
-  PKTItemField *field = [[PKTItemField alloc] init];
+  PKTItemField *field = [[PKTItemField alloc] initWithFieldID:123 externalID:@"title" type:PKTAppFieldTypeText];
   [field setValues:@[@"First value", @"Second value"]];
   
   expect(field.values).to.haveCountOf(2);
@@ -46,7 +46,7 @@
 }
 
 - (void)testSetFirstValue {
-  PKTItemField *field = [[PKTItemField alloc] init];
+  PKTItemField *field = [[PKTItemField alloc] initWithFieldID:123 externalID:@"title" type:PKTAppFieldTypeText];
   field.value = @"Some text";
   
   expect(field.values).to.haveCountOf(1);
@@ -54,8 +54,8 @@
 }
 
 - (void)testAddValue {
-  PKTItemField *field = [[PKTItemField alloc] init];
-  [field addValue:@"First value"];
+  PKTItemField *field = [[PKTItemField alloc] initWithFieldID:123 externalID:@"title" type:PKTAppFieldTypeText];
+   [field addValue:@"First value"];
   [field addValue:@"Second value"];
   
   expect(field.values).to.haveCountOf(2);
@@ -64,7 +64,7 @@
 }
 
 - (void)testRemoveValue {
-  PKTItemField *field = [[PKTItemField alloc] init];
+  PKTItemField *field = [[PKTItemField alloc] initWithFieldID:123 externalID:@"title" type:PKTAppFieldTypeText];
   [field addValue:@"First value"];
   [field addValue:@"Second value"];
   
@@ -75,7 +75,7 @@
 }
 
 - (void)testRemoveValueAtIndex {
-  PKTItemField *field = [[PKTItemField alloc] init];
+  PKTItemField *field = [[PKTItemField alloc] initWithFieldID:123 externalID:@"title" type:PKTAppFieldTypeText];
   [field addValue:@"First value"];
   [field addValue:@"Second value"];
   
@@ -86,7 +86,7 @@
 }
 
 - (void)testValueClassForFieldType {
-  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeText]).to.equal([PKTBasicItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeText]).to.equal([PKTStringItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeNumber]).to.equal([PKTNumberItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeImage]).to.equal([PKTFileItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeDate]).to.equal([PKTDateItemFieldValue class]);
@@ -94,7 +94,7 @@
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeContact]).to.equal([PKTProfileItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeMoney]).to.equal([PKTMoneyItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeProgress]).to.equal([PKTNumberItemFieldValue class]);
-  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeLocation]).to.equal([PKTBasicItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeLocation]).to.equal([PKTStringItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeDuration]).to.equal([PKTDurationItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeEmbed]).to.equal([PKTEmbedItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCalculation]).to.equal([PKTCalculationItemFieldValue class]);

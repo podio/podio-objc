@@ -42,15 +42,15 @@
 		5014C582188817550002C68D /* PKTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C572188812540002C68D /* PKTAsyncTestCase.m */; };
 		5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55B188806E50002C68D /* PKTHTTPClientTests.m */; };
 		501D6045190D841E004D94C4 /* PKTItemFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6044190D841E004D94C4 /* PKTItemFieldTests.m */; };
-		501D604C190E30F5004D94C4 /* PKTBasicItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D604A190E30F5004D94C4 /* PKTBasicItemFieldValue.h */; };
-		501D604D190E30F5004D94C4 /* PKTBasicItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604B190E30F5004D94C4 /* PKTBasicItemFieldValue.m */; };
+		501D604C190E30F5004D94C4 /* PKTStringItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D604A190E30F5004D94C4 /* PKTStringItemFieldValue.h */; };
+		501D604D190E30F5004D94C4 /* PKTStringItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604B190E30F5004D94C4 /* PKTStringItemFieldValue.m */; };
 		501D6050190E340B004D94C4 /* PKTDateItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D604E190E340B004D94C4 /* PKTDateItemFieldValue.h */; };
 		501D6051190E340B004D94C4 /* PKTDateItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604F190E340B004D94C4 /* PKTDateItemFieldValue.m */; };
 		501D6056190E3E64004D94C4 /* PKTMoneyItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6054190E3E64004D94C4 /* PKTMoneyItemFieldValue.h */; };
 		501D6057190E3E64004D94C4 /* PKTMoneyItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6055190E3E64004D94C4 /* PKTMoneyItemFieldValue.m */; };
 		501D605A190E3E81004D94C4 /* PKTEmbedItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D6058190E3E81004D94C4 /* PKTEmbedItemFieldValue.h */; };
 		501D605B190E3E81004D94C4 /* PKTEmbedItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6059190E3E81004D94C4 /* PKTEmbedItemFieldValue.m */; };
-		501D605D190ED1BF004D94C4 /* PKTBasicItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604B190E30F5004D94C4 /* PKTBasicItemFieldValue.m */; };
+		501D605D190ED1BF004D94C4 /* PKTStringItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604B190E30F5004D94C4 /* PKTStringItemFieldValue.m */; };
 		501D605E190ED1BF004D94C4 /* PKTDateItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604F190E340B004D94C4 /* PKTDateItemFieldValue.m */; };
 		501D605F190ED1BF004D94C4 /* PKTMoneyItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6055190E3E64004D94C4 /* PKTMoneyItemFieldValue.m */; };
 		501D6062190ED520004D94C4 /* PKTItemFieldValueTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6061190ED520004D94C4 /* PKTItemFieldValueTests.m */; };
@@ -291,8 +291,8 @@
 		5014C571188812540002C68D /* PKTAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAsyncTestCase.h; sourceTree = "<group>"; };
 		5014C572188812540002C68D /* PKTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTestCase.m; sourceTree = "<group>"; };
 		501D6044190D841E004D94C4 /* PKTItemFieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemFieldTests.m; sourceTree = "<group>"; };
-		501D604A190E30F5004D94C4 /* PKTBasicItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTBasicItemFieldValue.h; sourceTree = "<group>"; };
-		501D604B190E30F5004D94C4 /* PKTBasicItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTBasicItemFieldValue.m; sourceTree = "<group>"; };
+		501D604A190E30F5004D94C4 /* PKTStringItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTStringItemFieldValue.h; sourceTree = "<group>"; };
+		501D604B190E30F5004D94C4 /* PKTStringItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTStringItemFieldValue.m; sourceTree = "<group>"; };
 		501D604E190E340B004D94C4 /* PKTDateItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDateItemFieldValue.h; sourceTree = "<group>"; };
 		501D604F190E340B004D94C4 /* PKTDateItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDateItemFieldValue.m; sourceTree = "<group>"; };
 		501D6054190E3E64004D94C4 /* PKTMoneyItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTMoneyItemFieldValue.h; sourceTree = "<group>"; };
@@ -517,8 +517,8 @@
 		501D6053190E34BF004D94C4 /* Item Field Values */ = {
 			isa = PBXGroup;
 			children = (
-				501D604A190E30F5004D94C4 /* PKTBasicItemFieldValue.h */,
-				501D604B190E30F5004D94C4 /* PKTBasicItemFieldValue.m */,
+				501D604A190E30F5004D94C4 /* PKTStringItemFieldValue.h */,
+				501D604B190E30F5004D94C4 /* PKTStringItemFieldValue.m */,
 				501D604E190E340B004D94C4 /* PKTDateItemFieldValue.h */,
 				501D604F190E340B004D94C4 /* PKTDateItemFieldValue.m */,
 				501D6054190E3E64004D94C4 /* PKTMoneyItemFieldValue.h */,
@@ -1033,7 +1033,7 @@
 				5082425618FC8466009A1580 /* PKTReversibleBlockValueTransformer.h in Headers */,
 				E4BABDD6189807DA00E9149A /* PKTBaseAPI.h in Headers */,
 				501D6065190EE9BB004D94C4 /* PKTFileItemFieldValue.h in Headers */,
-				501D604C190E30F5004D94C4 /* PKTBasicItemFieldValue.h in Headers */,
+				501D604C190E30F5004D94C4 /* PKTStringItemFieldValue.h in Headers */,
 				501D605A190E3E81004D94C4 /* PKTEmbedItemFieldValue.h in Headers */,
 				5082425118FC82C1009A1580 /* PKTBlockValueTransformer.h in Headers */,
 				501D6069190EEAC8004D94C4 /* PKTAppItemFieldValue.h in Headers */,
@@ -1265,7 +1265,7 @@
 				5082427918FD76D7009A1580 /* NSValueTransformer+PKTTransformers.m in Sources */,
 				5039F64C19070ED300A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
 				501D6057190E3E64004D94C4 /* PKTMoneyItemFieldValue.m in Sources */,
-				501D604D190E30F5004D94C4 /* PKTBasicItemFieldValue.m in Sources */,
+				501D604D190E30F5004D94C4 /* PKTStringItemFieldValue.m in Sources */,
 				5006B091191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m in Sources */,
 				5020670519235F04004721A1 /* PKTDateRange.m in Sources */,
 				5082424D18FC70A5009A1580 /* PKTModel.m in Sources */,
@@ -1341,7 +1341,7 @@
 				501D608B190EF2EB004D94C4 /* PKTCalculationItemFieldValue.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */,
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
-				501D605D190ED1BF004D94C4 /* PKTBasicItemFieldValue.m in Sources */,
+				501D605D190ED1BF004D94C4 /* PKTStringItemFieldValue.m in Sources */,
 				503959EE19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */,
 				5039F6A31908629200A8A8F0 /* PKTNestedTestModel.m in Sources */,
 				50E6C817190D654A00F309B4 /* PKTItemField.m in Sources */,
