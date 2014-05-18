@@ -18,6 +18,11 @@ static NSString * const kUnsavedExternalID = @"new_title";
 
 @implementation PKTItemTests
 
+- (void)testItemWithAppID {
+  PKTItem *item = [PKTItem itemForAppWithID:1234];
+  expect(item.appID).to.equal(1234);
+}
+
 - (void)testSetValueForExistingField {
   PKTItem *item = [self dummyItem];
   
