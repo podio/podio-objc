@@ -25,7 +25,7 @@ Then run `pod install` from the command line.
 To use the latest changes from the master branch, provide the repo URL instead of the version in the Podfile like:
 
 ```ruby
-pod 'PodioKit', :git => 'https://github.com/podio/podio-objc.git'
+pod 'PodioKit', :git => 'https://github.com/podio/podio-objc.git', :branch => 'master'
 ```
 
 After that you are ready to start using PodioKit by importing the main header file where you would like to use it in your project:
