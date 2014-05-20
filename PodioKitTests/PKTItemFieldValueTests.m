@@ -48,15 +48,15 @@
 }
 
 - (void)testDateValue {
-  NSDictionary *valueDict = @{@"start" : @"2014-04-30 15:30:00",
-                              @"end" : @"2014-04-30 16:00:00"};
+  NSDictionary *valueDict = @{@"start_utc" : @"2014-04-30 15:30:00",
+                              @"end_utc" : @"2014-04-30 16:00:00"};
   PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(valueDict);
   expect(value.unboxedValue).toNot.beNil();
 }
 
 - (void)testDateValueOnlyStart {
-  NSDictionary *valueDict = @{@"start" : @"2014-04-30 15:30:00"};
+  NSDictionary *valueDict = @{@"start_utc" : @"2014-04-30 15:30:00"};
   PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(valueDict);
   expect(value.unboxedValue).toNot.beNil();

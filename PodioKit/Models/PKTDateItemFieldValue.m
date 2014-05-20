@@ -10,8 +10,8 @@
 #import "PKTDateRange.h"
 #import "NSDate+PKTAdditions.h"
 
-static NSString * const kStartDateKey = @"start";
-static NSString * const kEndDateKey = @"end";
+static NSString * const kStartDateKey = @"start_utc";
+static NSString * const kEndDateKey = @"end_utc";
 
 @implementation PKTDateItemFieldValue
 

@@ -25,8 +25,8 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"startDate" : @"start",
-           @"endDate" : @"end",
+           @"startDate" : @"start_utc",
+           @"endDate" : @"end_utc",
            };
 }
 
