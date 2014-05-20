@@ -55,6 +55,13 @@
   expect(value.unboxedValue).toNot.beNil();
 }
 
+- (void)testDateValueOnlyStart {
+  NSDictionary *valueDict = @{@"start" : @"2014-04-30 15:30:00"};
+  PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(valueDict);
+  expect(value.unboxedValue).toNot.beNil();
+}
+
 - (void)testMoneyValue {
   NSDictionary *valueDict = @{@"value" : @"125.532",
                               @"currency" : @"DKK"};

@@ -26,9 +26,18 @@ static NSString * const kEndDateKey = @"end";
 
 - (NSDictionary *)valueDictionary {
   PKTDateRange *dateRange = self.unboxedValue;
+
+  NSMutableDictionary *mutDict = [NSMutableDictionary new];
   
-  return @{kStartDateKey : [dateRange.startDate pkt_UTCDateTimeString],
-           kEndDateKey : [dateRange.endDate pkt_UTCDateTimeString]};
+  if (dateRange.startDate) {
+      mutDict[kStartDateKey] = [dateRange.startDate pkt_UTCDateTimeString];
+  }
+
+  if (dateRange.endDate) {
+    mutDict[kEndDateKey] = [dateRange.endDate pkt_UTCDateTimeString];
+  }
+
+  return [mutDict copy];
 }
 
 + (Class)unboxedValueClass {
