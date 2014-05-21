@@ -118,13 +118,33 @@
   return request;
 }
 
-+ (PKRequest *)requestToCreateTaskWithText:(NSString *)text 
-                               description:(NSString *)description 
-                                   dueDate:(NSDate *)dueDate 
-                               responsible:(NSUInteger)responsible 
-                                 isPrivate:(BOOL)isPrivate 
-                               referenceId:(NSUInteger)referenceId 
-                             referenceType:(PKReferenceType)referenceType 
++ (PKRequest *)requestToCreateTaskWithText:(NSString *)text
+                               description:(NSString *)description
+                                   dueDate:(NSDate *)dueDate
+                               responsible:(NSUInteger)responsible
+                                 isPrivate:(BOOL)isPrivate
+                               referenceId:(NSUInteger)referenceId
+                             referenceType:(PKReferenceType)referenceType
+                                   fileIds:(NSArray *)fileIds {
+  return [self requestToCreateTaskWithText:text
+                               description:description
+                                   dueDate:dueDate
+                               responsible:responsible
+                           responsibleType:PKReferenceTypeProfile
+                                 isPrivate:isPrivate
+                               referenceId:referenceId
+                             referenceType:referenceType
+                                   fileIds:fileIds];
+}
+
++ (PKRequest *)requestToCreateTaskWithText:(NSString *)text
+                               description:(NSString *)description
+                                   dueDate:(NSDate *)dueDate
+                               responsible:(NSUInteger)responsible
+                           responsibleType:(PKReferenceType)responsibleType
+                                 isPrivate:(BOOL)isPrivate
+                               referenceId:(NSUInteger)referenceId
+                             referenceType:(PKReferenceType)referenceType
                                    fileIds:(NSArray *)fileIds {
   BOOL hasReference = referenceType != PKReferenceTypeNone && referenceId > 0;
   
@@ -141,6 +161,16 @@
   
   if (responsible > 0) {
     [body setObject:@(responsible) forKey:@"responsible"];
+  }
+  if (responsible > 0 && (responsibleType == PKReferenceTypeProfile || responsibleType == PKReferenceTypeSpace)) {
+    NSString *typeString;
+    if (responsibleType == PKReferenceTypeProfile) {
+      typeString = @"user";
+    } else if (responsibleType == PKReferenceTypeSpace) {
+      typeString = @"space";
+    }
+    
+    [body setObject:@{@"type": typeString, @"id": @(responsible)} forKey:@"responsible"];
   }
   
   if (description != nil) {
