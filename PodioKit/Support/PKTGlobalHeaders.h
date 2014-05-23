@@ -36,3 +36,4 @@
 #import "PKTWorkspace.h"
 #import "PKTDateRange.h"
 #import "PKTMoney.h"
+#import "PKTCategoryOption.h"
