@@ -123,8 +123,8 @@ Instead of explicitly authenticating as an app as shown in the example above, th
 There are mupltiple types of fields in an app. A field supports a single or multiple values depending on its type. The available field types and their supported values are:
 
 * **Text**: Single value of `NSString`
-* **Category**: Multiple values of `PKTCategoryOption`
-* **Date**: Single value of `PKTDateRange`
+* **Category**: Multiple values of `NSNumber` (the option ID) or `PKTCategoryOption`
+* **Date**: Single value of `PKTDateRange` or an `NSDate` representing the start date and time
 * **Relationship**: Multiple values of `PKTItem`
 * **Contact**: Multiple value of `PKTProfile`
 * **Number**: Single value of `NSNumber`
