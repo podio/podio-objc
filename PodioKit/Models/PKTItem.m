@@ -197,12 +197,7 @@
   [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
     if (!error) {
       NSArray *itemFields = [self allFieldsToSaveForApp:app];
-      
-      if (!error) {
-        [self saveWithItemFields:itemFields completion:completion];
-      } else {
-        if (completion) completion(nil, error);
-      }
+      [self saveWithItemFields:itemFields completion:completion];
     } else {
       if (completion) completion(nil, error);
     }
@@ -369,10 +364,10 @@
     
     if (appField) {
       NSArray *values = [value isKindOfClass:[NSArray class]] ? value : @[value];
-      for (id value in values) {
+      for (id currentValue in values) {
         
         NSError *error = nil;
-        if (![PKTItemField isSupportedValue:value forFieldType:appField.type error:&error]) {
+        if (![PKTItemField isSupportedValue:currentValue forFieldType:appField.type error:&error]) {
           NSString *reason = [NSString stringWithFormat:@"Invalid field value: %@", [error localizedDescription]];
           NSException *exception = [NSException exceptionWithName:@"InvalidFieldValueException" reason:reason userInfo:nil];
           
