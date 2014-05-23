@@ -19,8 +19,11 @@
 #import "PKTCategoryItemFieldValue.h"
 #import "PKTDurationItemFieldValue.h"
 #import "PKTFile.h"
-#import "NSValueTransformer+PKTTransformers.h"
+#import "PKTCategoryOption.h"
 #import "PKTNumberItemFieldValue.h"
+#import "PKTAppFieldConfig.h"
+#import "NSValueTransformer+PKTTransformers.h"
+#import "PKTDateRange.h"
 
 @interface PKTItemField ()
 
@@ -30,8 +33,8 @@
 
 @implementation PKTItemField
 
-- (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type values:(NSArray *)values {
-  self = [super initWithFieldID:fieldID externalID:externalID type:type];
+- (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type config:(PKTAppFieldConfig *)config values:(NSArray *)values {
+  self = [super initWithFieldID:fieldID externalID:externalID type:type config:config];
   if (!self) return nil;
 
   _fieldValues = [values mutableCopy];
@@ -39,15 +42,15 @@
   return self;
 }
 
-- (instancetype)initWithAppField:(PKTAppField *)appField values:(NSArray *)values {
-  NSArray *fieldValues = [[self class] mutableFieldValuesForValues:values fieldType:appField.type];
-  PKTItemField *field = [self initWithFieldID:appField.fieldID externalID:appField.externalID type:appField.type values:fieldValues];
+- (instancetype)initWithAppField:(PKTAppField *)appField basicValues:(NSArray *)basicValues {
+  NSArray *values = [[self class] mutableFieldValuesForBasicValues:basicValues field:appField];
+  PKTItemField *field = [self initWithFieldID:appField.fieldID externalID:appField.externalID type:appField.type config:appField.config values:values];
 
   return field;
 }
 
-- (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type {
-  return [self initWithFieldID:fieldID externalID:externalID type:type values:nil];
+- (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type config:(PKTAppFieldConfig *)config {
+  return [self initWithFieldID:fieldID externalID:externalID type:type config:config values:nil];
 }
 
 #pragma mark - Properties
@@ -80,6 +83,56 @@
 
 #pragma mark - Private
 
+/* Validates that the provided unboxed value is supported for the given fieldType.
+ *
+ * @param value The unboxed value.
+ * @param fieldType The field type for which to validate that the unboxed value can be used.
+ *
+ * @exception InvalidFieldValueException Thrown if the provided value is cannot be boxed for the given field type.
+ */
++ (void)validateUnboxedValue:(id)value forFieldType:(PKTAppFieldType)fieldType {
+  NSError *error = nil;
+  if (![PKTItemField isSupportedValue:value forFieldType:fieldType error:&error]) {
+    NSString *reason = [NSString stringWithFormat:@"Invalid field value: %@", [error localizedDescription]];
+    NSException *exception = [NSException exceptionWithName:@"InvalidFieldValueException" reason:reason userInfo:nil];
+
+    @throw exception;
+  }
+}
+
+/* Sometimes a field value (the 'basic' value) can be given that does not represent the final unboxed value for
+ * the field. For example; a category field support the PKTCategoryOption as its unboxed value but the user might
+ * provide only the option ID in the form of an NSNumber instance. In this case, we want to translate the option ID to the full
+ * PKTCategoryOption value to be used as the actual value.
+ *
+ * This method will look for those instances and cleverly replace it with supported unboxed values. If it doesn't
+ * find a suitable replacement value, it will return the original value.
+ *
+ * @param value The 'basic' value, meaning a value that might not be supported as the final unboxed field value.
+ * @param field The app field for which to determine the unboxed value. This is needed since sometimes the field
+ *              settings are needed to determine the final unboxed value (e.g. in the case of a category field).
+ *
+ * @return The replacement unboxed value or the original value if no replacement can be determined.
+ *
+ */
++ (id)unboxedValueFromBasicValue:(id)value forField:(PKTAppField *)field {
+  id unboxedValue = value;
+
+  if (field.type == PKTAppFieldTypeCategory && [value isKindOfClass:[NSNumber class]]) {
+    // The option was provided as an NSNumber (the option ID) instead of a PKTCategoryOption. Look up the
+    // PKTCategoryOption from the app config settings instead.
+    PKTCategoryOption *option = [field categoryOptionWithID:[value unsignedIntegerValue]];
+    if (option) {
+      unboxedValue = option;
+    }
+  } else if (field.type == PKTAppFieldTypeDate && [value isKindOfClass:[NSDate class]]) {
+    // An NSDate was provided for a date field, wrap it in the unboxed value a PKTDateRange
+    unboxedValue = [[PKTDateRange alloc] initWithStartDate:value endDate:nil];
+  }
+
+  return unboxedValue;
+}
+
 + (NSMutableArray *)mutableFieldValuesForValueDictionaries:(NSArray *)valueDictionaries fieldType:(PKTAppFieldType)fieldType {
   NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[valueDictionaries count]];
   
@@ -91,11 +144,12 @@
   return fieldValues;
 }
 
-+ (NSMutableArray *)mutableFieldValuesForValues:(NSArray *)values fieldType:(PKTAppFieldType)fieldType {
-  NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[values count]];
++ (NSMutableArray *)mutableFieldValuesForBasicValues:(NSArray *)basicValues field:(PKTAppField *)field {
+  NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[basicValues count]];
   
-  for (id value in values) {
-    PKTItemFieldValue *fieldValue = [PKTItemField valueWithType:fieldType unboxedValue:value];
+  for (id basicValue in basicValues) {
+    id unboxedValue = [self unboxedValueFromBasicValue:basicValue forField:field];
+    PKTItemFieldValue *fieldValue = [PKTItemField valueWithType:field.type unboxedValue:unboxedValue];
     [fieldValues addObject:fieldValue];
   }
   
@@ -160,6 +214,8 @@
 }
 
 + (PKTItemFieldValue *)valueWithType:(PKTAppFieldType)type unboxedValue:(id)unboxedValue {
+  [self validateUnboxedValue:unboxedValue forFieldType:type];
+
   PKTItemFieldValue *value = nil;
   
   Class valueClass = [self valueClassForFieldType:type];

@@ -364,18 +364,7 @@
     
     if (appField) {
       NSArray *values = [value isKindOfClass:[NSArray class]] ? value : @[value];
-      for (id currentValue in values) {
-        
-        NSError *error = nil;
-        if (![PKTItemField isSupportedValue:currentValue forFieldType:appField.type error:&error]) {
-          NSString *reason = [NSString stringWithFormat:@"Invalid field value: %@", [error localizedDescription]];
-          NSException *exception = [NSException exceptionWithName:@"InvalidFieldValueException" reason:reason userInfo:nil];
-          
-          @throw exception;
-        }
-      }
-      
-      PKTItemField *field = [[PKTItemField alloc] initWithAppField:appField values:values];
+      PKTItemField *field = [[PKTItemField alloc] initWithAppField:appField basicValues:values];
       [validFields addObject:field];
     } else {
       NSString *reason = [NSString stringWithFormat:@"No app field exists with external ID '%@'.", externalID];

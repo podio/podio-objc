@@ -14,4 +14,6 @@
 
 + (Class)valueClassForFieldType:(PKTAppFieldType)fieldType;
 
++ (id)unboxedValueFromBasicValue:(id)value forField:(PKTAppField *)field;
+
 @end

@@ -26,4 +26,6 @@ typedef NS_ENUM(NSUInteger, PKTAppFieldMapping) {
 @property (nonatomic, assign, readonly, getter = isRequired) BOOL required;
 @property (nonatomic, assign, readonly, getter = isVisible) BOOL visible;
 
+- (instancetype)initWithLabel:(NSString *)label description:(NSString *)description settings:(NSDictionary *)settings delta:(NSUInteger)delta mapping:(PKTAppFieldMapping)mapping isRequired:(BOOL)isRequired isVisible:(BOOL)isVisible;
+
 @end

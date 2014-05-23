@@ -13,7 +13,7 @@
 @property (nonatomic, strong) id value; // The unboxed value
 @property (nonatomic, copy) NSArray *values; // The unboxed values
 
-- (instancetype)initWithAppField:(PKTAppField *)appField values:(NSArray *)values;
+- (instancetype)initWithAppField:(PKTAppField *)appField basicValues:(NSArray *)basicValues;
 
 + (BOOL)isSupportedValue:value forFieldType:(PKTAppFieldType)fieldType error:(NSError **)error;
 

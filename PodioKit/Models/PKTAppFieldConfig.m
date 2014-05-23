@@ -12,9 +12,28 @@
 
 @implementation PKTAppFieldConfig
 
-- (instancetype)initWithDictionary:(NSDictionary *)dictionary {
-  return [super initWithDictionary:dictionary];
+- (instancetype)initWithLabel:(NSString *)label
+                  description:(NSString *)description
+                     settings:(NSDictionary *)settings
+                        delta:(NSUInteger)delta
+                      mapping:(PKTAppFieldMapping)mapping
+                   isRequired:(BOOL)isRequired
+                    isVisible:(BOOL)isVisible {
+  self = [super init];
+  if (!self) return nil;
+
+  _label = [label copy];
+  _descr = [description copy];
+  _settings = [settings copy];
+  _delta = delta;
+  _mapping = mapping;
+  _required = isRequired;
+  _visible = isVisible;
+
+  return self;
 }
+
+#pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
