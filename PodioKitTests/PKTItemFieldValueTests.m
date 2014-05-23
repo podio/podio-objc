@@ -108,7 +108,7 @@
 
 - (void)testCategoryValue {
   NSDictionary *valueDict = @{
-      @"value" : @{@"option_id" : @123,
+      @"value" : @{@"id" : @123,
                    @"status" : @"active",
                    @"text" : @"First option",
                    @"color" : @"ff0000"}};

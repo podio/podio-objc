@@ -14,7 +14,7 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-    @"optionID" : @"option_id",
+    @"optionID" : @"id",
   };
 }
 
