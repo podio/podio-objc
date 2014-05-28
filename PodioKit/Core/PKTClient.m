@@ -109,20 +109,20 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 #pragma mark - Authentication
 
-- (void)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
+- (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
   NSParameterAssert(email);
   NSParameterAssert(password);
 
   PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithEmail:email password:password];
-  [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
 }
 
-- (void)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
+- (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
 
   PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
-  [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
 }
 
 - (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
@@ -132,11 +132,11 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   self.savedAuthenticationRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
 }
 
-- (void)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy completion:(PKTRequestCompletionBlock)completion {
+- (AFHTTPRequestOperation *)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy completion:(PKTRequestCompletionBlock)completion {
   if (requestPolicy == PKTClientAuthRequestPolicyIgnore) {
     if (self.authenticationOperation) {
       // Ignore this new authentation request, let the old one finish
-      return;
+      return nil;
     }
   } else if (requestPolicy == PKTClientAuthRequestPolicyCancelPrevious) {
     // Cancel any pending authentication task
@@ -163,10 +163,12 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     
     strongSelf.authenticationOperation = nil;
   }];
+
+  return self.authenticationOperation;
 }
 
-- (void)authenticateWithSavedRequest:(PKTRequest *)request {
-  [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:^(PKTResponse *response, NSError *error) {
+- (AFHTTPRequestOperation *)authenticateWithSavedRequest:(PKTRequest *)request {
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:^(PKTResponse *response, NSError *error) {
     if (!error) {
       [self processPendingOperations];
     } else {
@@ -256,21 +258,21 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 #pragma mark - Refresh token
 
-- (void)refreshTokenWithRefreshToken:(NSString *)refreshToken completion:(PKTRequestCompletionBlock)completion {
+- (AFHTTPRequestOperation *)refreshTokenWithRefreshToken:(NSString *)refreshToken completion:(PKTRequestCompletionBlock)completion {
   NSParameterAssert(refreshToken);
 
   PKTRequest *request = [PKTAuthenticationAPI requestToRefreshToken:refreshToken];
-  [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:completion];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:completion];
 }
 
-- (void)refreshToken:(PKTRequestCompletionBlock)completion {
+- (AFHTTPRequestOperation *)refreshToken:(PKTRequestCompletionBlock)completion {
   NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
 
-  [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken completion:completion];
+  return [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken completion:completion];
 }
 
-- (void)refreshToken {
-  [self refreshToken:^(PKTResponse *response, NSError *error) {
+- (AFHTTPRequestOperation *)refreshToken {
+  return [self refreshToken:^(PKTResponse *response, NSError *error) {
     if (!error) {
       [self processPendingOperations];
     } else {

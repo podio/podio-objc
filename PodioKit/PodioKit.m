@@ -15,12 +15,12 @@
   [[PKTClient sharedClient] setupWithAPIKey:key secret:secret];
 }
 
-+ (void)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
-  [[PKTClient sharedClient] authenticateAsUserWithEmail:email password:password completion:completion];
++ (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
+  return [[PKTClient sharedClient] authenticateAsUserWithEmail:email password:password completion:completion];
 }
 
-+ (void)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
-  [[PKTClient sharedClient] authenticateAsAppWithID:appID token:appToken completion:completion];
++ (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
+  return [[PKTClient sharedClient] authenticateAsAppWithID:appID token:appToken completion:completion];
 }
 
 + (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {

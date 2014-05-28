@@ -83,10 +83,11 @@
   [PKTHTTPStubs stubResponseForPath:request.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
+  expect(operation).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.isAuthenticated).to.beTruthy();
   expect(self.testClient.oauthToken).notTo.equal(initialToken);
@@ -100,10 +101,11 @@
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:401];
   
   __block BOOL completed = NO;
-  [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
+  expect(operation).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).to.beNil();
 }
@@ -116,10 +118,11 @@
   [PKTHTTPStubs stubNetworkDownForPath:request.path];
   
   __block BOOL completed = NO;
-  [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
+  expect(operation).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).to.equal(initialToken);
 }
