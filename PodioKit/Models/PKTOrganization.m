@@ -36,13 +36,14 @@
 #pragma mark - API
 
 + (void)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
+  Class objectClass = [self class];
   PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
   [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *orgs = nil;
     
     if (!error) {
       orgs = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *orgDict) {
-        return [[PKTOrganization alloc] initWithDictionary:orgDict];
+        return [[objectClass alloc] initWithDictionary:orgDict];
       }];
     }
     
@@ -51,12 +52,13 @@
 }
 
 + (void)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
+  Class objectClass = [self class];
   PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
   [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTOrganization *org = nil;
     
     if (!error) {
-      org = [[PKTOrganization alloc] initWithDictionary:response.body];
+      org = [[objectClass alloc] initWithDictionary:response.body];
     }
     
     if (completion) completion(org, error);

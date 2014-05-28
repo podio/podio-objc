@@ -71,6 +71,7 @@
 + (void)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL completion:(void (^)(PKTComment *comment, NSError *error))completion {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   
+  Class objectClass = [self class];
   PKTRequest *request = [PKTCommentAPI requestToAddCommentToObjectWithReferenceID:referenceID
                                                                     referenceType:referenceType
                                                                             value:text
@@ -81,7 +82,7 @@
     PKTComment *comment = nil;
     
     if (!error) {
-      comment = [[PKTComment alloc] initWithDictionary:response.body];
+      comment = [[objectClass alloc] initWithDictionary:response.body];
     }
     
     if (comment) completion(comment, error);

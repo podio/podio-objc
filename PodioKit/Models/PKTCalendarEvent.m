@@ -54,13 +54,14 @@
 }
 
 + (void)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority completion:(void (^)(NSArray *events, NSError *error))completion {
+  Class objectClass = [self class];
   PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority];
   [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *events = nil;
     
     if (!error) {
       events = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
-        return [[PKTCalendarEvent alloc] initWithDictionary:dict];
+        return [[objectClass alloc] initWithDictionary:dict];
       }];
     }
     

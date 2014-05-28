@@ -138,11 +138,12 @@
 
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
   PKTRequest *request = [PKTItemAPI requestForItemWithID:itemID];
+  Class objectClass = [self class];
   
   [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTItem *item = nil;
     if (!error) {
-      item = [[PKTItem alloc] initWithDictionary:response.body];
+      item = [[objectClass alloc] initWithDictionary:response.body];
     }
     
     if (completion) completion(item, error);
@@ -175,6 +176,7 @@
 }
 
 + (void)fetchFilteredItemsWithRequest:(PKTRequest *)request completion:(PKTItemFilteredFetchCompletionBlock)completion {
+  Class objectClass = [self class];
   [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *items = nil;
     NSUInteger filteredCount = 0, totalCount = 0;
@@ -185,7 +187,7 @@
       NSArray *itemDicts = response.body[@"items"];
 
       items = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
-        return [[PKTItem alloc] initWithDictionary:itemDict];
+        return [[objectClass alloc] initWithDictionary:itemDict];
       }];
     }
 
