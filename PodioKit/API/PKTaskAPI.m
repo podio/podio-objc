@@ -129,6 +129,7 @@
   return [self requestToCreateTaskWithText:text
                                description:description
                                    dueDate:dueDate
+                                  reminder:nil
                                responsible:responsible
                            responsibleType:PKReferenceTypeProfile
                                  isPrivate:isPrivate
@@ -140,6 +141,28 @@
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text
                                description:(NSString *)description
                                    dueDate:(NSDate *)dueDate
+                               responsible:(NSUInteger)responsible
+                           responsibleType:(PKReferenceType)responsibleType
+                                 isPrivate:(BOOL)isPrivate
+                               referenceId:(NSUInteger)referenceId
+                             referenceType:(PKReferenceType)referenceType
+                                   fileIds:(NSArray *)fileIds {
+  return [self requestToCreateTaskWithText:text
+                               description:description
+                                   dueDate:dueDate
+                                  reminder:nil
+                               responsible:responsible
+                           responsibleType:responsibleType
+                                 isPrivate:isPrivate
+                               referenceId:referenceId
+                             referenceType:referenceType
+                                   fileIds:fileIds];
+}
+
++ (PKRequest *)requestToCreateTaskWithText:(NSString *)text
+                               description:(NSString *)description
+                                   dueDate:(NSDate *)dueDate
+                                  reminder:(NSNumber *)reminder
                                responsible:(NSUInteger)responsible
                            responsibleType:(PKReferenceType)responsibleType
                                  isPrivate:(BOOL)isPrivate
@@ -179,6 +202,10 @@
   
   if (dueDate != nil) {
     [body setObject:[[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"due_on"];
+  }
+  
+  if (reminder != nil) {
+    [body setObject:@{@"remind_delta": reminder} forKey:@"reminder"];
   }
   
   if (hasReference) {
