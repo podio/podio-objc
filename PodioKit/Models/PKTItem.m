@@ -15,6 +15,7 @@
 #import "PKTItemAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"
+#import "PKTMacros.h"
 
 @interface PKTItem ()
 
@@ -162,7 +163,7 @@
                                                             descending:descending
                                                               remember:NO];
   
-  [self fetchFilteredItemsWithRequest:request completion:completion];
+  [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
 }
 
 + (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion {
@@ -172,26 +173,46 @@
                                                                 viewID:viewID
                                                               remember:NO];
 
-  [self fetchFilteredItemsWithRequest:request completion:completion];
+  [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
 }
 
-+ (void)fetchFilteredItemsWithRequest:(PKTRequest *)request completion:(PKTItemFilteredFetchCompletionBlock)completion {
++ (void)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID completion:(PKTItemFilteredFetchCompletionBlock)completion {
   Class objectClass = [self class];
   [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *items = nil;
     NSUInteger filteredCount = 0, totalCount = 0;
-
+    
     if (!error) {
       filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
       totalCount = [response.body[@"total"] unsignedIntegerValue];
       NSArray *itemDicts = response.body[@"items"];
-
+      
       items = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
-        return [[objectClass alloc] initWithDictionary:itemDict];
+        NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
+        
+        // Inject the app ID as it is not included in the response
+        mutItemDict[@"app"] = @{@"app_id" : @(appID)};
+        
+        return [[objectClass alloc] initWithDictionary:mutItemDict];
       }];
     }
-
+    
     if (completion) completion(items, filteredCount, totalCount, error);
+  }];
+}
+
+- (void)fetchWithCompletion:(PKTRequestCompletionBlock)completion {
+  PKTRequest *request = [PKTItemAPI requestForItemWithID:self.itemID];
+
+  PKT_WEAK_SELF weakSelf = self;
+  [[self class] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+      PKT_STRONG(weakSelf) strongSelf = weakSelf;
+
+      if (!error) {
+        [strongSelf updateFromDictionary:response.body];
+      }
+
+      if (completion) completion(response, error);
   }];
 }
 

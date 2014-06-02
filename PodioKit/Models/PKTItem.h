@@ -39,6 +39,8 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 + (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
+- (void)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
+
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 
 #pragma mark - Public
