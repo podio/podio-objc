@@ -11,6 +11,8 @@
 
 #define PKTRequestPath(fmt, ...) [NSString stringWithFormat:fmt, ##__VA_ARGS__]
 
+typedef NSURLRequest * (^PKTURLRequestConfigurationBlock) (NSURLRequest *request);
+
 typedef NS_ENUM(NSUInteger, PKTRequestMethod) {
   PKTRequestMethodGET = 0,
   PKTRequestMethodPOST,
@@ -31,6 +33,7 @@ typedef NS_ENUM(NSUInteger, PKTRequestContentType) {
 @property (nonatomic, copy, readonly) NSDictionary *parameters;
 @property (nonatomic, strong) PKTRequestFileData *fileData;
 @property (nonatomic, assign, readwrite) PKTRequestContentType contentType;
+@property (nonatomic, copy, readwrite) PKTURLRequestConfigurationBlock URLRequestConfigurationBlock;
 
 + (instancetype)GETRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
 + (instancetype)POSTRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;

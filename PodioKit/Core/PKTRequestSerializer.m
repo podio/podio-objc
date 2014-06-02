@@ -119,11 +119,15 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
       // Use content type of request
       PKTRequestContentType contentType = self.requestContentType;
       self.requestContentType = request.contentType;
-      
+
       urlRequest = [self requestWithMethod:method URLString:urlString parameters:request.parameters error:nil];
-      
+
       // Reset content type
       self.requestContentType = contentType;
+    }
+
+    if (request.URLRequestConfigurationBlock) {
+      urlRequest = [request.URLRequestConfigurationBlock(urlRequest) mutableCopy];
     }
     
     return urlRequest;

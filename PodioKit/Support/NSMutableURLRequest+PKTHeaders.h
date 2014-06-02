@@ -11,5 +11,6 @@
 @interface NSMutableURLRequest (PKTHeaders)
 
 - (void)pkt_setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken;
+- (void)pkt_setAuthorizationHeaderWithUsername:(NSString *)username password:(NSString *)password;
 
 @end

@@ -15,6 +15,7 @@
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
+#import "NSString+PKTBase64.h"
 
 @interface PKTClientTests : XCTestCase
 
@@ -73,6 +74,7 @@
   expect(client.oauthToken).to.equal(token);
 }
 
+
 - (void)testSuccessfulRefreshTokenReplacesToken {
   PKTOAuth2Token *initialToken = [self dummyAuthToken];
   self.testClient.oauthToken = initialToken;
@@ -88,6 +90,8 @@
   }];
   
   expect(operation).notTo.beNil();
+  expect(operation.request.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+
   expect(completed).will.beTruthy();
   expect(self.testClient.isAuthenticated).to.beTruthy();
   expect(self.testClient.oauthToken).notTo.equal(initialToken);
@@ -246,9 +250,11 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
+
+  expect(operation.request.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
   
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).toNot.beNil();
@@ -260,9 +266,11 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
+
+  expect(operation.request.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
   
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).toNot.beNil();
@@ -320,6 +328,10 @@
   expect(^{
     self.testClient.oauthToken = [self dummyAuthToken];
   }).to.notify(PKTClientAuthenticationStateDidChangeNotification);
+}
+
+- (NSString *)basicAuthHeaderForTestClient {
+  return [NSString stringWithFormat:@"Basic %@", [[NSString stringWithFormat:@"%@:%@", self.testClient.apiKey, self.testClient.apiSecret] pkt_base64String]];
 }
 
 @end

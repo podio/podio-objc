@@ -142,9 +142,19 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     // Cancel any pending authentication task
     [self.authenticationOperation cancel];
   }
-  
+
   PKT_WEAK_SELF weakSelf = self;
-  
+
+  // Always use basic authentication for authentication requests
+  request.URLRequestConfigurationBlock = ^NSURLRequest *(NSURLRequest *urlRequest) {
+      PKT_STRONG(weakSelf) strongSelf = weakSelf;
+
+      NSMutableURLRequest *mutURLRequest = [urlRequest mutableCopy];
+      [mutURLRequest pkt_setAuthorizationHeaderWithUsername:strongSelf.apiKey password:strongSelf.apiSecret];
+
+      return [mutURLRequest copy];
+  };
+
   self.authenticationOperation = [self performOperationkWithRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
 
@@ -152,7 +162,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     if (!error) {
       token = [[PKTOAuth2Token alloc] initWithDictionary:response.body];
     }
-    
+
     if (response.statusCode > 0) {
       strongSelf.oauthToken = token;
     }
@@ -160,7 +170,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     if (completion) {
       completion(response, error);
     }
-    
+
     strongSelf.authenticationOperation = nil;
   }];
 

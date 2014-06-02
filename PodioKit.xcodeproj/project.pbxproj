@@ -214,9 +214,12 @@
 		C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
 		C9FAD28F142CC7765648109C /* PKTNumberValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD6730D190BACF99137EF /* PKTNumberValueTransformer.h */; };
 		C9FAD3EE9E849D02CD801B5F /* PKTNumberValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */; };
+		C9FAD459B5E1A7FD82D4D1CC /* NSString+PKTBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC8E3264C753336AB3E4 /* NSString+PKTBase64.m */; };
 		C9FAD4AA445FD22C487A3963 /* PKTNumberValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD5036212A8EF74B70210 /* PKTNumberValueTransformerTests.m */; };
 		C9FAD4EC21B79273C9542F8B /* NSNumber+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD97F2AFFD6AF6E5EA57B /* NSNumber+PKTAdditions.m */; };
 		C9FAD5520897CD3F437A17E1 /* PKTItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD9382EC55885F331F4ED /* PKTItemFieldValue.h */; };
+		C9FAD565DD0B076E650D8C80 /* NSString+PKTBase64.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD2B53D42DCEB19E1FD23 /* NSString+PKTBase64.h */; };
+		C9FAD5B079857EA6BAC03F7B /* NSString+PKTBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC8E3264C753336AB3E4 /* NSString+PKTBase64.m */; };
 		C9FAD5E0C1CD812506A25FBB /* PKTCategoryOption.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD604976FDA55CE665AB6 /* PKTCategoryOption.m */; };
 		C9FAD8430A2EFAB91834CE91 /* PKTAppFieldConfigTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD5D70030C95F38C9C2B3 /* PKTAppFieldConfigTests.m */; };
 		C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADFA4CE84E4915BDC31ED /* PKTDuration.h */; };
@@ -224,6 +227,7 @@
 		C9FADA4482A758EDAC72D210 /* NSNumberFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */; };
 		C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADD3B5E8AC41D6A6EB16C /* PKTCategoryOption.h */; };
 		C9FADABAC0F8E5C7AA861A12 /* PKTNumberValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */; };
+		C9FADAD0D7D9451B20D37296 /* NSString+PKTBase64Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADD7B81102A43CBE5390A /* NSString+PKTBase64Tests.m */; };
 		C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */; };
 		C9FADBADB4E1ADF51A7396FB /* NSNumber+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FADC69860FD7EE549B79CC /* NSNumber+PKTAdditions.h */; };
 		C9FADBC1A39DD6160D2BC363 /* PKTDuration.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */; };
@@ -435,6 +439,7 @@
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		C9FAD10827B7B0E436013698 /* PKTAppFieldConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppFieldConfig.h; sourceTree = "<group>"; };
 		C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDurationItemFieldValue.h; sourceTree = "<group>"; };
+		C9FAD2B53D42DCEB19E1FD23 /* NSString+PKTBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTBase64.h"; sourceTree = "<group>"; };
 		C9FAD455BAF5C8FA7B411046 /* NSNumberFormatter+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumberFormatter+PKTAdditions.h"; sourceTree = "<group>"; };
 		C9FAD5036212A8EF74B70210 /* PKTNumberValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNumberValueTransformerTests.m; sourceTree = "<group>"; };
 		C9FAD5D70030C95F38C9C2B3 /* PKTAppFieldConfigTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppFieldConfigTests.m; sourceTree = "<group>"; };
@@ -450,8 +455,10 @@
 		C9FAD98F60F2DA627A15656D /* PKTNumberValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNumberValueTransformer.m; sourceTree = "<group>"; };
 		C9FADC69860FD7EE549B79CC /* NSNumber+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNumber+PKTAdditions.h"; sourceTree = "<group>"; };
 		C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNumberFormatter+PKTAdditions.m"; sourceTree = "<group>"; };
+		C9FADC8E3264C753336AB3E4 /* NSString+PKTBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTBase64.m"; sourceTree = "<group>"; };
 		C9FADCA90121ED753BEBC4B3 /* PKTAppFieldConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppFieldConfig.m; sourceTree = "<group>"; };
 		C9FADD3B5E8AC41D6A6EB16C /* PKTCategoryOption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTCategoryOption.h; sourceTree = "<group>"; };
+		C9FADD7B81102A43CBE5390A /* NSString+PKTBase64Tests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTBase64Tests.m"; sourceTree = "<group>"; };
 		C9FADDA08780027507CACC53 /* PKTDurationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDurationTests.m; sourceTree = "<group>"; };
 		C9FADE9B276B9878797D9341 /* PKTNumberItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNumberItemFieldValue.m; sourceTree = "<group>"; };
 		C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDuration.m; sourceTree = "<group>"; };
@@ -831,6 +838,7 @@
 				E45ED49318900372003A020A /* NSString+PKTURLTests.m */,
 				5082427B18FD76F9009A1580 /* NSValueTransformer+PKTTransformers.m */,
 				C9FAD7778C8207A6A29CE920 /* NSNumber+PKTAdditionsTests.m */,
+				C9FADD7B81102A43CBE5390A /* NSString+PKTBase64Tests.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -952,6 +960,8 @@
 			children = (
 				50D7380F166F6D08009233FF /* NSString+PKTRandom.h */,
 				50D73810166F6D09009233FF /* NSString+PKTRandom.m */,
+				C9FADC8E3264C753336AB3E4 /* NSString+PKTBase64.m */,
+				C9FAD2B53D42DCEB19E1FD23 /* NSString+PKTBase64.h */,
 			);
 			name = NSString;
 			sourceTree = "<group>";
@@ -1069,6 +1079,7 @@
 				C9FADF76FAA6C3285E7DEAB8 /* NSNumberFormatter+PKTAdditions.h in Headers */,
 				C9FADBADB4E1ADF51A7396FB /* NSNumber+PKTAdditions.h in Headers */,
 				C9FADF946A076B74E33B2212 /* PKTNumberItemFieldValue.h in Headers */,
+				C9FAD565DD0B076E650D8C80 /* NSString+PKTBase64.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1297,6 +1308,7 @@
 				C9FADA4482A758EDAC72D210 /* NSNumberFormatter+PKTAdditions.m in Sources */,
 				C9FADDB6A88831D6235765A4 /* NSNumber+PKTAdditions.m in Sources */,
 				C9FADFCCA132D164F80B8CD2 /* PKTNumberItemFieldValue.m in Sources */,
+				C9FAD5B079857EA6BAC03F7B /* NSString+PKTBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1414,6 +1426,8 @@
 				C9FAD4EC21B79273C9542F8B /* NSNumber+PKTAdditions.m in Sources */,
 				C9FADCF9C97F6D1DBC19D1F8 /* NSNumber+PKTAdditionsTests.m in Sources */,
 				C9FADFDADFFF9AF06D53CA1C /* PKTNumberItemFieldValue.m in Sources */,
+				C9FAD459B5E1A7FD82D4D1CC /* NSString+PKTBase64.m in Sources */,
+				C9FADAD0D7D9451B20D37296 /* NSString+PKTBase64Tests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
