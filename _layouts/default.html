@@ -12,13 +12,6 @@
       <header>
         <nav>
           <ul>
-            <!-- An introduction
-            Authentication
-            Working with items
-            Uploading files
-            Adding comments
-            List of supported API areas
-            Links to example projects -->
             <li class="{% if page.active == 'index' %}active{% endif %}"><a href="{{ site.baseurl}}/">Getting started</a></li>
             <li class="{% if page.active == 'auth' %}active{% endif %}"><a href="{{ site.baseurl}}/authentication">Authentication &amp; session management</a></li>
             <li class="{% if page.active == 'items' %}active{% endif %}"><a href="{{ site.baseurl}}/items">Working with apps &amp; items</a></li>
@@ -26,14 +19,17 @@
             <li class="{% if page.active == 'files' %}active{% endif %}"><a href="{{ site.baseurl}}/files">Working with files</a></li>
             <li class="{% if page.active == 'comments' %}active{% endif %}"><a href="{{ site.baseurl}}/comments">Working with comments</a></li>
             <li class="{% if page.active == 'debug' %}active{% endif %}"><a href="{{ site.baseurl}}/debug">Debugging &amp; errors</a></li>
+            <li class="{% if page.active == 'samples' %}active{% endif %}"><a href="{{ site.baseurl}}/samples">Sample code & apps</a></li>
             <li class="{% if page.active == 'changelog' %}active{% endif %}"><a href="{{ site.baseurl}}/changelog">Release notes</a></li>
           </ul>
         </nav>
         <p>You have found PodioKit, the official Objective-C SDK for <a href="https://developers.podio.com/">Podio</a>. It works with both iOS and Mac OS X.</p>
+        <p>
+          <a href="https://travis-ci.org/podio/podio-objc"><img src="https://travis-ci.org/podio/podio-objc.png?branch=2.0-develop" alt="Build Status"></a>
+        </p>
         <p>For help post on <a href="http://stackoverflow.com/questions/tagged/podio">Stack Overflow</a> and tag with <b>podio</b>. For bugs <a href="https://github.com/podio/podio-php/issues">create an issue on GitHub</a>.</p>
         <ul class="buttons">
           <li><a class="download" href="https://github.com/podio/podio-objc/releases">Download</a></li>
-          <li><a class="packagist" href="https://packagist.org/packages/podio/podio-objc">Packagist</a></li>
           <li><a class="github" href="https://github.com/podio/podio-objc">GitHub</a></li>
         </ul>
       </header>

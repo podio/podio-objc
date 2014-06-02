@@ -3,8 +3,6 @@ layout: default
 ---
 # PodioKit 
 
-[![Build Status](https://travis-ci.org/podio/podio-objc.png?branch=2.0-develop)](https://travis-ci.org/podio/podio-objc)
-
 PodioKit is a Objective-C client library for the [Podio API](https://developers.podio.com/). It provides an easy way to integrate your iOS and Mac apps with Podio.
 
 PodioKit uses ARC and supports iOS 6.0 or above and Mac OS X 10.8 and above. It depends on AFNetworking 2.x for the HTTP communication with the Podio API.
