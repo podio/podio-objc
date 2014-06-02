@@ -1,7 +1,6 @@
 ---
 layout: default
 ---
-
 # PodKit 
 
 [![Build Status](https://travis-ci.org/podio/podio-objc.png?branch=2.0-develop)](https://travis-ci.org/podio/podio-objc)
