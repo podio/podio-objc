@@ -53,7 +53,7 @@
 
 + (void)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
   Class objectClass = [self class];
-  PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
+  PKTRequest *request = [PKTOrganizationAPI requestForOrganizationsWithID:organizationID];
   [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTOrganization *org = nil;
     
