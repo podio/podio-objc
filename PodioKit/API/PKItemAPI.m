@@ -63,6 +63,43 @@
   return request;
 }
 
++ (PKRequest *)requestForItemsInAppWithId:(NSUInteger)appId viewId:(NSUInteger)viewId sortBy:(NSString *)sortBy descending:(BOOL)descending offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKRequest *request = nil;
+  
+  if (viewId > 0) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/filter/%ld/", (unsigned long)appId, (unsigned long)viewId] method:PKRequestMethodPOST];
+  } else {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/filter/", (unsigned long)appId] method:PKRequestMethodPOST];
+  }
+  
+  request.offset = offset;
+  
+  NSMutableDictionary *body = [NSMutableDictionary dictionary];
+  [body setObject:@NO forKey:@"remember"];
+  
+  if (offset > 0) {
+    [body setObject:@(offset) forKey:@"offset"];
+  }
+  
+  if (limit > 0) {
+    [body setObject:@(limit) forKey:@"limit"];
+  }
+  
+  if (sortBy) {
+    [body setObject:sortBy forKey:@"sort_by"];
+  }
+  
+  if (descending) {
+    [body setObject:@(YES) forKey:@"sort_desc"];
+  } else {
+    [body setObject:@(NO) forKey:@"sort_desc"];
+  }
+  
+  request.body = body;
+  
+  return request;
+}
+
 + (PKRequest *)requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/app/%ld/", (unsigned long)appId] method:PKRequestMethodPOST];
   
