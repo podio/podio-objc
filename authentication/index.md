@@ -17,7 +17,9 @@ if ([PodioKit isAuthenticated]) {
 }
 {% endhighlight %}
 
-Whenver the the authentication state changes, the `PKTClientAuthenticationStateDidChangeNotification` notification is posted. This can be useful to observe for changing the state of your UI or show a login screen.
+The authentication state is kept by a singleton instance of [`PKTClient`](https://github.com/podio/podio-objc/blob/master/PodioKit/Core/PKTClient.h).
+
+Whenver the the authentication state of the client changes, meaning the token is updated, the `PKTClientAuthenticationStateDidChangeNotification` notification is posted. This can be useful to observe for changing the state of your UI or show a login screen.
 
 For more details about authentication and the Podio API, more information can be found [here](https://developers.podio.com/authentication).
 
@@ -65,4 +67,64 @@ Instead of explicitly authenticating as an app as shown in the example above, th
 
 {% highlight objective-c %}
 [PodioKit authenticateAutomaticallyAsAppWithID:123456 token:@"my-app-token"];
+{% endhighlight %}
+
+## Saving and restoring a session across app launches
+
+If your app is terminated, the shared `PKTClient` instance will no longer have a token once your app is relaunced. This means that if you want the previous user session to live on, you need to store the authentication token on the iOS Keychain when it changes and restore it from the Keychain when the app is relaunced. Since the Keychain API is a bit complex to work with out of the box, we suggest you use a wrapper library, for example [FXKeychain](https://github.com/nicklockwood/FXKeychain) by Nick Lockwood. Using FXKeychain, your app delegate code could look something like this to manage storing/re-storing of the auth token:
+
+{% highlight objective-c %}
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  [PodioKit setupWithAPIKey:@"my-api-key" secret:@"my-api-secret"];
+  
+  [self restoreTokenIfNeeded];
+
+  // Observe token changes to the shared client in order to save it in the Keychain
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(sessionDidChange:) 
+                                               name:PKTClientAuthenticationStateDidChangeNotification
+                                             object:nil];
+  
+  return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+  [self restoreTokenIfNeeded];
+}
+
+- (void)saveToken {
+  // Save the token to the keychain. Since all PodioKit model objects automatically
+  // supports NSCoding, we can use NSKeyedArchiver to save it as NSData.
+  PKTOAuth2Token *token = [PKTClient sharedClient].oauthToken;
+    
+  if (token) {
+   NSData *tokenData = [NSKeyedArchiver archivedDataWithRootObject:token];
+    [[FXKeychain defaultKeychain] setObject:tokenData forKey:@"AuthToken"];
+  }  else {
+    [[FXKeychain defaultKeychain] removeObjectForKey:@"AuthToken"];
+  }
+}
+
+- (PKTOAuth2Token *)savedToken {
+  NSData *tokenData = [[FXKeychain defaultKeychain] objectForKey:@"AuthToken"];
+  
+  PKTOAuth2Token *token = nil;
+  if (tokenData) {
+    token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
+  }
+  
+  return token;
+}
+
+- (void)restoreTokenIfNeeded {
+  // If we were logged in a previous launch of the app, restore that token from the keychain
+  if (![PodioKit isAuthenticated]) {
+    [PKTClient sharedClient].oauthToken = [self savedToken];
+  }
+}
+
+- (void)sessionDidChange:(NSNotification *)notification {
+  // If the session changed we need to save the new token.
+  [self saveToken];
+}
 {% endhighlight %}
