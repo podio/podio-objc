@@ -18,6 +18,7 @@
 @property (nonatomic, copy) NSString *organization;
 @property NSInteger userId;
 @property NSInteger profileId;
+@property NSInteger spaceId;
 @property NSInteger avatarId;
 
 @end

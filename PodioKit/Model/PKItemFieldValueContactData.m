@@ -15,6 +15,7 @@ static NSString * const PKItemFieldValueContactDataTitleKey = @"Title";
 static NSString * const PKItemFieldValueContactDataOrgKey = @"Org";
 static NSString * const PKItemFieldValueContactDataUserIdKey = @"UserId";
 static NSString * const PKItemFieldValueContactDataProfileIdKey = @"ProfileId";
+static NSString * const PKItemFieldValueContactDataSpaceIdKey = @"SpaceId";
 static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
 
 @implementation PKItemFieldValueContactData
@@ -25,6 +26,7 @@ static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
 @synthesize organization = organization_;
 @synthesize userId = userId_;
 @synthesize profileId = profileId_;
+@synthesize spaceId = spaceId_;
 @synthesize avatarId = avatarId_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
@@ -36,6 +38,7 @@ static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
     organization_ = [[aDecoder decodeObjectForKey:PKItemFieldValueContactDataOrgKey] copy];
     userId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataUserIdKey];
     profileId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataProfileIdKey];
+    spaceId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataSpaceIdKey];
     avatarId_ = [aDecoder decodeIntegerForKey:PKItemFieldValueContactDataAvatarIdKey];
   }
   return self;
@@ -49,6 +52,7 @@ static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
   [aCoder encodeObject:organization_ forKey:PKItemFieldValueContactDataOrgKey];
   [aCoder encodeInteger:userId_ forKey:PKItemFieldValueContactDataUserIdKey];
   [aCoder encodeInteger:profileId_ forKey:PKItemFieldValueContactDataProfileIdKey];
+  [aCoder encodeInteger:spaceId_ forKey:PKItemFieldValueContactDataSpaceIdKey];
   [aCoder encodeInteger:avatarId_ forKey:PKItemFieldValueContactDataAvatarIdKey];
 }
 
@@ -77,6 +81,7 @@ static NSString * const PKItemFieldValueContactDataAvatarIdKey = @"AvatarId";
   data.organization = [refDict pk_objectForKey:@"organization"];
   data.userId = [[refDict pk_objectForKey:@"user_id"] integerValue];
   data.profileId = [[refDict pk_objectForKey:@"profile_id"] integerValue];
+  data.spaceId = [[refDict pk_objectForKey:@"space_id"] integerValue];
   data.avatarId = [[refDict pk_objectForKey:@"avatar"] integerValue];
   
   NSArray *emails = [refDict pk_objectForKey:@"mail"];
