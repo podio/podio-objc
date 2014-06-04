@@ -82,3 +82,7 @@ item[@"description"] = @"This is my first item of many.";
   }
 }];
 {% endhighlight %}
+
+## Updating an existing item
+
+To update an item, use the same `saveWithCompletion:` method as described in *Creating a new item* above. PodioKit will know if the item already exists and needs to be created, or if it should only be updated.
