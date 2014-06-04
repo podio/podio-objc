@@ -15,18 +15,18 @@ We encourage you to use [CocoaPods](http://cocoapods.org/) to integrate PodioKit
 
 First, make sure your have integrated CocoaPods with your project. If you do not, there is a great guide available [here](http://guides.cocoapods.org/using/getting-started.html).
 
-Once CocoaPods is installed, add the following line to your `Podfile`:
-
-{% highlight ruby %}
-pod 'PodioKit', '~> 2.0.0-beta'
-{% endhighlight %}
-	
-Then run `pod install` from the command line.
-
-To use the latest changes from the master branch, provide the repo URL instead of the version in the Podfile like:
+Once CocoaPods is installed, add the following line to your `Podfile` to use the latest code from the master branch:
 
 {% highlight ruby %}
 pod 'PodioKit', :git => 'https://github.com/podio/podio-objc.git', :branch => 'master'
+{% endhighlight %}
+
+Then run `pod install` from the command line.
+
+To use the latest official beta release, use the following instead:
+
+{% highlight ruby %}
+pod 'PodioKit', '~> 2.0.0-beta'
 {% endhighlight %}
 
 After that you are ready to start using PodioKit by importing the main header file where you would like to use it in your project:
