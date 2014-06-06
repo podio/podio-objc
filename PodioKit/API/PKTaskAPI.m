@@ -232,6 +232,28 @@
                              referenceId:(NSUInteger)referenceId 
                            referenceType:(PKReferenceType)referenceType
                                  fileIds:(NSArray *)fileIds {
+  return [self requestToUpdateTaskWithId:taskId
+                                    text:text
+                             description:description
+                                 dueDate:dueDate
+                                reminder:nil
+                             responsible:responsible
+                               isPrivate:isPrivate
+                             referenceId:referenceId
+                           referenceType:referenceType
+                                 fileIds:fileIds];
+}
+
++ (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId
+                                    text:(NSString *)text
+                             description:(NSString *)description
+                                 dueDate:(NSDate *)dueDate
+                                reminder:(NSNumber *)reminder
+                             responsible:(NSUInteger)responsible
+                               isPrivate:(BOOL)isPrivate
+                             referenceId:(NSUInteger)referenceId
+                           referenceType:(PKReferenceType)referenceType
+                                 fileIds:(NSArray *)fileIds {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld", (unsigned long)taskId] method:PKRequestMethodPUT];
   
   NSMutableDictionary *body = [NSMutableDictionary dictionary];
@@ -248,6 +270,14 @@
   
   NSString *timeString = [dueDate pk_timeString];
   [body setObject:([timeString length] > 0 ? timeString : [NSNull null]) forKey:@"due_time"];
+  
+  if (reminder != nil) {
+    if ([reminder intValue] < 0) {
+      [body setObject:@{@"remind_delta": [NSNull null]} forKey:@"reminder"];
+    } else {
+      [body setObject:@{@"remind_delta": reminder} forKey:@"reminder"];
+    }
+  }
   
   if (referenceType != PKReferenceTypeNone && referenceId > 0) {
     [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];

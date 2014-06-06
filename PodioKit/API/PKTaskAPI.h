@@ -67,6 +67,17 @@
                            referenceType:(PKReferenceType)referenceType
                                  fileIds:(NSArray *)fileIds;
 
++ (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId
+                                    text:(NSString *)text
+                             description:(NSString *)description
+                                 dueDate:(NSDate *)dueDate
+                                reminder:(NSNumber *)reminder
+                             responsible:(NSUInteger)responsible
+                               isPrivate:(BOOL)isPrivate
+                             referenceId:(NSUInteger)referenceId
+                           referenceType:(PKReferenceType)referenceType
+                                 fileIds:(NSArray *)fileIds;
+
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId;
 
 + (PKRequest *)requestForTaskTotalsWithTime:(PKTaskTotalsTime)time;
