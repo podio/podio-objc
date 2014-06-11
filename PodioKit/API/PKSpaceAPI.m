@@ -60,7 +60,7 @@
 }
 
 + (PKRequest *)requestForAvailableSeatsInSpaceWithId:(NSUInteger)spaceId {
-  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/space/%ld/available", (unsigned long)spaceId]];
+  return [PKRequest getRequestWithURI:[NSString stringWithFormat:@"/space/%ld/available", (unsigned long)spaceId]];
 }
 
 @end
