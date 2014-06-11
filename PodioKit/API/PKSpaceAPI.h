@@ -20,4 +20,6 @@
 
 + (PKRequest *)requestToRemoveMemberWithUserId:(NSUInteger)userId fromSpaceWithId:(NSUInteger)spaceId;
 
++ (PKRequest *)requestForAvailableSeatsInSpaceWithId:(NSUInteger)spaceId;
+
 @end
