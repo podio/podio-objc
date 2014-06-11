@@ -59,4 +59,8 @@
   return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/space/%ld/member/%ld", (unsigned long)spaceId, (unsigned long)userId]];
 }
 
++ (PKRequest *)requestForAvailableSeatsInSpaceWithId:(NSUInteger)spaceId {
+  return [PKRequest deleteRequestWithURI:[NSString stringWithFormat:@"/space/%ld/available", (unsigned long)spaceId]];
+}
+
 @end
