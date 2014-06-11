@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
+		18999E0F1948445000AE50E1 /* PKCalendarAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 18999E0D1948445000AE50E1 /* PKCalendarAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		18999E101948445000AE50E1 /* PKCalendarAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999E0E1948445000AE50E1 /* PKCalendarAPI.m */; };
 		5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5009E23D1667C8040018EC75 /* PKAPIClient.h */; };
 		5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
 		500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = 500EA927153F20830049F224 /* PKReferenceBatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -296,6 +298,8 @@
 
 /* Begin PBXFileReference section */
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
+		18999E0D1948445000AE50E1 /* PKCalendarAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCalendarAPI.h; sourceTree = "<group>"; };
+		18999E0E1948445000AE50E1 /* PKCalendarAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCalendarAPI.m; sourceTree = "<group>"; };
 		38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3C5F703CC0674FAD92A8ACBB /* Pods-demoapp.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demoapp.xcconfig"; path = "Pods/Pods-demoapp.xcconfig"; sourceTree = SOURCE_ROOT; };
 		5009E23D1667C8040018EC75 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
@@ -1098,6 +1102,8 @@
 			children = (
 				50CC1D42148CDA33000B57EA /* PKBaseAPI.h */,
 				50CC1D43148CDA33000B57EA /* PKBaseAPI.m */,
+				18999E0D1948445000AE50E1 /* PKCalendarAPI.h */,
+				18999E0E1948445000AE50E1 /* PKCalendarAPI.m */,
 				50CC1D44148CDA33000B57EA /* PKCommentAPI.h */,
 				50CC1D45148CDA34000B57EA /* PKCommentAPI.m */,
 				50CC1D46148CDA34000B57EA /* PKFileAPI.h */,
@@ -1372,6 +1378,7 @@
 				50DB5BA8150A55B500B5E489 /* PKContactAPI.h in Headers */,
 				50FEF578150E7CB2003B5306 /* PKUserAPI.h in Headers */,
 				50B319CF150F8F2700EAD7C7 /* PKAppStoreAPI.h in Headers */,
+				18999E0F1948445000AE50E1 /* PKCalendarAPI.h in Headers */,
 				50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */,
 				50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */,
 				50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */,
@@ -1675,6 +1682,7 @@
 				5028CBF6145E939A0003A097 /* PKConstants.m in Sources */,
 				5028CBFB145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */,
 				5026A2BC147114B70051D7C8 /* NSError+PKErrors.m in Sources */,
+				18999E101948445000AE50E1 /* PKCalendarAPI.m in Sources */,
 				5026A2C0147116BC0051D7C8 /* PKRequestResult.m in Sources */,
 				50CC1CDF14878100000B57EA /* PKReferenceAppData.m in Sources */,
 				50CC1CE514878124000B57EA /* PKReferenceProfileData.m in Sources */,

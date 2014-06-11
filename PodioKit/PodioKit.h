@@ -26,6 +26,7 @@
 #pragma mark - APIs
 
 #import "PKBaseAPI.h"
+#import "PKCalendarAPI.h"
 #import "PKCommentAPI.h"
 #import "PKConversationAPI.h"
 #import "PKFileAPI.h"
