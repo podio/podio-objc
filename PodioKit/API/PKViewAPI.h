@@ -11,5 +11,6 @@
 @interface PKViewAPI : PKBaseAPI
 
 + (PKRequest *)requestForViewsForAppWithId:(NSUInteger)appId;
++ (PKRequest *)requestForViewWithId:(NSUInteger)viewId appId:(NSUInteger)appId;
 
 @end
