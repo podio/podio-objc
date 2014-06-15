@@ -11,6 +11,18 @@
 
 @implementation PKTOAuth2Token
 
+#pragma mark - NSObject
+
+- (BOOL)isEqual:(id)object {
+  if (![object isKindOfClass:[self class]]) return NO;
+  
+  return [self.accessToken isEqualToString:[object accessToken]];
+}
+
+- (NSUInteger)hash {
+  return [self.accessToken hash];
+}
+
 #pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {

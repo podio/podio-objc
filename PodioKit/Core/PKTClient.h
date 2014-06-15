@@ -12,6 +12,7 @@
 extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 
 @class PKTOAuth2Token;
+@protocol PKTTokenStore;
 
 @interface PKTClient : NSObject
 
@@ -20,6 +21,7 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 @property (nonatomic, strong, readonly) PKTHTTPClient *HTTPClient;
 @property (nonatomic, strong, readwrite) PKTOAuth2Token *oauthToken;
 @property (nonatomic, assign, readonly) BOOL isAuthenticated;
+@property (nonatomic, strong) id<PKTTokenStore> tokenStore;
 
 + (instancetype)sharedClient;
 
@@ -32,5 +34,7 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 - (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 
 - (AFHTTPRequestOperation *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+
+- (void)restoreTokenIfNeeded;
 
 @end

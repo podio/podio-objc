@@ -306,8 +306,8 @@
 
 - (NSDictionary *)dummyAuthTokenDictWithExpirationSinceNow:(NSTimeInterval)expiration {
   return @{
-    @"access_token" : @"abc123",
-    @"refresh_token" : @"abc123",
+    @"access_token" : [[NSUUID UUID] UUIDString],
+    @"refresh_token" : [[NSUUID UUID] UUIDString],
     @"expires_in" : @(expiration),
     @"ref" : @{@"key": @"value"}
   };

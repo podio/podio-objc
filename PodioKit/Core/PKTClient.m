@@ -8,6 +8,7 @@
 
 #import "PKTClient.h"
 #import "PKTOAuth2Token.h"
+#import "PKTTokenStore.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTMacros.h"
 #import "NSMutableURLRequest+PKTHeaders.h"
@@ -247,6 +248,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 - (void)authenticationStateDidChange:(BOOL)isAuthenticated {
   [self updateAuthorizationHeader:isAuthenticated];
+  [self updateStoredToken];
   
   [[NSNotificationCenter defaultCenter] postNotificationName:PKTClientAuthenticationStateDidChangeNotification object:self];
 }
@@ -263,6 +265,25 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     }
   } else if (self.apiKey && self.apiSecret) {
     [self.HTTPClient setAuthorizationHeaderWithAPIKey:self.apiKey secret:self.apiSecret];
+  }
+}
+
+- (void)updateStoredToken {
+  if (!self.tokenStore) return;
+  
+  PKTOAuth2Token *token = self.oauthToken;
+  if (token) {
+    [self.tokenStore storeToken:token];
+  } else {
+    [self.tokenStore deleteStoredToken];
+  }
+}
+
+- (void)restoreTokenIfNeeded {
+  if (!self.tokenStore) return;
+  
+  if (!self.isAuthenticated) {
+    self.oauthToken = [self.tokenStore storedToken];
   }
 }
 

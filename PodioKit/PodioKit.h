@@ -18,4 +18,7 @@
 + (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 + (BOOL)isAuthenticated;
 
++ (void)automaticallyStoreTokenInKeychainForServiceWithName:(NSString *)name;
++ (void)automaticallyStoreTokenInKeychainForCurrentApp;
+
 @end

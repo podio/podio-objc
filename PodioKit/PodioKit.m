@@ -31,4 +31,14 @@
   return [[PKTClient sharedClient] isAuthenticated];
 }
 
++ (void)automaticallyStoreTokenInKeychainForServiceWithName:(NSString *)name {
+  [PKTClient sharedClient].tokenStore = [[PKTKeychainTokenStore alloc] initWithService:name];
+  [[PKTClient sharedClient] restoreTokenIfNeeded];
+}
+
++ (void)automaticallyStoreTokenInKeychainForCurrentApp {
+  NSString *name = [[NSBundle mainBundle] objectForInfoDictionaryKey:(__bridge id)kCFBundleIdentifierKey];
+  [self automaticallyStoreTokenInKeychainForServiceWithName:name];
+}
+
 @end
