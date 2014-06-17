@@ -78,13 +78,13 @@
 }
 
 + (PKHTTPRequestOperation *)downloadFileWithURLString:(NSString *)urlString savePath:(NSString *)savePath progression:(PKRequestProgressionBlock)progression completion:(PKRequestCompletionBlock)completion {
-  NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+  PKAPIClient *client = [[PKRequestManager sharedManager] apiClient];
   
+  NSMutableURLRequest *request = [client requestWithURL:[NSURL URLWithString:urlString]];
   PKHTTPRequestOperation *operation = [PKHTTPRequestOperation operationWithRequest:request completion:completion];
   operation.outputStream = [NSOutputStream outputStreamToFileAtPath:savePath append:NO];
   [operation setRequestDownloadProgressionBlock:progression];
   
-  PKAPIClient *client = [[PKRequestManager sharedManager] apiClient];
   [client performOperation:operation];
   
   return operation;

@@ -398,6 +398,12 @@ static NSUInteger kRequestIdLength = 8;
   }];
 }
 
+- (NSMutableURLRequest *)requestWithURL:(NSURL *)url {
+  NSMutableURLRequest *request = [self requestWithMethod:@"GET" path:nil parameters:nil body:nil];
+  [request setURL:url];
+  return request;
+}
+
 #pragma mark - Operations
 
 - (PKHTTPRequestOperation *)operationWithRequest:(NSURLRequest *)request completion:(PKRequestCompletionBlock)completion {
