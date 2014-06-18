@@ -34,6 +34,16 @@
   return request;
 }
 
++ (PKRequest *)requestToRenameSpaceWithId:(NSUInteger)spaceId name:(NSString *)name {
+  PKAssert([name length] > 0, @"Space name cannot be empty");
+  PKAssert(spaceId > 0, @"Invalid organization id %ld", (unsigned long)spaceId);
+
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%ld", (unsigned long)spaceId] method:PKRequestMethodPUT];
+  request.body = @{@"name": name};
+
+  return request;
+}
+
 + (PKRequest *)requestToAddMemberToSpaceWithId:(NSUInteger)spaceId role:(PKRole)role userIds:(NSArray *)userIds emails:(NSArray *)emails externalContacts:(NSDictionary *)externalContacts {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/space/%ld/member/", (unsigned long)spaceId] method:PKRequestMethodPOST];
   
