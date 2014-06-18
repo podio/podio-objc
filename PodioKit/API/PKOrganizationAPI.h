@@ -16,5 +16,6 @@
 
 + (PKRequest *)requestToCreateOrganizationName:(NSString *)name;
 + (PKRequest *)requestToUpdateOrganizationWithId:(NSUInteger)organizationId name:(NSString *)name;
++ (PKRequest *)requestToGetAllSpacesInOrganizationWithId:(NSUInteger)organizationId;
 
 @end

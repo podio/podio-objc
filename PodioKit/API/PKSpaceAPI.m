@@ -34,7 +34,7 @@
   return request;
 }
 
-+ (PKRequest *)requestToRenameSpaceWithId:(NSUInteger)spaceId name:(NSString *)name {
++ (PKRequest *)requestToUpdateSpaceWithId:(NSUInteger)spaceId name:(NSString *)name {
   PKAssert([name length] > 0, @"Space name cannot be empty");
   PKAssert(spaceId > 0, @"Invalid organization id %ld", (unsigned long)spaceId);
 

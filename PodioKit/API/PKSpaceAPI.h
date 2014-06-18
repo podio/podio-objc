@@ -15,7 +15,7 @@
 + (PKRequest *)requestToJoinSpaceWithId:(NSUInteger)spaceId;
 + (PKRequest *)requestToAcceptSpaceMemberRequestWithId:(NSUInteger)requestId spaceId:(NSUInteger)spaceId;
 + (PKRequest *)requestToCreateSpaceWithName:(NSString *)name organizationId:(NSUInteger)organizationId;
-+ (PKRequest *)requestToRenameSpaceWithId:(NSUInteger)spaceId name:(NSString *)name;
++ (PKRequest *)requestToUpdateSpaceWithId:(NSUInteger)spaceId name:(NSString *)name;
 
 + (PKRequest *)requestToAddMemberToSpaceWithId:(NSUInteger)spaceId role:(PKRole)role userIds:(NSArray *)userIds emails:(NSArray *)emails externalContacts:(NSDictionary *)externalContacts;
 

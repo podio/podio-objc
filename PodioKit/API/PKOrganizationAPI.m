@@ -29,4 +29,8 @@
   return request;
 }
 
++ (PKRequest *)requestToGetAllSpacesInOrganizationWithId:(NSUInteger)organizationId {
+  return [PKRequest requestWithURI:[NSString stringWithFormat:@"/org/%ld/all_spaces/", (unsigned long)organizationId] method:PKRequestMethodGET];
+}
+
 @end
