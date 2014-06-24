@@ -11,6 +11,20 @@
 
 @implementation PKTFileAPI
 
++ (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL {
+  return [self requestToDownloadFileWithURL:fileURL toLocalFileWithPathURL:nil];
+}
+
++ (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL toLocalFileWithPathURL:(NSURL *)pathURL {
+  PKTRequest *request = [PKTRequest GETRequestWithURL:fileURL parameters:nil];
+  
+  if (pathURL) {
+    request.fileData = [PKTRequestFileData fileDataWithFileURL:pathURL name:nil fileName:nil mimeType:nil];
+  }
+  
+  return request;
+}
+
 + (PKTRequest *)requestToUploadFileWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/file/" parameters:@{@"filename" : fileName}];
   request.contentType = PKTRequestContentTypeMultipart;

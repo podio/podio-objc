@@ -15,6 +15,25 @@
 
 @implementation PKTFileAPITests
 
+- (void)testRequestToDownloadFile {
+  NSURL *fileURL = [NSURL URLWithString:@"https://files.podio.com/11111"];
+  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:fileURL];
+  
+  expect(request.URL).to.equal(fileURL);
+  expect(request.method).to.equal(PKTRequestMethodGET);
+  expect(request.fileData).to.beNil();
+}
+
+- (void)testRequestToDownloadFileToLocalFile {
+  NSURL *fileURL = [NSURL URLWithString:@"https://files.podio.com/11111"];
+  NSURL *pathURL = [NSURL URLWithString:@"file:/tmp/file.pdf"];
+  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:fileURL toLocalFileWithPathURL:pathURL];
+  
+  expect(request.URL).to.equal(fileURL);
+  expect(request.method).to.equal(PKTRequestMethodGET);
+  expect(request.fileData.fileURL).to.equal(pathURL);
+}
+
 - (void)testRequestForFileUploadWithData {
   NSData *data = [NSData data];
   PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:@"image.jpg" mimeType:@"image/jpeg"];

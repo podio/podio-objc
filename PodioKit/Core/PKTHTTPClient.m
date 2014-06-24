@@ -46,7 +46,7 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
 - (AFHTTPRequestOperation *)operationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   NSURLRequest *urlRequest = [(PKTRequestSerializer *)self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
   
-  return [self HTTPRequestOperationWithRequest:urlRequest success:^(AFHTTPRequestOperation *operation, id responseObject) {
+  AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:urlRequest success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSUInteger statusCode = operation.response.statusCode;
     PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
     
@@ -57,6 +57,15 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
     
     if (completion) completion(response, error);
   }];
+  
+  // If this is a download request with a provided file URL, configure an output stream instead
+  // of buffering the data in memory.
+  if (request.method == PKTRequestMethodGET && request.fileData.fileURL) {
+    NSString *outputPath = [request.fileData.fileURL absoluteString];
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:outputPath append:NO];
+  }
+  
+  return operation;
 }
 
 @end
