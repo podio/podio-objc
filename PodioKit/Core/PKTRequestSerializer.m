@@ -104,7 +104,15 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
     NSParameterAssert(request);
     NSParameterAssert(baseURL);
     
-    NSString *urlString = [[NSURL URLWithString:request.path relativeToURL:baseURL] absoluteString];
+    NSURL *url = nil;
+    if (request.URL) {
+      url = request.URL;
+    } else {
+      NSParameterAssert(request.path);
+      url = [NSURL URLWithString:request.path relativeToURL:baseURL];
+    }
+    
+    NSString *urlString = [url absoluteString];
     NSString *method = [[self class] HTTPMethodForMethod:request.method];
     
     NSMutableURLRequest *urlRequest = nil;

@@ -30,6 +30,7 @@ typedef NS_ENUM(NSUInteger, PKTRequestContentType) {
 
 @property (nonatomic, assign, readonly) PKTRequestMethod method;
 @property (nonatomic, copy, readonly) NSString *path;
+@property (nonatomic, copy, readonly) NSURL *URL;
 @property (nonatomic, copy, readonly) NSDictionary *parameters;
 @property (nonatomic, strong) PKTRequestFileData *fileData;
 @property (nonatomic, assign, readwrite) PKTRequestContentType contentType;
@@ -39,5 +40,10 @@ typedef NS_ENUM(NSUInteger, PKTRequestContentType) {
 + (instancetype)POSTRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
 + (instancetype)PUTRequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
 + (instancetype)DELETERequestWithPath:(NSString *)path parameters:(NSDictionary *)parameters;
+
++ (instancetype)GETRequestWithURL:(NSURL *)url parameters:(NSDictionary *)parameters;
++ (instancetype)POSTRequestWithURL:(NSURL *)url parameters:(NSDictionary *)parameters;
++ (instancetype)PUTRequestWithURL:(NSURL *)url parameters:(NSDictionary *)parameters;
++ (instancetype)DELETERequestWithURL:(NSURL *)url parameters:(NSDictionary *)parameters;
 
 @end

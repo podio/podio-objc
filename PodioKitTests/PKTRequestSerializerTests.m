@@ -111,4 +111,17 @@
   expect(urlRequest.allHTTPHeaderFields[@"Content-Type"]).to.contain(@"multipart/form-data");
 }
 
+- (void)testURLRequestForAbsoluteURL {
+  NSURL *url = [NSURL URLWithString:@"https://some.other.domain.com/some/path"];
+  PKTRequest *request = [PKTRequest GETRequestWithURL:url parameters:@{@"param1": @"someValue", @"param2": @"someOtherValue"}];
+  
+  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+  expect(urlRequest.URL.scheme).to.equal(@"https");
+  expect(urlRequest.URL.host).to.equal(@"some.other.domain.com");
+  expect(urlRequest.URL.path).to.equal(@"/some/path");
+  expect(urlRequest.HTTPMethod).to.equal(@"GET");
+  expect([urlRequest.URL pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
+  expect([urlRequest.allHTTPHeaderFields[@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
+}
+
 @end
