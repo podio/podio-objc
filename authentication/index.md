@@ -71,60 +71,27 @@ Instead of explicitly authenticating as an app as shown in the example above, th
 
 ## Saving and restoring a session across app launches
 
-If your app is terminated, the shared `PKTClient` instance will no longer have a token once your app is relaunced. This means that if you want the previous user session to live on, you need to store the authentication token on the iOS Keychain when it changes and restore it from the Keychain when the app is relaunced. Since the Keychain API is a bit complex to work with out of the box, we suggest you use a wrapper library, for example [FXKeychain](https://github.com/nicklockwood/FXKeychain) by Nick Lockwood. Using FXKeychain, your app delegate code could look something like this to manage storing/re-storing of the auth token:
+If your app is terminated, the shared `PKTClient` instance will no longer have a token once your app is re-launced. This means that if you want the previous user session to live on, you need to store the authentication token in the Keychain when it changes and restore it from the Keychain when the app is re-launced. Luckily, PodioKit can take care of that for you!
+
+PodioKit provides a protocol called `PKTTokenStore` and a concrete class `PKTKeychainTokenStore` which stores the token in the iOS or OS X Keychain. All you need to do is add the following line after your call to `-setupWithAPIKey:secret:` in `-application:didFinishLaunchingWithOptions:`:
 
 {% highlight objective-c %}
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [PodioKit setupWithAPIKey:@"my-api-key" secret:@"my-api-secret"];
-  
-  [self restoreTokenIfNeeded];
+...
+// [PodioKit setupWithAPIKey:PODIO_API_KEY secret:];
 
-  // Observe token changes to the shared client in order to save it in the Keychain
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(sessionDidChange:) 
-                                               name:PKTClientAuthenticationStateDidChangeNotification
-                                             object:nil];
-  
-  return YES;
-}
-
-- (void)applicationDidBecomeActive:(UIApplication *)application {
-  [self restoreTokenIfNeeded];
-}
-
-- (void)saveToken {
-  // Save the token to the keychain. Since all PodioKit model objects automatically
-  // supports NSCoding, we can use NSKeyedArchiver to save it as NSData.
-  PKTOAuth2Token *token = [PKTClient sharedClient].oauthToken;
-    
-  if (token) {
-   NSData *tokenData = [NSKeyedArchiver archivedDataWithRootObject:token];
-    [[FXKeychain defaultKeychain] setObject:tokenData forKey:@"AuthToken"];
-  }  else {
-    [[FXKeychain defaultKeychain] removeObjectForKey:@"AuthToken"];
-  }
-}
-
-- (PKTOAuth2Token *)savedToken {
-  NSData *tokenData = [[FXKeychain defaultKeychain] objectForKey:@"AuthToken"];
-  
-  PKTOAuth2Token *token = nil;
-  if (tokenData) {
-    token = [NSKeyedUnarchiver unarchiveObjectWithData:tokenData];
-  }
-  
-  return token;
-}
-
-- (void)restoreTokenIfNeeded {
-  // If we were logged in a previous launch of the app, restore that token from the keychain
-  if (![PodioKit isAuthenticated]) {
-    [PKTClient sharedClient].oauthToken = [self savedToken];
-  }
-}
-
-- (void)sessionDidChange:(NSNotification *)notification {
-  // If the session changed we need to save the new token.
-  [self saveToken];
-}
+[PodioKit automaticallyStoreTokenInKeychainForCurrentApp];
+// or
+[PodioKit automaticallyStoreTokenInKeychainForServiceWithName:@"MyApp"];
+...
 {% endhighlight %}
+
+This line takes care of configuring the shared `PKTClient` instance with an instance of `PKTKeychainTokenStore` and restores any previous token from the Keychain. If you want to expliticly restore the token, you can call the `restoreTokenIfNeeded` method on `PKTClient` directly. If you are feeling real adventurous you can even implement your own class conforming to `PKTTokenStore` to store the token anywhere other than the Keychain. You can then set the `tokenStore` property on the shared `PKTClient` instance like:
+
+{% highlight objective-c %}
+...
+[PKTClient sharedClient].tokenStore = [[MYOwnTokenStore alloc] init];
+[[PKTClient sharedClient] restoreTokenIfNeeded];
+...
+{% endhighlight %}
+
+Note that we would not recommend doing this as the Keychain is the most secure container available.
