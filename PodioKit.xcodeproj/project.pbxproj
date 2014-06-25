@@ -202,6 +202,12 @@
 		50E6C817190D654A00F309B4 /* PKTItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E6C804190D4EA900F309B4 /* PKTItemField.m */; };
 		50E6C818190D655100F309B4 /* PKTFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E6C808190D4EC200F309B4 /* PKTFile.m */; };
 		50E6C819190D655A00F309B4 /* PKTAppField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E6C80C190D5A6600F309B4 /* PKTAppField.m */; };
+		50F6B92C195AE84900FF0024 /* PKTFile+UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F6B926195AE84900FF0024 /* PKTFile+UIImage.h */; };
+		50F6B92D195AE84900FF0024 /* PKTFile+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F6B927195AE84900FF0024 /* PKTFile+UIImage.m */; };
+		50F6B92E195AE84900FF0024 /* UIButton+PKTRemoteImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F6B928195AE84900FF0024 /* UIButton+PKTRemoteImage.h */; };
+		50F6B92F195AE84900FF0024 /* UIButton+PKTRemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F6B929195AE84900FF0024 /* UIButton+PKTRemoteImage.m */; };
+		50F6B930195AE84900FF0024 /* UIImageView+PKTRemoteImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F6B92A195AE84900FF0024 /* UIImageView+PKTRemoteImage.h */; };
+		50F6B931195AE84900FF0024 /* UIImageView+PKTRemoteImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F6B92B195AE84900FF0024 /* UIImageView+PKTRemoteImage.m */; };
 		50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FA507018FFC040009542B9 /* PKTUserAPI.h */; };
 		50FA507318FFC041009542B9 /* PKTUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507118FFC040009542B9 /* PKTUserAPI.m */; };
 		50FA507418FFC047009542B9 /* PKTUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507118FFC040009542B9 /* PKTUserAPI.m */; };
@@ -437,6 +443,12 @@
 		50E6C808190D4EC200F309B4 /* PKTFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTFile.m; sourceTree = "<group>"; };
 		50E6C80B190D5A6600F309B4 /* PKTAppField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppField.h; sourceTree = "<group>"; };
 		50E6C80C190D5A6600F309B4 /* PKTAppField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppField.m; sourceTree = "<group>"; };
+		50F6B926195AE84900FF0024 /* PKTFile+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PKTFile+UIImage.h"; sourceTree = "<group>"; };
+		50F6B927195AE84900FF0024 /* PKTFile+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PKTFile+UIImage.m"; sourceTree = "<group>"; };
+		50F6B928195AE84900FF0024 /* UIButton+PKTRemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+PKTRemoteImage.h"; sourceTree = "<group>"; };
+		50F6B929195AE84900FF0024 /* UIButton+PKTRemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+PKTRemoteImage.m"; sourceTree = "<group>"; };
+		50F6B92A195AE84900FF0024 /* UIImageView+PKTRemoteImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+PKTRemoteImage.h"; sourceTree = "<group>"; };
+		50F6B92B195AE84900FF0024 /* UIImageView+PKTRemoteImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+PKTRemoteImage.m"; sourceTree = "<group>"; };
 		50FA507018FFC040009542B9 /* PKTUserAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTUserAPI.h; sourceTree = "<group>"; };
 		50FA507118FFC040009542B9 /* PKTUserAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPI.m; sourceTree = "<group>"; };
 		50FA507518FFC279009542B9 /* PKTUserAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPITests.m; sourceTree = "<group>"; };
@@ -646,23 +658,10 @@
 		5065BEED14335AB900360855 /* PodioKit */ = {
 			isa = PBXGroup;
 			children = (
-				507CA7E119055030000D9F6E /* PodioKit.h */,
-				507CA7E219055030000D9F6E /* PodioKit.m */,
-				E45F963E188FEC49009791A0 /* Core */,
-				E4BABDD0189805B400E9149A /* API */,
-				50FB3D5A18EA09CD0021DB48 /* Models */,
-				E45F963F188FEC8B009791A0 /* Support */,
-				5065BEEE14335ABA00360855 /* Supporting Files */,
+				50F6B924195AE7E800FF0024 /* Common */,
+				50F6B925195AE84900FF0024 /* UIKit */,
 			);
 			path = PodioKit;
-			sourceTree = "<group>";
-		};
-		5065BEEE14335ABA00360855 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				5065BEEF14335ABA00360855 /* PodioKit-Prefix.pch */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		5065BF0314335ABA00360855 /* PodioKitTests */ = {
@@ -751,6 +750,33 @@
 				50E067EF191FE10000552CCF /* NSValueTransformer+PKTConstants.m */,
 			);
 			name = NSValueTransformer;
+			sourceTree = "<group>";
+		};
+		50F6B924195AE7E800FF0024 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				507CA7E119055030000D9F6E /* PodioKit.h */,
+				507CA7E219055030000D9F6E /* PodioKit.m */,
+				5065BEEF14335ABA00360855 /* PodioKit-Prefix.pch */,
+				E45F963E188FEC49009791A0 /* Core */,
+				E4BABDD0189805B400E9149A /* API */,
+				50FB3D5A18EA09CD0021DB48 /* Models */,
+				E45F963F188FEC8B009791A0 /* Support */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		50F6B925195AE84900FF0024 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				50F6B926195AE84900FF0024 /* PKTFile+UIImage.h */,
+				50F6B927195AE84900FF0024 /* PKTFile+UIImage.m */,
+				50F6B928195AE84900FF0024 /* UIButton+PKTRemoteImage.h */,
+				50F6B929195AE84900FF0024 /* UIButton+PKTRemoteImage.m */,
+				50F6B92A195AE84900FF0024 /* UIImageView+PKTRemoteImage.h */,
+				50F6B92B195AE84900FF0024 /* UIImageView+PKTRemoteImage.m */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		50FA507818FFC384009542B9 /* Models */ = {
@@ -1069,12 +1095,14 @@
 				50E0C61E194768E200D37281 /* PKTKeychainTokenStore.h in Headers */,
 				501D6065190EE9BB004D94C4 /* PKTFileItemFieldValue.h in Headers */,
 				501D604C190E30F5004D94C4 /* PKTStringItemFieldValue.h in Headers */,
+				50F6B92C195AE84900FF0024 /* PKTFile+UIImage.h in Headers */,
 				501D605A190E3E81004D94C4 /* PKTEmbedItemFieldValue.h in Headers */,
 				5082425118FC82C1009A1580 /* PKTBlockValueTransformer.h in Headers */,
 				501D6069190EEAC8004D94C4 /* PKTAppItemFieldValue.h in Headers */,
 				E4BABDDB1898083100E9149A /* PKTAuthenticationAPI.h in Headers */,
 				50FB3D6518EA0DDE0021DB48 /* PKTItemAPI.h in Headers */,
 				5039F64B19070ED300A8A8F0 /* PKTDictionaryMappingValueTransformer.h in Headers */,
+				50F6B930195AE84900FF0024 /* UIImageView+PKTRemoteImage.h in Headers */,
 				503B3AC519050EC3002BB703 /* NSMutableURLRequest+PKTHeaders.h in Headers */,
 				50E0C61B194657DA00D37281 /* PKTTokenStore.h in Headers */,
 				5014C56E18880B250002C68D /* PKTResponse.h in Headers */,
@@ -1088,6 +1116,7 @@
 				501D6071190EEBDE004D94C4 /* PKTProfileItemFieldValue.h in Headers */,
 				501D6056190E3E64004D94C4 /* PKTMoneyItemFieldValue.h in Headers */,
 				50E067F0191FE10000552CCF /* NSValueTransformer+PKTConstants.h in Headers */,
+				50F6B92E195AE84900FF0024 /* UIButton+PKTRemoteImage.h in Headers */,
 				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50E6C80D190D5A6600F309B4 /* PKTAppField.h in Headers */,
 				5006B07F191C200B006FF388 /* NSDate+PKTAdditions.h in Headers */,
@@ -1306,6 +1335,8 @@
 				5006B091191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m in Sources */,
 				5020670519235F04004721A1 /* PKTDateRange.m in Sources */,
 				5082424D18FC70A5009A1580 /* PKTModel.m in Sources */,
+				50F6B92F195AE84900FF0024 /* UIButton+PKTRemoteImage.m in Sources */,
+				50F6B92D195AE84900FF0024 /* PKTFile+UIImage.m in Sources */,
 				5039F64619070A1200A8A8F0 /* PKTComment.m in Sources */,
 				50E067FE1920A37B00552CCF /* PKTWorkspace.m in Sources */,
 				502067011923580B004721A1 /* PKTMoney.m in Sources */,
@@ -1322,6 +1353,7 @@
 				503959FE19137586004C298C /* PKTDateValueTransformer.m in Sources */,
 				501D607A190EF02D004D94C4 /* PKTCategoryItemFieldValue.m in Sources */,
 				E49B6F8718901ACF0046192A /* PKTRequestSerializer.m in Sources */,
+				50F6B931195AE84900FF0024 /* UIImageView+PKTRemoteImage.m in Sources */,
 				50E067FA1920A36F00552CCF /* PKTOrganization.m in Sources */,
 				50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */,
 				50395A0419137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
@@ -1518,7 +1550,7 @@
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "PodioKit/Common/PodioKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1536,7 +1568,7 @@
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "PodioKit/Common/PodioKit-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
