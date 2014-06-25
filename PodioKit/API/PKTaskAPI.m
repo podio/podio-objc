@@ -205,7 +205,11 @@
   }
   
   if (reminder != nil) {
-    [body setObject:@{@"remind_delta": reminder} forKey:@"reminder"];
+    if ([reminder intValue] < 0) {
+      [body setObject:@{@"remind_delta": [NSNull null]} forKey:@"reminder"];
+    } else {
+      [body setObject:@{@"remind_delta": reminder} forKey:@"reminder"];
+    }
   }
   
   if (hasReference) {
