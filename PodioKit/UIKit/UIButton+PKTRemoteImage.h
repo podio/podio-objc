@@ -10,7 +10,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class PKTFile;
+
 @interface UIButton (PKTRemoteImage)
+
+- (void)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
+- (void)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
+
+- (void)pkt_cancelCurrentImageOperation;
+- (void)pkt_cancelCurrentBackgroundImageOperation;
 
 @end
 
