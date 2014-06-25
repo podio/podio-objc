@@ -22,11 +22,11 @@
   return self;
 }
 
-- (instancetype)initWithFileURL:(NSURL *)fileURL name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
+- (instancetype)initWithFilePath:(NSString *)filePath name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
   self = [super init];
   if (!self) return nil;
   
-  _fileURL = [fileURL copy];
+  _filePath = [filePath copy];
   _name = [name copy];
   _fileName = [fileName copy];
   _mimeType = [mimeType copy];
@@ -38,8 +38,8 @@
   return [[self alloc] initWithData:data name:name fileName:fileName mimeType:mimeType];
 }
 
-+ (instancetype)fileDataWithFileURL:(NSURL *)fileURL name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
-  return [[self alloc] initWithFileURL:fileURL name:name fileName:fileName mimeType:mimeType];
++ (instancetype)fileDataWithFilePath:(NSString *)filePath name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
+  return [[self alloc] initWithFilePath:filePath name:name fileName:fileName mimeType:mimeType];
 }
 
 @end

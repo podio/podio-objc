@@ -26,12 +26,12 @@
 
 - (void)testRequestToDownloadFileToLocalFile {
   NSURL *fileURL = [NSURL URLWithString:@"https://files.podio.com/11111"];
-  NSURL *pathURL = [NSURL URLWithString:@"file:/tmp/file.pdf"];
-  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:fileURL toLocalFileWithPathURL:pathURL];
+  NSString *path = @"/tmp/file.pdf";
+  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:fileURL toLocalFileWithPath:path];
   
   expect(request.URL).to.equal(fileURL);
   expect(request.method).to.equal(PKTRequestMethodGET);
-  expect(request.fileData.fileURL).to.equal(pathURL);
+  expect(request.fileData.filePath).to.equal(path);
 }
 
 - (void)testRequestForFileUploadWithData {
@@ -49,14 +49,14 @@
 }
 
 - (void)testRequestForFileUploadWithFileURL {
-  NSURL *url = [NSURL URLWithString:@"file://some/local/folder/image.jpg"];
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithURL:url fileName:@"image.jpg" mimeType:@"image/jpeg"];
+  NSString *path = @"/some/local/folder/image.jpg";
+  PKTRequest *request = [PKTFileAPI requestToUploadFileWithPath:path fileName:@"image.jpg" mimeType:@"image/jpeg"];
   
   expect(request.path).to.equal(@"/file/");
   expect(request.contentType).to.equal(PKTRequestContentTypeMultipart);
   expect(request.method).to.equal(PKTRequestMethodPOST);
   expect(request.parameters[@"filename"]).to.equal(@"image.jpg");
-  expect(request.fileData.fileURL).to.equal(url);
+  expect(request.fileData.filePath).to.equal(path);
   expect(request.fileData.name).to.equal(@"source");
   expect(request.fileData.fileName).to.equal(@"image.jpg");
   expect(request.fileData.mimeType).to.equal(@"image/jpeg");

@@ -25,6 +25,12 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
 
   self.requestSerializer = [PKTRequestSerializer serializer];
   
+  // We need to provide a fallback response serializer if the response is not of JSON content type.
+  // The regular AFHTTPResponseSerializer will simply return the raw NSData of the response.
+  NSArray *responseSerializers = @[[AFJSONResponseSerializer serializer],
+                                   [AFHTTPResponseSerializer serializer]];
+  self.responseSerializer = [AFCompoundResponseSerializer compoundSerializerWithResponseSerializers:responseSerializers];
+  
   return self;
 }
 
@@ -58,11 +64,10 @@ static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
     if (completion) completion(response, error);
   }];
   
-  // If this is a download request with a provided file URL, configure an output stream instead
+  // If this is a download request with a provided local file path, configure an output stream instead
   // of buffering the data in memory.
-  if (request.method == PKTRequestMethodGET && request.fileData.fileURL) {
-    NSString *outputPath = [request.fileData.fileURL absoluteString];
-    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:outputPath append:NO];
+  if (request.method == PKTRequestMethodGET && request.fileData.filePath) {
+    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:request.fileData.filePath append:NO];
   }
   
   return operation;

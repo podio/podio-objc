@@ -12,14 +12,14 @@
 @implementation PKTFileAPI
 
 + (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL {
-  return [self requestToDownloadFileWithURL:fileURL toLocalFileWithPathURL:nil];
+  return [self requestToDownloadFileWithURL:fileURL toLocalFileWithPath:nil];
 }
 
-+ (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL toLocalFileWithPathURL:(NSURL *)pathURL {
++ (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL toLocalFileWithPath:(NSString *)filePath {
   PKTRequest *request = [PKTRequest GETRequestWithURL:fileURL parameters:nil];
   
-  if (pathURL) {
-    request.fileData = [PKTRequestFileData fileDataWithFileURL:pathURL name:nil fileName:nil mimeType:nil];
+  if ([filePath length] > 0) {
+    request.fileData = [PKTRequestFileData fileDataWithFilePath:filePath name:nil fileName:nil mimeType:nil];
   }
   
   return request;
@@ -33,10 +33,10 @@
   return request;
 }
 
-+ (PKTRequest *)requestToUploadFileWithURL:(NSURL *)fileURL fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
++ (PKTRequest *)requestToUploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/file/" parameters:@{@"filename" : fileName}];
   request.contentType = PKTRequestContentTypeMultipart;
-  request.fileData = [PKTRequestFileData fileDataWithFileURL:fileURL name:@"source" fileName:fileName mimeType:mimeType];
+  request.fileData = [PKTRequestFileData fileDataWithFilePath:filePath name:@"source" fileName:fileName mimeType:mimeType];
   
   return request;
 }

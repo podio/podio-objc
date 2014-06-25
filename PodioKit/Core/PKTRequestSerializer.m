@@ -85,8 +85,8 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
                                   name:fileData.name
                               fileName:fileData.fileName
                               mimeType:fileData.mimeType];
-    } else if (fileData.fileURL) {
-      [formData appendPartWithFileURL:fileData.fileURL
+    } else if (fileData.filePath) {
+      [formData appendPartWithFileURL:[NSURL fileURLWithPath:fileData.filePath]
                                  name:fileData.name
                              fileName:fileData.fileName
                              mimeType:fileData.mimeType

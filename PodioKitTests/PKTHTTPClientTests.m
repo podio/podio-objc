@@ -186,7 +186,7 @@
 
 - (void)testDownloadRequestOperationHasOutputStream {
   PKTRequest *request = [PKTRequest GETRequestWithURL:[NSURL URLWithString:@"https://files.podio.com/111111"] parameters:nil];
-  request.fileData = [PKTRequestFileData fileDataWithFileURL:[NSURL URLWithString:@"file://tmp/file.pdf"] name:nil fileName:nil mimeType:nil];
+  request.fileData = [PKTRequestFileData fileDataWithFilePath:@"/tmp/file.pdf" name:nil fileName:nil mimeType:nil];
   
   AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:nil];
   expect(operation.outputStream).toNot.beNil();
