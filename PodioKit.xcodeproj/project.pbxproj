@@ -173,6 +173,9 @@
 		508F9B48195AEF0300275A63 /* PKTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F9B46195AEF0300275A63 /* PKTImageCache.m */; };
 		508F9B4B195AF2C000275A63 /* PKTImageDownloader.h in Headers */ = {isa = PBXBuildFile; fileRef = 508F9B49195AF2C000275A63 /* PKTImageDownloader.h */; };
 		508F9B4C195AF2C000275A63 /* PKTImageDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F9B4A195AF2C000275A63 /* PKTImageDownloader.m */; };
+		508F9B4F195AF6C200275A63 /* PKTImageCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F9B4E195AF6C200275A63 /* PKTImageCacheTests.m */; };
+		508F9B50195AF85700275A63 /* PKTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F9B46195AEF0300275A63 /* PKTImageCache.m */; };
+		508F9B54195B0B0A00275A63 /* Podio.png in Resources */ = {isa = PBXBuildFile; fileRef = 508F9B53195B0B0A00275A63 /* Podio.png */; };
 		50B49F0F18EE08F800B7EDF5 /* PKTApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B49F0D18EE08F800B7EDF5 /* PKTApp.h */; };
 		50B49F1018EE08F800B7EDF5 /* PKTApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F0E18EE08F800B7EDF5 /* PKTApp.m */; };
 		50B49F1118EE08F800B7EDF5 /* PKTApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F0E18EE08F800B7EDF5 /* PKTApp.m */; };
@@ -424,6 +427,8 @@
 		508F9B46195AEF0300275A63 /* PKTImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTImageCache.m; sourceTree = "<group>"; };
 		508F9B49195AF2C000275A63 /* PKTImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTImageDownloader.h; sourceTree = "<group>"; };
 		508F9B4A195AF2C000275A63 /* PKTImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTImageDownloader.m; sourceTree = "<group>"; };
+		508F9B4E195AF6C200275A63 /* PKTImageCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTImageCacheTests.m; sourceTree = "<group>"; };
+		508F9B53195B0B0A00275A63 /* Podio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Podio.png; sourceTree = "<group>"; };
 		50B49F0D18EE08F800B7EDF5 /* PKTApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTApp.h; sourceTree = "<group>"; };
 		50B49F0E18EE08F800B7EDF5 /* PKTApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTApp.m; sourceTree = "<group>"; };
 		50B49F1218EE092100B7EDF5 /* PKTAppAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppAPI.h; sourceTree = "<group>"; };
@@ -682,8 +687,10 @@
 				E45ED490189000EB003A020A /* Categories */,
 				5082426618FC8D58009A1580 /* Transformers */,
 				E45F9645188FF1C0009791A0 /* Support */,
+				508F9B4D195AF6A500275A63 /* UIKit */,
 				5014C571188812540002C68D /* PKTAsyncTestCase.h */,
 				5014C572188812540002C68D /* PKTAsyncTestCase.m */,
+				508F9B53195B0B0A00275A63 /* Podio.png */,
 				5065BF0414335ABA00360855 /* Supporting Files */,
 			);
 			path = PodioKitTests;
@@ -758,6 +765,14 @@
 				50E067EF191FE10000552CCF /* NSValueTransformer+PKTConstants.m */,
 			);
 			name = NSValueTransformer;
+			sourceTree = "<group>";
+		};
+		508F9B4D195AF6A500275A63 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				508F9B4E195AF6C200275A63 /* PKTImageCacheTests.m */,
+			);
+			name = UIKit;
 			sourceTree = "<group>";
 		};
 		50F6B924195AE7E800FF0024 /* Common */ = {
@@ -1228,6 +1243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */,
+				508F9B54195B0B0A00275A63 /* Podio.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1440,11 +1456,13 @@
 				501D605E190ED1BF004D94C4 /* PKTDateItemFieldValue.m in Sources */,
 				5039F64D1907114F00A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
 				502067071923645C004721A1 /* PKTDateRange.m in Sources */,
+				508F9B50195AF85700275A63 /* PKTImageCache.m in Sources */,
 				50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */,
 				5082427018FD5EA6009A1580 /* PKTTestModel.m in Sources */,
 				50E068051920A48A00552CCF /* PKTOrganizationAPI.m in Sources */,
 				5006B083191C2463006FF388 /* PKTCalendarAPI.m in Sources */,
 				5082426418FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
+				508F9B4F195AF6C200275A63 /* PKTImageCacheTests.m in Sources */,
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
 				5082424918FC6C7D009A1580 /* PKTObjectTests.m in Sources */,
 				501D6062190ED520004D94C4 /* PKTItemFieldValueTests.m in Sources */,
