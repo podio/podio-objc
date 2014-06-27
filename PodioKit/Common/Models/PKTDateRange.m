@@ -21,6 +21,14 @@
   return self;
 }
 
++ (instancetype)rangeWithStartDate:(NSDate *)startDate {
+  return [[self alloc] initWithStartDate:startDate endDate:nil];
+}
+
++ (instancetype)rangeWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate {
+  return [[self alloc] initWithStartDate:startDate endDate:endDate];
+}
+
 #pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {

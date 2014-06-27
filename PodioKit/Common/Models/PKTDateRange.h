@@ -15,4 +15,7 @@
 
 - (instancetype)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 
++ (instancetype)rangeWithStartDate:(NSDate *)startDate;
++ (instancetype)rangeWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
+
 @end
