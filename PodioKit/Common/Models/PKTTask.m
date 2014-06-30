@@ -85,12 +85,12 @@
 #pragma mark - Public
 
 + (void)fetchWithID:(NSUInteger)taskID completion:(void (^)(PKTTask *task, NSError *error))completion {
+  NSParameterAssert(completion);
+  
   PKTRequest *request = [PKTTaskAPI requestForTaskWithID:taskID];
   
   Class klass = [self class];
-  [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    if (!completion) return;
-    
+  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTTask *task = nil;
     if (!error) {
       task = [[klass alloc] initWithDictionary:response.body];
@@ -101,12 +101,12 @@
 }
 
 + (void)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *tasks, NSError *error))completion {
+  NSParameterAssert(completion);
+  
   PKTRequest *request = [PKTTaskAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
   
   Class klass = [self class];
-  [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    if (!completion) return;
-    
+  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *tasks = nil;
     if (!error) {
       tasks = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
