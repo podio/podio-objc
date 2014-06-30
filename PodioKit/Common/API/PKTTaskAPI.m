@@ -10,7 +10,11 @@
 
 @implementation PKTTaskAPI
 
-+ (PKTRequest *)requestForTasksWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit; {
++ (PKTRequest *)requestForTaskWithID:(NSUInteger)taskID {
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/task/%lu", (unsigned long)taskID) parameters:nil];
+}
+
++ (PKTRequest *)requestForTasksWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *params = [[parameters queryParameters] mutableCopy];
   
   if (offset > 0) {

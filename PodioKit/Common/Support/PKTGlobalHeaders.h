@@ -21,6 +21,7 @@
 #import "PKTUserAPI.h"
 #import "PKTCalendarAPI.h"
 #import "PKTOrganizationAPI.h"
+#import "PKTTaskAPI.h"
 
 #import "PKTOAuth2Token.h"
 #import "PKTApp.h"
@@ -39,3 +40,5 @@
 #import "PKTDateRange.h"
 #import "PKTMoney.h"
 #import "PKTCategoryOption.h"
+#import "PKTTask.h"
+#import "PKTReference.h"

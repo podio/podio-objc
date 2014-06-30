@@ -11,6 +11,8 @@
 
 @interface PKTTaskAPI : PKTBaseAPI
 
++ (PKTRequest *)requestForTaskWithID:(NSUInteger)taskID;
+
 + (PKTRequest *)requestForTasksWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 @end
