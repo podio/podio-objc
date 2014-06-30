@@ -10,7 +10,6 @@
 
 @class PKTProfile;
 @class PKTByLine;
-@class PKTReference;
 
 typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
   PKTTaskStatusActive,
@@ -34,7 +33,7 @@ typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 @property (nonatomic, copy, readonly) PKTByLine *completedBy;
 @property (nonatomic, copy, readonly) NSDate *completedOn;
-@property (nonatomic, copy, readonly) PKTReference *reference;
+@property (nonatomic, strong, readonly) id referenceObject;
 @property (nonatomic, copy, readonly) NSArray *files;
 @property (nonatomic, copy, readonly) NSArray *comments;
 

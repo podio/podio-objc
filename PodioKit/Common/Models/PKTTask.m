@@ -9,9 +9,9 @@
 #import "PKTTask.h"
 #import "PKTProfile.h"
 #import "PKTByLine.h"
-#import "PKTReference.h"
 #import "PKTFile.h"
 #import "PKTComment.h"
+#import "PKTReferenceObjectFactory.h"
 #import "PKTTaskAPI.h"
 #import "NSArray+PKTAdditions.h"
 #import "NSValueTransformer+PKTTransformers.h"
@@ -31,7 +31,7 @@
     @"completedOn" : @"completed_on",
     @"createdBy" : @"created_by",
     @"createdOn" : @"created_on",
-    @"reference" : @"ref"
+    @"referenceObject" : @"ref"
   };
 }
 
@@ -68,8 +68,10 @@
   return [NSValueTransformer pkt_dateValueTransformer];
 }
 
-+ (NSValueTransformer *)referenceValueTransformer {
-  return [NSValueTransformer pkt_transformerWithModelClass:[PKTReference class]];
++ (NSValueTransformer *)referenceObjectValueTransformer {
+  return [NSValueTransformer pkt_transformerWithBlock:^id(NSDictionary *refDict) {
+    return [PKTReferenceObjectFactory referenceObjectFromDictionary:refDict];
+  }];
 }
 
 + (NSValueTransformer *)filesValueTransformer {
