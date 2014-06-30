@@ -10,6 +10,10 @@
 
 @implementation PKTStatusAPI
 
++ (PKTRequest *)requestForStatusMessageWithID:(NSUInteger)statusID {
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/status/%lu", (unsigned long)statusID) parameters:nil];
+}
+
 + (PKTRequest *)requestToAddNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID {
   return [self requestToAddNewStatusMessageWithText:text spaceID:spaceID files:nil];
 }

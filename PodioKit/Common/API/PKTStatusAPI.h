@@ -10,6 +10,8 @@
 
 @interface PKTStatusAPI : PKTBaseAPI
 
++ (PKTRequest *)requestForStatusMessageWithID:(NSUInteger)statusID;
+
 + (PKTRequest *)requestToAddNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID;
 
 + (PKTRequest *)requestToAddNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files;

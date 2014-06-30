@@ -14,6 +14,7 @@
 #import "PKTItem.h"
 #import "PKTApp.h"
 #import "PKTComment.h"
+#import "PKTStatus.h"
 #import "PKTConstants.h"
 #import "NSValueTransformer+PKTConstants.h"
 
@@ -65,6 +66,9 @@
       break;
     case PKTReferenceTypeComment:
       return [PKTComment class];
+      break;
+    case PKTReferenceTypeStatus:
+      return [PKTStatus class];
       break;
     default:
       break;

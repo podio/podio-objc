@@ -28,16 +28,16 @@
   
   Class klass = [self class];
   [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    id obj = nil;
+    PKTUser *user = nil;
     
     if (!error) {
       NSDictionary *userDict = [response.body objectForKey:@"user"];
       if (userDict) {
-        obj = [[klass alloc]  initWithDictionary:userDict];
+        user = [[klass alloc]  initWithDictionary:userDict];
       }
     }
     
-    completion(obj, error);
+    completion(user, error);
   }];
 }
 

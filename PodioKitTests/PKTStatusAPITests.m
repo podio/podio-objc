@@ -15,6 +15,12 @@
 
 @implementation PKTStatusAPITests
 
+- (void)testRequestForStatusMessage {
+  PKTRequest *request = [PKTStatusAPI requestForStatusMessageWithID:1234];
+  expect(request.method).to.equal(PKTRequestMethodGET);
+  expect(request.path).to.equal(@"/status/1234");
+}
+
 - (void)testRequestForNewStatusMessageWithEmbedID {
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:@"Some text" spaceID:1234 files:@[@111, @222] embedID:333];
   

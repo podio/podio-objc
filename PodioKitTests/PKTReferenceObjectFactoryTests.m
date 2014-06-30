@@ -14,6 +14,7 @@
 #import "PKTTask.h"
 #import "PKTItem.h"
 #import "PKTApp.h"
+#import "PKTStatus.h"
 #import "PKTComment.h"
 #import "PKTReferenceObjectFactory.h"
 
