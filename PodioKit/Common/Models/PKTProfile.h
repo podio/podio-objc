@@ -11,5 +11,7 @@
 @interface PKTProfile : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger profileID;
+@property (nonatomic, assign, readonly) NSUInteger userID;
+@property (nonatomic, copy, readonly) NSString *name;
 
 @end

@@ -14,7 +14,8 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"profileID" : @"profile_id"
+           @"profileID" : @"profile_id",
+           @"userID" : @"user_id"
            };
 }
 

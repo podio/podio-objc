@@ -11,28 +11,53 @@
 #import "PKTByLine.h"
 #import "PKTFile.h"
 #import "PKTComment.h"
-#import "PKTReferenceObjectFactory.h"
+#import "PKTProfile.h"
+#import "PKTReference.h"
 #import "PKTTaskAPI.h"
 #import "NSArray+PKTAdditions.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
+@interface PKTTask ()
+
+@property (nonatomic, assign, readwrite) NSUInteger taskID;
+
+@end
+
 @implementation PKTTask
+
+- (instancetype)init {
+  return [self initWithText:nil];
+}
+
+- (instancetype)initWithText:(NSString *)text {
+  self = [super init];
+  if (!self) return nil;
+  
+  _text = [text copy];
+  _isPrivate = YES;
+  
+  return self;
+}
+
++ (instancetype)taskWithText:(NSString *)text {
+  return [[self alloc] initWithText:text];
+}
 
 #pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-    @"taskID" : @"task_id",
-    @"spaceID" : @"space_id",
-    @"descr" : @"description",
-    @"isPrivate" : @"private",
-    @"dueOn" : @"due_on",
-    @"completedBy" : @"completed_by",
-    @"completedOn" : @"completed_on",
-    @"createdBy" : @"created_by",
-    @"createdOn" : @"created_on",
-    @"referenceObject" : @"ref"
-  };
+           @"taskID" : @"task_id",
+           @"spaceID" : @"space_id",
+           @"descr" : @"description",
+           @"isPrivate" : @"private",
+           @"dueOn" : @"due_on",
+           @"completedBy" : @"completed_by",
+           @"completedOn" : @"completed_on",
+           @"createdBy" : @"created_by",
+           @"createdOn" : @"created_on",
+           @"referenceObject" : @"ref"
+           };
 }
 
 + (NSValueTransformer *)statusValueTransformer {
@@ -69,9 +94,7 @@
 }
 
 + (NSValueTransformer *)referenceObjectValueTransformer {
-  return [NSValueTransformer pkt_transformerWithBlock:^id(NSDictionary *refDict) {
-    return [PKTReferenceObjectFactory referenceObjectFromDictionary:refDict];
-  }];
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTReference class]];
 }
 
 + (NSValueTransformer *)filesValueTransformer {
@@ -115,6 +138,45 @@
     }
     
     completion(tasks, error);
+  }];
+}
+
+- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+  NSAssert(self.text, @"The 'text' property of task %@ cannot be nil", self);
+  
+  NSArray *fileIDs = [self.files valueForKey:@"fileID"];
+  
+  PKTRequest *request = nil;
+  if (self.taskID == 0) {
+    request = [PKTTaskAPI requestToCreateTaskWithText:self.text
+                                          description:self.descr
+                                                dueOn:self.dueOn
+                                            isPrivate:self.isPrivate
+                                    responsibleUserID:self.responsible.userID
+                                          referenceID:self.reference.referenceID
+                                        referenceType:self.reference.referenceType
+                                                files:fileIDs];
+  } else {
+    request = [PKTTaskAPI requestToUpdateTaskWithID:self.taskID
+                                               text:self.text
+                                        description:self.descr
+                                              dueOn:self.dueOn
+                                          isPrivate:self.isPrivate
+                                  responsibleUserID:self.responsible.userID
+                                        referenceID:self.reference.referenceID
+                                      referenceType:self.reference.referenceType
+                                              files:fileIDs];
+  }
+  
+  
+  // Intentiaonally strongly capture self to make sure the request completes even if the local instance is
+  // not referenced from anywhere else
+  [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    if (!error && self.taskID == 0) {
+      self.taskID = [response.body[@"task_id"] unsignedIntegerValue];
+    }
+    
+    if (completion) completion(response, error);
   }];
 }
 

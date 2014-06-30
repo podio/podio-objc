@@ -112,6 +112,8 @@
 		5033FF7A1961891E00B2FD04 /* PKTStatus.h in Headers */ = {isa = PBXBuildFile; fileRef = 5033FF781961891E00B2FD04 /* PKTStatus.h */; };
 		5033FF7B1961891E00B2FD04 /* PKTStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 5033FF791961891E00B2FD04 /* PKTStatus.m */; };
 		5033FF7C19618B7000B2FD04 /* PKTStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 5033FF791961891E00B2FD04 /* PKTStatus.m */; };
+		5033FF7F19619D9D00B2FD04 /* PKTReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 5033FF7D19619D9D00B2FD04 /* PKTReference.h */; };
+		5033FF8019619D9D00B2FD04 /* PKTReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 5033FF7E19619D9D00B2FD04 /* PKTReference.m */; };
 		503959EC19128FD4004C298C /* NSArray+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 503959EA19128FD4004C298C /* NSArray+PKTAdditions.h */; };
 		503959ED19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959EB19128FD4004C298C /* NSArray+PKTAdditions.m */; };
 		503959EE19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959EB19128FD4004C298C /* NSArray+PKTAdditions.m */; };
@@ -394,6 +396,8 @@
 		5033FF761961862A00B2FD04 /* PKTStatusAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTStatusAPITests.m; sourceTree = "<group>"; };
 		5033FF781961891E00B2FD04 /* PKTStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTStatus.h; sourceTree = "<group>"; };
 		5033FF791961891E00B2FD04 /* PKTStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTStatus.m; sourceTree = "<group>"; };
+		5033FF7D19619D9D00B2FD04 /* PKTReference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTReference.h; sourceTree = "<group>"; };
+		5033FF7E19619D9D00B2FD04 /* PKTReference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTReference.m; sourceTree = "<group>"; };
 		503959EA19128FD4004C298C /* NSArray+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+PKTAdditions.h"; sourceTree = "<group>"; };
 		503959EB19128FD4004C298C /* NSArray+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+PKTAdditions.m"; sourceTree = "<group>"; };
 		503959EF1912CC47004C298C /* PKTRequestFileData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRequestFileData.h; sourceTree = "<group>"; };
@@ -905,6 +909,8 @@
 				502BB23A195DB75F003160DE /* PKTTask.m */,
 				5033FF781961891E00B2FD04 /* PKTStatus.h */,
 				5033FF791961891E00B2FD04 /* PKTStatus.m */,
+				5033FF7D19619D9D00B2FD04 /* PKTReference.h */,
+				5033FF7E19619D9D00B2FD04 /* PKTReference.m */,
 				5024C5BB196164CE00AE28D7 /* PKTReferenceObjectFactory.h */,
 				5024C5BC196164CE00AE28D7 /* PKTReferenceObjectFactory.m */,
 				501D6053190E34BF004D94C4 /* Item Field Values */,
@@ -1159,6 +1165,7 @@
 			files = (
 				501D606D190EEB9E004D94C4 /* PKTProfile.h in Headers */,
 				5014C55F188809390002C68D /* PKTHTTPClient.h in Headers */,
+				5033FF7F19619D9D00B2FD04 /* PKTReference.h in Headers */,
 				501D607D190EF21F004D94C4 /* PKTEmbed.h in Headers */,
 				5033FF731961861700B2FD04 /* PKTStatusAPI.h in Headers */,
 				50FB3D5D18EA0B8B0021DB48 /* PKTObject.h in Headers */,
@@ -1430,6 +1437,7 @@
 				503959F71912D037004C298C /* PKTFileAPI.m in Sources */,
 				503B3AC619050EC3002BB703 /* NSMutableURLRequest+PKTHeaders.m in Sources */,
 				5082426A18FD5DFC009A1580 /* PKTModelValueTransformer.m in Sources */,
+				5033FF8019619D9D00B2FD04 /* PKTReference.m in Sources */,
 				501D6076190EEF77004D94C4 /* PKTCalculationItemFieldValue.m in Sources */,
 				5033FF7B1961891E00B2FD04 /* PKTStatus.m in Sources */,
 				E4BABDDC1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
