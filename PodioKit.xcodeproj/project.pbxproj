@@ -114,6 +114,7 @@
 		5033FF7C19618B7000B2FD04 /* PKTStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = 5033FF791961891E00B2FD04 /* PKTStatus.m */; };
 		5033FF7F19619D9D00B2FD04 /* PKTReference.h in Headers */ = {isa = PBXBuildFile; fileRef = 5033FF7D19619D9D00B2FD04 /* PKTReference.h */; };
 		5033FF8019619D9D00B2FD04 /* PKTReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 5033FF7E19619D9D00B2FD04 /* PKTReference.m */; };
+		5033FF811961A4D100B2FD04 /* PKTReference.m in Sources */ = {isa = PBXBuildFile; fileRef = 5033FF7E19619D9D00B2FD04 /* PKTReference.m */; };
 		503959EC19128FD4004C298C /* NSArray+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 503959EA19128FD4004C298C /* NSArray+PKTAdditions.h */; };
 		503959ED19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959EB19128FD4004C298C /* NSArray+PKTAdditions.m */; };
 		503959EE19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 503959EB19128FD4004C298C /* NSArray+PKTAdditions.m */; };
@@ -1624,6 +1625,7 @@
 				C9FADDA57CEE89A266367B70 /* PKTItemFieldValue.m in Sources */,
 				C9FAD3EE9E849D02CD801B5F /* PKTNumberValueTransformer.m in Sources */,
 				C9FAD4AA445FD22C487A3963 /* PKTNumberValueTransformerTests.m in Sources */,
+				5033FF811961A4D100B2FD04 /* PKTReference.m in Sources */,
 				C9FAD0909FD16D61B423947B /* NSNumberFormatter+PKTAdditions.m in Sources */,
 				5024C5C11961695C00AE28D7 /* PKTReferenceObjectFactory.m in Sources */,
 				C9FAD4EC21B79273C9542F8B /* NSNumber+PKTAdditions.m in Sources */,
