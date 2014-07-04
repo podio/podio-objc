@@ -28,6 +28,7 @@
 - (void)setUp {
   [super setUp];
   self.testClient = [PKTClient new];
+  [self.testClient setupWithAPIKey:@"my-api-key" secret:@"my-api-secret"];
   
   [OHHTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
     return [request.URL.host isEqualToString:self.testClient.HTTPClient.baseURL.host];
