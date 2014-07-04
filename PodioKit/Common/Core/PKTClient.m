@@ -191,6 +191,8 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 #pragma mark - Requests
 
 - (AFHTTPRequestOperation *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+  NSAssert(self.apiKey && self.apiSecret, @"You need to configure PodioKit with an API key and secret. Call [PodioKit setupWithAPIKey:secret:] bofore making any requests using PodioKit.");
+  
   AFHTTPRequestOperation *operation = nil;
   
   if (self.isAuthenticated) {
