@@ -11,23 +11,15 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.8'
-  s.requires_arc        = true
+  s.requires_arc          = true
 
-  s.subspec 'Common' do |ss|
-    ss.dependency 'AFNetworking', '~> 2.0'
+  s.dependency 'AFNetworking', '~> 2.0'
 
-    ss.source_files        = 'PodioKit/Common/**/*.{h,m}'
-    ss.public_header_files = 'PodioKit/Common/**/*.h'
-    ss.prefix_header_file  = 'PodioKit/Common/PodioKit-Prefix.pch'
-  end
+  s.source_files        = 'PodioKit/Common/**/*.{h,m}'
+  s.public_header_files = 'PodioKit/Common/**/*.h'
+  s.prefix_header_file  = 'PodioKit/Common/PodioKit-Prefix.pch'
 
-  s.subspec 'UIKit' do |ss|
-    ss.dependency 'PodioKit/Common'
-    
-    ss.ios.deployment_target = '6.0'
-    ss.frameworks = 'UIKit'
-
-    ss.ios.source_files = 'PodioKit/UIKit/**/*.{h,m}'
-    ss.ios.public_header_files = 'PodioKit/UIKit/*.h'
-  end
+  s.ios.source_files = 'PodioKit/UIKit/**/*.{h,m}'
+  s.ios.public_header_files = 'PodioKit/UIKit/*.h'
+  s.ios.frameworks = 'UIKit'
 end
