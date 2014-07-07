@@ -48,9 +48,3 @@
 #import "PKTReference.h"
 #import "PKTForm.h"
 #import "PKTFormField.h"
-
-#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
-  #import "PKTFile+UIImage.h"
-  #import "UIButton+PKTRemoteImage.h"
-  #import "UIImageView+PKTRemoteImage.h"
-#endif
