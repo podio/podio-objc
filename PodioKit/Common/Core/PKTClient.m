@@ -37,15 +37,15 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 @synthesize pendingOperations = _pendingOperations;
 
-+ (instancetype)sharedClient {
-  static PKTClient *sharedClient;
++ (instancetype)defaultClient {
+  static PKTClient *defaultClient;
   static dispatch_once_t once;
   
   dispatch_once(&once, ^{
-    sharedClient = [self new];
+    defaultClient = [self new];
   });
   
-  return sharedClient;
+  return defaultClient;
 }
 
 - (id)init {
@@ -110,7 +110,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 }
 
 + (instancetype)currentClient {
-  return [[self clientStack] lastObject] ?: [self sharedClient];
+  return [[self clientStack] lastObject] ?: [self defaultClient];
 }
 
 + (NSMutableArray *)clientStack {

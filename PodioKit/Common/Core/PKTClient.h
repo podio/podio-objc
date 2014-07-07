@@ -23,7 +23,7 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 @property (nonatomic, assign, readonly) BOOL isAuthenticated;
 @property (nonatomic, strong) id<PKTTokenStore> tokenStore;
 
-+ (instancetype)sharedClient;
++ (instancetype)defaultClient;
 + (instancetype)currentClient;
 
 - (instancetype)initWithHTTPClient:(PKTHTTPClient *)client;

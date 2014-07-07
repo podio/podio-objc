@@ -45,11 +45,11 @@
 #pragma mark - Tests
 
 - (void)testSharedInstance {
-  expect([PKTClient sharedClient]).to.equal([PKTClient sharedClient]);
+  expect([PKTClient defaultClient]).to.equal([PKTClient defaultClient]);
 }
 
 - (void)testNestedClients {
-  expect([PKTClient currentClient]).to.equal([PKTClient sharedClient]);
+  expect([PKTClient currentClient]).to.equal([PKTClient defaultClient]);
   
   PKTClient *client1 = [PKTClient new];
   [client1 performBlock:^{
@@ -63,7 +63,7 @@
     expect([PKTClient currentClient]).to.equal(client1);
   }];
   
-  expect([PKTClient currentClient]).to.equal([PKTClient sharedClient]);
+  expect([PKTClient currentClient]).to.equal([PKTClient defaultClient]);
 }
 
 - (void)testInitWithClient {

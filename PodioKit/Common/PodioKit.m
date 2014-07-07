@@ -12,28 +12,28 @@
 @implementation PodioKit
 
 + (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {
-  [[PKTClient sharedClient] setupWithAPIKey:key secret:secret];
+  [[PKTClient defaultClient] setupWithAPIKey:key secret:secret];
 }
 
 + (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
-  return [[PKTClient sharedClient] authenticateAsUserWithEmail:email password:password completion:completion];
+  return [[PKTClient defaultClient] authenticateAsUserWithEmail:email password:password completion:completion];
 }
 
 + (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
-  return [[PKTClient sharedClient] authenticateAsAppWithID:appID token:appToken completion:completion];
+  return [[PKTClient defaultClient] authenticateAsAppWithID:appID token:appToken completion:completion];
 }
 
 + (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
-  [[PKTClient sharedClient] authenticateAutomaticallyAsAppWithID:appID token:appToken];
+  [[PKTClient defaultClient] authenticateAutomaticallyAsAppWithID:appID token:appToken];
 }
 
 + (BOOL)isAuthenticated {
-  return [[PKTClient sharedClient] isAuthenticated];
+  return [[PKTClient defaultClient] isAuthenticated];
 }
 
 + (void)automaticallyStoreTokenInKeychainForServiceWithName:(NSString *)name {
-  [PKTClient sharedClient].tokenStore = [[PKTKeychainTokenStore alloc] initWithService:name];
-  [[PKTClient sharedClient] restoreTokenIfNeeded];
+  [PKTClient defaultClient].tokenStore = [[PKTKeychainTokenStore alloc] initWithService:name];
+  [[PKTClient defaultClient] restoreTokenIfNeeded];
 }
 
 + (void)automaticallyStoreTokenInKeychainForCurrentApp {

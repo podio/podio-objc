@@ -18,8 +18,8 @@
 
 - (void)testSetupWithAPIKeyAndSecret {
   [PodioKit setupWithAPIKey:@"my-api-key" secret:@"my-api-secret"];
-  expect([PKTClient sharedClient].apiKey).to.equal(@"my-api-key");
-  expect([PKTClient sharedClient].apiSecret).to.equal(@"my-api-secret");
+  expect([PKTClient defaultClient].apiKey).to.equal(@"my-api-key");
+  expect([PKTClient defaultClient].apiSecret).to.equal(@"my-api-secret");
 }
 
 @end
