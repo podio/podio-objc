@@ -30,6 +30,9 @@ Icon?
 docset-installed.txt
 */docset
 
+# Generated documentation
+Docs
+
 # AppCode
 .idea
 

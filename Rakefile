@@ -19,19 +19,3 @@ namespace :test do
     sh "#{SCRIPTS}/coverage-report#{opts}"
   end
 end
-
-namespace :docs do
-  desc "Generate PodioKit documentation using appledoc"
-  task :generate do
-    sh "appledoc \
-        --create-html \
-        --create-docset \
-        --install-docset \
-        --clean-output \
-        --keep-intermediate-files \
-        --project-name PodioKit \
-        --project-company \"Citrix Systems, Inc\" \
-        --company-id com.podio \
-        --output Docs PodioKit"
-  end
-end

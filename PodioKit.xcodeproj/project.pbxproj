@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		5083768F196B390C00F8BC02 /* Documentation */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 50837690196B390C00F8BC02 /* Build configuration list for PBXAggregateTarget "Documentation" */;
+			buildPhases = (
+				50837693196B394B00F8BC02 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Documentation;
+			productName = Documentation;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
@@ -482,6 +496,7 @@
 		5082427D18FD7E19009A1580 /* PKTResponseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTResponseTests.m; sourceTree = "<group>"; };
 		5082427F18FECCEC009A1580 /* PKTHTTPStubs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTHTTPStubs.h; sourceTree = "<group>"; };
 		5082428018FECCEC009A1580 /* PKTHTTPStubs.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPStubs.m; sourceTree = "<group>"; };
+		50837695196B3BF600F8BC02 /* Description.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Description.md; sourceTree = "<group>"; };
 		508F9B45195AEF0300275A63 /* PKTImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTImageCache.h; sourceTree = "<group>"; };
 		508F9B46195AEF0300275A63 /* PKTImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTImageCache.m; sourceTree = "<group>"; };
 		508F9B49195AF2C000275A63 /* PKTImageDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTImageDownloader.h; sourceTree = "<group>"; };
@@ -702,6 +717,7 @@
 				5065BF0314335ABA00360855 /* PodioKitTests */,
 				5065BEEA14335AB900360855 /* Frameworks */,
 				5065BEE914335AB900360855 /* Products */,
+				50837695196B3BF600F8BC02 /* Description.md */,
 				0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */,
 				C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */,
 			);
@@ -1339,6 +1355,7 @@
 			targets = (
 				5065BEE714335AB900360855 /* PodioKit */,
 				5065BEF714335ABA00360855 /* PodioKitTests */,
+				5083768F196B390C00F8BC02 /* Documentation */,
 			);
 		};
 /* End PBXProject section */
@@ -1382,6 +1399,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		50837693196B394B00F8BC02 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Citrix Systems, Inc.\" \\\n--company-id \"com.podio\" \\\n--output \"${PROJECT_DIR}/Docs/${PROJECT_NAME}\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-merged-sections \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"\" \\\n--index-desc \"${PROJECT_DIR}/Description.md\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1813,6 +1843,20 @@
 			};
 			name = Release;
 		};
+		50837691196B390C00F8BC02 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		50837692196B390C00F8BC02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1839,6 +1883,15 @@
 			buildConfigurations = (
 				5065BF1314335ABA00360855 /* Debug */,
 				5065BF1414335ABA00360855 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50837690196B390C00F8BC02 /* Build configuration list for PBXAggregateTarget "Documentation" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50837691196B390C00F8BC02 /* Debug */,
+				50837692196B390C00F8BC02 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
