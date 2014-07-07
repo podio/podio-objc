@@ -17,7 +17,7 @@
   NSParameterAssert(self.link);
   
   PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link];
-  AFHTTPRequestOperation *operation = [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) {
       if (!error) {
         // Dispatch the loading of the image from NSData to a background thread for better performance

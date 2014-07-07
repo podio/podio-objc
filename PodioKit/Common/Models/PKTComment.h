@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 #import "PKTConstants.h"
 
 @class PKTEmbed;
 @class PKTFile;
 
-@interface PKTComment : PKTObject
+@interface PKTComment : PKTModel
 
 @property (nonatomic, readonly) NSUInteger commentID;
 @property (nonatomic, readonly) PKTReferenceType referenceType;

@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 
-@interface PKTUser : PKTObject
+@interface PKTUser : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *mail;

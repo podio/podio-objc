@@ -6,12 +6,12 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 #import "PKTConstants.h"
 
 @class PKTApp;
 
-@interface PKTCalendarEvent : PKTObject
+@interface PKTCalendarEvent : PKTModel
 
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSString *descr;

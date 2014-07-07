@@ -9,6 +9,7 @@
 #import "PKTCalendarEvent.h"
 #import "PKTApp.h"
 #import "PKTCalendarAPI.h"
+#import "PKTClient.h"
 #import "NSArray+PKTAdditions.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
@@ -56,7 +57,7 @@
 + (void)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority completion:(void (^)(NSArray *events, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *events = nil;
     
     if (!error) {

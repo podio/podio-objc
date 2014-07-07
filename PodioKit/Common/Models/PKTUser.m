@@ -8,6 +8,7 @@
 
 #import "PKTUser.h"
 #import "PKTUserAPI.h"
+#import "PKTClient.h"
 
 @implementation PKTUser
 
@@ -27,7 +28,7 @@
   PKTRequest *request = [PKTUserAPI requestForUserStatus];
   
   Class klass = [self class];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTUser *user = nil;
     
     if (!error) {

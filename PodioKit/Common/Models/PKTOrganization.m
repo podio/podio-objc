@@ -38,7 +38,7 @@
 + (void)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *orgs = nil;
     
     if (!error) {
@@ -54,7 +54,7 @@
 + (void)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTOrganizationAPI requestForOrganizationsWithID:organizationID];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTOrganization *org = nil;
     
     if (!error) {

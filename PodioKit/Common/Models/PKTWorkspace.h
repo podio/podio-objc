@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 
-@interface PKTWorkspace : PKTObject
+@interface PKTWorkspace : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger spaceID;
 @property (nonatomic, assign, readonly) NSUInteger organizationID;

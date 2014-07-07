@@ -24,10 +24,13 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 @property (nonatomic, strong) id<PKTTokenStore> tokenStore;
 
 + (instancetype)sharedClient;
++ (instancetype)currentClient;
 
 - (instancetype)initWithHTTPClient:(PKTHTTPClient *)client;
 
 - (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret;
+
+- (void)performBlock:(void (^)(void))block;
 
 - (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
 - (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;

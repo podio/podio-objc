@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 
 typedef NS_ENUM(NSUInteger, PKTFormStatus) {
   PKTFormStatusActive,
@@ -16,7 +16,7 @@ typedef NS_ENUM(NSUInteger, PKTFormStatus) {
 
 @class PKTFormSettings;
 
-@interface PKTForm : PKTObject
+@interface PKTForm : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger formID;
 @property (nonatomic, assign, readonly) NSUInteger spaceID;

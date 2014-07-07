@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
+#import "PKTClient.h"
 
 @class PKTProfile;
 @class PKTByLine;
@@ -19,7 +20,7 @@ typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
 
 @class PKTTaskRequestParameters;
 
-@interface PKTTask : PKTObject
+@interface PKTTask : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger taskID;
 @property (nonatomic, assign, readonly) NSUInteger spaceID;

@@ -43,7 +43,7 @@
   Class objectClass = [self class];
   PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:fileName mimeType:mimeType];
   
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTFile *file = nil;
     
     if (!error) {
@@ -57,7 +57,7 @@
 - (void)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(PKTRequestCompletionBlock)completion {
   PKTRequest *request = [PKTFileAPI requestToAttachFileWithID:self.fileID referenceID:referenceID referenceType:referenceType];
   
-  [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) completion(response, error);
   }];
 }
@@ -66,7 +66,7 @@
   NSParameterAssert(self.link);
   
   PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link];
-  AFHTTPRequestOperation *operation = [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) completion(response.body, error);
   }];
   
@@ -78,7 +78,7 @@
   
   PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link toLocalFileWithPath:filePath];
   
-  AFHTTPRequestOperation *operation = [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  AFHTTPRequestOperation *operation = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) {
       BOOL success = error == nil;
       completion(success, error);

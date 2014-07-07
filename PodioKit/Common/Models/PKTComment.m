@@ -78,7 +78,7 @@
                                                                             files:fileIDs
                                                                           embedID:embedID
                                                                          embedURL:embedURL];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTComment *comment = nil;
     
     if (!error) {

@@ -113,7 +113,7 @@
   PKTRequest *request = [PKTTaskAPI requestForTaskWithID:taskID];
   
   Class klass = [self class];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTTask *task = nil;
     if (!error) {
       task = [[klass alloc] initWithDictionary:response.body];
@@ -129,7 +129,7 @@
   PKTRequest *request = [PKTTaskAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
   
   Class klass = [self class];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *tasks = nil;
     if (!error) {
       tasks = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
@@ -171,7 +171,7 @@
   
   // Intentiaonally strongly capture self to make sure the request completes even if the local instance is
   // not referenced from anywhere else
-  [[[self class] client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (!error && self.taskID == 0) {
       self.taskID = [response.body[@"task_id"] unsignedIntegerValue];
     }

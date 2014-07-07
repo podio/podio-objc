@@ -99,6 +99,38 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   return _pendingOperations;
 }
 
+#pragma mark - Clients
+
++ (void)pushClient:(PKTClient *)client {
+  [[self clientStack] addObject:client];
+}
+
++ (void)popClient {
+  [[self clientStack] removeLastObject];
+}
+
++ (instancetype)currentClient {
+  return [[self clientStack] lastObject] ?: [self sharedClient];
+}
+
++ (NSMutableArray *)clientStack {
+  static NSMutableArray *clientStack = nil;
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    clientStack = [NSMutableArray new];
+  });
+
+  return clientStack;
+}
+
+- (void)performBlock:(void (^)(void))block {
+  NSParameterAssert(block);
+  
+  [[self class] pushClient:self];
+  block();
+  [[self class] popClient];
+}
+
 #pragma mark - Configuration
 
 - (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {

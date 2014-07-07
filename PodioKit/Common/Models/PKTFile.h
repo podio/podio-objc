@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
+#import "PKTClient.h"
 #import "PKTConstants.h"
 
-@interface PKTFile : PKTObject
+@interface PKTFile : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger fileID;
 @property (nonatomic, assign, readonly) NSUInteger size;

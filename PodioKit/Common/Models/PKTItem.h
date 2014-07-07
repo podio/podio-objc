@@ -6,7 +6,8 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
+#import "PKTClient.h"
 
 @class PKTFile;
 @class PKTByLine;
@@ -14,7 +15,7 @@
 
 typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error);
 
-@interface PKTItem : PKTObject
+@interface PKTItem : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger itemID;
 @property (nonatomic, assign, readonly) NSUInteger appID;

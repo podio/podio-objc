@@ -9,6 +9,7 @@
 #import "PKTApp.h"
 #import "PKTAppField.h"
 #import "PKTAppAPI.h"
+#import "PKTClient.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTApp
@@ -40,7 +41,7 @@
 + (void)fetchAppWithID:(NSUInteger)appID completion:(void (^)(PKTApp *app, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTAppAPI requestForAppWithID:appID];
-  [[self client] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTApp *app = nil;
     if (!error) {
       app = [[objectClass alloc] initWithDictionary:response.body];

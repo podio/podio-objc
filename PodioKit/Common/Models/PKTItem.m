@@ -133,15 +133,11 @@
 
 #pragma mark - API
 
-+ (void)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  [self.client performRequest:request completion:completion];
-}
-
 + (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
   PKTRequest *request = [PKTItemAPI requestForItemWithID:itemID];
   Class objectClass = [self class];
   
-  [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTItem *item = nil;
     if (!error) {
       item = [[objectClass alloc] initWithDictionary:response.body];
@@ -178,7 +174,7 @@
 
 + (void)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID completion:(PKTItemFilteredFetchCompletionBlock)completion {
   Class objectClass = [self class];
-  [self performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *items = nil;
     NSUInteger filteredCount = 0, totalCount = 0;
     
@@ -205,7 +201,7 @@
   PKTRequest *request = [PKTItemAPI requestForItemWithID:self.itemID];
 
   PKT_WEAK_SELF weakSelf = self;
-  [[self class] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
       PKT_STRONG(weakSelf) strongSelf = weakSelf;
 
       if (!error) {
@@ -217,13 +213,20 @@
 }
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
-  [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
-    if (!error) {
-      NSArray *itemFields = [self allFieldsToSaveForApp:app];
-      [self saveWithItemFields:itemFields completion:completion];
-    } else {
-      if (completion) completion(nil, error);
-    }
+  PKTClient *client = [PKTClient currentClient];
+  
+  [client performBlock:^{
+    [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
+      if (!error) {
+        NSArray *itemFields = [self allFieldsToSaveForApp:app];
+        
+        [client performBlock:^{
+          [self saveWithItemFields:itemFields completion:completion];
+        }];
+      } else {
+        if (completion) completion(nil, error);
+      }
+    }];
   }];
 }
 
@@ -244,7 +247,7 @@
                                                tags:nil];
   }
   
-  [[self class] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (!error) {
       if (self.itemID == 0) {
         // Item created, update fully from response

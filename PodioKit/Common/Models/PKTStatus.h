@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 
 @class PKTByLine;
 
-@interface PKTStatus : PKTObject
+@interface PKTStatus : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger statusID;
 @property (nonatomic, copy, readonly) NSString *text;

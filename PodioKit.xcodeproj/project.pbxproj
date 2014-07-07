@@ -175,7 +175,6 @@
 		507DFDC419479341002C339A /* PKTKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 507DFDC219479341002C339A /* PKTKeychain.m */; };
 		507DFDC5194797AA002C339A /* PKTKeychain.m in Sources */ = {isa = PBXBuildFile; fileRef = 507DFDC219479341002C339A /* PKTKeychain.m */; };
 		507DFDC7194797ED002C339A /* PKTKeychainTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 507DFDC6194797ED002C339A /* PKTKeychainTests.m */; };
-		5082424918FC6C7D009A1580 /* PKTObjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5082424818FC6C7D009A1580 /* PKTObjectTests.m */; };
 		5082424C18FC70A5009A1580 /* PKTModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082424A18FC70A5009A1580 /* PKTModel.h */; };
 		5082424D18FC70A5009A1580 /* PKTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5082424B18FC70A5009A1580 /* PKTModel.m */; };
 		5082424E18FC7B41009A1580 /* PKTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5082424B18FC70A5009A1580 /* PKTModel.m */; };
@@ -262,8 +261,6 @@
 		50FA507418FFC047009542B9 /* PKTUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507118FFC040009542B9 /* PKTUserAPI.m */; };
 		50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507518FFC279009542B9 /* PKTUserAPITests.m */; };
 		50FA507B190112AC009542B9 /* PKTHTTPStubber.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FA507A190112AC009542B9 /* PKTHTTPStubber.m */; };
-		50FB3D5D18EA0B8B0021DB48 /* PKTObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FB3D5B18EA0B8B0021DB48 /* PKTObject.h */; };
-		50FB3D5E18EA0B8B0021DB48 /* PKTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */; };
 		50FB3D6118EA0CDD0021DB48 /* PKTItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FB3D5F18EA0CDD0021DB48 /* PKTItem.h */; };
 		50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6018EA0CDD0021DB48 /* PKTItem.m */; };
 		50FB3D6518EA0DDE0021DB48 /* PKTItemAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FB3D6318EA0DDE0021DB48 /* PKTItemAPI.h */; };
@@ -272,7 +269,6 @@
 		50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6418EA0DDE0021DB48 /* PKTItemAPI.m */; };
 		50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */; };
 		50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6018EA0CDD0021DB48 /* PKTItem.m */; };
-		50FB3D6F18EB5D020021DB48 /* PKTObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */; };
 		C9FAD0909FD16D61B423947B /* NSNumberFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */; };
 		C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADCA90121ED753BEBC4B3 /* PKTAppFieldConfig.m */; };
 		C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
@@ -463,7 +459,6 @@
 		507DFDC119479341002C339A /* PKTKeychain.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTKeychain.h; sourceTree = "<group>"; };
 		507DFDC219479341002C339A /* PKTKeychain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTKeychain.m; sourceTree = "<group>"; };
 		507DFDC6194797ED002C339A /* PKTKeychainTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTKeychainTests.m; sourceTree = "<group>"; };
-		5082424818FC6C7D009A1580 /* PKTObjectTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTObjectTests.m; sourceTree = "<group>"; };
 		5082424A18FC70A5009A1580 /* PKTModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTModel.h; sourceTree = "<group>"; };
 		5082424B18FC70A5009A1580 /* PKTModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTModel.m; sourceTree = "<group>"; };
 		5082424F18FC82C1009A1580 /* PKTBlockValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTBlockValueTransformer.h; sourceTree = "<group>"; };
@@ -540,8 +535,6 @@
 		50FA507518FFC279009542B9 /* PKTUserAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTUserAPITests.m; sourceTree = "<group>"; };
 		50FA5079190112AC009542B9 /* PKTHTTPStubber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTHTTPStubber.h; sourceTree = "<group>"; };
 		50FA507A190112AC009542B9 /* PKTHTTPStubber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTHTTPStubber.m; sourceTree = "<group>"; };
-		50FB3D5B18EA0B8B0021DB48 /* PKTObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTObject.h; sourceTree = "<group>"; };
-		50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTObject.m; sourceTree = "<group>"; };
 		50FB3D5F18EA0CDD0021DB48 /* PKTItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTItem.h; sourceTree = "<group>"; };
 		50FB3D6018EA0CDD0021DB48 /* PKTItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItem.m; sourceTree = "<group>"; };
 		50FB3D6318EA0DDE0021DB48 /* PKTItemAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTItemAPI.h; sourceTree = "<group>"; };
@@ -897,8 +890,6 @@
 				E4BABDCA1897F9DA00E9149A /* PKTOAuth2Token.m */,
 				5082424A18FC70A5009A1580 /* PKTModel.h */,
 				5082424B18FC70A5009A1580 /* PKTModel.m */,
-				50FB3D5B18EA0B8B0021DB48 /* PKTObject.h */,
-				50FB3D5C18EA0B8B0021DB48 /* PKTObject.m */,
 				50E067F71920A36F00552CCF /* PKTOrganization.h */,
 				50E067F81920A36F00552CCF /* PKTOrganization.m */,
 				50E067FB1920A37B00552CCF /* PKTWorkspace.h */,
@@ -961,7 +952,6 @@
 			children = (
 				E4BABDCE1897FBD900E9149A /* PKTOAuth2TokenTests.m */,
 				5039F6A4190863C900A8A8F0 /* PKTModelTests.m */,
-				5082424818FC6C7D009A1580 /* PKTObjectTests.m */,
 				50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */,
 				50B49F1B18EE095500B7EDF5 /* PKTAppTests.m */,
 				501D6044190D841E004D94C4 /* PKTItemFieldTests.m */,
@@ -1197,7 +1187,6 @@
 				5033FF7F19619D9D00B2FD04 /* PKTReference.h in Headers */,
 				501D607D190EF21F004D94C4 /* PKTEmbed.h in Headers */,
 				5033FF731961861700B2FD04 /* PKTStatusAPI.h in Headers */,
-				50FB3D5D18EA0B8B0021DB48 /* PKTObject.h in Headers */,
 				5020670419235F04004721A1 /* PKTDateRange.h in Headers */,
 				5014C56918880B050002C68D /* PKTRequest.h in Headers */,
 				502BB224195B7448003160DE /* PKTTaskAPI.h in Headers */,
@@ -1443,7 +1432,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50FB3D5E18EA0B8B0021DB48 /* PKTObject.m in Sources */,
 				5014C577188816F10002C68D /* PKTHTTPClient.m in Sources */,
 				507CA7E419055030000D9F6E /* PodioKit.m in Sources */,
 				501D607E190EF21F004D94C4 /* PKTEmbed.m in Sources */,
@@ -1602,7 +1590,6 @@
 				5082426418FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
 				508F9B4F195AF6C200275A63 /* PKTImageCacheTests.m in Sources */,
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
-				5082424918FC6C7D009A1580 /* PKTObjectTests.m in Sources */,
 				501D6062190ED520004D94C4 /* PKTItemFieldValueTests.m in Sources */,
 				5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */,
 				501D6089190EF2EB004D94C4 /* PKTAppItemFieldValue.m in Sources */,
@@ -1612,7 +1599,6 @@
 				501D6045190D841E004D94C4 /* PKTItemFieldTests.m in Sources */,
 				5024C5C219616A0B00AE28D7 /* PKTWorkspace.m in Sources */,
 				502BB234195DB54B003160DE /* PKTTaskAPI.m in Sources */,
-				50FB3D6F18EB5D020021DB48 /* PKTObject.m in Sources */,
 				503959F31912CC47004C298C /* PKTRequestFileData.m in Sources */,
 				5082426C18FD5E2F009A1580 /* PKTModelValueTransformerTests.m in Sources */,
 				5014C57D188817430002C68D /* PKTHTTPClient.m in Sources */,

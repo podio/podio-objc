@@ -48,6 +48,24 @@
   expect([PKTClient sharedClient]).to.equal([PKTClient sharedClient]);
 }
 
+- (void)testNestedClients {
+  expect([PKTClient currentClient]).to.equal([PKTClient sharedClient]);
+  
+  PKTClient *client1 = [PKTClient new];
+  [client1 performBlock:^{
+    expect([PKTClient currentClient]).to.equal(client1);
+    
+    PKTClient *client2 = [PKTClient new];
+    [client2 performBlock:^{
+      expect([PKTClient currentClient]).to.equal(client2);
+    }];
+    
+    expect([PKTClient currentClient]).to.equal(client1);
+  }];
+  
+  expect([PKTClient currentClient]).to.equal([PKTClient sharedClient]);
+}
+
 - (void)testInitWithClient {
   PKTHTTPClient *httpClient = [PKTHTTPClient new];
   PKTClient *client = [[PKTClient alloc] initWithHTTPClient:httpClient];

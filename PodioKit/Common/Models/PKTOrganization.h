@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 
 @class PKTFile;
 
-@interface PKTOrganization : PKTObject
+@interface PKTOrganization : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger organizationID;
 @property (nonatomic, copy, readonly) NSString *name;

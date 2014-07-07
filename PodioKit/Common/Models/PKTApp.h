@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTObject.h"
+#import "PKTModel.h"
 
 @class PKTAppField;
 
-@interface PKTApp : PKTObject
+@interface PKTApp : PKTModel
 
 @property (nonatomic, readonly) NSUInteger appID;
 @property (nonatomic, readonly) NSUInteger spaceID;
