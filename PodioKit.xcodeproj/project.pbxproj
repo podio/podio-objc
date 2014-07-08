@@ -1411,7 +1411,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Citrix Systems, Inc.\" \\\n--company-id \"com.podio\" \\\n--output \"${PROJECT_DIR}/Docs/${PROJECT_NAME}\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-merged-sections \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \"\" \\\n--index-desc \"${PROJECT_DIR}/Description.md\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
+			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Citrix Systems, Inc.\" \\\n--company-id \"com.podio\" \\\n--output \"${PROJECT_DIR}/Docs/${PROJECT_NAME}\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-merged-sections \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \".m\" \\\n--index-desc \"${PROJECT_DIR}/Description.md\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
 		};
 		6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
