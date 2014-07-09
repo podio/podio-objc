@@ -62,30 +62,30 @@
   }];
 }
 
-- (AFHTTPRequestOperation *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion {
+- (PKTRequestTaskHandle *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion {
   NSParameterAssert(self.link);
   
   PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link];
-  AFHTTPRequestOperation *operation = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) completion(response.body, error);
   }];
   
-  return operation;
+  return handle;
 }
 
-- (AFHTTPRequestOperation *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion {
+- (PKTRequestTaskHandle *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion {
   NSParameterAssert(self.link);
   
   PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link toLocalFileWithPath:filePath];
   
-  AFHTTPRequestOperation *operation = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) {
       BOOL success = error == nil;
       completion(success, error);
     }
   }];
   
-  return operation;
+  return handle;
 }
 
 @end

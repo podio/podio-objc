@@ -10,6 +10,6 @@
 
 @interface PKTClient (Test)
 
-- (AFHTTPRequestOperation *)refreshToken:(PKTRequestCompletionBlock)completion;
+- (PKTRequestTaskDescriptor *)refreshToken:(PKTRequestCompletionBlock)completion;
 
 @end

@@ -33,7 +33,7 @@
  *
  * @return The resulting request operation.
  */
-+ (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
++ (PKTRequestTaskHandle *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
 
 /** Authenticate the default client as an app.
  *
@@ -45,7 +45,7 @@
  *
  * @return The resulting request operation.
  */
-+ (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
++ (PKTRequestTaskHandle *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 
 /** Configure authentication parameters for authenticating the default client as an app.
  *
