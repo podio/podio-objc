@@ -62,6 +62,11 @@
   return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
++ (PKRequest *)requestToMarkNotificationAsUnviewedWithNotificationId:(NSUInteger)notificationId {
+  NSString *uri = [NSString stringWithFormat:@"/notification/%ld/viewed", (unsigned long)notificationId];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
+}
+
 + (PKRequest *)requestToMarkAllNotificationsAsViewed {
   return [PKRequest requestWithURI:@"/notification/viewed" method:PKRequestMethodPOST];
 }
