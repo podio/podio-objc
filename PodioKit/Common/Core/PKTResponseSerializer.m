@@ -18,6 +18,8 @@
   NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
   if ([HTTPResponse.allHeaderFields[@"Content-Type"] pkt_containsString:@"application/json"]) {
     object = [NSJSONSerialization JSONObjectWithData:data options:0 error:nil];
+  } else {
+    object = data;
   }
   
   return object;

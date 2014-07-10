@@ -9,11 +9,14 @@
 #import "PKTHTTPClient.h"
 #import "PKTClient.h"
 #import "PKTMacros.h"
+#import "NSFileManager+PKTAdditions.h"
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
-static char * const kRequestProcessingQueueLabel = "com.podio.PodioKit.PKTHTTPClient.responseProcessingQueue";
+static char * const kRequestProcessingQueueLabel = "com.podio.podiokit.httpclient.response_processing_queue";
 
 static NSString * const PodioKitErrorDomain = @"PodioKitErrorDomain";
+
+typedef id (^PKTHTTPResponseProcessBlock) (void);
 
 typedef NS_ENUM(NSUInteger, PKTErrorCode) {
   PKTErrorCodeUnknown = 1000,
@@ -52,45 +55,21 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
 
 #pragma mark - Public
 
-//- (AFHTTPRequestOperation *)operationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-//  NSURLRequest *urlRequest = [(PKTRequestSerializer *)self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
-//  
-//  AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:urlRequest success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//    NSUInteger statusCode = operation.response.statusCode;
-//    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
-//    
-//    if (completion) completion(response, nil);
-//  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//    NSUInteger statusCode = operation.response.statusCode;
-//    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:operation.responseObject];
-//    
-//    if (completion) completion(response, error);
-//  }];
-//  
-//  // If this is a download request with a provided local file path, configure an output stream instead
-//  // of buffering the data in memory.
-//  if (request.method == PKTRequestMethodGET && request.fileData.filePath) {
-//    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:request.fileData.filePath append:NO];
-//  }
-//  
-//  return operation;
-//}
-
 - (NSURLSessionTask *)taskForRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  // TODO: Handle upload/download as well
-  
   NSURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
   
-  NSURLSessionTask *task = [self.session dataTaskWithRequest:URLRequest completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
+  void (^handlerBlock) (NSData *, NSURLResponse *, NSError *, PKTHTTPResponseProcessBlock) = ^(NSData *data, NSURLResponse *URLResponse, NSError *error, PKTHTTPResponseProcessBlock processBlock){
     if (!completion) return;
-
+    
     dispatch_async(self.responseProcessingQueue, ^{
-      id responseObject = [self.responseSerializer responseObjectForURLResponse:URLResponse data:data];
+      // Process response on background queue if needed
+      id responseObject = processBlock ? processBlock() : nil;
       
       dispatch_async(dispatch_get_main_queue(), ^{
+        // Compose response and return on the main queue
         NSUInteger statusCode = [URLResponse isKindOfClass:[NSHTTPURLResponse class]] ? [(NSHTTPURLResponse *)URLResponse statusCode] : 0;
         PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
-
+        
         // NSURLSession reports URL level errors, but does not generate errors for non-2xx status codes.
         // Therefore we need to create our own error.
         NSError *finalError = error;
@@ -101,7 +80,29 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
         completion(response, finalError);
       });
     });
-  }];
+  };
+  
+  NSURLSessionTask *task = nil;
+  
+  if (request.fileData) {
+    task = [self.session downloadTaskWithRequest:URLRequest completionHandler:^(NSURL *location, NSURLResponse *URLResponse, NSError *error) {
+      NSError *finalError = error;
+      
+      if (location && !finalError) {
+        // Move the downloaded file from the temp location to the requested save location. This cannot happen in the processing block because it
+        // is executed asynchronously and the temporary file will be removed by the task after the execution of this completionHandler.
+        [[NSFileManager defaultManager] pkt_moveItemAtURL:location toPath:request.fileData.filePath withIntermediateDirectories:YES error:&finalError];
+      }
+      
+      handlerBlock(nil, URLResponse, finalError, nil);
+    }];
+  } else {
+    task = [self.session dataTaskWithRequest:URLRequest completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
+      handlerBlock(data, URLResponse, error, ^{
+        return [self.responseSerializer responseObjectForURLResponse:URLResponse data:data];
+      });
+    }];
+  }
   
   return task;
 }

@@ -158,12 +158,12 @@
   expect(completed).will.beTruthy();
 }
 
-- (void)testDownloadRequestOperationHasOutputStream {
+- (void)testDownloadRequestIsDownloadTask {
   PKTRequest *request = [PKTRequest GETRequestWithURL:[NSURL URLWithString:@"https://files.podio.com/111111"] parameters:nil];
   request.fileData = [PKTRequestFileData fileDataWithFilePath:@"/tmp/file.pdf" name:nil fileName:nil mimeType:nil];
   
-  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:nil];
-//  expect(task.outputStream).toNot.beNil();
+  id task = [self.testClient taskForRequest:request completion:nil];
+  expect(task).to.beKindOf([NSURLSessionDownloadTask class]);
 }
 
 @end
