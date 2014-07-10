@@ -38,6 +38,8 @@
 		50060223196D7AEA00BC619F /* NSString+PKTURLEncode.h in Headers */ = {isa = PBXBuildFile; fileRef = 50060221196D7AEA00BC619F /* NSString+PKTURLEncode.h */; };
 		50060224196D7AEA00BC619F /* NSString+ PKTURLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060222196D7AEA00BC619F /* NSString+ PKTURLEncode.m */; };
 		50060225196D7AEA00BC619F /* NSString+ PKTURLEncode.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060222196D7AEA00BC619F /* NSString+ PKTURLEncode.m */; };
+		50060227196D989E00BC619F /* NSString+PKTURLEncodeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060226196D989E00BC619F /* NSString+PKTURLEncodeTests.m */; };
+		50060229196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50060228196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m */; };
 		50064DEE1896FE8B00EF1E97 /* PKTClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 50064DEC1896FE8B00EF1E97 /* PKTClient.h */; };
 		50064DEF1896FE8B00EF1E97 /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTClient.m */; };
 		50064DF01896FE8B00EF1E97 /* PKTClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 50064DED1896FE8B00EF1E97 /* PKTClient.m */; };
@@ -375,6 +377,8 @@
 		5006021D196D77C500BC619F /* NSURL+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTAdditions.m"; sourceTree = "<group>"; };
 		50060221196D7AEA00BC619F /* NSString+PKTURLEncode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURLEncode.h"; sourceTree = "<group>"; };
 		50060222196D7AEA00BC619F /* NSString+ PKTURLEncode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ PKTURLEncode.m"; sourceTree = "<group>"; };
+		50060226196D989E00BC619F /* NSString+PKTURLEncodeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURLEncodeTests.m"; sourceTree = "<group>"; };
+		50060228196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+PKTQueryParametersTests.m"; sourceTree = "<group>"; };
 		50064DEC1896FE8B00EF1E97 /* PKTClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTClient.h; sourceTree = "<group>"; };
 		50064DED1896FE8B00EF1E97 /* PKTClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClient.m; sourceTree = "<group>"; };
 		50064DF11896FE9C00EF1E97 /* PKTClientTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTClientTests.m; sourceTree = "<group>"; };
@@ -1059,6 +1063,8 @@
 				5082427B18FD76F9009A1580 /* NSValueTransformer+PKTTransformers.m */,
 				C9FAD7778C8207A6A29CE920 /* NSNumber+PKTAdditionsTests.m */,
 				C9FADD7B81102A43CBE5390A /* NSString+PKTBase64Tests.m */,
+				50060226196D989E00BC619F /* NSString+PKTURLEncodeTests.m */,
+				50060228196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1692,6 +1698,7 @@
 				5039F6A31908629200A8A8F0 /* PKTNestedTestModel.m in Sources */,
 				50E6C817190D654A00F309B4 /* PKTItemField.m in Sources */,
 				501D605E190ED1BF004D94C4 /* PKTDateItemFieldValue.m in Sources */,
+				50060229196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m in Sources */,
 				5039F64D1907114F00A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
 				502067071923645C004721A1 /* PKTDateRange.m in Sources */,
 				508F9B50195AF85700275A63 /* PKTImageCache.m in Sources */,
@@ -1772,6 +1779,7 @@
 				C9FADCF9C97F6D1DBC19D1F8 /* NSNumber+PKTAdditionsTests.m in Sources */,
 				C9FADFDADFFF9AF06D53CA1C /* PKTNumberItemFieldValue.m in Sources */,
 				C9FAD459B5E1A7FD82D4D1CC /* NSString+PKTBase64.m in Sources */,
+				50060227196D989E00BC619F /* NSString+PKTURLEncodeTests.m in Sources */,
 				C9FADAD0D7D9451B20D37296 /* NSString+PKTBase64Tests.m in Sources */,
 				502BB233195DB532003160DE /* PKTTaskAPITests.m in Sources */,
 			);
