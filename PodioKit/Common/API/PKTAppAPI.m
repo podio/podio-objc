@@ -14,7 +14,7 @@
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/app/%lu", (unsigned long)appID) parameters:nil];
 }
 
-+ (PKTRequest *)requestForAppWithWorkspaceID:(NSUInteger)spaceID {
++ (PKTRequest *)requestForAppsInWorkspaceWithID:(NSUInteger)spaceID {
   NSString *path = PKTRequestPath(@"/app/space/%lu/", (unsigned long)spaceID);
   return [PKTRequest GETRequestWithPath:path parameters:nil];
 }

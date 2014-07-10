@@ -52,8 +52,8 @@
   }];
 }
 
-+ (void)fetchAppWithWorkspaceID:(NSUInteger)spaceID completion:(void (^)(NSArray *, NSError *))completion {
-  PKTRequest *request = [PKTAppAPI requestForAppWithWorkspaceID:spaceID];
++ (void)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID completion:(void (^)(NSArray *, NSError *))completion {
+  PKTRequest *request = [PKTAppAPI requestForAppsInWorkspaceWithID:spaceID];
   [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *apps = nil;
     
