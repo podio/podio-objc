@@ -21,14 +21,14 @@
 
 #pragma mark - Private
 
-- (NSDictionary *)pkt_flattenedKeysAndValuesWithKeyMap:(NSString * (^)(id key))keyMap {
+- (NSDictionary *)pkt_flattenedKeysAndValuesWithKeyMappingBlock:(NSString * (^)(id key))keyMappingBlock {
   NSMutableDictionary *pairs = [NSMutableDictionary new];
   
   [self enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-    NSString *currentKey = keyMap ? keyMap(key) : key;
+    NSString *currentKey = keyMappingBlock ? keyMappingBlock(key) : key;
     
     if ([value isKindOfClass:[NSDictionary class]]) {
-      NSDictionary *subKeysAndValues = [value pkt_flattenedKeysAndValuesWithKeyMap:^NSString *(id subKey) {
+      NSDictionary *subKeysAndValues = [value pkt_flattenedKeysAndValuesWithKeyMappingBlock:^NSString *(id subKey) {
         // Sub-keys should appear in brackets
         return [NSString stringWithFormat:@"[%@]", subKey];
       }];
@@ -46,7 +46,7 @@
 }
 
 - (NSDictionary *)pkt_flattenedKeysAndValues {
-  return [self pkt_flattenedKeysAndValuesWithKeyMap:nil];
+  return [self pkt_flattenedKeysAndValuesWithKeyMappingBlock:nil];
 }
 
 - (NSString *)pkt_queryStringByEscapingValues:(BOOL)escapeValues {
