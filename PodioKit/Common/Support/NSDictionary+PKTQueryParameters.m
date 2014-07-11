@@ -29,7 +29,8 @@
   
   NSDictionary *pairs = [self pkt_queryParametersPairs];
   [pairs enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-    escapedPairs[key] = [value pkt_encodeString];
+    NSString *stringValue = [value isKindOfClass:[NSString class]] ? value : [NSString stringWithFormat:@"%@", value];
+    escapedPairs[key] = [stringValue pkt_encodeString];
   }];
   
   return [escapedPairs copy];

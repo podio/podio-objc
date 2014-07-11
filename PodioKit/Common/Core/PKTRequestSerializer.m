@@ -190,7 +190,7 @@ static NSUInteger const kBoundaryLength = 20;
     if (request.contentType == PKTRequestContentTypeJSON) {
       data = [NSJSONSerialization dataWithJSONObject:request.parameters options:0 error:nil];
     } else if (request.contentType == PKTRequestContentTypeFormURLEncoded) {
-      data = [[request.parameters pkt_queryString] dataUsingEncoding:NSUTF8StringEncoding];
+      data = [[request.parameters pkt_escapedQueryString] dataUsingEncoding:NSUTF8StringEncoding];
     }
   }
   
