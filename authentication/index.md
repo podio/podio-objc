@@ -89,8 +89,8 @@ This line takes care of configuring the shared `PKTClient` instance with an inst
 
 {% highlight objective-c %}
 ...
-[PKTClient sharedClient].tokenStore = [[MYOwnTokenStore alloc] init];
-[[PKTClient sharedClient] restoreTokenIfNeeded];
+[PKTClient currentClient].tokenStore = [[MYOwnTokenStore alloc] init];
+[[PKTClient currentClient] restoreTokenIfNeeded];
 ...
 {% endhighlight %}
 
