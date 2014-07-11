@@ -204,7 +204,7 @@ You can easily upload a file to Podio to attach to an item or comment. To do so,
 UIImage *image = [UIImage imageNamed:@"some-image.jpg"];
 NSData *data = UIImageJPEGRepresentation(image, 0.8f);
 
-[PKTFile uploadWithData:data fileName:@"image.jpg" mimeType:@"image/jpeg" completion:^(PKTFile *file, NSError *error) {
+[PKTFile uploadWithData:data fileName:@"image.jpg" completion:^(PKTFile *file, NSError *error) {
   if (!error) {
     NSLog(@"File uploaded with ID: %@", @(file.fileID));
   }
