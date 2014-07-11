@@ -24,6 +24,7 @@
            @"iconID" : @"config.icon_id",
            @"name": @"config.name",
            @"itemName": @"config.item_name",
+           @"appDescription": @"config.description",
            @"link" : @"link",
            @"fields" : @"fields"
   };
