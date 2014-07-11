@@ -11,6 +11,7 @@
 #import "PKTAppAPI.h"
 #import "PKTClient.h"
 #import "NSValueTransformer+PKTTransformers.h"
+#import "NSArray+PKTAdditions.h"
 
 @implementation PKTApp
 
@@ -48,6 +49,21 @@
     }
     
     if (completion) completion(app, error);
+  }];
+}
+
++ (void)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID completion:(void (^)(NSArray *, NSError *))completion {
+  PKTRequest *request = [PKTAppAPI requestForAppsInWorkspaceWithID:spaceID];
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    NSArray *apps = nil;
+    
+    if (!error) {
+      apps = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+        return [[PKTApp alloc] initWithDictionary:dict];
+      }];
+    }
+    
+    if (completion) completion(apps, error);
   }];
 }
 

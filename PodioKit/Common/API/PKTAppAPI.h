@@ -11,5 +11,5 @@
 @interface PKTAppAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForAppWithID:(NSUInteger)appID;
-
++ (PKTRequest *)requestForAppsInWorkspaceWithID:(NSUInteger)spaceID;
 @end
