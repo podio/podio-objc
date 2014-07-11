@@ -1,37 +1,16 @@
 PODS:
-  - AFNetworking (2.2.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-    - AFNetworking/UIKit
-  - AFNetworking/NSURLConnection (2.2.3):
-    - AFNetworking/Reachability
-    - AFNetworking/Security
-    - AFNetworking/Serialization
-  - AFNetworking/NSURLSession (2.2.3):
-    - AFNetworking/NSURLConnection
-  - AFNetworking/Reachability (2.2.3)
-  - AFNetworking/Security (2.2.3)
-  - AFNetworking/Serialization (2.2.3)
-  - AFNetworking/UIKit (2.2.3):
-    - AFNetworking/NSURLConnection
-    - AFNetworking/NSURLSession
-  - Expecta (0.3.0)
-  - OCMock (2.2.4)
-  - OHHTTPStubs (3.1.1)
+  - Expecta (0.3.1)
+  - OCMock (3.0.2)
+  - OHHTTPStubs (3.1.2)
 
 DEPENDENCIES:
-  - AFNetworking (~> 2.0)
   - Expecta
   - OCMock
   - OHHTTPStubs
 
 SPEC CHECKSUMS:
-  AFNetworking: 47947303319594706f48a55185ea95a95159ab94
-  Expecta: ce8a51b9fad15a2cd573b291cb2909aaed865350
-  OCMock: 6db79185520e24f9f299548f2b8b07e41d881bd5
-  OHHTTPStubs: 58b42d245ad2416bac170ce18e1383913d17e315
+  Expecta: 03aabd0a89d8dea843baecb19a7fd7466a69a31d
+  OCMock: b9836ab89d8d5e66cbe6333f93857037c310ee62
+  OHHTTPStubs: c1c2007839687eaf9b80f061ce84440515080ebb
 
 COCOAPODS: 0.33.1

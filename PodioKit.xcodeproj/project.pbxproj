@@ -22,7 +22,6 @@
 
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
-		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
 		5006020D196D550400BC619F /* NSString+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006020B196D550400BC619F /* NSString+PKTAdditions.h */; };
 		5006020E196D550400BC619F /* NSString+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006020C196D550400BC619F /* NSString+PKTAdditions.m */; };
 		50060211196D5ACC00BC619F /* PKTResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006020F196D5ACC00BC619F /* PKTResponseSerializer.h */; };
@@ -373,7 +372,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
 		5006020B196D550400BC619F /* NSString+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTAdditions.h"; sourceTree = "<group>"; };
 		5006020C196D550400BC619F /* NSString+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTAdditions.m"; sourceTree = "<group>"; };
 		5006020F196D5ACC00BC619F /* PKTResponseSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTResponseSerializer.h; sourceTree = "<group>"; };
@@ -663,7 +661,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */,
-				0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,7 +793,6 @@
 				5065BEEA14335AB900360855 /* Frameworks */,
 				5065BEE914335AB900360855 /* Products */,
 				50837695196B3BF600F8BC02 /* Description.md */,
-				0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */,
 				C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */,
 			);
 			indentWidth = 2;
@@ -1401,11 +1397,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit" */;
 			buildPhases = (
-				6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */,
 				5065BEE414335AB900360855 /* Sources */,
 				5065BEE514335AB900360855 /* Frameworks */,
 				5065BEE614335AB900360855 /* Headers */,
-				731FF3E696474B17A611C090 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1517,34 +1511,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/appledoc \\\n--project-name \"${PROJECT_NAME}\" \\\n--project-company \"Citrix Systems, Inc.\" \\\n--company-id \"com.podio\" \\\n--output \"${PROJECT_DIR}/Docs/${PROJECT_NAME}\" \\\n--install-docset \\\n--logformat xcode \\\n--keep-merged-sections \\\n--keep-undocumented-objects \\\n--keep-undocumented-members \\\n--keep-intermediate-files \\\n--no-repeat-first-par \\\n--no-warn-invalid-crossref \\\n--merge-categories \\\n--exit-threshold 2 \\\n--docset-platform-family iphoneos \\\n--ignore \".m\" \\\n--index-desc \"${PROJECT_DIR}/Description.md\" \\\n\"${PROJECT_DIR}/${PROJECT_NAME}\"";
-		};
-		6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-		};
-		731FF3E696474B17A611C090 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-podiokit-resources.sh\"\n";
 		};
 		8C3D8EE53B594E2CBA1DD531 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1863,7 +1829,6 @@
 		};
 		5065BF1014335ABA00360855 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */;
 			buildSettings = {
 				COPY_PHASE_STRIP = NO;
 				DSTROOT = /tmp/PodioKit.dst;
@@ -1882,7 +1847,6 @@
 		};
 		5065BF1114335ABA00360855 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */;
 			buildSettings = {
 				DSTROOT = /tmp/PodioKit.dst;
 				FRAMEWORK_SEARCH_PATHS = (
