@@ -107,10 +107,10 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 - (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 
 /**
- *  Dispatches an HTTP request operation for the provided request.
+ *  Dispatches an HTTP request task for the provided request.
  *
  *  @param request    The request to perform.
- *  @param completion The completion handler to be called once the HTTP request operation completes.
+ *  @param completion The completion handler to be called once the HTTP request task completes.
  *
  *  @return The resulting task handle.
  */

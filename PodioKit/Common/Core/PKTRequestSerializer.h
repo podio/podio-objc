@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-//#import <AFNetworking/AFURLRequestSerialization.h>
-
 @class PKTRequest;
 
 @class PKTMultipartFormData;

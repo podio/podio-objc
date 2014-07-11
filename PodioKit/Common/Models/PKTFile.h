@@ -28,8 +28,8 @@
 
 - (void)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(PKTRequestCompletionBlock)completion;
 
-- (AFHTTPRequestOperation *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion;
+- (PKTRequestTaskHandle *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion;
 
-- (AFHTTPRequestOperation *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion;
+- (PKTRequestTaskHandle *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion;
 
 @end

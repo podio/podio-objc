@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <AFNetworking/AFNetworking.h>
 #import "PKTRequest.h"
 #import "PKTResponse.h"
 #import "PKTRequestSerializer.h"

@@ -31,7 +31,7 @@
  * @param password The user's password
  * @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- * @return The resulting request operation.
+ * @return The resulting request task.
  */
 + (PKTRequestTaskHandle *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
 
@@ -43,7 +43,7 @@
  * @param appToken The app token string associated with the app.
  * @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- * @return The resulting request operation.
+ * @return The resulting request task.
  */
 + (PKTRequestTaskHandle *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 

@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <AFNetworking/AFNetworking.h>
 
 @class PKTFile;
+@class PKTRequestTaskHandle;
 
 @interface PKTImageDownloader : NSObject
 
-+ (AFHTTPRequestOperation *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion;
++ (PKTRequestTaskHandle *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion;
 
 @end
