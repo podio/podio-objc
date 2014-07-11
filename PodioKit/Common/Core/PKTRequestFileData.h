@@ -14,10 +14,9 @@
 @property (nonatomic, copy, readonly) NSString *filePath;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *fileName;
-@property (nonatomic, copy, readonly) NSString *mimeType;
 
-+ (instancetype)fileDataWithData:(NSData *)data name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
++ (instancetype)fileDataWithData:(NSData *)data name:(NSString *)name fileName:(NSString *)fileName;
 
-+ (instancetype)fileDataWithFilePath:(NSString *)filePath name:(NSString *)name fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
++ (instancetype)fileDataWithFilePath:(NSString *)filePath name:(NSString *)name fileName:(NSString *)fileName;
 
 @end

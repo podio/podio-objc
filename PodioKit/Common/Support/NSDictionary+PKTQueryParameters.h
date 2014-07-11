@@ -12,5 +12,7 @@
 
 - (NSString *)pkt_queryString;
 - (NSString *)pkt_escapedQueryString;
+- (NSDictionary *)pkt_queryParametersPairs;
+- (NSDictionary *)pkt_escapedQueryParametersPairs;
 
 @end

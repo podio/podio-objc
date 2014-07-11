@@ -122,10 +122,12 @@
 - (void)testMultipartRequest {
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/some/path" parameters:@{@"param1" : @"someValue"}];
   request.contentType = PKTRequestContentTypeMultipart;
-  request.fileData = [PKTRequestFileData fileDataWithData:[NSData data] name:@"name" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+  request.fileData = [PKTRequestFileData fileDataWithData:[NSData data] name:@"name" fileName:@"image.jpg"];
   
-  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+  PKTMultipartFormData *multipartData = [self.testSerializer multipartFormDataFromRequest:request];
+  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request multipartData:multipartData relativeToURL:self.baseURL];
   expect(urlRequest.allHTTPHeaderFields[@"Content-Type"]).to.contain(@"multipart/form-data");
+  expect(urlRequest.allHTTPHeaderFields[@"Content-Length"]).toNot.beNil();
 }
 
 - (void)testURLRequestForAbsoluteURL {

@@ -160,7 +160,7 @@
 
 - (void)testDownloadRequestIsDownloadTask {
   PKTRequest *request = [PKTRequest GETRequestWithURL:[NSURL URLWithString:@"https://files.podio.com/111111"] parameters:nil];
-  request.fileData = [PKTRequestFileData fileDataWithFilePath:@"/tmp/file.pdf" name:nil fileName:nil mimeType:nil];
+  request.fileData = [PKTRequestFileData fileDataWithFilePath:@"/tmp/file.pdf" name:nil fileName:nil];
   
   id task = [self.testClient taskForRequest:request completion:nil];
   expect(task).to.beKindOf([NSURLSessionDownloadTask class]);

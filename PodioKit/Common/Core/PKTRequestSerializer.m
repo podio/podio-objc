@@ -8,6 +8,7 @@
 
 #import "PKTRequestSerializer.h"
 #import "PKTRequest.h"
+#import "PKTMultipartFormData.h"
 #import "NSString+PKTRandom.h"
 #import "NSString+PKTBase64.h"
 #import "NSURL+PKTAdditions.h"
@@ -26,6 +27,10 @@ static NSString * const kHeaderAuthorization = @"Authorization";
 static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
 
 static NSString * const kHeaderContentType = @"Content-Type";
+static NSString * const kHeaderContentLength = @"Content-Length";
+
+static NSString * const kBoundaryPrefix = @"----------------------";
+static NSUInteger const kBoundaryLength = 20;
 
 @interface PKTRequestSerializer ()
 
@@ -42,7 +47,7 @@ static NSString * const kHeaderContentType = @"Content-Type";
 
 - (NSString *)boundary {
   if (!_boundary) {
-    _boundary = [NSString pkt_randomHexStringOfLength:20];
+    _boundary = [NSString stringWithFormat:@"%@%@", kBoundaryPrefix, [NSString pkt_randomHexStringOfLength:kBoundaryLength]];
   }
   
   return _boundary;
@@ -85,67 +90,13 @@ static NSString * const kHeaderContentType = @"Content-Type";
   [self setValue:[NSString stringWithFormat:@"Basic %@", [credentials pkt_base64String]] forHTTPHeader:kHeaderAuthorization];
 }
 
-#pragma mark - AFURLRequestSerialization
-
-//- (NSURLRequest *)requestBySerializingRequest:(NSURLRequest *)request withParameters:(id)parameters error:(NSError *__autoreleasing *)error {
-//  NSParameterAssert(request);
-//  
-//  if ([self.HTTPMethodsEncodingParametersInURI containsObject:[[request HTTPMethod] uppercaseString]] ||
-//      self.requestContentType == PKTRequestContentTypeFormURLEncoded) {
-//    return [super requestBySerializingRequest:request withParameters:parameters error:error];
-//  }
-//  
-//  // Format as JSON
-//  NSMutableURLRequest *mutableRequest = [request mutableCopy];
-//  
-//  [self.HTTPRequestHeaders enumerateKeysAndObjectsUsingBlock:^(id field, id value, BOOL * __unused stop) {
-//    if (![request valueForHTTPHeaderField:field]) {
-//      [mutableRequest setValue:value forHTTPHeaderField:field];
-//    }
-//  }];
-//  
-//  if (!parameters) {
-//    return mutableRequest;
-//  }
-//  
-//  NSString *charset = (__bridge NSString *)CFStringConvertEncodingToIANACharSetName(CFStringConvertNSStringEncodingToEncoding(NSUTF8StringEncoding));
-//  
-//  [mutableRequest setValue:[NSString stringWithFormat:@"application/json; charset=%@", charset] forHTTPHeaderField:@"Content-Type"];
-//  [mutableRequest setHTTPBody:[NSJSONSerialization dataWithJSONObject:parameters options:0 error:error]];
-//  
-//  return mutableRequest;
-//}
-
 #pragma mark - URL request
 
-//+ (NSMutableURLRequest *)requestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(NSDictionary *)parameters error:(NSError *__autoreleasing *)error {
-////  NSMutableURLRequest *request = [super requestWithMethod:method URLString:URLString parameters:parameters error:error];
-//
-//  return nil;
-//}
-//
-//- (NSMutableURLRequest *)multipartFormRequestWithMethod:(NSString *)method URLString:(NSString *)URLString parameters:(NSDictionary *)parameters fileData:(PKTRequestFileData *)fileData error:(NSError *__autoreleasing *)error {
-//  NSMutableURLRequest *request = [super multipartFormRequestWithMethod:method URLString:URLString parameters:parameters constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
-//    if (fileData.data) {
-//      [formData appendPartWithFileData:fileData.data
-//                                  name:fileData.name
-//                              fileName:fileData.fileName
-//                              mimeType:fileData.mimeType];
-//    } else if (fileData.filePath) {
-//      [formData appendPartWithFileURL:[NSURL fileURLWithPath:fileData.filePath]
-//                                 name:fileData.name
-//                             fileName:fileData.fileName
-//                             mimeType:fileData.mimeType
-//                                error:nil];
-//    }
-//  } error:error];
-//  
-//  [request setValue:[self generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
-//  
-//  return request;
-//}
-
 - (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request relativeToURL:(NSURL *)baseURL {
+  return [self URLRequestForRequest:request multipartData:nil relativeToURL:baseURL];
+}
+
+- (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request multipartData:(PKTMultipartFormData *)multipartData relativeToURL:(NSURL *)baseURL {
   NSParameterAssert(request);
   NSParameterAssert(baseURL);
   
@@ -166,6 +117,11 @@ static NSString * const kHeaderContentType = @"Content-Type";
   [urlRequest setValue:[[self class] generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
   [urlRequest setValue:[self contentTypeForRequest:request] forHTTPHeaderField:kHeaderContentType];
   
+  if (multipartData) {
+    NSString *contentLength = [NSString stringWithFormat:@"%lu", (unsigned long)multipartData.finalizedData.length];
+    [urlRequest setValue:contentLength forHTTPHeaderField:kHeaderContentLength];
+  }
+  
   [self.additionalHTTPHeaders enumerateKeysAndObjectsUsingBlock:^(NSString *header, NSString *value, BOOL *stop) {
     [urlRequest setValue:value forHTTPHeaderField:header];
   }];
@@ -176,25 +132,23 @@ static NSString * const kHeaderContentType = @"Content-Type";
     urlRequest = [request.URLRequestConfigurationBlock(urlRequest) mutableCopy];
   }
   
-//    if (request.contentType == PKTRequestContentTypeMultipart) {
-//      urlRequest = [self multipartFormRequestWithMethod:method
-//                                              URLString:urlString
-//                                             parameters:request.parameters
-//                                               fileData:request.fileData
-//                                                  error:nil];
-//    } else {
-//      // Use content type of request
-//      PKTRequestContentType contentType = self.requestContentType;
-//      self.requestContentType = request.contentType;
-//
-//      urlRequest = [self requestWithMethod:method URLString:urlString parameters:request.parameters error:nil];
-//
-//      // Reset content type
-//      self.requestContentType = contentType;
-//    }
-//
-  
   return urlRequest;
+}
+
+- (PKTMultipartFormData *)multipartFormDataFromRequest:(PKTRequest *)request {
+  PKTMultipartFormData *multiPartData = [PKTMultipartFormData multipartFormDataWithBoundary:self.boundary encoding:NSUTF8StringEncoding];
+  
+  if (request.fileData.data) {
+    [multiPartData appendFileData:request.fileData.data fileName:request.fileData.fileName mimeType:nil name:request.fileData.name];
+  }
+  
+  if ([request.parameters count] > 0) {
+    [multiPartData appendFormDataParameters:request.parameters];
+  }
+  
+  [multiPartData finalizeData];
+  
+  return multiPartData;
 }
 
 #pragma mark - Private

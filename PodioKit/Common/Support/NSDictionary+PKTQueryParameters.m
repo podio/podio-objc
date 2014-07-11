@@ -8,6 +8,7 @@
 
 #import "NSDictionary+PKTQueryParameters.h"
 #import "NSString+PKTURLEncode.h"
+#import "NSArray+PKTAdditions.h"
 
 @implementation NSDictionary (PKTQueryParameters)
 
@@ -17,6 +18,21 @@
 
 - (NSString *)pkt_escapedQueryString {
   return [self pkt_queryStringByEscapingValues:YES];
+}
+
+- (NSDictionary *)pkt_queryParametersPairs {
+  return [self pkt_flattenedKeysAndValuesWithKeyMappingBlock:nil];
+}
+
+- (NSDictionary *)pkt_escapedQueryParametersPairs {
+  NSMutableDictionary *escapedPairs = [NSMutableDictionary new];
+  
+  NSDictionary *pairs = [self pkt_queryParametersPairs];
+  [pairs enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
+    escapedPairs[key] = [value pkt_encodeString];
+  }];
+  
+  return [escapedPairs copy];
 }
 
 #pragma mark - Private
@@ -45,19 +61,11 @@
   return [pairs copy];
 }
 
-- (NSDictionary *)pkt_flattenedKeysAndValues {
-  return [self pkt_flattenedKeysAndValuesWithKeyMappingBlock:nil];
-}
-
 - (NSString *)pkt_queryStringByEscapingValues:(BOOL)escapeValues {
   NSMutableArray *pairs = [NSMutableArray new];
   
-  NSDictionary *keysAndValues = [self pkt_flattenedKeysAndValues];
-  [keysAndValues enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
-    if (escapeValues) {
-      value = [value pkt_encodeString];
-    }
-    
+  NSDictionary *escapedPairs = escapeValues ? [self pkt_escapedQueryParametersPairs] : [self pkt_queryParametersPairs];
+  [escapedPairs enumerateKeysAndObjectsUsingBlock:^(id key, id value, BOOL *stop) {
     NSString *pair = [NSString stringWithFormat:@"%@=%@", key, value];
     [pairs addObject:pair];
   }];

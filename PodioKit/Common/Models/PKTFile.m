@@ -39,9 +39,9 @@
 
 #pragma mrk - API
 
-+ (void)uploadWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType completion:(void (^)(PKTFile *file, NSError *error))completion {
++ (void)uploadWithData:(NSData *)data fileName:(NSString *)fileName completion:(void (^)(PKTFile *file, NSError *error))completion {
   Class objectClass = [self class];
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:fileName mimeType:mimeType];
+  PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:fileName];
   
   [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTFile *file = nil;

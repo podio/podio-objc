@@ -192,6 +192,10 @@
 		505113D9196E9B8B00370285 /* NSFileManager+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 505113D7196E9B8B00370285 /* NSFileManager+PKTAdditions.h */; };
 		505113DA196E9B8B00370285 /* NSFileManager+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113D8196E9B8B00370285 /* NSFileManager+PKTAdditions.m */; };
 		505113DB196E9CC100370285 /* NSFileManager+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113D8196E9B8B00370285 /* NSFileManager+PKTAdditions.m */; };
+		505113DE196EB9AB00370285 /* PKTMultipartFormData.h in Headers */ = {isa = PBXBuildFile; fileRef = 505113DC196EB9AB00370285 /* PKTMultipartFormData.h */; };
+		505113DF196EB9AB00370285 /* PKTMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113DD196EB9AB00370285 /* PKTMultipartFormData.m */; };
+		505113E6196FE8FA00370285 /* PKTMultipartFormDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */; };
+		505113E7196FE9C600370285 /* PKTMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113DD196EB9AB00370285 /* PKTMultipartFormData.m */; };
 		50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50620AAD14BC8CA60060A786 /* InfoPlist.strings */; };
 		5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
 		5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
@@ -494,6 +498,9 @@
 		50485954188461CF0088AF2C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		505113D7196E9B8B00370285 /* NSFileManager+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+PKTAdditions.h"; sourceTree = "<group>"; };
 		505113D8196E9B8B00370285 /* NSFileManager+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+PKTAdditions.m"; sourceTree = "<group>"; };
+		505113DC196EB9AB00370285 /* PKTMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTMultipartFormData.h; sourceTree = "<group>"; };
+		505113DD196EB9AB00370285 /* PKTMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTMultipartFormData.m; sourceTree = "<group>"; };
+		505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTMultipartFormDataTests.m; sourceTree = "<group>"; };
 		50620AAD14BC8CA60060A786 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEEB14335AB900360855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1109,6 +1116,8 @@
 				50B64F39196C18C50079F270 /* PKTRequestTaskHandle.m */,
 				50B64F3C196C19D30079F270 /* PKTRequestTaskDescriptor.h */,
 				50B64F3D196C19D30079F270 /* PKTRequestTaskDescriptor.m */,
+				505113DC196EB9AB00370285 /* PKTMultipartFormData.h */,
+				505113DD196EB9AB00370285 /* PKTMultipartFormData.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1151,6 +1160,7 @@
 				5006B097191CAF74006FF388 /* PKTCalendarAPITests.m */,
 				50E0C6231947694900D37281 /* PKTKeychainTokenStoreTests.m */,
 				507DFDC6194797ED002C339A /* PKTKeychainTests.m */,
+				505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1331,6 +1341,7 @@
 				501D6065190EE9BB004D94C4 /* PKTFileItemFieldValue.h in Headers */,
 				501D604C190E30F5004D94C4 /* PKTStringItemFieldValue.h in Headers */,
 				50F6B92C195AE84900FF0024 /* PKTFile+UIImage.h in Headers */,
+				505113DE196EB9AB00370285 /* PKTMultipartFormData.h in Headers */,
 				501D605A190E3E81004D94C4 /* PKTEmbedItemFieldValue.h in Headers */,
 				5082425118FC82C1009A1580 /* PKTBlockValueTransformer.h in Headers */,
 				501D6069190EEAC8004D94C4 /* PKTAppItemFieldValue.h in Headers */,
@@ -1604,6 +1615,7 @@
 				5006B091191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m in Sources */,
 				5020670519235F04004721A1 /* PKTDateRange.m in Sources */,
 				5082424D18FC70A5009A1580 /* PKTModel.m in Sources */,
+				505113DF196EB9AB00370285 /* PKTMultipartFormData.m in Sources */,
 				50DAD43F1964067600529DB5 /* PKTFormField.m in Sources */,
 				50F6B92F195AE84900FF0024 /* UIButton+PKTRemoteImage.m in Sources */,
 				50F6B92D195AE84900FF0024 /* PKTFile+UIImage.m in Sources */,
@@ -1754,6 +1766,7 @@
 				5014C581188817430002C68D /* PKTResponse.m in Sources */,
 				5020670619236459004721A1 /* PKTMoney.m in Sources */,
 				501D608A190EF2EB004D94C4 /* PKTProfileItemFieldValue.m in Sources */,
+				505113E7196FE9C600370285 /* PKTMultipartFormData.m in Sources */,
 				E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */,
 				50B64F40196C394D0079F270 /* PKTRequestTaskHandle.m in Sources */,
 				E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */,
@@ -1777,6 +1790,7 @@
 				50FA507B190112AC009542B9 /* PKTHTTPStubber.m in Sources */,
 				E4BABDCD1897FA8600E9149A /* PKTOAuth2Token.m in Sources */,
 				5082427A18FD76D7009A1580 /* NSValueTransformer+PKTTransformers.m in Sources */,
+				505113E6196FE8FA00370285 /* PKTMultipartFormDataTests.m in Sources */,
 				5039F65D1907152700A8A8F0 /* PKTReferenceTypeValueTransformerTests.m in Sources */,
 				50395A0D1914198B004C298C /* PKTCommentAPI.m in Sources */,
 				50FA507418FFC047009542B9 /* PKTUserAPI.m in Sources */,

@@ -8,6 +8,7 @@
 
 #import "PKTHTTPClient.h"
 #import "PKTClient.h"
+#import "PKTMultipartFormData.h"
 #import "PKTMacros.h"
 #import "NSFileManager+PKTAdditions.h"
 
@@ -56,7 +57,6 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
 #pragma mark - Public
 
 - (NSURLSessionTask *)taskForRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  NSURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
   
   void (^handlerBlock) (NSData *, NSURLResponse *, NSError *, PKTHTTPResponseProcessBlock) = ^(NSData *data, NSURLResponse *URLResponse, NSError *error, PKTHTTPResponseProcessBlock processBlock){
     if (!completion) return;
@@ -84,24 +84,42 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
   
   NSURLSessionTask *task = nil;
   
-  if (request.fileData) {
-    task = [self.session downloadTaskWithRequest:URLRequest completionHandler:^(NSURL *location, NSURLResponse *URLResponse, NSError *error) {
-      NSError *finalError = error;
-      
-      if (location && !finalError) {
-        // Move the downloaded file from the temp location to the requested save location. This cannot happen in the processing block because it
-        // is executed asynchronously and the temporary file will be removed by the task after the execution of this completionHandler.
-        [[NSFileManager defaultManager] pkt_moveItemAtURL:location toPath:request.fileData.filePath withIntermediateDirectories:YES error:&finalError];
-      }
-      
-      handlerBlock(nil, URLResponse, finalError, nil);
-    }];
-  } else {
-    task = [self.session dataTaskWithRequest:URLRequest completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
+  if (request.fileData && (request.method == PKTRequestMethodPOST || request.method == PKTRequestMethodPUT)) {
+    // Upload task
+    PKTMultipartFormData *multipartData = [self.requestSerializer multipartFormDataFromRequest:request];
+    NSData *data = [multipartData finalizedData];
+    
+    NSMutableURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request multipartData:multipartData relativeToURL:self.baseURL];
+    
+    task = [self.session uploadTaskWithRequest:URLRequest fromData:data completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
       handlerBlock(data, URLResponse, error, ^{
         return [self.responseSerializer responseObjectForURLResponse:URLResponse data:data];
       });
     }];
+  } else {
+    NSMutableURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+    
+    if (request.fileData && request.method == PKTRequestMethodGET) {
+      // Download task
+      task = [self.session downloadTaskWithRequest:URLRequest completionHandler:^(NSURL *location, NSURLResponse *URLResponse, NSError *error) {
+        NSError *finalError = error;
+        
+        if (location && !finalError) {
+          // Move the downloaded file from the temp location to the requested save location. This cannot happen in the processing block because it
+          // is executed asynchronously and the temporary file will be removed by the task after the execution of this completionHandler.
+          [[NSFileManager defaultManager] pkt_moveItemAtURL:location toPath:request.fileData.filePath withIntermediateDirectories:YES error:&finalError];
+        }
+        
+        handlerBlock(nil, URLResponse, finalError, nil);
+      }];
+    } else {
+      // Regular data task
+      task = [self.session dataTaskWithRequest:URLRequest completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
+        handlerBlock(data, URLResponse, error, ^{
+          return [self.responseSerializer responseObjectForURLResponse:URLResponse data:data];
+        });
+      }];
+    }
   }
   
   return task;
