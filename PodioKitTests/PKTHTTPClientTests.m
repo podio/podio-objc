@@ -11,6 +11,7 @@
 #import "PKTRequest.h"
 #import "PKTResponse.h"
 #import "PKTHTTPStubs.h"
+#import "NSError+PKTErrors.h"
 
 @interface PKTHTTPClientTests : XCTestCase
 
@@ -156,6 +157,34 @@
 
   [task resume];
   expect(completed).will.beTruthy();
+}
+
+- (void)testReturnsServerError {
+  NSString *path = @"/some/path";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:nil];
+  
+  [PKTHTTPStubs stubResponseForPath:path block:^(PKTHTTPStubber *stubber) {
+    stubber.statusCode = 400;
+    stubber.responseObject = @{
+      @"error" : @"invalid_grant",
+      @"error_description" : @"The username is not valid",
+      @"error_detail" : @"user.invalid.username",
+      @"error_parameters" : @{},
+      @"error_propagate" : @1
+      };
+  }];
+  
+  __block BOOL completed = NO;
+  __block NSError *serverError = nil;
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
+    completed = YES;
+    serverError = error;
+  }];
+  
+  [task resume];
+  expect(completed).will.beTruthy();
+  expect(serverError.domain).to.equal(PodioServerErrorDomain);
+  expect(serverError.code).to.equal(400);
 }
 
 - (void)testDownloadRequestIsDownloadTask {

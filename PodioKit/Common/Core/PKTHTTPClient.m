@@ -11,11 +11,10 @@
 #import "PKTMultipartFormData.h"
 #import "PKTMacros.h"
 #import "NSFileManager+PKTAdditions.h"
+#import "NSError+PKTErrors.h"
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
 static char * const kRequestProcessingQueueLabel = "com.podio.podiokit.httpclient.response_processing_queue";
-
-static NSString * const PodioKitErrorDomain = @"PodioKitErrorDomain";
 
 typedef id (^PKTHTTPResponseProcessBlock) (void);
 
@@ -74,7 +73,7 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
         // Therefore we need to create our own error.
         NSError *finalError = error;
         if (!finalError && (statusCode < 200 || statusCode > 299)) {
-          finalError = [NSError errorWithDomain:PodioKitErrorDomain code:PKTErrorCodeRequestFailed userInfo:nil];
+          finalError = [NSError pkt_serverErrorWithStatusCode:statusCode body:responseObject];
         }
         
         completion(response, finalError);

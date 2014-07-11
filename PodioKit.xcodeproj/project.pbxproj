@@ -258,6 +258,12 @@
 		50B64F3F196C19D30079F270 /* PKTRequestTaskDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B64F3D196C19D30079F270 /* PKTRequestTaskDescriptor.m */; };
 		50B64F40196C394D0079F270 /* PKTRequestTaskHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B64F39196C18C50079F270 /* PKTRequestTaskHandle.m */; };
 		50B64F41196C39590079F270 /* PKTRequestTaskDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B64F3D196C19D30079F270 /* PKTRequestTaskDescriptor.m */; };
+		50CAE07119701C6F0096BE07 /* NSError+PKTErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CAE06F19701C6F0096BE07 /* NSError+PKTErrors.h */; };
+		50CAE07219701C6F0096BE07 /* NSError+PKTErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */; };
+		50CAE07319701C6F0096BE07 /* NSError+PKTErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */; };
+		50CAE07719701DFF0096BE07 /* NSDictionary+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CAE07519701DFF0096BE07 /* NSDictionary+PKTAdditions.h */; };
+		50CAE07819701DFF0096BE07 /* NSDictionary+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CAE07619701DFF0096BE07 /* NSDictionary+PKTAdditions.m */; };
+		50CAE07919701DFF0096BE07 /* NSDictionary+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CAE07619701DFF0096BE07 /* NSDictionary+PKTAdditions.m */; };
 		50DAD4331964007400529DB5 /* PKTFormAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DAD4311964007400529DB5 /* PKTFormAPI.h */; };
 		50DAD4341964007400529DB5 /* PKTFormAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAD4321964007400529DB5 /* PKTFormAPI.m */; };
 		50DAD4361964041400529DB5 /* PKTFormAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAD4351964041400529DB5 /* PKTFormAPITests.m */; };
@@ -558,6 +564,10 @@
 		50B64F39196C18C50079F270 /* PKTRequestTaskHandle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestTaskHandle.m; sourceTree = "<group>"; };
 		50B64F3C196C19D30079F270 /* PKTRequestTaskDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRequestTaskDescriptor.h; sourceTree = "<group>"; };
 		50B64F3D196C19D30079F270 /* PKTRequestTaskDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRequestTaskDescriptor.m; sourceTree = "<group>"; };
+		50CAE06F19701C6F0096BE07 /* NSError+PKTErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+PKTErrors.h"; sourceTree = "<group>"; };
+		50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PKTErrors.m"; sourceTree = "<group>"; };
+		50CAE07519701DFF0096BE07 /* NSDictionary+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+PKTAdditions.h"; sourceTree = "<group>"; };
+		50CAE07619701DFF0096BE07 /* NSDictionary+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+PKTAdditions.m"; sourceTree = "<group>"; };
 		50D7380F166F6D08009233FF /* NSString+PKTRandom.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTRandom.h"; sourceTree = "<group>"; };
 		50D73810166F6D09009233FF /* NSString+PKTRandom.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandom.m"; sourceTree = "<group>"; };
 		50DAD4311964007400529DB5 /* PKTFormAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTFormAPI.h; sourceTree = "<group>"; };
@@ -687,6 +697,8 @@
 			children = (
 				50060215196D773300BC619F /* NSDictionary+PKTQueryParameters.h */,
 				50060216196D773300BC619F /* NSDictionary+PKTQueryParameters.m */,
+				50CAE07519701DFF0096BE07 /* NSDictionary+PKTAdditions.h */,
+				50CAE07619701DFF0096BE07 /* NSDictionary+PKTAdditions.m */,
 			);
 			name = NSDictionary;
 			sourceTree = "<group>";
@@ -929,6 +941,15 @@
 				508F9B4E195AF6C200275A63 /* PKTImageCacheTests.m */,
 			);
 			name = UIKit;
+			sourceTree = "<group>";
+		};
+		50CAE07419701C770096BE07 /* NSError */ = {
+			isa = PBXGroup;
+			children = (
+				50CAE06F19701C6F0096BE07 /* NSError+PKTErrors.h */,
+				50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */,
+			);
+			name = NSError;
 			sourceTree = "<group>";
 		};
 		50F6B924195AE7E800FF0024 /* Common */ = {
@@ -1201,6 +1222,7 @@
 		E49B6F8918901C9B0046192A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				50CAE07419701C770096BE07 /* NSError */,
 				505113D6196E9B7600370285 /* NSFileManager */,
 				5006021B196D77AA00BC619F /* NSURL */,
 				5006021A196D773900BC619F /* NSDictionary */,
@@ -1355,6 +1377,7 @@
 				5039F650190712DC00A8A8F0 /* PKTReferenceTypeValueTransformer.h in Headers */,
 				5006B076191C1E3B006FF388 /* PKTCalendarEvent.h in Headers */,
 				5082426218FC8A84009A1580 /* NSObject+PKTIntrospection.h in Headers */,
+				50CAE07119701C6F0096BE07 /* NSError+PKTErrors.h in Headers */,
 				50E067FD1920A37B00552CCF /* PKTWorkspace.h in Headers */,
 				508F9B47195AEF0300275A63 /* PKTImageCache.h in Headers */,
 				5006B07A191C1F3B006FF388 /* PKTCalendarAPI.h in Headers */,
@@ -1373,6 +1396,7 @@
 				503959FD19137585004C298C /* PKTDateValueTransformer.h in Headers */,
 				50FA507218FFC040009542B9 /* PKTUserAPI.h in Headers */,
 				50E6C805190D4EA900F309B4 /* PKTItemField.h in Headers */,
+				50CAE07719701DFF0096BE07 /* NSDictionary+PKTAdditions.h in Headers */,
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
 				C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */,
 				50DAD43A196404BD00529DB5 /* PKTForm.h in Headers */,
@@ -1551,11 +1575,13 @@
 				5006B087191C34A9006FF388 /* PKTByLine.m in Sources */,
 				502BB229195DA44C003160DE /* PKTReferenceIdentifier.m in Sources */,
 				5014C579188816F10002C68D /* PKTRequest.m in Sources */,
+				50CAE07219701C6F0096BE07 /* NSError+PKTErrors.m in Sources */,
 				50060212196D5ACC00BC619F /* PKTResponseSerializer.m in Sources */,
 				50060224196D7AEA00BC619F /* NSString+ PKTURLEncode.m in Sources */,
 				5006B077191C1E3B006FF388 /* PKTCalendarEvent.m in Sources */,
 				503959ED19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */,
 				50E6C80A190D4EC200F309B4 /* PKTFile.m in Sources */,
+				50CAE07819701DFF0096BE07 /* NSDictionary+PKTAdditions.m in Sources */,
 				50E6C80E190D5A6600F309B4 /* PKTAppField.m in Sources */,
 				50FA507318FFC041009542B9 /* PKTUserAPI.m in Sources */,
 				502BB22D195DA998003160DE /* PKTTaskRequestParameters.m in Sources */,
@@ -1676,12 +1702,14 @@
 				5039F63C1907052200A8A8F0 /* NSJSONSerialization+PKTAdditions.m in Sources */,
 				50DAD4371964041900529DB5 /* PKTFormAPI.m in Sources */,
 				5039F6A5190863C900A8A8F0 /* PKTModelTests.m in Sources */,
+				50CAE07919701DFF0096BE07 /* NSDictionary+PKTAdditions.m in Sources */,
 				E4BABDD31898070100E9149A /* PKTAuthenticationAPITests.m in Sources */,
 				501D6087190EF2EB004D94C4 /* PKTEmbedItemFieldValue.m in Sources */,
 				5039F658190714B700A8A8F0 /* PKTURLValueTransformer.m in Sources */,
 				501D608C190EF2EB004D94C4 /* PKTCategoryItemFieldValue.m in Sources */,
 				501D6086190EF2EB004D94C4 /* PKTProfile.m in Sources */,
 				5024C5C419616A2600AE28D7 /* PKTTask.m in Sources */,
+				50CAE07319701C6F0096BE07 /* NSError+PKTErrors.m in Sources */,
 				50E0C6241947694900D37281 /* PKTKeychainTokenStoreTests.m in Sources */,
 				507CA7E019054FA0000D9F6E /* PodioKitTests.m in Sources */,
 				50395A081913F408004C298C /* PKTDateValueTransformerTests.m in Sources */,
