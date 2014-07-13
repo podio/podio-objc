@@ -133,11 +133,11 @@
 
 #pragma mark - API
 
-+ (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
   PKTRequest *request = [PKTItemAPI requestForItemWithID:itemID];
   Class objectClass = [self class];
   
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTItem *item = nil;
     if (!error) {
       item = [[objectClass alloc] initWithDictionary:response.body];
@@ -145,13 +145,15 @@
     
     if (completion) completion(item, error);
   }];
+
+  return handle;
 }
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion {
-  [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
++ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion {
+  return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
 }
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion; {
++ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion; {
   PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
@@ -159,22 +161,22 @@
                                                             descending:descending
                                                               remember:NO];
   
-  [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
+  return [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
 }
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion {
++ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion {
   PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
                                                                 viewID:viewID
                                                               remember:NO];
 
-  [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
+  return [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
 }
 
-+ (void)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID completion:(PKTItemFilteredFetchCompletionBlock)completion {
++ (PKTRequestTaskHandle *)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID completion:(PKTItemFilteredFetchCompletionBlock)completion {
   Class objectClass = [self class];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *items = nil;
     NSUInteger filteredCount = 0, totalCount = 0;
     
@@ -195,13 +197,15 @@
     
     if (completion) completion(items, filteredCount, totalCount, error);
   }];
+
+  return handle;
 }
 
-- (void)fetchWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTRequestTaskHandle *)fetchWithCompletion:(PKTRequestCompletionBlock)completion {
   PKTRequest *request = [PKTItemAPI requestForItemWithID:self.itemID];
 
   PKT_WEAK_SELF weakSelf = self;
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
       PKT_STRONG(weakSelf) strongSelf = weakSelf;
 
       if (!error) {
@@ -210,27 +214,31 @@
 
       if (completion) completion(response, error);
   }];
+
+  return handle;
 }
 
-- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTRequestTaskHandle *)saveWithCompletion:(PKTRequestCompletionBlock)completion {
   PKTClient *client = [PKTClient currentClient];
   
-  [client performBlock:^{
-    [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
+  PKTRequestTaskHandle *handle = [client performBlock:^PKTRequestTaskHandle *{
+    return [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
       if (!error) {
         NSArray *itemFields = [self allFieldsToSaveForApp:app];
         
-        [client performBlock:^{
-          [self saveWithItemFields:itemFields completion:completion];
+        [client performBlock:^PKTRequestTaskHandle *{
+          return [self saveWithItemFields:itemFields completion:completion];
         }];
       } else {
         if (completion) completion(nil, error);
       }
     }];
   }];
+
+  return handle;
 }
 
-- (void)saveWithItemFields:(NSArray *)itemFields completion:(PKTRequestCompletionBlock)completion {
+- (PKTRequestTaskHandle *)saveWithItemFields:(NSArray *)itemFields completion:(PKTRequestCompletionBlock)completion {
   NSDictionary *fields = [self preparedFieldValuesForItemFields:itemFields];
   NSArray *files = self.fileIDs;
   
@@ -247,7 +255,7 @@
                                                tags:nil];
   }
   
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (!error) {
       if (self.itemID == 0) {
         // Item created, update fully from response
@@ -265,6 +273,8 @@
     
     if (completion) completion(response, error);
   }];
+
+  return handle;
 }
 
 #pragma mark - Public

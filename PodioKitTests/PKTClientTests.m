@@ -17,6 +17,7 @@
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
 #import "NSString+PKTBase64.h"
+#import "PKTRequestTaskHandle.h"
 
 @interface PKTClientTests : XCTestCase
 
@@ -53,15 +54,18 @@
   expect([PKTClient currentClient]).to.equal([PKTClient defaultClient]);
   
   PKTClient *client1 = [PKTClient new];
-  [client1 performBlock:^{
+  [client1 performBlock:^PKTRequestTaskHandle *{
     expect([PKTClient currentClient]).to.equal(client1);
     
     PKTClient *client2 = [PKTClient new];
-    [client2 performBlock:^{
+    [client2 performBlock:^PKTRequestTaskHandle *{
       expect([PKTClient currentClient]).to.equal(client2);
+
+      return nil;
     }];
     
     expect([PKTClient currentClient]).to.equal(client1);
+    return nil;
   }];
   
   expect([PKTClient currentClient]).to.equal([PKTClient defaultClient]);

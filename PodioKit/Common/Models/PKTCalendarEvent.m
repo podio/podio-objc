@@ -50,14 +50,14 @@
 
 #pragma mark - API
 
-+ (void)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate completion:(void (^)(NSArray *events, NSError *error))completion {
-  [self fetchAllFromDate:fromDate toDate:toDate priority:0 completion:completion];
++ (PKTRequestTaskHandle *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate completion:(void (^)(NSArray *events, NSError *error))completion {
+  return [self fetchAllFromDate:fromDate toDate:toDate priority:0 completion:completion];
 }
 
-+ (void)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority completion:(void (^)(NSArray *events, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority completion:(void (^)(NSArray *events, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *events = nil;
     
     if (!error) {
@@ -68,6 +68,8 @@
     
     if (completion) completion(events, error);
   }];
+
+  return handle;
 }
 
 @end
