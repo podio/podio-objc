@@ -71,6 +71,7 @@
 		5014C581188817430002C68D /* PKTResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C56D18880B250002C68D /* PKTResponse.m */; };
 		5014C582188817550002C68D /* PKTAsyncTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C572188812540002C68D /* PKTAsyncTestCase.m */; };
 		5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5014C55B188806E50002C68D /* PKTHTTPClientTests.m */; };
+		5019C0B319747C4D00F37634 /* PKTDateRangeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5019C0B219747C4D00F37634 /* PKTDateRangeTests.m */; };
 		501D6045190D841E004D94C4 /* PKTItemFieldTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D6044190D841E004D94C4 /* PKTItemFieldTests.m */; };
 		501D604C190E30F5004D94C4 /* PKTStringItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 501D604A190E30F5004D94C4 /* PKTStringItemFieldValue.h */; };
 		501D604D190E30F5004D94C4 /* PKTStringItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 501D604B190E30F5004D94C4 /* PKTStringItemFieldValue.m */; };
@@ -414,6 +415,7 @@
 		5014C56D18880B250002C68D /* PKTResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTResponse.m; sourceTree = "<group>"; };
 		5014C571188812540002C68D /* PKTAsyncTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAsyncTestCase.h; sourceTree = "<group>"; };
 		5014C572188812540002C68D /* PKTAsyncTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTestCase.m; sourceTree = "<group>"; };
+		5019C0B219747C4D00F37634 /* PKTDateRangeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDateRangeTests.m; sourceTree = "<group>"; };
 		501D6044190D841E004D94C4 /* PKTItemFieldTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemFieldTests.m; sourceTree = "<group>"; };
 		501D604A190E30F5004D94C4 /* PKTStringItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTStringItemFieldValue.h; sourceTree = "<group>"; };
 		501D604B190E30F5004D94C4 /* PKTStringItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTStringItemFieldValue.m; sourceTree = "<group>"; };
@@ -1071,6 +1073,7 @@
 				C9FAD5D70030C95F38C9C2B3 /* PKTAppFieldConfigTests.m */,
 				C9FAD81417B9F528BD7FC887 /* PKTItemField+PKTTest.h */,
 				5024C5BF1961694700AE28D7 /* PKTReferenceObjectFactoryTests.m */,
+				5019C0B219747C4D00F37634 /* PKTDateRangeTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1717,6 +1720,7 @@
 				50060219196D773400BC619F /* NSDictionary+PKTQueryParameters.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemAPI.m in Sources */,
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
+				5019C0B319747C4D00F37634 /* PKTDateRangeTests.m in Sources */,
 				501D605D190ED1BF004D94C4 /* PKTStringItemFieldValue.m in Sources */,
 				503959EE19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */,
 				5039F6A31908629200A8A8F0 /* PKTNestedTestModel.m in Sources */,

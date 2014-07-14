@@ -35,6 +35,8 @@
   return @{
            @"startDate" : @"start_utc",
            @"endDate" : @"end_utc",
+           @"includesStartDateTimeComponent" : @"start_time_utc",
+           @"includesEndDateTimeComponent" : @"end_time_utc"
            };
 }
 
@@ -44,6 +46,18 @@
 
 + (NSValueTransformer *)endDateValueTransformer {
   return [NSValueTransformer pkt_dateValueTransformer];
+}
+
++ (NSValueTransformer *)includesStartDateTimeComponentValueTransformer {
+  return [NSValueTransformer pkt_transformerWithBlock:^id(NSString *timeString) {
+    return @(timeString != nil);
+  }];
+}
+
++ (NSValueTransformer *)includesEndDateTimeComponentValueTransformer {
+  return [NSValueTransformer pkt_transformerWithBlock:^id(NSString *timeString) {
+    return @(timeString != nil);
+  }];
 }
 
 @end
