@@ -17,6 +17,8 @@
   
   _startDate = [startDate copy];
   _endDate = [endDate copy];
+  _includesStartDateTimeComponent = YES;
+  _includesEndDateTimeComponent = YES;
   
   return self;
 }
