@@ -67,11 +67,9 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *
  *  @see currentClient
  *
- *  @param block The block for which the current client should be self and returning the task handle for the request to be executed.
- *
- *  @return The resulting task handle.
+ *  @param block The block for which the current client should be self.
  */
-- (PKTRequestTaskHandle *)performBlock:(PKTRequestTaskHandle * (^)(void))block;
+- (void)performBlock:(void (^)(void))block;
 
 /** Authenticate the default client as a user with an email and password.
  *

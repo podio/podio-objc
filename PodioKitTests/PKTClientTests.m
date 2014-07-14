@@ -54,18 +54,15 @@
   expect([PKTClient currentClient]).to.equal([PKTClient defaultClient]);
   
   PKTClient *client1 = [PKTClient new];
-  [client1 performBlock:^PKTRequestTaskHandle *{
+  [client1 performBlock:^{
     expect([PKTClient currentClient]).to.equal(client1);
     
     PKTClient *client2 = [PKTClient new];
-    [client2 performBlock:^PKTRequestTaskHandle *{
+    [client2 performBlock:^{
       expect([PKTClient currentClient]).to.equal(client2);
-
-      return nil;
     }];
     
     expect([PKTClient currentClient]).to.equal(client1);
-    return nil;
   }];
   
   expect([PKTClient currentClient]).to.equal([PKTClient defaultClient]);

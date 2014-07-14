@@ -218,24 +218,22 @@
   return handle;
 }
 
-- (PKTRequestTaskHandle *)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
   PKTClient *client = [PKTClient currentClient];
-  
-  PKTRequestTaskHandle *handle = [client performBlock:^PKTRequestTaskHandle *{
-    return [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
+
+  [client performBlock:^{
+    [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
       if (!error) {
         NSArray *itemFields = [self allFieldsToSaveForApp:app];
-        
-        [client performBlock:^PKTRequestTaskHandle *{
-          return [self saveWithItemFields:itemFields completion:completion];
+
+        [client performBlock:^{
+          [self saveWithItemFields:itemFields completion:completion];
         }];
       } else {
         if (completion) completion(nil, error);
       }
     }];
   }];
-
-  return handle;
 }
 
 - (PKTRequestTaskHandle *)saveWithItemFields:(NSArray *)itemFields completion:(PKTRequestCompletionBlock)completion {

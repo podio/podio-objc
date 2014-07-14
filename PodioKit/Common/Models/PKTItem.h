@@ -42,7 +42,7 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 - (PKTRequestTaskHandle *)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
 
-- (PKTRequestTaskHandle *)saveWithCompletion:(PKTRequestCompletionBlock)completion;
+- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 
 #pragma mark - Public
 

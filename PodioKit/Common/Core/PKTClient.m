@@ -124,14 +124,12 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   return clientStack;
 }
 
-- (PKTRequestTaskHandle *)performBlock:(PKTRequestTaskHandle * (^)(void))block {
+- (void)performBlock:(void (^)(void))block {
   NSParameterAssert(block);
-  
-  [[self class] pushClient:self];
-  PKTRequestTaskHandle *handle = block();
-  [[self class] popClient];
 
-  return handle;
+  [[self class] pushClient:self];
+  block();
+  [[self class] popClient];
 }
 
 #pragma mark - Configuration
