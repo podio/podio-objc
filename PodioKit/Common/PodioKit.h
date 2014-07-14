@@ -31,9 +31,9 @@
  * @param password The user's password
  * @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- * @return The resulting request operation.
+ * @return The resulting request task.
  */
-+ (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
++ (PKTRequestTaskHandle *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
 
 /** Authenticate the default client as an app.
  *
@@ -43,9 +43,9 @@
  * @param appToken The app token string associated with the app.
  * @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- * @return The resulting request operation.
+ * @return The resulting request task.
  */
-+ (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
++ (PKTRequestTaskHandle *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 
 /** Configure authentication parameters for authenticating the default client as an app.
  *

@@ -58,37 +58,47 @@ typedef void (^PKTStatusCompletionBlock)(PKTStatus *status, NSError *error);
   };
 }
 
-+ (void)fetchWithID:(NSUInteger)statusID completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)statusID completion:(void (^)(PKTStatus *status, NSError *error))completion {
   NSParameterAssert(completion);
   
   PKTRequest *request = [PKTStatusAPI requestForStatusMessageWithID:statusID];
-  [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+
+  return handle;
 }
 
-+ (void)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID completion:(void (^)(PKTStatus *status, NSError *error))completion {
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID];
-  [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+
+  return handle;
 }
 
-+ (void)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files completion:(void (^)(PKTStatus *status, NSError *error))completion {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID files:fileIDs];
   
-  [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+
+  return handle;
 }
 
-+ (void)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTStatus *status, NSError *error))completion {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID files:fileIDs embedID:embedID];
   
-  [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+
+  return handle;
 }
 
-+ (void)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTStatus *status, NSError *error))completion {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID files:fileIDs embedURL:embedURL];
   
-  [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:[self requestCompletionBlockForCompletionBlock:completion]];
+
+  return handle;
 }
 
 @end

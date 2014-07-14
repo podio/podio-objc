@@ -17,8 +17,8 @@
 - (void)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
 - (void)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
 
-- (void)pkt_cancelCurrentImageOperation;
-- (void)pkt_cancelCurrentBackgroundImageOperation;
+- (void)pkt_cancelCurrentImageDownload;
+- (void)pkt_cancelCurrentBackgroundImageDownload;
 
 @end
 

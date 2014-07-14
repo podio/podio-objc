@@ -13,43 +13,44 @@
 #import "UIImageView+PKTRemoteImage.h"
 #import "PKTImageDownloader.h"
 #import "PKTMacros.h"
+#import "PKTRequestTaskHandle.h"
 
-static const char kCurrentImageOperationKey;
+static const char kCurrentImageTaskKey;
 
 @interface UIImageView ()
 
-@property (nonatomic, strong) AFHTTPRequestOperation *pkt_currentImageOperation;
+@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTRequestTaskHandle *pkt_currentImageTask;
 
 @end
 
 @implementation UIImageView (PKTRemoteImage)
 
-- (AFHTTPRequestOperation *)pkt_currentImageOperation {
-  return objc_getAssociatedObject(self, &kCurrentImageOperationKey);
+- (PKTRequestTaskHandle *)pkt_currentImageTask {
+  return objc_getAssociatedObject(self, &kCurrentImageTaskKey);
 }
 
-- (void)setPkt_currentImageOperation:(AFHTTPRequestOperation *)pkt_currentImageOperation {
-  objc_setAssociatedObject(self, &kCurrentImageOperationKey, pkt_currentImageOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)pkt_setCurrentImageTask:(PKTRequestTaskHandle *)pkt_currentImageTask {
+  objc_setAssociatedObject(self, &kCurrentImageTaskKey, pkt_currentImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Public
 
 - (void)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
-  [self pkt_cancelCurrentImageOperation];
+  [self pkt_cancelCurrentImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     weakSelf.image = image;
   } completion:^(UIImage *image, NSError *error) {
-    weakSelf.pkt_currentImageOperation = nil;
+    weakSelf.pkt_currentImageTask = nil;
     
     if (completion) completion(image, error);
   }];
 }
 
-- (void)pkt_cancelCurrentImageOperation {
-  [self.pkt_currentImageOperation cancel];
-  self.pkt_currentImageOperation = nil;
+- (void)pkt_cancelCurrentImageDownload {
+  [self.pkt_currentImageTask cancel];
+  self.pkt_currentImageTask = nil;
 }
 
 @end

@@ -8,7 +8,7 @@
 
 #import "PKTModel.h"
 
-@class PKTFile;
+@class PKTFile, PKTRequestTaskHandle;
 
 @interface PKTOrganization : PKTModel
 
@@ -19,7 +19,7 @@
 
 #pragma mark - API
 
-+ (void)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion;
-+ (void)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion;
 
 @end

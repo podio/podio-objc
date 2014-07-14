@@ -107,13 +107,13 @@
 
 #pragma mark - Public
 
-+ (void)fetchWithID:(NSUInteger)taskID completion:(void (^)(PKTTask *task, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)taskID completion:(void (^)(PKTTask *task, NSError *error))completion {
   NSParameterAssert(completion);
   
   PKTRequest *request = [PKTTaskAPI requestForTaskWithID:taskID];
   
   Class klass = [self class];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTTask *task = nil;
     if (!error) {
       task = [[klass alloc] initWithDictionary:response.body];
@@ -121,15 +121,17 @@
     
     completion(task, error);
   }];
+
+  return handle;
 }
 
-+ (void)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *tasks, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *tasks, NSError *error))completion {
   NSParameterAssert(completion);
   
   PKTRequest *request = [PKTTaskAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
   
   Class klass = [self class];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *tasks = nil;
     if (!error) {
       tasks = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
@@ -139,9 +141,11 @@
     
     completion(tasks, error);
   }];
+
+  return handle;
 }
 
-- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTRequestTaskHandle *)saveWithCompletion:(PKTRequestCompletionBlock)completion {
   NSAssert(self.text, @"The 'text' property of task %@ cannot be nil", self);
   
   NSArray *fileIDs = [self.files valueForKey:@"fileID"];
@@ -171,13 +175,15 @@
   
   // Intentiaonally strongly capture self to make sure the request completes even if the local instance is
   // not referenced from anywhere else
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (!error && self.taskID == 0) {
       self.taskID = [response.body[@"task_id"] unsignedIntegerValue];
     }
     
     if (completion) completion(response, error);
   }];
+
+  return handle;
 }
 
 @end

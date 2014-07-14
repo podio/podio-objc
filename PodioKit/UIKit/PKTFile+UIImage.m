@@ -13,11 +13,11 @@
 
 @implementation PKTFile (UIImage)
 
-- (AFHTTPRequestOperation *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion {
+- (PKTRequestTaskHandle *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion {
   NSParameterAssert(self.link);
   
   PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link];
-  AFHTTPRequestOperation *operation = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) {
       if (!error) {
         // Dispatch the loading of the image from NSData to a background thread for better performance
@@ -34,7 +34,7 @@
     }
   }];
   
-  return operation;
+  return handle;
 }
 
 @end

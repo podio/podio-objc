@@ -6,18 +6,19 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <AFNetworking/AFNetworking.h>
 #import "PKTRequest.h"
 #import "PKTResponse.h"
+#import "PKTRequestSerializer.h"
+#import "PKTResponseSerializer.h"
 
 typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 
-@interface PKTHTTPClient : AFHTTPRequestOperationManager
+@interface PKTHTTPClient : NSObject
 
-- (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header;
-- (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken;
-- (void)setAuthorizationHeaderWithAPIKey:(NSString *)key secret:(NSString *)secret;
+@property (nonatomic, copy, readonly) NSURL *baseURL;
+@property (nonatomic, strong, readonly) PKTRequestSerializer *requestSerializer;
+@property (nonatomic, strong, readonly) PKTResponseSerializer *responseSerializer;
 
-- (AFHTTPRequestOperation *)operationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (NSURLSessionTask *)taskForRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 @end

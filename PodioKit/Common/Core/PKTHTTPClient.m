@@ -7,70 +7,121 @@
 //
 
 #import "PKTHTTPClient.h"
-#import "PKTRequestSerializer.h"
 #import "PKTClient.h"
+#import "PKTMultipartFormData.h"
+#import "PKTMacros.h"
+#import "NSFileManager+PKTAdditions.h"
+#import "NSError+PKTErrors.h"
 
 static NSString * const kDefaultBaseURLString = @"https://api.podio.com";
+static char * const kRequestProcessingQueueLabel = "com.podio.podiokit.httpclient.response_processing_queue";
+
+typedef id (^PKTHTTPResponseProcessBlock) (void);
+
+typedef NS_ENUM(NSUInteger, PKTErrorCode) {
+  PKTErrorCodeUnknown = 1000,
+  PKTErrorCodeRequestFailed,
+};
 
 @interface PKTHTTPClient ()
+
+@property (nonatomic, strong, readonly) NSURLSession *session;
+@property (nonatomic, strong, readonly) dispatch_queue_t responseProcessingQueue;
 
 @end
 
 @implementation PKTHTTPClient
 
-- (instancetype)init {
-  NSURL *baseURL = [[NSURL alloc] initWithString:kDefaultBaseURLString];
-  self = [super initWithBaseURL:baseURL];
-  if (!self) return nil;
+@synthesize session = _session;
+@synthesize requestSerializer = _requestSerializer;
+@synthesize responseSerializer = _responseSerializer;
 
-  self.requestSerializer = [PKTRequestSerializer serializer];
+- (instancetype)init {
+  self = [super init];
+  if (!self) return nil;
   
-  // We need to provide a fallback response serializer if the response is not of JSON content type.
-  // The regular AFHTTPResponseSerializer will simply return the raw NSData of the response.
-  NSArray *responseSerializers = @[[AFJSONResponseSerializer serializer],
-                                   [AFHTTPResponseSerializer serializer]];
-  self.responseSerializer = [AFCompoundResponseSerializer compoundSerializerWithResponseSerializers:responseSerializers];
+  _baseURL = [[NSURL alloc] initWithString:kDefaultBaseURLString];
+  _responseProcessingQueue = dispatch_queue_create(kRequestProcessingQueueLabel, DISPATCH_QUEUE_CONCURRENT);
+  _requestSerializer = [PKTRequestSerializer new];
+  _responseSerializer = [PKTResponseSerializer new];
+  
+  NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
+  sessionConfig.HTTPShouldUsePipelining = YES;
+  
+  _session = [NSURLSession sessionWithConfiguration:sessionConfig];
   
   return self;
 }
 
 #pragma mark - Public
 
-- (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header {
-  [self.requestSerializer setValue:value forHTTPHeaderField:header];
-}
-
-- (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken {
-  NSParameterAssert(accessToken);
-  [(PKTRequestSerializer *)self.requestSerializer setAuthorizationHeaderFieldWithOAuth2AccessToken:accessToken];
-}
-
-- (void)setAuthorizationHeaderWithAPIKey:(NSString *)key secret:(NSString *)secret {
-  [self.requestSerializer setAuthorizationHeaderFieldWithUsername:key password:secret];
-}
-
-- (AFHTTPRequestOperation *)operationWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  NSURLRequest *urlRequest = [(PKTRequestSerializer *)self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+- (NSURLSessionTask *)taskForRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
   
-  AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:urlRequest success:^(AFHTTPRequestOperation *operation, id responseObject) {
-    NSUInteger statusCode = operation.response.statusCode;
-    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
+  void (^handlerBlock) (NSData *, NSURLResponse *, NSError *, PKTHTTPResponseProcessBlock) = ^(NSData *data, NSURLResponse *URLResponse, NSError *error, PKTHTTPResponseProcessBlock processBlock){
+    if (!completion) return;
     
-    if (completion) completion(response, nil);
-  } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-    NSUInteger statusCode = operation.response.statusCode;
-    PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:operation.responseObject];
-    
-    if (completion) completion(response, error);
-  }];
+    dispatch_async(self.responseProcessingQueue, ^{
+      // Process response on background queue if needed
+      id responseObject = processBlock ? processBlock() : nil;
+      
+      dispatch_async(dispatch_get_main_queue(), ^{
+        // Compose response and return on the main queue
+        NSUInteger statusCode = [URLResponse isKindOfClass:[NSHTTPURLResponse class]] ? [(NSHTTPURLResponse *)URLResponse statusCode] : 0;
+        PKTResponse *response = [[PKTResponse alloc] initWithStatusCode:statusCode body:responseObject];
+        
+        // NSURLSession reports URL level errors, but does not generate errors for non-2xx status codes.
+        // Therefore we need to create our own error.
+        NSError *finalError = error;
+        if (!finalError && (statusCode < 200 || statusCode > 299)) {
+          finalError = [NSError pkt_serverErrorWithStatusCode:statusCode body:responseObject];
+        }
+        
+        completion(response, finalError);
+      });
+    });
+  };
   
-  // If this is a download request with a provided local file path, configure an output stream instead
-  // of buffering the data in memory.
-  if (request.method == PKTRequestMethodGET && request.fileData.filePath) {
-    operation.outputStream = [NSOutputStream outputStreamToFileAtPath:request.fileData.filePath append:NO];
+  NSURLSessionTask *task = nil;
+  
+  if (request.fileData && (request.method == PKTRequestMethodPOST || request.method == PKTRequestMethodPUT)) {
+    // Upload task
+    PKTMultipartFormData *multipartData = [self.requestSerializer multipartFormDataFromRequest:request];
+    NSData *data = [multipartData finalizedData];
+    
+    NSMutableURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request multipartData:multipartData relativeToURL:self.baseURL];
+    
+    task = [self.session uploadTaskWithRequest:URLRequest fromData:data completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
+      handlerBlock(data, URLResponse, error, ^{
+        return [self.responseSerializer responseObjectForURLResponse:URLResponse data:data];
+      });
+    }];
+  } else {
+    NSMutableURLRequest *URLRequest = [self.requestSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+    
+    if (request.fileData && request.method == PKTRequestMethodGET) {
+      // Download task
+      task = [self.session downloadTaskWithRequest:URLRequest completionHandler:^(NSURL *location, NSURLResponse *URLResponse, NSError *error) {
+        NSError *finalError = error;
+        
+        if (location && !finalError) {
+          // Move the downloaded file from the temp location to the requested save location. This cannot happen in the processing block because it
+          // is executed asynchronously and the temporary file will be removed by the task after the execution of this completionHandler.
+          [[NSFileManager defaultManager] pkt_moveItemAtURL:location toPath:request.fileData.filePath withIntermediateDirectories:YES error:&finalError];
+        }
+        
+        handlerBlock(nil, URLResponse, finalError, nil);
+      }];
+    } else {
+      // Regular data task
+      task = [self.session dataTaskWithRequest:URLRequest completionHandler:^(NSData *data, NSURLResponse *URLResponse, NSError *error) {
+        handlerBlock(data, URLResponse, error, ^{
+          return [self.responseSerializer responseObjectForURLResponse:URLResponse data:data];
+        });
+      }];
+    }
   }
   
-  return operation;
+  return task;
 }
 
 @end

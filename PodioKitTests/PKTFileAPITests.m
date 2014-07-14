@@ -36,7 +36,7 @@
 
 - (void)testRequestForFileUploadWithData {
   NSData *data = [NSData data];
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:@"image.jpg" mimeType:@"image/jpeg"];
+  PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:@"image.jpg"];
   
   expect(request.path).to.equal(@"/file/");
   expect(request.contentType).to.equal(PKTRequestContentTypeMultipart);
@@ -45,12 +45,11 @@
   expect(request.fileData.data).to.equal(data);
   expect(request.fileData.name).to.equal(@"source");
   expect(request.fileData.fileName).to.equal(@"image.jpg");
-  expect(request.fileData.mimeType).to.equal(@"image/jpeg");
 }
 
 - (void)testRequestForFileUploadWithFileURL {
   NSString *path = @"/some/local/folder/image.jpg";
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithPath:path fileName:@"image.jpg" mimeType:@"image/jpeg"];
+  PKTRequest *request = [PKTFileAPI requestToUploadFileWithPath:path fileName:@"image.jpg"];
   
   expect(request.path).to.equal(@"/file/");
   expect(request.contentType).to.equal(PKTRequestContentTypeMultipart);
@@ -59,7 +58,6 @@
   expect(request.fileData.filePath).to.equal(path);
   expect(request.fileData.name).to.equal(@"source");
   expect(request.fileData.fileName).to.equal(@"image.jpg");
-  expect(request.fileData.mimeType).to.equal(@"image/jpeg");
 }
 
 - (void)testRequestToAttachFile {

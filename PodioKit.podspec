@@ -9,11 +9,9 @@ Pod::Spec.new do |s|
   s.authors             = { "Sebastian Rehnby" => "sebastian@podio.com",
                             "Romain Briche" => "briche@podio.com"}
 
-  s.ios.deployment_target = '6.0'
-  s.osx.deployment_target = '10.8'
+  s.ios.deployment_target = '7.0'
+  s.osx.deployment_target = '10.9'
   s.requires_arc          = true
-
-  s.dependency 'AFNetworking', '~> 2.0'
 
   s.source_files        = 'PodioKit/Common/**/*.{h,m}'
   s.public_header_files = 'PodioKit/Common/**/*.h'

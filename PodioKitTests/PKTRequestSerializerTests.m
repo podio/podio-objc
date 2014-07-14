@@ -13,7 +13,7 @@
 
 @interface PKTRequestSerializerTests : XCTestCase
 
-@property (nonatomic, copy) PKTRequestSerializer *testSerializer;
+@property (nonatomic, strong) PKTRequestSerializer *testSerializer;
 @property (nonatomic, copy) NSURL *baseURL;
 
 @end
@@ -33,14 +33,30 @@
 
 #pragma mark - Tests
 
+- (void)testSetCustomHeader {
+  [self.testSerializer setValue:@"Header value" forHTTPHeader:@"X-Test-Header"];
+  expect(self.testSerializer.additionalHTTPHeaders[@"X-Test-Header"]).to.equal(@"Header value");
+}
+
+- (void)testSetAuthorizationHeaderWithAPICredentials {
+  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).to.beNil;
+  
+  [self.testSerializer setAuthorizationHeaderWithAPIKey:@"my-key" secret:@"my-secret"];
+  
+  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).to.contain(@"Basic ");
+  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).notTo.contain(@"my-key");
+  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).notTo.contain(@"my-secret");
+  expect([self.testSerializer.additionalHTTPHeaders[@"Authorization"] length]).to.beGreaterThan([@"Basic " length]);
+}
+
 - (void)testSetAuthorizationHeaderFieldWithOAuth2AccessToken {
-  NSString *accessToken = @"aToken";
-
-  PKTRequestSerializer *requestSerializer = [PKTRequestSerializer serializer];
-  [requestSerializer setAuthorizationHeaderFieldWithOAuth2AccessToken:accessToken];
-
+  NSString *accessToken = @"some-access-token";
+  
+  PKTRequestSerializer *requestSerializer = [PKTRequestSerializer new];
+  [requestSerializer setAuthorizationHeaderWithOAuth2AccessToken:accessToken];
+  
   NSString *expectedHTTPHeader = [NSString stringWithFormat:@"OAuth2 %@", accessToken];
-  expect(requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.equal(expectedHTTPHeader);
+  expect(requestSerializer.additionalHTTPHeaders[@"Authorization"]).to.equal(expectedHTTPHeader);
 }
 
 - (void)testURLRequestForGETRequest {
@@ -99,16 +115,19 @@
   
   NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
   NSString *bodyString = [[NSString alloc] initWithData:urlRequest.HTTPBody encoding:NSUTF8StringEncoding];
-  expect(bodyString).to.equal(@"param1=someValue&param2=someOtherValue");
+  expect(bodyString).to.contain(@"param1=someValue");
+  expect(bodyString).to.contain(@"param2=someOtherValue");
 }
 
 - (void)testMultipartRequest {
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/some/path" parameters:@{@"param1" : @"someValue"}];
   request.contentType = PKTRequestContentTypeMultipart;
-  request.fileData = [PKTRequestFileData fileDataWithData:[NSData data] name:@"name" fileName:@"image.jpg" mimeType:@"image/jpeg"];
+  request.fileData = [PKTRequestFileData fileDataWithData:[NSData data] name:@"name" fileName:@"image.jpg"];
   
-  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request relativeToURL:self.baseURL];
+  PKTMultipartFormData *multipartData = [self.testSerializer multipartFormDataFromRequest:request];
+  NSURLRequest *urlRequest = [self.testSerializer URLRequestForRequest:request multipartData:multipartData relativeToURL:self.baseURL];
   expect(urlRequest.allHTTPHeaderFields[@"Content-Type"]).to.contain(@"multipart/form-data");
+  expect(urlRequest.allHTTPHeaderFields[@"Content-Length"]).toNot.beNil();
 }
 
 - (void)testURLRequestForAbsoluteURL {

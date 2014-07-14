@@ -11,6 +11,7 @@
 #import "PKTRequest.h"
 #import "PKTResponse.h"
 #import "PKTHTTPStubs.h"
+#import "NSError+PKTErrors.h"
 
 @interface PKTHTTPClientTests : XCTestCase
 
@@ -45,15 +46,15 @@
   [PKTHTTPStubs stubResponseForPath:path statusCode:200];
 
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (!error) {
       completed = YES;
     }
   }];
   
-  [operation start];
+  [task resume];
 
-  expect(operation).notTo.beNil();
+  expect(task).notTo.beNil();
   expect(completed).will.beTruthy();
 }
 
@@ -64,13 +65,13 @@
   [PKTHTTPStubs stubResponseForPath:path statusCode:500];
 
   __block BOOL errorOccured = NO;
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (error) {
       errorOccured = YES;
     }
   }];
   
-  [operation start];
+  [task resume];
 
   expect(errorOccured).will.beTruthy();
 }
@@ -83,11 +84,11 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:2 responseTime:0];
 
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
   
-  [operation start];
+  [task resume];
 
   expect(completed).will.beFalsy();
 }
@@ -100,17 +101,17 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL cancelled = NO;
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
     if (error.code == NSURLErrorCancelled) {
       cancelled = YES;
     }
   }];
+
+  [task resume];
   
-  [operation start];
+  expect(task).notTo.beNil();
 
-  expect(operation).notTo.beNil();
-
-  [operation cancel];
+  [task cancel];
 
   expect(cancelled).will.beTruthy();
 }
@@ -123,14 +124,14 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:5 responseTime:0];
 
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
   
-  [operation start];
-  expect(operation).notTo.beNil();
+  [task resume];
+  expect(task).notTo.beNil();
 
-  [operation pause];
+  [task suspend];
   expect(completed).will.beFalsy();
 }
 
@@ -142,54 +143,56 @@
   [PKTHTTPStubs stubResponseForPath:path requestTime:2 responseTime:0];
 
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:^(PKTResponse *result, NSError *error) {
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
     completed = YES;
   }];
 
-  [operation start];
-  expect(operation).notTo.beNil();
+  [task resume];
+  expect(task).notTo.beNil();
 
-  [operation pause];
+  [task suspend];
   expect(completed).will.beFalsy();
 
   wait(1);
 
-  [operation resume];
+  [task resume];
   expect(completed).will.beTruthy();
 }
 
-- (void)testSetCustomHeader {
-  [self.testClient setValue:@"Header value" forHTTPHeader:@"X-Test-Header"];
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"X-Test-Header"]).to.equal(@"Header value");
-}
-
-- (void)testSetAuthorizationHeaderWithAPICredentials {
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.beNil;
-
-  [self.testClient setAuthorizationHeaderWithAPIKey:@"my-key" secret:@"my-secret"];
-
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.contain(@"Basic ");
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).notTo.contain(@"my-key");
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).notTo.contain(@"my-secret");
-  expect([self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"] length]).to.beGreaterThan([@"Basic " length]);
-}
-
-- (void)testSetAuthorizationHeaderWithOAuth2AccessToken {
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.beNil;
-
-  NSString *accessToken = @"anAccessToken";
-  [self.testClient setAuthorizationHeaderWithOAuth2AccessToken:accessToken];
-
-  NSString *expectedHTTPHeader = [NSString stringWithFormat:@"OAuth2 %@", accessToken];
-  expect(self.testClient.requestSerializer.HTTPRequestHeaders[@"Authorization"]).to.contain(expectedHTTPHeader);
-}
-
-- (void)testDownloadRequestOperationHasOutputStream {
-  PKTRequest *request = [PKTRequest GETRequestWithURL:[NSURL URLWithString:@"https://files.podio.com/111111"] parameters:nil];
-  request.fileData = [PKTRequestFileData fileDataWithFilePath:@"/tmp/file.pdf" name:nil fileName:nil mimeType:nil];
+- (void)testReturnsServerError {
+  NSString *path = @"/some/path";
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:nil];
   
-  AFHTTPRequestOperation *operation = [self.testClient operationWithRequest:request completion:nil];
-  expect(operation.outputStream).toNot.beNil();
+  [PKTHTTPStubs stubResponseForPath:path block:^(PKTHTTPStubber *stubber) {
+    stubber.statusCode = 400;
+    stubber.responseObject = @{
+      @"error" : @"invalid_grant",
+      @"error_description" : @"The username is not valid",
+      @"error_detail" : @"user.invalid.username",
+      @"error_parameters" : @{},
+      @"error_propagate" : @1
+      };
+  }];
+  
+  __block BOOL completed = NO;
+  __block NSError *serverError = nil;
+  NSURLSessionTask *task = [self.testClient taskForRequest:request completion:^(PKTResponse *result, NSError *error) {
+    completed = YES;
+    serverError = error;
+  }];
+  
+  [task resume];
+  expect(completed).will.beTruthy();
+  expect(serverError.domain).to.equal(PodioServerErrorDomain);
+  expect(serverError.code).to.equal(400);
+}
+
+- (void)testDownloadRequestIsDownloadTask {
+  PKTRequest *request = [PKTRequest GETRequestWithURL:[NSURL URLWithString:@"https://files.podio.com/111111"] parameters:nil];
+  request.fileData = [PKTRequestFileData fileDataWithFilePath:@"/tmp/file.pdf" name:nil fileName:nil];
+  
+  id task = [self.testClient taskForRequest:request completion:nil];
+  expect(task).to.beKindOf([NSURLSessionDownloadTask class]);
 }
 
 @end

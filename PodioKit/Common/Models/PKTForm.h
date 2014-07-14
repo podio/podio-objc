@@ -14,7 +14,7 @@ typedef NS_ENUM(NSUInteger, PKTFormStatus) {
   PKTFormStatusDisabled
 };
 
-@class PKTFormSettings;
+@class PKTFormSettings, PKTRequestTaskHandle;
 
 @interface PKTForm : PKTModel
 
@@ -27,6 +27,6 @@ typedef NS_ENUM(NSUInteger, PKTFormStatus) {
 @property (nonatomic, copy, readonly) PKTFormSettings *settings;
 @property (nonatomic, copy, readonly) NSArray *fields; // An array of PKTFormField objects
 
-+ (void)fetchWithID:(NSUInteger)formID completion:(void (^)(PKTForm *form, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)formID completion:(void (^)(PKTForm *form, NSError *error))completion;
 
 @end
