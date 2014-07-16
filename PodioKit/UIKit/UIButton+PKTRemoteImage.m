@@ -12,71 +12,72 @@
 #import "UIButton+PKTRemoteImage.h"
 #import "PKTImageDownloader.h"
 #import "PKTMacros.h"
+#import "PKTRequestTaskHandle.h"
 
-static const char kCurrentImageOperationKey;
-static const char kCurrentBackgroundImageOperationKey;
+static const char kCurrentImageTaskKey;
+static const char kCurrentBackgroundImageTaskKey;
 
 @interface UIButton ()
 
-@property (nonatomic, strong) AFHTTPRequestOperation *pkt_currentImageOperation;
-@property (nonatomic, strong) AFHTTPRequestOperation *pkt_currentBackgroundImageOperation;
+@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTRequestTaskHandle *pkt_currentImageTask;
+@property (nonatomic, strong, setter = pkt_setCurrentBackgroundImageTask:) PKTRequestTaskHandle *pkt_currentBackgroundImageTask;
 
 @end
 
 @implementation UIButton (PKTRemoteImage)
 
-- (AFHTTPRequestOperation *)pkt_currentImageOperation {
-  return objc_getAssociatedObject(self, &kCurrentImageOperationKey);
+- (PKTRequestTaskHandle *)pkt_currentImageTask {
+  return objc_getAssociatedObject(self, &kCurrentImageTaskKey);
 }
 
-- (void)setPkt_currentImageOperation:(AFHTTPRequestOperation *)pkt_currentImageOperation {
-  objc_setAssociatedObject(self, &kCurrentImageOperationKey, pkt_currentImageOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)pkt_setCurrentImageTask:(PKTRequestTaskHandle *)pkt_currentImageTask {
+  objc_setAssociatedObject(self, &kCurrentImageTaskKey, pkt_currentImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (AFHTTPRequestOperation *)pkt_currentBackgroundImageOperation {
-  return objc_getAssociatedObject(self, &kCurrentBackgroundImageOperationKey);
+- (PKTRequestTaskHandle *)pkt_currentBackgroundImageTask {
+  return objc_getAssociatedObject(self, &kCurrentBackgroundImageTaskKey);
 }
 
-- (void)setPkt_currentBackgroundImageOperation:(AFHTTPRequestOperation *)pkt_currentBackgroundImageOperation {
-  objc_setAssociatedObject(self, &kCurrentBackgroundImageOperationKey, pkt_currentBackgroundImageOperation, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (void)pkt_setCurrentBackgroundImageTask:(PKTRequestTaskHandle *)pkt_currentBackgroundImageTask {
+  objc_setAssociatedObject(self, &kCurrentBackgroundImageTaskKey, pkt_currentBackgroundImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Public
 
 - (void)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
-  [self pkt_cancelCurrentImageOperation];
+  [self pkt_cancelCurrentImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     [weakSelf setImage:image forState:state];
   } completion:^(UIImage *image, NSError *error) {
-    weakSelf.pkt_currentImageOperation = nil;
+    weakSelf.pkt_currentImageTask = nil;
     
     if (completion) completion(image, error);
   }];
 }
 
 - (void)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
-  [self pkt_cancelCurrentBackgroundImageOperation];
+  [self pkt_cancelCurrentBackgroundImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentBackgroundImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     [weakSelf setBackgroundImage:image forState:state];
   } completion:^(UIImage *image, NSError *error) {
-    weakSelf.pkt_currentBackgroundImageOperation = nil;
+    weakSelf.pkt_currentBackgroundImageTask = nil;
     
     if (completion) completion(image, error);
   }];
 }
 
-- (void)pkt_cancelCurrentImageOperation {
-  [self.pkt_currentImageOperation cancel];
-  self.pkt_currentImageOperation = nil;
+- (void)pkt_cancelCurrentImageDownload {
+  [self.pkt_currentImageTask cancel];
+  self.pkt_currentImageTask = nil;
 }
 
-- (void)pkt_cancelCurrentBackgroundImageOperation {
-  [self.pkt_currentBackgroundImageOperation cancel];
-  self.pkt_currentBackgroundImageOperation = nil;
+- (void)pkt_cancelCurrentBackgroundImageDownload {
+  [self.pkt_currentBackgroundImageTask cancel];
+  self.pkt_currentBackgroundImageTask = nil;
 }
 
 

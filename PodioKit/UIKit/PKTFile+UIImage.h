@@ -13,7 +13,7 @@
 
 @interface PKTFile (UIImage)
 
-- (AFHTTPRequestOperation *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion;
+- (PKTRequestTaskHandle *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion;
 
 @end
 

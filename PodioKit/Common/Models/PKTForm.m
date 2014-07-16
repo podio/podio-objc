@@ -45,13 +45,13 @@
 
 #pragma mark - Public
 
-+ (void)fetchWithID:(NSUInteger)formID completion:(void (^)(PKTForm *form, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)formID completion:(void (^)(PKTForm *form, NSError *error))completion {
   NSParameterAssert(completion);
   
   Class klass = [self class];
   
   PKTRequest *request = [PKTFormAPI requestForFormWithID:formID];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTForm *form = nil;
     
     if (!form) {
@@ -60,6 +60,8 @@
     
     completion(form, error);
   }];
+
+  return handle;
 }
 
 @end

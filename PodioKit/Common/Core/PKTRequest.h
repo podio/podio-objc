@@ -18,6 +18,7 @@ typedef NS_ENUM(NSUInteger, PKTRequestMethod) {
   PKTRequestMethodPOST,
   PKTRequestMethodPUT,
   PKTRequestMethodDELETE,
+  PKTRequestMethodHEAD,
 };
 
 typedef NS_ENUM(NSUInteger, PKTRequestContentType) {

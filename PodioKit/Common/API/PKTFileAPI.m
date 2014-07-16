@@ -19,24 +19,24 @@
   PKTRequest *request = [PKTRequest GETRequestWithURL:fileURL parameters:nil];
   
   if ([filePath length] > 0) {
-    request.fileData = [PKTRequestFileData fileDataWithFilePath:filePath name:nil fileName:nil mimeType:nil];
+    request.fileData = [PKTRequestFileData fileDataWithFilePath:filePath name:nil fileName:nil];
   }
   
   return request;
 }
 
-+ (PKTRequest *)requestToUploadFileWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
++ (PKTRequest *)requestToUploadFileWithData:(NSData *)data fileName:(NSString *)fileName {
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/file/" parameters:@{@"filename" : fileName}];
   request.contentType = PKTRequestContentTypeMultipart;
-  request.fileData = [PKTRequestFileData fileDataWithData:data name:@"source" fileName:fileName mimeType:mimeType];
+  request.fileData = [PKTRequestFileData fileDataWithData:data name:@"source" fileName:fileName];
   
   return request;
 }
 
-+ (PKTRequest *)requestToUploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName mimeType:(NSString *)mimeType {
++ (PKTRequest *)requestToUploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName {
   PKTRequest *request = [PKTRequest POSTRequestWithPath:@"/file/" parameters:@{@"filename" : fileName}];
   request.contentType = PKTRequestContentTypeMultipart;
-  request.fileData = [PKTRequestFileData fileDataWithFilePath:filePath name:@"source" fileName:fileName mimeType:mimeType];
+  request.fileData = [PKTRequestFileData fileDataWithFilePath:filePath name:@"source" fileName:fileName];
   
   return request;
 }

@@ -35,10 +35,10 @@
 
 #pragma mark - API
 
-+ (void)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *orgs = nil;
     
     if (!error) {
@@ -49,12 +49,14 @@
     
     if (completion) completion(orgs, error);
   }];
+
+  return handle;
 }
 
-+ (void)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
   Class objectClass = [self class];
   PKTRequest *request = [PKTOrganizationAPI requestForOrganizationsWithID:organizationID];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTOrganization *org = nil;
     
     if (!error) {
@@ -63,6 +65,8 @@
     
     if (completion) completion(org, error);
   }];
+
+  return handle;
 }
 
 @end

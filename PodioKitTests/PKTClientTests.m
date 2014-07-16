@@ -10,12 +10,14 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "PKTClient.h"
 #import "PKTHTTPClient.h"
+#import "PKTRequestTaskDescriptor.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTUserAPI.h"
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
 #import "NSString+PKTBase64.h"
+#import "PKTRequestTaskHandle.h"
 
 @interface PKTClientTests : XCTestCase
 
@@ -104,12 +106,12 @@
   [PKTHTTPStubs stubResponseForPath:request.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
-  expect(operation).notTo.beNil();
-  expect(operation.request.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect(descriptor).notTo.beNil();
+  expect(descriptor.task.currentRequest.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
 
   expect(completed).will.beTruthy();
   expect(self.testClient.isAuthenticated).to.beTruthy();
@@ -124,11 +126,11 @@
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:401];
   
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
-  expect(operation).notTo.beNil();
+  expect(descriptor).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).to.beNil();
 }
@@ -141,11 +143,11 @@
   [PKTHTTPStubs stubNetworkDownForPath:request.path];
   
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
-  expect(operation).notTo.beNil();
+  expect(descriptor).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).to.equal(initialToken);
 }
@@ -232,7 +234,7 @@
   expect(isCancelError2).to.beTruthy();
 }
 
-- (void)testTaskShouldHaveUpdatedAuthorizationHeaderAfterSuccessfulTokenRefresh {
+- (void)testClientShouldHaveUpdatedAuthorizationHeaderAfterSuccessfulTokenRefresh {
   // Make sure the current token is expired
   PKTOAuth2Token *expiredToken = [self dummyAuthTokenWithExpirationSinceNow:-600]; // Expired 10 minutes ago
   self.testClient.oauthToken = expiredToken;
@@ -250,17 +252,17 @@
   // Make 1st request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
   
+  NSString *beforeHeader = self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"];
+  
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
   
-  NSString *firstHeader = [operation.request valueForHTTPHeaderField:@"Authorization"];
-
   expect(completed).will.beTruthy();
   
-  NSString *secondHeader = [operation.request valueForHTTPHeaderField:@"Authorization"];
-  expect(secondHeader).toNot.equal(firstHeader);
+  NSString *afterHeader = self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"];
+  expect(afterHeader).toNot.equal(beforeHeader);
 }
 
 - (void)testAuthenticationWithEmailAndPassword {
@@ -269,11 +271,11 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
 
-  expect(operation.request.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect(self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
   
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).toNot.beNil();
@@ -285,11 +287,11 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  AFHTTPRequestOperation *operation = [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
     completed = YES;
   }];
 
-  expect(operation.request.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect(self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
   
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).toNot.beNil();

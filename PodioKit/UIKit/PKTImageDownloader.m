@@ -12,7 +12,7 @@
 
 @implementation PKTImageDownloader
 
-+ (AFHTTPRequestOperation *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion {
++ (PKTRequestTaskHandle *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion {
   NSParameterAssert(file);
   NSParameterAssert(imageSetterBlock);
   
@@ -27,7 +27,7 @@
     imageSetterBlock(placeholderImage);
   }
   
-  AFHTTPRequestOperation *operation = [file downloadImageWithCompletion:^(UIImage *image, NSError *error) {
+  PKTRequestTaskHandle *handle = [file downloadImageWithCompletion:^(UIImage *image, NSError *error) {
     if (image) {
       [[PKTImageCache sharedCache] setCachedImage:image forFile:file];
       imageSetterBlock(image);
@@ -36,7 +36,7 @@
     if (completion) completion(image, error);
   }];
   
-  return operation;
+  return handle;
 }
 
 @end

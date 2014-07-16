@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PKTHTTPClient.h"
+#import "PKTRequestTaskHandle.h"
 
 extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 
@@ -78,9 +79,9 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *  @param password The user's password
  *  @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- *  @return The resulting request operation.
+ *  @return The resulting task handle.
  */
-- (AFHTTPRequestOperation *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
+- (PKTRequestTaskHandle *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
 
 /** Authenticate the default client as an app.
  *
@@ -90,9 +91,9 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *  @param appToken The app token string associated with the app.
  *  @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- *  @return The resulting request operation.
+ *  @return The resulting task handle.
  */
-- (AFHTTPRequestOperation *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
+- (PKTRequestTaskHandle *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
 
 /** Configure authentication parameters for authenticating the default client as an app.
  *
@@ -106,14 +107,14 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 - (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 
 /**
- *  Dispatches an HTTP request operation for the provided request.
+ *  Dispatches an HTTP request task for the provided request.
  *
  *  @param request    The request to perform.
- *  @param completion The completion handler to be called once the HTTP request operation completes.
+ *  @param completion The completion handler to be called once the HTTP request task completes.
  *
- *  @return The HTTP request operation.
+ *  @return The resulting task handle.
  */
-- (AFHTTPRequestOperation *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (PKTRequestTaskHandle *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 /**
  *  Will attempt to restore the OAuth token from the current tokenStore if one has been configured.

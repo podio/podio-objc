@@ -22,13 +22,13 @@
 
 #pragma mark - Public
 
-+ (void)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion {
++ (PKTRequestTaskHandle *)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion {
   NSParameterAssert(completion);
   
   PKTRequest *request = [PKTUserAPI requestForUserStatus];
   
   Class klass = [self class];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTUser *user = nil;
     
     if (!error) {
@@ -40,6 +40,8 @@
     
     completion(user, error);
   }];
+
+  return handle;
 }
 
 @end

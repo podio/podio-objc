@@ -32,17 +32,17 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 #pragma mark - API
 
-+ (void)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
 
-+ (void)fetchItemReferencesWithID:(NSUInteger)itemID andAppID:(NSUInteger)appID completion:(void (^)(NSArray *items, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchItemReferencesWithID:(NSUInteger)itemID andAppID:(NSUInteger)appID completion:(void (^)(NSArray *items, NSError *error))completion;
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-+ (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-- (void)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
+- (PKTRequestTaskHandle *)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 

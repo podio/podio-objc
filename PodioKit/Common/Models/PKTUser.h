@@ -8,11 +8,13 @@
 
 #import "PKTModel.h"
 
+@class PKTRequestTaskHandle;
+
 @interface PKTUser : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *mail;
 
-+ (void)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion;
 
 @end

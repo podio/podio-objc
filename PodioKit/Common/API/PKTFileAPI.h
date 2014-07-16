@@ -13,8 +13,8 @@
 
 + (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL;
 + (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL toLocalFileWithPath:(NSString *)filePath;
-+ (PKTRequest *)requestToUploadFileWithData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
-+ (PKTRequest *)requestToUploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName mimeType:(NSString *)mimeType;
++ (PKTRequest *)requestToUploadFileWithData:(NSData *)data fileName:(NSString *)fileName;
++ (PKTRequest *)requestToUploadFileWithPath:(NSString *)filePath fileName:(NSString *)fileName;
 + (PKTRequest *)requestToAttachFileWithID:(NSUInteger)fileID referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType;
 
 @end

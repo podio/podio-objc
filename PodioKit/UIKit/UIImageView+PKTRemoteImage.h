@@ -16,7 +16,7 @@
 
 - (void)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
 
-- (void)pkt_cancelCurrentImageOperation;
+- (void)pkt_cancelCurrentImageDownload;
 
 @end
 

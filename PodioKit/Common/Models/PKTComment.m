@@ -52,23 +52,23 @@
 
 #pragma mark - API
 
-+ (void)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(void (^)(PKTComment *comment, NSError *error))completion {
-  [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:nil completion:completion];
++ (PKTRequestTaskHandle *)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(void (^)(PKTComment *comment, NSError *error))completion {
+  return [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:nil completion:completion];
 }
 
-+ (void)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files completion:(void (^)(PKTComment *comment, NSError *error))completion {
-  [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:files embedID:0 completion:completion];
++ (PKTRequestTaskHandle *)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files completion:(void (^)(PKTComment *comment, NSError *error))completion {
+  return [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:files embedID:0 completion:completion];
 }
 
-+ (void)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTComment *comment, NSError *error))completion {
-  [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:files embedID:embedID embedURL:nil completion:completion];
++ (PKTRequestTaskHandle *)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTComment *comment, NSError *error))completion {
+  return [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:files embedID:embedID embedURL:nil completion:completion];
 }
 
-+ (void)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTComment *comment, NSError *error))completion {
-  [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:files embedID:0 embedURL:embedURL completion:completion];
++ (PKTRequestTaskHandle *)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTComment *comment, NSError *error))completion {
+  return [self addCommentForObjectWithText:text referenceID:referenceID referenceType:referenceType files:files embedID:0 embedURL:embedURL completion:completion];
 }
 
-+ (void)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL completion:(void (^)(PKTComment *comment, NSError *error))completion {
++ (PKTRequestTaskHandle *)addCommentForObjectWithText:(NSString *)text referenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType files:(NSArray *)files embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL completion:(void (^)(PKTComment *comment, NSError *error))completion {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   
   Class objectClass = [self class];
@@ -78,7 +78,7 @@
                                                                             files:fileIDs
                                                                           embedID:embedID
                                                                          embedURL:embedURL];
-  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTComment *comment = nil;
     
     if (!error) {
@@ -87,6 +87,8 @@
     
     if (comment) completion(comment, error);
   }];
+
+  return handle;
 }
 
 @end
