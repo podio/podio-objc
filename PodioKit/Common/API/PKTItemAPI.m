@@ -14,6 +14,13 @@
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", (unsigned long)itemID) parameters:nil];
 }
 
++ (PKTRequest *)requestForItemReferencesWithID:(NSUInteger)itemID {
+  NSString *path = PKTRequestPath(@"/item/%lu/reference/", (unsigned long)itemID);
+  PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:nil];
+  
+  return request;
+}
+
 + (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending remember:(BOOL)remember {
   NSMutableDictionary *parameters = [NSMutableDictionary new];
   parameters[@"offset"] = @(offset);

@@ -147,6 +147,38 @@
   }];
 }
 
++ (void)fetchItemReferencesWithID:(NSUInteger)itemID andAppID:(NSUInteger)appID completion:(void (^)(NSArray *, NSError *))completion {
+  PKTRequest *request = [PKTItemAPI requestForItemReferencesWithID:itemID];
+  
+  Class objectClass = [self class];
+  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    __block NSMutableArray *items = nil;
+    
+    if (!error) {
+      [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+        NSArray *itemDicts = dict[@"items"];
+        
+        if (!items) {
+          items = [NSMutableArray new];
+        }
+        
+        [items addObjectsFromArray:[itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+          NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
+          
+          // Inject the app ID as it is not included in the response
+          mutItemDict[@"app"] = @{@"app_id" : @(appID)};
+          
+          return [[objectClass alloc] initWithDictionary:mutItemDict];
+        }]];
+        
+        return nil;
+      }];
+    }
+    
+    if (completion) completion(items, error);
+  }];
+}
+
 + (void)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion {
   [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
 }

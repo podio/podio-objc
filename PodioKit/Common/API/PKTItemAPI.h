@@ -12,6 +12,8 @@
 
 + (PKTRequest *)requestForItemWithID:(NSUInteger)itemID;
 
++ (PKTRequest *)requestForItemReferencesWithID:(NSUInteger)itemID;
+
 + (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending remember:(BOOL)remember;
 
 + (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID remember:(BOOL)remember;
