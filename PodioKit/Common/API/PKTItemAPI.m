@@ -14,7 +14,7 @@
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", (unsigned long)itemID) parameters:nil];
 }
 
-+ (PKTRequest *)requestForItemReferencesWithID:(NSUInteger)itemID {
++ (PKTRequest *)requestForReferencesForItemWithID:(NSUInteger)itemID {
   NSString *path = PKTRequestPath(@"/item/%lu/reference/", (unsigned long)itemID);
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:nil];
   

@@ -149,8 +149,8 @@
   return handle;
 }
 
-+ (PKTRequestTaskHandle *)fetchItemReferencesWithID:(NSUInteger)itemID andAppID:(NSUInteger)appID completion:(void (^)(NSArray *, NSError *))completion {
-    PKTRequest *request = [PKTItemAPI requestForItemReferencesWithID:itemID];
++ (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID andAppID:(NSUInteger)appID completion:(void (^)(NSArray *, NSError *))completion {
+    PKTRequest *request = [PKTItemAPI requestForReferencesForItemWithID:itemID];
     
     Class objectClass = [self class];
     PKTRequestTaskHandle *handle =  [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
