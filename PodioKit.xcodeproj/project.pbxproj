@@ -294,6 +294,8 @@
 		50FEF578150E7CB2003B5306 /* PKUserAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FEF576150E7CB2003B5306 /* PKUserAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50FEF579150E7CB2003B5306 /* PKUserAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FEF577150E7CB2003B5306 /* PKUserAPI.m */; };
 		6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */; };
+		E4769A9D19780250003F8678 /* PKSubscriptionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */; };
+		E4769A9E19780250003F8678 /* PKSubscriptionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -605,6 +607,8 @@
 		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A370E68741D44C408A3BBD91 /* libPods-podiokit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokit.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
+		E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSubscriptionAPI.h; sourceTree = "<group>"; };
+		E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSubscriptionAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1148,6 +1152,8 @@
 				50B8989E1760A55B006B5BE7 /* PKLiveAPI.m */,
 				507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */,
 				507D09FA1823EB3600AFBFB1 /* PKPromotionAPI.m */,
+				E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */,
+				E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1281,6 +1287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				508D211D14FBB332002593A4 /* PKSpaceCreateData.h in Headers */,
+				E4769A9D19780250003F8678 /* PKSubscriptionAPI.h in Headers */,
 				508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */,
 				5065BF451433627900360855 /* PKRequest.h in Headers */,
 				5065BF481433627900360855 /* PKRequestManager.h in Headers */,
@@ -1697,6 +1704,7 @@
 				50CC1D6A148CDA3A000B57EA /* PKRatingAPI.m in Sources */,
 				50CC1D6D148CDA3A000B57EA /* PKStreamAPI.m in Sources */,
 				50A16D8D148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */,
+				E4769A9E19780250003F8678 /* PKSubscriptionAPI.m in Sources */,
 				50A16D9E148F4A4800AF86C4 /* PKReferenceItemData.m in Sources */,
 				50A16DA3148F4A5A00AF86C4 /* PKReferenceMessageData.m in Sources */,
 				50B529F8148FC06800E05852 /* PKReferenceAlertData.m in Sources */,
