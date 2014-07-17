@@ -34,7 +34,7 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 + (PKTRequestTaskHandle *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID andAppID:(NSUInteger)appID completion:(void (^)(NSArray *items, NSError *error))completion;
++ (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *items, NSError *error))completion;
 
 + (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
