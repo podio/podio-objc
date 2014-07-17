@@ -157,7 +157,6 @@
     __block NSArray *items = nil;
     
     if (!error) {
-      NSLog(@"BODY\n%@",response.body);
       [response.body enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
         NSNumber *appID = dict[@"app"][@"app_id"];
         NSArray *itemDicts = dict[@"items"];
