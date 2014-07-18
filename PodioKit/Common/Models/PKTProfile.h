@@ -15,4 +15,10 @@
 @property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *name;
 
++ (PKTRequestTaskHandle *)fetchProfileWithID:(NSUInteger)profileID completion:(void (^)(PKTProfile *profile, NSError *error))completion;
+
++ (PKTRequestTaskHandle *)fetchProfileWithUserID:(NSUInteger)userID completion:(void (^)(PKTProfile *profile, NSError *error))completion;
+
++ (PKTRequestTaskHandle *)fetchProfilesWithIDs:(NSArray *)profileIDs completion:(void (^)(NSArray *profiles, NSError *error))completion;
+
 @end
