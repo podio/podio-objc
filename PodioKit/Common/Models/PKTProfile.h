@@ -7,6 +7,7 @@
 //
 
 #import "PKTModel.h"
+#import "PKTClient.h"
 
 @interface PKTProfile : PKTModel
 
