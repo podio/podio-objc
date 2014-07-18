@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTItemAPI.h"
+#import "PKTItemsAPI.h"
 
 @interface PKTItemAPITests : XCTestCase
 
@@ -23,7 +23,7 @@
   NSArray *files = @[@233, @432];
   NSArray *tags = @[@"tag1", @"tag2"];
   
-  PKTRequest *request = [PKTItemAPI requestToCreateItemInAppWithID:13242 fields:fields files:files tags:tags];
+  PKTRequest *request = [PKTItemsAPI requestToCreateItemInAppWithID:13242 fields:fields files:files tags:tags];
   
   expect(request.path).to.equal(@"/item/app/13242/");
   expect(request.parameters[@"fields"]).to.equal([fields copy]);
@@ -39,7 +39,7 @@
   NSArray *files = @[@233, @432];
   NSArray *tags = @[@"tag1", @"tag2"];
   
-  PKTRequest *request = [PKTItemAPI requestToUpdateItemWithID:333 fields:fields files:files tags:tags];
+  PKTRequest *request = [PKTItemsAPI requestToUpdateItemWithID:333 fields:fields files:files tags:tags];
   
   expect(request.path).to.equal(@"/item/333");
   expect(request.parameters[@"fields"]).to.equal([fields copy]);
@@ -48,12 +48,12 @@
 }
 
 - (void)testRequestToGetItem {
-  PKTRequest *request = [PKTItemAPI requestForItemWithID:123];
+  PKTRequest *request = [PKTItemsAPI requestForItemWithID:123];
   expect(request.path).to.equal(@"/item/123");
 }
 
 - (void)testRequestToGetFilteredItems {
-  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:123
+  PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:123
                                                                 offset:60
                                                                  limit:30
                                                                 sortBy:@"created_on"
@@ -69,7 +69,7 @@
 }
 
 - (void)testRequestToGetFilteredItemsWithViewID {
-  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:123
+  PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:123
                                                                 offset:60
                                                                  limit:30
                                                                 viewID:456

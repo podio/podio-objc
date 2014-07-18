@@ -9,14 +9,14 @@
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 #import "PKTFile+UIImage.h"
-#import "PKTFileAPI.h"
+#import "PKTFilesAPI.h"
 
 @implementation PKTFile (UIImage)
 
 - (PKTRequestTaskHandle *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion {
   NSParameterAssert(self.link);
   
-  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) {
       if (!error) {

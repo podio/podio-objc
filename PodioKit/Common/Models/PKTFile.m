@@ -7,7 +7,7 @@
 //
 
 #import "PKTFile.h"
-#import "PKTFileAPI.h"
+#import "PKTFilesAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTFile
@@ -41,7 +41,7 @@
 
 + (PKTRequestTaskHandle *)uploadWithData:(NSData *)data fileName:(NSString *)fileName completion:(void (^)(PKTFile *file, NSError *error))completion {
   Class objectClass = [self class];
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:fileName];
+  PKTRequest *request = [PKTFilesAPI requestToUploadFileWithData:data fileName:fileName];
   
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTFile *file = nil;
@@ -57,7 +57,7 @@
 }
 
 - (PKTRequestTaskHandle *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(PKTRequestCompletionBlock)completion {
-  PKTRequest *request = [PKTFileAPI requestToAttachFileWithID:self.fileID referenceID:referenceID referenceType:referenceType];
+  PKTRequest *request = [PKTFilesAPI requestToAttachFileWithID:self.fileID referenceID:referenceID referenceType:referenceType];
   
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) completion(response, error);
@@ -69,7 +69,7 @@
 - (PKTRequestTaskHandle *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion {
   NSParameterAssert(self.link);
   
-  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) completion(response.body, error);
   }];
@@ -80,7 +80,7 @@
 - (PKTRequestTaskHandle *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion {
   NSParameterAssert(self.link);
   
-  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:self.link toLocalFileWithPath:filePath];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link toLocalFileWithPath:filePath];
   
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     if (completion) {

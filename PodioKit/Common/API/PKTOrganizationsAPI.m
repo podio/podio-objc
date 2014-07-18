@@ -1,14 +1,14 @@
 //
-//  PKTOrganizationAPI.m
+//  PKTOrganizationsAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 12/05/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTOrganizationAPI.h"
+#import "PKTOrganizationsAPI.h"
 
-@implementation PKTOrganizationAPI
+@implementation PKTOrganizationsAPI
 
 + (PKTRequest *)requestForAllOrganizations {
   return [PKTRequest GETRequestWithPath:@"/org/" parameters:nil];

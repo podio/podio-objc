@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTContactAPI.h"
+#import "PKTContactsAPI.h"
 
 @interface PKTContactAPITests : XCTestCase
 
@@ -16,27 +16,27 @@
 @implementation PKTContactAPITests
 
 - (void)testRequetsForContactsWithUserID {
-  PKTRequest *request = [PKTContactAPI requestForContactWithUserID:1234];
+  PKTRequest *request = [PKTContactsAPI requestForContactWithUserID:1234];
   expect(request.method).to.equal(PKTRequestMethodGET);
   expect(request.path).to.equal(@"/contact/user/1234");
 }
 
 - (void)testRequetsForContactsWithProfileID {
-  PKTRequest *request = [PKTContactAPI requestForContactWithProfileID:1234];
+  PKTRequest *request = [PKTContactsAPI requestForContactWithProfileID:1234];
   expect(request.method).to.equal(PKTRequestMethodGET);
   expect(request.path).to.equal(@"/contact/1234/v2");
 }
 
 - (void)testRequetsForContactsWithProfileIDs {
-  PKTRequest *request = [PKTContactAPI requestForContactsWithProfileIDs:@[@1111, @2222, @3333]];
+  PKTRequest *request = [PKTContactsAPI requestForContactsWithProfileIDs:@[@1111, @2222, @3333]];
   expect(request.method).to.equal(PKTRequestMethodGET);
   expect(request.path).to.equal(@"/contact/1111,2222,3333/v2");
 }
 
 - (void)testRequestForContacts {
-  PKTRequest *request = [PKTContactAPI requestForContactsOfType:(PKTContactTypeSpace | PKTContactTypeUser)
+  PKTRequest *request = [PKTContactsAPI requestForContactsOfType:(PKTContactTypeSpace | PKTContactTypeUser)
                                                     excludeSelf:YES
-                                                       ordering:PKTContactOrderingOverall
+                                                       ordering:PKTContactsOrderingOverall
                                                          fields:@{@"name" : @"Seb"}
                                                  requiredFields:@[@"email", @"phone"]
                                                          offset:40
@@ -53,10 +53,10 @@
 }
 
 - (void)testRequestForContactsInWorkspace {
-  PKTRequest *request = [PKTContactAPI requestForContactsInWorkspaceWithID:1234
+  PKTRequest *request = [PKTContactsAPI requestForContactsInWorkspaceWithID:1234
                                                                contactType:PKTContactTypeSpace
                                                                excludeSelf:YES
-                                                                  ordering:PKTContactOrderingOverall
+                                                                  ordering:PKTContactsOrderingOverall
                                                                     fields:@{@"name" : @"Seb"}
                                                             requiredFields:@[@"email", @"phone"]
                                                                     offset:40

@@ -1,15 +1,15 @@
 //
-//  PKTFileAPI.m
+//  PKTFilesAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 01/05/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTFileAPI.h"
+#import "PKTFilesAPI.h"
 #import "NSValueTransformer+PKTConstants.h"
 
-@implementation PKTFileAPI
+@implementation PKTFilesAPI
 
 + (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL {
   return [self requestToDownloadFileWithURL:fileURL toLocalFileWithPath:nil];

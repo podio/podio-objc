@@ -1,5 +1,5 @@
 //
-//  PKTFormAPI.h
+//  PKTFormsAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 02/07/14.
@@ -8,7 +8,7 @@
 
 #import "PKTBaseAPI.h"
 
-@interface PKTFormAPI : PKTBaseAPI
+@interface PKTFormsAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForFormWithID:(NSUInteger)formID;
 

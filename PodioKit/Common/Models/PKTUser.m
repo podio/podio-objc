@@ -7,7 +7,7 @@
 //
 
 #import "PKTUser.h"
-#import "PKTUserAPI.h"
+#import "PKTUsersAPI.h"
 #import "PKTClient.h"
 
 @implementation PKTUser
@@ -25,7 +25,7 @@
 + (PKTRequestTaskHandle *)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion {
   NSParameterAssert(completion);
   
-  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   
   Class klass = [self class];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {

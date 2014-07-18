@@ -1,14 +1,14 @@
 //
-//  PKTContactAPI.m
+//  PKTContactsAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 18/07/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTContactAPI.h"
+#import "PKTContactsAPI.h"
 
-@implementation PKTContactAPI
+@implementation PKTContactsAPI
 
 #pragma mark - Public
 
@@ -29,7 +29,7 @@
   return request;
 }
 
-+ (PKTRequest *)requestForContactsInWorkspaceWithID:(NSUInteger)workspaceID contactType:(PKTContactType)contactType excludeSelf:(BOOL)excludeSelf ordering:(PKTContactOrdering)ordering fields:(NSDictionary *)fields requiredFields:(NSArray *)requiredFields offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKTRequest *)requestForContactsInWorkspaceWithID:(NSUInteger)workspaceID contactType:(PKTContactType)contactType excludeSelf:(BOOL)excludeSelf ordering:(PKTContactsOrdering)ordering fields:(NSDictionary *)fields requiredFields:(NSArray *)requiredFields offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self requestForContactsWithPath:PKTRequestPath(@"/contact/space/%lu/", (unsigned long)workspaceID)
                               contactType:contactType
                               excludeSelf:excludeSelf
@@ -40,7 +40,7 @@
                                     limit:limit];
 }
 
-+ (PKTRequest *)requestForContactsOfType:(PKTContactType)contactType excludeSelf:(BOOL)excludeSelf ordering:(PKTContactOrdering)ordering fields:(NSDictionary *)fields requiredFields:(NSArray *)requiredFields offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKTRequest *)requestForContactsOfType:(PKTContactType)contactType excludeSelf:(BOOL)excludeSelf ordering:(PKTContactsOrdering)ordering fields:(NSDictionary *)fields requiredFields:(NSArray *)requiredFields offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self requestForContactsWithPath:@"/contact/"
                               contactType:contactType
                               excludeSelf:excludeSelf
@@ -53,7 +53,7 @@
 
 #pragma mark - Private
 
-+ (PKTRequest *)requestForContactsWithPath:(NSString *)path contactType:(PKTContactType)contactType excludeSelf:(BOOL)excludeSelf ordering:(PKTContactOrdering)ordering fields:(NSDictionary *)fields requiredFields:(NSArray *)requiredFields offset:(NSUInteger)offset limit:(NSUInteger)limit {
++ (PKTRequest *)requestForContactsWithPath:(NSString *)path contactType:(PKTContactType)contactType excludeSelf:(BOOL)excludeSelf ordering:(PKTContactsOrdering)ordering fields:(NSDictionary *)fields requiredFields:(NSArray *)requiredFields offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *params = [NSMutableDictionary new];
   
   params[@"exclude_self"] = @(excludeSelf);
@@ -67,7 +67,7 @@
   NSString *contactTypes = [self stringForContactType:contactType];
   if ([contactTypes length] > 0) params[@"contact_type"] = contactTypes;
   
-  if (ordering != PKTContactOrderingDefault) params[@"order"] = [self stringForOrdering:ordering];
+  if (ordering != PKTContactsOrderingDefault) params[@"order"] = [self stringForOrdering:ordering];
   
   return [PKTRequest GETRequestWithPath:path parameters:params];
 }
@@ -81,23 +81,23 @@
   return [types componentsJoinedByString:@","];
 }
 
-+ (NSString *)stringForOrdering:(PKTContactOrdering)ordering {
++ (NSString *)stringForOrdering:(PKTContactsOrdering)ordering {
   NSString *string = nil;
   
   switch (ordering) {
-      case PKTContactOrderingAssign:
+      case PKTContactsOrderingAssign:
       string = @"assign";
       break;
-    case PKTContactOrderingAlert:
+    case PKTContactsOrderingAlert:
       string = @"alert";
       break;
-    case PKTContactOrderingMessage:
+    case PKTContactsOrderingMessage:
       string = @"message";
       break;
-    case PKTContactOrderingReference:
+    case PKTContactsOrderingReference:
       string = @"reference";
       break;
-    case PKTContactOrderingOverall:
+    case PKTContactsOrderingOverall:
       string = @"overall";
       break;
       default:

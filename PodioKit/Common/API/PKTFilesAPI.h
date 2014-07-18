@@ -1,5 +1,5 @@
 //
-//  PKTFileAPI.h
+//  PKTFilesAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 01/05/14.
@@ -9,7 +9,7 @@
 #import "PKTBaseAPI.h"
 #import "PKTConstants.h"
 
-@interface PKTFileAPI : PKTBaseAPI
+@interface PKTFilesAPI : PKTBaseAPI
 
 + (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL;
 + (PKTRequest *)requestToDownloadFileWithURL:(NSURL *)fileURL toLocalFileWithPath:(NSString *)filePath;

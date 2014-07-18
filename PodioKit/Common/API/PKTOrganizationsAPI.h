@@ -1,5 +1,5 @@
 //
-//  PKTOrganizationAPI.h
+//  PKTOrganizationsAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 12/05/14.
@@ -8,7 +8,7 @@
 
 #import "PKTBaseAPI.h"
 
-@interface PKTOrganizationAPI : PKTBaseAPI
+@interface PKTOrganizationsAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForAllOrganizations;
 + (PKTRequest *)requestForOrganizationsWithID:(NSUInteger)organizationID;

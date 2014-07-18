@@ -1,5 +1,5 @@
 //
-//  PKTUserAPI.h
+//  PKTUsersAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 17/04/14.
@@ -8,7 +8,7 @@
 
 #import "PKTBaseAPI.h"
 
-@interface PKTUserAPI : PKTBaseAPI
+@interface PKTUsersAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForUserStatus;
 

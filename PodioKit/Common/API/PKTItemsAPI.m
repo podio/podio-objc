@@ -1,14 +1,14 @@
 //
-//  PKTItemAPI.m
+//  PKTItemsAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 31/03/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTItemAPI.h"
+#import "PKTItemsAPI.h"
 
-@implementation PKTItemAPI
+@implementation PKTItemsAPI
 
 + (PKTRequest *)requestForItemWithID:(NSUInteger)itemID {
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", (unsigned long)itemID) parameters:nil];

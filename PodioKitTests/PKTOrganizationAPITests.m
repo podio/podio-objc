@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTOrganizationAPI.h"
+#import "PKTOrganizationsAPI.h"
 
 @interface PKTOrganizationAPITests : XCTestCase
 
@@ -16,13 +16,13 @@
 @implementation PKTOrganizationAPITests
 
 - (void)testRequestForAllOrganizations {
-  PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
+  PKTRequest *request = [PKTOrganizationsAPI requestForAllOrganizations];
   expect(request.path).to.equal(@"/org/");
   expect(request.method).to.equal(PKTRequestMethodGET);
 }
 
 - (void)testRequestForOrganizationWithID {
-  PKTRequest *request = [PKTOrganizationAPI requestForOrganizationsWithID:123];
+  PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:123];
   expect(request.path).to.equal(@"/org/123");
   expect(request.method).to.equal(PKTRequestMethodGET);
 }

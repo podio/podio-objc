@@ -1,5 +1,5 @@
 //
-//  PKTCommentAPI.h
+//  PKTCommentsAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 02/05/14.
@@ -9,7 +9,7 @@
 #import "PKTBaseAPI.h"
 #import "PKTConstants.h"
 
-@interface PKTCommentAPI : PKTBaseAPI
+@interface PKTCommentsAPI : PKTBaseAPI
 
 + (PKTRequest *)requestToAddCommentToObjectWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType value:(NSString *)value files:(NSArray *)files embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL;
 

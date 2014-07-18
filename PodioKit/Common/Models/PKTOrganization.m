@@ -9,7 +9,7 @@
 #import "PKTOrganization.h"
 #import "PKTWorkspace.h"
 #import "PKTFile.h"
-#import "PKTOrganizationAPI.h"
+#import "PKTOrganizationsAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"
 
@@ -37,7 +37,7 @@
 
 + (PKTRequestTaskHandle *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
   Class objectClass = [self class];
-  PKTRequest *request = [PKTOrganizationAPI requestForAllOrganizations];
+  PKTRequest *request = [PKTOrganizationsAPI requestForAllOrganizations];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *orgs = nil;
     
@@ -55,7 +55,7 @@
 
 + (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
   Class objectClass = [self class];
-  PKTRequest *request = [PKTOrganizationAPI requestForOrganizationsWithID:organizationID];
+  PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:organizationID];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTOrganization *org = nil;
     

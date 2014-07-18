@@ -12,7 +12,7 @@
 #import "PKTHTTPClient.h"
 #import "PKTRequestTaskDescriptor.h"
 #import "PKTAuthenticationAPI.h"
-#import "PKTUserAPI.h"
+#import "PKTUsersAPI.h"
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
@@ -163,7 +163,7 @@
   [PKTHTTPStubs stubResponseForPath:refreshRequest.path responseObject:refreshedTokenDict];
   
   // Make a normal request that should finish after the refresh
-  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   
   // Make 1st request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
@@ -205,7 +205,7 @@
   [PKTHTTPStubs stubResponseForPath:refreshRequest.path statusCode:401];
   
   // Make a normal request that should fail after the failed refresh
-  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   
   // Make 1st request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
@@ -247,7 +247,7 @@
   [PKTHTTPStubs stubResponseForPath:refreshRequest.path responseObject:refreshedTokenDict];
   
   // Make a normal request that should fail after the failed refresh
-  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   
   // Make 1st request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
@@ -304,7 +304,7 @@
   PKTRequest *authRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:1234 token:@"app-token"];
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
-  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
   
   __block BOOL completed = NO;

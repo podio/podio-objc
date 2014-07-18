@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTUserAPI.h"
+#import "PKTUsersAPI.h"
 
 @interface PKTUserAPITests : XCTestCase
 
@@ -16,7 +16,7 @@
 @implementation PKTUserAPITests
 
 - (void)testRequestForUserStatus {
-  PKTRequest *request = [PKTUserAPI requestForUserStatus];
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   expect(request.method).to.equal(PKTRequestMethodGET);
   expect(request.path).to.equal(@"/user/status");
 }

@@ -9,7 +9,7 @@
 #import "PKTComment.h"
 #import "PKTEmbed.h"
 #import "PKTFile.h"
-#import "PKTCommentAPI.h"
+#import "PKTCommentsAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTComment
@@ -72,7 +72,7 @@
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   
   Class objectClass = [self class];
-  PKTRequest *request = [PKTCommentAPI requestToAddCommentToObjectWithReferenceID:referenceID
+  PKTRequest *request = [PKTCommentsAPI requestToAddCommentToObjectWithReferenceID:referenceID
                                                                     referenceType:referenceType
                                                                             value:text
                                                                             files:fileIDs

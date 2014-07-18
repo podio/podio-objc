@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTAppAPI.h"
+#import "PKTAppsAPI.h"
 
 @interface PKTAppAPITests : XCTestCase
 
@@ -16,7 +16,7 @@
 @implementation PKTAppAPITests
 
 - (void)testRequestForGetApp {
-  PKTRequest *request = [PKTAppAPI requestForAppWithID:123];
+  PKTRequest *request = [PKTAppsAPI requestForAppWithID:123];
   
   expect(request.path).to.equal(@"/app/123");
   expect(request.method).to.equal(PKTRequestMethodGET);

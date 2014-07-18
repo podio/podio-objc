@@ -8,7 +8,7 @@
 
 #import "PKTApp.h"
 #import "PKTAppField.h"
-#import "PKTAppAPI.h"
+#import "PKTAppsAPI.h"
 #import "PKTClient.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"
@@ -42,7 +42,7 @@
 
 + (PKTRequestTaskHandle *)fetchAppWithID:(NSUInteger)appID completion:(void (^)(PKTApp *app, NSError *error))completion {
   Class objectClass = [self class];
-  PKTRequest *request = [PKTAppAPI requestForAppWithID:appID];
+  PKTRequest *request = [PKTAppsAPI requestForAppWithID:appID];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTApp *app = nil;
     if (!error) {
@@ -56,7 +56,7 @@
 }
 
 + (PKTRequestTaskHandle *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID completion:(void (^)(NSArray *, NSError *))completion {
-  PKTRequest *request = [PKTAppAPI requestForAppsInWorkspaceWithID:spaceID];
+  PKTRequest *request = [PKTAppsAPI requestForAppsInWorkspaceWithID:spaceID];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     NSArray *apps = nil;
     

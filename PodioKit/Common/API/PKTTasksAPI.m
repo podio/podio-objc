@@ -1,16 +1,16 @@
 //
-//  PKTTaskAPI.m
+//  PKTTasksAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 25/06/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTTaskAPI.h"
+#import "PKTTasksAPI.h"
 #import "NSDate+PKTAdditions.h"
 #import "NSValueTransformer+PKTConstants.h"
 
-@implementation PKTTaskAPI
+@implementation PKTTasksAPI
 
 + (PKTRequest *)requestForTaskWithID:(NSUInteger)taskID {
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/task/%lu", (unsigned long)taskID) parameters:nil];

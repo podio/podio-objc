@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTCommentAPI.h"
+#import "PKTCommentsAPI.h"
 
 @interface PKTCommentAPITests : XCTestCase
 
@@ -17,7 +17,7 @@
 
 - (void)testExample {
   NSURL *embedURL = [NSURL URLWithString:@"https://www.google.com"];
-  PKTRequest *request = [PKTCommentAPI requestToAddCommentToObjectWithReferenceID:123
+  PKTRequest *request = [PKTCommentsAPI requestToAddCommentToObjectWithReferenceID:123
                                                                     referenceType:PKTReferenceTypeItem
                                                                             value:@"Some text"
                                                                             files:@[@1, @2]

@@ -12,7 +12,7 @@
 #import "PKTComment.h"
 #import "PKTApp.h"
 #import "PKTByLine.h"
-#import "PKTItemAPI.h"
+#import "PKTItemsAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"
 #import "PKTMacros.h"
@@ -134,7 +134,7 @@
 #pragma mark - API
 
 + (PKTRequestTaskHandle *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
-  PKTRequest *request = [PKTItemAPI requestForItemWithID:itemID];
+  PKTRequest *request = [PKTItemsAPI requestForItemWithID:itemID];
   Class objectClass = [self class];
   
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
@@ -150,7 +150,7 @@
 }
 
 + (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *, NSError *))completion {
-  PKTRequest *request = [PKTItemAPI requestForReferencesForItemWithID:itemID];
+  PKTRequest *request = [PKTItemsAPI requestForReferencesForItemWithID:itemID];
   
   Class objectClass = [self class];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
@@ -183,7 +183,7 @@
 }
 
 + (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion; {
-  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
+  PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
                                                                 sortBy:sortBy
@@ -194,7 +194,7 @@
 }
 
 + (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion {
-  PKTRequest *request = [PKTItemAPI requestForFilteredItemsInAppWithID:appID
+  PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
                                                                 viewID:viewID
@@ -231,7 +231,7 @@
 }
 
 - (PKTRequestTaskHandle *)fetchWithCompletion:(PKTRequestCompletionBlock)completion {
-  PKTRequest *request = [PKTItemAPI requestForItemWithID:self.itemID];
+  PKTRequest *request = [PKTItemsAPI requestForItemWithID:self.itemID];
 
   PKT_WEAK_SELF weakSelf = self;
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
@@ -271,12 +271,12 @@
   
   PKTRequest *request = nil;
   if (self.itemID == 0) {
-    request = [PKTItemAPI requestToCreateItemInAppWithID:self.appID
+    request = [PKTItemsAPI requestToCreateItemInAppWithID:self.appID
                                                   fields:fields
                                                    files:files
                                                     tags:nil];
   } else {
-    request = [PKTItemAPI requestToUpdateItemWithID:self.itemID
+    request = [PKTItemsAPI requestToUpdateItemWithID:self.itemID
                                              fields:fields
                                               files:files
                                                tags:nil];

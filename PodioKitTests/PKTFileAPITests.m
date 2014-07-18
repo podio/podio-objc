@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTFileAPI.h"
+#import "PKTFilesAPI.h"
 
 @interface PKTFileAPITests : XCTestCase
 
@@ -17,7 +17,7 @@
 
 - (void)testRequestToDownloadFile {
   NSURL *fileURL = [NSURL URLWithString:@"https://files.podio.com/11111"];
-  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:fileURL];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:fileURL];
   
   expect(request.URL).to.equal(fileURL);
   expect(request.method).to.equal(PKTRequestMethodGET);
@@ -27,7 +27,7 @@
 - (void)testRequestToDownloadFileToLocalFile {
   NSURL *fileURL = [NSURL URLWithString:@"https://files.podio.com/11111"];
   NSString *path = @"/tmp/file.pdf";
-  PKTRequest *request = [PKTFileAPI requestToDownloadFileWithURL:fileURL toLocalFileWithPath:path];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:fileURL toLocalFileWithPath:path];
   
   expect(request.URL).to.equal(fileURL);
   expect(request.method).to.equal(PKTRequestMethodGET);
@@ -36,7 +36,7 @@
 
 - (void)testRequestForFileUploadWithData {
   NSData *data = [NSData data];
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithData:data fileName:@"image.jpg"];
+  PKTRequest *request = [PKTFilesAPI requestToUploadFileWithData:data fileName:@"image.jpg"];
   
   expect(request.path).to.equal(@"/file/");
   expect(request.contentType).to.equal(PKTRequestContentTypeMultipart);
@@ -49,7 +49,7 @@
 
 - (void)testRequestForFileUploadWithFileURL {
   NSString *path = @"/some/local/folder/image.jpg";
-  PKTRequest *request = [PKTFileAPI requestToUploadFileWithPath:path fileName:@"image.jpg"];
+  PKTRequest *request = [PKTFilesAPI requestToUploadFileWithPath:path fileName:@"image.jpg"];
   
   expect(request.path).to.equal(@"/file/");
   expect(request.contentType).to.equal(PKTRequestContentTypeMultipart);
@@ -61,7 +61,7 @@
 }
 
 - (void)testRequestToAttachFile {
-  PKTRequest *request = [PKTFileAPI requestToAttachFileWithID:123 referenceID:333 referenceType:PKTReferenceTypeItem];
+  PKTRequest *request = [PKTFilesAPI requestToAttachFileWithID:123 referenceID:333 referenceType:PKTReferenceTypeItem];
   
   expect(request.path).to.equal(@"/file/123/attach");
   expect(request.method).to.equal(PKTRequestMethodPOST);

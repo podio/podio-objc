@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTFormAPI.h"
+#import "PKTFormsAPI.h"
 
 @interface PKTFormAPITests : XCTestCase
 
@@ -16,7 +16,7 @@
 @implementation PKTFormAPITests
 
 - (void)testRequestForForm {
-  PKTRequest *request = [PKTFormAPI requestForFormWithID:12345];
+  PKTRequest *request = [PKTFormsAPI requestForFormWithID:12345];
   
   expect(request.path).to.equal(@"/form/12345");
   expect(request.method).to.equal(PKTRequestMethodGET);

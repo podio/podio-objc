@@ -1,5 +1,5 @@
 //
-//  PKTTaskAPI.h
+//  PKTTasksAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 25/06/14.
@@ -10,7 +10,7 @@
 #import "PKTTaskRequestParameters.h"
 #import "PKTConstants.h"
 
-@interface PKTTaskAPI : PKTBaseAPI
+@interface PKTTasksAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForTaskWithID:(NSUInteger)taskID;
 

@@ -13,7 +13,7 @@
 #import "PKTComment.h"
 #import "PKTProfile.h"
 #import "PKTReference.h"
-#import "PKTTaskAPI.h"
+#import "PKTTasksAPI.h"
 #import "NSArray+PKTAdditions.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
@@ -110,7 +110,7 @@
 + (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)taskID completion:(void (^)(PKTTask *task, NSError *error))completion {
   NSParameterAssert(completion);
   
-  PKTRequest *request = [PKTTaskAPI requestForTaskWithID:taskID];
+  PKTRequest *request = [PKTTasksAPI requestForTaskWithID:taskID];
   
   Class klass = [self class];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
@@ -128,7 +128,7 @@
 + (PKTRequestTaskHandle *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *tasks, NSError *error))completion {
   NSParameterAssert(completion);
   
-  PKTRequest *request = [PKTTaskAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
+  PKTRequest *request = [PKTTasksAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
   
   Class klass = [self class];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
@@ -152,7 +152,7 @@
   
   PKTRequest *request = nil;
   if (self.taskID == 0) {
-    request = [PKTTaskAPI requestToCreateTaskWithText:self.text
+    request = [PKTTasksAPI requestToCreateTaskWithText:self.text
                                           description:self.descr
                                                 dueOn:self.dueOn
                                             isPrivate:self.isPrivate
@@ -161,7 +161,7 @@
                                         referenceType:self.reference.referenceType
                                                 files:fileIDs];
   } else {
-    request = [PKTTaskAPI requestToUpdateTaskWithID:self.taskID
+    request = [PKTTasksAPI requestToUpdateTaskWithID:self.taskID
                                                text:self.text
                                         description:self.descr
                                               dueOn:self.dueOn

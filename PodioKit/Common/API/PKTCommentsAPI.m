@@ -1,15 +1,15 @@
 //
-//  PKTCommentAPI.m
+//  PKTCommentsAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 02/05/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTCommentAPI.h"
+#import "PKTCommentsAPI.h"
 #import "NSValueTransformer+PKTConstants.h"
 
-@implementation PKTCommentAPI
+@implementation PKTCommentsAPI
 
 + (PKTRequest *)requestToAddCommentToObjectWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType value:(NSString *)value files:(NSArray *)files embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL {
   NSParameterAssert(referenceID > 0);

@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTTaskAPI.h"
+#import "PKTTasksAPI.h"
 #import "PKTDateRange.h"
 
 @interface PKTTaskAPITests : XCTestCase
@@ -17,7 +17,7 @@
 @implementation PKTTaskAPITests
 
 - (void)testRequestForTasks {
-  PKTRequest *request = [PKTTaskAPI requestForTasksWithParameters:[PKTTaskRequestParameters parametersWithBlock:^(PKTTaskRequestParameters *params) {
+  PKTRequest *request = [PKTTasksAPI requestForTasksWithParameters:[PKTTaskRequestParameters parametersWithBlock:^(PKTTaskRequestParameters *params) {
     params.responsibleUserID = 12345;
     params.sortOrder = PKTTaskRequestParameterSortOrderDescending;
     params.sortBy = PKTTaskRequestParameterSortByCreatedOn;
@@ -33,7 +33,7 @@
 }
 
 - (void)testRequestToCreateTask {
-  PKTRequest *request = [PKTTaskAPI requestToCreateTaskWithText:@"Task title"
+  PKTRequest *request = [PKTTasksAPI requestToCreateTaskWithText:@"Task title"
                                                     description:@"Task description"
                                                           dueOn:[NSDate dateWithTimeIntervalSince1970:1402840478] // 2014-06-15 13:54
                                                       isPrivate:YES
@@ -55,7 +55,7 @@
 }
 
 - (void)testRequestToUpdateTask {
-  PKTRequest *request = [PKTTaskAPI requestToUpdateTaskWithID:33333
+  PKTRequest *request = [PKTTasksAPI requestToUpdateTaskWithID:33333
                                                          text:@"Task title"
                                                   description:@"Task description"
                                                         dueOn:[NSDate dateWithTimeIntervalSince1970:1402840478] // 2014-06-15 13:54

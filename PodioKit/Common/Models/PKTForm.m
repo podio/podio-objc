@@ -9,7 +9,7 @@
 #import "PKTForm.h"
 #import "PKTFormField.h"
 #import "PKTFormSettings.h"
-#import "PKTFormAPI.h"
+#import "PKTFormsAPI.h"
 #import "PKTClient.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
@@ -50,7 +50,7 @@
   
   Class klass = [self class];
   
-  PKTRequest *request = [PKTFormAPI requestForFormWithID:formID];
+  PKTRequest *request = [PKTFormsAPI requestForFormWithID:formID];
   PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKTForm *form = nil;
     

@@ -1,5 +1,5 @@
 //
-//  PKTItemAPI.h
+//  PKTItemsAPI.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 31/03/14.
@@ -8,7 +8,7 @@
 
 #import "PKTBaseAPI.h"
 
-@interface PKTItemAPI : PKTBaseAPI
+@interface PKTItemsAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForItemWithID:(NSUInteger)itemID;
 
