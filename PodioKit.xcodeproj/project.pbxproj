@@ -296,6 +296,8 @@
 		6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */; };
 		E4769A9D19780250003F8678 /* PKSubscriptionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */; };
 		E4769A9E19780250003F8678 /* PKSubscriptionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */; };
+		E4A71C521978C63F00C501D9 /* PKGrantAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A71C501978C63F00C501D9 /* PKGrantAPI.h */; };
+		E4A71C531978C63F00C501D9 /* PKGrantAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A71C511978C63F00C501D9 /* PKGrantAPI.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -609,6 +611,8 @@
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSubscriptionAPI.h; sourceTree = "<group>"; };
 		E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSubscriptionAPI.m; sourceTree = "<group>"; };
+		E4A71C501978C63F00C501D9 /* PKGrantAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKGrantAPI.h; sourceTree = "<group>"; };
+		E4A71C511978C63F00C501D9 /* PKGrantAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKGrantAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1154,6 +1158,8 @@
 				507D09FA1823EB3600AFBFB1 /* PKPromotionAPI.m */,
 				E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */,
 				E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */,
+				E4A71C501978C63F00C501D9 /* PKGrantAPI.h */,
+				E4A71C511978C63F00C501D9 /* PKGrantAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1289,6 +1295,7 @@
 				508D211D14FBB332002593A4 /* PKSpaceCreateData.h in Headers */,
 				E4769A9D19780250003F8678 /* PKSubscriptionAPI.h in Headers */,
 				508D212C14FBB875002593A4 /* PKSpaceAPI.h in Headers */,
+				E4A71C521978C63F00C501D9 /* PKGrantAPI.h in Headers */,
 				5065BF451433627900360855 /* PKRequest.h in Headers */,
 				5065BF481433627900360855 /* PKRequestManager.h in Headers */,
 				5065BF531433632200360855 /* PKMappingCoordinator.h in Headers */,
@@ -1654,6 +1661,7 @@
 				5030C0601435E76300027F07 /* PKAppFieldMoneyData.m in Sources */,
 				5030C0631435E76300027F07 /* PKAppFieldOptionsData.m in Sources */,
 				5030C0661435E76300027F07 /* PKEmbedData.m in Sources */,
+				E4A71C531978C63F00C501D9 /* PKGrantAPI.m in Sources */,
 				5030C0691435E76300027F07 /* PKQuestionData.m in Sources */,
 				5030C06C1435E76300027F07 /* PKQuestionOptionData.m in Sources */,
 				5030C0721435E76300027F07 /* PKStreamActionData.m in Sources */,

@@ -433,6 +433,19 @@ static NSString * const kPKRatingTypeYesNo = @"yesno";
 static NSString * const kPKRatingTypeThumbs = @"thumbs";
 static NSString * const kPKRatingTypeLike = @"like";
 
+#pragma mark - Grant
+
+typedef NS_ENUM(NSInteger, PKGrantAction) {
+  PKGrantActionNone = 0,
+  PKGrantActionView,
+  PKGrantActionComment,
+  PKGrantActionRate
+};
+
+static NSString * const kPKGrantActionView = @"view";
+static NSString * const kPKGrantActionComment = @"comment";
+static NSString * const kPKGrantActionRate = @"rate";
+
 #pragma mark - Reference
 
 typedef enum {
@@ -784,6 +797,10 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 // Reference
 + (PKReferenceType)referenceTypeForString:(NSString *)string;
 + (NSString *)stringForReferenceType:(PKReferenceType)referenceType;
+
+// Grant
++ (PKGrantAction)grantActionForString:(NSString *)string;
++ (NSString *)stringForGrantAction:(PKGrantAction)grantAction;
 
 // Space
 + (PKSpaceType)spaceTypeForString:(NSString *)string;

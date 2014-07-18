@@ -615,6 +615,42 @@
   return string;
 }
 
+#pragma mark - Grant
+
++ (PKGrantAction)grantActionForString:(NSString *)string {
+  PKGrantAction action = PKGrantActionNone;
+
+  if ([string isEqualToString:kPKGrantActionView]) {
+    action = PKGrantActionView;
+  } else if ([string isEqualToString:kPKGrantActionComment]) {
+    action = PKGrantActionComment;
+  } else if ([string isEqualToString:kPKGrantActionRate]) {
+    action = PKGrantActionRate;
+  }
+
+  return action;
+}
+
++ (NSString *)stringForGrantAction:(PKGrantAction)grantAction {
+  NSString *string = nil;
+
+  switch (grantAction) {
+    case PKGrantActionView:
+      string = kPKGrantActionView;
+      break;
+    case PKGrantActionComment:
+      string = kPKGrantActionComment;
+      break;
+    case PKGrantActionRate:
+      string = kPKGrantActionRate;
+      break;
+    default:
+      break;
+  }
+
+  return string;
+}
+
 #pragma mark - Space
 
 + (PKSpaceType)spaceTypeForString:(NSString *)string {
