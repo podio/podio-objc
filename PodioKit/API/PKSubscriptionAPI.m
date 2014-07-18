@@ -24,7 +24,7 @@
   return request;
 }
 
-+ (PKRequest *)requestToGetSubscriptionsWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
++ (PKRequest *)requestForSubscriptionsWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
   NSString *uri = [NSString stringWithFormat:@"/subscription/%@/%ld", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodGET objectMapping:nil];
 

@@ -12,6 +12,6 @@
 
 + (PKRequest *)requestToSubscribeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 + (PKRequest *)requestToUnsubscribeWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
-+ (PKRequest *)requestToGetSubscriptionsWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
++ (PKRequest *)requestForSubscriptionsWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 
 @end
