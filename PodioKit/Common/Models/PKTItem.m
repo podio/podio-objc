@@ -149,6 +149,35 @@
   return handle;
 }
 
++ (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *, NSError *))completion {
+  PKTRequest *request = [PKTItemAPI requestForReferencesForItemWithID:itemID];
+  
+  Class objectClass = [self class];
+  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+    __block NSArray *items = nil;
+    
+    if (!error) {
+      [response.body enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
+        NSNumber *appID = dict[@"app"][@"app_id"];
+        NSArray *itemDicts = dict[@"items"];
+        
+        items = [[itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+          NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
+          
+          // Inject the app ID as it is not included in the response
+          mutItemDict[@"app"] = @{@"app_id" : appID};
+          
+          return [[objectClass alloc] initWithDictionary:mutItemDict];
+        }] arrayByAddingObjectsFromArray:items];
+      }];
+    }
+    
+    if (completion) completion(items, error);
+  }];
+  
+  return handle;
+}
+
 + (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion {
   return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
 }

@@ -17,6 +17,7 @@
 @property (nonatomic, readonly) NSUInteger iconID;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *itemName;
+@property (nonatomic, copy, readonly) NSString *appDescription;
 @property (nonatomic, copy, readonly) NSURL *link;
 @property (nonatomic, copy, readonly) NSArray *fields;
 
