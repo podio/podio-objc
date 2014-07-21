@@ -24,6 +24,7 @@
 #import "PKTTasksAPI.h"
 #import "PKTStatusAPI.h"
 #import "PKTFormsAPI.h"
+#import "PKTContactsAPI.h"
 
 #import "PKTOAuth2Token.h"
 #import "PKTApp.h"

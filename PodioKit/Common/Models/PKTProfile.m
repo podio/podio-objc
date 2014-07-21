@@ -168,7 +168,9 @@
     NSArray *profiles = nil;
     
     if (!error) {
-      profiles = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *profileDict) {
+      id profileDicts = ![response.body isKindOfClass:[NSArray class]] ? @[response.body] : response.body;
+      
+      profiles = [profileDicts pkt_mappedArrayWithBlock:^id(NSDictionary *profileDict) {
         return [[self alloc] initWithDictionary:profileDict];
       }];
     }
