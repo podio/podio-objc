@@ -12,6 +12,7 @@
 static NSString * const PKStreamItemDataItemId = @"ItemId";
 static NSString * const PKStreamItemDataTitle = @"Title";
 static NSString * const PKStreamItemDataAppName = @"AppName";
+static NSString * const PKStreamItemDataAppId = @"AppId";
 static NSString * const PKStreamItemDataAppItemName = @"AppItemName";
 static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
 
@@ -20,6 +21,7 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
 @synthesize itemId = itemId_;
 @synthesize title = title_;
 @synthesize appName = appName_;
+@synthesize appId = appId_;
 @synthesize appItemName = appItemName_;
 @synthesize appIcon = appIcon_;
 
@@ -29,6 +31,7 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
     itemId_ = [aDecoder decodeIntegerForKey:PKStreamItemDataItemId];
     title_ = [[aDecoder decodeObjectForKey:PKStreamItemDataTitle] copy];
     appName_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppName] copy];
+    appId_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppId] copy];
     appItemName_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppItemName] copy];
     appIcon_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppIcon] copy];
   }
@@ -40,6 +43,7 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
   [aCoder encodeInteger:itemId_ forKey:PKStreamItemDataItemId];
   [aCoder encodeObject:title_ forKey:PKStreamItemDataTitle];
   [aCoder encodeObject:appName_ forKey:PKStreamItemDataAppName];
+  [aCoder encodeObject:appId_ forKey:PKStreamItemDataAppId];
   [aCoder encodeObject:appItemName_ forKey:PKStreamItemDataAppItemName];
   [aCoder encodeObject:appIcon_ forKey:PKStreamItemDataAppIcon];
 }
@@ -55,6 +59,7 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
   
   NSDictionary *appDict = [dict pk_objectForKey:@"app"];
   data.appName = [appDict pk_objectForKey:@"name"];
+  data.appId = [appDict pk_objectForKey:@"app_id"];
   data.appItemName = [appDict pk_objectForKey:@"item_name"];
   data.appIcon = [appDict pk_objectForKey:@"icon"];
   
