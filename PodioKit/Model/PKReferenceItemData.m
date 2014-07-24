@@ -15,6 +15,15 @@ static NSString * const PKStreamItemDataAppName = @"AppName";
 static NSString * const PKStreamItemDataAppId = @"AppId";
 static NSString * const PKStreamItemDataAppItemName = @"AppItemName";
 static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
+static NSString * const PKReferenceItemDataExcerptLabel = @"ExcerptLabel";
+static NSString * const PKReferenceItemDataExcerptText = @"ExcerptText";
+
+@interface PKReferenceItemData ()
+
+@property (nonatomic, copy, readwrite) NSString *excerptLabel;
+@property (nonatomic, copy, readwrite) NSString *excerptText;
+
+@end
 
 @implementation PKReferenceItemData
 
@@ -34,6 +43,8 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
     appId_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppId] copy];
     appItemName_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppItemName] copy];
     appIcon_ = [[aDecoder decodeObjectForKey:PKStreamItemDataAppIcon] copy];
+    _excerptLabel = [[aDecoder decodeObjectForKey:PKReferenceItemDataExcerptLabel] copy];
+    _excerptText = [[aDecoder decodeObjectForKey:PKReferenceItemDataExcerptText] copy];
   }
   return self;
 }
@@ -46,6 +57,8 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
   [aCoder encodeObject:appId_ forKey:PKStreamItemDataAppId];
   [aCoder encodeObject:appItemName_ forKey:PKStreamItemDataAppItemName];
   [aCoder encodeObject:appIcon_ forKey:PKStreamItemDataAppIcon];
+  [aCoder encodeObject:_excerptLabel forKey:PKReferenceItemDataExcerptLabel];
+  [aCoder encodeObject:_excerptText forKey:PKReferenceItemDataExcerptText];
 }
 
 
@@ -62,6 +75,10 @@ static NSString * const PKStreamItemDataAppIcon = @"AppIcon";
   data.appId = [appDict pk_objectForKey:@"app_id"];
   data.appItemName = [appDict pk_objectForKey:@"item_name"];
   data.appIcon = [appDict pk_objectForKey:@"icon"];
+
+  NSDictionary *excerptDict = [dict pk_objectForKey:@"excerpt"];
+  data.excerptLabel = [excerptDict pk_objectForKey:@"label"];
+  data.excerptText = [excerptDict pk_objectForKey:@"text"];
   
   return data;
 }

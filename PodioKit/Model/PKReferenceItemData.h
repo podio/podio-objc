@@ -25,5 +25,7 @@
 @property (nonatomic, copy) NSNumber *appId;
 @property (nonatomic, copy) NSString *appItemName;
 @property (nonatomic, copy) NSString *appIcon;
+@property (nonatomic, copy, readonly) NSString *excerptLabel;
+@property (nonatomic, copy, readonly) NSString *excerptText;
 
 @end
