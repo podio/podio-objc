@@ -296,6 +296,8 @@
 		6C9F2626C73D43B79313A003 /* libPods-demoapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */; };
 		E4769A9D19780250003F8678 /* PKSubscriptionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */; };
 		E4769A9E19780250003F8678 /* PKSubscriptionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */; };
+		E477F7E2198681ED0007482A /* PKGrantData.h in Headers */ = {isa = PBXBuildFile; fileRef = E477F7E0198681ED0007482A /* PKGrantData.h */; };
+		E477F7E3198681ED0007482A /* PKGrantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E477F7E1198681ED0007482A /* PKGrantData.m */; };
 		E4A71C521978C63F00C501D9 /* PKGrantAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A71C501978C63F00C501D9 /* PKGrantAPI.h */; };
 		E4A71C531978C63F00C501D9 /* PKGrantAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A71C511978C63F00C501D9 /* PKGrantAPI.m */; };
 /* End PBXBuildFile section */
@@ -611,6 +613,8 @@
 		C4EAC438A37348568742AF80 /* Pods-podiokittests.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.xcconfig"; path = "Pods/Pods-podiokittests.xcconfig"; sourceTree = SOURCE_ROOT; };
 		E4769A9B19780250003F8678 /* PKSubscriptionAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSubscriptionAPI.h; sourceTree = "<group>"; };
 		E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSubscriptionAPI.m; sourceTree = "<group>"; };
+		E477F7E0198681ED0007482A /* PKGrantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKGrantData.h; sourceTree = "<group>"; };
+		E477F7E1198681ED0007482A /* PKGrantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKGrantData.m; sourceTree = "<group>"; };
 		E4A71C501978C63F00C501D9 /* PKGrantAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKGrantAPI.h; sourceTree = "<group>"; };
 		E4A71C511978C63F00C501D9 /* PKGrantAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKGrantAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -745,6 +749,7 @@
 				5030C0B91435E76B00027F07 /* App */,
 				50DFDB6E14E1980A00D2C5B6 /* Meetings */,
 				50B319DD150F989800EAD7C7 /* App Store */,
+				E477F7E4198788790007482A /* Grant */,
 				50458F361507731600FA66A6 /* Misc */,
 			);
 			name = Transformables;
@@ -1285,6 +1290,15 @@
 			name = Meetings;
 			sourceTree = "<group>";
 		};
+		E477F7E4198788790007482A /* Grant */ = {
+			isa = PBXGroup;
+			children = (
+				E477F7E0198681ED0007482A /* PKGrantData.h */,
+				E477F7E1198681ED0007482A /* PKGrantData.m */,
+			);
+			name = Grant;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -1340,6 +1354,7 @@
 				5030C09E1435E76300027F07 /* PKItemFieldValueContactData.h in Headers */,
 				5030C0A11435E76300027F07 /* PKObjectData.h in Headers */,
 				5030C0A41435E76300027F07 /* PKItemFieldValueDateData.h in Headers */,
+				E477F7E2198681ED0007482A /* PKGrantData.h in Headers */,
 				5030C0A71435E76300027F07 /* PKItemFieldValueEmbedData.h in Headers */,
 				5030C0AD1435E76300027F07 /* PKItemFieldValueMediaData.h in Headers */,
 				5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */,
@@ -1710,6 +1725,7 @@
 				50CC1D64148CDA3A000B57EA /* PKOrganizationAPI.m in Sources */,
 				50CC1D67148CDA3A000B57EA /* PKQuestionAPI.m in Sources */,
 				50CC1D6A148CDA3A000B57EA /* PKRatingAPI.m in Sources */,
+				E477F7E3198681ED0007482A /* PKGrantData.m in Sources */,
 				50CC1D6D148CDA3A000B57EA /* PKStreamAPI.m in Sources */,
 				50A16D8D148EA13700AF86C4 /* PKReferenceStatusData.m in Sources */,
 				E4769A9E19780250003F8678 /* PKSubscriptionAPI.m in Sources */,
