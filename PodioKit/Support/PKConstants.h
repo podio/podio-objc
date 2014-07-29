@@ -499,6 +499,7 @@ typedef enum {
   PKReferenceTypeSpaceMemberRequest,
   PKReferenceTypeLive,
   PKReferenceTypeItemParticipation,
+  PKReferenceTypeGrant,
 } PKReferenceType;
 
 static NSString * const kPKReferenceTypeApp = @"app";
@@ -546,6 +547,7 @@ static NSString * const kPKReferenceTypeSystem = @"system";
 static NSString * const kPKReferenceTypeSpaceMemberRequest = @"space_member_request";
 static NSString * const kPKReferenceTypeLive = @"live";
 static NSString * const kPKReferenceTypeItemParticipation = @"item_participation";
+static NSString * const kPKReferenceTypeGrant = @"grant";
 
 #pragma mark - Notifications
 

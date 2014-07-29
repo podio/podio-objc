@@ -18,6 +18,7 @@
 #import "PKReferenceCommentData.h"
 #import "PKReferenceAnswerData.h"
 #import "PKReferenceItemParticipationData.h"
+#import "PKReferenceGrantData.h"
 #import "PKFileData.h"
 
 @implementation PKReferenceDataFactory
@@ -61,6 +62,9 @@
       break;
     case PKReferenceTypeItemParticipation:
       data = [PKReferenceItemParticipationData dataFromDictionary:dict];
+      break;
+    case PKReferenceTypeGrant:
+      data = [PKReferenceGrantData dataFromDictionary:dict];
       break;
     default:
       break;

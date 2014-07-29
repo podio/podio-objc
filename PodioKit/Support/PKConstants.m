@@ -469,6 +469,8 @@
     type = PKReferenceTypeLive;
   } else if ([string isEqualToString:kPKReferenceTypeItemParticipation]) {
     type = PKReferenceTypeItemParticipation;
+  } else if ([string isEqualToString:kPKReferenceTypeGrant]) {
+    type = PKReferenceTypeGrant;
   }
     
   return type;
@@ -610,6 +612,12 @@
     case PKReferenceTypeItemParticipation:
       string = kPKReferenceTypeItemParticipation;
       break;
+    case PKReferenceTypeGrant:
+      string = kPKReferenceTypeGrant;
+      break;
+    case PKReferenceTypeMessage:
+    string = kPKReferenceTypeMessage;
+    break;
     default:
       break;
   }
