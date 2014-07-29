@@ -210,7 +210,7 @@
     type = PKStreamActivityTypeAnswer;
   } else if ([string isEqualToString:kPKStreamActivityTypeParticipation]) {
     type = PKStreamActivityTypeParticipation;
-  } else if ([string isEqualToString:kPKStreamActivityTypeParticipation]) {
+  } else if ([string isEqualToString:kPKStreamActivityTypeGrant]) {
     type = PKStreamActivityTypeGrant;
   }
   
