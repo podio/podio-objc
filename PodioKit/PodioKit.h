@@ -130,6 +130,7 @@
 #import "PKReferenceItemParticipationData.h"
 #import "PKAppFieldDataFactory.h"
 #import "PKGrantData.h"
+#import "PKReferenceGrantData.h"
 
 #pragma mark - Categories
 

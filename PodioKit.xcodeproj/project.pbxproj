@@ -298,6 +298,8 @@
 		E4769A9E19780250003F8678 /* PKSubscriptionAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */; };
 		E477F7E2198681ED0007482A /* PKGrantData.h in Headers */ = {isa = PBXBuildFile; fileRef = E477F7E0198681ED0007482A /* PKGrantData.h */; };
 		E477F7E3198681ED0007482A /* PKGrantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E477F7E1198681ED0007482A /* PKGrantData.m */; };
+		E477F7E81987CF9C0007482A /* PKReferenceGrantData.h in Headers */ = {isa = PBXBuildFile; fileRef = E477F7E61987CF9C0007482A /* PKReferenceGrantData.h */; };
+		E477F7E91987CF9C0007482A /* PKReferenceGrantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E477F7E71987CF9C0007482A /* PKReferenceGrantData.m */; };
 		E4A71C521978C63F00C501D9 /* PKGrantAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4A71C501978C63F00C501D9 /* PKGrantAPI.h */; };
 		E4A71C531978C63F00C501D9 /* PKGrantAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4A71C511978C63F00C501D9 /* PKGrantAPI.m */; };
 /* End PBXBuildFile section */
@@ -615,6 +617,8 @@
 		E4769A9C19780250003F8678 /* PKSubscriptionAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSubscriptionAPI.m; sourceTree = "<group>"; };
 		E477F7E0198681ED0007482A /* PKGrantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKGrantData.h; sourceTree = "<group>"; };
 		E477F7E1198681ED0007482A /* PKGrantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKGrantData.m; sourceTree = "<group>"; };
+		E477F7E61987CF9C0007482A /* PKReferenceGrantData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceGrantData.h; sourceTree = "<group>"; };
+		E477F7E71987CF9C0007482A /* PKReferenceGrantData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceGrantData.m; sourceTree = "<group>"; };
 		E4A71C501978C63F00C501D9 /* PKGrantAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKGrantAPI.h; sourceTree = "<group>"; };
 		E4A71C511978C63F00C501D9 /* PKGrantAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKGrantAPI.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -825,6 +829,8 @@
 				504B33A918583D9100149125 /* PKReferenceOrganizationData.m */,
 				50A661A418B61A95005F4587 /* PKReferenceItemParticipationData.h */,
 				50A661A518B61A95005F4587 /* PKReferenceItemParticipationData.m */,
+				E477F7E61987CF9C0007482A /* PKReferenceGrantData.h */,
+				E477F7E71987CF9C0007482A /* PKReferenceGrantData.m */,
 			);
 			name = Reference;
 			sourceTree = "<group>";
@@ -1329,6 +1335,7 @@
 				5065BFF1143366C100360855 /* NSArray+PKAdditions.h in Headers */,
 				5065BFF4143366C100360855 /* NSSet+PKAdditions.h in Headers */,
 				5065BFF9143366DD00360855 /* NSString+PKAdditions.h in Headers */,
+				E477F7E81987CF9C0007482A /* PKReferenceGrantData.h in Headers */,
 				5065BFFE1433670800360855 /* NSDictionary+PKAdditions.h in Headers */,
 				5065C0271433697D00360855 /* NSManagedObjectContext+PKAdditions.h in Headers */,
 				5065C031143369EF00360855 /* PKConstants.h in Headers */,
@@ -1670,6 +1677,7 @@
 				5065BFF5143366C100360855 /* NSSet+PKAdditions.m in Sources */,
 				5065BFFA143366DD00360855 /* NSString+PKAdditions.m in Sources */,
 				5065BFFF1433670800360855 /* NSDictionary+PKAdditions.m in Sources */,
+				E477F7E91987CF9C0007482A /* PKReferenceGrantData.m in Sources */,
 				5065C0281433697D00360855 /* NSManagedObjectContext+PKAdditions.m in Sources */,
 				5065C0CC143453BE00360855 /* NSDate+PKAdditions.m in Sources */,
 				5030C05D1435E76300027F07 /* PKAppFieldContactData.m in Sources */,
