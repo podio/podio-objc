@@ -200,6 +200,10 @@
 		505113DF196EB9AB00370285 /* PKTMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113DD196EB9AB00370285 /* PKTMultipartFormData.m */; };
 		505113E6196FE8FA00370285 /* PKTMultipartFormDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */; };
 		505113E7196FE9C600370285 /* PKTMultipartFormData.m in Sources */ = {isa = PBXBuildFile; fileRef = 505113DD196EB9AB00370285 /* PKTMultipartFormData.m */; };
+		505324B619883DD500700135 /* PKTAsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 505324B419883DD500700135 /* PKTAsyncTask.m */; };
+		505324B719883DD500700135 /* PKTAsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 505324B419883DD500700135 /* PKTAsyncTask.m */; };
+		505324B819883DD500700135 /* PKTAsyncTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 505324B519883DD500700135 /* PKTAsyncTask.h */; };
+		505324BA19883E0000700135 /* PKTAsyncTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505324B919883E0000700135 /* PKTAsyncTaskTests.m */; };
 		50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50620AAD14BC8CA60060A786 /* InfoPlist.strings */; };
 		5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
 		5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
@@ -514,6 +518,9 @@
 		505113DC196EB9AB00370285 /* PKTMultipartFormData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTMultipartFormData.h; sourceTree = "<group>"; };
 		505113DD196EB9AB00370285 /* PKTMultipartFormData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTMultipartFormData.m; sourceTree = "<group>"; };
 		505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTMultipartFormDataTests.m; sourceTree = "<group>"; };
+		505324B419883DD500700135 /* PKTAsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTask.m; sourceTree = "<group>"; };
+		505324B519883DD500700135 /* PKTAsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAsyncTask.h; sourceTree = "<group>"; };
+		505324B919883E0000700135 /* PKTAsyncTaskTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTaskTests.m; sourceTree = "<group>"; };
 		50620AAD14BC8CA60060A786 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEEB14335AB900360855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -1139,6 +1146,8 @@
 				50E0C61D194768E200D37281 /* PKTKeychainTokenStore.m */,
 				507DFDC119479341002C339A /* PKTKeychain.h */,
 				507DFDC219479341002C339A /* PKTKeychain.m */,
+				505324B419883DD500700135 /* PKTAsyncTask.m */,
+				505324B519883DD500700135 /* PKTAsyncTask.h */,
 				50B64F38196C18C50079F270 /* PKTRequestTaskHandle.h */,
 				50B64F39196C18C50079F270 /* PKTRequestTaskHandle.m */,
 				50B64F3C196C19D30079F270 /* PKTRequestTaskDescriptor.h */,
@@ -1188,6 +1197,7 @@
 				50E0C6231947694900D37281 /* PKTKeychainTokenStoreTests.m */,
 				507DFDC6194797ED002C339A /* PKTKeychainTests.m */,
 				505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */,
+				505324B919883E0000700135 /* PKTAsyncTaskTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1415,6 +1425,7 @@
 				C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */,
 				50DAD43A196404BD00529DB5 /* PKTForm.h in Headers */,
 				C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */,
+				505324B819883DD500700135 /* PKTAsyncTask.h in Headers */,
 				5024C5C719616DC400AE28D7 /* PKTUser.h in Headers */,
 				C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */,
 				C9FADEC73A88FBD20E632A4F /* PKTAppFieldConfig.h in Headers */,
@@ -1579,6 +1590,7 @@
 				50E067F1191FE10000552CCF /* NSValueTransformer+PKTConstants.m in Sources */,
 				5006B080191C200B006FF388 /* NSDate+PKTAdditions.m in Sources */,
 				5033FF741961861700B2FD04 /* PKTStatusAPI.m in Sources */,
+				505324B619883DD500700135 /* PKTAsyncTask.m in Sources */,
 				503959F21912CC47004C298C /* PKTRequestFileData.m in Sources */,
 				508F9B4C195AF2C000275A63 /* PKTImageDownloader.m in Sources */,
 				E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */,
@@ -1735,8 +1747,10 @@
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
 				5019C0B319747C4D00F37634 /* PKTDateRangeTests.m in Sources */,
 				501D605D190ED1BF004D94C4 /* PKTStringItemFieldValue.m in Sources */,
+				505324B719883DD500700135 /* PKTAsyncTask.m in Sources */,
 				503959EE19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */,
 				5039F6A31908629200A8A8F0 /* PKTNestedTestModel.m in Sources */,
+				505324BA19883E0000700135 /* PKTAsyncTaskTests.m in Sources */,
 				50E6C817190D654A00F309B4 /* PKTItemField.m in Sources */,
 				501D605E190ED1BF004D94C4 /* PKTDateItemFieldValue.m in Sources */,
 				50060229196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m in Sources */,
