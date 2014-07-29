@@ -71,6 +71,13 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   }
 }
 
+- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret {
+  PKTClient *client = [self init];
+  [client setupWithAPIKey:key secret:secret];
+  
+  return client;
+}
+
 - (void)dealloc {
   [self removeObserver:self forKeyPath:NSStringFromSelector(@selector(isAuthenticated)) context:kIsAuthenticatedContext];
 }
@@ -135,6 +142,9 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 #pragma mark - Configuration
 
 - (void)setupWithAPIKey:(NSString *)key secret:(NSString *)secret {
+  NSParameterAssert(key);
+  NSParameterAssert(secret);
+  
   self.apiKey = key;
   self.apiSecret = secret;
   

@@ -51,6 +51,17 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  */
 - (instancetype)initWithHTTPClient:(PKTHTTPClient *)client;
 
+/**
+ *  Initialize a client with an API key and secret. This is equivalent to calling -init followed by
+ *  setupWithAPIKey:secret:.
+ *
+ *  @param key    The Podio API key
+ *  @param secret The Podio API secret matching the key
+ *
+ *  @return The initialized client.
+ */
+- (instancetype)initWithAPIKey:(NSString *)key secret:(NSString *)secret;
+
 /** Configure the default client with a Podio API key/secret pair.
  *
  * @see https://developers.podio.com/api-key
