@@ -7,7 +7,6 @@
 //
 
 #import "PKTAppField.h"
-#import "PKTAppFieldConfig.h"
 #import "PKTCategoryOption.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"

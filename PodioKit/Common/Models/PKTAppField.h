@@ -7,8 +7,8 @@
 //
 
 #import "PKTModel.h"
+#import "PKTAppFieldConfig.h"
 
-@class PKTAppFieldConfig;
 @class PKTCategoryOption;
 
 typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
