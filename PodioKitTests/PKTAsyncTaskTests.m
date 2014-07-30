@@ -126,6 +126,13 @@
   expect(completed2).will.beTruthy();
 }
 
+- (void)testWrappingTasks {
+  // TODO
+  PKTAsyncTask *arrayTask = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver finishWithResult:@[1, 2, 3]];
+  }];
+}
+
 #pragma mark - Helpers
 
 - (PKTAsyncTask *)taskWithCompletion:(void (^)(PKTAsyncTaskResolver *resolver))completion {

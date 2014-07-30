@@ -32,17 +32,17 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 #pragma mark - API
 
-+ (PKTRequestTaskHandle *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
++ (PKTAsyncTask *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *items, NSError *error))completion;
++ (PKTAsyncTask *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *items, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-+ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-+ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
 
-- (PKTRequestTaskHandle *)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 

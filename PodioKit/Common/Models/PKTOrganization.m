@@ -35,38 +35,40 @@
 
 #pragma mark - API
 
-+ (PKTRequestTaskHandle *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
-  Class objectClass = [self class];
++ (PKTAsyncTask *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
+  NSParameterAssert(completion);
+  
   PKTRequest *request = [PKTOrganizationsAPI requestForAllOrganizations];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    NSArray *orgs = nil;
-    
-    if (!error) {
-      orgs = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *orgDict) {
-        return [[objectClass alloc] initWithDictionary:orgDict];
-      }];
-    }
-    
-    if (completion) completion(orgs, error);
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *orgDict) {
+      return [[self alloc] initWithDictionary:orgDict];
+    }];
+  }] onSuccess:^(NSArray *orgs) {
+    completion(orgs, nil);
+  } onError:^(NSError *error) {
+    completion(nil, error);
   }];
 
-  return handle;
+  return task;
 }
 
-+ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
-  Class objectClass = [self class];
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
+  NSParameterAssert(completion);
+  
   PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:organizationID];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    PKTOrganization *org = nil;
-    
-    if (!error) {
-      org = [[objectClass alloc] initWithDictionary:response.body];
-    }
-    
-    if (completion) completion(org, error);
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
+  }] onSuccess:^(PKTOrganization *org) {
+    completion(org, nil);
+  } onError:^(NSError *error) {
+    completion(nil, error);
   }];
 
-  return handle;
+  return task;
 }
 
 @end

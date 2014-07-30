@@ -10,14 +10,13 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "PKTClient.h"
 #import "PKTHTTPClient.h"
-#import "PKTRequestTaskDescriptor.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTUsersAPI.h"
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
 #import "NSString+PKTBase64.h"
-#import "PKTRequestTaskHandle.h"
+#import "PKTAsyncTask.h"
 
 @interface PKTClientTests : XCTestCase
 
@@ -106,12 +105,12 @@
   [PKTHTTPStubs stubResponseForPath:request.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTAsyncTask *task = [[self.testClient refreshToken] onSuccess:^(id result) {
     completed = YES;
   }];
   
-  expect(descriptor).notTo.beNil();
-  expect(descriptor.task.currentRequest.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect(task).notTo.beNil();
+  expect(task.currentRequest.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
 
   expect(completed).will.beTruthy();
   expect(self.testClient.isAuthenticated).to.beTruthy();

@@ -9,10 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @class PKTFile;
-@class PKTRequestTaskHandle;
+@class PKTAsyncTask;
 
 @interface PKTImageDownloader : NSObject
 
-+ (PKTRequestTaskHandle *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion;
++ (PKTAsyncTask *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion;
 
 @end

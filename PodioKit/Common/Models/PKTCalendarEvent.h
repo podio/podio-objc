@@ -9,7 +9,7 @@
 #import "PKTModel.h"
 #import "PKTConstants.h"
 
-@class PKTApp, PKTRequestTaskHandle;
+@class PKTApp, PKTAsyncTask;
 
 @interface PKTCalendarEvent : PKTModel
 
@@ -28,7 +28,7 @@
 
 #pragma mark - API
 
-+ (PKTRequestTaskHandle *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate completion:(void (^)(NSArray *events, NSError *error))completion;
-+ (PKTRequestTaskHandle *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority completion:(void (^)(NSArray *events, NSError *error))completion;
++ (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
++ (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
 
 @end

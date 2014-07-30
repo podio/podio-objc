@@ -8,7 +8,7 @@
 
 #import "PKTModel.h"
 
-@class PKTByLine, PKTRequestTaskHandle;
+@class PKTByLine, PKTAsyncTask;
 
 @interface PKTStatus : PKTModel
 
@@ -19,14 +19,14 @@
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 @property (nonatomic, copy, readonly) NSArray *comments;
 
-+ (PKTRequestTaskHandle *)fetchWithID:(NSUInteger)statusID completion:(void (^)(PKTStatus *status, NSError *error))completion;
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)statusID completion:(void (^)(PKTStatus *status, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID completion:(void (^)(PKTStatus *status, NSError *error))completion;
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID completion:(void (^)(PKTStatus *status, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files completion:(void (^)(PKTStatus *status, NSError *error))completion;
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files completion:(void (^)(PKTStatus *status, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTStatus *status, NSError *error))completion;
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTStatus *status, NSError *error))completion;
 
-+ (PKTRequestTaskHandle *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTStatus *status, NSError *error))completion;
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTStatus *status, NSError *error))completion;
 
 @end

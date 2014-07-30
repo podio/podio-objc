@@ -50,26 +50,23 @@
 
 #pragma mark - API
 
-+ (PKTRequestTaskHandle *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate completion:(void (^)(NSArray *events, NSError *error))completion {
-  return [self fetchAllFromDate:fromDate toDate:toDate priority:0 completion:completion];
++ (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
+  return [self fetchAllFromDate:fromDate toDate:toDate priority:0];
 }
 
-+ (PKTRequestTaskHandle *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority completion:(void (^)(NSArray *events, NSError *error))completion {
-  Class objectClass = [self class];
++ (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
   PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    NSArray *events = nil;
-    
-    if (!error) {
-      events = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
-        return [[objectClass alloc] initWithDictionary:dict];
-      }];
-    }
-    
-    if (completion) completion(events, error);
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+      return [[objectClass alloc] initWithDictionary:dict];
+    }];
   }];
-
-  return handle;
+  
+  return task;
 }
 
 @end

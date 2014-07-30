@@ -12,33 +12,33 @@
 #import "UIButton+PKTRemoteImage.h"
 #import "PKTImageDownloader.h"
 #import "PKTMacros.h"
-#import "PKTRequestTaskHandle.h"
+#import "PKTAsyncTask.h"
 
 static const char kCurrentImageTaskKey;
 static const char kCurrentBackgroundImageTaskKey;
 
 @interface UIButton ()
 
-@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTRequestTaskHandle *pkt_currentImageTask;
-@property (nonatomic, strong, setter = pkt_setCurrentBackgroundImageTask:) PKTRequestTaskHandle *pkt_currentBackgroundImageTask;
+@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTAsyncTask *pkt_currentImageTask;
+@property (nonatomic, strong, setter = pkt_setCurrentBackgroundImageTask:) PKTAsyncTask *pkt_currentBackgroundImageTask;
 
 @end
 
 @implementation UIButton (PKTRemoteImage)
 
-- (PKTRequestTaskHandle *)pkt_currentImageTask {
+- (PKTAsyncTask *)pkt_currentImageTask {
   return objc_getAssociatedObject(self, &kCurrentImageTaskKey);
 }
 
-- (void)pkt_setCurrentImageTask:(PKTRequestTaskHandle *)pkt_currentImageTask {
+- (void)pkt_setCurrentImageTask:(PKTAsyncTask *)pkt_currentImageTask {
   objc_setAssociatedObject(self, &kCurrentImageTaskKey, pkt_currentImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (PKTRequestTaskHandle *)pkt_currentBackgroundImageTask {
+- (PKTAsyncTask *)pkt_currentBackgroundImageTask {
   return objc_getAssociatedObject(self, &kCurrentBackgroundImageTaskKey);
 }
 
-- (void)pkt_setCurrentBackgroundImageTask:(PKTRequestTaskHandle *)pkt_currentBackgroundImageTask {
+- (void)pkt_setCurrentBackgroundImageTask:(PKTAsyncTask *)pkt_currentBackgroundImageTask {
   objc_setAssociatedObject(self, &kCurrentBackgroundImageTaskKey, pkt_currentBackgroundImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 

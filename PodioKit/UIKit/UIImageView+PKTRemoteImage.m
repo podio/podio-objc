@@ -13,23 +13,23 @@
 #import "UIImageView+PKTRemoteImage.h"
 #import "PKTImageDownloader.h"
 #import "PKTMacros.h"
-#import "PKTRequestTaskHandle.h"
+#import "PKTAsyncTask.h"
 
 static const char kCurrentImageTaskKey;
 
 @interface UIImageView ()
 
-@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTRequestTaskHandle *pkt_currentImageTask;
+@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTAsyncTask *pkt_currentImageTask;
 
 @end
 
 @implementation UIImageView (PKTRemoteImage)
 
-- (PKTRequestTaskHandle *)pkt_currentImageTask {
+- (PKTAsyncTask *)pkt_currentImageTask {
   return objc_getAssociatedObject(self, &kCurrentImageTaskKey);
 }
 
-- (void)pkt_setCurrentImageTask:(PKTRequestTaskHandle *)pkt_currentImageTask {
+- (void)pkt_setCurrentImageTask:(PKTAsyncTask *)pkt_currentImageTask {
   objc_setAssociatedObject(self, &kCurrentImageTaskKey, pkt_currentImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
