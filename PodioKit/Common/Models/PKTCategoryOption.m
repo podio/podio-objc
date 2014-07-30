@@ -25,4 +25,18 @@
   }];
 }
 
+#pragma mark - NSObject
+
+- (NSUInteger)hash {
+  return [@(self.optionID) hash];
+}
+
+- (BOOL)isEqual:(id)object {
+  if (![object isKindOfClass:[self class]]) return NO;
+  
+  PKTCategoryOption *option = object;
+  
+  return option.optionID == self.optionID;
+}
+
 @end
