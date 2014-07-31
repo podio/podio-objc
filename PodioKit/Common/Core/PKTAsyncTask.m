@@ -97,8 +97,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   
   NSArray *keysAffectedByState = @[
                                    NSStringFromSelector(@selector(succeeded)),
-                                   NSStringFromSelector(@selector(errored)),
-                                   NSStringFromSelector(@selector(isCancelled))
+                                   NSStringFromSelector(@selector(errored))
                                    ];
   
   if ([keysAffectedByState containsObject:key]) {
