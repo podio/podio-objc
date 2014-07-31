@@ -12,6 +12,7 @@
 #import "PKTAuthenticationAPI.h"
 #import "PKTMacros.h"
 #import "NSMutableURLRequest+PKTHeaders.h"
+#import "NSError+PKTErrors.h"
 
 NSString * const PKTClientAuthenticationStateDidChangeNotification = @"PKTClientAuthenticationStateDidChangeNotification";
 
@@ -213,7 +214,13 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   }];
   
   [self.authenticationTask onError:^(NSError *error) {
-    weakSelf.authenticationTask = nil;
+    // If the authentication failed server side, reset the token
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    if ([error.domain isEqualToString:PodioServerErrorDomain] && error.code > 0) {
+      strongSelf.oauthToken = nil;
+    }
+    
+    strongSelf.authenticationTask = nil;
   }];
 
   return self.authenticationTask;

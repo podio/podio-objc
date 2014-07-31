@@ -191,9 +191,6 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   if (self.cancelBlock) {
     self.cancelBlock();
   }
-  
-  // We consider a cancellation a silent failure.
-  [self failWithError:nil];
 }
 
 #pragma mark - Helpers

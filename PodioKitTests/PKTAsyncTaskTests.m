@@ -17,14 +17,13 @@
 
 - (void)testCanOnlyFinish {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
-    [resolver finishWithResult:@"Value1"];
+    [resolver succeedWithResult:@"Value1"];
   }];
   
   __block BOOL finished = NO;
   __block BOOL errored = NO;
-  __block BOOL cancelled = NO;
   
-  [task onFinish:^(id x) {
+  [task onSuccess:^(id x) {
     finished = YES;
   }];
   
@@ -32,13 +31,8 @@
     errored = YES;
   }];
   
-  [task onCancel:^{
-    cancelled = YES;
-  }];
-  
   expect(finished).will.beTruthy();
   expect(errored).notTo.beTruthy();
-  expect(cancelled).notTo.beTruthy();
 }
 
 - (void)testCanOnlyError {
@@ -48,59 +42,27 @@
   
   __block BOOL finished = NO;
   __block BOOL errored = NO;
-  __block BOOL cancelled = NO;
   
-  [task onFinish:^(id x) {
+  [task onSuccess:^(id x) {
     finished = YES;
   }];
   
   [task onError:^(NSError *error) {
     errored = YES;
-  }];
-  
-  [task onCancel:^{
-    cancelled = YES;
   }];
   
   expect(errored).will.beTruthy();
   expect(finished).notTo.beTruthy();
-  expect(cancelled).notTo.beTruthy();
-}
-
-- (void)testCanOnlyCancel {
-  PKTAsyncTask *task = [self taskWithCompletion:nil];
-  
-  __block BOOL finished = NO;
-  __block BOOL errored = NO;
-  __block BOOL cancelled = NO;
-  
-  [task onFinish:^(id x) {
-    finished = YES;
-  }];
-  
-  [task onError:^(NSError *error) {
-    errored = YES;
-  }];
-  
-  [task onCancel:^{
-    cancelled = YES;
-  }];
-  
-  [task cancel];
-  
-  expect(cancelled).will.beTruthy();
-  expect(finished).notTo.beTruthy();
-  expect(errored).notTo.beTruthy();
 }
 
 - (void)testCanOnlyFinishOnlyOnce {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
-    [resolver finishWithResult:@"Value1"];
-    [resolver finishWithResult:@"Value2"];
+    [resolver succeedWithResult:@"Value1"];
+    [resolver succeedWithResult:@"Value2"];
   }];
   
   __block id value = NO;
-  [task onFinish:^(id x) {
+  [task onSuccess:^(id x) {
     value = x;
   }];
   
@@ -109,16 +71,16 @@
 
 - (void)testCanOnlyFinishForMultipleCallbacks {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
-    [resolver finishWithResult:@[]];
+    [resolver succeedWithResult:@[]];
   }];
   
   __block BOOL completed1 = NO;
-  [task onFinish:^(id x) {
+  [task onSuccess:^(id x) {
     completed1 = YES;
   }];
   
   __block BOOL completed2 = NO;
-  [task onFinish:^(id x) {
+  [task onSuccess:^(id x) {
     completed2 = YES;
   }];
   
@@ -127,10 +89,20 @@
 }
 
 - (void)testWrappingTasks {
-  // TODO
   PKTAsyncTask *arrayTask = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
-    [resolver finishWithResult:@[1, 2, 3]];
+    [resolver succeedWithResult:@[@1, @2, @3]];
   }];
+  
+  PKTAsyncTask *task = [arrayTask taskByMappingResult:^id(NSArray *array) {
+    return @10;
+  }];
+  
+  __block id value = nil;
+  [task onSuccess:^(id result) {
+    value = result;
+  }];
+  
+  expect(value).will.equal(@10);
 }
 
 #pragma mark - Helpers
