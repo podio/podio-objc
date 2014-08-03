@@ -105,6 +105,47 @@
   expect(value).will.equal(@10);
 }
 
+- (void)testMergingTasks {
+  PKTAsyncTask *task1 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@1];
+  }];
+  PKTAsyncTask *task2 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@2];
+  }];
+  
+  __block id mergedResult = nil;
+  [[PKTAsyncTask taskByMergingTasks:@[task1, task2]] onSuccess:^(id result) {
+    mergedResult = result;
+  }];
+  
+  expect(mergedResult).will.equal(@[@1, @2]);
+}
+
+- (void)testFailingFirstOfMergedTasksWillFailMergedTask {
+  PKTAsyncTask *task1 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver failWithError:[NSError errorWithDomain:@"PodioKit" code:0 userInfo:nil]];
+  }];
+  
+  PKTAsyncTask *task2 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@2];
+  }];
+  
+
+  __block BOOL task2Failed = NO;
+  [task2 onError:^(NSError *error) {
+    task2Failed = YES;
+  }];
+  
+  PKTAsyncTask *mergedTask = [PKTAsyncTask taskByMergingTasks:@[task1, task2]];
+  
+  __block NSError *mergedError = nil;
+  [mergedTask onError:^(NSError *error) {
+    mergedError = error;
+  }];
+  
+  expect(mergedError).willNot.beNil();
+}
+
 #pragma mark - Helpers
 
 - (PKTAsyncTask *)taskWithCompletion:(void (^)(PKTAsyncTaskResolver *resolver))completion {

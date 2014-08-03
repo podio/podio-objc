@@ -62,6 +62,51 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   return task;
 }
 
++ (instancetype)taskByMergingTasks:(NSArray *)tasks {
+  return [self taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    NSMutableArray *results = [NSMutableArray new];
+    NSLock *lock = [NSLock new];
+    
+    NSMutableSet *remainingTasks = [NSMutableSet setWithArray:tasks];
+    
+    void (^cancelRemainingBlock) (void) = ^{
+      // Clear the backlog of tasks and cancel remaining ones
+      [lock lock];
+      
+      NSSet *tasksToCancel = [remainingTasks copy];
+      [remainingTasks removeAllObjects];
+      
+      for (PKTAsyncTask *task in tasksToCancel) {
+        [task cancel];
+      }
+      
+      [lock unlock];
+    };
+    
+    for (PKTAsyncTask *task in tasks) {
+      [task onSuccess:^(id result) {
+        // Collect results
+        id res = result ? result : [NSNull null];
+        
+        [lock lock];
+        [results addObject:res];
+        [remainingTasks removeObject:task];
+        [lock unlock];
+        
+        if ([remainingTasks count] == 0) {
+          [resolver succeedWithResult:results];
+        }
+      } onError:^(NSError *error) {
+        cancelRemainingBlock();
+        
+        [resolver failWithError:error];
+      }];
+    }
+    
+    return cancelRemainingBlock;
+  }];
+}
+
 - (instancetype)taskByMappingResult:(id (^)(id result))mappingBlock {
   return [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
     
