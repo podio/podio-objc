@@ -108,43 +108,31 @@
 
 #pragma mark - Public
 
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)taskID completion:(void (^)(PKTTask *task, NSError *error))completion {
-  NSParameterAssert(completion);
-  
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)taskID {
   PKTRequest *request = [PKTTasksAPI requestForTaskWithID:taskID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
-  }] onSuccess:^(PKTTask *task) {
-    completion(task, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);
   }];
 
   return task;
 }
 
-+ (PKTAsyncTask *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *tasks, NSError *error))completion {
-  NSParameterAssert(completion);
-  
++ (PKTAsyncTask *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKTRequest *request = [PKTTasksAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
       return [[self alloc] initWithDictionary:taskDict];
     }];
-  }] onSuccess:^(NSArray *tasks) {
-    completion(tasks, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);
   }];
 
   return task;
 }
 
-- (PKTAsyncTask *)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)save {
   NSAssert(self.text, @"The 'text' property of task %@ cannot be nil", self);
   
   NSArray *fileIDs = [self.files valueForKey:@"fileID"];
@@ -178,10 +166,6 @@
   
   [task onSuccess:^(PKTResponse *response) {
     weakSelf.taskID = [response.body[@"task_id"] unsignedIntegerValue];
-    
-    if (completion) completion(response, nil);
-  } onError:^(NSError *error) {
-    if (completion) completion(nil, error);
   }];
 
   return task;

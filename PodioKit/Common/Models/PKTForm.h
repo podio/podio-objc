@@ -27,6 +27,6 @@ typedef NS_ENUM(NSUInteger, PKTFormStatus) {
 @property (nonatomic, copy, readonly) PKTFormSettings *settings;
 @property (nonatomic, copy, readonly) NSArray *fields; // An array of PKTFormField objects
 
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)formID completion:(void (^)(PKTForm *form, NSError *error))completion;
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)formID;
 
 @end

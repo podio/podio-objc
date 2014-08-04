@@ -21,8 +21,8 @@
 @property (nonatomic, copy, readonly) NSURL *link;
 @property (nonatomic, copy, readonly) NSArray *fields;
 
-+ (PKTAsyncTask *)fetchAppWithID:(NSUInteger)appID completion:(void (^)(PKTApp *app, NSError *error))completion;
-+ (PKTAsyncTask *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID completion:(void (^)(NSArray *apps, NSError *error))completion;
++ (PKTAsyncTask *)fetchAppWithID:(NSUInteger)appID;
++ (PKTAsyncTask *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID;
 
 - (PKTAppField *)fieldWithExternalID:(NSString *)externalID;
 

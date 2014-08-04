@@ -35,17 +35,19 @@ static const char kCurrentImageTaskKey;
 
 #pragma mark - Public
 
-- (void)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage {
   [self pkt_cancelCurrentImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  self.pkt_currentImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     weakSelf.image = image;
-  } completion:^(UIImage *image, NSError *error) {
+  }] onSuccess:^(id result) {
     weakSelf.pkt_currentImageTask = nil;
-    
-    if (completion) completion(image, error);
+  } onError:^(NSError *error) {
+    weakSelf.pkt_currentImageTask = nil;
   }];
+  
+  return self.pkt_currentImageTask;
 }
 
 - (void)pkt_cancelCurrentImageDownload {

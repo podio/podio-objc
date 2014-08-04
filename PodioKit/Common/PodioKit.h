@@ -33,7 +33,7 @@
  *
  * @return The resulting request task.
  */
-+ (PKTAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
++ (PKTAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password;
 
 /** Authenticate the default client as an app.
  *
@@ -45,7 +45,7 @@
  *
  * @return The resulting request task.
  */
-+ (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
++ (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 
 /** Configure authentication parameters for authenticating the default client as an app.
  *

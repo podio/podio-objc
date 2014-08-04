@@ -45,18 +45,12 @@
 
 #pragma mark - Public
 
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)formID completion:(void (^)(PKTForm *form, NSError *error))completion {
-  NSParameterAssert(completion);
-  
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)formID {
   PKTRequest *request = [PKTFormsAPI requestForFormWithID:formID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
-  }] onSuccess:^(PKTForm *form) {
-    completion(form, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);
   }];
 
   return task;

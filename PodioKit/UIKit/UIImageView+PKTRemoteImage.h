@@ -14,7 +14,7 @@
 
 @interface UIImageView (PKTRemoteImage)
 
-- (void)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage;
 
 - (void)pkt_cancelCurrentImageDownload;
 

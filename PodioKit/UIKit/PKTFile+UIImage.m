@@ -14,9 +14,8 @@
 
 @implementation PKTFile (UIImage)
 
-- (PKTAsyncTask *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion {
+- (PKTAsyncTask *)downloadImage {
   NSParameterAssert(self.link);
-  NSParameterAssert(completion);
   
   PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
@@ -41,12 +40,6 @@
     return ^{
       [weakTask cancel];
     };
-  }];
-  
-  [task onSuccess:^(UIImage *image) {
-    completion(image, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);
   }];
   
   return task;

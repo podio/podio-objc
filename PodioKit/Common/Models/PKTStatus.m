@@ -44,15 +44,11 @@
 
 #pragma mark - Private
 
-+ (PKTAsyncTask *)performRequestWithResultingStatusObject:(PKTRequest *)request completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTAsyncTask *)performRequestWithResultingStatusObject:(PKTRequest *)request {
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
-  }] onSuccess:^(PKTStatus *status) {
-    if (completion) completion(status, nil);
-  } onError:^(NSError *error) {
-    if (completion) completion(nil, error);;
   }];
   
   return task;
@@ -60,38 +56,37 @@
 
 #pragma mark - Public
 
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)statusID completion:(void (^)(PKTStatus *status, NSError *error))completion {
-  NSParameterAssert(completion);
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)statusID {
   PKTRequest *request = [PKTStatusAPI requestForStatusMessageWithID:statusID];
   
-  return [self performRequestWithResultingStatusObject:request completion:completion];
+  return [self performRequestWithResultingStatusObject:request];
 }
 
-+ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID {
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID];
   
-  return [self performRequestWithResultingStatusObject:request completion:completion];
+  return [self performRequestWithResultingStatusObject:request];
 }
 
-+ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID files:fileIDs];
   
-  return [self performRequestWithResultingStatusObject:request completion:completion];
+  return [self performRequestWithResultingStatusObject:request];
 }
 
-+ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedID:(NSUInteger)embedID completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedID:(NSUInteger)embedID {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID files:fileIDs embedID:embedID];
   
-  return [self performRequestWithResultingStatusObject:request completion:completion];
+  return [self performRequestWithResultingStatusObject:request];
 }
 
-+ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedURL:(NSURL *)embedURL completion:(void (^)(PKTStatus *status, NSError *error))completion {
++ (PKTAsyncTask *)addNewStatusMessageWithText:(NSString *)text spaceID:(NSUInteger)spaceID files:(NSArray *)files embedURL:(NSURL *)embedURL {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTStatusAPI requestToAddNewStatusMessageWithText:text spaceID:spaceID files:fileIDs embedURL:embedURL];
   
-  return [self performRequestWithResultingStatusObject:request completion:completion];
+  return [self performRequestWithResultingStatusObject:request];
 }
 
 @end

@@ -19,7 +19,7 @@
 
 #pragma mark - API
 
-+ (PKTAsyncTask *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion;
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion;
++ (PKTAsyncTask *)fetchAll;
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID;
 
 @end

@@ -15,6 +15,6 @@
 @property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *mail;
 
-+ (PKTAsyncTask *)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion;
++ (PKTAsyncTask *)fetchCurrent;
 
 @end

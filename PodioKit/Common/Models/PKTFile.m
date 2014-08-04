@@ -39,65 +39,44 @@
 
 #pragma mrk - API
 
-+ (PKTAsyncTask *)uploadWithData:(NSData *)data fileName:(NSString *)fileName completion:(void (^)(PKTFile *file, NSError *error))completion {
++ (PKTAsyncTask *)uploadWithData:(NSData *)data fileName:(NSString *)fileName {
   PKTRequest *request = [PKTFilesAPI requestToUploadFileWithData:data fileName:fileName];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
   Class klass = [self class];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [[klass alloc] initWithDictionary:response.body];
-  }] onSuccess:^(PKTFile *file) {
-    if (completion) completion(file, nil);
-  } onError:^(NSError *error) {
-    if (completion) completion(nil, error);;
   }];
 
   return task;
 }
 
-- (PKTAsyncTask *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType {
   PKTRequest *request = [PKTFilesAPI requestToAttachFileWithID:self.fileID referenceID:referenceID referenceType:referenceType];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
-  
-  [task onSuccess:^(PKTResponse *response) {
-    if (completion) completion(response, nil);
-  } onError:^(NSError *error) {
-    if (completion) completion(nil, error);;
-  }];
-  
+
   return task;
 }
 
-- (PKTAsyncTask *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion {
+- (PKTAsyncTask *)download {
   NSParameterAssert(self.link);
-  NSParameterAssert(completion);
   
   PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return response.body;
-  }] onSuccess:^(id body) {
-    completion(body, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);;
   }];
   
   return task;
 }
 
-- (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion {
+- (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath {
   NSParameterAssert(self.link);
   
   PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link toLocalFileWithPath:filePath];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
-  
-  [task onSuccess:^(id body) {
-    completion(@YES, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);;
-  }];
   
   return task;
 }

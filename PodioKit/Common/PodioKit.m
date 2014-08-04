@@ -15,11 +15,11 @@
   [[PKTClient currentClient] setupWithAPIKey:key secret:secret];
 }
 
-+ (PKTAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
++ (PKTAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password {
   return [[PKTClient currentClient] authenticateAsUserWithEmail:email password:password];
 }
 
-+ (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
++ (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
   return [[PKTClient currentClient] authenticateAsAppWithID:appID token:appToken];
 }
 

@@ -44,30 +44,34 @@ static const char kCurrentBackgroundImageTaskKey;
 
 #pragma mark - Public
 
-- (void)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage {
   [self pkt_cancelCurrentImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  self.pkt_currentImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     [weakSelf setImage:image forState:state];
-  } completion:^(UIImage *image, NSError *error) {
+  }] onSuccess:^(id result) {
     weakSelf.pkt_currentImageTask = nil;
-    
-    if (completion) completion(image, error);
+  } onError:^(NSError *error) {
+    weakSelf.pkt_currentImageTask = nil;
   }];
+  
+  return self.pkt_currentImageTask;
 }
 
-- (void)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
+- (PKTAsyncTask *)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage {
   [self pkt_cancelCurrentBackgroundImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  self.pkt_currentBackgroundImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentBackgroundImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     [weakSelf setBackgroundImage:image forState:state];
-  } completion:^(UIImage *image, NSError *error) {
+  }] onSuccess:^(id result) {
     weakSelf.pkt_currentBackgroundImageTask = nil;
-    
-    if (completion) completion(image, error);
+  } onError:^(NSError *error) {
+    weakSelf.pkt_currentBackgroundImageTask = nil;
   }];
+  
+  return self.pkt_currentBackgroundImageTask;
 }
 
 - (void)pkt_cancelCurrentImageDownload {

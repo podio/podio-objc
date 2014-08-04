@@ -32,17 +32,17 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 #pragma mark - API
 
-+ (PKTAsyncTask *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion;
++ (PKTAsyncTask *)fetchItemWithID:(NSUInteger)itemID;
 
-+ (PKTAsyncTask *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *items, NSError *error))completion;
++ (PKTAsyncTask *)fetchReferencesForItemWithID:(NSUInteger)itemID;
 
-+ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
-+ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending;
 
-+ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion;
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID;
 
-- (PKTAsyncTask *)fetchWithCompletion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)fetch;
 
 - (void)saveWithCompletion:(PKTRequestCompletionBlock)completion;
 

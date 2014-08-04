@@ -13,7 +13,12 @@
 
 @interface PKTFile (UIImage)
 
-- (PKTAsyncTask *)downloadImageWithCompletion:(void (^)(UIImage *image, NSError *error))completion;
+/**
+ *  Download the file as an UIImage.
+ *
+ *  @return A task
+ */
+- (PKTAsyncTask *)downloadImage;
 
 @end
 

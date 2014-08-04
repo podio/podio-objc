@@ -35,37 +35,25 @@
 
 #pragma mark - API
 
-+ (PKTAsyncTask *)fetchAllWithCompletion:(void (^)(NSArray *organizations, NSError *error))completion {
-  NSParameterAssert(completion);
-  
++ (PKTAsyncTask *)fetchAll {
   PKTRequest *request = [PKTOrganizationsAPI requestForAllOrganizations];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *orgDict) {
       return [[self alloc] initWithDictionary:orgDict];
     }];
-  }] onSuccess:^(NSArray *orgs) {
-    completion(orgs, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);
   }];
 
   return task;
 }
 
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID completion:(void (^)(PKTOrganization *organization, NSError *error))completion {
-  NSParameterAssert(completion);
-  
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID {
   PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:organizationID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [[requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
-  }] onSuccess:^(PKTOrganization *org) {
-    completion(org, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);
   }];
 
   return task;

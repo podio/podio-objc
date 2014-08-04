@@ -41,10 +41,10 @@ typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
 
 + (instancetype)taskWithText:(NSString *)text;
 
-+ (PKTAsyncTask *)fetchWithID:(NSUInteger)taskID completion:(void (^)(PKTTask *task, NSError *error))completion;
++ (PKTAsyncTask *)fetchWithID:(NSUInteger)taskID;
 
-+ (PKTAsyncTask *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *tasks, NSError *error))completion;
++ (PKTAsyncTask *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
-- (PKTAsyncTask *)saveWithCompletion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)save;
 
 @end
