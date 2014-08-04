@@ -22,8 +22,9 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
 
 + (instancetype)taskForBlock:(PKTAsyncTaskResolveBlock)block;
 
-- (instancetype)taskByMappingResult:(id (^)(id result))mappingBlock;
 + (instancetype)taskByMergingTasks:(NSArray *)tasks;
+- (instancetype)taskByMappingResult:(id (^)(id result))mappingBlock;
+- (instancetype)taskByPipingResultToTask:(PKTAsyncTask *(^)(id result))pipeBlock;
 
 - (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock;
 - (instancetype)onError:(PKTAsyncTaskErrorBlock)errorBlock;

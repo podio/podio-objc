@@ -8,6 +8,7 @@
 
 #import "PKTAsyncTask.h"
 #import "PKTMacros.h"
+#import "NSArray+PKTAdditions.h"
 
 typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   PKTAsyncTaskStatePending = 0,
@@ -67,17 +68,20 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 
 + (instancetype)taskByMergingTasks:(NSArray *)tasks {
   return [self taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
-    NSMutableArray *results = [NSMutableArray new];
+    NSMutableSet *pendingTasks = [NSMutableSet setWithArray:tasks];
+    
+    NSUInteger taskCount = [tasks count];
+    NSMutableDictionary *results = [NSMutableDictionary new];
+    
+    // We need a lock to synchronize access to the results dictionary and remaining tasks set.
     NSLock *lock = [NSLock new];
     
-    NSMutableSet *remainingTasks = [NSMutableSet setWithArray:tasks];
-    
     void (^cancelRemainingBlock) (void) = ^{
-      // Clear the backlog of tasks and cancel remaining ones
+      // Clear the backlog of tasks and cancel remaining ones.
       [lock lock];
       
-      NSSet *tasksToCancel = [remainingTasks copy];
-      [remainingTasks removeAllObjects];
+      NSSet *tasksToCancel = [pendingTasks copy];
+      [pendingTasks removeAllObjects];
       
       for (PKTAsyncTask *task in tasksToCancel) {
         [task cancel];
@@ -86,24 +90,39 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
       [lock unlock];
     };
     
+    NSUInteger pos = 0;
     for (PKTAsyncTask *task in tasks) {
+      
       [task onSuccess:^(id result) {
-        // Collect results
-        id res = result ? result : [NSNull null];
+        id res = result ?: [NSNull null];
         
         [lock lock];
-        [results addObject:res];
-        [remainingTasks removeObject:task];
+        
+        // Add the result to the results dictionary at the original position of the task,
+        // and remove the task from the list of pending tasks to avoid it from being
+        // cancelled if the combined task is cancelled later.
+        results[@(pos)] = res;
+        [pendingTasks removeObject:task];
+        
         [lock unlock];
         
-        if ([remainingTasks count] == 0) {
-          [resolver succeedWithResult:results];
+        if ([pendingTasks count] == 0) {
+          // All tasks have completed, collect the results and sort them in the
+          // tasks' original ordering
+          NSArray *positions = [NSArray pkt_arrayFromRange:NSMakeRange(0, taskCount)];
+          NSArray *orderedResults = [positions pkt_mappedArrayWithBlock:^id(NSNumber *pos) {
+            return results[pos];
+          }];
+          
+          [resolver succeedWithResult:orderedResults];
         }
       } onError:^(NSError *error) {
         cancelRemainingBlock();
         
         [resolver failWithError:error];
       }];
+      
+      ++pos;
     }
     
     return cancelRemainingBlock;
@@ -124,6 +143,35 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
     
     return ^{
       [weakSelf cancel];
+    };
+  }];
+}
+
+- (instancetype)taskByPipingResultToTask:(PKTAsyncTask *(^)(id result))pipeBlock {
+  NSParameterAssert(pipeBlock);
+  
+  return [[self class] taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    __block PKTAsyncTask *pipedTask = nil;
+    
+    [self onSuccess:^(id result1) {
+      pipedTask = pipeBlock(result1);
+      
+      [pipedTask onSuccess:^(id result2) {
+        [resolver succeedWithResult:result2];
+      } onError:^(NSError *error) {
+        [resolver failWithError:error];
+      }];
+    } onError:^(NSError *error) {
+      [resolver failWithError:error];
+    }];
+    
+    // Cancel both tasks in the case of the parent task being cancelled.
+    PKT_WEAK_SELF weakSelf = self;
+    PKT_WEAK(pipedTask) weakPipedTask = pipedTask;
+    
+    return ^{
+      [weakSelf cancel];
+      [weakPipedTask cancel];
     };
   }];
 }

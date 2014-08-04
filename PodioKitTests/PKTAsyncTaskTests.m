@@ -129,7 +129,6 @@
   PKTAsyncTask *task2 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@2];
   }];
-  
 
   __block BOOL task2Failed = NO;
   [task2 onError:^(NSError *error) {
@@ -146,17 +145,69 @@
   expect(mergedError).willNot.beNil();
 }
 
+- (void)testPipingTasks {
+  PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@3];
+  }];
+  
+  PKTAsyncTask *pipedTask = [task taskByPipingResultToTask:^PKTAsyncTask *(NSNumber *num) {
+    return [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+      NSUInteger number =  [num unsignedIntegerValue];
+      [resolver succeedWithResult:@(number * number)];
+    }];
+  }];
+  
+  __block NSNumber *pipedTaskValue = nil;
+  [pipedTask onSuccess:^(id result) {
+    pipedTaskValue = result;
+  }];
+  
+  expect(pipedTaskValue).will.equal(@9);
+}
+
+- (void)testCancellingPipedTaskShouldCancelOriginalTasks {
+  PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@3];
+  }];
+  
+  PKTAsyncTask *pipedTask = [task taskByPipingResultToTask:^PKTAsyncTask *(NSNumber *num) {
+    return [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+      NSUInteger number =  [num unsignedIntegerValue];
+      [resolver succeedWithResult:@(number * number)];
+    }];
+  }];
+
+  __block NSError *taskError = nil;
+  [task onError:^(NSError *error) {
+    taskError = error;
+  }];
+  
+  __block NSError *pipedError = nil;
+  [pipedTask onError:^(NSError *error) {
+   pipedError = error;
+  }];
+  
+  [pipedTask cancel];
+   
+  expect(pipedError).willNot.beNil();
+  expect(taskError).willNot.beNil();
+}
+
 #pragma mark - Helpers
 
 - (PKTAsyncTask *)taskWithCompletion:(void (^)(PKTAsyncTaskResolver *resolver))completion {
   return [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-      dispatch_async(dispatch_get_main_queue(), ^{
-        if (completion) completion(resolver);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+      dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+          if (completion) completion(resolver);
+        });
       });
     });
     
-    return nil;
+    return ^{
+      [resolver failWithError:[NSError errorWithDomain:@"PodioKit" code:0 userInfo:nil]];
+    };
   }];
 }
 
