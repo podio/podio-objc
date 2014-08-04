@@ -11,6 +11,7 @@
 #import <UIKit/UIKit.h>
 
 @class PKTFile;
+@class PKTAsyncTask;
 
 @interface UIImageView (PKTRemoteImage)
 
