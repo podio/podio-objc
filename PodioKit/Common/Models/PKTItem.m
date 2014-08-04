@@ -239,23 +239,28 @@
   return task;
 }
 
-- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)save {
+  __block PKTAsyncTask *task = nil;
+  
   PKTClient *client = [PKTClient currentClient];
-
+  
   [client performBlock:^{
-    [[PKTApp fetchAppWithID:self.appID] onSuccess:^(PKTApp *app) {
+    task = [[PKTApp fetchAppWithID:self.appID] taskByPipingResultToTask:^PKTAsyncTask *(PKTApp *app) {
+      __block PKTAsyncTask *saveTask = nil;
+
       NSArray *itemFields = [self allFieldsToSaveForApp:app];
-      
       [client performBlock:^{
-        [self saveWithItemFields:itemFields completion:completion];
+        saveTask = [self saveWithItemFields:itemFields];
       }];
-    } onError:^(NSError *error) {
-      if (completion) completion(nil, error);
+      
+      return saveTask;
     }];
   }];
+  
+  return task;
 }
 
-- (PKTAsyncTask *)saveWithItemFields:(NSArray *)itemFields completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)saveWithItemFields:(NSArray *)itemFields {
   NSDictionary *fields = [self preparedFieldValuesForItemFields:itemFields];
   NSArray *files = self.fileIDs;
   
@@ -290,10 +295,6 @@
     }
     
     [strongSelf.unsavedFields removeAllObjects];
-    
-    completion(response, nil);
-  } onError:^(NSError *error) {
-    completion(nil, error);;
   }];
 
   return task;
