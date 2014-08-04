@@ -21,6 +21,7 @@
 + (PKRequest *)requestForNotificationWithNotificationId:(NSUInteger)notificationId;
 
 + (PKRequest *)requestToMarkNotificationAsViewedWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
++ (PKRequest *)requestToMarkNotificationAsUnviewedWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 + (PKRequest *)requestToMarkNotificationAsUnviewedWithNotificationId:(NSUInteger)notificationId;
 + (PKRequest *)requestToMarkAllNotificationsAsViewed;
 

@@ -62,6 +62,11 @@
   return [PKRequest requestWithURI:uri method:PKRequestMethodPOST];
 }
 
++ (PKRequest *)requestToMarkNotificationAsUnviewedWithReferenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType {
+  NSString *uri = [NSString stringWithFormat:@"/notification/%@/%ld/viewed", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
+}
+
 + (PKRequest *)requestToMarkNotificationAsUnviewedWithNotificationId:(NSUInteger)notificationId {
   NSString *uri = [NSString stringWithFormat:@"/notification/%ld/viewed", (unsigned long)notificationId];
   return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
