@@ -218,9 +218,9 @@
     }];
     
     return @{
-      @"Items" : items,
-      @"Filtered" : @(filteredCount),
-      @"Total" : @(totalCount)
+      @"items" : items,
+      @"filtered" : @(filteredCount),
+      @"total" : @(totalCount)
     };
   }];
 
