@@ -47,7 +47,7 @@
 + (PKTAsyncTask *)performRequestWithResultingStatusObject:(PKTRequest *)request {
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
   }];
   

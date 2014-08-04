@@ -10,6 +10,7 @@
 
 @class PKTAsyncTaskResolver;
 
+typedef void (^PKTAsyncTaskCompleteBlock) (id result, NSError *error);
 typedef void (^PKTAsyncTaskSuccessBlock) (id result);
 typedef void (^PKTAsyncTaskErrorBlock) (NSError *error);
 typedef void (^PKTAsyncTaskCancelBlock) (void);
@@ -22,16 +23,17 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
 
 + (instancetype)taskForBlock:(PKTAsyncTaskResolveBlock)block;
 
-+ (instancetype)taskByMergingTasks:(NSArray *)tasks;
-- (instancetype)taskByMappingResult:(id (^)(id result))mappingBlock;
-- (instancetype)taskByPipingResultToTask:(PKTAsyncTask *(^)(id result))pipeBlock;
-
+- (instancetype)onComplete:(PKTAsyncTaskCompleteBlock)completeBlock;
 - (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock;
 - (instancetype)onError:(PKTAsyncTaskErrorBlock)errorBlock;
-
 - (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock onError:(PKTAsyncTaskErrorBlock)errorBlock;
 
 - (void)cancel;
+
+// Combinators
++ (instancetype)when:(NSArray *)tasks;
+- (instancetype)map:(id (^)(id result))block;
+- (instancetype)flattenMap:(PKTAsyncTask *(^)(id result))block;
 
 @end
 

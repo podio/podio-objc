@@ -138,7 +138,7 @@
 + (PKTAsyncTask *)fetchProfileWithRequest:(PKTRequest *)request {
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
 
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
   }];
   
@@ -148,7 +148,7 @@
 + (PKTAsyncTask *)fetchProfilesWithRequest:(PKTRequest *)request {
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     NSArray *profileDicts = ![response.body isKindOfClass:[NSArray class]] ? @[response.body] : response.body;
     
     NSArray *profiles = [profileDicts pkt_mappedArrayWithBlock:^id(NSDictionary *profileDict) {

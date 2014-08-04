@@ -60,7 +60,7 @@
   
   Class objectClass = [self class];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
       return [[objectClass alloc] initWithDictionary:dict];
     }];

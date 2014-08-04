@@ -137,7 +137,7 @@
   PKTRequest *request = [PKTItemsAPI requestForItemWithID:itemID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
   }];
 
@@ -149,7 +149,7 @@
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   Class objectClass = [self class];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     NSMutableArray *items = nil;
     
     for (NSDictionary *dict in response.body) {
@@ -202,7 +202,7 @@
 + (PKTAsyncTask *)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID {
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     NSArray *itemDicts = response.body[@"items"];
     
     NSUInteger filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
@@ -245,7 +245,7 @@
   PKTClient *client = [PKTClient currentClient];
   
   [client performBlock:^{
-    task = [[PKTApp fetchAppWithID:self.appID] taskByPipingResultToTask:^PKTAsyncTask *(PKTApp *app) {
+    task = [[PKTApp fetchAppWithID:self.appID] flattenMap:^PKTAsyncTask *(PKTApp *app) {
       __block PKTAsyncTask *saveTask = nil;
 
       NSArray *itemFields = [self allFieldsToSaveForApp:app];

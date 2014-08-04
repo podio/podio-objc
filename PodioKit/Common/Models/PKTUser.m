@@ -26,7 +26,7 @@
   PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     PKTUser *user = nil;
     
     NSDictionary *userDict = [response.body objectForKey:@"user"];

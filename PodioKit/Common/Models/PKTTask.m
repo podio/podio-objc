@@ -112,7 +112,7 @@
   PKTRequest *request = [PKTTasksAPI requestForTaskWithID:taskID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
   }];
 
@@ -123,7 +123,7 @@
   PKTRequest *request = [PKTTasksAPI requestForTasksWithParameters:parameters offset:offset limit:limit];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
       return [[self alloc] initWithDictionary:taskDict];
     }];

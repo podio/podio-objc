@@ -39,7 +39,7 @@
   PKTRequest *request = [PKTOrganizationsAPI requestForAllOrganizations];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *orgDict) {
       return [[self alloc] initWithDictionary:orgDict];
     }];
@@ -52,7 +52,7 @@
   PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:organizationID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTAsyncTask *task = [requestTask taskByMappingResult:^id(PKTResponse *response) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     return [[self alloc] initWithDictionary:response.body];
   }];
 

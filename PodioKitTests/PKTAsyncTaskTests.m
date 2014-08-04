@@ -15,7 +15,7 @@
 
 @implementation PKTAsyncTaskTests
 
-- (void)testCanOnlyFinish {
+- (void)testCanOnlySucceed {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@"Value1"];
   }];
@@ -55,6 +55,23 @@
   expect(finished).notTo.beTruthy();
 }
 
+- (void)testComplete {
+  PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@"Value1"];
+  }];
+  
+  __block id taskResult = nil;
+  __block NSError *taskError = nil;
+  
+  [task onComplete:^(id result, NSError *error) {
+    taskResult = result;
+    taskError = error;
+  }];
+
+  expect(taskResult).willNot.beNil();
+  expect(taskError).to.beNil();
+}
+
 - (void)testCanOnlyFinishOnlyOnce {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@"Value1"];
@@ -88,12 +105,12 @@
   expect(completed2).will.beTruthy();
 }
 
-- (void)testWrappingTasks {
+- (void)testMap {
   PKTAsyncTask *arrayTask = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@[@1, @2, @3]];
   }];
   
-  PKTAsyncTask *task = [arrayTask taskByMappingResult:^id(NSArray *array) {
+  PKTAsyncTask *task = [arrayTask map:^id(NSArray *array) {
     return @10;
   }];
   
@@ -105,7 +122,7 @@
   expect(value).will.equal(@10);
 }
 
-- (void)testMergingTasks {
+- (void)testWhen {
   PKTAsyncTask *task1 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@1];
   }];
@@ -114,14 +131,14 @@
   }];
   
   __block id mergedResult = nil;
-  [[PKTAsyncTask taskByMergingTasks:@[task1, task2]] onSuccess:^(id result) {
+  [[PKTAsyncTask when:@[task1, task2]] onSuccess:^(id result) {
     mergedResult = result;
   }];
   
   expect(mergedResult).will.equal(@[@1, @2]);
 }
 
-- (void)testFailingFirstOfMergedTasksWillFailMergedTask {
+- (void)testFailingFirstOfWhenTasksWillFailOuterTask {
   PKTAsyncTask *task1 = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver failWithError:[NSError errorWithDomain:@"PodioKit" code:0 userInfo:nil]];
   }];
@@ -135,7 +152,7 @@
     task2Failed = YES;
   }];
   
-  PKTAsyncTask *mergedTask = [PKTAsyncTask taskByMergingTasks:@[task1, task2]];
+  PKTAsyncTask *mergedTask = [PKTAsyncTask when:@[task1, task2]];
   
   __block NSError *mergedError = nil;
   [mergedTask onError:^(NSError *error) {
@@ -145,12 +162,12 @@
   expect(mergedError).willNot.beNil();
 }
 
-- (void)testPipingTasks {
+- (void)testFlattenMap {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@3];
   }];
   
-  PKTAsyncTask *pipedTask = [task taskByPipingResultToTask:^PKTAsyncTask *(NSNumber *num) {
+  PKTAsyncTask *pipedTask = [task flattenMap:^PKTAsyncTask *(NSNumber *num) {
     return [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
       NSUInteger number =  [num unsignedIntegerValue];
       [resolver succeedWithResult:@(number * number)];
@@ -165,12 +182,12 @@
   expect(pipedTaskValue).will.equal(@9);
 }
 
-- (void)testCancellingPipedTaskShouldCancelOriginalTasks {
+- (void)testCancellingFlattenMappedTaskShouldCancelOriginalTasks {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@3];
   }];
   
-  PKTAsyncTask *pipedTask = [task taskByPipingResultToTask:^PKTAsyncTask *(NSNumber *num) {
+  PKTAsyncTask *pipedTask = [task flattenMap:^PKTAsyncTask *(NSNumber *num) {
     return [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
       NSUInteger number =  [num unsignedIntegerValue];
       [resolver succeedWithResult:@(number * number)];
