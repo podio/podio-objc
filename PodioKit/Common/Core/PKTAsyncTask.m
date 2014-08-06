@@ -180,6 +180,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 
 #pragma mark - Properties
 
+- (BOOL)completed {
+  return self.state != PKTAsyncTaskStatePending;
+}
+
 - (BOOL)succeeded {
   return self.state == PKTAsyncTaskStateSucceeded;
 }
@@ -194,6 +198,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 	NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
   
   NSArray *keysAffectedByState = @[
+                                   NSStringFromSelector(@selector(completed)),
                                    NSStringFromSelector(@selector(succeeded)),
                                    NSStringFromSelector(@selector(errored))
                                    ];
@@ -227,8 +232,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   NSParameterAssert(successBlock);
   
   [self performSynchronizedBlock:^{
-    if (self.succeeded) {
-      successBlock(self.result);
+    if (self.completed) {
+      if (self.succeeded) {
+        successBlock(self.result);
+      }
     } else {
       [self.successCallbacks addObject:[successBlock copy]];
     }
@@ -241,8 +248,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   NSParameterAssert(errorBlock);
   
   [self performSynchronizedBlock:^{
-    if (self.errored) {
-      errorBlock(self.result);
+    if (self.completed) {
+      if (self.errored) {
+        errorBlock(self.result);
+      }
     } else {
       [self.errorCallbacks addObject:[errorBlock copy]];
     }

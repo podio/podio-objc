@@ -18,6 +18,7 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
 
 @interface PKTAsyncTask : NSObject
 
+@property (readonly) BOOL completed;
 @property (readonly) BOOL succeeded;
 @property (readonly) BOOL errored;
 
