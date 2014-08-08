@@ -336,6 +336,8 @@
       rightsMask |= PKRightViewAdmins;
     } else if ([obj isEqualToString:@"download"]) {
       rightsMask |= PKRightDownload;
+    } else if ([obj isEqualToString:@"grant"]) {
+      rightsMask |= PKRightGrant;
     }
   }];
   
