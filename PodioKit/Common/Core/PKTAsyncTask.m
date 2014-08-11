@@ -315,7 +315,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 - (void)performCompleteCallbacksWithResult:(id)result error:(NSError *)error {
   for (PKTAsyncTaskCompleteBlock callback in self.completeCallbacks) {
     dispatch_async(dispatch_get_main_queue(), ^{
-      callback(self.result, error);
+      callback(result, error);
     });
   }
 }
