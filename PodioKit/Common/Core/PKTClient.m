@@ -201,22 +201,15 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
   self.authenticationTask = [self performTaskWithRequest:request];
   
-  [self.authenticationTask onSuccess:^(PKTResponse *response) {
+  [self.authenticationTask onComplete:^(PKTResponse *response, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
-    PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithDictionary:response.body];
-    
-    if (response.statusCode > 0) {
-      strongSelf.oauthToken = token;
-    }
-    
-    strongSelf.authenticationTask = nil;
-  }];
-  
-  [self.authenticationTask onError:^(NSError *error) {
-    // If the authentication failed server side, reset the token
-    PKT_STRONG(weakSelf) strongSelf = weakSelf;
-    if ([error.domain isEqualToString:PodioServerErrorDomain] && error.code > 0) {
+    if (!error) {
+      strongSelf.oauthToken = [[PKTOAuth2Token alloc] initWithDictionary:response.body];
+    } else if ([error pkt_isServerError]) {
+      // If authentication failed server side, reset the token since it isn't likely
+      // to be successful next time either. If it is NOT a server side error, it might
+      // just be networking so we should not reset the token.
       strongSelf.oauthToken = nil;
     }
     
@@ -231,9 +224,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   
   [task onSuccess:^(id result) {
     [self processPendingTasks];
-  }];
-  
-  [task onError:^(NSError *error) {
+  } onError:^(NSError *error) {
     [self clearPendingTasks];
   }];
   
@@ -383,9 +374,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   
   [task onSuccess:^(id result) {
     [self processPendingTasks];
-  }];
-  
-  [task onError:^(NSError *error) {
+  } onError:^(NSError *error) {
     [self clearPendingTasks];
   }];
   
