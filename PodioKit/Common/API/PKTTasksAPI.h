@@ -35,4 +35,10 @@
                             referenceType:(PKTReferenceType)referenceType
                                     files:(NSArray *)files;
 
++ (PKTRequest *)requestToAssignTaskWithID:(NSUInteger)taskID userID:(NSUInteger)userID;
+
++ (PKTRequest *)requestToCompleteTaskWithID:(NSUInteger)taskID;
+
++ (PKTRequest *)requestToIncompleteTaskWithID:(NSUInteger)taskID;
+
 @end
