@@ -8,7 +8,7 @@
 
 #import "PKTModel.h"
 
-@class PKTAppField, PKTRequestTaskHandle;
+@class PKTAppField, PKTAsyncTask;
 
 @interface PKTApp : PKTModel
 
@@ -21,8 +21,8 @@
 @property (nonatomic, copy, readonly) NSURL *link;
 @property (nonatomic, copy, readonly) NSArray *fields;
 
-+ (PKTRequestTaskHandle *)fetchAppWithID:(NSUInteger)appID completion:(void (^)(PKTApp *app, NSError *error))completion;
-+ (PKTRequestTaskHandle *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID completion:(void (^)(NSArray *apps, NSError *error))completion;
++ (PKTAsyncTask *)fetchAppWithID:(NSUInteger)appID;
++ (PKTAsyncTask *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID;
 
 - (PKTAppField *)fieldWithExternalID:(NSString *)externalID;
 

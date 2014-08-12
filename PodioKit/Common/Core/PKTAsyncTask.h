@@ -10,30 +10,37 @@
 
 @class PKTAsyncTaskResolver;
 
-typedef void (^PKTAsyncTaskFinishBlock) (id result);
+typedef void (^PKTAsyncTaskCompleteBlock) (id result, NSError *error);
+typedef void (^PKTAsyncTaskSuccessBlock) (id result);
 typedef void (^PKTAsyncTaskErrorBlock) (NSError *error);
 typedef void (^PKTAsyncTaskCancelBlock) (void);
 typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolver *resolver);
 
 @interface PKTAsyncTask : NSObject
 
-@property (readonly, getter = isFinished) BOOL finished;
+@property (readonly) BOOL completed;
+@property (readonly) BOOL succeeded;
 @property (readonly) BOOL errored;
-@property (readonly, getter = isCancelled) BOOL cancelled;
 
 + (instancetype)taskForBlock:(PKTAsyncTaskResolveBlock)block;
 
-- (instancetype)onFinish:(PKTAsyncTaskFinishBlock)finishBlock;
+- (instancetype)onComplete:(PKTAsyncTaskCompleteBlock)completeBlock;
+- (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock;
 - (instancetype)onError:(PKTAsyncTaskErrorBlock)errorBlock;
-- (instancetype)onCancel:(PKTAsyncTaskCancelBlock)cancelBlock;
+- (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock onError:(PKTAsyncTaskErrorBlock)errorBlock;
 
 - (void)cancel;
+
+// Combinators
++ (instancetype)when:(NSArray *)tasks;
+- (instancetype)map:(id (^)(id result))block;
+- (instancetype)flattenMap:(PKTAsyncTask *(^)(id result))block;
 
 @end
 
 @interface PKTAsyncTaskResolver : NSObject
 
-- (void)finishWithResult:(id)result;
+- (void)succeedWithResult:(id)result;
 - (void)failWithError:(NSError *)error;
 
 @end

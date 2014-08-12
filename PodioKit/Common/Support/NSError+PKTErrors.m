@@ -25,6 +25,10 @@ NSString * const PKTErrorPropagateKey = @"PKTErrorPropagate";
   return [NSError errorWithDomain:PodioServerErrorDomain code:statusCode userInfo:[self pkt_userInfoFromBody:body]];
 }
 
+- (BOOL)pkt_isServerError {
+  return [self.domain isEqualToString:PodioServerErrorDomain] && self.code > 0;
+}
+
 #pragma mark - Private
 
 + (NSDictionary *)pkt_userInfoFromBody:(id)body {

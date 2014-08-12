@@ -22,26 +22,22 @@
 
 #pragma mark - Public
 
-+ (PKTRequestTaskHandle *)fetchCurrentWithCompletion:(void (^)(PKTUser *user, NSError *error))completion {
-  NSParameterAssert(completion);
-  
++ (PKTAsyncTask *)fetchCurrent {
   PKTRequest *request = [PKTUsersAPI requestForUserStatus];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  Class klass = [self class];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     PKTUser *user = nil;
     
-    if (!error) {
-      NSDictionary *userDict = [response.body objectForKey:@"user"];
-      if (userDict) {
-        user = [[klass alloc]  initWithDictionary:userDict];
-      }
+    NSDictionary *userDict = [response.body objectForKey:@"user"];
+    if (userDict) {
+      user = [[self alloc] initWithDictionary:userDict];
     }
     
-    completion(user, error);
+    return user;
   }];
 
-  return handle;
+  return task;
 }
 
 @end

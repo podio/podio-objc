@@ -133,56 +133,52 @@
 
 #pragma mark - API
 
-+ (PKTRequestTaskHandle *)fetchItemWithID:(NSUInteger)itemID completion:(void (^)(PKTItem *item, NSError *error))completion {
++ (PKTAsyncTask *)fetchItemWithID:(NSUInteger)itemID {
   PKTRequest *request = [PKTItemsAPI requestForItemWithID:itemID];
-  Class objectClass = [self class];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    PKTItem *item = nil;
-    if (!error) {
-      item = [[objectClass alloc] initWithDictionary:response.body];
-    }
-    
-    if (completion) completion(item, error);
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
   }];
 
-  return handle;
+  return task;
 }
 
-+ (PKTRequestTaskHandle *)fetchReferencesForItemWithID:(NSUInteger)itemID completion:(void (^)(NSArray *, NSError *))completion {
++ (PKTAsyncTask *)fetchReferencesForItemWithID:(NSUInteger)itemID {
   PKTRequest *request = [PKTItemsAPI requestForReferencesForItemWithID:itemID];
-  
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   Class objectClass = [self class];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    __block NSArray *items = nil;
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    NSMutableArray *items = nil;
     
-    if (!error) {
-      [response.body enumerateObjectsUsingBlock:^(NSDictionary *dict, NSUInteger idx, BOOL *stop) {
-        NSNumber *appID = dict[@"app"][@"app_id"];
-        NSArray *itemDicts = dict[@"items"];
+    for (NSDictionary *dict in response.body) {
+      NSNumber *appID = dict[@"app"][@"app_id"];
+      NSArray *itemDicts = dict[@"items"];
+      
+      NSArray *appItems = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+        NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
         
-        items = [[itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
-          NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
-          
-          // Inject the app ID as it is not included in the response
-          mutItemDict[@"app"] = @{@"app_id" : appID};
-          
-          return [[objectClass alloc] initWithDictionary:mutItemDict];
-        }] arrayByAddingObjectsFromArray:items];
+        // Inject the app ID as it is not included in the response
+        mutItemDict[@"app"] = @{@"app_id" : appID};
+        
+        return [[objectClass alloc] initWithDictionary:mutItemDict];
       }];
+      
+      [items addObjectsFromArray:appItems];
     }
     
-    if (completion) completion(items, error);
+    return [items copy];
   }];
   
-  return handle;
+  return task;
 }
 
-+ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(PKTItemFilteredFetchCompletionBlock)completion {
-  return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES completion:completion];
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES];
 }
 
-+ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending completion:(PKTItemFilteredFetchCompletionBlock)completion; {
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending {
   PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
@@ -190,82 +186,81 @@
                                                             descending:descending
                                                               remember:NO];
   
-  return [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
+  return [self fetchFilteredItemsWithRequest:request appID:appID];
 }
 
-+ (PKTRequestTaskHandle *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID completion:(PKTItemFilteredFetchCompletionBlock)completion {
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit viewID:(NSUInteger)viewID {
   PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:appID
                                                                 offset:offset
                                                                  limit:limit
                                                                 viewID:viewID
                                                               remember:NO];
 
-  return [self fetchFilteredItemsWithRequest:request appID:appID completion:completion];
+  return [self fetchFilteredItemsWithRequest:request appID:appID];
 }
 
-+ (PKTRequestTaskHandle *)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID completion:(PKTItemFilteredFetchCompletionBlock)completion {
-  Class objectClass = [self class];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    NSArray *items = nil;
-    NSUInteger filteredCount = 0, totalCount = 0;
++ (PKTAsyncTask *)fetchFilteredItemsWithRequest:(PKTRequest *)request appID:(NSUInteger)appID {
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    NSArray *itemDicts = response.body[@"items"];
     
-    if (!error) {
-      filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
-      totalCount = [response.body[@"total"] unsignedIntegerValue];
-      NSArray *itemDicts = response.body[@"items"];
+    NSUInteger filteredCount = [response.body[@"filtered"] unsignedIntegerValue];
+    NSUInteger totalCount = [response.body[@"total"] unsignedIntegerValue];
+    
+    NSArray *items = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
+      NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
       
-      items = [itemDicts pkt_mappedArrayWithBlock:^id(NSDictionary *itemDict) {
-        NSMutableDictionary *mutItemDict = [itemDict mutableCopy];
-        
-        // Inject the app ID as it is not included in the response
-        mutItemDict[@"app"] = @{@"app_id" : @(appID)};
-        
-        return [[objectClass alloc] initWithDictionary:mutItemDict];
-      }];
-    }
+      // Inject the app ID as it is not included in the response
+      mutItemDict[@"app"] = @{@"app_id" : @(appID)};
+      
+      return [[self alloc] initWithDictionary:mutItemDict];
+    }];
     
-    if (completion) completion(items, filteredCount, totalCount, error);
+    return @{
+      @"items" : items,
+      @"filtered" : @(filteredCount),
+      @"total" : @(totalCount)
+    };
   }];
 
-  return handle;
+  return task;
 }
 
-- (PKTRequestTaskHandle *)fetchWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)fetch {
   PKTRequest *request = [PKTItemsAPI requestForItemWithID:self.itemID];
-
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
   PKT_WEAK_SELF weakSelf = self;
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-      PKT_STRONG(weakSelf) strongSelf = weakSelf;
-
-      if (!error) {
-        [strongSelf updateFromDictionary:response.body];
-      }
-
-      if (completion) completion(response, error);
+  [task onSuccess:^(PKTResponse *response) {
+    [weakSelf updateFromDictionary:response.body];
   }];
 
-  return handle;
+  return task;
 }
 
-- (void)saveWithCompletion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)save {
+  __block PKTAsyncTask *task = nil;
+  
   PKTClient *client = [PKTClient currentClient];
-
+  
   [client performBlock:^{
-    [PKTApp fetchAppWithID:self.appID completion:^(PKTApp *app, NSError *error) {
-      if (!error) {
-        NSArray *itemFields = [self allFieldsToSaveForApp:app];
+    task = [[PKTApp fetchAppWithID:self.appID] flattenMap:^PKTAsyncTask *(PKTApp *app) {
+      __block PKTAsyncTask *saveTask = nil;
 
-        [client performBlock:^{
-          [self saveWithItemFields:itemFields completion:completion];
-        }];
-      } else {
-        if (completion) completion(nil, error);
-      }
+      NSArray *itemFields = [self allFieldsToSaveForApp:app];
+      [client performBlock:^{
+        saveTask = [self saveWithItemFields:itemFields];
+      }];
+      
+      return saveTask;
     }];
   }];
+  
+  return task;
 }
 
-- (PKTRequestTaskHandle *)saveWithItemFields:(NSArray *)itemFields completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)saveWithItemFields:(NSArray *)itemFields {
   NSDictionary *fields = [self preparedFieldValuesForItemFields:itemFields];
   NSArray *files = self.fileIDs;
   
@@ -282,26 +277,27 @@
                                                tags:nil];
   }
   
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    if (!error) {
-      if (self.itemID == 0) {
-        // Item created, update fully from response
-        [self updateFromDictionary:response.body];
-      } else {
-        // Item updated, set the new title returned
-        self.title = response.body[@"title"];
-        
-        // Just update the fields since the response doesn't contain the full object
-        self.mutFields = [itemFields mutableCopy];
-      }
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  PKT_WEAK_SELF weakSelf = self;
+  [task onSuccess:^(PKTResponse *response) {
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    if (strongSelf.itemID == 0) {
+      // Item created, update fully from response
+      [strongSelf updateFromDictionary:response.body];
+    } else {
+      // Item updated, set the new title returned
+      strongSelf.title = response.body[@"title"];
       
-      [self.unsavedFields removeAllObjects];
+      // Just update the fields since the response doesn't contain the full object
+      strongSelf.mutFields = [itemFields mutableCopy];
     }
     
-    if (completion) completion(response, error);
+    [strongSelf.unsavedFields removeAllObjects];
   }];
 
-  return handle;
+  return task;
 }
 
 #pragma mark - Public

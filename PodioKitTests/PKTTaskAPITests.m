@@ -77,4 +77,34 @@
   expect(request.parameters[@"file_ids"]).to.equal(@[@111, @222]);
 }
 
+- (void)testRequestToAssignTask {
+  PKTRequest *request = [PKTTasksAPI requestToAssignTaskWithID:1234 userID:1111];
+  
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.path).to.equal(@"/task/1234/assign");
+  expect(request.parameters[@"responsible"]).to.equal(@1111);
+}
+
+- (void)testRequestToAssignTaskToNoOne {
+  PKTRequest *request = [PKTTasksAPI requestToAssignTaskWithID:1234 userID:0];
+  
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.path).to.equal(@"/task/1234/assign");
+  expect(request.parameters[@"responsible"]).to.equal([NSNull null]);
+}
+
+- (void)testRequestToCompleteTask {
+  PKTRequest *request = [PKTTasksAPI requestToCompleteTaskWithID:1234];
+  
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.path).to.equal(@"/task/1234/complete");
+}
+
+- (void)testRequestToIncompleteTask {
+  PKTRequest *request = [PKTTasksAPI requestToIncompleteTaskWithID:1234];
+  
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.path).to.equal(@"/task/1234/incomplete");
+}
+
 @end

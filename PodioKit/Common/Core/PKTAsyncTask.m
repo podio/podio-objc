@@ -7,24 +7,26 @@
 //
 
 #import "PKTAsyncTask.h"
+#import "PKTMacros.h"
+#import "NSArray+PKTAdditions.h"
 
 typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   PKTAsyncTaskStatePending = 0,
-  PKTAsyncTaskStateFinished,
+  PKTAsyncTaskStateSucceeded,
   PKTAsyncTaskStateErrored,
-  PKTAsyncTaskStateCancelled,
 };
 
 @interface PKTAsyncTask ()
 
 @property (readwrite) PKTAsyncTaskState state;
 @property (strong) id result;
-@property (strong) NSMutableArray *finishCallbacks;
-@property (strong) NSMutableArray *errorCallbacks;
-@property (strong) NSMutableArray *cancelCallbacks;
+@property (strong, readonly) NSMutableArray *completeCallbacks;
+@property (strong, readonly) NSMutableArray *successCallbacks;
+@property (strong, readonly) NSMutableArray *errorCallbacks;
+@property (copy) PKTAsyncTaskCancelBlock cancelBlock;
 @property (strong) NSLock *stateLock;
 
-- (void)finishWithResult:(id)result;
+- (void)succeedWithResult:(id)result;
 - (void)failWithError:(NSError *)error;
 
 @end
@@ -37,17 +39,21 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 
 @end
 
-@implementation PKTAsyncTask
+@implementation PKTAsyncTask {
 
-- (instancetype)init {
+  dispatch_once_t _resolvedOnceToken;
+}
+
+- (instancetype)initWithCancelBlock:(PKTAsyncTaskCancelBlock)cancelBlock {
   self = [super init];
   if (!self) return nil;
   
   _state = PKTAsyncTaskStatePending;
-  _finishCallbacks = [NSMutableArray new];
+  _completeCallbacks = [NSMutableArray new];
+  _successCallbacks = [NSMutableArray new];
   _errorCallbacks = [NSMutableArray new];
-  _cancelCallbacks = [NSMutableArray new];
   _stateLock = [NSLock new];
+  _cancelBlock = [cancelBlock copy];
   
   return self;
 }
@@ -56,30 +62,134 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   PKTAsyncTaskResolver *resolver = [PKTAsyncTaskResolver new];
   PKTAsyncTaskCancelBlock cancelBlock = block(resolver);
   
-  PKTAsyncTask *task = [self new];
+  PKTAsyncTask *task = [[self alloc] initWithCancelBlock:cancelBlock];
   resolver.task = task;
-  
-  if (cancelBlock) {
-    [task onCancel:^{
-      cancelBlock();
-    }];
-  }
   
   return task;
 }
 
++ (instancetype)when:(NSArray *)tasks {
+  return [self taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    NSMutableSet *pendingTasks = [NSMutableSet setWithArray:tasks];
+    
+    NSUInteger taskCount = [tasks count];
+    NSMutableDictionary *results = [NSMutableDictionary new];
+    
+    // We need a lock to synchronize access to the results dictionary and remaining tasks set.
+    NSLock *lock = [NSLock new];
+    
+    void (^cancelRemainingBlock) (void) = ^{
+      // Clear the backlog of tasks and cancel remaining ones.
+      [lock lock];
+      
+      NSSet *tasksToCancel = [pendingTasks copy];
+      [pendingTasks removeAllObjects];
+      
+      for (PKTAsyncTask *task in tasksToCancel) {
+        [task cancel];
+      }
+      
+      [lock unlock];
+    };
+    
+    NSUInteger pos = 0;
+    for (PKTAsyncTask *task in tasks) {
+      
+      [task onSuccess:^(id result) {
+        id res = result ?: [NSNull null];
+        
+        [lock lock];
+        
+        // Add the result to the results dictionary at the original position of the task,
+        // and remove the task from the list of pending tasks to avoid it from being
+        // cancelled if the combined task is cancelled later.
+        results[@(pos)] = res;
+        [pendingTasks removeObject:task];
+        
+        [lock unlock];
+        
+        if ([pendingTasks count] == 0) {
+          // All tasks have completed, collect the results and sort them in the
+          // tasks' original ordering
+          NSArray *positions = [NSArray pkt_arrayFromRange:NSMakeRange(0, taskCount)];
+          NSArray *orderedResults = [positions pkt_mappedArrayWithBlock:^id(NSNumber *pos) {
+            return results[pos];
+          }];
+          
+          [resolver succeedWithResult:orderedResults];
+        }
+      } onError:^(NSError *error) {
+        cancelRemainingBlock();
+        
+        [resolver failWithError:error];
+      }];
+      
+      ++pos;
+    }
+    
+    return cancelRemainingBlock;
+  }];
+}
+
+- (instancetype)map:(id (^)(id result))block {
+  return [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    
+    [self onSuccess:^(id result) {
+      id mappedResult = block ? block(result) : result;
+      [resolver succeedWithResult:mappedResult];
+    } onError:^(NSError *error) {
+      [resolver failWithError:error];
+    }];
+    
+    PKT_WEAK_SELF weakSelf = self;
+    
+    return ^{
+      [weakSelf cancel];
+    };
+  }];
+}
+
+- (instancetype)flattenMap:(PKTAsyncTask *(^)(id result))block {
+  NSParameterAssert(block);
+  
+  return [[self class] taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    __block PKTAsyncTask *pipedTask = nil;
+    
+    [self onSuccess:^(id result1) {
+      pipedTask = block(result1);
+      
+      [pipedTask onSuccess:^(id result2) {
+        [resolver succeedWithResult:result2];
+      } onError:^(NSError *error) {
+        [resolver failWithError:error];
+      }];
+    } onError:^(NSError *error) {
+      [resolver failWithError:error];
+    }];
+    
+    // Cancel both tasks in the case of the parent task being cancelled.
+    PKT_WEAK_SELF weakSelf = self;
+    PKT_WEAK(pipedTask) weakPipedTask = pipedTask;
+    
+    return ^{
+      [weakSelf cancel];
+      [weakPipedTask cancel];
+    };
+  }];
+}
+
 #pragma mark - Properties
 
-- (BOOL)isFinished {
-  return self.state == PKTAsyncTaskStateFinished;
+- (BOOL)completed {
+  return self.state != PKTAsyncTaskStatePending;
+}
+
+- (BOOL)succeeded {
+  return self.state == PKTAsyncTaskStateSucceeded;
 }
 
 - (BOOL)errored {
   return self.state == PKTAsyncTaskStateErrored;
-}
-
-- (BOOL)isCancelled {
-  return self.state == PKTAsyncTaskStateCancelled;
 }
 
 #pragma mark - KVO
@@ -88,9 +198,9 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 	NSMutableSet *keyPaths = [[super keyPathsForValuesAffectingValueForKey:key] mutableCopy];
   
   NSArray *keysAffectedByState = @[
-                                   NSStringFromSelector(@selector(isFinished)),
-                                   NSStringFromSelector(@selector(errored)),
-                                   NSStringFromSelector(@selector(isCancelled))
+                                   NSStringFromSelector(@selector(completed)),
+                                   NSStringFromSelector(@selector(succeeded)),
+                                   NSStringFromSelector(@selector(errored))
                                    ];
   
   if ([keysAffectedByState containsObject:key]) {
@@ -102,14 +212,32 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 
 #pragma mark - Register callbacks
 
-- (instancetype)onFinish:(void (^)(id x))finishBlock {
-  NSParameterAssert(finishBlock);
+- (instancetype)onComplete:(PKTAsyncTaskCompleteBlock)completeBlock {
+  NSParameterAssert(completeBlock);
   
   [self performSynchronizedBlock:^{
-    if (self.finished) {
-      finishBlock(self.result);
+    if (self.succeeded) {
+      completeBlock(self.result, nil);
+    } else if (self.errored) {
+      completeBlock(nil, self.result);
     } else {
-      [self.finishCallbacks addObject:[finishBlock copy]];
+      [self.completeCallbacks addObject:[completeBlock copy]];
+    }
+  }];
+  
+  return self;
+}
+
+- (instancetype)onSuccess:(void (^)(id x))successBlock {
+  NSParameterAssert(successBlock);
+  
+  [self performSynchronizedBlock:^{
+    if (self.completed) {
+      if (self.succeeded) {
+        successBlock(self.result);
+      }
+    } else {
+      [self.successCallbacks addObject:[successBlock copy]];
     }
   }];
   
@@ -120,8 +248,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   NSParameterAssert(errorBlock);
   
   [self performSynchronizedBlock:^{
-    if (self.errored) {
-      errorBlock(self.result);
+    if (self.completed) {
+      if (self.errored) {
+        errorBlock(self.result);
+      }
     } else {
       [self.errorCallbacks addObject:[errorBlock copy]];
     }
@@ -130,70 +260,78 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   return self;
 }
 
-- (instancetype)onCancel:(void (^)(void))cancelBlock {
-  NSParameterAssert(cancelBlock);
-  
-  [self performSynchronizedBlock:^{
-    if (self.cancelled) {
-      cancelBlock();
-    } else {
-      [self.cancelCallbacks addObject:[cancelBlock copy]];
-    }
-  }];
+- (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock onError:(PKTAsyncTaskErrorBlock)errorBlock {
+  [self onSuccess:successBlock];
+  [self onError:errorBlock];
   
   return self;
 }
 
 #pragma mark - Resolve
 
-- (void)finishWithResult:(id)result {
-  [self performSynchronizedBlock:^{
-    if (self.finished) return;
-    
-    self.result = result;
-    self.state = PKTAsyncTaskStateFinished;
-    
-    for (PKTAsyncTaskFinishBlock callback in self.finishCallbacks) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        callback(self.result);
-      });
-    }
-    
-    [self.finishCallbacks removeAllObjects];
-  }];
+- (void)succeedWithResult:(id)result {
+  [self resolveWithState:PKTAsyncTaskStateSucceeded result:result];
 }
 
 - (void)failWithError:(NSError *)error {
-  [self performSynchronizedBlock:^{
-    if (self.errored) return;
-    
-    self.result = error;
-    self.state = PKTAsyncTaskStateErrored;
-    
-    for (PKTAsyncTaskErrorBlock callback in self.errorCallbacks) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        callback(self.result);
-      });
-    }
-    
-    [self.errorCallbacks removeAllObjects];
-  }];
+  [self resolveWithState:PKTAsyncTaskStateErrored result:error];
+}
+
+- (void)resolveWithState:(PKTAsyncTaskState)state result:(id)result {
+  dispatch_once(&_resolvedOnceToken, ^{
+    [self performSynchronizedBlock:^{
+      self.state = state;
+      self.result = result;
+      
+      if (state == PKTAsyncTaskStateSucceeded) {
+        [self performSuccessCallbacksWithResult:result];
+        [self performCompleteCallbacksWithResult:result error:nil];
+      } else if (state == PKTAsyncTaskStateErrored) {
+        [self performErrorCallbacksWithError:result];
+        [self performCompleteCallbacksWithResult:nil error:result];
+      }
+      
+      [self removeAllCallbacks];
+    }];
+  });
+}
+
+- (void)performSuccessCallbacksWithResult:(id)result {
+  for (PKTAsyncTaskSuccessBlock callback in self.successCallbacks) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      callback(self.result);
+    });
+  }
+}
+
+- (void)performErrorCallbacksWithError:(NSError *)error {
+  for (PKTAsyncTaskErrorBlock callback in self.errorCallbacks) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      callback(self.result);
+    });
+  }
+}
+
+- (void)performCompleteCallbacksWithResult:(id)result error:(NSError *)error {
+  for (PKTAsyncTaskCompleteBlock callback in self.completeCallbacks) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      callback(result, error);
+    });
+  }
+}
+
+- (void)removeAllCallbacks {
+  [self.successCallbacks removeAllObjects];
+  [self.errorCallbacks removeAllObjects];
+  [self.completeCallbacks removeAllObjects];
+  self.cancelBlock = nil;
 }
 
 - (void)cancel {
-  [self performSynchronizedBlock:^{
-    if (self.cancelled) return;
-    
-    self.state = PKTAsyncTaskStateCancelled;
-    
-    for (PKTAsyncTaskCancelBlock callback in self.cancelCallbacks) {
-      dispatch_async(dispatch_get_main_queue(), ^{
-        callback();
-      });
-    }
-    
-    [self.cancelCallbacks removeAllObjects];
-  }];
+  if (self.cancelBlock) {
+    self.cancelBlock();
+    self.cancelBlock = nil;
+  }
 }
 
 #pragma mark - Helpers
@@ -210,8 +348,8 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 
 @implementation PKTAsyncTaskResolver
 
-- (void)finishWithResult:(id)result {
-  [self.task finishWithResult:result];
+- (void)succeedWithResult:(id)result {
+  [self.task succeedWithResult:result];
   self.task = nil;
 }
 

@@ -20,4 +20,6 @@ extern NSString * const PKTErrorPropagateKey;
 
 + (NSError *)pkt_serverErrorWithStatusCode:(NSUInteger)statusCode body:(id)body;
 
+- (BOOL)pkt_isServerError;
+
 @end

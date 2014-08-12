@@ -10,6 +10,6 @@
 
 @interface PKTClient (Test)
 
-- (PKTRequestTaskDescriptor *)refreshToken:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)refreshToken;
 
 @end

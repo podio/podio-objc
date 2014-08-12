@@ -11,11 +11,12 @@
 #import <UIKit/UIKit.h>
 
 @class PKTFile;
+@class PKTAsyncTask;
 
 @interface UIButton (PKTRemoteImage)
 
-- (void)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
-- (void)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion;
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage;
+- (PKTAsyncTask *)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage;
 
 - (void)pkt_cancelCurrentImageDownload;
 - (void)pkt_cancelCurrentBackgroundImageDownload;

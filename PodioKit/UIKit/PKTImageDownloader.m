@@ -12,7 +12,7 @@
 
 @implementation PKTImageDownloader
 
-+ (PKTRequestTaskHandle *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock completion:(void (^)(UIImage *image, NSError *error))completion {
++ (PKTAsyncTask *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock {
   NSParameterAssert(file);
   NSParameterAssert(imageSetterBlock);
   
@@ -27,16 +27,12 @@
     imageSetterBlock(placeholderImage);
   }
   
-  PKTRequestTaskHandle *handle = [file downloadImageWithCompletion:^(UIImage *image, NSError *error) {
-    if (image) {
-      [[PKTImageCache sharedCache] setCachedImage:image forFile:file];
-      imageSetterBlock(image);
-    }
-    
-    if (completion) completion(image, error);
+  PKTAsyncTask *task = [[file downloadImage] onSuccess:^(UIImage *image) {
+    [[PKTImageCache sharedCache] setCachedImage:image forFile:file];
+    imageSetterBlock(image);
   }];
   
-  return handle;
+  return task;
 }
 
 @end

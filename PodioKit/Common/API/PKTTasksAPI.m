@@ -111,4 +111,21 @@
   return [params copy];
 }
 
++ (PKTRequest *)requestToAssignTaskWithID:(NSUInteger)taskID userID:(NSUInteger)userID {
+  NSString *path = PKTRequestPath(@"/task/%lu/assign", (unsigned long)taskID);
+  NSDictionary *params = @{
+                           @"responsible" : userID > 0 ? @(userID) : [NSNull null]
+                           };
+  
+  return [PKTRequest POSTRequestWithPath:path parameters:params];
+}
+
++ (PKTRequest *)requestToCompleteTaskWithID:(NSUInteger)taskID {
+  return [PKTRequest POSTRequestWithPath:PKTRequestPath(@"/task/%lu/complete", (unsigned long)taskID) parameters:nil];
+}
+
++ (PKTRequest *)requestToIncompleteTaskWithID:(NSUInteger)taskID {
+  return [PKTRequest POSTRequestWithPath:PKTRequestPath(@"/task/%lu/incomplete", (unsigned long)taskID) parameters:nil];
+}
+
 @end

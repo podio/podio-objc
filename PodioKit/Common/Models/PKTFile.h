@@ -24,12 +24,12 @@
 
 #pragma mrk - API
 
-+ (PKTRequestTaskHandle *)uploadWithData:(NSData *)data fileName:(NSString *)fileName completion:(void (^)(PKTFile *file, NSError *error))completion;
++ (PKTAsyncTask *)uploadWithData:(NSData *)data fileName:(NSString *)fileName;
 
-- (PKTRequestTaskHandle *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType completion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType;
 
-- (PKTRequestTaskHandle *)downloadWithCompletion:(void (^)(NSData *data, NSError *error))completion;
+- (PKTAsyncTask *)download;
 
-- (PKTRequestTaskHandle *)downloadToFileWithPath:(NSString *)filePath completion:(void (^)(BOOL success, NSError *error))completion;
+- (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath;
 
 @end

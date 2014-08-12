@@ -23,91 +23,82 @@
 
 #pragma mark - Public
 
-+ (PKTRequestTaskHandle *)fetchProfileWithID:(NSUInteger)profileID completion:(void (^)(PKTProfile *profile, NSError *error))completion {
-  return [self fetchProfileWithRequest:[PKTContactsAPI requestForContactWithProfileID:profileID] completion:completion];
++ (PKTAsyncTask *)fetchProfileWithID:(NSUInteger)profileID {
+  return [self fetchProfileWithRequest:[PKTContactsAPI requestForContactWithProfileID:profileID]];
 }
 
-+ (PKTRequestTaskHandle *)fetchProfileWithUserID:(NSUInteger)userID completion:(void (^)(PKTProfile *profile, NSError *error))completion {
-  return [self fetchProfileWithRequest:[PKTContactsAPI requestForContactWithUserID:userID] completion:completion];
++ (PKTAsyncTask *)fetchProfileWithUserID:(NSUInteger)userID {
+  return [self fetchProfileWithRequest:[PKTContactsAPI requestForContactWithUserID:userID]];
 }
 
-+ (PKTRequestTaskHandle *)fetchProfilesWithIDs:(NSArray *)profileIDs completion:(void (^)(NSArray *profiles, NSError *error))completion {
-  return [self fetchProfilesWithRequest:[PKTContactsAPI requestForContactsWithProfileIDs:profileIDs] completion:completion];
++ (PKTAsyncTask *)fetchProfilesWithIDs:(NSArray *)profileIDs {
+  return [self fetchProfilesWithRequest:[PKTContactsAPI requestForContactsWithProfileIDs:profileIDs]];
 }
 
-+ (PKTRequestTaskHandle *)fetchContactsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchContactsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesWithContactType:PKTContactTypeUser | PKTContactTypeSpace
                                     offset:offset
-                                     limit:limit
-                                completion:completion];
+                                     limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchUsersWithOffset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchUsersWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesWithContactType:PKTContactTypeUser
                                      offset:offset
-                                      limit:limit
-                                 completion:completion];
+                                      limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchWorkspaceContactsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchWorkspaceContactsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesWithContactType:PKTContactTypeSpace
                                      offset:offset
-                                      limit:limit
-                                 completion:completion];
+                                      limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchContactsByMatchingName:(NSString *)name offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchContactsByMatchingName:(NSString *)name offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesByMatchingName:name
                                contactType:PKTContactTypeUser | PKTContactTypeSpace
                                     offset:offset
-                                     limit:limit
-                                completion:completion];
+                                     limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchUsersByMatchingName:(NSString *)name offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchUsersByMatchingName:(NSString *)name offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesByMatchingName:name contactType:PKTContactTypeSpace
                                     offset:offset
-                                     limit:limit
-                                completion:completion];
+                                     limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchWorkspaceContactsByMatchingName:(NSString *)name offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchWorkspaceContactsByMatchingName:(NSString *)name offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesByMatchingName:name contactType:PKTContactTypeSpace
                                     offset:offset
-                                     limit:limit
-                                completion:completion];
+                                     limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchContactsByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchContactsByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesByMatchingField:fieldName
                                       value:fieldValue
                                 contactType:PKTContactTypeUser | PKTContactTypeSpace
                                      offset:offset
-                                      limit:limit
-                                 completion:completion];
+                                      limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchUsersByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchUsersByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesByMatchingField:fieldName
                                       value:fieldValue
                                 contactType:PKTContactTypeUser
                                      offset:offset
-                                      limit:limit
-                                 completion:completion];
+                                      limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchWorkspaceContactsByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchWorkspaceContactsByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue offset:(NSUInteger)offset limit:(NSUInteger)limit {
   return [self fetchProfilesByMatchingField:fieldName
                                       value:fieldValue
                                 contactType:PKTContactTypeSpace
                                      offset:offset
-                                      limit:limit
-                                 completion:completion];
+                                      limit:limit];
 }
 
 #pragma mark - Private
 
-+ (PKTRequestTaskHandle *)fetchProfilesWithContactType:(PKTContactType)contactType offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchProfilesWithContactType:(PKTContactType)contactType offset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKTRequest *request = [PKTContactsAPI requestForContactsOfType:contactType
                                                      excludeSelf:NO
                                                         ordering:PKTContactsOrderingDefault
@@ -116,21 +107,20 @@
                                                           offset:offset
                                                            limit:limit];
   
-  return [self fetchProfilesWithRequest:request completion:completion];
+  return [self fetchProfilesWithRequest:request];
 }
 
-+ (PKTRequestTaskHandle *)fetchProfilesByMatchingName:(NSString *)name contactType:(PKTContactType)contactType offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchProfilesByMatchingName:(NSString *)name contactType:(PKTContactType)contactType offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSParameterAssert(name);
   
   return [self fetchProfilesByMatchingField:@"name"
                                       value:name
                                 contactType:PKTContactTypeUser
                                      offset:offset
-                                      limit:limit
-                                 completion:completion];
+                                      limit:limit];
 }
 
-+ (PKTRequestTaskHandle *)fetchProfilesByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue contactType:(PKTContactType)contactType offset:(NSUInteger)offset limit:(NSUInteger)limit completion:(void (^)(NSArray *profiles, NSError *error))completion {
++ (PKTAsyncTask *)fetchProfilesByMatchingField:(NSString *)fieldName value:(NSString *)fieldValue contactType:(PKTContactType)contactType offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSParameterAssert(fieldName);
   NSParameterAssert(fieldValue);
   
@@ -142,43 +132,33 @@
                                                           offset:offset
                                                            limit:limit];
   
-  return [self fetchProfilesWithRequest:request completion:completion];
+  return [self fetchProfilesWithRequest:request];
 }
 
-+ (PKTRequestTaskHandle *)fetchProfileWithRequest:(PKTRequest *)request completion:(void (^)(PKTProfile *profile, NSError *error))completion {
-  NSParameterAssert(completion);
-  
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    PKTProfile *profile = nil;
-    
-    if (!error) {
-      profile = [[self alloc] initWithDictionary:response.body];
-    }
-    
-    completion(profile, error);
++ (PKTAsyncTask *)fetchProfileWithRequest:(PKTRequest *)request {
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
   }];
   
-  return handle;
+  return task;
 }
 
-+ (PKTRequestTaskHandle *)fetchProfilesWithRequest:(PKTRequest *)request completion:(void (^)(NSArray *profiles, NSError *error))completion {
-  NSParameterAssert(completion);
++ (PKTAsyncTask *)fetchProfilesWithRequest:(PKTRequest *)request {
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    NSArray *profiles = nil;
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    NSArray *profileDicts = ![response.body isKindOfClass:[NSArray class]] ? @[response.body] : response.body;
     
-    if (!error) {
-      id profileDicts = ![response.body isKindOfClass:[NSArray class]] ? @[response.body] : response.body;
-      
-      profiles = [profileDicts pkt_mappedArrayWithBlock:^id(NSDictionary *profileDict) {
-        return [[self alloc] initWithDictionary:profileDict];
-      }];
-    }
-    
-    completion(profiles, error);
+    NSArray *profiles = [profileDicts pkt_mappedArrayWithBlock:^id(NSDictionary *profileDict) {
+      return [[self alloc] initWithDictionary:profileDict];
+    }];
+
+    return profiles;
   }];
   
-  return handle;
+  return task;
 }
 
 @end

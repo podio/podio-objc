@@ -46,4 +46,16 @@
   return object;
 }
 
++ (NSArray *)pkt_arrayFromRange:(NSRange)range {
+  NSUInteger min = range.location;
+  NSUInteger max = range.location + range.length;
+  
+  NSMutableArray *array = [NSMutableArray arrayWithCapacity:range.length];
+  for (NSUInteger i = min; i < max; ++i) {
+    [array addObject:@(i)];
+  }
+  
+  return [array copy];
+}
+
 @end

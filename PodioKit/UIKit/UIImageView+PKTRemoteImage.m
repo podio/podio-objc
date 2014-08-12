@@ -13,39 +13,41 @@
 #import "UIImageView+PKTRemoteImage.h"
 #import "PKTImageDownloader.h"
 #import "PKTMacros.h"
-#import "PKTRequestTaskHandle.h"
+#import "PKTAsyncTask.h"
 
 static const char kCurrentImageTaskKey;
 
 @interface UIImageView ()
 
-@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTRequestTaskHandle *pkt_currentImageTask;
+@property (nonatomic, strong, setter = pkt_setCurrentImageTask:) PKTAsyncTask *pkt_currentImageTask;
 
 @end
 
 @implementation UIImageView (PKTRemoteImage)
 
-- (PKTRequestTaskHandle *)pkt_currentImageTask {
+- (PKTAsyncTask *)pkt_currentImageTask {
   return objc_getAssociatedObject(self, &kCurrentImageTaskKey);
 }
 
-- (void)pkt_setCurrentImageTask:(PKTRequestTaskHandle *)pkt_currentImageTask {
+- (void)pkt_setCurrentImageTask:(PKTAsyncTask *)pkt_currentImageTask {
   objc_setAssociatedObject(self, &kCurrentImageTaskKey, pkt_currentImageTask, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
 #pragma mark - Public
 
-- (void)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage completion:(void (^)(UIImage *image, NSError *error))completion {
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage {
   [self pkt_cancelCurrentImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  self.pkt_currentImageTask = [PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     weakSelf.image = image;
-  } completion:^(UIImage *image, NSError *error) {
+  }] onSuccess:^(id result) {
     weakSelf.pkt_currentImageTask = nil;
-    
-    if (completion) completion(image, error);
+  } onError:^(NSError *error) {
+    weakSelf.pkt_currentImageTask = nil;
   }];
+  
+  return self.pkt_currentImageTask;
 }
 
 - (void)pkt_cancelCurrentImageDownload {

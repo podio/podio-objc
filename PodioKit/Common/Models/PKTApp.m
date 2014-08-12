@@ -40,36 +40,32 @@
 
 #pragma mark - API
 
-+ (PKTRequestTaskHandle *)fetchAppWithID:(NSUInteger)appID completion:(void (^)(PKTApp *app, NSError *error))completion {
-  Class objectClass = [self class];
++ (PKTAsyncTask *)fetchAppWithID:(NSUInteger)appID {
   PKTRequest *request = [PKTAppsAPI requestForAppWithID:appID];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    PKTApp *app = nil;
-    if (!error) {
-      app = [[objectClass alloc] initWithDictionary:response.body];
-    }
-    
-    if (completion) completion(app, error);
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [[objectClass alloc] initWithDictionary:response.body];
   }];
-
-  return handle;
+  
+  return task;
 }
 
-+ (PKTRequestTaskHandle *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID completion:(void (^)(NSArray *, NSError *))completion {
++ (PKTAsyncTask *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID {
   PKTRequest *request = [PKTAppsAPI requestForAppsInWorkspaceWithID:spaceID];
-  PKTRequestTaskHandle *handle = [[PKTClient currentClient] performRequest:request completion:^(PKTResponse *response, NSError *error) {
-    NSArray *apps = nil;
-    
-    if (!error) {
-      apps = [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
-        return [[PKTApp alloc] initWithDictionary:dict];
-      }];
-    }
-    
-    if (completion) completion(apps, error);
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+      return [[objectClass alloc] initWithDictionary:dict];
+    }];
   }];
-
-  return handle;
+  
+  return task;
 }
 
 #pragma mark - Public

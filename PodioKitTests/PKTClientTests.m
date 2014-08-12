@@ -10,14 +10,13 @@
 #import <OHHTTPStubs/OHHTTPStubs.h>
 #import "PKTClient.h"
 #import "PKTHTTPClient.h"
-#import "PKTRequestTaskDescriptor.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTUsersAPI.h"
 #import "PKTOAuth2Token.h"
 #import "PKTHTTPStubs.h"
 #import "PKTClient+Test.h"
 #import "NSString+PKTBase64.h"
-#import "PKTRequestTaskHandle.h"
+#import "PKTAsyncTask.h"
 
 @interface PKTClientTests : XCTestCase
 
@@ -106,12 +105,12 @@
   [PKTHTTPStubs stubResponseForPath:request.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTAsyncTask *task = [[self.testClient refreshToken] onSuccess:^(id result) {
     completed = YES;
   }];
   
-  expect(descriptor).notTo.beNil();
-  expect(descriptor.task.currentRequest.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect(task).notTo.beNil();
+//  expect(task.currentRequest.allHTTPHeaderFields[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
 
   expect(completed).will.beTruthy();
   expect(self.testClient.isAuthenticated).to.beTruthy();
@@ -126,11 +125,11 @@
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:401];
   
   __block BOOL completed = NO;
-  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTAsyncTask *task = [[self.testClient refreshToken] onError:^(NSError *error) {
     completed = YES;
   }];
   
-  expect(descriptor).notTo.beNil();
+  expect(task).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).to.beNil();
 }
@@ -143,11 +142,11 @@
   [PKTHTTPStubs stubNetworkDownForPath:request.path];
   
   __block BOOL completed = NO;
-  PKTRequestTaskDescriptor *descriptor = [self.testClient refreshToken:^(PKTResponse *response, NSError *error) {
+  PKTAsyncTask *task = [[self.testClient refreshToken] onError:^(NSError *error) {
     completed = YES;
   }];
   
-  expect(descriptor).notTo.beNil();
+  expect(task).notTo.beNil();
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).to.equal(initialToken);
 }
@@ -170,9 +169,12 @@
   
   __block BOOL completed1 = NO;
   __block BOOL isError1 = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient performRequest:request] onSuccess:^(id result) {
     completed1 = YES;
-    isError1 = error != nil;
+    isError1 = NO;
+  } onError:^(NSError *error) {
+    completed1 = YES;
+    isError1 = YES;
   }];
 
   expect(completed1).will.beTruthy();
@@ -183,9 +185,12 @@
   
   __block BOOL completed2 = NO;
   __block BOOL isError2 = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient performRequest:request] onSuccess:^(id result) {
     completed2 = YES;
-    isError2 = error != nil;
+    isError2 = NO;
+  } onError:^(NSError *error) {
+    completed2 = YES;
+    isError2 = YES;
   }];
   
   expect(completed2).will.beTruthy();
@@ -212,9 +217,12 @@
   
   __block BOOL completed1 = NO;
   __block BOOL isCancelError1 = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient performRequest:request] onSuccess:^(id result) {
     completed1 = YES;
-    isCancelError1 = error != nil && error.code == NSURLErrorCancelled;
+    isCancelError1 = NO;
+  } onError:^(NSError *error) {
+    completed1 = YES;
+    isCancelError1 = error.code == NSURLErrorCancelled;
   }];
   
   // Make 2nd request
@@ -222,9 +230,12 @@
   
   __block BOOL completed2 = NO;
   __block BOOL isCancelError2 = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient performRequest:request] onSuccess:^(id result) {
     completed2 = YES;
-    isCancelError2 = error != nil && error.code == NSURLErrorCancelled;
+    isCancelError2 = NO;
+  } onError:^(NSError *error) {
+    completed2 = YES;
+    isCancelError2 = error.code == NSURLErrorCancelled;
   }];
   
   expect(completed1).will.beTruthy();
@@ -255,7 +266,7 @@
   NSString *beforeHeader = self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"];
   
   __block BOOL completed = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient performRequest:request] onSuccess:^(id result) {
     completed = YES;
   }];
   
@@ -271,7 +282,7 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient authenticateAsUserWithEmail:@"me@domain.com" password:@"p4$$w0rD"] onSuccess:^(id result) {
     completed = YES;
   }];
 
@@ -287,7 +298,7 @@
   [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
   
   __block BOOL completed = NO;
-  [self.testClient authenticateAsAppWithID:1234 token:@"app-token" completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient authenticateAsAppWithID:1234 token:@"app-token"] onSuccess:^(id result) {
     completed = YES;
   }];
 
@@ -309,9 +320,11 @@
   
   __block BOOL completed = NO;
   __block BOOL isError = NO;
-  [self.testClient performRequest:request completion:^(PKTResponse *response, NSError *error) {
+  [[self.testClient performRequest:request] onSuccess:^(id result) {
     completed = YES;
-    isError = error != nil;
+  } onError:^(NSError *error) {
+    completed = YES;
+    isError = YES;
   }];
   
   expect(completed).will.beTruthy();

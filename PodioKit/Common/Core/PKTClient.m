@@ -7,12 +7,12 @@
 //
 
 #import "PKTClient.h"
-#import "PKTRequestTaskDescriptor.h"
 #import "PKTOAuth2Token.h"
 #import "PKTTokenStore.h"
 #import "PKTAuthenticationAPI.h"
 #import "PKTMacros.h"
 #import "NSMutableURLRequest+PKTHeaders.h"
+#import "NSError+PKTErrors.h"
 
 NSString * const PKTClientAuthenticationStateDidChangeNotification = @"PKTClientAuthenticationStateDidChangeNotification";
 
@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 @property (nonatomic, copy, readwrite) NSString *apiKey;
 @property (nonatomic, copy, readwrite) NSString *apiSecret;
-@property (nonatomic, weak, readwrite) PKTRequestTaskDescriptor *authenticationTask;
+@property (nonatomic, weak, readwrite) PKTAsyncTask *authenticationTask;
 @property (nonatomic, strong, readwrite) PKTRequest *savedAuthenticationRequest;
 @property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingTasks;
 
@@ -153,20 +153,20 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 #pragma mark - Authentication
 
-- (PKTRequestTaskDescriptor *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password {
   NSParameterAssert(email);
   NSParameterAssert(password);
 
   PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithEmail:email password:password];
-  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious];
 }
 
-- (PKTRequestTaskDescriptor *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);
 
   PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
-  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious completion:completion];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious];
 }
 
 - (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
@@ -176,7 +176,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   self.savedAuthenticationRequest = [PKTAuthenticationAPI requestForAuthenticationWithAppID:appID token:appToken];
 }
 
-- (PKTRequestTaskDescriptor *)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)authenticateWithRequest:(PKTRequest *)request requestPolicy:(PKTClientAuthRequestPolicy)requestPolicy {
   if (requestPolicy == PKTClientAuthRequestPolicyIgnore) {
     if (self.authenticationTask) {
       // Ignore this new authentation request, let the old one finish
@@ -184,7 +184,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
     }
   } else if (requestPolicy == PKTClientAuthRequestPolicyCancelPrevious) {
     // Cancel any pending authentication task
-    [self.authenticationTask cancelWithClient:self.HTTPClient];
+    [self.authenticationTask cancel];
   }
 
   PKT_WEAK_SELF weakSelf = self;
@@ -199,90 +199,124 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
       return [mutURLRequest copy];
   };
 
-  self.authenticationTask = [self performTaskWithRequest:request completion:^(PKTResponse *response, NSError *error) {
+  self.authenticationTask = [self performTaskWithRequest:request];
+  
+  [self.authenticationTask onComplete:^(PKTResponse *response, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
-
-    PKTOAuth2Token *token = nil;
+    
     if (!error) {
-      token = [[PKTOAuth2Token alloc] initWithDictionary:response.body];
+      strongSelf.oauthToken = [[PKTOAuth2Token alloc] initWithDictionary:response.body];
+    } else if ([error pkt_isServerError]) {
+      // If authentication failed server side, reset the token since it isn't likely
+      // to be successful next time either. If it is NOT a server side error, it might
+      // just be networking so we should not reset the token.
+      strongSelf.oauthToken = nil;
     }
-
-    if (response.statusCode > 0) {
-      strongSelf.oauthToken = token;
-    }
-
-    if (completion) {
-      completion(response, error);
-    }
-
+    
     strongSelf.authenticationTask = nil;
   }];
 
   return self.authenticationTask;
 }
 
-- (PKTRequestTaskDescriptor *)authenticateWithSavedRequest:(PKTRequest *)request {
-  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:^(PKTResponse *response, NSError *error) {
-    if (!error) {
-      [self processPendingTasks];
-    } else {
-      [self clearPendingTasks];
-    }
+- (PKTAsyncTask *)authenticateWithSavedRequest:(PKTRequest *)request {
+  PKTAsyncTask *task = [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore];
+  
+  [task onSuccess:^(id result) {
+    [self processPendingTasks];
+  } onError:^(NSError *error) {
+    [self clearPendingTasks];
   }];
+  
+  return task;
 }
 
 #pragma mark - Requests
 
-- (PKTRequestTaskHandle *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)performRequest:(PKTRequest *)request {
   NSAssert(self.apiKey && self.apiSecret, @"You need to configure PodioKit with an API key and secret. Call [PodioKit setupWithAPIKey:secret:] bofore making any requests using PodioKit.");
   
-  PKTRequestTaskDescriptor *descriptor = nil;
+  PKTAsyncTask *task = nil;
   
   if (self.isAuthenticated) {
     // Authenticated request, might need token refresh
     if (![self.oauthToken willExpireWithinIntervalFromNow:kTokenExpirationLimit]) {
-      descriptor = [self performTaskWithRequest:request completion:completion];
+      task = [self performTaskWithRequest:request];
     } else {
-      descriptor = [self enqueueTaskWithRequest:request completion:completion];
+      task = [self enqueueTaskWithRequest:request];
       [self refreshToken];
     }
   } else if (self.savedAuthenticationRequest) {
     // Can self-authenticate, authenticate before performing request
-    descriptor = [self enqueueTaskWithRequest:request completion:completion];
+    task = [self enqueueTaskWithRequest:request];
     [self authenticateWithSavedRequest:self.savedAuthenticationRequest];
   } else {
     // Unauthenticated request
-    descriptor = [self performTaskWithRequest:request completion:completion];
+    task = [self performTaskWithRequest:request];
   }
   
-  return [PKTRequestTaskHandle handleForDescriptor:descriptor];
+  return task;
 }
 
-- (PKTRequestTaskDescriptor *)performTaskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  PKTRequestTaskDescriptor *descriptor = [PKTRequestTaskDescriptor descriptorWithRequest:request completion:completion];
-  [descriptor startWithClient:self.HTTPClient];
+- (PKTAsyncTask *)performTaskWithRequest:(PKTRequest *)request {
+  __block NSURLSessionTask *sessionTask = nil;
   
-  return descriptor;
+  PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    sessionTask = [self.HTTPClient taskForRequest:request completion:^(PKTResponse *response, NSError *error) {
+      if (!error) {
+        [resolver succeedWithResult:response];
+      } else {
+        [resolver failWithError:error];
+      }
+    }];
+    
+    PKT_WEAK(sessionTask) weakSessionTask = sessionTask;
+    
+    return ^{
+      [weakSessionTask cancel];
+    };
+  }];
+  
+  [sessionTask resume];
+  
+  return task;
 }
 
-- (PKTRequestTaskDescriptor *)enqueueTaskWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
-  PKTRequestTaskDescriptor *descriptor = [PKTRequestTaskDescriptor descriptorWithRequest:request completion:completion];
-  [self.pendingTasks addObject:descriptor];
+- (PKTAsyncTask *)enqueueTaskWithRequest:(PKTRequest *)request {
+  __block NSURLSessionTask *sessionTask = nil;
   
-  return descriptor;
+  PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    sessionTask = [self.HTTPClient taskForRequest:request completion:^(PKTResponse *response, NSError *error) {
+      if (!error) {
+        [resolver succeedWithResult:response];
+      } else {
+        [resolver failWithError:error];
+      }
+    }];
+    
+    PKT_WEAK(sessionTask) weakSessionTask = sessionTask;
+    
+    return ^{
+      [weakSessionTask cancel];
+    };
+  }];
+  
+  [self.pendingTasks addObject:sessionTask];
+  
+  return task;
 }
 
 - (void)processPendingTasks {
-  for (PKTRequestTaskDescriptor *descriptor in self.pendingTasks) {
-    [descriptor startWithClient:self.HTTPClient];
+  for (NSURLSessionTask *task in self.pendingTasks) {
+    [task resume];
   }
   
   [self.pendingTasks removeAllObjects];
 }
 
 - (void)clearPendingTasks {
-  for (PKTRequestTaskDescriptor *descriptor in self.pendingTasks) {
-    [descriptor cancelWithClient:self.HTTPClient];
+  for (NSURLSessionTask *task in self.pendingTasks) {
+    [task cancel];
   }
   
   [self.pendingTasks removeAllObjects];
@@ -326,27 +360,25 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
 #pragma mark - Refresh token
 
-- (PKTRequestTaskDescriptor *)refreshTokenWithRefreshToken:(NSString *)refreshToken completion:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)refreshTokenWithRefreshToken:(NSString *)refreshToken {
   NSParameterAssert(refreshToken);
 
   PKTRequest *request = [PKTAuthenticationAPI requestToRefreshToken:refreshToken];
-  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore completion:completion];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore];
 }
 
-- (PKTRequestTaskDescriptor *)refreshToken:(PKTRequestCompletionBlock)completion {
+- (PKTAsyncTask *)refreshToken {
   NSAssert([self.oauthToken.refreshToken length] > 0, @"Can't refresh session, refresh token is missing.");
 
-  return [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken completion:completion];
-}
-
-- (PKTRequestTaskDescriptor *)refreshToken {
-  return [self refreshToken:^(PKTResponse *response, NSError *error) {
-    if (!error) {
-      [self processPendingTasks];
-    } else {
-      [self clearPendingTasks];
-    }
+  PKTAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken];
+  
+  [task onSuccess:^(id result) {
+    [self processPendingTasks];
+  } onError:^(NSError *error) {
+    [self clearPendingTasks];
   }];
+  
+  return task;
 }
 
 #pragma mark - KVO

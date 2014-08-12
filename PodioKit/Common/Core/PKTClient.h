@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PKTHTTPClient.h"
-#import "PKTRequestTaskHandle.h"
+#import "PKTAsyncTask.h"
 
 extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 
@@ -88,11 +88,10 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *
  *  @param email The user's email address
  *  @param password The user's password
- *  @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- *  @return The resulting task handle.
+ *  @return The resulting task.
  */
-- (PKTRequestTaskHandle *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password completion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)authenticateAsUserWithEmail:(NSString *)email password:(NSString *)password;
 
 /** Authenticate the default client as an app.
  *
@@ -100,11 +99,10 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *
  *  @param appID The ID of the application to authenticate as.
  *  @param appToken The app token string associated with the app.
- *  @param completion The completion block to be called once the authentication attempt completes either successfully or with an error.
  *
- *  @return The resulting task handle.
+ *  @return The resulting task.
  */
-- (PKTRequestTaskHandle *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken completion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
 
 /** Configure authentication parameters for authenticating the default client as an app.
  *
@@ -121,11 +119,10 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *  Dispatches an HTTP request task for the provided request.
  *
  *  @param request    The request to perform.
- *  @param completion The completion handler to be called once the HTTP request task completes.
  *
- *  @return The resulting task handle.
+ *  @return The resulting task.
  */
-- (PKTRequestTaskHandle *)performRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (PKTAsyncTask *)performRequest:(PKTRequest *)request;
 
 /**
  *  Will attempt to restore the OAuth token from the current tokenStore if one has been configured.
