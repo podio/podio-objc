@@ -45,6 +45,12 @@ typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
 
 + (PKTAsyncTask *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
+- (PKTAsyncTask *)complete;
+
+- (PKTAsyncTask *)incomplete;
+
+- (PKTAsyncTask *)assignToUser:(PKTProfile *)profile;
+
 - (PKTAsyncTask *)save;
 
 @end

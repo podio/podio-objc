@@ -21,6 +21,7 @@
 @interface PKTTask ()
 
 @property (nonatomic, assign, readwrite) NSUInteger taskID;
+@property (nonatomic, assign, readwrite) PKTTaskStatus status;
 
 @end
 
@@ -132,6 +133,40 @@
   return task;
 }
 
+- (PKTAsyncTask *)complete {
+  PKTRequest *request = [PKTTasksAPI requestToCompleteTaskWithID:self.taskID];
+  PKTAsyncTask *task = [self updateStatus:PKTTaskStatusCompleted onSuccessfulRequest:request];
+  
+  return task;
+}
+
+- (PKTAsyncTask *)incomplete {
+  PKTRequest *request = [PKTTasksAPI requestToIncompleteTaskWithID:self.taskID];
+  PKTAsyncTask *task = [self updateStatus:PKTTaskStatusActive onSuccessfulRequest:request];
+  
+  return task;
+}
+
+- (PKTAsyncTask *)assignToUser:(PKTProfile *)profile {
+  PKTRequest *request = [PKTTasksAPI requestToAssignTaskWithID:self.taskID userID:profile.userID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  PKTProfile *previousResponsible = self.responsible;
+  
+  PKT_WEAK_SELF weakSelf = self;
+  [task onComplete:^(id result, NSError *error) {
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    if (!error) {
+      strongSelf.responsible = profile;
+    } else {
+      strongSelf.responsible = previousResponsible;
+    }
+  }];
+  
+  return task;
+}
+
 - (PKTAsyncTask *)save {
   NSAssert(self.text, @"The 'text' property of task %@ cannot be nil", self);
   
@@ -168,6 +203,27 @@
     weakSelf.taskID = [response.body[@"task_id"] unsignedIntegerValue];
   }];
 
+  return task;
+}
+
+#pragma mark - Private
+
+- (PKTAsyncTask *)updateStatus:(PKTTaskStatus)status onSuccessfulRequest:(PKTRequest *)request {
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  PKTTaskStatus previousStatus = self.status;
+  
+  PKT_WEAK_SELF weakSelf = self;
+  [task onComplete:^(id result, NSError *error) {
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    if (!error) {
+      strongSelf.status = status;
+    } else {
+      strongSelf.status = previousStatus;
+    }
+  }];
+  
   return task;
 }
 
