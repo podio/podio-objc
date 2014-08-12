@@ -30,7 +30,9 @@ This option is great when you want to have every user of your client app to log 
 Here is how to authenticate as a user:
 
 {% highlight objective-c %}
-[PodioKit authenticateAsUserWithEmail:@"myname@mydomain.com" password:@"p4$$w0rD" completion:^(PKTResponse *response, NSError *error) {
+PKTAsyncTask *authTask = [PodioKit authenticateAsUserWithEmail:@"myname@mydomain.com" password:@"p4$$w0rD"];
+
+[authTask onComplete:^(PKTResponse *response, NSError *error) {
   if (!error) {
     // Successfully authenticated
   } else {
@@ -52,12 +54,14 @@ To authenticate as the app, you need to find the app ID and token for your app. 
 Here is an example of how to authenticate as an app:
 
 {% highlight objective-c %}
-[PodioKit authenticateAsAppWithID:123456 token:@"my-app-token" completion:^(PKTResponse *response, NSError *error) {
-	if (!error) {
-		// Successfully authenticated
-	} else {
-		// Failed to authenticate, double check your credentials
-	}
+PKTAsyncTask *authTask = [PodioKit authenticateAsAppWithID:123456 token:@"my-app-token"];
+
+[authTask onComplete:^(PKTResponse *response, NSError *error) {
+  if (!error) {
+    // Successfully authenticated
+  } else {
+    // Failed to authenticate, double check your credentials
+  }
 }];
 {% endhighlight %}
 

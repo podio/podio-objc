@@ -12,7 +12,9 @@ To download the contents of a file from Podio you have two options. The first on
 {% highlight objective-c %}
 PKTFile *file = ...;
 
-[file downloadWithCompletion:^(NSData *data, NSError *error) {
+PKTAsyncTask *downloadTask = [file download];
+
+[downloadTask onComplete:^(NSData *data, NSError *error) {
   if (data) {
     // Success, do something the data...
   } else {
@@ -27,7 +29,9 @@ The second option is to save the file directly to disk to avoid keeping its data
 PKTFile *file = ...;
 NSString *savePath = ...; // The local file path where you wish to save the file
 
-[file downloadToFileWithPath:savePath completion:^(BOOL success, NSError *error) {
+PKTAsyncTask *downloadTask = [file downloadToFileWithPath:savePath];
+
+[downloadTask onComplete:^(BOOL success, NSError *error) {
   if (success) {
     // Success, now we can load it from disk as needed...
     NSData *data = [NSData dataWithContentsOfFile:savePath];
@@ -45,7 +49,9 @@ You can easily upload a file to Podio to attach to an item or comment. To do so,
 UIImage *image = [UIImage imageNamed:@"some-image.jpg"];
 NSData *data = UIImageJPEGRepresentation(image, 0.8f);
 
-[PKTFile uploadWithData:data fileName:@"image.jpg" completion:^(PKTFile *file, NSError *error) {
+PKTAsyncTask *uploadTask = [PKTFile uploadWithData:data fileName:@"image.jpg"];
+
+[uploadTask onComplete:^(PKTFile *file, NSError *error) {
   if (!error) {
     NSLog(@"File uploaded with ID: %@", @(file.fileID));
   }
@@ -60,7 +66,7 @@ PKTFile *file = ...
 
 [item addFile:file];
 
-[item saveWithCompletion:^(PKTResponse *response, NSError *error){
+[[item save] onComplete:^(PKTResponse *response, NSError *error){
   // Item saved with the file added
 }];
 {% endhighlight %}
@@ -69,7 +75,10 @@ You can also attach a file to any object by supplying its reference type and ID:
 
 {% highlight objective-c %}
 PKTFile *file = ...
-[file attachWithReferenceID:1234 referenceType:PKTReferenceTypeItem completion:^(PKTResponse *response, NSError *error) {
+
+PKTAsyncTask *attachTask = [file attachWithReferenceID:1234 referenceType:PKTReferenceTypeItem];
+
+[attachTask onComplete:^(PKTResponse *response, NSError *error) {
   if (!error) {
     // File successfully attached to item with ID 1234
   }

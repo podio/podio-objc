@@ -26,7 +26,7 @@ There are mupltiple types of fields in an app. A field supports a single or mult
 To fetch an item, use the class method on `PKTItem`:
 
 {% highlight objective-c %}
-[PKTItem fetchItemWithID:1234 completion:^(PKTItem *item, NSError *error) {
+[[PKTItem fetchItemWithID:1234] onComplete:^(PKTItem *item, NSError *error) {
   if (!error) {
     NSLog(@"Fetched item with ID: %@", @(item.itemID));
   }
@@ -36,7 +36,7 @@ To fetch an item, use the class method on `PKTItem`:
 To fetch a list of items in an app, there is another handy method on `PKTItem`:
 
 {% highlight objective-c %}
-[PKTItem fetchItemsInAppWithID:1234 offset:0 limit:30 completion:^(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error) {
+[[PKTItem fetchItemsInAppWithID:1234 offset:0 limit:30] onComplete:^(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error) {
   if (!error) {
     NSLog(@"Fetched %@ items out of a total of @%", @(filteredCount), @(totalCount));
   }
@@ -74,7 +74,7 @@ PKTItem *item = [PKTItem itemForAppWithID:1234];
 item[@"title"] = @"My first item";
 item[@"description"] = @"This is my first item of many.";
 
-[item saveWithCompletion:^(PKTResponse *response, NSError *error) {
+[[item save] onComplete:^(PKTResponse *response, NSError *error) {
   if (!error) {
     NSLog(@"Item saved with ID: %@", @(item.itemID));
   } else {
@@ -85,4 +85,4 @@ item[@"description"] = @"This is my first item of many.";
 
 ## Updating an existing item
 
-To update an item, use the same `saveWithCompletion:` method as described in *Creating a new item* above. PodioKit will know if the item already exists and needs to be created, or if it should only be updated.
+To update an item, use the same `save` method as described in *Creating a new item* above. PodioKit will know if the item already exists and needs to be created, or if it should only be updated.

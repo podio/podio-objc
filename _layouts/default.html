@@ -13,6 +13,7 @@
         <nav>
           <ul>
             <li class="{% if page.active == 'index' %}active{% endif %}"><a href="{{ site.baseurl}}/">Getting started</a></li>
+            <li class="{% if page.active == 'async' %}active{% endif %}"><a href="{{ site.baseurl}}/async">Basic principles of asynchronicity</a></li>
             <li class="{% if page.active == 'auth' %}active{% endif %}"><a href="{{ site.baseurl}}/authentication">Authentication &amp; session management</a></li>
             <li class="{% if page.active == 'items' %}active{% endif %}"><a href="{{ site.baseurl}}/items">Working with apps &amp; items</a></li>
             <li class="{% if page.active == 'fields' %}active{% endif %}"><a href="{{ site.baseurl}}/fields">Item field examples</a></li>
