@@ -7,7 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
-#import "PKTWorskpacesAPI.h"
+#import "PKTWorkspacesAPI.h"
 
 @interface PKTWorkspacesAPITests : XCTestCase
 
@@ -16,7 +16,7 @@
 @implementation PKTWorkspacesAPITests
 
 - (void)testCreateDefaultWorkspace {
-  PKTRequest *request = [PKTWorskpacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorskpacePrivacyDefault];
+  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorkspacePrivacyDefault];
   
   expect(request.path).to.equal(@"/space/");
   expect(request.method).to.equal(PKTRequestMethodPOST);
@@ -26,7 +26,7 @@
 }
 
 - (void)testCreateOpenWorkspace {
-  PKTRequest *request = [PKTWorskpacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorskpacePrivacyOpen];
+  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorkspacePrivacyOpen];
   
   expect(request.path).to.equal(@"/space/");
   expect(request.method).to.equal(PKTRequestMethodPOST);
@@ -36,7 +36,7 @@
 }
 
 - (void)testCreateClosedWorkspace {
-  PKTRequest *request = [PKTWorskpacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorskpacePrivacyClosed];
+  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorkspacePrivacyClosed];
   
   expect(request.path).to.equal(@"/space/");
   expect(request.method).to.equal(PKTRequestMethodPOST);

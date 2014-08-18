@@ -302,10 +302,10 @@
 		50E6C817190D654A00F309B4 /* PKTItemField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E6C804190D4EA900F309B4 /* PKTItemField.m */; };
 		50E6C818190D655100F309B4 /* PKTFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E6C808190D4EC200F309B4 /* PKTFile.m */; };
 		50E6C819190D655A00F309B4 /* PKTAppField.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E6C80C190D5A6600F309B4 /* PKTAppField.m */; };
-		50E9350B19A1DA6200E05FEA /* PKTWorskpacesAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E9350919A1DA6200E05FEA /* PKTWorskpacesAPI.h */; };
-		50E9350C19A1DA6200E05FEA /* PKTWorskpacesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E9350A19A1DA6200E05FEA /* PKTWorskpacesAPI.m */; };
+		50E9350B19A1DA6200E05FEA /* PKTWorkspacesAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50E9350919A1DA6200E05FEA /* PKTWorkspacesAPI.h */; };
+		50E9350C19A1DA6200E05FEA /* PKTWorkspacesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E9350A19A1DA6200E05FEA /* PKTWorkspacesAPI.m */; };
 		50E9350E19A1DBFB00E05FEA /* PKTWorkspacesAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E9350D19A1DBFB00E05FEA /* PKTWorkspacesAPITests.m */; };
-		50E9350F19A1DC3200E05FEA /* PKTWorskpacesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E9350A19A1DA6200E05FEA /* PKTWorskpacesAPI.m */; };
+		50E9350F19A1DC3200E05FEA /* PKTWorkspacesAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50E9350A19A1DA6200E05FEA /* PKTWorkspacesAPI.m */; };
 		50F6B92C195AE84900FF0024 /* PKTFile+UIImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F6B926195AE84900FF0024 /* PKTFile+UIImage.h */; };
 		50F6B92D195AE84900FF0024 /* PKTFile+UIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 50F6B927195AE84900FF0024 /* PKTFile+UIImage.m */; };
 		50F6B92E195AE84900FF0024 /* UIButton+PKTRemoteImage.h in Headers */ = {isa = PBXBuildFile; fileRef = 50F6B928195AE84900FF0024 /* UIButton+PKTRemoteImage.h */; };
@@ -608,8 +608,8 @@
 		50E6C808190D4EC200F309B4 /* PKTFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTFile.m; sourceTree = "<group>"; };
 		50E6C80B190D5A6600F309B4 /* PKTAppField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppField.h; sourceTree = "<group>"; };
 		50E6C80C190D5A6600F309B4 /* PKTAppField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAppField.m; sourceTree = "<group>"; };
-		50E9350919A1DA6200E05FEA /* PKTWorskpacesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTWorskpacesAPI.h; sourceTree = "<group>"; };
-		50E9350A19A1DA6200E05FEA /* PKTWorskpacesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTWorskpacesAPI.m; sourceTree = "<group>"; };
+		50E9350919A1DA6200E05FEA /* PKTWorkspacesAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTWorkspacesAPI.h; sourceTree = "<group>"; };
+		50E9350A19A1DA6200E05FEA /* PKTWorkspacesAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTWorkspacesAPI.m; sourceTree = "<group>"; };
 		50E9350D19A1DBFB00E05FEA /* PKTWorkspacesAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTWorkspacesAPITests.m; sourceTree = "<group>"; };
 		50F6B926195AE84900FF0024 /* PKTFile+UIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PKTFile+UIImage.h"; sourceTree = "<group>"; };
 		50F6B927195AE84900FF0024 /* PKTFile+UIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PKTFile+UIImage.m"; sourceTree = "<group>"; };
@@ -1298,8 +1298,8 @@
 				50DAD4321964007400529DB5 /* PKTFormsAPI.m */,
 				500C2A7B19793C2B006DC5A9 /* PKTContactsAPI.h */,
 				500C2A7C19793C2B006DC5A9 /* PKTContactsAPI.m */,
-				50E9350919A1DA6200E05FEA /* PKTWorskpacesAPI.h */,
-				50E9350A19A1DA6200E05FEA /* PKTWorskpacesAPI.m */,
+				50E9350919A1DA6200E05FEA /* PKTWorkspacesAPI.h */,
+				50E9350A19A1DA6200E05FEA /* PKTWorkspacesAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1414,7 +1414,7 @@
 				503959FD19137585004C298C /* PKTDateValueTransformer.h in Headers */,
 				50FA507218FFC040009542B9 /* PKTUsersAPI.h in Headers */,
 				50E6C805190D4EA900F309B4 /* PKTItemField.h in Headers */,
-				50E9350B19A1DA6200E05FEA /* PKTWorskpacesAPI.h in Headers */,
+				50E9350B19A1DA6200E05FEA /* PKTWorkspacesAPI.h in Headers */,
 				50CAE07719701DFF0096BE07 /* NSDictionary+PKTAdditions.h in Headers */,
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
 				C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */,
@@ -1670,7 +1670,7 @@
 				C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */,
 				C9FADF66DCAA1D556BEB3C1F /* PKTItemFieldValue.m in Sources */,
 				C9FADABAC0F8E5C7AA861A12 /* PKTNumberValueTransformer.m in Sources */,
-				50E9350C19A1DA6200E05FEA /* PKTWorskpacesAPI.m in Sources */,
+				50E9350C19A1DA6200E05FEA /* PKTWorkspacesAPI.m in Sources */,
 				C9FADA4482A758EDAC72D210 /* NSNumberFormatter+PKTAdditions.m in Sources */,
 				C9FADDB6A88831D6235765A4 /* NSNumber+PKTAdditions.m in Sources */,
 				C9FADFCCA132D164F80B8CD2 /* PKTNumberItemFieldValue.m in Sources */,
@@ -1704,7 +1704,7 @@
 				502BB231195DAD50003160DE /* PKTReferenceIdentifier.m in Sources */,
 				5039F659190714CD00A8A8F0 /* PKTReferenceTypeValueTransformer.m in Sources */,
 				507DFDC5194797AA002C339A /* PKTKeychain.m in Sources */,
-				50E9350F19A1DC3200E05FEA /* PKTWorskpacesAPI.m in Sources */,
+				50E9350F19A1DC3200E05FEA /* PKTWorkspacesAPI.m in Sources */,
 				50395A0519137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				503959FA191369D4004C298C /* PKTFileAPITests.m in Sources */,
 				50B49F1C18EE095500B7EDF5 /* PKTAppTests.m in Sources */,

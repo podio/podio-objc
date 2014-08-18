@@ -8,6 +8,8 @@
 
 #import "PKTModel.h"
 
+@class PKTAsyncTask;
+
 @interface PKTWorkspace : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger spaceID;
@@ -15,5 +17,9 @@
 @property (nonatomic, assign, readonly) NSInteger rank;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSString *linkURL;
+
++ (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;
++ (PKTAsyncTask *)createOpenWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;
++ (PKTAsyncTask *)createPrivateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;
 
 @end

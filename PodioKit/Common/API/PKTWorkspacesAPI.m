@@ -1,16 +1,16 @@
 //
-//  PKTWorskpacesAPI.m
+//  PKTWorkspacesAPI.m
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 18/08/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTWorskpacesAPI.h"
+#import "PKTWorkspacesAPI.h"
 
-@implementation PKTWorskpacesAPI
+@implementation PKTWorkspacesAPI
 
-+ (PKTRequest *)requestToCreateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID privacy:(PKTWorskpacePrivacy)privacy {
++ (PKTRequest *)requestToCreateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID privacy:(PKTWorkspacePrivacy)privacy {
   NSParameterAssert(name);
   NSParameterAssert(organizationID > 0);
   
@@ -19,10 +19,10 @@
   params[@"org_id"] = @(organizationID);
   
   switch (privacy) {
-    case PKTWorskpacePrivacyOpen:
+    case PKTWorkspacePrivacyOpen:
       params[@"privacy"] = @"open";
       break;
-    case PKTWorskpacePrivacyClosed:
+    case PKTWorkspacePrivacyClosed:
       params[@"privacy"] = @"closed";
       break;
     default:
