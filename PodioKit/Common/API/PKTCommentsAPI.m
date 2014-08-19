@@ -13,7 +13,7 @@
 
 + (PKTRequest *)requestToAddCommentToObjectWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType value:(NSString *)value files:(NSArray *)files embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL {
   NSParameterAssert(referenceID > 0);
-  NSParameterAssert(referenceType != PKTReferenceTypeNone);
+  NSParameterAssert(referenceType != PKTReferenceTypeUnknown);
   NSParameterAssert(value);
   
   NSString *refTypeString = [NSValueTransformer pkt_stringFromReferenceType:referenceType];

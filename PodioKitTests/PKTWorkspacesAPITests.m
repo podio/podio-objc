@@ -23,7 +23,7 @@
 }
 
 - (void)testCreateDefaultWorkspace {
-  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorkspacePrivacyDefault];
+  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorkspacePrivacyUnknown];
   
   expect(request.path).to.equal(@"/space/");
   expect(request.method).to.equal(PKTRequestMethodPOST);

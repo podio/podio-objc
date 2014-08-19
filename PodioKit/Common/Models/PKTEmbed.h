@@ -7,15 +7,7 @@
 //
 
 #import "PKTModel.h"
-
-typedef NS_ENUM(NSInteger, PKTEmbedType) {
-  PKTEmbedTypeUnknown = 0,
-  PKTEmbedTypeImage,
-  PKTEmbedTypeVideo,
-  PKTEmbedTypeRich,
-  PKTEmbedTypeLink,
-  PKTEmbedTypeUnresolved
-};
+#import "PKTConstants.h"
 
 @interface PKTEmbed : PKTModel
 

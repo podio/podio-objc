@@ -7,12 +7,7 @@
 //
 
 #import "PKTBaseAPI.h"
-
-typedef NS_ENUM(NSUInteger, PKTWorkspacePrivacy) {
-  PKTWorkspacePrivacyDefault,
-  PKTWorkspacePrivacyOpen,
-  PKTWorkspacePrivacyClosed
-};
+#import "PKTConstants.h"
 
 @interface PKTWorkspacesAPI : PKTBaseAPI
 

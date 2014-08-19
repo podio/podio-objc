@@ -7,26 +7,10 @@
 //
 
 #import "PKTModel.h"
+#import "PKTConstants.h"
 #import "PKTAppFieldConfig.h"
 
 @class PKTCategoryOption;
-
-typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
-  PKTAppFieldTypeNone = 0,
-  PKTAppFieldTypeText,
-  PKTAppFieldTypeNumber,
-  PKTAppFieldTypeImage,
-  PKTAppFieldTypeDate,
-  PKTAppFieldTypeApp,
-  PKTAppFieldTypeContact,
-  PKTAppFieldTypeMoney,
-  PKTAppFieldTypeProgress,
-  PKTAppFieldTypeLocation,
-  PKTAppFieldTypeDuration,
-  PKTAppFieldTypeEmbed,
-  PKTAppFieldTypeCalculation,
-  PKTAppFieldTypeCategory,
-};
 
 @interface PKTAppField : PKTModel
 

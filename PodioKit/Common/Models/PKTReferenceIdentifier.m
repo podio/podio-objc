@@ -12,7 +12,7 @@
 @implementation PKTReferenceIdentifier
 
 - (instancetype)init {
-  return [self initWithReferenceID:0 type:PKTReferenceTypeNone];
+  return [self initWithReferenceID:0 type:PKTReferenceTypeUnknown];
 }
 
 - (instancetype)initWithReferenceID:(NSUInteger)referenceID type:(PKTReferenceType)referenceType {

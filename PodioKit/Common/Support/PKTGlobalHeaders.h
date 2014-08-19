@@ -7,6 +7,7 @@
 //
 
 #import "PKTMacros.h"
+#import "PKTConstants.h"
 
 #import "PKTClient.h"
 #import "PKTRequest.h"

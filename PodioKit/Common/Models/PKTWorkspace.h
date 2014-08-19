@@ -7,16 +7,22 @@
 //
 
 #import "PKTModel.h"
-#import "PKTWorkspaceMembersAPI.h"
+#import "PKTConstants.h"
 
 @class PKTAsyncTask;
+@class PKTByLine;
 
 @interface PKTWorkspace : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger spaceID;
 @property (nonatomic, assign, readonly) NSUInteger organizationID;
 @property (nonatomic, assign, readonly) NSInteger rank;
+@property (nonatomic, assign, readonly) PKTWorkspaceMemberRole role;
+@property (nonatomic, assign, readonly) PKTWorkspaceType spaceType;
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSString *descriptionText;
+@property (nonatomic, copy, readonly) NSDate *createdOn;
+@property (nonatomic, copy, readonly) PKTByLine *createdBy;
 @property (nonatomic, copy, readonly) NSString *linkURL;
 
 + (PKTAsyncTask *)fetchWorkspaceWithID:(NSUInteger)workspaceID;

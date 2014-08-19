@@ -7,17 +7,12 @@
 //
 
 #import "PKTModel.h"
+#import "PKTConstants.h"
 #import "PKTClient.h"
 
 @class PKTProfile;
 @class PKTByLine;
 @class PKTReference;
-
-typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
-  PKTTaskStatusActive,
-  PKTTaskStatusCompleted,
-};
-
 @class PKTTaskRequestParameters;
 
 @interface PKTTask : PKTModel

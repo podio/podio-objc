@@ -7,13 +7,7 @@
 //
 
 #import "PKTBaseAPI.h"
-
-typedef NS_ENUM(NSUInteger, PKTWorkspaceMemberRole) {
-  PKTWorkspaceMemberRoleDefault,
-  PKTWorkspaceMemberRoleLight,
-  PKTWorkspaceMemberRoleRegular,
-  PKTWorkspaceMemberRoleAdmin
-};
+#import "PKTConstants.h"
 
 @interface PKTWorkspaceMembersAPI : PKTBaseAPI
 

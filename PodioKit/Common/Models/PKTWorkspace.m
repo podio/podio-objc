@@ -7,6 +7,7 @@
 //
 
 #import "PKTWorkspace.h"
+#import "PKTByLine.h"
 #import "PKTWorkspacesAPI.h"
 #import "PKTWorkspaceMembersAPI.h"
 #import "PKTClient.h"
@@ -20,12 +21,36 @@
   return @{
            @"spaceID" : @"space_id",
            @"organizationID" : @"org_id",
-           @"linkURL" : @"url"
+           @"linkURL" : @"url",
+           @"descriptionText" : @"description",
+           @"createdOn" : @"created_on",
+           @"createdBy" : @"created_by",
+           @"spaceType" : @"type",
            };
 }
 
 + (NSValueTransformer *)linkURLValueTransformer {
   return [NSValueTransformer pkt_URLTransformer];
+}
+
++ (NSValueTransformer *)createdOnValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
+}
+
++ (NSValueTransformer *)createdByValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTByLine class]];
+}
+
++ (NSValueTransformer *)roleValueTransformer {
+  return [NSValueTransformer pkt_transformerWithDictionary:@{@"regular" : @(PKTWorkspaceMemberRoleRegular),
+                                                             @"admin" : @(PKTWorkspaceMemberRoleAdmin),
+                                                             @"light" : @(PKTWorkspaceMemberRoleLight)}];
+}
+
++ (NSValueTransformer *)spaceTypeValueTransformer {
+  return [NSValueTransformer pkt_transformerWithDictionary:@{@"regular" : @(PKTWorkspaceTypeRegular),
+                                                             @"emp_network" : @(PKTWorkspaceTypeEmployeeNetwork),
+                                                             @"demo" : @(PKTWorkspaceTypeDemo)}];
 }
 
 #pragma mark - Public
@@ -34,13 +59,13 @@
   PKTRequest *request = [PKTWorkspacesAPI requestForWorkspaceWithID:workspaceID];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
-  return [task map:^id(NSDictionary *workspaceDict) {
-    return [[self alloc] initWithDictionary:workspaceDict];
+  return [task map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
   }];
 }
 
 + (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID {
-  return [self createWorkspaceWithName:name organizationID:organizationID privacy:PKTWorkspacePrivacyDefault];
+  return [self createWorkspaceWithName:name organizationID:organizationID privacy:PKTWorkspacePrivacyUnknown];
 }
 
 + (PKTAsyncTask *)createOpenWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID {
@@ -90,7 +115,7 @@
 #pragma mark - Private
 
 + (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID privacy:(PKTWorkspacePrivacy)privacy {
-  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:name organizationID:organizationID privacy:PKTWorkspacePrivacyDefault];
+  PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:name organizationID:organizationID privacy:privacy];
   
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   

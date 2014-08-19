@@ -17,7 +17,7 @@
 
 - (void)testRequestToAddMembersToWorkspaceWithDefaultRole {
   PKTRequest *request = [PKTWorkspaceMembersAPI requestToAddMembersToSpaceWithID:1234
-                                                                            role:PKTWorkspaceMemberRoleDefault
+                                                                            role:PKTWorkspaceMemberRoleUnknown
                                                                          message:@"Join my workspace"
                                                                          userIDs:@[@111, @222]
                                                                       profileIDs:@[@333, @444]

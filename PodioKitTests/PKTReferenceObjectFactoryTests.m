@@ -24,8 +24,8 @@
 
 @implementation PKTReferenceObjectFactoryTests
 
-- (void)testReferenceTypeNoneShouldReturnNil {
-  expect([PKTReferenceObjectFactory referenceObjectFromData:@{} type:PKTReferenceTypeNone]).to.beNil();
+- (void)testReferenceTypeUnknownShouldReturnNil {
+  expect([PKTReferenceObjectFactory referenceObjectFromData:@{} type:PKTReferenceTypeUnknown]).to.beNil();
 }
 
 - (void)testNoDataShouldReturnNil {

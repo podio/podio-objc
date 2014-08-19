@@ -14,7 +14,7 @@
 + (PKTReferenceType)pkt_referenceTypeFromString:(NSString *)string {
   id referenceTypeValue = [[NSValueTransformer pkt_referenceTypeTransformer] transformedValue:string];
 
-  PKTReferenceType referenceType = PKTReferenceTypeNone;
+  PKTReferenceType referenceType = PKTReferenceTypeUnknown;
   if ([referenceTypeValue isKindOfClass:[NSNumber class]]) {
     referenceType = [referenceTypeValue unsignedIntegerValue];
   }

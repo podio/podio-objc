@@ -10,7 +10,7 @@
 #define PodioKit_PKTConstants_h
 
 typedef NS_ENUM(NSUInteger, PKTReferenceType) {
-  PKTReferenceTypeNone = 0,
+  PKTReferenceTypeUnknown = 0,
   PKTReferenceTypeApp,
   PKTReferenceTypeAppRevision,
   PKTReferenceTypeAppField,
@@ -56,6 +56,69 @@ typedef NS_ENUM(NSUInteger, PKTReferenceType) {
   PKTReferenceTypeSpaceMemberRequest,
   PKTReferenceTypeLive,
   PKTReferenceTypeItemParticipation
+};
+
+#pragma mark - Workspaces
+
+typedef NS_ENUM(NSUInteger, PKTWorkspacePrivacy) {
+  PKTWorkspacePrivacyUnknown = 0,
+  PKTWorkspacePrivacyOpen,
+  PKTWorkspacePrivacyClosed
+};
+
+typedef NS_ENUM(NSUInteger, PKTWorkspaceMemberRole) {
+  PKTWorkspaceMemberRoleUnknown = 0,
+  PKTWorkspaceMemberRoleLight,
+  PKTWorkspaceMemberRoleRegular,
+  PKTWorkspaceMemberRoleAdmin
+};
+
+typedef NS_ENUM(NSUInteger, PKTWorkspaceType) {
+  PKTWorkspaceTypeUnknown = 0,
+  PKTWorkspaceTypeRegular,
+  PKTWorkspaceTypeEmployeeNetwork,
+  PKTWorkspaceTypeDemo
+};
+
+#pragma mark - Apps
+
+typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
+  PKTAppFieldTypeUnknown = 0,
+  PKTAppFieldTypeText,
+  PKTAppFieldTypeNumber,
+  PKTAppFieldTypeImage,
+  PKTAppFieldTypeDate,
+  PKTAppFieldTypeApp,
+  PKTAppFieldTypeContact,
+  PKTAppFieldTypeMoney,
+  PKTAppFieldTypeProgress,
+  PKTAppFieldTypeLocation,
+  PKTAppFieldTypeDuration,
+  PKTAppFieldTypeEmbed,
+  PKTAppFieldTypeCalculation,
+  PKTAppFieldTypeCategory,
+};
+
+typedef NS_ENUM(NSUInteger, PKTCategoryOptionStatus) {
+  PKTCategoryOptionStatusUnknown = 0,
+  PKTCategoryOptionStatusActive,
+  PKTCategoryOptionStatusDeleted
+};
+
+typedef NS_ENUM(NSInteger, PKTEmbedType) {
+  PKTEmbedTypeUnknown = 0,
+  PKTEmbedTypeImage,
+  PKTEmbedTypeVideo,
+  PKTEmbedTypeRich,
+  PKTEmbedTypeLink,
+  PKTEmbedTypeUnresolved
+};
+
+#pragma mark - Tasks
+
+typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
+  PKTTaskStatusActive,
+  PKTTaskStatusCompleted,
 };
 
 #endif

@@ -7,6 +7,7 @@
 //
 
 #import "PKTTasksAPI.h"
+#import "PKTConstants.h"
 #import "NSDate+PKTAdditions.h"
 #import "NSValueTransformer+PKTConstants.h"
 
@@ -120,7 +121,7 @@
     params[@"responsible"] = @(responsibleUserID);
   }
   
-  if (referenceID > 0 && referenceType != PKTReferenceTypeNone) {
+  if (referenceID > 0 && referenceType != PKTReferenceTypeUnknown) {
     params[@"ref_id"] = @(referenceID);
     params[@"ref_type"] = [NSValueTransformer pkt_stringFromReferenceType:referenceType];
   }
