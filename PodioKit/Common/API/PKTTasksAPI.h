@@ -35,6 +35,8 @@
                             referenceType:(PKTReferenceType)referenceType
                                     files:(NSArray *)files;
 
++ (PKTRequest *)requestToDeleteTaskWithID:(NSUInteger)taskID;
+
 + (PKTRequest *)requestToAssignTaskWithID:(NSUInteger)taskID userID:(NSUInteger)userID;
 
 + (PKTRequest *)requestToCompleteTaskWithID:(NSUInteger)taskID;

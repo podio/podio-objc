@@ -71,6 +71,27 @@
   return [PKTRequest PUTRequestWithPath:PKTRequestPath(@"/task/%lu", (unsigned long)taskID) parameters:params];
 }
 
++ (PKTRequest *)requestToDeleteTaskWithID:(NSUInteger)taskID {
+  return [PKTRequest DELETERequestWithPath:PKTRequestPath(@"/task/%lu", (unsigned long)taskID) parameters:nil];
+}
+
++ (PKTRequest *)requestToAssignTaskWithID:(NSUInteger)taskID userID:(NSUInteger)userID {
+  NSString *path = PKTRequestPath(@"/task/%lu/assign", (unsigned long)taskID);
+  NSDictionary *params = @{
+                           @"responsible" : userID > 0 ? @(userID) : [NSNull null]
+                           };
+  
+  return [PKTRequest POSTRequestWithPath:path parameters:params];
+}
+
++ (PKTRequest *)requestToCompleteTaskWithID:(NSUInteger)taskID {
+  return [PKTRequest POSTRequestWithPath:PKTRequestPath(@"/task/%lu/complete", (unsigned long)taskID) parameters:nil];
+}
+
++ (PKTRequest *)requestToIncompleteTaskWithID:(NSUInteger)taskID {
+  return [PKTRequest POSTRequestWithPath:PKTRequestPath(@"/task/%lu/incomplete", (unsigned long)taskID) parameters:nil];
+}
+
 #pragma mark - Helpers
 
 + (NSDictionary *)queryParametersForTaskWithText:(NSString *)text
@@ -109,23 +130,6 @@
   }
   
   return [params copy];
-}
-
-+ (PKTRequest *)requestToAssignTaskWithID:(NSUInteger)taskID userID:(NSUInteger)userID {
-  NSString *path = PKTRequestPath(@"/task/%lu/assign", (unsigned long)taskID);
-  NSDictionary *params = @{
-                           @"responsible" : userID > 0 ? @(userID) : [NSNull null]
-                           };
-  
-  return [PKTRequest POSTRequestWithPath:path parameters:params];
-}
-
-+ (PKTRequest *)requestToCompleteTaskWithID:(NSUInteger)taskID {
-  return [PKTRequest POSTRequestWithPath:PKTRequestPath(@"/task/%lu/complete", (unsigned long)taskID) parameters:nil];
-}
-
-+ (PKTRequest *)requestToIncompleteTaskWithID:(NSUInteger)taskID {
-  return [PKTRequest POSTRequestWithPath:PKTRequestPath(@"/task/%lu/incomplete", (unsigned long)taskID) parameters:nil];
 }
 
 @end

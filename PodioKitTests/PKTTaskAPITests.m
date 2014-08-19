@@ -77,6 +77,13 @@
   expect(request.parameters[@"file_ids"]).to.equal(@[@111, @222]);
 }
 
+- (void)testRequestToDeleteTask {
+  PKTRequest *request = [PKTTasksAPI requestToDeleteTaskWithID:1234];
+  
+  expect(request.method).to.equal(PKTRequestMethodDELETE);
+  expect(request.path).to.equal(@"/task/1234");
+}
+
 - (void)testRequestToAssignTask {
   PKTRequest *request = [PKTTasksAPI requestToAssignTaskWithID:1234 userID:1111];
   
