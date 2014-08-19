@@ -206,6 +206,13 @@
   return task;
 }
 
+- (PKTAsyncTask *)deleteTask {
+  PKTRequest *request = [PKTTasksAPI requestToDeleteTaskWithID:self.taskID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return task;
+}
+
 #pragma mark - Private
 
 - (PKTAsyncTask *)updateStatus:(PKTTaskStatus)status onSuccessfulRequest:(PKTRequest *)request {
