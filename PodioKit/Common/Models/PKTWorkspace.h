@@ -37,6 +37,6 @@
 
 - (PKTAsyncTask *)addMembersWithProfileIDs:(NSArray *)profileIDs role:(PKTWorkspaceMemberRole)role;
 
-- (PKTAsyncTask *)addMembersWithEmails:(NSArray *)emails;
+- (PKTAsyncTask *)addMembersWithEmails:(NSArray *)emails role:(PKTWorkspaceMemberRole)role;
 
 @end
