@@ -53,4 +53,6 @@ typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
 
 - (PKTAsyncTask *)save;
 
+- (PKTAsyncTask *)deleteTask;
+
 @end
