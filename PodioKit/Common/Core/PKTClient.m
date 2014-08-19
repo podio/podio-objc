@@ -262,13 +262,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   __block NSURLSessionTask *sessionTask = nil;
   
   PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
-    sessionTask = [self.HTTPClient taskForRequest:request completion:^(PKTResponse *response, NSError *error) {
-      if (!error) {
-        [resolver succeedWithResult:response];
-      } else {
-        [resolver failWithError:error];
-      }
-    }];
+    sessionTask = [self sessionTaskForRequest:request taskResolver:resolver];
     
     PKT_WEAK(sessionTask) weakSessionTask = sessionTask;
     
@@ -286,13 +280,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   __block NSURLSessionTask *sessionTask = nil;
   
   PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
-    sessionTask = [self.HTTPClient taskForRequest:request completion:^(PKTResponse *response, NSError *error) {
-      if (!error) {
-        [resolver succeedWithResult:response];
-      } else {
-        [resolver failWithError:error];
-      }
-    }];
+    sessionTask = [self sessionTaskForRequest:request taskResolver:resolver];
     
     PKT_WEAK(sessionTask) weakSessionTask = sessionTask;
     
@@ -304,6 +292,25 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   [self.pendingTasks addObject:sessionTask];
   
   return task;
+}
+
+- (NSURLSessionTask *)sessionTaskForRequest:(PKTRequest *)request taskResolver:(PKTAsyncTaskResolver *)taskResolver {
+  PKT_WEAK_SELF weakSelf = self;
+  
+  return [self.HTTPClient taskForRequest:request completion:^(PKTResponse *response, NSError *error) {
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    if (!error) {
+      [taskResolver succeedWithResult:response];
+    } else {
+      if (response.statusCode == 401) {
+        // The token we are using is not valid anymore. Reset it.
+        strongSelf.oauthToken = nil;
+      }
+      
+      [taskResolver failWithError:error];
+    }
+  }];
 }
 
 - (void)processPendingTasks {

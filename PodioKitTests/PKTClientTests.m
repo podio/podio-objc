@@ -245,6 +245,22 @@
   expect(isCancelError2).to.beTruthy();
 }
 
+- (void)testClientShouldResetTokenIfReceiving401 {
+  self.testClient.oauthToken = [self dummyAuthToken];
+
+  // Make a normal request that should fail with the
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
+  [PKTHTTPStubs stubResponseForPath:request.path statusCode:401];
+  
+  __block BOOL completed = NO;
+  [[self.testClient performRequest:request] onComplete:^(id result, NSError *error) {
+    completed = YES;
+  }];
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.isAuthenticated).will.beFalsy();
+}
+
 - (void)testClientShouldHaveUpdatedAuthorizationHeaderAfterSuccessfulTokenRefresh {
   // Make sure the current token is expired
   PKTOAuth2Token *expiredToken = [self dummyAuthTokenWithExpirationSinceNow:-600]; // Expired 10 minutes ago
