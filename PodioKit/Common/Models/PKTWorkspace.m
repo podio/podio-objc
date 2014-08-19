@@ -8,6 +8,7 @@
 
 #import "PKTWorkspace.h"
 #import "PKTWorkspacesAPI.h"
+#import "PKTWorkspaceMembersAPI.h"
 #import "PKTClient.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
@@ -50,6 +51,42 @@
   return [self createWorkspaceWithName:name organizationID:organizationID privacy:PKTWorkspacePrivacyClosed];
 }
 
+- (PKTAsyncTask *)addMemberWithUserID:(NSUInteger)userID role:(PKTWorkspaceMemberRole)role {
+  NSParameterAssert(userID > 0);
+  
+  return [self addMembersWithUserIDs:@[@(userID)] role:role];
+}
+
+- (PKTAsyncTask *)addMemberWithProfileID:(NSUInteger)profileID role:(PKTWorkspaceMemberRole)role {
+  NSParameterAssert(profileID > 0);
+  
+  return [self addMembersWithProfileIDs:@[@(profileID)] role:role];
+}
+
+- (PKTAsyncTask *)addMemberWithEmail:(NSString *)email role:(PKTWorkspaceMemberRole)role {
+  NSParameterAssert([email length] > 0);
+  
+  return [self addMembersWithEmails:@[email] role:role];
+}
+
+- (PKTAsyncTask *)addMembersWithUserIDs:(NSArray *)userIDs role:(PKTWorkspaceMemberRole)role {
+  NSParameterAssert([userIDs count] > 0);
+  
+  return [self addMembersWithRole:role message:nil userIDs:userIDs profileIDs:nil emails:nil];
+}
+
+- (PKTAsyncTask *)addMembersWithProfileIDs:(NSArray *)profileIDs role:(PKTWorkspaceMemberRole)role {
+  NSParameterAssert([profileIDs count] > 0);
+  
+  return [self addMembersWithRole:role message:nil userIDs:nil profileIDs:profileIDs emails:nil];
+}
+
+- (PKTAsyncTask *)addMembersWithEmails:(NSArray *)emails role:(PKTWorkspaceMemberRole)role {
+  NSParameterAssert([emails count] > 0);
+  
+  return [self addMembersWithRole:role message:nil userIDs:nil profileIDs:nil emails:emails];
+}
+
 #pragma mark - Private
 
 + (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID privacy:(PKTWorkspacePrivacy)privacy {
@@ -64,6 +101,13 @@
     
     return [[self alloc] initWithDictionary:dict];
   }];
+}
+
+- (PKTAsyncTask *)addMembersWithRole:(PKTWorkspaceMemberRole)role message:(NSString *)message userIDs:(NSArray *)userIDs profileIDs:(NSArray *)profileIDs emails:(NSArray *)emails {
+  PKTRequest *request = [PKTWorkspaceMembersAPI requestToAddMembersToSpaceWithID:self.spaceID role:role message:message userIDs:userIDs profileIDs:profileIDs emails:emails];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return task;
 }
 
 @end

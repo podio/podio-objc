@@ -7,6 +7,7 @@
 //
 
 #import "PKTModel.h"
+#import "PKTWorkspaceMembersAPI.h"
 
 @class PKTAsyncTask;
 
@@ -25,5 +26,17 @@
 + (PKTAsyncTask *)createOpenWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;
 
 + (PKTAsyncTask *)createPrivateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;
+
+- (PKTAsyncTask *)addMemberWithUserID:(NSUInteger)userID role:(PKTWorkspaceMemberRole)role;
+
+- (PKTAsyncTask *)addMemberWithProfileID:(NSUInteger)profileID role:(PKTWorkspaceMemberRole)role;
+
+- (PKTAsyncTask *)addMemberWithEmail:(NSString *)email role:(PKTWorkspaceMemberRole)role;
+
+- (PKTAsyncTask *)addMembersWithUserIDs:(NSArray *)userIDs role:(PKTWorkspaceMemberRole)role;
+
+- (PKTAsyncTask *)addMembersWithProfileIDs:(NSArray *)profileIDs role:(PKTWorkspaceMemberRole)role;
+
+- (PKTAsyncTask *)addMembersWithEmails:(NSArray *)emails;
 
 @end
