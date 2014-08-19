@@ -24,19 +24,80 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   PKTClientAuthRequestPolicyIgnore,
 };
 
+/**
+ *  A pending task represents a request that has been requested to be performed but not yet started.
+ *  It might be started immediately or enqueued until the token has been successfully refreshed if expired.
+ */
+@interface PKTPendingRequest : NSObject
+
+@property (nonatomic, strong, readonly) PKTRequest *request;
+@property (nonatomic, copy) PKTRequestCompletionBlock completionBlock;
+
+@end
+
+@implementation PKTPendingRequest {
+
+  /**
+   *  A pending task can only be either started or cancelled once, but not both or multiple times.
+   */
+  dispatch_once_t _performedOnceToken;
+}
+
+- (instancetype)initWithRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion {
+  self = [super init];
+  if (!self) return nil;
+  
+  _request = request;
+  _completionBlock = [completion copy];
+  
+  return self;
+}
+
+/**
+ *  Starts the pending task by requesting an NSURLSessionTask from the HTTP client and then
+ *  resuming it.
+ *
+ *  @param client The HTTP client from which to request the NSURLSessionTask.
+ */
+- (void)startWithHTTPClient:(PKTHTTPClient *)client {
+  dispatch_once(&_performedOnceToken, ^{
+    NSURLSessionTask *task = [client taskForRequest:self.request completion:self.completionBlock];
+    self.completionBlock = nil;
+    
+    [task resume];
+  });
+}
+
+/**
+ *  Cancels the pending task by requesting an NSURLSessionTask from the HTTP client and then
+ *  immediately cancel it.
+ *
+ *  @param client The HTTP client from which to request the NSURLSessionTask.
+ */
+- (void)cancelWithHTTPClient:(PKTHTTPClient *)client {
+  dispatch_once(&_performedOnceToken, ^{
+    NSURLSessionTask *task = [client taskForRequest:self.request completion:self.completionBlock];
+    self.completionBlock = nil;
+    
+    [task cancel];
+  });
+}
+
+@end
+
 @interface PKTClient ()
 
 @property (nonatomic, copy, readwrite) NSString *apiKey;
 @property (nonatomic, copy, readwrite) NSString *apiSecret;
 @property (nonatomic, weak, readwrite) PKTAsyncTask *authenticationTask;
 @property (nonatomic, strong, readwrite) PKTRequest *savedAuthenticationRequest;
-@property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingTasks;
+@property (nonatomic, strong, readonly) NSMutableOrderedSet *pendingRequests;
 
 @end
 
 @implementation PKTClient
 
-@synthesize pendingTasks = _pendingTasks;
+@synthesize pendingRequests = _pendingRequests;
 
 + (instancetype)defaultClient {
   static PKTClient *defaultClient;
@@ -99,12 +160,12 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   [self didChangeValueForKey:isAuthenticatedKey];
 }
 
-- (NSMutableOrderedSet *)pendingTasks {
-  if (!_pendingTasks) {
-    _pendingTasks = [[NSMutableOrderedSet alloc] init];
+- (NSMutableOrderedSet *)pendingRequests {
+  if (!_pendingRequests) {
+    _pendingRequests = [[NSMutableOrderedSet alloc] init];
   }
   
-  return _pendingTasks;
+  return _pendingRequests;
 }
 
 #pragma mark - Clients
@@ -223,9 +284,9 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   PKTAsyncTask *task = [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore];
   
   [task onSuccess:^(id result) {
-    [self processPendingTasks];
+    [self processPendingRequests];
   } onError:^(NSError *error) {
-    [self clearPendingTasks];
+    [self clearPendingRequests];
   }];
   
   return task;
@@ -259,45 +320,49 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 }
 
 - (PKTAsyncTask *)performTaskWithRequest:(PKTRequest *)request {
-  __block NSURLSessionTask *sessionTask = nil;
+  __block PKTPendingRequest *pendingRequest = nil;
+  
+  PKT_WEAK_SELF weakSelf = self;
   
   PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
-    sessionTask = [self sessionTaskForRequest:request taskResolver:resolver];
+    pendingRequest = [self pendingRequestForRequest:request taskResolver:resolver];
     
-    PKT_WEAK(sessionTask) weakSessionTask = sessionTask;
+    PKT_WEAK(pendingRequest) weakPendingRequest = pendingRequest;
     
     return ^{
-      [weakSessionTask cancel];
+      [weakPendingRequest cancelWithHTTPClient:weakSelf.HTTPClient];
     };
   }];
   
-  [sessionTask resume];
+  [pendingRequest startWithHTTPClient:self.HTTPClient];
   
   return task;
 }
 
 - (PKTAsyncTask *)enqueueTaskWithRequest:(PKTRequest *)request {
-  __block NSURLSessionTask *sessionTask = nil;
+  __block PKTPendingRequest *pendingRequest = nil;
+  
+  PKT_WEAK_SELF weakSelf = self;
   
   PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
-    sessionTask = [self sessionTaskForRequest:request taskResolver:resolver];
+    pendingRequest = [self pendingRequestForRequest:request taskResolver:resolver];
     
-    PKT_WEAK(sessionTask) weakSessionTask = sessionTask;
+    PKT_WEAK(pendingRequest) weakPendingRequest = pendingRequest;
     
     return ^{
-      [weakSessionTask cancel];
+      [weakPendingRequest cancelWithHTTPClient:weakSelf.HTTPClient];
     };
   }];
   
-  [self.pendingTasks addObject:sessionTask];
+  [self.pendingRequests addObject:pendingRequest];
   
   return task;
 }
 
-- (NSURLSessionTask *)sessionTaskForRequest:(PKTRequest *)request taskResolver:(PKTAsyncTaskResolver *)taskResolver {
+- (PKTPendingRequest *)pendingRequestForRequest:(PKTRequest *)request taskResolver:(PKTAsyncTaskResolver *)taskResolver {
   PKT_WEAK_SELF weakSelf = self;
   
-  return [self.HTTPClient taskForRequest:request completion:^(PKTResponse *response, NSError *error) {
+  return [[PKTPendingRequest alloc] initWithRequest:request completion:^(PKTResponse *response, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
     if (!error) {
@@ -313,20 +378,20 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   }];
 }
 
-- (void)processPendingTasks {
-  for (NSURLSessionTask *task in self.pendingTasks) {
-    [task resume];
+- (void)processPendingRequests {
+  for (PKTPendingRequest *request in self.pendingRequests) {
+    [request startWithHTTPClient:self.HTTPClient];
   }
   
-  [self.pendingTasks removeAllObjects];
+  [self.pendingRequests removeAllObjects];
 }
 
-- (void)clearPendingTasks {
-  for (NSURLSessionTask *task in self.pendingTasks) {
-    [task cancel];
+- (void)clearPendingRequests {
+  for (PKTPendingRequest *request in self.pendingRequests) {
+    [request cancelWithHTTPClient:self.HTTPClient];
   }
   
-  [self.pendingTasks removeAllObjects];
+  [self.pendingRequests removeAllObjects];
 }
 
 #pragma mark - State
@@ -380,9 +445,9 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   PKTAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken];
   
   [task onSuccess:^(id result) {
-    [self processPendingTasks];
+    [self processPendingRequests];
   } onError:^(NSError *error) {
-    [self clearPendingTasks];
+    [self clearPendingRequests];
   }];
   
   return task;
