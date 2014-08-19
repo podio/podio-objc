@@ -29,6 +29,15 @@
 
 #pragma mark - Public
 
++ (PKTAsyncTask *)fetchWorkspaceWithID:(NSUInteger)workspaceID {
+  PKTRequest *request = [PKTWorkspacesAPI requestForWorkspaceWithID:workspaceID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return [task map:^id(NSDictionary *workspaceDict) {
+    return [[self alloc] initWithDictionary:workspaceDict];
+  }];
+}
+
 + (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID {
   return [self createWorkspaceWithName:name organizationID:organizationID privacy:PKTWorkspacePrivacyDefault];
 }
