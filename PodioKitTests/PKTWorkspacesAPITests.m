@@ -15,6 +15,13 @@
 
 @implementation PKTWorkspacesAPITests
 
+- (void)requestToGetWorkspace {
+  PKTRequest *request = [PKTWorkspacesAPI requestForWorkspaceWithID:1234];
+  
+  expect(request.path).to.equal(@"/space/1234");
+  expect(request.method).to.equal(PKTRequestMethodGET);
+}
+
 - (void)testCreateDefaultWorkspace {
   PKTRequest *request = [PKTWorkspacesAPI requestToCreateWorkspaceWithName:@"My Workspace" organizationID:1234 privacy:PKTWorkspacePrivacyDefault];
   

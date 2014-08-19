@@ -10,6 +10,10 @@
 
 @implementation PKTWorkspacesAPI
 
++ (PKTRequest *)requestForWorkspaceWithID:(NSUInteger)workspaceID {
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/space/%lu", (unsigned long)workspaceID) parameters:nil];
+}
+
 + (PKTRequest *)requestToCreateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID privacy:(PKTWorkspacePrivacy)privacy {
   NSParameterAssert(name);
   NSParameterAssert(organizationID > 0);

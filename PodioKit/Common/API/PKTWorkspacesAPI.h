@@ -16,6 +16,8 @@ typedef NS_ENUM(NSUInteger, PKTWorkspacePrivacy) {
 
 @interface PKTWorkspacesAPI : PKTBaseAPI
 
++ (PKTRequest *)requestForWorkspaceWithID:(NSUInteger)workspaceID;
+
 + (PKTRequest *)requestToCreateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organization privacy:(PKTWorkspacePrivacy)privacy;
 
 @end
