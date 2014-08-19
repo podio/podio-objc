@@ -253,6 +253,10 @@
 		508F9B4F195AF6C200275A63 /* PKTImageCacheTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F9B4E195AF6C200275A63 /* PKTImageCacheTests.m */; };
 		508F9B50195AF85700275A63 /* PKTImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 508F9B46195AEF0300275A63 /* PKTImageCache.m */; };
 		508F9B54195B0B0A00275A63 /* Podio.png in Resources */ = {isa = PBXBuildFile; fileRef = 508F9B53195B0B0A00275A63 /* Podio.png */; };
+		50AD3CA119A34A9000589260 /* PKTWorkspaceMembersAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50AD3C9F19A34A9000589260 /* PKTWorkspaceMembersAPI.h */; };
+		50AD3CA219A34A9000589260 /* PKTWorkspaceMembersAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AD3CA019A34A9000589260 /* PKTWorkspaceMembersAPI.m */; };
+		50AD3CA419A34E1600589260 /* PKTWorkspaceMembersAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AD3CA319A34E1600589260 /* PKTWorkspaceMembersAPITests.m */; };
+		50AD3CA519A34E3B00589260 /* PKTWorkspaceMembersAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50AD3CA019A34A9000589260 /* PKTWorkspaceMembersAPI.m */; };
 		50B49F0F18EE08F800B7EDF5 /* PKTApp.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B49F0D18EE08F800B7EDF5 /* PKTApp.h */; };
 		50B49F1018EE08F800B7EDF5 /* PKTApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F0E18EE08F800B7EDF5 /* PKTApp.m */; };
 		50B49F1118EE08F800B7EDF5 /* PKTApp.m in Sources */ = {isa = PBXBuildFile; fileRef = 50B49F0E18EE08F800B7EDF5 /* PKTApp.m */; };
@@ -568,6 +572,9 @@
 		508F9B4A195AF2C000275A63 /* PKTImageDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTImageDownloader.m; sourceTree = "<group>"; };
 		508F9B4E195AF6C200275A63 /* PKTImageCacheTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTImageCacheTests.m; sourceTree = "<group>"; };
 		508F9B53195B0B0A00275A63 /* Podio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Podio.png; sourceTree = "<group>"; };
+		50AD3C9F19A34A9000589260 /* PKTWorkspaceMembersAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTWorkspaceMembersAPI.h; sourceTree = "<group>"; };
+		50AD3CA019A34A9000589260 /* PKTWorkspaceMembersAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTWorkspaceMembersAPI.m; sourceTree = "<group>"; };
+		50AD3CA319A34E1600589260 /* PKTWorkspaceMembersAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTWorkspaceMembersAPITests.m; sourceTree = "<group>"; };
 		50B49F0D18EE08F800B7EDF5 /* PKTApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTApp.h; sourceTree = "<group>"; };
 		50B49F0E18EE08F800B7EDF5 /* PKTApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTApp.m; sourceTree = "<group>"; };
 		50B49F1218EE092100B7EDF5 /* PKTAppsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAppsAPI.h; sourceTree = "<group>"; };
@@ -1300,6 +1307,8 @@
 				500C2A7C19793C2B006DC5A9 /* PKTContactsAPI.m */,
 				50E9350919A1DA6200E05FEA /* PKTWorkspacesAPI.h */,
 				50E9350A19A1DA6200E05FEA /* PKTWorkspacesAPI.m */,
+				50AD3C9F19A34A9000589260 /* PKTWorkspaceMembersAPI.h */,
+				50AD3CA019A34A9000589260 /* PKTWorkspaceMembersAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1320,6 +1329,7 @@
 				50DAD4351964041400529DB5 /* PKTFormAPITests.m */,
 				500C2A7F1979429E006DC5A9 /* PKTContactAPITests.m */,
 				50E9350D19A1DBFB00E05FEA /* PKTWorkspacesAPITests.m */,
+				50AD3CA319A34E1600589260 /* PKTWorkspaceMembersAPITests.m */,
 			);
 			name = API;
 			sourceTree = "<group>";
@@ -1336,6 +1346,7 @@
 				5033FF7F19619D9D00B2FD04 /* PKTReference.h in Headers */,
 				501D607D190EF21F004D94C4 /* PKTEmbed.h in Headers */,
 				5033FF731961861700B2FD04 /* PKTStatusAPI.h in Headers */,
+				50AD3CA119A34A9000589260 /* PKTWorkspaceMembersAPI.h in Headers */,
 				5020670419235F04004721A1 /* PKTDateRange.h in Headers */,
 				5014C56918880B050002C68D /* PKTRequest.h in Headers */,
 				502BB224195B7448003160DE /* PKTTasksAPI.h in Headers */,
@@ -1663,6 +1674,7 @@
 				500C2A7E19793C2B006DC5A9 /* PKTContactsAPI.m in Sources */,
 				C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */,
 				5006020E196D550400BC619F /* NSString+PKTAdditions.m in Sources */,
+				50AD3CA219A34A9000589260 /* PKTWorkspaceMembersAPI.m in Sources */,
 				C9FADF2268C5ADBAAA1ED9D3 /* PKTDuration.m in Sources */,
 				C9FAD5E0C1CD812506A25FBB /* PKTCategoryOption.m in Sources */,
 				5024C5BE196164CE00AE28D7 /* PKTReferenceObjectFactory.m in Sources */,
@@ -1718,6 +1730,7 @@
 				500C2A81197942A2006DC5A9 /* PKTContactsAPI.m in Sources */,
 				50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */,
 				505113DB196E9CC100370285 /* NSFileManager+PKTAdditions.m in Sources */,
+				50AD3CA519A34E3B00589260 /* PKTWorkspaceMembersAPI.m in Sources */,
 				503959F81912D037004C298C /* PKTFilesAPI.m in Sources */,
 				5039F65F190715DD00A8A8F0 /* PKTDictionaryMappingValueTransformerTests.m in Sources */,
 				502BB230195DAAAD003160DE /* PKTTaskRequestParameters.m in Sources */,
@@ -1777,6 +1790,7 @@
 				E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */,
 				503959FF19137586004C298C /* PKTDateValueTransformer.m in Sources */,
 				5024C5C01961694700AE28D7 /* PKTReferenceObjectFactoryTests.m in Sources */,
+				50AD3CA419A34E1600589260 /* PKTWorkspaceMembersAPITests.m in Sources */,
 				5082428118FECCEC009A1580 /* PKTHTTPStubs.m in Sources */,
 				50B49F1118EE08F800B7EDF5 /* PKTApp.m in Sources */,
 				E4BABDDD1898083100E9149A /* PKTAuthenticationAPI.m in Sources */,
