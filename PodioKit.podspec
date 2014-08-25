@@ -19,5 +19,5 @@ Pod::Spec.new do |s|
 
   s.frameworks = 'CoreData'
 
-  s.dependency 'AFNetworking', '1.3.3'
+  s.dependency 'AFNetworking', '~> 1.3'
 end
