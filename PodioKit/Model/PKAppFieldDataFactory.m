@@ -21,8 +21,7 @@
   NSDictionary *configDict = [dict pk_objectForKey:@"config"];
   
   switch (type) {
-    case PKAppFieldTypeCategory:
-    case PKAppFieldTypeQuestion: {
+    case PKAppFieldTypeCategory: {
       PKAppFieldOptionsData *optionsData = [PKAppFieldOptionsData data];
       NSDictionary *settingsDict = [configDict pk_objectForKey:@"settings"];
       
@@ -36,27 +35,6 @@
           [options addObject:option];
         }
       }
-      
-      optionsData.options = options;
-      
-      data = optionsData;
-      break;
-    }
-    case PKAppFieldTypeState: {
-      PKAppFieldOptionsData *optionsData = [PKAppFieldOptionsData data];
-      optionsData.multiple = NO; // State is single select only
-      
-      NSArray *allowedValues = [[configDict pk_objectForKey:@"settings"] pk_objectForKey:@"allowed_values"];
-      
-      NSMutableArray *options = [[NSMutableArray alloc] init];
-      [allowedValues enumerateObjectsUsingBlock:^(id allowedValue, NSUInteger idx, BOOL *stop) {
-        if ([allowedValue isKindOfClass:[NSString class]] && [allowedValue length] > 0) { // Old statefieds might contain blank fields
-          PKItemFieldValueOptionData *option = [PKItemFieldValueOptionData data];
-          option.optionId = -1; // Use index as id
-          option.text = allowedValue;
-          [options addObject:option];
-        }
-      }];
       
       optionsData.options = options;
       

@@ -13,7 +13,6 @@
 #import "PKItemFieldValueDateData.h"
 #import "PKFileData.h"
 #import "PKItemFieldValueEmbedData.h"
-#import "PKItemFieldValueMediaData.h"
 #import "PKItemFieldValueCalculationData.h"
 #import "PKItemFieldValueOptionData.h"
 #import "NSDictionary+PKAdditions.h"
@@ -43,9 +42,6 @@
     case PKAppFieldTypeEmbed:
       data = [PKItemFieldValueEmbedData dataFromDictionary:dict];
       break;
-    case PKAppFieldTypeMedia:
-      data = [PKItemFieldValueMediaData dataFromDictionary:dict];
-      break;
     case PKAppFieldTypeVideo:
       data = [PKFileData dataFromDictionary:[dict pk_objectForKey:@"value"]];
       break;
@@ -55,29 +51,8 @@
     case PKAppFieldTypeNumber:
       data = [NSNumber pk_numberFromStringWithUSLocale:[dict pk_objectForKey:@"value"]];
       break;
-    case PKAppFieldTypeState: {
-      PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];
-      
-      optionData.optionId = -1; // No option id
-      optionData.text = [dict pk_objectForKey:@"value"];
-      optionData.selected = YES;
-      
-      data = optionData;
-      break;
-    }
     case PKAppFieldTypeCategory: {      
       PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData dataFromDictionary:[dict pk_objectForKey:@"value"]];
-      optionData.selected = YES;
-      
-      data = optionData;
-      break;
-    }
-    case PKAppFieldTypeQuestion: {
-      PKItemFieldValueOptionData *optionData = [PKItemFieldValueOptionData data];
-      
-      NSDictionary *answerDict = [dict pk_objectForKey:@"value"];
-      optionData.optionId = [[answerDict pk_objectForKey:@"id"] integerValue];
-      optionData.text = [answerDict pk_objectForKey:@"text"];
       optionData.selected = YES;
       
       data = optionData;

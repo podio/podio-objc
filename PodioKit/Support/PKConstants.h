@@ -256,9 +256,7 @@ typedef enum {
   PKAppFieldTypeTitle,
   PKAppFieldTypeText, 
   PKAppFieldTypeNumber,
-  PKAppFieldTypeState,
   PKAppFieldTypeImage,
-  PKAppFieldTypeMedia,
   PKAppFieldTypeDate,
   PKAppFieldTypeApp,
   PKAppFieldTypeMember,
@@ -270,7 +268,6 @@ typedef enum {
   PKAppFieldTypeDuration,
   PKAppFieldTypeEmbed,
   PKAppFieldTypeCalculation,
-  PKAppFieldTypeQuestion,
   PKAppFieldTypeCategory,
 } PKAppFieldType;
 

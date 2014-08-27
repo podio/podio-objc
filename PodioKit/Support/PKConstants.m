@@ -891,12 +891,8 @@
     type = PKAppFieldTypeText;
   } else if ([string isEqualToString:kPKAppFieldTypeNumber]) {
     type = PKAppFieldTypeNumber;
-  } else if ([string isEqualToString:kPKAppFieldTypeState]) {
-    type = PKAppFieldTypeState;
   } else if ([string isEqualToString:kPKAppFieldTypeImage]) {
     type = PKAppFieldTypeImage;
-  } else if ([string isEqualToString:kPKAppFieldTypeMedia]) {
-    type = PKAppFieldTypeMedia;
   } else if ([string isEqualToString:kPKAppFieldTypeDate]) {
     type = PKAppFieldTypeDate;
   } else if ([string isEqualToString:kPKAppFieldTypeApp]) {
@@ -919,8 +915,6 @@
     type = PKAppFieldTypeEmbed;
   } else if ([string isEqualToString:kPKAppFieldTypeCalculation]) {
     type = PKAppFieldTypeCalculation;
-  } else if ([string isEqualToString:kPKAppFieldTypeQuestion]) {
-    type = PKAppFieldTypeQuestion;
   } else if ([string isEqualToString:kPKAppFieldTypeCategory]) {
     type = PKAppFieldTypeCategory;
   }
@@ -941,14 +935,8 @@
     case PKAppFieldTypeNumber:
       string = kPKAppFieldTypeNumber;
       break;
-    case PKAppFieldTypeState:
-      string = kPKAppFieldTypeState;
-      break;
     case PKAppFieldTypeImage:
       string = kPKAppFieldTypeImage;
-      break;
-    case PKAppFieldTypeMedia:
-      string = kPKAppFieldTypeMedia;
       break;
     case PKAppFieldTypeDate:
       string = kPKAppFieldTypeDate;
@@ -982,9 +970,6 @@
       break;
     case PKAppFieldTypeCalculation:
       string = kPKAppFieldTypeCalculation;
-      break;
-    case PKAppFieldTypeQuestion:
-      string = kPKAppFieldTypeQuestion;
       break;
     case PKAppFieldTypeCategory:
       string = kPKAppFieldTypeCategory;

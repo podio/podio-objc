@@ -92,8 +92,6 @@
 		5030C0A51435E76300027F07 /* PKItemFieldValueDateData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */; };
 		5030C0A71435E76300027F07 /* PKItemFieldValueEmbedData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0501435E76300027F07 /* PKItemFieldValueEmbedData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0A81435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */; };
-		5030C0AD1435E76300027F07 /* PKItemFieldValueMediaData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0541435E76300027F07 /* PKItemFieldValueMediaData.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5030C0AE1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0551435E76300027F07 /* PKItemFieldValueMediaData.m */; };
 		5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */; };
 		5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */ = {isa = PBXBuildFile; fileRef = 5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -392,8 +390,6 @@
 		5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueDateData.m; sourceTree = "<group>"; };
 		5030C0501435E76300027F07 /* PKItemFieldValueEmbedData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueEmbedData.h; sourceTree = "<group>"; };
 		5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueEmbedData.m; sourceTree = "<group>"; };
-		5030C0541435E76300027F07 /* PKItemFieldValueMediaData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueMediaData.h; sourceTree = "<group>"; };
-		5030C0551435E76300027F07 /* PKItemFieldValueMediaData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueMediaData.m; sourceTree = "<group>"; };
 		5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueMoneyData.h; sourceTree = "<group>"; };
 		5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueMoneyData.m; sourceTree = "<group>"; };
 		5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueOptionData.h; sourceTree = "<group>"; };
@@ -867,8 +863,6 @@
 				5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */,
 				5030C0501435E76300027F07 /* PKItemFieldValueEmbedData.h */,
 				5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */,
-				5030C0541435E76300027F07 /* PKItemFieldValueMediaData.h */,
-				5030C0551435E76300027F07 /* PKItemFieldValueMediaData.m */,
 				5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */,
 				5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */,
 				5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */,
@@ -1363,7 +1357,6 @@
 				5030C0A41435E76300027F07 /* PKItemFieldValueDateData.h in Headers */,
 				E477F7E2198681ED0007482A /* PKGrantData.h in Headers */,
 				5030C0A71435E76300027F07 /* PKItemFieldValueEmbedData.h in Headers */,
-				5030C0AD1435E76300027F07 /* PKItemFieldValueMediaData.h in Headers */,
 				5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */,
 				5030C0B31435E76300027F07 /* PKItemFieldValueOptionData.h in Headers */,
 				5030C0CC1435E92800027F07 /* PKStreamDataFactory.h in Headers */,
@@ -1480,7 +1473,7 @@
 			name = PodioKitTests;
 			productName = PodioKitTests;
 			productReference = 5065BEF814335ABA00360855 /* PodioKitTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productType = "com.apple.product-type.bundle.ocunit-test";
 		};
 		509D6936152CA7A40033291C /* DemoApp */ = {
 			isa = PBXNativeTarget;
@@ -1702,7 +1695,6 @@
 				5030C0A21435E76300027F07 /* PKObjectData.m in Sources */,
 				5030C0A51435E76300027F07 /* PKItemFieldValueDateData.m in Sources */,
 				5030C0A81435E76300027F07 /* PKItemFieldValueEmbedData.m in Sources */,
-				5030C0AE1435E76300027F07 /* PKItemFieldValueMediaData.m in Sources */,
 				5030C0B11435E76300027F07 /* PKItemFieldValueMoneyData.m in Sources */,
 				5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
 				501BF17F14386AFE009764A3 /* PKFileData.m in Sources */,
