@@ -412,6 +412,9 @@ static NSUInteger kRequestIdLength = 8;
   
   NSString *requestId = [NSString pk_randomHexStringOfLength:kRequestIdLength];
   [operation setValue:requestId forHeader:@"X-Podio-Request-Id"];
+
+  NSString *timezoneId = [[NSTimeZone localTimeZone] name];
+  [operation setValue:timezoneId forHeader:@"X-Time-Zone"];
   
   return operation; 
 }
