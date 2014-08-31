@@ -27,9 +27,11 @@
     imageSetterBlock(placeholderImage);
   }
   
-  PKTAsyncTask *task = [[file downloadImage] onSuccess:^(UIImage *image) {
-    [[PKTImageCache sharedCache] setCachedImage:image forFile:file];
-    imageSetterBlock(image);
+  PKTAsyncTask *task = [[file downloadImage] then:^(UIImage *image, NSError *error) {
+    if (image) {
+      [[PKTImageCache sharedCache] setCachedImage:image forFile:file];
+      imageSetterBlock(image);
+    }
   }];
   
   return task;

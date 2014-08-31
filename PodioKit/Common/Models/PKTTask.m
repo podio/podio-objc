@@ -154,7 +154,8 @@
   PKTProfile *previousResponsible = self.responsible;
   
   PKT_WEAK_SELF weakSelf = self;
-  [task onComplete:^(id result, NSError *error) {
+
+  task = [task then:^(id result, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
     if (!error) {
@@ -199,8 +200,10 @@
   
   PKT_WEAK_SELF weakSelf = self;
   
-  [task onSuccess:^(PKTResponse *response) {
-    weakSelf.taskID = [response.body[@"task_id"] unsignedIntegerValue];
+  task = [task then:^(PKTResponse *response, NSError *error) {
+    if (response) {
+      weakSelf.taskID = [response.body[@"task_id"] unsignedIntegerValue];
+    }
   }];
 
   return task;
@@ -221,7 +224,8 @@
   PKTTaskStatus previousStatus = self.status;
   
   PKT_WEAK_SELF weakSelf = self;
-  [task onComplete:^(id result, NSError *error) {
+  
+  task = [task then:^(id result, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
     if (!error) {

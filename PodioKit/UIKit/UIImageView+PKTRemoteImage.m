@@ -41,9 +41,7 @@ static const char kCurrentImageTaskKey;
   PKT_WEAK_SELF weakSelf = self;
   self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     weakSelf.image = image;
-  }] onSuccess:^(id result) {
-    weakSelf.pkt_currentImageTask = nil;
-  } onError:^(NSError *error) {
+  }] then:^(id result, NSError *error) {
     weakSelf.pkt_currentImageTask = nil;
   }];
   

@@ -260,9 +260,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
       return [mutURLRequest copy];
   };
 
-  self.authenticationTask = [self performTaskWithRequest:request];
-  
-  [self.authenticationTask onComplete:^(PKTResponse *response, NSError *error) {
+  self.authenticationTask = [[self performTaskWithRequest:request] then:^(PKTResponse *response, NSError *error) {
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
     if (!error) {
@@ -283,10 +281,16 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 - (PKTAsyncTask *)authenticateWithSavedRequest:(PKTRequest *)request {
   PKTAsyncTask *task = [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyIgnore];
   
-  [task onSuccess:^(id result) {
-    [self processPendingRequests];
-  } onError:^(NSError *error) {
-    [self clearPendingRequests];
+  PKT_WEAK_SELF weakSelf = self;
+  
+  task = [task then:^(id result, NSError *error) {
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    if (!error) {
+      [strongSelf processPendingRequests];
+    } else {
+      [strongSelf clearPendingRequests];
+    }
   }];
   
   return task;
@@ -444,10 +448,16 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 
   PKTAsyncTask *task = [self refreshTokenWithRefreshToken:self.oauthToken.refreshToken];
   
-  [task onSuccess:^(id result) {
-    [self processPendingRequests];
-  } onError:^(NSError *error) {
-    [self clearPendingRequests];
+  PKT_WEAK_SELF weakSelf = self;
+  
+  task = [task then:^(id result, NSError *error) {
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    if (!error) {
+      [strongSelf processPendingRequests];
+    } else {
+      [strongSelf clearPendingRequests];
+    }
   }];
   
   return task;

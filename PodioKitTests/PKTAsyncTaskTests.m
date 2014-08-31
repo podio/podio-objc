@@ -210,6 +210,36 @@
   expect(taskError).willNot.beNil();
 }
 
+- (void)testThen {
+  PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:@YES];
+  }];
+  
+  __block BOOL then1Finished = NO;
+  task = [task then:^(id result, NSError *error) {
+    then1Finished = YES;
+  }];
+  
+  __block BOOL then2Finished = NO;
+  task = [task then:^(id result, NSError *error) {
+    then2Finished = YES;
+  }];
+  
+  __block BOOL thensFinishedBeforeSuccess = NO;
+  [task onSuccess:^(id result) {
+    thensFinishedBeforeSuccess = then1Finished && then2Finished;
+  }];
+  
+  __block BOOL thensFinishedBeforeComplete = YES;
+  [task onComplete:^(id result, NSError *error) {
+    thensFinishedBeforeComplete = then1Finished && then2Finished;
+  }];
+  
+  // Check that the side effects of the then: blocks were executed before the success and complete callbacks.
+  expect(thensFinishedBeforeSuccess).will.beTruthy();
+  expect(thensFinishedBeforeComplete).will.beTruthy();
+}
+
 #pragma mark - Helpers
 
 - (PKTAsyncTask *)taskWithCompletion:(void (^)(PKTAsyncTaskResolver *resolver))completion {

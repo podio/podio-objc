@@ -232,8 +232,11 @@
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
   PKT_WEAK_SELF weakSelf = self;
-  [task onSuccess:^(PKTResponse *response) {
-    [weakSelf updateFromDictionary:response.body];
+  
+  task = [task then:^(PKTResponse *response, NSError *error) {
+    if (response) {
+      [weakSelf updateFromDictionary:response.body];
+    }
   }];
 
   return task;
@@ -280,7 +283,9 @@
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
   PKT_WEAK_SELF weakSelf = self;
-  [task onSuccess:^(PKTResponse *response) {
+  task = [task then:^(PKTResponse *response, NSError *error) {
+    if (!response) return;
+
     PKT_STRONG(weakSelf) strongSelf = weakSelf;
     
     if (strongSelf.itemID == 0) {

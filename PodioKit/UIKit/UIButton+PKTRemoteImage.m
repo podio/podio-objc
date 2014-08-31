@@ -50,9 +50,7 @@ static const char kCurrentBackgroundImageTaskKey;
   PKT_WEAK_SELF weakSelf = self;
   self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     [weakSelf setImage:image forState:state];
-  }] onSuccess:^(id result) {
-    weakSelf.pkt_currentImageTask = nil;
-  } onError:^(NSError *error) {
+  }] then:^(id result, NSError *error) {
     weakSelf.pkt_currentImageTask = nil;
   }];
   
@@ -65,9 +63,7 @@ static const char kCurrentBackgroundImageTaskKey;
   PKT_WEAK_SELF weakSelf = self;
   self.pkt_currentBackgroundImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
     [weakSelf setBackgroundImage:image forState:state];
-  }] onSuccess:^(id result) {
-    weakSelf.pkt_currentBackgroundImageTask = nil;
-  } onError:^(NSError *error) {
+  }] then:^(id result, NSError *error) {
     weakSelf.pkt_currentBackgroundImageTask = nil;
   }];
   
