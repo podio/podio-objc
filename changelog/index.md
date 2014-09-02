@@ -3,6 +3,13 @@ layout: default
 ---
 # Release Notes
 
+## [Beta 6](https://github.com/podio/podio-objc/releases/tag/2.0.0-beta6)
+* Fixes issue where the OAuth token was not refreshed properly due a bug introduced with the introduction of `PKTAsyncTask`.
+* Added `then:` combinator method to `PKTAsyncTask` to add ordered side effects to the completion of a task.
+* Ability to create workspaces
+* Support for workspace member management
+* Ability to delete tasks
+
 ## [Beta 5](https://github.com/podio/podio-objc/releases/tag/2.0.0-beta5)
 * Replaces the use of trailing completion handler blocks for handling result of asynchronous methods with a future-like
 `PKTAsyncTask` class.
