@@ -10,4 +10,6 @@
 
 @interface PKTDateValueTransformer : PKTReversibleBlockValueTransformer
 
+@property (nonatomic, assign) BOOL ignoresTimeComponent;
+
 @end

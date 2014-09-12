@@ -8,10 +8,13 @@
 
 #import "PKTDateValueTransformer.h"
 #import "NSDate+PKTAdditions.h"
+#import "PKTMacros.h"
 
 @implementation PKTDateValueTransformer
 
 - (instancetype)init {
+  PKT_WEAK_SELF weakSelf = self;
+  
   return [super initWithBlock:^id(NSString *dateString) {
     NSDate *date = [NSDate pkt_dateFromUTCDateTimeString:dateString];
     if (!date) {
@@ -21,7 +24,17 @@
     
     return date;
   } reverseBlock:^id(NSDate *date) {
-    return [date pkt_UTCDateTimeString];
+    PKT_STRONG(weakSelf) strongSelf = weakSelf;
+    
+    NSString *dateString = nil;
+    
+    if (strongSelf.ignoresTimeComponent) {
+      dateString = [date pkt_UTCDateString];
+    } else {
+      dateString = [date pkt_UTCDateTimeString];
+    }
+    
+    return dateString;
   }];
 }
 

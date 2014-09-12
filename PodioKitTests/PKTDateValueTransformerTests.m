@@ -22,7 +22,17 @@
 
 - (void)testDateReverseTransformation {
   PKTDateValueTransformer *transformer = [PKTDateValueTransformer new];
-  expect([transformer reverseTransformedValue:[NSDate date]]).toNot.beNil();
+  NSString *dateString = [transformer reverseTransformedValue:[NSDate dateWithTimeIntervalSince1970:0]];
+  expect(dateString).to.equal(@"1970-01-01 00:00:00");
+}
+
+- (void)testDateReverseTransformationWithIgnoredTimeComponent {
+  PKTDateValueTransformer *transformer = [PKTDateValueTransformer new];
+  transformer.ignoresTimeComponent = YES;
+  
+  NSString *dateString = [transformer reverseTransformedValue:[NSDate dateWithTimeIntervalSince1970:0]];
+  
+  expect(dateString).to.equal(@"1970-01-01");
 }
 
 @end
