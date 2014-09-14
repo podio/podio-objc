@@ -15,46 +15,20 @@
 
 @implementation PKTTaskRequestParameters
 
-- (NSDictionary *)queryParameters {
-  NSMutableDictionary *params = [NSMutableDictionary new];
-  
-  // Grouping
-  if (self.grouping != PKTTaskRequestParameterGroupingDefault) {
-    params[@"grouping"] = [[self class] groupingMap][@(self.grouping)];
-  }
-  
-  // Sort by
-  if (self.sortBy != PKTTaskRequestParameterSortByDefault) {
-    params[@"sort_by"] = [[self class] sortByMap][@(self.sortBy)];
-  }
-  
-  // Sort order
-  if (self.sortOrder != PKTTaskRequestParameterSortOrderDefault) {
-    params[@"sort_desc"] = self.sortOrder == PKTTaskRequestParameterSortOrderDescending ? @YES : @NO;
-  }
-  
-  // Completed on
-  if (self.completedOn != PKTTaskRequestParameterCompletedOnNone) {
-    params[@"completed_on"] = [[self class] completedOnMap][@(self.completedOn)];
-  }
-  
-  // Responsible
-  if (self.responsibleUserID > 0) {
-    params[@"responsible"] = @(self.responsibleUserID);
-  }
-  
-  // Due date
-  if (self.dueDateRange && self.dueDateRange.startDate) {
-    params[@"due_date"] = [self dueDateString];
-  }
-  
-  // Reference
-  if ([self.references count] > 0) {
-    params[@"reference"] = [self referenceString];
-  }
+#pragma mark - Public
+
++ (instancetype)parameters {
+  return [self new];
+}
+
++ (instancetype)parametersWithBlock:(void (^)(PKTTaskRequestParameters *params))block {
+  PKTTaskRequestParameters *params = [PKTTaskRequestParameters parameters];
+  if (block) block(params);
   
   return params;
 }
+
+#pragma mark - Private
 
 + (NSDictionary *)groupingMap {
   static NSDictionary *map = nil;
@@ -142,15 +116,45 @@
   }] componentsJoinedByString:@","];
 }
 
-#pragma mark - Public
+#pragma mark - PKTRequestParameters
 
-+ (instancetype)parameters {
-  return [self new];
-}
-
-+ (instancetype)parametersWithBlock:(void (^)(PKTTaskRequestParameters *params))block {
-  PKTTaskRequestParameters *params = [PKTTaskRequestParameters parameters];
-  if (block) block(params);
+- (NSDictionary *)queryParameters {
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  
+  // Grouping
+  if (self.grouping != PKTTaskRequestParameterGroupingDefault) {
+    params[@"grouping"] = [[self class] groupingMap][@(self.grouping)];
+  }
+  
+  // Sort by
+  if (self.sortBy != PKTTaskRequestParameterSortByDefault) {
+    params[@"sort_by"] = [[self class] sortByMap][@(self.sortBy)];
+  }
+  
+  // Sort order
+  if (self.sortOrder != PKTTaskRequestParameterSortOrderDefault) {
+    params[@"sort_desc"] = self.sortOrder == PKTTaskRequestParameterSortOrderDescending ? @YES : @NO;
+  }
+  
+  // Completed on
+  if (self.completedOn != PKTTaskRequestParameterCompletedOnNone) {
+    params[@"completed_on"] = [[self class] completedOnMap][@(self.completedOn)];
+  }
+  
+  // Responsible
+  if (self.responsibleUserID > 0) {
+    params[@"responsible"] = @(self.responsibleUserID);
+  }
+  
+  // Due date
+  if (self.dueDateRange && self.dueDateRange.startDate) {
+    params[@"due_date"] = [self dueDateString];
+  }
+  
+  // Reference
+  if ([self.references count] > 0) {
+    params[@"reference"] = [self referenceString];
+  }
   
   return params;
 }

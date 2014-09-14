@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PKTRequestParameters.h"
 #import "PKTConstants.h"
 
 typedef NS_ENUM(NSUInteger, PKTNotificationDirection) {
@@ -31,7 +32,7 @@ typedef NS_ENUM(NSUInteger, PKTNotificationType) {
   PKTNotificationTypeNone = 0,
 };
 
-@interface PKTNotificationsRequestParameters : NSObject
+@interface PKTNotificationsRequestParameters : NSObject <PKTRequestParameters>
 
 @property (nonatomic, assign) PKTReferenceType contextType;
 @property (nonatomic, assign) PKTNotificationDirection direction;
@@ -42,7 +43,5 @@ typedef NS_ENUM(NSUInteger, PKTNotificationType) {
 @property (nonatomic, copy) NSDate *createdFromDate;
 @property (nonatomic, copy) NSDate *createdToDate;
 @property (nonatomic, copy) NSDate *viewedFromDate;
-
-@property (nonatomic, copy, readonly) NSDictionary *queryParameters;
 
 @end

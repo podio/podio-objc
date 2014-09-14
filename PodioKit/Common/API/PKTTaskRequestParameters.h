@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PKTRequestParameters.h"
 
 @class PKTDateRange;
 @class PKTReferenceIdentifier;
@@ -64,7 +65,7 @@ typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterSortOrder) {
 };
 
 
-@interface PKTTaskRequestParameters : NSObject
+@interface PKTTaskRequestParameters : NSObject <PKTRequestParameters>
 
 @property (nonatomic, assign, readwrite) PKTTaskRequestParameterGrouping grouping;
 @property (nonatomic, assign, readwrite) PKTTaskRequestParameterCompletedOn completedOn;
@@ -73,7 +74,6 @@ typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterSortOrder) {
 @property (nonatomic, assign, readwrite) NSUInteger responsibleUserID;
 @property (nonatomic, copy, readwrite) PKTDateRange *dueDateRange;
 @property (nonatomic, copy, readwrite) NSArray *references; // An array of PKTReferenceIdentifier
-@property (nonatomic, copy, readonly) NSDictionary *queryParameters;
 
 + (instancetype)parameters;
 + (instancetype)parametersWithBlock:(void (^)(PKTTaskRequestParameters *params))block;

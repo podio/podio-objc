@@ -13,6 +13,8 @@
 
 @implementation PKTNotificationsRequestParameters
 
+#pragma mark - PKTRequestParameters
+
 - (NSDictionary *)queryParameters {
   NSMutableDictionary *params = [NSMutableDictionary new];
   
