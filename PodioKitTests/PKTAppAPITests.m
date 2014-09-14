@@ -22,4 +22,13 @@
   expect(request.method).to.equal(PKTRequestMethodGET);
 }
 
+- (void)testRequestToAddAppToWorkspace {
+  PKTRequest *request = [PKTAppsAPI requestToAddAppToWorkspaceWithID:123 fields:@{@"text" : @"Some text"}];
+  
+  expect(request.path).to.equal(@"/app/");
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.parameters[@"space_id"]).to.equal(@123);
+  expect(request.parameters[@"fields"]).to.equal(@{@"text" : @"Some text"});
+}
+
 @end
