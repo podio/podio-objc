@@ -15,6 +15,8 @@
 
 - (NSArray *)pk_filteredArrayUsingBlock:(BOOL (^)(id obj))block;
 
+- (id)pk_reduceWithBlock:(id (^)(id reduced, id obj))block;
+
 - (id)pk_firstObject;
 
 @end

@@ -40,6 +40,16 @@
   return array;
 }
 
+- (id)pk_reduceWithBlock:(id (^)(id reduced, id obj))block {
+  id result = self.firstObject;
+  
+  for (NSUInteger i = 1; i < self.count; ++i) {
+    result = block(result, self[i]);
+  }
+  
+  return result;
+}
+
 - (id)pk_firstObject {
   id obj = nil;
   if ([self count] > 0) {
