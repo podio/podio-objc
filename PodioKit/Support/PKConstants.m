@@ -212,6 +212,8 @@
     type = PKStreamActivityTypeParticipation;
   } else if ([string isEqualToString:kPKStreamActivityTypeGrant]) {
     type = PKStreamActivityTypeGrant;
+  } else if ([string isEqualToString:kPKStreamActivityTypeFileDelete]) {
+    type = PKStreamActivityTypeFileDelete;
   }
   
   return type;
