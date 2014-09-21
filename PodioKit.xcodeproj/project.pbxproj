@@ -169,6 +169,11 @@
 		5065C0FB14345ECB00360855 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FA14345ECB00360855 /* CFNetwork.framework */; };
 		5065C0FE14345F1000360855 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FC14345F0D00360855 /* MobileCoreServices.framework */; };
 		5065C0FF14345F1000360855 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FD14345F0D00360855 /* SystemConfiguration.framework */; };
+		506D531E19CF1E1100A1A0A3 /* PKDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D531C19CF1E1100A1A0A3 /* PKDate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		506D531F19CF1E1100A1A0A3 /* PKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D531D19CF1E1100A1A0A3 /* PKDate.m */; };
+		506D532319CF6C7000A1A0A3 /* PKDate+PKFormatting.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D532119CF6C7000A1A0A3 /* PKDate+PKFormatting.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		506D532419CF6C7000A1A0A3 /* PKDate+PKFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */; };
+		506D533119CF6E1000A1A0A3 /* PKDateFormattingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D533019CF6E1000A1A0A3 /* PKDateFormattingTests.m */; };
 		507CA05C1503E3E800678F9D /* PKAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = 50599EF01455A024001F5201 /* PKAssert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
 		507D09FB1823EB3600AFBFB1 /* PKPromotionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -473,6 +478,11 @@
 		5065C0FA14345ECB00360855 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		5065C0FC14345F0D00360855 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		506D531C19CF1E1100A1A0A3 /* PKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDate.h; sourceTree = "<group>"; };
+		506D531D19CF1E1100A1A0A3 /* PKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDate.m; sourceTree = "<group>"; };
+		506D532119CF6C7000A1A0A3 /* PKDate+PKFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PKDate+PKFormatting.h"; sourceTree = "<group>"; };
+		506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PKDate+PKFormatting.m"; sourceTree = "<group>"; };
+		506D533019CF6E1000A1A0A3 /* PKDateFormattingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDateFormattingTests.m; sourceTree = "<group>"; };
 		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -689,6 +699,7 @@
 			isa = PBXGroup;
 			children = (
 				5025D8DA179D26B800F8753E /* PKNumberFormatTests.m */,
+				506D533019CF6E1000A1A0A3 /* PKDateFormattingTests.m */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -887,6 +898,10 @@
 			children = (
 				50458F381507734300FA66A6 /* PKByLineData.h */,
 				50458F391507734300FA66A6 /* PKByLineData.m */,
+				506D531C19CF1E1100A1A0A3 /* PKDate.h */,
+				506D531D19CF1E1100A1A0A3 /* PKDate.m */,
+				506D532119CF6C7000A1A0A3 /* PKDate+PKFormatting.h */,
+				506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -1376,6 +1391,7 @@
 				50CC1D54148CDA3A000B57EA /* PKBaseAPI.h in Headers */,
 				50CC1D57148CDA3A000B57EA /* PKCommentAPI.h in Headers */,
 				50CC1D5A148CDA3A000B57EA /* PKFileAPI.h in Headers */,
+				506D532319CF6C7000A1A0A3 /* PKDate+PKFormatting.h in Headers */,
 				50CC1D5D148CDA3A000B57EA /* PKItemAPI.h in Headers */,
 				50CC1D60148CDA3A000B57EA /* PKNotificationAPI.h in Headers */,
 				5026A2BB147114B70051D7C8 /* NSError+PKErrors.h in Headers */,
@@ -1411,6 +1427,7 @@
 				50B319E1150F98AE00EAD7C7 /* PKShareData.h in Headers */,
 				50B319E6150F98E800EAD7C7 /* PKShareCategoryData.h in Headers */,
 				50858ABD15120EAD00ED8A6E /* PKAppAPI.h in Headers */,
+				506D531E19CF1E1100A1A0A3 /* PKDate.h in Headers */,
 				50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */,
 				509D6974152CF6E10033291C /* PKDefaultMappingCoordinator.h in Headers */,
 				500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */,
@@ -1706,6 +1723,7 @@
 				5021CD2D14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */,
 				50F4FBC91448892700317E62 /* NSDictionary+URL.m in Sources */,
 				50F4FBCE14488A4800317E62 /* NSString+URL.m in Sources */,
+				506D531F19CF1E1100A1A0A3 /* PKDate.m in Sources */,
 				5028CBEB145E90D40003A097 /* PKObjectMapper.m in Sources */,
 				5028CBEE145E921A0003A097 /* PKStandaloneMapping.m in Sources */,
 				5028CBF3145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */,
@@ -1756,6 +1774,7 @@
 				50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
 				509D6975152CF6E10033291C /* PKDefaultMappingCoordinator.m in Sources */,
 				500EA92A153F20830049F224 /* PKReferenceBatchData.m in Sources */,
+				506D532419CF6C7000A1A0A3 /* PKDate+PKFormatting.m in Sources */,
 				501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
 				5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
 				50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
@@ -1784,6 +1803,7 @@
 				502B5FBB14458C93004F4185 /* PKTaskMappingTests.m in Sources */,
 				50F4FBD8144C088000317E62 /* PKAsyncTestCase.m in Sources */,
 				50FCC39C14A1C9960001E6F4 /* PKObjectMapperTests.m in Sources */,
+				506D533119CF6E1000A1A0A3 /* PKDateFormattingTests.m in Sources */,
 				50FCC39F14A1D4D90001E6F4 /* PKTestItem.m in Sources */,
 				50FCC3A214A1D5550001E6F4 /* PKTestItemMapping.m in Sources */,
 				50FCC3A514A1D6250001E6F4 /* PKTestMappingProvider.m in Sources */,

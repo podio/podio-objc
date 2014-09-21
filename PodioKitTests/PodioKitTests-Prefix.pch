@@ -8,4 +8,7 @@
   #import <MobileCoreServices/MobileCoreServices.h>
   #import <PodioKit/PodioKit.h>
   #import "PKTestAssert.h"
+
+  #define EXP_SHORTHAND
+  #import <Expecta/Expecta.h>
 #endif
