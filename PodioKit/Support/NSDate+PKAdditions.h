@@ -28,4 +28,7 @@
 - (NSString *)pk_timeString;
 - (NSString *)pk_dateTimeString;
 
+- (BOOL)pk_isLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar;
+- (NSDate *)pk_dateWithLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar;
+
 @end

@@ -85,4 +85,28 @@
   return [self pk_dateTimeStringWithFormatString:@"yyyy-MM-dd HH:mm:ss"];
 }
 
+- (BOOL)pk_isLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar {
+  // Check if UTC components are the last minute of the hour. This was used in legacy date handling
+  // in the Podio API to indicate to ignore the time component
+  NSCalendar *cal = [calendar copy];
+  cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+  
+  NSDateComponents *comps = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:self];
+  BOOL isLastMinute = comps.hour == 23 && comps.minute == 59;
+  
+  return isLastMinute;
+}
+
+- (NSDate *)pk_dateWithLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar {
+  NSCalendar *cal = [calendar copy];
+  cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+  
+  NSDateComponents *comps = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:self];
+  comps.hour = 23;
+  comps.minute = 59;
+  comps.second = 59;
+  
+  return [cal dateFromComponents:comps];
+}
+
 @end

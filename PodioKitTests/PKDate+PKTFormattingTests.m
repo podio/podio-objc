@@ -1,8 +1,8 @@
 //
-//  PKDateFormattingTests.m
+//  PKDate+PKTFormattingTests.m
 //  PodioKit
 //
-//  Created by Sebastian Rehnby on 21/09/14.
+//  Created by Sebastian Rehnby on 22/09/14.
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
@@ -10,11 +10,11 @@
 #import "PKDate.h"
 #import "PKDate+PKFormatting.h"
 
-@interface PKDateFormattingTests : SenTestCase
+@interface PKDate_PKTFormattingTests : SenTestCase
 
 @end
 
-@implementation PKDateFormattingTests
+@implementation PKDate_PKTFormattingTests
 
 - (void)testDateTimeString {
   PKDate *date = [PKDate dateWithDate:[NSDate dateWithTimeIntervalSince1970:0] includesTimeComponent:YES];

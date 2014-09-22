@@ -9,14 +9,14 @@ end
 target :podiokittests do
   link_with 'PodioKitTests'
   
-  pod 'PodioKit', :path => '.'
+  pod 'AFNetworking', '~> 1.3'
   
-  pod 'OHHTTPStubs'
+  pod 'OHHTTPStubs', '~> 1.0'
   pod 'Expecta'
 end
 
 target :demoapp do
   link_with 'DemoApp'
   
-  pod 'PodioKit', :path => '.'
+  pod 'AFNetworking', '~> 1.3'
 end
