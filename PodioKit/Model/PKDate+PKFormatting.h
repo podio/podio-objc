@@ -10,6 +10,8 @@
 
 @interface PKDate (PKFormatting)
 
++ (PKDate *)pk_dateFromUTCDateString:(NSString *)dateString;
+
 - (NSString *)pk_UTCDateTimeString;
 
 - (NSString *)pk_UTCDateString;

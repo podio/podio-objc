@@ -18,7 +18,7 @@
 
 - (void)testDateTimeString {
   PKDate *date = [PKDate dateWithDate:[NSDate dateWithTimeIntervalSince1970:0] includesTimeComponent:YES];
-  expect([date pk_UTCDateTimeString]).to.equal(@"1970-01-01 01:00:00");
+  expect([date pk_UTCDateTimeString]).to.equal(@"1970-01-01 00:00:00");
 }
 
 - (void)testDateTimeStringWithoutTime {
@@ -38,7 +38,7 @@
 
 - (void)testTimeString {
   PKDate *date = [PKDate dateWithDate:[NSDate dateWithTimeIntervalSince1970:0] includesTimeComponent:YES];
-  expect([date pk_UTCTimeString]).to.equal(@"01:00:00");
+  expect([date pk_UTCTimeString]).to.equal(@"00:00:00");
 }
 
 - (void)testTimeStringWithoutTime {
