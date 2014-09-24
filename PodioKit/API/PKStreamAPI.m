@@ -7,7 +7,7 @@
 //
 
 #import "PKStreamAPI.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
 
 @implementation PKStreamAPI
 
@@ -23,11 +23,11 @@
                                      [NSString stringWithFormat:@"%ld", (unsigned long)limit], @"limit", nil];
   
   if (dateFrom != nil) {
-    [parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_from"];
+    [parameters setObject:[dateFrom pk_UTCDateTimeString] forKey:@"date_from"];
   }
   
   if (dateTo != nil) {
-    [parameters setObject:[[dateTo pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_to"];
+    [parameters setObject:[dateTo pk_UTCDateTimeString] forKey:@"date_to"];
   }
   
   request.parameters = parameters;
@@ -48,11 +48,11 @@
                                      [NSString stringWithFormat:@"%ld", (unsigned long)limit], @"limit", nil];
   
   if (dateFrom != nil) {
-    [parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_from"];
+    [parameters setObject:[dateFrom pk_UTCDateTimeString] forKey:@"date_from"];
   }
   
   if (dateTo != nil) {
-    [parameters setObject:[[dateTo pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_to"];
+    [parameters setObject:[dateTo pk_UTCDateTimeString] forKey:@"date_to"];
   }
   
   request.parameters = parameters;
@@ -73,11 +73,11 @@
                                      [NSString stringWithFormat:@"%ld", (unsigned long)limit], @"limit", nil];
   
   if (dateFrom != nil) {
-    [parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_from"];
+    [parameters setObject:[dateFrom pk_UTCDateTimeString] forKey:@"date_from"];
   }
   
   if (dateTo != nil) {
-    [parameters setObject:[[dateTo pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"date_to"];
+    [parameters setObject:[dateTo pk_UTCDateTimeString] forKey:@"date_to"];
   }
   
   request.parameters = parameters;

@@ -69,7 +69,7 @@ static NSString * const kPKReferenceGrantDataReferenceDataKey = @"ReferenceData"
   grant.grantId = [[dict pk_objectForKey:@"grant_id"] unsignedIntegerValue];
   grant.action = [PKConstants grantActionForString:[dict pk_objectForKey:@"action"]];
   grant.message = [dict pk_objectForKey:@"message"];
-  grant.createdOn = [NSDate pk_localDateFromUTCDateString:[dict pk_objectForKey:@"created_on"]];
+  grant.createdOn = [NSDate pk_dateFromUTCDateTimeString:[dict pk_objectForKey:@"created_on"]];
   grant.createdBy = [PKByLineData dataFromDictionary:[dict pk_objectForKey:@"created_by"]];
 
   NSDictionary *refDict = [dict pk_objectForKey:@"ref"];

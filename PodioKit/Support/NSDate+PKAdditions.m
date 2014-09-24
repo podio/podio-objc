@@ -10,79 +10,12 @@
 
 @implementation NSDate (PKAdditions)
 
-+ (NSDate *)pk_dateWithString:(NSString *)dateString formatString:(NSString *)formatString {
-  if (dateString == nil || formatString == nil) {
-    return nil;
-  }
-  
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:formatString];
-  
-  // Need to use a specific locale to parse format string correctly
-  NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-  [formatter setLocale:locale];
-	
-	NSDate *date = [formatter dateFromString:dateString];
-  
-	return date;
+- (BOOL)pk_isLastMinuteOfDayInUTCForCurrentCalendar {
+  return [self pk_isLastMinuteOfDayInUTCForCalendar:[NSCalendar currentCalendar]];
 }
 
-+ (NSDate *)pk_dateWithDateString:(NSString*)dateString {
-	return [[self class] pk_dateWithString:dateString formatString:@"yyyy-MM-dd"];
-}
-
-+ (NSDate *)pk_dateWithDateTimeString:(NSString*)dateString {
-	return [[self class] pk_dateWithString:dateString formatString:@"yyyy-MM-dd HH:mm:ss"];
-}
-
-+ (NSDate *)pk_localDateFromUTCDateString:(NSString *)dateString {
-  return [[NSDate pk_dateWithDateTimeString:dateString] pk_localDateFromUTCDate];
-}
-
-- (NSDate *)pk_localDateFromUTCDate {
-	NSTimeZone* sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	NSTimeZone* destinationTimeZone = [NSTimeZone systemTimeZone];
-	
-	NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:self];
-	NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
-	NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-	
-	return [[NSDate alloc] initWithTimeInterval:interval sinceDate:self];
-}
-
-- (NSDate *)pk_UTCDateFromLocalDate {
-	NSTimeZone* sourceTimeZone = [NSTimeZone systemTimeZone];
-	NSTimeZone* destinationTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
-	
-	NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:self];
-	NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:self];
-	NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
-	
-	return [[NSDate alloc] initWithTimeInterval:interval sinceDate:self];
-}
-
-- (NSString *)pk_dateTimeStringWithFormatString:(NSString *)formatString {
-  NSDateFormatter* formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:formatString];
-  
-  NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-  [formatter setLocale:locale];
-	
-	NSString *dateTimeString = [formatter stringFromDate:self];
-  
-	return dateTimeString;
-}
-
-- (NSString *)pk_dateString {
-	return [self pk_dateTimeStringWithFormatString:@"YYYY-MM-dd"];
-}
-
-- (NSString *)pk_timeString {
-	return [self pk_dateTimeStringWithFormatString:@"HH:mm:ss"];
-}
-
-- (NSString *)pk_dateTimeString {
-  return [self pk_dateTimeStringWithFormatString:@"yyyy-MM-dd HH:mm:ss"];
+- (NSDate *)pk_dateWithLastMinuteOfDayInUTCForCurrentCalendar {
+  return [self pk_dateWithLastMinuteOfDayInUTCForCalendar:[NSCalendar currentCalendar]];
 }
 
 - (BOOL)pk_isLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar {
@@ -98,13 +31,41 @@
 }
 
 - (NSDate *)pk_dateWithLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar {
-  NSCalendar *cal = [calendar copy];
-  cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+  NSDateComponents *comps = [calendar components:(NSYearCalendarUnit |
+                                                  NSMonthCalendarUnit |
+                                                  NSDayCalendarUnit |
+                                                  NSHourCalendarUnit |
+                                                  NSMinuteCalendarUnit |
+                                                  NSSecondCalendarUnit) fromDate:self];
   
-  NSDateComponents *comps = [cal components:(NSHourCalendarUnit | NSMinuteCalendarUnit) fromDate:self];
+  // Update components to reflect the last minute/second of the day
   comps.hour = 23;
   comps.minute = 59;
   comps.second = 59;
+  
+  // Create a new date in UTC
+  NSCalendar *cal = [calendar copy];
+  cal.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+  
+  return [cal dateFromComponents:comps];
+}
+
+- (NSDate *)pk_convertedDateInCurrentCalendarToCurrentTimeZoneFromUTC {
+  return [self pk_convertedDateInCalendar:[NSCalendar currentCalendar]
+                             fromTimeZone:[NSTimeZone timeZoneWithName:@"UTC"]
+                               toTimeZone:[NSTimeZone localTimeZone]];
+}
+
+- (NSDate *)pk_convertedDateInCalendar:(NSCalendar *)calendar fromTimeZone:(NSTimeZone *)fromTimeZone toTimeZone:(NSTimeZone *)toTimeZone {
+  NSCalendar *cal = [calendar copy];
+  cal.timeZone = fromTimeZone;
+  NSDateComponents *comps = [cal components:(NSYearCalendarUnit |
+                                             NSMonthCalendarUnit |
+                                             NSDayCalendarUnit |
+                                             NSHourCalendarUnit |
+                                             NSMinuteCalendarUnit |
+                                             NSSecondCalendarUnit) fromDate:self];
+  cal.timeZone = toTimeZone;
   
   return [cal dateFromComponents:comps];
 }

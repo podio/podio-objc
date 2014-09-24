@@ -6,8 +6,8 @@
 //  Copyright (c) 2012 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 #import "PKBaseAPI.h"
+#import "PKConstants.h"
 
 @interface PKStreamAPI : PKBaseAPI
 

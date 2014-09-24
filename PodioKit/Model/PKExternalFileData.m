@@ -7,7 +7,7 @@
 //
 
 #import "PKExternalFileData.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
 
 
 static NSString * const PKExternalFileDataExternalFileIdKey = @"ExternalFileId";
@@ -63,8 +63,8 @@ static NSString * const PKExternalFileDataIsFolderKey = @"IsFolder";
   data.externalFileId = externalFileId;
   data.name = [dict pk_objectForKey:@"name"];
   data.mimeType = [dict pk_objectForKey:@"mimetype"];
-  data.createdOn = [NSDate pk_localDateFromUTCDateString:[dict pk_objectForKey:@"created_on"]];
-  data.updatedOn = [NSDate pk_localDateFromUTCDateString:[dict pk_objectForKey:@"updated_on"]];
+  data.createdOn = [NSDate pk_dateFromUTCDateTimeString:[dict pk_objectForKey:@"created_on"]];
+  data.updatedOn = [NSDate pk_dateFromUTCDateTimeString:[dict pk_objectForKey:@"updated_on"]];
   data.isFolder = [data.mimeType isEqualToString:@"folder"];
   
   return data;
