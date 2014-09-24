@@ -12,19 +12,19 @@
 
 #pragma mark  - Public
 
-+ (NSDate *)pk_dateFromLocalDateTimeString:(NSString *)dateTimeString {
++ (instancetype)pk_dateFromLocalDateTimeString:(NSString *)dateTimeString {
   return [[self localDateTimeFormatter] dateFromString:dateTimeString];
 }
 
-+ (NSDate *)pk_dateFromLocalDateString:(NSString *)dateString {
++ (instancetype)pk_dateFromLocalDateString:(NSString *)dateString {
   return [[self localDateFormatter] dateFromString:dateString];
 }
 
-+ (NSDate *)pk_dateFromUTCDateTimeString:(NSString *)dateTimeString {
++ (instancetype)pk_dateFromUTCDateTimeString:(NSString *)dateTimeString {
   return [[self UTCDateTimeFormatter] dateFromString:dateTimeString];
 }
 
-+ (NSDate *)pk_dateFromUTCDateString:(NSString *)dateString {
++ (instancetype)pk_dateFromUTCDateString:(NSString *)dateString {
   return [[self UTCDateFormatter] dateFromString:dateString];
 }
 

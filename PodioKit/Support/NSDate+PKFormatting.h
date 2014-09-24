@@ -10,13 +10,13 @@
 
 @interface NSDate (PKFormatting)
 
-+ (NSDate *)pk_dateFromLocalDateTimeString:(NSString *)dateTimeString;
++ (instancetype)pk_dateFromLocalDateTimeString:(NSString *)dateTimeString;
 
-+ (NSDate *)pk_dateFromLocalDateString:(NSString *)dateString;
++ (instancetype)pk_dateFromLocalDateString:(NSString *)dateString;
 
-+ (NSDate *)pk_dateFromUTCDateTimeString:(NSString *)dateTimeString;
++ (instancetype)pk_dateFromUTCDateTimeString:(NSString *)dateTimeString;
 
-+ (NSDate *)pk_dateFromUTCDateString:(NSString *)dateString;
++ (instancetype)pk_dateFromUTCDateString:(NSString *)dateString;
 
 - (NSString *)pk_localDateTimeString;
 

@@ -7,19 +7,23 @@
 //
 
 #import "PKDate.h"
+#import "NSDate+PKAdditions.h"
 
 
-static NSString * const kDateKey = @"Date";
+static NSString * const kInternalDateKey = @"InternalDate";
 static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
 
 @interface PKDate ()
 
-@property (nonatomic, copy) NSDate *date;
+@property (nonatomic, copy) NSDate *internalDate;
+@property (nonatomic, copy, readonly) NSDate *internalDateWithoutTime;
 @property (nonatomic, assign) BOOL includesTimeComponent;
 
 @end
 
 @implementation PKDate
+
+@synthesize internalDateWithoutTime = _internalDateWithoutTime;
 
 - (instancetype)initWithDate:(NSDate *)date includesTimeComponent:(BOOL)includesTimeComponent {
   NSParameterAssert(date);
@@ -27,8 +31,8 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
   self = [super init];
   if (!self) return nil;
   
-  self.date = date;
-  self.includesTimeComponent = includesTimeComponent;
+  _internalDate = [date copy];
+  _includesTimeComponent = includesTimeComponent;
   
   return self;
 }
@@ -37,24 +41,79 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
   return [[self alloc] initWithDate:date includesTimeComponent:includesTimeComponent];
 }
 
++ (instancetype)date {
+  return [self dateWithDate:[NSDate date] includesTimeComponent:YES];
+}
+
++ (instancetype)dateWithoutTimeComponent {
+  return [self dateWithDate:[NSDate date] includesTimeComponent:NO];
+}
+
+- (instancetype)copyWithoutTimeComponent {
+  return [[self class] dateWithDate:self.internalDate includesTimeComponent:NO];
+}
+
+#pragma mark - NSDate
+
+- (instancetype)initWithTimeIntervalSinceReferenceDate:(NSTimeInterval)ti {
+  NSDate *internalDate = [NSDate dateWithTimeIntervalSinceReferenceDate:ti];
+  return [self initWithDate:internalDate includesTimeComponent:YES];
+}
+
+- (NSTimeInterval)timeIntervalSinceReferenceDate {
+  NSDate *internalDate = self.includesTimeComponent ? self.internalDate : self.internalDateWithoutTime;
+
+  return internalDate.timeIntervalSinceReferenceDate;
+}
+
+#pragma mark - Properties
+
+- (NSDate *)internalDateWithoutTime {
+  if (!_internalDateWithoutTime) {
+    // If we should ignore time component, reset all the time components of the date
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    calendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+    
+    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit |
+                                                    NSMonthCalendarUnit |
+                                                    NSDayCalendarUnit |
+                                                    NSHourCalendarUnit |
+                                                    NSMinuteCalendarUnit |
+                                                    NSSecondCalendarUnit) fromDate:self.internalDate];
+    comps.hour = 0;
+    comps.minute = 0;
+    comps.second = 0;
+    comps.nanosecond = 0;
+    
+    _internalDateWithoutTime = [calendar dateFromComponents:comps];
+  }
+  
+  return _internalDateWithoutTime;
+}
+
 #pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-  NSDate *date = [aDecoder decodeObjectForKey:kDateKey];
-  BOOL includesTimeComponent = [aDecoder decodeBoolForKey:kIncludesTimeComponentKey];
+  self = [super initWithCoder:aDecoder];
+  if (!self) return nil;
   
-  return [self initWithDate:date includesTimeComponent:includesTimeComponent];
+  _internalDate = [[aDecoder decodeObjectForKey:kInternalDateKey] copy];
+  _includesTimeComponent = [aDecoder decodeBoolForKey:kIncludesTimeComponentKey];
+  
+  return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-  [aCoder encodeObject:self.date forKey:kDateKey];
+  [super encodeWithCoder:aCoder];
+  
+  [aCoder encodeObject:self.internalDate forKey:kInternalDateKey];
   [aCoder encodeBool:self.includesTimeComponent forKey:kIncludesTimeComponentKey];
 }
 
 #pragma mark - NSCopying
 
 - (id)copyWithZone:(NSZone *)zone {
-  return [[[self class] allocWithZone:zone] initWithDate:self.date
+  return [[[self class] allocWithZone:zone] initWithDate:self.internalDate
                                    includesTimeComponent:self.includesTimeComponent];
 }
 

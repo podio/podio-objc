@@ -11,6 +11,7 @@
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
 		18999E0F1948445000AE50E1 /* PKCalendarAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 18999E0D1948445000AE50E1 /* PKCalendarAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18999E101948445000AE50E1 /* PKCalendarAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999E0E1948445000AE50E1 /* PKCalendarAPI.m */; };
+		5008559119D2C326001EADA1 /* PKDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5008559019D2C326001EADA1 /* PKDateTests.m */; };
 		5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5009E23D1667C8040018EC75 /* PKAPIClient.h */; };
 		5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
 		500EA929153F20830049F224 /* PKReferenceBatchData.h in Headers */ = {isa = PBXBuildFile; fileRef = 500EA927153F20830049F224 /* PKReferenceBatchData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -171,9 +172,6 @@
 		5065C0FF14345F1000360855 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065C0FD14345F0D00360855 /* SystemConfiguration.framework */; };
 		506D531E19CF1E1100A1A0A3 /* PKDate.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D531C19CF1E1100A1A0A3 /* PKDate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		506D531F19CF1E1100A1A0A3 /* PKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D531D19CF1E1100A1A0A3 /* PKDate.m */; };
-		506D532319CF6C7000A1A0A3 /* PKDate+PKFormatting.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D532119CF6C7000A1A0A3 /* PKDate+PKFormatting.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		506D532419CF6C7000A1A0A3 /* PKDate+PKFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */; };
-		5075F62919CFF9E300B06D4D /* PKDate+PKTFormattingTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5075F62819CFF9E300B06D4D /* PKDate+PKTFormattingTests.m */; };
 		5075F62D19D0588E00B06D4D /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
 		5075F62E19D0588E00B06D4D /* PKOAuth2Token.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D737FD166F4504009233FF /* PKOAuth2Token.m */; };
 		5075F62F19D0588E00B06D4D /* PKHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D681821668955C008AEA0A /* PKHTTPRequestOperation.m */; };
@@ -273,7 +271,6 @@
 		5075F68D19D0588E00B06D4D /* PKGrantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E477F7E1198681ED0007482A /* PKGrantData.m */; };
 		5075F68E19D0588E00B06D4D /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
 		5075F68F19D0588E00B06D4D /* PKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D531D19CF1E1100A1A0A3 /* PKDate.m */; };
-		5075F69019D0588E00B06D4D /* PKDate+PKFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */; };
 		5075F69219D0588E00B06D4D /* PKDefaultObjectRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */; };
 		5075F69319D0588E00B06D4D /* PKDefaultMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */; };
 		5075F69419D0588E00B06D4D /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
@@ -394,7 +391,6 @@
 		5075F70719D0589200B06D4D /* PKGrantData.m in Sources */ = {isa = PBXBuildFile; fileRef = E477F7E1198681ED0007482A /* PKGrantData.m */; };
 		5075F70819D0589200B06D4D /* PKByLineData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50458F391507734300FA66A6 /* PKByLineData.m */; };
 		5075F70919D0589200B06D4D /* PKDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D531D19CF1E1100A1A0A3 /* PKDate.m */; };
-		5075F70A19D0589200B06D4D /* PKDate+PKFormatting.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */; };
 		5075F70C19D0589200B06D4D /* PKDefaultObjectRepository.m in Sources */ = {isa = PBXBuildFile; fileRef = 5021CD2B14458FAE00A7013D /* PKDefaultObjectRepository.m */; };
 		5075F70D19D0589200B06D4D /* PKDefaultMappingCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 509D6973152CF6E10033291C /* PKDefaultMappingCoordinator.m */; };
 		5075F70E19D0589200B06D4D /* PKConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 5028CBF5145E939A0003A097 /* PKConstants.m */; };
@@ -559,6 +555,7 @@
 		18999E0D1948445000AE50E1 /* PKCalendarAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCalendarAPI.h; sourceTree = "<group>"; };
 		18999E0E1948445000AE50E1 /* PKCalendarAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCalendarAPI.m; sourceTree = "<group>"; };
 		38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5008559019D2C326001EADA1 /* PKDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDateTests.m; sourceTree = "<group>"; };
 		5009E23D1667C8040018EC75 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
 		5009E23E1667C8040018EC75 /* PKAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAPIClient.m; sourceTree = "<group>"; };
 		500EA927153F20830049F224 /* PKReferenceBatchData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceBatchData.h; sourceTree = "<group>"; };
@@ -726,9 +723,6 @@
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		506D531C19CF1E1100A1A0A3 /* PKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDate.h; sourceTree = "<group>"; };
 		506D531D19CF1E1100A1A0A3 /* PKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDate.m; sourceTree = "<group>"; };
-		506D532119CF6C7000A1A0A3 /* PKDate+PKFormatting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PKDate+PKFormatting.h"; sourceTree = "<group>"; };
-		506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PKDate+PKFormatting.m"; sourceTree = "<group>"; };
-		5075F62819CFF9E300B06D4D /* PKDate+PKTFormattingTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "PKDate+PKTFormattingTests.m"; sourceTree = "<group>"; };
 		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -949,7 +943,7 @@
 			children = (
 				5025D8DA179D26B800F8753E /* PKNumberFormatTests.m */,
 				50B0D25F19D1AB0E0057DA2E /* NSDate+PKFormattingTests.m */,
-				5075F62819CFF9E300B06D4D /* PKDate+PKTFormattingTests.m */,
+				5008559019D2C326001EADA1 /* PKDateTests.m */,
 			);
 			name = Unit;
 			sourceTree = "<group>";
@@ -1150,10 +1144,6 @@
 				50458F391507734300FA66A6 /* PKByLineData.m */,
 				506D531C19CF1E1100A1A0A3 /* PKDate.h */,
 				506D531D19CF1E1100A1A0A3 /* PKDate.m */,
-				50B0D25A19D1A4E80057DA2E /* NSDate+PKFormatting.h */,
-				50B0D25B19D1A4E80057DA2E /* NSDate+PKFormatting.m */,
-				506D532119CF6C7000A1A0A3 /* PKDate+PKFormatting.h */,
-				506D532219CF6C7000A1A0A3 /* PKDate+PKFormatting.m */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -1338,6 +1328,8 @@
 				5065C0261433697D00360855 /* NSManagedObjectContext+PKAdditions.m */,
 				5065C0C9143453BE00360855 /* NSDate+PKAdditions.h */,
 				5065C0CA143453BE00360855 /* NSDate+PKAdditions.m */,
+				50B0D25A19D1A4E80057DA2E /* NSDate+PKFormatting.h */,
+				50B0D25B19D1A4E80057DA2E /* NSDate+PKFormatting.m */,
 				50BBF5381439B365002522D6 /* NSString+Hash.h */,
 				50BBF5391439B365002522D6 /* NSString+Hash.m */,
 				50F4FBC61448892700317E62 /* NSDictionary+URL.h */,
@@ -1643,7 +1635,6 @@
 				50CC1D54148CDA3A000B57EA /* PKBaseAPI.h in Headers */,
 				50CC1D57148CDA3A000B57EA /* PKCommentAPI.h in Headers */,
 				50CC1D5A148CDA3A000B57EA /* PKFileAPI.h in Headers */,
-				506D532319CF6C7000A1A0A3 /* PKDate+PKFormatting.h in Headers */,
 				50CC1D5D148CDA3A000B57EA /* PKItemAPI.h in Headers */,
 				50CC1D60148CDA3A000B57EA /* PKNotificationAPI.h in Headers */,
 				5026A2BB147114B70051D7C8 /* NSError+PKErrors.h in Headers */,
@@ -2027,7 +2018,6 @@
 				50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */,
 				509D6975152CF6E10033291C /* PKDefaultMappingCoordinator.m in Sources */,
 				500EA92A153F20830049F224 /* PKReferenceBatchData.m in Sources */,
-				506D532419CF6C7000A1A0A3 /* PKDate+PKFormatting.m in Sources */,
 				501FDEDE1548095E002B6413 /* PKItemParticipantsData.m in Sources */,
 				5048937B15400A0400022E6C /* PKAppFieldDataFactory.m in Sources */,
 				50B2A40D15666EFB00DC6C65 /* PKViewAPI.m in Sources */,
@@ -2120,9 +2110,9 @@
 				5075F67819D0588E00B06D4D /* PKReferenceAlertData.m in Sources */,
 				5075F65F19D0588E00B06D4D /* PKItemFieldValueCalculationData.m in Sources */,
 				5075F64119D0588E00B06D4D /* PKCalendarAPI.m in Sources */,
+				5008559119D2C326001EADA1 /* PKDateTests.m in Sources */,
 				5075F64319D0588E00B06D4D /* PKFileAPI.m in Sources */,
 				5075F63B19D0588E00B06D4D /* PKCoreDataRepository.m in Sources */,
-				5075F62919CFF9E300B06D4D /* PKDate+PKTFormattingTests.m in Sources */,
 				5075F64C19D0588E00B06D4D /* PKSpaceAPI.m in Sources */,
 				50FCC3A514A1D6250001E6F4 /* PKTestMappingProvider.m in Sources */,
 				5075F65919D0588E00B06D4D /* PKGrantAPI.m in Sources */,
@@ -2189,7 +2179,6 @@
 				5075F65319D0588E00B06D4D /* PKViewAPI.m in Sources */,
 				5025D8DC179D287700F8753E /* NSNumber+PKFormat.m in Sources */,
 				5075F68319D0588E00B06D4D /* PKExternalFileData.m in Sources */,
-				5075F69019D0588E00B06D4D /* PKDate+PKFormatting.m in Sources */,
 				5075F6A419D0588E00B06D4D /* NSString+PKBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2316,7 +2305,6 @@
 				5075F70C19D0589200B06D4D /* PKDefaultObjectRepository.m in Sources */,
 				5075F6AE19D0589200B06D4D /* PKAttributeMapping.m in Sources */,
 				5075F6F019D0589200B06D4D /* PKReferenceCommentData.m in Sources */,
-				5075F70A19D0589200B06D4D /* PKDate+PKFormatting.m in Sources */,
 				5075F6C419D0589200B06D4D /* PKTaskAPI.m in Sources */,
 				5075F6C919D0589200B06D4D /* PKContactAPI.m in Sources */,
 				5075F6AC19D0589200B06D4D /* PKRequestResult.m in Sources */,

@@ -10,15 +10,9 @@
 
 @interface NSDate (PKAdditions)
 
-- (BOOL)pk_isLastMinuteOfDayInUTCForCurrentCalendar;
-
-- (NSDate *)pk_dateWithLastMinuteOfDayInUTCForCurrentCalendar;
-
-- (BOOL)pk_isLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar;
-
-- (NSDate *)pk_dateWithLastMinuteOfDayInUTCForCalendar:(NSCalendar *)calendar;
-
 - (NSDate *)pk_convertedDateInCurrentCalendarToCurrentTimeZoneFromUTC;
+
+- (NSDate *)pk_convertedDateInCurrentCalendarToUTCFromCurrentTimeZone;
 
 - (NSDate *)pk_convertedDateInCalendar:(NSCalendar *)calendar fromTimeZone:(NSTimeZone *)fromTimeZone toTimeZone:(NSTimeZone *)toTimeZone;
 
