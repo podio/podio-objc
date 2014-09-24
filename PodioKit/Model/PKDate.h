@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 /**
- *  PKDate is similar to an NSDate but can have an optional time component. When there is no time component,
+ *  PKDate is similar to an NSDate but the time component is optional. When there is no time component,
  *  PKDates that have the same "day" component (year+month+day) in UTC, are considered equal. If there is a time
  *  component, the date will be treated as a normal NSDate.
  */

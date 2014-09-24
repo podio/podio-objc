@@ -93,21 +93,29 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
 
 #pragma mark - NSCoding
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
+- (Class)classForCoder {
+  return [self class];
+}
+
++ (BOOL)supportsSecureCoding {
+  return YES;
+}
+
+- (instancetype)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (!self) return nil;
   
-  _internalDate = [[aDecoder decodeObjectForKey:kInternalDateKey] copy];
+  _internalDate = [[aDecoder decodeObjectOfClass:[NSDate class] forKey:kInternalDateKey] copy];
   _includesTimeComponent = [aDecoder decodeBoolForKey:kIncludesTimeComponentKey];
   
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
-  [super encodeWithCoder:aCoder];
-  
   [aCoder encodeObject:self.internalDate forKey:kInternalDateKey];
   [aCoder encodeBool:self.includesTimeComponent forKey:kIncludesTimeComponentKey];
+  
+  [super encodeWithCoder:aCoder];
 }
 
 #pragma mark - NSCopying
