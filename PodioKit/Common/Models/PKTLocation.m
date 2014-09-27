@@ -30,6 +30,8 @@
   return @{
            @"fullDescription" : @"value",
            @"streetName" : @"street_name",
+           @"latitude" : @"lat",
+           @"longitude" : @"lng",
            };
 }
 

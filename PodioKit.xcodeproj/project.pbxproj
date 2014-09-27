@@ -287,6 +287,7 @@
 		50CA79E019D6AB3900759BB8 /* PKTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CA79DE19D6AB3900759BB8 /* PKTLocation.m */; };
 		50CA79E119D6AEFA00759BB8 /* PKTLocationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CA79DA19D6AABA00759BB8 /* PKTLocationItemFieldValue.m */; };
 		50CA79E219D6AF0000759BB8 /* PKTLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CA79DE19D6AB3900759BB8 /* PKTLocation.m */; };
+		50CA79E419D6B7E400759BB8 /* PKTLocationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CA79E319D6B7E400759BB8 /* PKTLocationTests.m */; };
 		50CAE07119701C6F0096BE07 /* NSError+PKTErrors.h in Headers */ = {isa = PBXBuildFile; fileRef = 50CAE06F19701C6F0096BE07 /* NSError+PKTErrors.h */; };
 		50CAE07219701C6F0096BE07 /* NSError+PKTErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */; };
 		50CAE07319701C6F0096BE07 /* NSError+PKTErrors.m in Sources */ = {isa = PBXBuildFile; fileRef = 50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */; };
@@ -619,6 +620,7 @@
 		50CA79DA19D6AABA00759BB8 /* PKTLocationItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTLocationItemFieldValue.m; sourceTree = "<group>"; };
 		50CA79DD19D6AB3900759BB8 /* PKTLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTLocation.h; sourceTree = "<group>"; };
 		50CA79DE19D6AB3900759BB8 /* PKTLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTLocation.m; sourceTree = "<group>"; };
+		50CA79E319D6B7E400759BB8 /* PKTLocationTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTLocationTests.m; sourceTree = "<group>"; };
 		50CAE06F19701C6F0096BE07 /* NSError+PKTErrors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSError+PKTErrors.h"; sourceTree = "<group>"; };
 		50CAE07019701C6F0096BE07 /* NSError+PKTErrors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSError+PKTErrors.m"; sourceTree = "<group>"; };
 		50CAE07519701DFF0096BE07 /* NSDictionary+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+PKTAdditions.h"; sourceTree = "<group>"; };
@@ -1134,6 +1136,7 @@
 				C9FAD81417B9F528BD7FC887 /* PKTItemField+PKTTest.h */,
 				5024C5BF1961694700AE28D7 /* PKTReferenceObjectFactoryTests.m */,
 				5019C0B219747C4D00F37634 /* PKTDateRangeTests.m */,
+				50CA79E319D6B7E400759BB8 /* PKTLocationTests.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1837,6 +1840,7 @@
 				501D605E190ED1BF004D94C4 /* PKTDateItemFieldValue.m in Sources */,
 				50060229196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m in Sources */,
 				5039F64D1907114F00A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
+				50CA79E419D6B7E400759BB8 /* PKTLocationTests.m in Sources */,
 				502067071923645C004721A1 /* PKTDateRange.m in Sources */,
 				508F9B50195AF85700275A63 /* PKTImageCache.m in Sources */,
 				50FA507618FFC279009542B9 /* PKTUserAPITests.m in Sources */,

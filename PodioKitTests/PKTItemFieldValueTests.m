@@ -17,6 +17,7 @@
 #import "PKTCalculationItemFieldValue.h"
 #import "PKTCategoryItemFieldValue.h"
 #import "PKTDurationItemFieldValue.h"
+#import "PKTLocationItemFieldValue.h"
 #import "PKTEmbed.h"
 #import "PKTFile.h"
 #import "PKTItem.h"
@@ -121,6 +122,23 @@
   NSDictionary *valueDict = @{@"value" : @101010};
   PKTDurationItemFieldValue *value = [[PKTDurationItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(@{@"value" : @101010});
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testLocationValue {
+  NSDictionary *valueDict = @{
+    @"city": @"Copenhagen",
+    @"country": @"Denmark",
+    @"street_name": @"Fisketorvet",
+    @"formatted": @"Fisketorvet, 1560 Copenhagen, Denmark",
+    @"value": @"Fisketorvet, 1560 Copenhagen, Denmark",
+    @"postal_code": @"1560",
+    @"lat": @55.6646305,
+    @"lng": @12.5657289
+  };
+  
+  PKTLocationItemFieldValue *value = [[PKTLocationItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(@"Fisketorvet, 1560 Copenhagen, Denmark");
   expect(value.unboxedValue).toNot.beNil();
 }
 
