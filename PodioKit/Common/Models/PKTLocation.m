@@ -10,12 +10,14 @@
 
 @implementation PKTLocation
 
-- (instancetype)initWithFullDescription:(NSString *)fullDescription streetName:(NSString *)streetName city:(NSString *)city country:(NSString *)country latitude:(double)latitude longitude:(double)longitude {
+- (instancetype)initWithValue:(NSString *)value formattedValue:(NSString *)formattedValue streetName:(NSString *)streetName postalCode:(NSString *)postalCode city:(NSString *)city country:(NSString *)country latitude:(double)latitude longitude:(double)longitude {
   self = [super init];
   if (!self) return nil;
   
-  _fullDescription = [fullDescription copy];
+  _value = [value copy];
+  _formattedValue = [formattedValue copy];
   _streetName = [streetName copy];
+  _postalCode = [postalCode copy];
   _city = [city copy];
   _country = [country copy];
   _latitude = latitude;
@@ -28,8 +30,10 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"fullDescription" : @"value",
+           @"value" : @"value",
+           @"formattedValue" : @"formatted",
            @"streetName" : @"street_name",
+           @"postalCode" : @"postal_code",
            @"latitude" : @"lat",
            @"longitude" : @"lng",
            };

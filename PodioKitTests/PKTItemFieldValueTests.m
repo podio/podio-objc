@@ -138,7 +138,7 @@
   };
   
   PKTLocationItemFieldValue *value = [[PKTLocationItemFieldValue alloc] initFromValueDictionary:valueDict];
-  expect(value.valueDictionary).to.equal(@"Fisketorvet, 1560 Copenhagen, Denmark");
+  expect(value.valueDictionary).to.equal(@{@"value" : @"Fisketorvet, 1560 Copenhagen, Denmark"});
   expect(value.unboxedValue).toNot.beNil();
 }
 

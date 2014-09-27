@@ -28,7 +28,9 @@
   };
   
   PKTLocation *location = [[PKTLocation alloc] initWithDictionary:dict];
-  expect(location.fullDescription).to.equal(@"Fisketorvet, 1560 Copenhagen, Denmark");
+  expect(location.value).to.equal(@"Fisketorvet, 1560 Copenhagen, Denmark");
+  expect(location.formattedValue).to.equal(@"Fisketorvet, 1560 Copenhagen, Denmark");
+  expect(location.postalCode).to.equal(@"1560");
   expect(location.city).to.equal(@"Copenhagen");
   expect(location.country).to.equal(@"Denmark");
   expect(location.streetName).to.equal(@"Fisketorvet");

@@ -23,7 +23,7 @@
 - (NSDictionary *)valueDictionary {
   PKTLocation *location = self.unboxedValue;
   
-  return location.fullDescription ? @{@"value" : [location fullDescription]} : nil;
+  return location.value ? @{@"value" : location.value} : nil;
 }
 
 + (Class)unboxedValueClass {
