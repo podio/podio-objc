@@ -10,10 +10,9 @@
 
 @interface PKTDateRange : PKTModel
 
-@property (nonatomic, copy) NSDate *startDate; // UTC start date
-@property (nonatomic, copy) NSDate *endDate; // UTC end date
-@property (nonatomic, assign) BOOL includesStartDateTimeComponent;
-@property (nonatomic, assign) BOOL includesEndDateTimeComponent;
+@property (nonatomic, copy) NSDate *startDate;
+@property (nonatomic, copy) NSDate *endDate;
+@property (nonatomic, assign) BOOL includesTimeComponent;
 
 - (instancetype)initWithStartDate:(NSDate *)startDate endDate:(NSDate *)endDate;
 

@@ -33,9 +33,8 @@
   
   PKTDateRange *range = [[PKTDateRange alloc] initWithDictionary:dateDict];
   expect(range.startDate).toNot.beNil();
-  expect(range.includesStartDateTimeComponent).to.beFalsy();
   expect(range.endDate).toNot.beNil();
-  expect(range.includesEndDateTimeComponent).to.beFalsy();
+  expect(range.includesTimeComponent).to.beFalsy();
 }
 
 - (void)testHasTimeComponentsFromDictionary {
@@ -56,9 +55,8 @@
   
   PKTDateRange *range = [[PKTDateRange alloc] initWithDictionary:dateDict];
   expect(range.startDate).toNot.beNil();
-  expect(range.includesStartDateTimeComponent).to.beTruthy();
   expect(range.endDate).toNot.beNil();
-  expect(range.includesEndDateTimeComponent).to.beTruthy();
+  expect(range.includesTimeComponent).to.beTruthy();
 }
 
 @end

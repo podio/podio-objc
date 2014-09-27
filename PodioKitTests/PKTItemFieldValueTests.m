@@ -49,17 +49,67 @@
 }
 
 - (void)testDateValue {
-  NSDictionary *valueDict = @{@"start_utc" : @"2014-04-30 15:30:00",
-                              @"end_utc" : @"2014-04-30 16:00:00"};
+  NSDictionary *valueDict = @{
+    @"start_date_utc" : @"2014-07-14",
+    @"end" : @"2014-07-15 16:00:00",
+    @"end_date" : @"2014-07-15",
+    @"end_date_utc" : @"2014-07-15",
+    @"start_time_utc" : @"13:00:00",
+    @"start_time" : @"15:00:00",
+    @"start_date" : @"2014-07-14",
+    @"start" : @"2014-07-14 15:00:00",
+    @"end_time" : @"16:00:00",
+    @"end_time_utc" : @"14:00:00",
+    @"end_utc" : @"2014-07-15 14:00:00",
+    @"start_utc" : @"2014-07-14 13:00:00"
+  };
+  
   PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
-  expect(value.valueDictionary).to.equal(valueDict);
+  expect(value.valueDictionary).to.equal(@{
+                                           @"start_utc" : @"2014-07-14 13:00:00",
+                                           @"end_utc" : @"2014-07-15 14:00:00"
+                                           });
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testDateValueNoTime {
+  NSDictionary *valueDict = @{
+                              @"start_date_utc" : @"2014-07-14",
+                              @"end" : @"2014-07-15 16:00:00",
+                              @"end_date" : @"2014-07-15",
+                              @"end_date_utc" : @"2014-07-15",
+                              @"start_time_utc" : [NSNull null],
+                              @"start_time" : [NSNull null],
+                              @"start_date" : @"2014-07-14",
+                              @"start" : @"2014-07-14 15:00:00",
+                              @"end_time" : [NSNull null],
+                              @"end_time_utc" : [NSNull null],
+                              @"end_utc" : @"2014-07-15 14:00:00",
+                              @"start_utc" : @"2014-07-14 13:00:00"
+                              };
+  
+  PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(@{
+                                           @"start_date_utc" : @"2014-07-14",
+                                           @"start_time_utc" : [NSNull null],
+                                           @"end_date_utc" : @"2014-07-15",
+                                           @"end_time_utc" : [NSNull null]
+                                           });
   expect(value.unboxedValue).toNot.beNil();
 }
 
 - (void)testDateValueOnlyStart {
-  NSDictionary *valueDict = @{@"start_utc" : @"2014-04-30 15:30:00"};
+  NSDictionary *valueDict = @{
+                              @"start_date_utc" : @"2014-07-14",
+                              @"start_time_utc" : @"13:00:00",
+                              @"start_time" : @"15:00:00",
+                              @"start_date" : @"2014-07-14",
+                              @"start" : @"2014-07-14 15:00:00",
+                              @"start_utc" : @"2014-07-14 13:00:00"
+                              };
+  
   PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
-  expect(value.valueDictionary).to.equal(valueDict);
+  expect(value.valueDictionary).to.equal(@{@"start_utc" : @"2014-07-14 13:00:00"});
   expect(value.unboxedValue).toNot.beNil();
 }
 

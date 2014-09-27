@@ -17,8 +17,7 @@
   
   _startDate = [startDate copy];
   _endDate = [endDate copy];
-  _includesStartDateTimeComponent = YES;
-  _includesEndDateTimeComponent = YES;
+  _includesTimeComponent = YES;
   
   return self;
 }
@@ -35,11 +34,10 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"startDate" : @"start_utc",
-           @"endDate" : @"end_utc",
-           @"includesStartDateTimeComponent" : @"start_time_utc",
-           @"includesEndDateTimeComponent" : @"end_time_utc"
-           };
+    @"startDate" : @"start_utc",
+    @"endDate" : @"end_utc",
+    @"includesTimeComponent" : @"start_time_utc",
+  };
 }
 
 + (NSValueTransformer *)startDateValueTransformer {
@@ -50,13 +48,7 @@
   return [NSValueTransformer pkt_dateValueTransformer];
 }
 
-+ (NSValueTransformer *)includesStartDateTimeComponentValueTransformer {
-  return [NSValueTransformer pkt_transformerWithBlock:^id(NSString *timeString) {
-    return @(timeString != nil);
-  }];
-}
-
-+ (NSValueTransformer *)includesEndDateTimeComponentValueTransformer {
++ (NSValueTransformer *)includesTimeComponentValueTransformer {
   return [NSValueTransformer pkt_transformerWithBlock:^id(NSString *timeString) {
     return @(timeString != nil);
   }];
