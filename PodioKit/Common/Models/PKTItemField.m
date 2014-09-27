@@ -18,6 +18,7 @@
 #import "PKTCalculationItemFieldValue.h"
 #import "PKTCategoryItemFieldValue.h"
 #import "PKTDurationItemFieldValue.h"
+#import "PKTLocationItemFieldValue.h"
 #import "PKTFile.h"
 #import "PKTCategoryOption.h"
 #import "PKTNumberItemFieldValue.h"
@@ -192,8 +193,10 @@
       valueClass = [PKTNumberItemFieldValue class];
       break;
     case PKTAppFieldTypeText:
-    case PKTAppFieldTypeLocation:
       valueClass = [PKTStringItemFieldValue class];
+      break;
+    case PKTAppFieldTypeLocation:
+      valueClass = [PKTLocationItemFieldValue class];
       break;
     default:
       break;

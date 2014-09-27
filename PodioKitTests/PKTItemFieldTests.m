@@ -20,6 +20,7 @@
 #import "PKTEmbedItemFieldValue.h"
 #import "PKTCalculationItemFieldValue.h"
 #import "PKTCategoryItemFieldValue.h"
+#import "PKTLocationItemFieldValue.h"
 #import "PKTAppFieldConfig.h"
 #import "PKTCategoryOption.h"
 #import "PKTDateRange.h"
@@ -97,7 +98,7 @@
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeContact]).to.equal([PKTProfileItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeMoney]).to.equal([PKTMoneyItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeProgress]).to.equal([PKTNumberItemFieldValue class]);
-  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeLocation]).to.equal([PKTStringItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeLocation]).to.equal([PKTLocationItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeDuration]).to.equal([PKTDurationItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeEmbed]).to.equal([PKTEmbedItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCalculation]).to.equal([PKTCalculationItemFieldValue class]);
