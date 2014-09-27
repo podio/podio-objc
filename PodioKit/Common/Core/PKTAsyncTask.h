@@ -104,14 +104,14 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
 + (instancetype)when:(NSArray *)tasks;
 
 /**
- *  Use this method to add side effects to the completion if the current task. This methods returns a new
+ *  Use this method to add side effects to the completion of the receiver. This methods returns a new
  *  task where the thenBlock will be executed upon completion if self, and then complete the returned task.
  *  This guarantees that any side effects added by the then: method will be executed before the returned
  *  task completes.
  *
- *  @param thenBlock The block to be executed right before the task completes.
+ *  @param thenBlock The block to be executed right before the receiver completes.
  *
- *  @return A new task that will complete when this task completes, after executing the thenBlock.
+ *  @return A new task that will complete when the receiver completes, after executing the thenBlock.
  */
 - (instancetype)then:(PKTAsyncTaskThenBlock)thenBlock;
 
