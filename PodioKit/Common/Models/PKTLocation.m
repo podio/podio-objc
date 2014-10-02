@@ -10,7 +10,14 @@
 
 @implementation PKTLocation
 
-- (instancetype)initWithValue:(NSString *)value formattedValue:(NSString *)formattedValue streetName:(NSString *)streetName postalCode:(NSString *)postalCode city:(NSString *)city country:(NSString *)country latitude:(double)latitude longitude:(double)longitude {
+- (instancetype)initWithValue:(NSString *)value
+               formattedValue:(NSString *)formattedValue
+                   streetName:(NSString *)streetName
+                   postalCode:(NSString *)postalCode
+                         city:(NSString *)city
+                      country:(NSString *)country
+                     latitude:(PKTLocationCoordinate)latitude
+                    longitude:(PKTLocationCoordinate)longitude {
   self = [super init];
   if (!self) return nil;
   
@@ -24,6 +31,28 @@
   _longitude = longitude;
   
   return self;
+}
+
+- (instancetype)initWithValue:(NSString *)value {
+  return [self initWithValue:value
+              formattedValue:nil
+                  streetName:nil
+                  postalCode:nil
+                        city:nil
+                     country:nil
+                    latitude:0
+                   longitude:0];
+}
+
+- (instancetype)initWithLatitude:(PKTLocationCoordinate)latitude longitude:(PKTLocationCoordinate)longitude {
+  return [self initWithValue:nil
+              formattedValue:nil
+                  streetName:nil
+                  postalCode:nil
+                        city:nil
+                     country:nil
+                    latitude:latitude
+                   longitude:longitude];
 }
 
 #pragma mark - PKModel

@@ -23,7 +23,15 @@
 - (NSDictionary *)valueDictionary {
   PKTLocation *location = self.unboxedValue;
   
-  return location.value ? @{@"value" : location.value} : nil;
+  NSDictionary *dict = nil;
+  if (location.value) {
+    dict = @{@"value" : location.value};
+  } else if (location.latitude > DBL_EPSILON && location.longitude > DBL_EPSILON) {
+    dict = @{@"lat" : @(location.latitude),
+             @"lng" : @(location.longitude)};
+  }
+  
+  return dict;
 }
 
 + (Class)unboxedValueClass {

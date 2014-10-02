@@ -25,6 +25,7 @@
 #import "PKTDateRange.h"
 #import "PKTMoney.h"
 #import "PKTDuration.h"
+#import "PKTLocation.h"
 #import "PKTCategoryOption.h"
 #import "PKTNumberItemFieldValue.h"
 
@@ -189,6 +190,13 @@
   
   PKTLocationItemFieldValue *value = [[PKTLocationItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(@{@"value" : @"Fisketorvet, 1560 Copenhagen, Denmark"});
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testLocationValueWithOnlyLatitudeLongitude {
+  PKTLocationItemFieldValue *value = [PKTLocationItemFieldValue new];
+  value.unboxedValue = [[PKTLocation alloc] initWithLatitude:55.6646305 longitude:12.5657289];
+  expect(value.valueDictionary).to.equal(@{@"lat" : @55.6646305, @"lng" : @12.5657289});
   expect(value.unboxedValue).toNot.beNil();
 }
 
