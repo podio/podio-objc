@@ -9,6 +9,8 @@
 #import "PKTModel.h"
 #import "PKTConstants.h"
 
+@class PKTAsyncTask;
+
 @interface PKTEmbed : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger embedID;
@@ -23,5 +25,7 @@
 @property (nonatomic, assign, readonly) NSNumber *embedWidth;
 @property (nonatomic, assign, readonly) NSNumber *embedHeight;
 @property (nonatomic, copy, readonly) NSString *files;
+
++ (PKTAsyncTask *)createEmbedForURLString:(NSString *)URLString;
 
 @end

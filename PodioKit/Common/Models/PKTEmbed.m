@@ -9,8 +9,11 @@
 #import "PKTEmbed.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTFile.h"
+#import "PKTEmbedsAPI.h"
 
 @implementation PKTEmbed
+
+#pragma mark - PKTModel
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
@@ -60,6 +63,16 @@
     @"rich" : @(PKTEmbedTypeRich),
     @"link" : @(PKTEmbedTypeLink),
     @"unresolved" : @(PKTEmbedTypeUnresolved)
+  }];
+}
+
+#pragma mark - Public
+
++ (PKTAsyncTask *)createEmbedForURLString:(NSString *)URLString {
+  PKTRequest *request = [PKTEmbedsAPI requestToAddEmbedWithURLString:URLString];
+  
+  return [[[PKTClient currentClient] performRequest:request] map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
   }];
 }
 
