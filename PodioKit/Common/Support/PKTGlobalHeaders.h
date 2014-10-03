@@ -52,6 +52,7 @@
 #import "PKTReference.h"
 #import "PKTForm.h"
 #import "PKTFormField.h"
+#import "PKTLocation.h"
 
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
   #import "PKTFile+UIImage.h"
