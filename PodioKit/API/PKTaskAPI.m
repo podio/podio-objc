@@ -341,7 +341,8 @@
   }
   
   if (reminder) {
-    params[@"reminder"] = [reminder intValue] >= 0 ? reminder : [NSNull null];
+    id reminderDelta = [reminder intValue] >= 0 ? reminder : [NSNull null];
+    params[@"reminder"] = @{@"remind_delta": reminderDelta};
   }
   
   if (referenceType != PKReferenceTypeNone && referenceId > 0) {
