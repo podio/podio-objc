@@ -10,8 +10,8 @@
 #import "NSDate+PKFormatting.h"
 #import "PKDate.h"
 
-static NSString * const PKItemFieldValueDateDataStartDateKey = @"StartDate";
-static NSString * const PKItemFieldValueDateDataEndDateKey = @"EndDate";
+static NSString * const PKItemFieldValueDateDataStartDateKey = @"StartDate2";
+static NSString * const PKItemFieldValueDateDataEndDateKey = @"EndDate2";
 
 @implementation PKItemFieldValueDateData
 
