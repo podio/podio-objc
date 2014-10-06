@@ -83,16 +83,10 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
     NSCalendar *calendar = [NSCalendar currentCalendar];
     calendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
     
-    NSDateComponents *comps = [calendar components:(NSYearCalendarUnit |
+    NSDateComponents *comps = [calendar components:(NSEraCalendarUnit |
+                                                    NSYearCalendarUnit |
                                                     NSMonthCalendarUnit |
-                                                    NSDayCalendarUnit |
-                                                    NSHourCalendarUnit |
-                                                    NSMinuteCalendarUnit |
-                                                    NSSecondCalendarUnit) fromDate:self.internalDate];
-    comps.hour = 0;
-    comps.minute = 0;
-    comps.second = 0;
-    comps.nanosecond = 0;
+                                                    NSDayCalendarUnit) fromDate:self.internalDate];
     
     _internalDateWithoutTime = [calendar dateFromComponents:comps];
   }
