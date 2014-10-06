@@ -7,8 +7,11 @@
 //
 
 #import "PKTProfile.h"
+#import "PKTFile.h"
 #import "PKTContactsAPI.h"
+#import "PKTUsersAPI.h"
 #import "NSArray+PKTAdditions.h"
+#import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTProfile
 
@@ -16,12 +19,40 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"profileID" : @"profile_id",
-           @"userID" : @"user_id"
+           @"profileID": @"profile_id",
+           @"userID": @"user_id",
+           @"imageFile" : @"image",
+           @"titles": @"title",
+           @"mails": @"mail",
+           @"phones": @"phone",
+           @"websites": @"url",
+           @"linkedIn": @"linkedin"
            };
 }
 
++ (NSValueTransformer *)imageFileValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
+}
+
 #pragma mark - Public
+
++ (PKTAsyncTask *)fetchCurrentProfile {
+  PKTRequest *request = [PKTUsersAPI requestForUserStatus];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    id profile = nil;
+    
+    NSDictionary *profileDict = [response.body objectForKey:@"profile"];
+    if (profileDict) {
+      profile = [[self alloc] initWithDictionary:profileDict];
+    }
+    
+    return profile;
+  }];
+  
+  return task;
+}
 
 + (PKTAsyncTask *)fetchProfileWithID:(NSUInteger)profileID {
   return [self fetchProfileWithRequest:[PKTContactsAPI requestForContactWithProfileID:profileID]];

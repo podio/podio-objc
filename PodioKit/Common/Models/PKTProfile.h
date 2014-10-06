@@ -9,11 +9,24 @@
 #import "PKTModel.h"
 #import "PKTClient.h"
 
+@class PKTFile;
+
 @interface PKTProfile : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger profileID;
 @property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *name;
+@property (nonatomic, copy, readonly) NSArray *mails;
+@property (nonatomic, copy, readonly) NSArray *titles;
+@property (nonatomic, copy, readonly) NSArray *phones;
+@property (nonatomic, copy, readonly) NSArray *websites;
+@property (nonatomic, copy, readonly) NSString *about;
+@property (nonatomic, copy, readonly) NSString *linkedIn;
+@property (nonatomic, copy, readonly) NSString *skype;
+@property (nonatomic, copy, readonly) NSString *twitter;
+@property (nonatomic, strong, readonly) PKTFile *imageFile;
+
++ (PKTAsyncTask *)fetchCurrentProfile;
 
 + (PKTAsyncTask *)fetchProfileWithID:(NSUInteger)profileID;
 

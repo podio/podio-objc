@@ -22,7 +22,7 @@
 
 #pragma mark - Public
 
-+ (PKTAsyncTask *)fetchCurrent {
++ (PKTAsyncTask *)fetchCurrentUser {
   PKTRequest *request = [PKTUsersAPI requestForUserStatus];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
