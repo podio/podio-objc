@@ -25,6 +25,15 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
 
 @synthesize internalDateWithoutTime = _internalDateWithoutTime;
 
+- (instancetype)init {
+  self = [super init];
+  if (!self) return nil;
+  
+  _includesTimeComponent = YES;
+  
+  return self;
+}
+
 - (instancetype)initWithDate:(NSDate *)date includesTimeComponent:(BOOL)includesTimeComponent {
   NSParameterAssert(date);
   
