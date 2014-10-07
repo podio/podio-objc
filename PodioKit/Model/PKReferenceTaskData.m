@@ -7,7 +7,7 @@
 //
 
 #import "PKReferenceTaskData.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
 
 
 static NSString * const PKReferenceTaskDataTaskId = @"TaskId";
@@ -67,7 +67,7 @@ static NSString * const PKReferenceTaskDataResponsibleName = @"ResponsibleName";
   data.status = [PKConstants taskStatusForString:[dict pk_objectForKey:@"status"]];
   data.text = [dict pk_objectForKey:@"text"];
   data.description = [dict pk_objectForKey:@"description"];
-  data.dueDate = [NSDate pk_localDateFromUTCDateString:[dict pk_objectForKey:@"created_on"]];
+  data.dueDate = [NSDate pk_dateFromUTCDateTimeString:[dict pk_objectForKey:@"created_on"]];
   
   NSDictionary *responsibleDict = [dict pk_objectForKey:@"responsible"];
   data.responsibleUserId = [[responsibleDict pk_objectForKey:@"user_id"] integerValue];

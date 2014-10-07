@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "PKBaseAPI.h"
+#import "PKDate.h"
 
 @interface PKTaskAPI : PKBaseAPI
 
@@ -25,58 +26,63 @@
 + (PKRequest *)requestToUpdatePrivacyForTaskWithId:(NSUInteger)taskId isPrivate:(BOOL)isPrivate;
 + (PKRequest *)requestToUpdateTextForTaskWithId:(NSUInteger)taskId text:(NSString *)text;
 + (PKRequest *)requestToUpdateDescriptionForTaskWithId:(NSUInteger)taskId description:(NSString *)description;
-+ (PKRequest *)requestToUpdateDueDateForTaskWithId:(NSUInteger)taskId dueDate:(NSDate *)dueDate;
++ (PKRequest *)requestToUpdateDueDateForTaskWithId:(NSUInteger)taskId dueDate:(PKDate *)dueDate;
 
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text 
                                description:(NSString *)description 
-                                   dueDate:(NSDate *)dueDate 
+                                   dueDate:(PKDate *)dueDate
                                responsible:(NSUInteger)responsible 
                                  isPrivate:(BOOL)isPrivate 
                                referenceId:(NSUInteger)referenceId 
                              referenceType:(PKReferenceType)referenceType 
-                                   fileIds:(NSArray *)fileIds;
+                                   fileIds:(NSArray *)fileIds
+                                  labelIds:(NSArray *)labelIds;
 
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text
                                description:(NSString *)description
-                                   dueDate:(NSDate *)dueDate
+                                   dueDate:(PKDate *)dueDate
                                   reminder:(NSNumber *)reminder
                                responsible:(NSUInteger)responsible
                            responsibleType:(PKReferenceType)responsibleType
                                  isPrivate:(BOOL)isPrivate
                                referenceId:(NSUInteger)referenceId
                              referenceType:(PKReferenceType)referenceType
-                                   fileIds:(NSArray *)fileIds;
+                                   fileIds:(NSArray *)fileIds
+                                  labelIds:(NSArray *)labelIds;
 
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text
                                description:(NSString *)description
-                                   dueDate:(NSDate *)dueDate
+                                   dueDate:(PKDate *)dueDate
                                responsible:(NSUInteger)responsible
                            responsibleType:(PKReferenceType)responsibleType
                                  isPrivate:(BOOL)isPrivate
                                referenceId:(NSUInteger)referenceId
                              referenceType:(PKReferenceType)referenceType
-                                   fileIds:(NSArray *)fileIds;
+                                   fileIds:(NSArray *)fileIds
+                                  labelIds:(NSArray *)labelIds;
 
 + (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId 
                                     text:(NSString *)text 
                              description:(NSString *)description 
-                                 dueDate:(NSDate *)dueDate 
+                                 dueDate:(PKDate *)dueDate
                              responsible:(NSUInteger)responsible 
                                isPrivate:(BOOL)isPrivate 
                              referenceId:(NSUInteger)referenceId 
                            referenceType:(PKReferenceType)referenceType
-                                 fileIds:(NSArray *)fileIds;
+                                 fileIds:(NSArray *)fileIds
+                                labelIds:(NSArray *)labelIds;
 
 + (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId
                                     text:(NSString *)text
                              description:(NSString *)description
-                                 dueDate:(NSDate *)dueDate
+                                 dueDate:(PKDate *)dueDate
                                 reminder:(NSNumber *)reminder
                              responsible:(NSUInteger)responsible
                                isPrivate:(BOOL)isPrivate
                              referenceId:(NSUInteger)referenceId
                            referenceType:(PKReferenceType)referenceType
-                                 fileIds:(NSArray *)fileIds;
+                                 fileIds:(NSArray *)fileIds
+                                labelIds:(NSArray *)labelIds;
 
 + (PKRequest *)requestToDeleteTaskWithId:(NSUInteger)taskId;
 

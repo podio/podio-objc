@@ -7,7 +7,8 @@
 //
 
 #import "PKTaskAPI.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
+#import "PKConstants.h"
 
 @implementation PKTaskAPI
 
@@ -106,26 +107,35 @@
   return request;
 }
 
-+ (PKRequest *)requestToUpdateDueDateForTaskWithId:(NSUInteger)taskId dueDate:(NSDate *)dueDate {
++ (PKRequest *)requestToUpdateDueDateForTaskWithId:(NSUInteger)taskId dueDate:(PKDate *)dueDate {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld/due_on", (unsigned long)taskId] method:PKRequestMethodPUT];
   
-  if (dueDate != nil) {
-    request.body = @{@"due_on": [[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString]};
+  NSMutableDictionary *body = [NSMutableDictionary new];
+  
+  if (dueDate) {
+    if (dueDate.includesTimeComponent) {
+      body[@"due_on"] = [dueDate pk_UTCDateTimeString];
+    } else {
+      body[@"due_date"] = [dueDate pk_UTCDateString];
+    }
   } else {
-    request.body = @{@"due_on": [NSNull null]};
+    body[@"due_on"] = [NSNull null];
   }
+
+  request.body = body;
   
   return request;
 }
 
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text
                                description:(NSString *)description
-                                   dueDate:(NSDate *)dueDate
+                                   dueDate:(PKDate *)dueDate
                                responsible:(NSUInteger)responsible
                                  isPrivate:(BOOL)isPrivate
                                referenceId:(NSUInteger)referenceId
                              referenceType:(PKReferenceType)referenceType
-                                   fileIds:(NSArray *)fileIds {
+                                   fileIds:(NSArray *)fileIds
+                                  labelIds:(NSArray *)labelIds {
   return [self requestToCreateTaskWithText:text
                                description:description
                                    dueDate:dueDate
@@ -135,18 +145,20 @@
                                  isPrivate:isPrivate
                                referenceId:referenceId
                              referenceType:referenceType
-                                   fileIds:fileIds];
+                                   fileIds:fileIds
+                                  labelIds:labelIds];
 }
 
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text
                                description:(NSString *)description
-                                   dueDate:(NSDate *)dueDate
+                                   dueDate:(PKDate *)dueDate
                                responsible:(NSUInteger)responsible
                            responsibleType:(PKReferenceType)responsibleType
                                  isPrivate:(BOOL)isPrivate
                                referenceId:(NSUInteger)referenceId
                              referenceType:(PKReferenceType)referenceType
-                                   fileIds:(NSArray *)fileIds {
+                                   fileIds:(NSArray *)fileIds
+                                  labelIds:(NSArray *)labelIds {
   return [self requestToCreateTaskWithText:text
                                description:description
                                    dueDate:dueDate
@@ -156,73 +168,40 @@
                                  isPrivate:isPrivate
                                referenceId:referenceId
                              referenceType:referenceType
-                                   fileIds:fileIds];
+                                   fileIds:fileIds
+                                  labelIds:labelIds];
 }
 
 + (PKRequest *)requestToCreateTaskWithText:(NSString *)text
                                description:(NSString *)description
-                                   dueDate:(NSDate *)dueDate
+                                   dueDate:(PKDate *)dueDate
                                   reminder:(NSNumber *)reminder
                                responsible:(NSUInteger)responsible
                            responsibleType:(PKReferenceType)responsibleType
                                  isPrivate:(BOOL)isPrivate
                                referenceId:(NSUInteger)referenceId
                              referenceType:(PKReferenceType)referenceType
-                                   fileIds:(NSArray *)fileIds {
-  BOOL hasReference = referenceType != PKReferenceTypeNone && referenceId > 0;
-  
+                                   fileIds:(NSArray *)fileIds
+                                  labelIds:(NSArray *)labelIds {
   PKRequest *request = nil;
   
-  if (hasReference) {
+  if (referenceType != PKReferenceTypeNone && referenceId > 0) {
     request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%@/%ld/", [PKConstants stringForReferenceType:referenceType], (unsigned long)referenceId] method:PKRequestMethodPOST];
   } else {
     request = [PKRequest requestWithURI:@"/task/" method:PKRequestMethodPOST];
   }
   
-  NSMutableDictionary *body = [NSMutableDictionary dictionary];
-  [body setObject:text forKey:@"text"];
-  
-  if (responsible > 0) {
-    [body setObject:@(responsible) forKey:@"responsible"];
-  }
-  if (responsible > 0 && (responsibleType == PKReferenceTypeProfile || responsibleType == PKReferenceTypeSpace)) {
-    NSString *typeString;
-    if (responsibleType == PKReferenceTypeProfile) {
-      typeString = @"user";
-    } else if (responsibleType == PKReferenceTypeSpace) {
-      typeString = @"space";
-    }
-    
-    [body setObject:@{@"type": typeString, @"id": @(responsible)} forKey:@"responsible"];
-  }
-  
-  if (description != nil) {
-    [body setObject:description forKey:@"description"];
-  }
-  
-  if (dueDate != nil) {
-    [body setObject:[[dueDate pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"due_on"];
-  }
-  
-  if (reminder != nil) {
-    if ([reminder intValue] < 0) {
-      [body setObject:@{@"remind_delta": [NSNull null]} forKey:@"reminder"];
-    } else {
-      [body setObject:@{@"remind_delta": reminder} forKey:@"reminder"];
-    }
-  }
-  
-  if (hasReference) {
-    [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
-    [body setObject:@(referenceId) forKey:@"ref_id"];
-    [body setObject:@(isPrivate) forKey:@"private"];
-  }
-  
-  if (fileIds) {
-    [body setObject:fileIds forKey:@"file_ids"];
-  }
-  
-  request.body = body;
+  request.body = [self taskParametersWithText:text
+                                  description:description
+                                      dueDate:dueDate
+                                     reminder:reminder
+                                  responsible:responsible
+                              responsibleType:responsibleType
+                                    isPrivate:isPrivate
+                                  referenceId:referenceId
+                                referenceType:referenceType
+                                      fileIds:fileIds
+                                     labelIds:labelIds];
   
   return request;
 }
@@ -230,12 +209,13 @@
 + (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId 
                                     text:(NSString *)text 
                              description:(NSString *)description 
-                                 dueDate:(NSDate *)dueDate 
+                                 dueDate:(PKDate *)dueDate 
                              responsible:(NSUInteger)responsible 
                                isPrivate:(BOOL)isPrivate 
                              referenceId:(NSUInteger)referenceId 
                            referenceType:(PKReferenceType)referenceType
-                                 fileIds:(NSArray *)fileIds {
+                                 fileIds:(NSArray *)fileIds
+                                labelIds:(NSArray *)labelIds {
   return [self requestToUpdateTaskWithId:taskId
                                     text:text
                              description:description
@@ -245,55 +225,35 @@
                                isPrivate:isPrivate
                              referenceId:referenceId
                            referenceType:referenceType
-                                 fileIds:fileIds];
+                                 fileIds:fileIds
+                                labelIds:labelIds];
 }
 
 + (PKRequest *)requestToUpdateTaskWithId:(NSUInteger)taskId
                                     text:(NSString *)text
                              description:(NSString *)description
-                                 dueDate:(NSDate *)dueDate
+                                 dueDate:(PKDate *)dueDate
                                 reminder:(NSNumber *)reminder
                              responsible:(NSUInteger)responsible
                                isPrivate:(BOOL)isPrivate
                              referenceId:(NSUInteger)referenceId
                            referenceType:(PKReferenceType)referenceType
-                                 fileIds:(NSArray *)fileIds {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/task/%ld", (unsigned long)taskId] method:PKRequestMethodPUT];
+                                 fileIds:(NSArray *)fileIds
+                                labelIds:(NSArray *)labelIds {
+  NSString *uri = [NSString stringWithFormat:@"/task/%ld", (unsigned long)taskId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPUT];
   
-  NSMutableDictionary *body = [NSMutableDictionary dictionary];
-  [body setObject:text forKey:@"text"];
-  
-  if (responsible > 0) {
-    [body setObject:@(responsible) forKey:@"responsible"];
-  }
-  
-  [body setObject:(description ? description : [NSNull null]) forKey:@"description"];
-  
-  NSString *dateString = [dueDate pk_dateString];
-  [body setObject:([dateString length] > 0 ? dateString : [NSNull null]) forKey:@"due_date"];
-  
-  NSString *timeString = [dueDate pk_timeString];
-  [body setObject:([timeString length] > 0 ? timeString : [NSNull null]) forKey:@"due_time"];
-  
-  if (reminder != nil) {
-    if ([reminder intValue] < 0) {
-      [body setObject:@{@"remind_delta": [NSNull null]} forKey:@"reminder"];
-    } else {
-      [body setObject:@{@"remind_delta": reminder} forKey:@"reminder"];
-    }
-  }
-  
-  if (referenceType != PKReferenceTypeNone && referenceId > 0) {
-    [body setObject:[PKConstants stringForReferenceType:referenceType] forKey:@"ref_type"];
-    [body setObject:@(referenceId) forKey:@"ref_id"];
-    [body setObject:@(isPrivate) forKey:@"private"];
-  }
-  
-  if (fileIds) {
-    [body setObject:fileIds forKey:@"file_ids"];
-  }
-  
-  request.body = body;
+  request.body = [self taskParametersWithText:text
+                                  description:description
+                                      dueDate:dueDate
+                                     reminder:reminder
+                                  responsible:responsible
+                              responsibleType:PKReferenceTypeNone
+                                    isPrivate:isPrivate
+                                  referenceId:referenceId
+                                referenceType:referenceType
+                                      fileIds:fileIds
+                                     labelIds:labelIds];
   
   return request;
 }
@@ -333,6 +293,73 @@
   }
   
   return request;
+}
+
+#pragma mark - Helpers
+
++ (NSDictionary *)taskParametersWithText:(NSString *)text
+                             description:(NSString *)description
+                                 dueDate:(PKDate *)dueDate
+                                reminder:(NSNumber *)reminder
+                             responsible:(NSUInteger)responsible
+                         responsibleType:(PKReferenceType)responsibleType
+                               isPrivate:(BOOL)isPrivate
+                             referenceId:(NSUInteger)referenceId
+                           referenceType:(PKReferenceType)referenceType
+                                 fileIds:(NSArray *)fileIds
+                                labelIds:(NSArray *)labelIds {
+  NSParameterAssert(text);
+  
+  NSMutableDictionary *params = [NSMutableDictionary dictionary];
+  params[@"text"] = text;
+  params[@"description"] = description ? description : [NSNull null];
+  
+  if (responsible > 0) {
+    if (responsibleType == PKReferenceTypeProfile || responsibleType == PKReferenceTypeSpace) {
+      NSString *typeString;
+      
+      if (responsibleType == PKReferenceTypeProfile) {
+        typeString = @"user";
+      } else if (responsibleType == PKReferenceTypeSpace) {
+        typeString = @"space";
+      }
+      
+      params[@"responsible"] = @{@"type": typeString, @"id": @(responsible)};
+    } else {
+      params[@"responsible"] = @(responsible);
+    }
+  }
+  
+  if (dueDate) {
+    if (dueDate.includesTimeComponent) {
+      params[@"due_on"] = [dueDate pk_UTCDateTimeString];
+    } else {
+      params[@"due_date"] = [dueDate pk_UTCDateString];
+    }
+  } else {
+    params[@"due_on"] = [NSNull null];
+  }
+  
+  if (reminder) {
+    id reminderDelta = [reminder intValue] >= 0 ? reminder : [NSNull null];
+    params[@"reminder"] = @{@"remind_delta": reminderDelta};
+  }
+  
+  if (referenceType != PKReferenceTypeNone && referenceId > 0) {
+    params[@"ref_type"] = [PKConstants stringForReferenceType:referenceType];
+    params[@"ref_id"] = @(referenceId);
+    params[@"private"] = @(isPrivate);
+  }
+  
+  if (fileIds) {
+    [params setObject:fileIds forKey:@"file_ids"];
+  }
+  
+  if (labelIds) {
+    params[@"labels"] = labelIds;
+  }
+  
+  return [params copy];
 }
 
 @end

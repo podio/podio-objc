@@ -9,15 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "PKObjectData.h"
 
+@class PKDate;
 
-@interface PKItemFieldValueDateData : PKObjectData {
+@interface PKItemFieldValueDateData : PKObjectData
 
- @private
-  NSDate *startDate_;
-  NSDate *endDate_;
-}
+@property (nonatomic, copy) PKDate *startDate;
+@property (nonatomic, copy) PKDate *endDate;
 
-@property (nonatomic, copy) NSDate *startDate;
-@property (nonatomic, copy) NSDate *endDate;
+- (NSDictionary *)valueDictionary;
 
 @end

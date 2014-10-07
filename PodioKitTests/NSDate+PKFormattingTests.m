@@ -26,17 +26,17 @@
 }
 
 - (void)testDateTimeString {
-  PKDate *date = [PKDate dateWithDate:[NSDate dateWithTimeIntervalSince1970:0] includesTimeComponent:YES];
+  NSDate *date = [NSDate dateWithTimeIntervalSince1970:0];
   expect([date pk_UTCDateTimeString]).to.equal(@"1970-01-01 00:00:00");
 }
 
 - (void)testDateString {
-  PKDate *date = [PKDate dateWithDate:[NSDate dateWithTimeIntervalSince1970:0] includesTimeComponent:YES];
+  NSDate *date = [NSDate dateWithTimeIntervalSince1970:0];
   expect([date pk_UTCDateString]).to.equal(@"1970-01-01");
 }
 
 - (void)testTimeString {
-  PKDate *date = [PKDate dateWithDate:[NSDate dateWithTimeIntervalSince1970:0] includesTimeComponent:YES];
+  NSDate *date = [NSDate dateWithTimeIntervalSince1970:0];
   expect([date pk_UTCTimeString]).to.equal(@"00:00:00");
 }
 

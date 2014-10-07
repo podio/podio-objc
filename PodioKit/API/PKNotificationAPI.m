@@ -7,7 +7,7 @@
 //
 
 #import "PKNotificationAPI.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
 
 @implementation PKNotificationAPI
 
@@ -20,13 +20,13 @@
   [request.parameters setObject:[NSString stringWithFormat:@"%ld", (unsigned long)limit] forKey:@"limit"];
   
   if (dateFrom != nil) {
-    [request.parameters setObject:[[dateFrom pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"created_from"];
+    [request.parameters setObject:[dateFrom pk_UTCDateTimeString] forKey:@"created_from"];
   }
   
   if (dateTo != nil) {
-    [request.parameters setObject:[[dateTo pk_UTCDateFromLocalDate] pk_dateTimeString] forKey:@"created_to"];
+    [request.parameters setObject:[dateTo pk_UTCDateTimeString] forKey:@"created_to"];
   }
-  
+
   return request;
 }
 

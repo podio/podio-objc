@@ -7,7 +7,7 @@
 //
 
 #import "PKCalendarAPI.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
 
 @implementation PKCalendarAPI
 
@@ -25,8 +25,8 @@
 
 + (PKRequest *)requestForCalendarEventsUsingURLString:(NSString *)urlString fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
   PKRequest *request = [PKRequest requestWithURI:urlString method:PKRequestMethodGET];
-  [request.parameters setObject:[fromDate pk_dateString] forKey:@"date_from"];
-  [request.parameters setObject:[toDate pk_dateString] forKey:@"date_to"];
+  [request.parameters setObject:[fromDate pk_localDateString] forKey:@"date_from"];
+  [request.parameters setObject:[toDate pk_localDateString] forKey:@"date_to"];
   [request.parameters setObject:@(priority) forKey:@"priority"];
   
   return request;

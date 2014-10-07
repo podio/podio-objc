@@ -7,8 +7,8 @@
 //
 
 #import "PKStreamTaskData.h"
-#import "NSDate+PKAdditions.h"
-
+#import "PKConstants.h"
+#import "NSDate+PKFormatting.h"
 
 static NSString * const PKStreamTaskDataTaskId = @"TaskId";
 static NSString * const PKStreamTaskDataStatus = @"Status";
@@ -67,7 +67,7 @@ static NSString * const PKStreamTaskDataResponsibleName = @"ResponsibleName";
   data.status = [PKConstants taskStatusForString:[dict pk_objectForKey:@"status"]];
   data.text = [dict pk_objectForKey:@"text"];
   data.description = [dict pk_objectForKey:@"description"];
-  data.dueDate = [NSDate pk_dateWithDateString:[dict pk_objectForKey:@"due_date"]];
+  data.dueDate = [NSDate pk_dateFromLocalDateString:[dict pk_objectForKey:@"due_date"]];
   
   NSDictionary *responsibleDict = [dict pk_objectForKey:@"responsible"];
   data.responsibleUserId = [[responsibleDict pk_objectForKey:@"user_id"] integerValue];

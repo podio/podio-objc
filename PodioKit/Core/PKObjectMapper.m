@@ -8,15 +8,16 @@
 
 #import "PKObjectMapper.h"
 #import "PKMappableObject.h"
+#import "PKConstants.h"
+#import "PKAssert.h"
+#import "PKLog.h"
 #import "NSArray+PKAdditions.h"
 #import "NSString+PKAdditions.h"
 #import "NSDictionary+PKAdditions.h"
-#import "NSDate+PKAdditions.h"
+#import "NSDate+PKFormatting.h"
 
 
 @interface PKObjectMapper ()
-
-@property (nonatomic, strong, readonly) NSDateFormatter *dateFormatter;
 
 - (void)deleteObjectsForKlass:(Class)klass identityPredicate:(NSPredicate *)identityPredicate scopePredicate:(NSPredicate *)scopePredicate;
 
@@ -31,7 +32,6 @@
 @synthesize offset = offset_;
 @synthesize mapping = mapping_;
 @synthesize mappingBlock = mappingBlock_;
-@synthesize dateFormatter = dateFormatter_;
 
 - (id)initWithProvider:(PKMappingProvider *)provider repository:(id<PKObjectRepository>)repository {
   self = [super init];
@@ -51,20 +51,6 @@
 
 - (void)dealloc {
   delegate_ = nil;
-}
-
-#pragma mark - Helpers
-
-- (NSDateFormatter *)dateFormatter {
-  if (dateFormatter_ == nil) {
-    dateFormatter_ = [[NSDateFormatter alloc] init];
-    [dateFormatter_ setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    
-    NSLocale *locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
-    [dateFormatter_ setLocale:locale];
-  }
-  
-  return dateFormatter_;
 }
 
 #pragma mark - Mapping
@@ -287,10 +273,10 @@
       
       switch (valueMapping.valueType) {
         case PKValueTypeDate:
-          value = [self.dateFormatter dateFromString:attributeValue];
+          value = [NSDate pk_dateFromLocalDateTimeString:attributeValue];
           break;
         case PKValueTypeUTCDate:
-          value = [[self.dateFormatter dateFromString:attributeValue] pk_localDateFromUTCDate];
+          value = [NSDate pk_dateFromUTCDateTimeString:attributeValue];
           break;
         case PKValueTypeNormal:
         default:
