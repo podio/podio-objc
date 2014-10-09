@@ -17,6 +17,12 @@
 
 @implementation PKTTaskRequestParametersTests
 
+- (void)testCompleted {
+  expect([[PKTTaskRequestParameters parametersWithBlock:^(PKTTaskRequestParameters *params) {
+    params.completed = PKTTaskRequestParameterCompletedTrue;
+  }] queryParameters]).to.equal(@{@"completed" : @YES});
+}
+
 - (void)testResponsible {
   expect([[PKTTaskRequestParameters parametersWithBlock:^(PKTTaskRequestParameters *params) {
     params.responsibleUserID = 12345;

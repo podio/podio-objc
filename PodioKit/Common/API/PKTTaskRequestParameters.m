@@ -121,6 +121,10 @@
 - (NSDictionary *)queryParameters {
   NSMutableDictionary *params = [NSMutableDictionary new];
   
+  if (self.completed != PKTTaskRequestParameterCompletedDefault) {
+    params[@"completed"] = @(self.completed == PKTTaskRequestParameterCompletedTrue);
+  }
+  
   // Grouping
   if (self.grouping != PKTTaskRequestParameterGroupingDefault) {
     params[@"grouping"] = [[self class] groupingMap][@(self.grouping)];
@@ -133,7 +137,7 @@
   
   // Sort order
   if (self.sortOrder != PKTTaskRequestParameterSortOrderDefault) {
-    params[@"sort_desc"] = self.sortOrder == PKTTaskRequestParameterSortOrderDescending ? @YES : @NO;
+    params[@"sort_desc"] = @(self.sortOrder == PKTTaskRequestParameterSortOrderDescending);
   }
   
   // Completed on

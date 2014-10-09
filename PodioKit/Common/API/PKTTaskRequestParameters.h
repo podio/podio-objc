@@ -12,6 +12,12 @@
 @class PKTDateRange;
 @class PKTReferenceIdentifier;
 
+typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterCompleted) {
+  PKTTaskRequestParameterCompletedDefault,
+  PKTTaskRequestParameterCompletedTrue,
+  PKTTaskRequestParameterCompletedFalse
+};
+
 typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterGrouping) {
   PKTTaskRequestParameterGroupingDefault,
   PKTTaskRequestParameterGroupingDueDate,
@@ -67,6 +73,7 @@ typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterSortOrder) {
 
 @interface PKTTaskRequestParameters : NSObject <PKTRequestParameters>
 
+@property (nonatomic, assign, readwrite) PKTTaskRequestParameterCompleted completed;
 @property (nonatomic, assign, readwrite) PKTTaskRequestParameterGrouping grouping;
 @property (nonatomic, assign, readwrite) PKTTaskRequestParameterCompletedOn completedOn;
 @property (nonatomic, assign, readwrite) PKTTaskRequestParameterSortBy sortBy;
