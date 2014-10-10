@@ -66,14 +66,24 @@ static NSString * const PKItemFieldValueDateDataEndDateKey = @"EndDate2";
     NSDate *startDate = [NSDate pk_dateFromUTCDateTimeString:[dict pk_objectForKey:@"start_utc"]];
     NSDate *endDate = [NSDate pk_dateFromUTCDateTimeString:[dict pk_objectForKey:@"end_utc"]];
     
-    data.startDate = [PKDate dateWithDate:startDate includesTimeComponent:YES];
-    data.endDate = [PKDate dateWithDate:endDate includesTimeComponent:YES];
+    if (startDate) {
+      data.startDate = [PKDate dateWithDate:startDate includesTimeComponent:YES];
+    }
+    
+    if (endDate) {
+      data.endDate = [PKDate dateWithDate:endDate includesTimeComponent:YES];
+    }
   } else {
     NSDate *startDate = [NSDate pk_dateFromUTCDateString:[dict pk_objectForKey:@"start_date"]];
     NSDate *endDate = [NSDate pk_dateFromUTCDateString:[dict pk_objectForKey:@"end_date"]];
     
-    data.startDate = [PKDate dateWithDate:startDate includesTimeComponent:NO];
-    data.endDate = [PKDate dateWithDate:endDate includesTimeComponent:NO];
+    if (startDate) {
+      data.startDate = [PKDate dateWithDate:startDate includesTimeComponent:NO];
+    }
+    
+    if (endDate) {
+      data.endDate = [PKDate dateWithDate:endDate includesTimeComponent:NO];
+    }
   }
   
   return data;
