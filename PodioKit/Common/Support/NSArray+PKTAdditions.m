@@ -32,6 +32,18 @@
   }];
 }
 
+- (id)pk_reducedValueWithBlock:(id (^)(id reduced, id obj))block {
+  NSParameterAssert(block);
+  
+  id result = [self firstObject];
+  
+  for (NSUInteger i = 1; i < [self count]; ++i) {
+    result = block(result, self[i]);
+  }
+  
+  return result;
+}
+
 - (id)pkt_firstObjectPassingTest:(BOOL (^)(id obj))block {
   NSParameterAssert(block);
   

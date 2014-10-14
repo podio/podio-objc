@@ -12,6 +12,7 @@
 
 - (NSArray *)pkt_mappedArrayWithBlock:(id (^)(id obj))block;
 - (NSArray *)pkt_filteredArrayWithBlock:(BOOL (^)(id obj))block;
+- (id)pk_reducedValueWithBlock:(id (^)(id reduced, id obj))block;
 - (id)pkt_firstObjectPassingTest:(BOOL (^)(id obj))block;
 + (NSArray *)pkt_arrayFromRange:(NSRange)range;
 
