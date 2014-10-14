@@ -91,9 +91,9 @@
   
   PKTDateItemFieldValue *value = [[PKTDateItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(@{
-                                           @"start_date_utc" : @"2014-07-14",
+                                           @"start_date" : @"2014-07-14",
                                            @"start_time_utc" : [NSNull null],
-                                           @"end_date_utc" : @"2014-07-15",
+                                           @"end_date" : @"2014-07-15",
                                            @"end_time_utc" : [NSNull null]
                                            });
   expect(value.unboxedValue).toNot.beNil();
