@@ -79,7 +79,7 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
   if (supportedClasses) {
     supported = [[[supportedClasses pkt_mappedArrayWithBlock:^id(Class klass) {
       return @([value isKindOfClass:klass]);
-    }] pk_reducedValueWithBlock:^(NSNumber *isAnyOfClass, NSNumber *isCurrentOfClass){
+    }] pkt_reducedValueWithBlock:^(NSNumber *isAnyOfClass, NSNumber *isCurrentOfClass){
       return @([isAnyOfClass boolValue] || [isCurrentOfClass boolValue]);
     }] boolValue];
     

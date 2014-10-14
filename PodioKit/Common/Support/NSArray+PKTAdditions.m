@@ -10,7 +10,7 @@
 
 @implementation NSArray (PKTAdditions)
 
-- (NSArray *)pkt_mappedArrayWithBlock:(id (^)(id obj))block {
+- (instancetype)pkt_mappedArrayWithBlock:(id (^)(id obj))block {
   NSParameterAssert(block);
   
   NSMutableArray *mutArray = [[NSMutableArray alloc] initWithCapacity:[self count]];
@@ -24,7 +24,7 @@
   return [mutArray copy];
 }
 
-- (NSArray *)pkt_filteredArrayWithBlock:(BOOL (^)(id obj))block {
+- (instancetype)pkt_filteredArrayWithBlock:(BOOL (^)(id obj))block {
   NSParameterAssert(block);
   
   return [self pkt_mappedArrayWithBlock:^id(id obj) {
@@ -32,7 +32,7 @@
   }];
 }
 
-- (id)pk_reducedValueWithBlock:(id (^)(id reduced, id obj))block {
+- (id)pkt_reducedValueWithBlock:(id (^)(id reduced, id obj))block {
   NSParameterAssert(block);
   
   id result = [self firstObject];
@@ -58,7 +58,7 @@
   return object;
 }
 
-+ (NSArray *)pkt_arrayFromRange:(NSRange)range {
++ (instancetype)pkt_arrayFromRange:(NSRange)range {
   NSUInteger min = range.location;
   NSUInteger max = range.location + range.length;
   
