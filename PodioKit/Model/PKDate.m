@@ -78,20 +78,27 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
 #pragma mark - Properties
 
 - (NSDate *)internalDateWithoutTime {
-  if (!_internalDateWithoutTime) {
-    // If we should ignore time component, reset all the time components of the date
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    calendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+  @synchronized(self) {
+    if (!_internalDateWithoutTime) {
+      static NSCalendar *calendar = nil;
+      
+      static dispatch_once_t onceToken;
+      dispatch_once(&onceToken, ^{
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
+      });
+      
+      // If we should ignore time component, ignore all the time components of the date
+      NSDateComponents *comps = [calendar components:(NSEraCalendarUnit |
+                                                      NSYearCalendarUnit |
+                                                      NSMonthCalendarUnit |
+                                                      NSDayCalendarUnit) fromDate:self.internalDate];
+      
+      _internalDateWithoutTime = [calendar dateFromComponents:comps];
+    }
     
-    NSDateComponents *comps = [calendar components:(NSEraCalendarUnit |
-                                                    NSYearCalendarUnit |
-                                                    NSMonthCalendarUnit |
-                                                    NSDayCalendarUnit) fromDate:self.internalDate];
-    
-    _internalDateWithoutTime = [calendar dateFromComponents:comps];
+    return _internalDateWithoutTime;
   }
-  
-  return _internalDateWithoutTime;
 }
 
 #pragma mark - NSCoding
