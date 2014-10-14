@@ -130,6 +130,13 @@
   expect(value.unboxedValue).toNot.beNil();
 }
 
+- (void)testEmbedURLValue {
+  PKTEmbedItemFieldValue *value = [[PKTEmbedItemFieldValue alloc] init];
+  value.unboxedValue = @"https://www.google.com";
+  expect(value.valueDictionary).to.equal(@{@"url" : @"https://www.google.com"});
+  expect(value.unboxedValue).toNot.beNil();
+}
+
 - (void)testFileValue {
   NSDictionary *valueDict = @{@"value" : @{@"file_id" : @2222}};
   PKTFileItemFieldValue *value = [[PKTFileItemFieldValue alloc] initFromValueDictionary:valueDict];
@@ -165,6 +172,13 @@
                    @"text" : @"First option",
                    @"color" : @"ff0000"}};
   PKTCategoryItemFieldValue *value = [[PKTCategoryItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(@{@"value" : @123});
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testCategoryValueWithOptionID {
+  PKTCategoryItemFieldValue *value = [[PKTCategoryItemFieldValue alloc] init];
+  value.unboxedValue = @123;
   expect(value.valueDictionary).to.equal(@{@"value" : @123});
   expect(value.unboxedValue).toNot.beNil();
 }
@@ -208,9 +222,13 @@
   expect([PKTNumberItemFieldValue supportsBoxingOfValue:@32123.432 error:nil]).to.beTruthy();
 }
 
-- (void)testBoxedValueSupportForValidDateValue {
+- (void)testBoxedValueSupportForValidDateRangeValue {
   PKTDateRange *value = [[PKTDateRange alloc] initWithStartDate:[NSDate date] endDate:[NSDate date]];
   expect([PKTDateItemFieldValue supportsBoxingOfValue:value error:nil]).to.beTruthy();
+}
+
+- (void)testBoxedValueSupportForValidDateValue {
+  expect([PKTDateItemFieldValue supportsBoxingOfValue:[NSDate date] error:nil]).to.beTruthy();
 }
 
 - (void)testBoxedValueSupportForValidMoneyValue {
@@ -243,6 +261,10 @@
   expect([PKTCategoryItemFieldValue supportsBoxingOfValue:option error:nil]).to.beTruthy();
 }
 
+- (void)testBoxedValueSupportForValidCategoryNumberValue {
+  expect([PKTCategoryItemFieldValue supportsBoxingOfValue:@123 error:nil]).to.beTruthy();
+}
+
 - (void)testBoxedValueSupportForValidDurationValue {
   PKTDuration *duration = [[PKTDuration alloc] initWithHours:3 minutes:23 seconds:55];
   expect([PKTDurationItemFieldValue supportsBoxingOfValue:duration error:nil]).to.beTruthy();
@@ -265,7 +287,7 @@
 }
 
 - (void)testBoxedValueSupportForInvalidEmbedValue {
-  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:@"Invalid value" error:nil]).to.beFalsy();
+  expect([PKTEmbedItemFieldValue supportsBoxingOfValue:@123 error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidFileValue {

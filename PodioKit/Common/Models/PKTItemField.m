@@ -101,39 +101,6 @@
   }
 }
 
-/* Sometimes a field value (the 'basic' value) can be given that does not represent the final unboxed value for
- * the field. For example; a category field support the PKTCategoryOption as its unboxed value but the user might
- * provide only the option ID in the form of an NSNumber instance. In this case, we want to translate the option ID to the full
- * PKTCategoryOption value to be used as the actual value.
- *
- * This method will look for those instances and cleverly replace it with supported unboxed values. If it doesn't
- * find a suitable replacement value, it will return the original value.
- *
- * @param value The 'basic' value, meaning a value that might not be supported as the final unboxed field value.
- * @param field The app field for which to determine the unboxed value. This is needed since sometimes the field
- *              settings are needed to determine the final unboxed value (e.g. in the case of a category field).
- *
- * @return The replacement unboxed value or the original value if no replacement can be determined.
- *
- */
-+ (id)unboxedValueFromBasicValue:(id)value forField:(PKTAppField *)field {
-  id unboxedValue = value;
-
-  if (field.type == PKTAppFieldTypeCategory && [value isKindOfClass:[NSNumber class]]) {
-    // The option was provided as an NSNumber (the option ID) instead of a PKTCategoryOption. Look up the
-    // PKTCategoryOption from the app config settings instead.
-    PKTCategoryOption *option = [field categoryOptionWithID:[value unsignedIntegerValue]];
-    if (option) {
-      unboxedValue = option;
-    }
-  } else if (field.type == PKTAppFieldTypeDate && [value isKindOfClass:[NSDate class]]) {
-    // An NSDate was provided for a date field, wrap it in the unboxed value a PKTDateRange
-    unboxedValue = [[PKTDateRange alloc] initWithStartDate:value endDate:nil];
-  }
-
-  return unboxedValue;
-}
-
 + (NSMutableArray *)mutableFieldValuesForValueDictionaries:(NSArray *)valueDictionaries fieldType:(PKTAppFieldType)fieldType {
   NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[valueDictionaries count]];
   
@@ -148,9 +115,10 @@
 + (NSMutableArray *)mutableFieldValuesForBasicValues:(NSArray *)basicValues field:(PKTAppField *)field {
   NSMutableArray *fieldValues = [NSMutableArray arrayWithCapacity:[basicValues count]];
   
-  for (id basicValue in basicValues) {
-    id unboxedValue = [self unboxedValueFromBasicValue:basicValue forField:field];
-    PKTItemFieldValue *fieldValue = [PKTItemField valueWithType:field.type unboxedValue:unboxedValue];
+  for (id value in basicValues) {
+    [self validateUnboxedValue:value forFieldType:field.type];
+    
+    PKTItemFieldValue *fieldValue = [PKTItemField boxedValueForValue:value forFieldType:field.type];
     [fieldValues addObject:fieldValue];
   }
   
@@ -216,30 +184,20 @@
   return value;
 }
 
-+ (PKTItemFieldValue *)valueWithType:(PKTAppFieldType)type unboxedValue:(id)unboxedValue {
-  [self validateUnboxedValue:unboxedValue forFieldType:type];
-
-  PKTItemFieldValue *value = nil;
++ (PKTItemFieldValue *)boxedValueForValue:(id)value forFieldType:(PKTAppFieldType)type {
+  PKTItemFieldValue *boxedValue = nil;
   
   Class valueClass = [self valueClassForFieldType:type];
-  if (valueClass) {
-    value = [[valueClass alloc] init];
-    value.unboxedValue = unboxedValue;
-  }
-  
-  return value;
-}
-
-- (PKTItemFieldValue *)boxedValueForValue:(id)value {
-  PKTItemFieldValue *boxedValue = nil;
-
-  Class valueClass = [[self class] valueClassForFieldType:self.type];
   if (valueClass) {
     boxedValue = [[valueClass alloc] init];
     boxedValue.unboxedValue = value;
   }
   
   return boxedValue;
+}
+
+- (PKTItemFieldValue *)boxedValueForValue:(id)value {
+  return [[self class] boxedValueForValue:value forFieldType:self.type];
 }
 
 #pragma mark - Public

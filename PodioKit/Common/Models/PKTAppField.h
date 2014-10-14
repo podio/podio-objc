@@ -21,8 +21,4 @@
 
 - (instancetype)initWithFieldID:(NSUInteger)fieldID externalID:(NSString *)externalID type:(PKTAppFieldType)type config:(PKTAppFieldConfig *)config;
 
-#pragma mark - Public
-
-- (PKTCategoryOption *)categoryOptionWithID:(NSUInteger)optionID;
-
 @end

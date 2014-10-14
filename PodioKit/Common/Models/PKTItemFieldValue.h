@@ -24,6 +24,9 @@ extern NSString * const PKTItemFieldValueErrorDomain;
 /** Override in subclass to return the expected unboxed value type */
 + (Class)unboxedValueClass;
 
+/** Override in subclass to return an array of expected unboxed value types */
++ (NSArray *)unboxedValueClasses;
+
 /** Override in subclass to serialize the boxed value into a dictionary to be saved as the field value */
 - (NSDictionary *)valueDictionary;
 

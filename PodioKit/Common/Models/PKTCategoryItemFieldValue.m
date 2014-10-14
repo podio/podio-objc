@@ -22,12 +22,20 @@
 
 - (NSDictionary *)valueDictionary {
   PKTCategoryOption *option = self.unboxedValue;
-
-  return @{@"value" : @(option.optionID)};
+  
+  NSDictionary *dict = nil;
+  
+  if ([self.unboxedValue isKindOfClass:[PKTCategoryOption class]]) {
+    dict = @{@"value" : @(option.optionID)};
+  } else if ([self.unboxedValue isKindOfClass:[NSNumber class]]) {
+    dict = @{@"value" : self.unboxedValue};
+  }
+  
+  return dict;
 }
 
-+ (Class)unboxedValueClass {
-  return [PKTCategoryOption class];
++ (NSArray *)unboxedValueClasses {
+  return @[[PKTCategoryOption class], [NSNumber class]];
 }
 
 @end

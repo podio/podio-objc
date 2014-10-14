@@ -67,13 +67,33 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
 + (BOOL)supportsBoxingOfValue:(id)value error:(NSError **)error {
   BOOL supported = YES;
 
-  Class supportedClass = [self unboxedValueClass];
-  if (supportedClass && ![value isKindOfClass:supportedClass]) {
-    supported = NO;
-
-    if (error) {
-      NSString *message = [NSString stringWithFormat:@"Field value '%@' is not of expected class '%@' for value class '%@'.", value, NSStringFromClass(supportedClass), NSStringFromClass(self)];
-      *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+  NSArray *supportedClasses = [self unboxedValueClasses];
+  if (!supportedClasses) {
+    Class supportedClass = [self unboxedValueClass];
+    
+    if (supportedClass) {
+      supportedClasses = @[supportedClass];
+    }
+  }
+  
+  if (supportedClasses) {
+    supported = [[[supportedClasses pkt_mappedArrayWithBlock:^id(Class klass) {
+      return @([value isKindOfClass:klass]);
+    }] pk_reducedValueWithBlock:^(NSNumber *isAnyOfClass, NSNumber *isCurrentOfClass){
+      return @([isAnyOfClass boolValue] || [isCurrentOfClass boolValue]);
+    }] boolValue];
+    
+    if (!supported) {
+      supported = NO;
+      
+      if (error) {
+        NSArray *supportedClassNames = [supportedClasses pkt_mappedArrayWithBlock:^id(Class klass) {
+          return NSStringFromClass(klass);
+        }];
+        
+        NSString *message = [NSString stringWithFormat:@"Field value '%@' is not of expected class '%@' for value class '%@'.", value, supportedClassNames, NSStringFromClass(self)];
+        *error = [NSError errorWithDomain:PKTItemFieldValueErrorDomain code:0 userInfo:@{NSLocalizedDescriptionKey : message}];
+      }
     }
   }
   
@@ -81,6 +101,10 @@ NSString * const PKTItemFieldValueErrorDomain = @"PKTItemFieldValueErrorDomain";
 }
 
 + (Class)unboxedValueClass {
+  return nil;
+}
+
++ (NSArray *)unboxedValueClasses {
   return nil;
 }
 

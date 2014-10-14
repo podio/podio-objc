@@ -105,48 +105,4 @@
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCategory]).to.equal([PKTCategoryItemFieldValue class]);
 }
 
-- (void)testUnboxedValueForBasicValueWithCategoryID {
-  NSDictionary *settings = @{@"options" : @[
-    @{
-      @"status" : @"active",
-      @"id" : @1,
-      @"text" : @"First category",
-      @"color" : @"ff0000",
-    },
-    @{
-      @"status" : @"active",
-      @"id" : @2,
-      @"text" : @"Second category",
-      @"color" : @"00ff00",
-    }
-  ]};
-
-  PKTAppFieldConfig *config = [[PKTAppFieldConfig alloc] initWithLabel:@"category"
-                                                           description:nil
-                                                              settings:settings
-                                                                 delta:1
-                                                               mapping:PKTAppFieldMappingNone
-                                                            isRequired:NO
-                                                             isVisible:YES];
-
-  PKTAppField *field = [[PKTAppField alloc] initWithFieldID:123 externalID:@"category" type:PKTAppFieldTypeCategory config:config];
-
-  id value = [PKTItemField unboxedValueFromBasicValue:@2 forField:field];
-  expect(value).to.beInstanceOf([PKTCategoryOption class]);
-  expect([value optionID]).to.equal(2);
-  expect([value status]).to.equal(PKTCategoryOptionStatusActive);
-  expect([value text]).to.equal(@"Second category");
-  expect([value color]).to.equal(@"00ff00");
-}
-
-- (void)testUnboxedValueForBasicValueWithDate {
-  PKTAppField *field = [[PKTAppField alloc] initWithFieldID:123 externalID:@"date" type:PKTAppFieldTypeDate config:nil];
-
-  NSDate *nowDate = [NSDate date];
-  id value = [PKTItemField unboxedValueFromBasicValue:nowDate forField:field];
-
-  expect(value).to.beInstanceOf([PKTDateRange class]);
-  expect([value startDate]).to.equal(nowDate);
-}
-
 @end
