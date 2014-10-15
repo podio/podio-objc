@@ -14,6 +14,7 @@
 #import "NSURLRequest+PKDescription.h"
 #import "NSString+PKRandom.h"
 #import "NSMutableURLRequest+PKAuthHeader.h"
+#import "NSLocale+PKAdditions.h"
 
 // Notifications
 NSString * const PKAPIClientWillBeginAuthentication = @"PKAPIClientWillBeginAuthentication";
@@ -155,12 +156,23 @@ static NSUInteger kRequestIdLength = 8;
 
 #pragma mark - Misc
 
++ (NSString *)languageHeader {
+  NSString *language = [[NSLocale currentLocale] pk_localeIdentifierWithLanguageAndRegion];
+  if (!language) {
+    NSArray *languages = [NSLocale preferredLanguages];
+    language = [languages count] > 0 ? languages[0] : nil;
+  }
+  
+  return language;
+}
+
 - (void)updateDefaultHeaders {
   [self setDefaultHeader:@"User-Agent" value:self.userAgent];
   
-  NSArray *languages = [NSLocale preferredLanguages];
-  NSString *language = [languages count] > 0 ? languages[0] : nil;
-  [self setDefaultHeader:@"Accept-Language" value:language];
+  NSString *language = [[self class] languageHeader];
+  if (language) {
+    [self setDefaultHeader:@"Accept-Language" value:language];
+  }
   
   if (self.oauthToken) {
     [self setDefaultHeader:@"Authorization" value:[self.oauthToken pk_authorizationHeaderValue]];

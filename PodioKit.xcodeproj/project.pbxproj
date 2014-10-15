@@ -413,6 +413,8 @@
 		5075F71F19D0589200B06D4D /* NSMutableURLRequest+PKAuthHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502CFD5616D11ED3002C59E1 /* NSMutableURLRequest+PKAuthHeader.m */; };
 		5075F72019D0589200B06D4D /* NSNumber+PKFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 5025D8D5179D24AB00F8753E /* NSNumber+PKFormat.m */; };
 		5075F72119D0589200B06D4D /* PKOAuth2Token+PKAuthorizationHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 502066B31922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m */; };
+		5078304C19EF0C7B00AE41ED /* NSLocale+PKAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5078304A19EF0C7B00AE41ED /* NSLocale+PKAdditions.h */; };
+		5078304D19EF0C7B00AE41ED /* NSLocale+PKAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5078304B19EF0C7B00AE41ED /* NSLocale+PKAdditions.m */; };
 		507CA05C1503E3E800678F9D /* PKAssert.h in Headers */ = {isa = PBXBuildFile; fileRef = 50599EF01455A024001F5201 /* PKAssert.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
 		507D09FB1823EB3600AFBFB1 /* PKPromotionAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 507D09F91823EB3600AFBFB1 /* PKPromotionAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -723,6 +725,8 @@
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		506D531C19CF1E1100A1A0A3 /* PKDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKDate.h; sourceTree = "<group>"; };
 		506D531D19CF1E1100A1A0A3 /* PKDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDate.m; sourceTree = "<group>"; };
+		5078304A19EF0C7B00AE41ED /* NSLocale+PKAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSLocale+PKAdditions.h"; sourceTree = "<group>"; };
+		5078304B19EF0C7B00AE41ED /* NSLocale+PKAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLocale+PKAdditions.m"; sourceTree = "<group>"; };
 		507CA05E1503E42700678F9D /* PKTestAssert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTestAssert.h; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -1352,6 +1356,8 @@
 				5025D8D5179D24AB00F8753E /* NSNumber+PKFormat.m */,
 				502066B21922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h */,
 				502066B31922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.m */,
+				5078304A19EF0C7B00AE41ED /* NSLocale+PKAdditions.h */,
+				5078304B19EF0C7B00AE41ED /* NSLocale+PKAdditions.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -1614,6 +1620,7 @@
 				5030C09E1435E76300027F07 /* PKItemFieldValueContactData.h in Headers */,
 				5030C0A11435E76300027F07 /* PKObjectData.h in Headers */,
 				5030C0A41435E76300027F07 /* PKItemFieldValueDateData.h in Headers */,
+				5078304C19EF0C7B00AE41ED /* NSLocale+PKAdditions.h in Headers */,
 				E477F7E2198681ED0007482A /* PKGrantData.h in Headers */,
 				5030C0A71435E76300027F07 /* PKItemFieldValueEmbedData.h in Headers */,
 				5030C0B01435E76300027F07 /* PKItemFieldValueMoneyData.h in Headers */,
@@ -2005,6 +2012,7 @@
 				50E494D914FD2B7F007D5C32 /* PKLinkedAccountAPI.m in Sources */,
 				5032336314FD3F2C0028D887 /* PKExternalFileData.m in Sources */,
 				507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */,
+				5078304D19EF0C7B00AE41ED /* NSLocale+PKAdditions.m in Sources */,
 				5053634414FF962B0068622A /* PKProviderData.m in Sources */,
 				50ED3E7C15010E3000079432 /* PKSearchAPI.m in Sources */,
 				50D33179150226D40054B777 /* PKSearchResultData.m in Sources */,
