@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name                = 'PodioKit'
+  s.name                = 'PodioKit-1.x'
   s.version             = '1.1.0'
   s.source              = { :git => 'https://github.com/podio/podio-ios.git', :tag => s.version.to_s }
 
