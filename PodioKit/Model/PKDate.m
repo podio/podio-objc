@@ -50,12 +50,17 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
   return [[self alloc] initWithDate:date includesTimeComponent:includesTimeComponent];
 }
 
++ (instancetype)dateWithoutTimeComponentFromDateInCurrentTimeZone:(NSDate *)date {
+  NSDate *utcDate = [date pk_convertedDateInCurrentCalendarToUTCFromCurrentTimeZone];
+  return [[self alloc] initWithDate:utcDate includesTimeComponent:NO];
+}
+
 + (instancetype)date {
   return [self dateWithDate:[NSDate date] includesTimeComponent:YES];
 }
 
 + (instancetype)dateWithoutTimeComponent {
-  return [self dateWithDate:[NSDate date] includesTimeComponent:NO];
+  return [self dateWithoutTimeComponentFromDateInCurrentTimeZone:[NSDate date]];
 }
 
 - (instancetype)copyWithoutTimeComponent {

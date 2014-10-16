@@ -32,6 +32,15 @@
 + (instancetype)dateWithDate:(NSDate *)date includesTimeComponent:(BOOL)includesTimeComponent;
 
 /**
+ *  Returns a date without a time component from a provided in the current system time zone.
+ *
+ *  @param date A date representing the date in the current system time zone.
+ *
+ *  @return A new date
+ */
++ (instancetype)dateWithoutTimeComponentFromDateInCurrentTimeZone:(NSDate *)date;
+
+/**
  *  Returns a date representing today (in UTC), without a time component.
  *
  *  @return A new date
