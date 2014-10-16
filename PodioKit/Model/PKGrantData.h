@@ -6,7 +6,9 @@
 //  Copyright (c) 2014 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <PodioKit/PodioKit.h>
+#import "PKObjectData.h"
+
+@class PKByLineData;
 
 @interface PKGrantData : PKObjectData
 
