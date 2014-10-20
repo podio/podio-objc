@@ -11,3 +11,8 @@
 #define PKT_WEAK(obj) __typeof__(obj) __weak
 #define PKT_WEAK_SELF PKT_WEAK(self)
 
+#ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
+#define PKT_IPHONE_SDK_AVAILABLE 1
+#else
+#define PKT_IPHONE_SDK_AVAILABLE 0
+#endif

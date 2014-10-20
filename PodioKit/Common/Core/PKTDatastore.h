@@ -8,9 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/**
+ *  Thread safe implementation of a disk backed key/value store with built-in caching.
+ */
 @interface PKTDatastore : NSObject
-
-@property (nonatomic, copy, readonly) NSString *path;
 
 /**
  *  Accesses the shared data store.
@@ -37,11 +38,13 @@
  */
 + (instancetype)storeWithPath:(NSString *)path;
 
-/**
- *  Returns the version of the current store implementation. Stores of different versions are incompatible.
- *
- *  @return The version of the receiver.
- */
-+ (NSUInteger)version;
+- (void)storeObject:(id<NSCoding>)object forKey:(NSString *)key;
+
+- (id<NSCopying>)storedObjectForKey:(NSString *)key;
+
+#pragma mark - Subscripting
+
+- (id)objectForKeyedSubscript:(id <NSCopying>)key;
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key;
 
 @end

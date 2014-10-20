@@ -19,11 +19,42 @@
   expect([PKTDatastore sharedStore]).to.equal([PKTDatastore sharedStore]);
 }
 
-- (void)testDefaultPathWithName {
+- (void)testStoreAndRetrieveObject {
   PKTDatastore *store = [PKTDatastore storeWithName:@"TestStore"];
-  NSString *documentsPath = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-  NSString *expectedPath = [NSString stringWithFormat:@"%@/PodioKit/v%@/Data/TestStore", documentsPath, @([PKTDatastore version])];
-  expect(store.path).to.equal(expectedPath);
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  [store storeObject:value forKey:@"my-object"];
+  
+  expect([store storedObjectForKey:@"my-object"]).to.equal(value);
+}
+
+- (void)testStoreObjectAcrossStoreInstances {
+  PKTDatastore *store1 = [PKTDatastore storeWithName:@"TestStore"];
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  [store1 storeObject:value forKey:@"my-object"];
+  
+  PKTDatastore *store2 = [PKTDatastore storeWithName:@"TestStore"];
+  expect([store2 storedObjectForKey:@"my-object"]).to.equal(value);
+}
+
+- (void)testCachesStoredObject {
+  PKTDatastore *store = [PKTDatastore storeWithName:@"TestStore"];
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  [store storeObject:value forKey:@"my-object"];
+  
+  NSDictionary *retrievedValue = (NSDictionary *)[store storedObjectForKey:@"my-object"];
+  expect(value == retrievedValue).to.beTruthy();
+}
+
+- (void)testSubscripting {
+  PKTDatastore *store = [PKTDatastore storeWithName:@"TestStore"];
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  store[@"my-object"] = value;
+
+  expect(store[@"my-object"]).to.equal(value);
 }
 
 @end

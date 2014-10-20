@@ -7,9 +7,17 @@
 //
 
 #import "PKTDatastore.h"
+#import "PKTMacros.h"
+#import "NSString+PKTURLEncode.h"
+
+#if PKT_IPHONE_SDK_AVAILABLE
+#import <UIKit/UIKit.h>
+#endif
+
 
 /**
- *  Keep a simple version integer persist with the stored data. Bump whenever backwards compatability is broken.
+ *  Keep a simple version integer. Bump whenever backwards compatability is broken. The version will be
+ *  reflected int the file path on disk for the stored objects.
  */
 static NSUInteger const kVersion = 1;
 
@@ -17,26 +25,44 @@ static NSUInteger const kVersion = 1;
  *  The name of the shared store.
  */
 static NSString * const kSharedStoreName = @"SharedStore";
+static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.internal_queue";
 
 @interface PKTDatastore ()
 
-@property (nonatomic, copy) NSString *path;
+@property (nonatomic, copy, readonly) NSString *path;
+@property (nonatomic, copy, readonly) NSString *dataPath;
+@property (nonatomic, strong, readonly) NSCache *cache;
+@property (nonatomic, strong, readonly) NSFileManager *fileManager;
 
 @end
 
-@implementation PKTDatastore
+@implementation PKTDatastore {
+  dispatch_queue_t _internalQueue;
+}
+
+@synthesize dataPath = _dataPath;
+@synthesize cache = _cache;
+@synthesize fileManager = _fileManager;
 
 - (instancetype)initWithPath:(NSString *)path name:(NSString *)name {
   self = [super init];
   if (!self) return nil;
   
   _path = path ? [path copy] : [[self class] defaultPathWithName:name];
+  _internalQueue = dispatch_queue_create(kInternalQueueName, DISPATCH_QUEUE_CONCURRENT);
+  _fileManager = [NSFileManager new];
+  
+#if PKT_IPHONE_SDK_AVAILABLE
+  _cache = [NSCache new];
+#endif
+  
+  [self setupNotifications];
   
   return self;
 }
 
 - (instancetype)init {
-  return [self initWithPath:nil];
+  return [self initWithPath:nil name:nil];
 }
 
 - (instancetype)initWithPath:(NSString *)path {
@@ -45,6 +71,12 @@ static NSString * const kSharedStoreName = @"SharedStore";
 
 - (instancetype)initWithName:(NSString *)name {
   return [self initWithPath:nil name:name];
+}
+
+- (void)dealloc {
+#if PKT_IPHONE_SDK_AVAILABLE
+  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+#endif
 }
 
 + (instancetype)sharedStore {
@@ -65,32 +97,132 @@ static NSString * const kSharedStoreName = @"SharedStore";
   return [[self alloc] initWithPath:path];
 }
 
+#pragma mark - Properties
+
+- (NSString *)dataPath {
+  if (!_dataPath) {
+    _dataPath = [self.path stringByAppendingPathComponent:@"Data"];
+  }
+  
+  return _dataPath;
+}
+
+#pragma mark - Subscripting
+
+- (id)objectForKeyedSubscript:(id <NSCopying>)key {
+  return [self storedObjectForKey:(NSString *)key];
+}
+
+- (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key {
+  NSParameterAssert([obj conformsToProtocol:@protocol(NSCoding)]);
+  [self storeObject:obj forKey:(NSString *)key];
+}
+
 #pragma mark - Public
 
-+ (NSUInteger)version {
-  return kVersion;
+- (void)storeObject:(id<NSCoding>)object forKey:(NSString *)key {
+  NSParameterAssert(key);
+
+  dispatch_barrier_async(_internalQueue, ^{
+    NSString *path = [self objectFilePathForkey:key];
+    
+    if (object) {
+      if (![self.fileManager fileExistsAtPath:self.dataPath isDirectory:NULL]) {
+        NSError *error = nil;
+        [self.fileManager createDirectoryAtPath:self.dataPath withIntermediateDirectories:YES attributes:nil error:&error];
+        
+        if (error) {
+          NSLog(@"ERROR: Failed to create data directory at path %@", self.dataPath);
+        }
+      }
+      
+      BOOL archived = [NSKeyedArchiver archiveRootObject:object toFile:path];
+      if (archived) {
+        [self.cache setObject:object forKey:key];
+      } else {
+        NSLog(@"ERROR: Failed to store object at path %@", self.dataPath);
+      }
+    } else {
+      [self.cache removeObjectForKey:key];
+      
+      if ([self.fileManager fileExistsAtPath:path isDirectory:NULL]) {
+        NSError *error = nil;
+        [self.fileManager removeItemAtPath:path error:&error];
+        
+        if (error) {
+          NSLog(@"ERROR: Failed to remove stored object at path %@", path);
+        }
+      }
+    }
+  });
+}
+
+- (id<NSCopying>)storedObjectForKey:(NSString *)key {
+  NSParameterAssert(key);
+  
+  __block id obj = nil;
+  
+  dispatch_sync(_internalQueue, ^{
+    obj = [self.cache objectForKey:key];
+    
+    if (!obj) {
+      NSString *path = [self objectFilePathForkey:key];
+      obj = [NSKeyedUnarchiver unarchiveObjectWithFile:path];
+
+      if (obj) {
+        dispatch_barrier_async(_internalQueue, ^{
+          [self.cache setObject:obj forKey:key];
+        });
+      }
+    }
+  });
+  
+  return obj;
 }
 
 #pragma mark - Private
+
+- (void)setupNotifications {
+#if PKT_IPHONE_SDK_AVAILABLE
+  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCache) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+#endif
+}
+
+- (void)clearCache {
+  dispatch_barrier_async(_internalQueue, ^{
+    [self.cache removeAllObjects];
+  });
+}
+
+- (NSString *)objectFilePathForkey:(NSString *)key {
+  NSParameterAssert(key);
+  
+  NSString *component = [key pkt_encodeString];
+  NSString *path = [self.dataPath stringByAppendingPathComponent:component];
+  
+  return path;
+}
 
 + (NSString *)defaultPathWithName:(NSString *)name {
   NSParameterAssert([name length] > 0);
   
   // Put data in documents by default
   NSString *path = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-  path = [path stringByAppendingPathComponent:@"PodioKit"];
+  path = [path stringByAppendingPathComponent:@"com.podio.PodioKit"];
+  path = [path stringByAppendingPathComponent:@"Stores"];
   
   // Namespace by version
-  NSString *version = [NSString stringWithFormat:@"v%@", @(kVersion)];
+  NSString *version = [NSString stringWithFormat:@"v%@", @([self datastoreVersion])];
   path = [path stringByAppendingPathComponent:version];
-  
-  // Keep data stores in specific subdirectory 'Data'
-  path = [path stringByAppendingPathComponent:@"Data"];
   
   // Name the store after the current app bundle
   path = [path stringByAppendingPathComponent:name];
   
   return path;
+}
+
++ (NSUInteger)datastoreVersion {
+  return kVersion;
 }
 
 @end
