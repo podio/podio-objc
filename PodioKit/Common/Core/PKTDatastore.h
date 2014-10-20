@@ -38,8 +38,21 @@
  */
 + (instancetype)storeWithPath:(NSString *)path;
 
+/**
+ *  Stores an object to disk.
+ *
+ *  @param object The object to persist.
+ *  @param key    The key used to uniquely identify the stored object.
+ */
 - (void)storeObject:(id<NSCoding>)object forKey:(NSString *)key;
 
+/**
+ *  Retrieves a stored object from the cache or disk.
+ *
+ *  @param key The key used to uniquely identify the stored object.
+ *
+ *  @return The object if it exists in cache or on disk, otherwise nil.
+ */
 - (id<NSCopying>)storedObjectForKey:(NSString *)key;
 
 #pragma mark - Subscripting
