@@ -178,7 +178,6 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   return obj;
 }
 
-
 - (BOOL)storedObjectExistsForKey:(NSString *)key {
   NSParameterAssert(key);
   
