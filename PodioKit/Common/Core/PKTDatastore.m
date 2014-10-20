@@ -14,16 +14,12 @@
 #import <UIKit/UIKit.h>
 #endif
 
-
 /**
  *  Keep a simple version integer. Bump whenever backwards compatability is broken. The version will be
  *  reflected int the file path on disk for the stored objects.
  */
 static NSUInteger const kVersion = 1;
 
-/**
- *  The name of the shared store.
- */
 static NSString * const kSharedStoreName = @"SharedStore";
 static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.internal_queue";
 
