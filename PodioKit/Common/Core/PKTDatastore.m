@@ -56,7 +56,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   _cache = [NSCache new];
 #endif
   
-  [self setupNotifications];
+  [self registerNotifications];
   
   return self;
 }
@@ -74,9 +74,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 }
 
 - (void)dealloc {
-#if PKT_IPHONE_SDK_AVAILABLE
-  [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
-#endif
+  [self unregisterNotifications];
 }
 
 + (instancetype)sharedStore {
@@ -182,9 +180,20 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 
 #pragma mark - Private
 
-- (void)setupNotifications {
+- (void)registerNotifications {
 #if PKT_IPHONE_SDK_AVAILABLE
-  [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearCache) name:UIApplicationDidReceiveMemoryWarningNotification object:nil];
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(clearCache)
+                                               name:UIApplicationDidReceiveMemoryWarningNotification
+                                             object:nil];
+#endif
+}
+
+- (void)unregisterNotifications {
+#if PKT_IPHONE_SDK_AVAILABLE
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:UIApplicationDidReceiveMemoryWarningNotification
+                                                object:nil];
 #endif
 }
 
