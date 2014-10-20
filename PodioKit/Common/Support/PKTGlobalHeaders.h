@@ -14,6 +14,7 @@
 #import "PKTResponse.h"
 #import "PKTKeychain.h"
 #import "PKTKeychainTokenStore.h"
+#import "PKTDatastore.h"
 
 #import "PKTAppsAPI.h"
 #import "PKTItemsAPI.h"
