@@ -241,7 +241,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   NSString *version = [NSString stringWithFormat:@"v%@", @([self datastoreVersion])];
   path = [path stringByAppendingPathComponent:version];
   
-  // Name the store after the current app bundle
+  // Finally append the chosen name
   path = [path stringByAppendingPathComponent:name];
   
   return path;
