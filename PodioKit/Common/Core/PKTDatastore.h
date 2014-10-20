@@ -55,6 +55,15 @@
  */
 - (id<NSCopying>)storedObjectForKey:(NSString *)key;
 
+/**
+ *  Checks whether the stored object exists either in cache or on disk.
+ *
+ *  @param key The key used to uniquely identify the stored object.
+ *
+ *  @return YES if the object exists in cache or on disk, otherwise NO.
+ */
+- (BOOL)storedObjectExistsForKey:(NSString *)key;
+
 #pragma mark - Subscripting
 
 - (id)objectForKeyedSubscript:(id <NSCopying>)key;

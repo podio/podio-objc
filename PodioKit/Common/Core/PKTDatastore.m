@@ -178,6 +178,24 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   return obj;
 }
 
+
+- (BOOL)storedObjectExistsForKey:(NSString *)key {
+  NSParameterAssert(key);
+  
+  __block BOOL exists = NO;
+  
+  dispatch_sync(_internalQueue, ^{
+    exists = [self.cache objectForKey:key] != nil;
+    
+    if (!exists) {
+      NSString *path = [self objectFilePathForkey:key];
+      exists = [self.fileManager fileExistsAtPath:path isDirectory:NULL];
+    }
+  });
+  
+  return exists;
+}
+
 #pragma mark - Private
 
 - (void)registerNotifications {

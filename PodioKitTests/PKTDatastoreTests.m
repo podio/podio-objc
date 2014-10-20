@@ -57,4 +57,14 @@
   expect(store[@"my-object"]).to.equal(value);
 }
 
+- (void)testObjectExists {
+  PKTDatastore *store = [PKTDatastore storeWithName:@"TestStore"];
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  store[@"my-object"] = value;
+  
+  expect([store storedObjectExistsForKey:@"my-object"]).to.beTruthy();
+  expect([store storedObjectExistsForKey:@"other-object"]).to.beFalsy();
+}
+
 @end
