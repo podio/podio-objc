@@ -91,6 +91,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 + (instancetype)storeWithName:(NSString *)name {
   return [[self alloc] initWithName:name];
 }
+
 + (instancetype)storeWithPath:(NSString *)path {
   return [[self alloc] initWithPath:path];
 }
