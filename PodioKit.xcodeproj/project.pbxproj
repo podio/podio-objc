@@ -423,7 +423,7 @@
 		507E009F15B57F0B00FA66C9 /* PKEmbedAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */; };
 		507F7A1714FE837E001F8BF9 /* PKLinkedAccountData.h in Headers */ = {isa = PBXBuildFile; fileRef = 507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */; };
 		507F7A1814FE837E001F8BF9 /* PKLinkedAccountData.m in Sources */ = {isa = PBXBuildFile; fileRef = 507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */; };
-		5082225D14FC3E66005056A1 /* PodioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082225B14FC3E66005056A1 /* PodioKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5082225D14FC3E66005056A1 /* PodioKit-1.x.h in Headers */ = {isa = PBXBuildFile; fileRef = 5082225B14FC3E66005056A1 /* PodioKit-1.x.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50836206152486150022F6C7 /* PKSpaceMemberRequestData.h in Headers */ = {isa = PBXBuildFile; fileRef = 50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		50836207152486150022F6C7 /* PKSpaceMemberRequestData.m in Sources */ = {isa = PBXBuildFile; fileRef = 50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */; };
 		5084B57A14DEF5F0002FC8DB /* PKLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5084B57814DEF5F0002FC8DB /* PKLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -672,9 +672,9 @@
 		505C4F98155C96C30081850F /* DemoApp-Configuration.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "DemoApp-Configuration.plist"; sourceTree = "<group>"; };
 		505F7E461445EFBC00727A1D /* GetTask.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = GetTask.json; sourceTree = "<group>"; };
 		50620AAD14BC8CA60060A786 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
-		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5065BEE814335AB900360855 /* libPodioKit-1.x.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPodioKit-1.x.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEEB14335AB900360855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		5065BEEF14335ABA00360855 /* PodioKit-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodioKit-Prefix.pch"; sourceTree = "<group>"; };
+		5065BEEF14335ABA00360855 /* PodioKit-1.x-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PodioKit-1.x-Prefix.pch"; sourceTree = "<group>"; };
 		5065BEF814335ABA00360855 /* PodioKitTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PodioKitTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEF914335ABA00360855 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		5065BF0514335ABA00360855 /* PodioKitTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "PodioKitTests-Info.plist"; sourceTree = "<group>"; };
@@ -736,7 +736,7 @@
 		507E009D15B57F0B00FA66C9 /* PKEmbedAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKEmbedAPI.m; sourceTree = "<group>"; };
 		507F7A1514FE837E001F8BF9 /* PKLinkedAccountData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLinkedAccountData.h; sourceTree = "<group>"; };
 		507F7A1614FE837E001F8BF9 /* PKLinkedAccountData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKLinkedAccountData.m; sourceTree = "<group>"; };
-		5082225B14FC3E66005056A1 /* PodioKit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PodioKit.h; sourceTree = "<group>"; };
+		5082225B14FC3E66005056A1 /* PodioKit-1.x.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKit-1.x.h"; sourceTree = "<group>"; };
 		50836204152486150022F6C7 /* PKSpaceMemberRequestData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKSpaceMemberRequestData.h; sourceTree = "<group>"; };
 		50836205152486150022F6C7 /* PKSpaceMemberRequestData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKSpaceMemberRequestData.m; sourceTree = "<group>"; };
 		5084B57814DEF5F0002FC8DB /* PKLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKLog.h; sourceTree = "<group>"; };
@@ -1170,7 +1170,7 @@
 		5065BEE914335AB900360855 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				5065BEE814335AB900360855 /* libPodioKit.a */,
+				5065BEE814335AB900360855 /* libPodioKit-1.x.a */,
 				5065BEF814335ABA00360855 /* PodioKitTests.octest */,
 				509D6937152CA7A40033291C /* DemoApp.app */,
 			);
@@ -1205,7 +1205,7 @@
 				5065C0A91434535300360855 /* Model */,
 				5065BF441433627900360855 /* Support */,
 				5065BEEE14335ABA00360855 /* Supporting Files */,
-				5082225B14FC3E66005056A1 /* PodioKit.h */,
+				5082225B14FC3E66005056A1 /* PodioKit-1.x.h */,
 			);
 			path = PodioKit;
 			sourceTree = "<group>";
@@ -1213,7 +1213,7 @@
 		5065BEEE14335ABA00360855 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5065BEEF14335ABA00360855 /* PodioKit-Prefix.pch */,
+				5065BEEF14335ABA00360855 /* PodioKit-1.x-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1660,7 +1660,7 @@
 				50AE896F14A132E4004E027E /* PKQuestionAPI.h in Headers */,
 				50AE897214A13573004E027E /* PKItemFieldValueItemData.h in Headers */,
 				50AE897D14A138EE004E027E /* PKReferenceDataFactory.h in Headers */,
-				5082225D14FC3E66005056A1 /* PodioKit.h in Headers */,
+				5082225D14FC3E66005056A1 /* PodioKit-1.x.h in Headers */,
 				504B33AA18583D9100149125 /* PKReferenceOrganizationData.h in Headers */,
 				50E494D814FD2B7F007D5C32 /* PKLinkedAccountAPI.h in Headers */,
 				5032336214FD3F2C0028D887 /* PKExternalFileData.h in Headers */,
@@ -1703,9 +1703,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		5065BEE714335AB900360855 /* PodioKit */ = {
+		5065BEE714335AB900360855 /* PodioKit-1.x */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit" */;
+			buildConfigurationList = 5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit-1.x" */;
 			buildPhases = (
 				6CE917CB87994A029050D9CD /* Check Pods Manifest.lock */,
 				5065BEE414335AB900360855 /* Sources */,
@@ -1717,9 +1717,9 @@
 			);
 			dependencies = (
 			);
-			name = PodioKit;
+			name = "PodioKit-1.x";
 			productName = PodioKit;
-			productReference = 5065BEE814335AB900360855 /* libPodioKit.a */;
+			productReference = 5065BEE814335AB900360855 /* libPodioKit-1.x.a */;
 			productType = "com.apple.product-type.library.static";
 		};
 		5065BEF714335ABA00360855 /* PodioKitTests */ = {
@@ -1784,7 +1784,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5065BEE714335AB900360855 /* PodioKit */,
+				5065BEE714335AB900360855 /* PodioKit-1.x */,
 				5065BEF714335ABA00360855 /* PodioKitTests */,
 				509D6936152CA7A40033291C /* DemoApp */,
 			);
@@ -2391,7 +2391,7 @@
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "PodioKit/PodioKit-1.x-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2409,7 +2409,7 @@
 					"\"$(DEVELOPER_FRAMEWORKS_DIR)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "PodioKit/PodioKit-Prefix.pch";
+				GCC_PREFIX_HEADER = "PodioKit/PodioKit-1.x-Prefix.pch";
 				GCC_THUMB_SUPPORT = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2521,7 +2521,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit" */ = {
+		5065BF0F14335ABA00360855 /* Build configuration list for PBXNativeTarget "PodioKit-1.x" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				5065BF1014335ABA00360855 /* Debug */,

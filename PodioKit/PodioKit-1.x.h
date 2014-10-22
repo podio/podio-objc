@@ -1,5 +1,5 @@
 //
-//  PodioKit.h
+//  PodioKit-1.x.h
 //  PodioKit
 //
 //  Created by Sebastian Rehnby on 2/27/12.

@@ -10,7 +10,7 @@ Pod::Spec.new do |s|
 
   s.source_files        = 'PodioKit/**/*.{h,m}'
   s.public_header_files = 'PodioKit/**/*.h'
-  s.prefix_header_file  = 'PodioKit/PodioKit-Prefix.pch'
+  s.prefix_header_file  = 'PodioKit/PodioKit-1.x-Prefix.pch'
   
   s.requires_arc        = true
 

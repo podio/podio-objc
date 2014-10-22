@@ -15,8 +15,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "5065BEE714335AB900360855"
-               BuildableName = "libPodioKit.a"
-               BlueprintName = "PodioKit"
+               BuildableName = "libPodioKit-1.x.a"
+               BlueprintName = "PodioKit-1.x"
                ReferencedContainer = "container:PodioKit.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -53,8 +53,8 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "5065BEE714335AB900360855"
-            BuildableName = "libPodioKit.a"
-            BlueprintName = "PodioKit"
+            BuildableName = "libPodioKit-1.x.a"
+            BlueprintName = "PodioKit-1.x"
             ReferencedContainer = "container:PodioKit.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
