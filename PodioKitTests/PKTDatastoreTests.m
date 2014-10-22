@@ -8,6 +8,7 @@
 
 #import <XCTest/XCTest.h>
 #import "PKTDatastore.h"
+#import "PKTAsyncTask.h"
 
 @interface PKTDatastoreTests : XCTestCase
 
@@ -44,8 +45,22 @@
   NSDictionary *value = @{@"key" : @"value"};
   [store storeObject:value forKey:@"my-object"];
   
-  NSDictionary *retrievedValue = (NSDictionary *)[store storedObjectForKey:@"my-object"];
-  expect(value == retrievedValue).to.beTruthy();
+  NSDictionary *retrieved = (NSDictionary *)[store storedObjectForKey:@"my-object"];
+  expect(value == retrieved).to.beTruthy();
+}
+
+- (void)testFetchStoredObjectAsynchronously {
+  PKTDatastore *store = [PKTDatastore storeWithName:@"TestStore"];
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  [store storeObject:value forKey:@"my-object"];
+  
+  __block NSDictionary *retrieved = nil;
+  [[store fetchStoredObjectForKey:@"my-object"] onComplete:^(id result, NSError *error) {
+    retrieved = result;
+  }];
+  
+  expect(retrieved).will.equal(value);
 }
 
 - (void)testSubscripting {

@@ -7,6 +7,7 @@
 //
 
 #import "PKTDatastore.h"
+#import "PKTAsyncTask.h"
 #import "PKTMacros.h"
 #import "NSString+PKTURLEncode.h"
 
@@ -182,6 +183,21 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   });
   
   return obj;
+}
+
+- (PKTAsyncTask *)fetchStoredObjectForKey:(NSString *)key {
+  return [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    PKT_WEAK_SELF weakSelf = self;
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+      PKT_STRONG(weakSelf) strongSelf = weakSelf;
+      
+      id obj = [strongSelf storedObjectForKey:key];
+      [resolver succeedWithResult:obj];
+    });
+    
+    return nil;
+  }];
 }
 
 - (BOOL)storedObjectExistsForKey:(NSString *)key {

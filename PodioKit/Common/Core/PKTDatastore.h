@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class PKTAsyncTask;
+
 /**
  *  Thread safe implementation of a disk backed key/value store with built-in caching.
  */
@@ -54,6 +56,15 @@
  *  @return The object if it exists in cache or on disk, otherwise nil.
  */
 - (id<NSCopying>)storedObjectForKey:(NSString *)key;
+
+/**
+ *  Retrieves a stored object from the cache asynchronously.
+ *
+ *  @param key        The key used to uniquely identify the stored object.
+ 
+ *  @return The task delivering the object if found, otherwise nil, upon completion.
+ */
+- (PKTAsyncTask *)fetchStoredObjectForKey:(NSString *)key;
 
 /**
  *  Checks whether the stored object exists either in cache or on disk.
