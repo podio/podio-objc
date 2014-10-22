@@ -20,6 +20,11 @@
  */
 static NSUInteger const kVersion = 1;
 
+/**
+ *  Prefix custom stores to avoid collision with shared store.
+ */
+static NSString * const kStoreNamePrefix = @"_";
+
 static NSString * const kSharedStoreName = @"SharedStore";
 static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.internal_queue";
 
@@ -40,11 +45,11 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 @synthesize cache = _cache;
 @synthesize fileManager = _fileManager;
 
-- (instancetype)initWithPath:(NSString *)path name:(NSString *)name {
+- (instancetype)initWithPath:(NSString *)path name:(NSString *)name shouldPrefixName:(BOOL)shouldPrefixName {
   self = [super init];
   if (!self) return nil;
   
-  _path = path ? [path copy] : [[self class] defaultPathWithName:name];
+  _path = path ? [path copy] : [[self class] defaultPathWithName:name shouldPrefixName:shouldPrefixName];
   _internalQueue = dispatch_queue_create(kInternalQueueName, DISPATCH_QUEUE_CONCURRENT);
   _fileManager = [NSFileManager new];
   
@@ -58,15 +63,15 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 }
 
 - (instancetype)init {
-  return [self initWithPath:nil name:nil];
+  return [self initWithPath:nil name:nil shouldPrefixName:YES];
 }
 
 - (instancetype)initWithPath:(NSString *)path {
-  return [self initWithPath:path name:nil];
+  return [self initWithPath:path name:nil shouldPrefixName:YES];
 }
 
 - (instancetype)initWithName:(NSString *)name {
-  return [self initWithPath:nil name:name];
+  return [self initWithPath:nil name:name shouldPrefixName:YES];
 }
 
 - (void)dealloc {
@@ -78,7 +83,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   static dispatch_once_t once;
   
   dispatch_once(&once, ^{
-    sharedStore = [[self alloc] initWithName:kSharedStoreName];
+    sharedStore = [[self alloc] initWithPath:nil name:kSharedStoreName shouldPrefixName:NO];
   });
   
   return sharedStore;
@@ -230,7 +235,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   return path;
 }
 
-+ (NSString *)defaultPathWithName:(NSString *)name {
++ (NSString *)defaultPathWithName:(NSString *)name shouldPrefixName:(BOOL)shouldPrefixName {
   NSParameterAssert([name length] > 0);
   
   // Put data in documents by default
@@ -242,8 +247,9 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   NSString *version = [NSString stringWithFormat:@"v%@", @([self datastoreVersion])];
   path = [path stringByAppendingPathComponent:version];
   
-  // Finally append the chosen name
-  path = [path stringByAppendingPathComponent:name];
+  // Finally append the chosen name, prefix if needed
+  NSString *storeName = shouldPrefixName ? [NSString stringWithFormat:@"%@%@", kStoreNamePrefix, name] : name;
+  path = [path stringByAppendingPathComponent:storeName];
   
   return path;
 }
