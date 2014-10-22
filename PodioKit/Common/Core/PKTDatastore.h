@@ -23,20 +23,30 @@
 + (instancetype)sharedStore;
 
 /**
+ *  Returns an existing or creates a new data store at the given path.
+ *
+ *  @param path The file path of the store.
+ *
+ *  @return An existing store if it exists at the given path, otherwise a new store.
+ */
+- (instancetype)initWithPath:(NSString *)path;
+
+/**
  *  Returns an existing or creates a new data store with the given name.
  *
  *  @param name The unique name of the data store.
  *
  *  @return An existing store if it exists on disk, otherwise a new store.
  */
+- (instancetype)initWithName:(NSString *)name;
+
+/**
+ *  @see initWithName:
+ */
 + (instancetype)storeWithName:(NSString *)name;
 
 /**
- *  Returns an existing or creates a new data store at the given path.
- *
- *  @param path The file path of the store.
- *
- *  @return An existing store if it exists at the given path, otherwise a new store.
+ *  @see initWithPath:
  */
 + (instancetype)storeWithPath:(NSString *)path;
 
