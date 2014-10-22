@@ -117,7 +117,6 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 }
 
 - (void)setObject:(id)obj forKeyedSubscript:(id <NSCopying>)key {
-  NSParameterAssert([obj conformsToProtocol:@protocol(NSCoding)]);
   NSParameterAssert([(id)key isKindOfClass:[NSString class]]);
   
   [self storeObject:obj forKey:(NSString *)key];
