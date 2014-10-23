@@ -131,7 +131,7 @@
 }
 
 + (PKRequest *)requestToSetParticipationForItemWithId:(NSUInteger)itemId status:(PKMeetingParticipantStatus)status {
-  PKAssert(status != PKMeetingParticipantStatusNone, @"Participation is invalid, %d", status);
+  PKAssert(status != PKMeetingParticipantStatusNone, @"Participation is invalid, %lu", status);
   
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld/participation", (unsigned long)itemId] method:PKRequestMethodPUT];
   

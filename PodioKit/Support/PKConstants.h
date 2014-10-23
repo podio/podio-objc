@@ -628,13 +628,13 @@ typedef enum {
 
 static NSString * const kPKExternalMeetingTypeGoToMeeting = @"gotomeeting";
 
-typedef enum {
+typedef NS_ENUM(NSUInteger, PKMeetingParticipantStatus) {
   PKMeetingParticipantStatusNone,
   PKMeetingParticipantStatusInvited,
   PKMeetingParticipantStatusAccepted,
   PKMeetingParticipantStatusDeclined,
   PKMeetingParticipantStatusTentative,
-} PKMeetingParticipantStatus;
+};
 
 static NSString * const kPKMeetingParticipantStatusInvited = @"invited";
 static NSString * const kPKMeetingParticipantStatusAccepted = @"accepted";

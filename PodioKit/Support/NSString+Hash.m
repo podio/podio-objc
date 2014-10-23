@@ -14,7 +14,7 @@
 - (NSString *)pk_MD5String {
   const char *src = [self UTF8String];
   unsigned char result[CC_MD5_DIGEST_LENGTH];
-  CC_MD5(src, strlen(src), result);
+  CC_MD5(src, (CC_LONG)strlen(src), result);
   NSString *ret = 
   [[NSString alloc] initWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
     result[0], result[1], result[2], result[3],
@@ -29,7 +29,7 @@
   NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
   uint8_t digest[CC_SHA1_DIGEST_LENGTH];
   
-  CC_SHA1(data.bytes, data.length, digest);
+  CC_SHA1(data.bytes, (CC_LONG)data.length, digest);
   
   NSMutableString* output = [NSMutableString stringWithCapacity:CC_SHA1_DIGEST_LENGTH * 2];
   
