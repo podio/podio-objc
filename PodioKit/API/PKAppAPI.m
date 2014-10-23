@@ -39,4 +39,11 @@
   return request;
 }
 
++ (PKRequest *)requestToDeleteAppWithId:(NSUInteger)appId {
+  NSString *uri = [NSString stringWithFormat:@"/app/%ld/", (unsigned long)appId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
+
+  return request;
+}
+
 @end
