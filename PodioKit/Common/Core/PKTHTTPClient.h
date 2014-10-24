@@ -15,7 +15,7 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 
 @interface PKTHTTPClient : NSObject
 
-@property (nonatomic, copy, readonly) NSURL *baseURL;
+@property (nonatomic, copy) NSURL *baseURL;
 @property (nonatomic, strong, readonly) PKTRequestSerializer *requestSerializer;
 @property (nonatomic, strong, readonly) PKTResponseSerializer *responseSerializer;
 
