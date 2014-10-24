@@ -11,7 +11,7 @@
 #import "PKTMacros.h"
 #import "NSString+PKTURLEncode.h"
 
-#if PKT_IPHONE_SDK_AVAILABLE
+#if PKT_IOS_SDK_AVAILABLE
 #import <UIKit/UIKit.h>
 #endif
 
@@ -54,7 +54,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   _internalQueue = dispatch_queue_create(kInternalQueueName, DISPATCH_QUEUE_CONCURRENT);
   _fileManager = [NSFileManager new];
   
-#if PKT_IPHONE_SDK_AVAILABLE
+#if PKT_IOS_SDK_AVAILABLE
   _cache = [NSCache new];
 #endif
   
@@ -219,7 +219,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 #pragma mark - Private
 
 - (void)registerNotifications {
-#if PKT_IPHONE_SDK_AVAILABLE
+#if PKT_IOS_SDK_AVAILABLE
   [[NSNotificationCenter defaultCenter] addObserver:self
                                            selector:@selector(clearCache)
                                                name:UIApplicationDidReceiveMemoryWarningNotification
@@ -228,7 +228,7 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
 }
 
 - (void)unregisterNotifications {
-#if PKT_IPHONE_SDK_AVAILABLE
+#if PKT_IOS_SDK_AVAILABLE
   [[NSNotificationCenter defaultCenter] removeObserver:self
                                                   name:UIApplicationDidReceiveMemoryWarningNotification
                                                 object:nil];

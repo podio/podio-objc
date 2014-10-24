@@ -90,7 +90,7 @@ static NSArray * PKTPublicKeysFromTrust(SecTrustRef trust) {
   return [publicKeys copy];
 }
 
-#if !PKT_IPHONE_SDK_AVAILABLE
+#if !PKT_IOS_SDK_AVAILABLE
 static NSData * PKTDataForKey(SecKeyRef key) {
   NSData *data = nil;
   
@@ -109,10 +109,10 @@ static NSData * PKTDataForKey(SecKeyRef key) {
 #endif
 
 static BOOL PKTKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
-#if PKT_IPHONE_SDK_AVAILABLE
+#if PKT_IOS_SDK_AVAILABLE
   return [(__bridge id)key1 isEqual:(__bridge id)key2];
 #else
-  return [PKTDataForKey(key1) isEqual:PKTDataForKey(key2)];;
+  return [PKTDataForKey(key1) isEqual:PKTDataForKey(key2)];
 #endif
 }
 
