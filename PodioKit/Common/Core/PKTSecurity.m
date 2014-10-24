@@ -90,12 +90,29 @@ static NSArray * PKTPublicKeysFromTrust(SecTrustRef trust) {
   return [publicKeys copy];
 }
 
+#if !PKT_IPHONE_SDK_AVAILABLE
+static NSData * PKTDataForKey(SecKeyRef key) {
+  NSData *data = nil;
+  
+  CFDataRef dataRef = NULL;
+  OSStatus status = SecItemExport(key, kSecFormatUnknown, kSecItemPemArmour, NULL, &dataRef);
+  if (status == errSecSuccess) {
+    data = (__bridge_transfer NSData *)dataRef;
+  } else {
+    if (dataRef) {
+      CFRelease(dataRef);
+    }
+  }
+  
+  return data;
+}
+#endif
+
 static BOOL PKTKeyIsEqualToKey(SecKeyRef key1, SecKeyRef key2) {
 #if PKT_IPHONE_SDK_AVAILABLE
   return [(__bridge id)key1 isEqual:(__bridge id)key2];
 #else
-  // TODO: Mac support
-  return NO;
+  return [PKTDataForKey(key1) isEqual:PKTDataForKey(key2)];;
 #endif
 }
 
