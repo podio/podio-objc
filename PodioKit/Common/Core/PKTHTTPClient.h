@@ -19,6 +19,11 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 @property (nonatomic, strong, readonly) PKTRequestSerializer *requestSerializer;
 @property (nonatomic, strong, readonly) PKTResponseSerializer *responseSerializer;
 
+/**
+ *  Controls whether or not to pin the server public key to that of any .cer certificate included in the app bundle.
+ */
+@property (nonatomic) BOOL useSSLPinning;
+
 - (NSURLSessionTask *)taskForRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
 
 @end

@@ -9,6 +9,7 @@
 #import "PKTHTTPClient.h"
 #import "PKTClient.h"
 #import "PKTMultipartFormData.h"
+#import "PKTSecurity.h"
 #import "PKTMacros.h"
 #import "NSFileManager+PKTAdditions.h"
 #import "NSError+PKTErrors.h"
@@ -23,10 +24,12 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
   PKTErrorCodeRequestFailed,
 };
 
-@interface PKTHTTPClient ()
+@interface PKTHTTPClient () <NSURLSessionDelegate>
 
 @property (nonatomic, strong, readonly) NSURLSession *session;
 @property (nonatomic, strong, readonly) dispatch_queue_t responseProcessingQueue;
+@property (nonatomic, strong) NSOperationQueue *delegateQueue;
+@property (nonatomic, copy, readonly) PKTSecurity *security;
 
 @end
 
@@ -35,6 +38,7 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
 @synthesize session = _session;
 @synthesize requestSerializer = _requestSerializer;
 @synthesize responseSerializer = _responseSerializer;
+@synthesize security = _security;
 
 - (instancetype)init {
   self = [super init];
@@ -48,9 +52,22 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
   NSURLSessionConfiguration *sessionConfig = [NSURLSessionConfiguration defaultSessionConfiguration];
   sessionConfig.HTTPShouldUsePipelining = YES;
   
-  _session = [NSURLSession sessionWithConfiguration:sessionConfig];
+  self.delegateQueue = [NSOperationQueue new];
+  self.delegateQueue.maxConcurrentOperationCount = 1;
+  
+  _session = [NSURLSession sessionWithConfiguration:sessionConfig delegate:self delegateQueue:self.delegateQueue];
   
   return self;
+}
+
+#pragma mark - Private
+
+- (PKTSecurity *)security {
+  if (!_security) {
+    _security = [PKTSecurity new];
+  }
+  
+  return _security;
 }
 
 #pragma mark - Public
@@ -122,6 +139,31 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
   }
   
   return task;
+}
+
+#pragma mark - NSURLSessionDelegate
+
+- (void)URLSession:(NSURLSession *)session didReceiveChallenge:(NSURLAuthenticationChallenge *)challenge completionHandler:(void (^)(NSURLSessionAuthChallengeDisposition, NSURLCredential *))completionHandler {
+  NSURLSessionAuthChallengeDisposition disposition = NSURLSessionAuthChallengePerformDefaultHandling;
+  NSURLCredential *credential = nil;
+  
+  if (self.useSSLPinning && [challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
+    SecTrustRef serverTrust = [[challenge protectionSpace] serverTrust];
+    BOOL isTrustValid = [self.security evaluateServerTrust:serverTrust];
+    
+    if (isTrustValid) {
+      credential = [NSURLCredential credentialForTrust:serverTrust];
+      if (credential) {
+        disposition = NSURLSessionAuthChallengeUseCredential;
+      }
+    } else {
+      disposition = NSURLSessionAuthChallengeCancelAuthenticationChallenge;
+    }
+  }
+  
+  if (completionHandler) {
+    completionHandler(disposition, credential);
+  }
 }
 
 @end
