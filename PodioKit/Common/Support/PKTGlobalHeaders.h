@@ -54,6 +54,7 @@
 #import "PKTForm.h"
 #import "PKTFormField.h"
 #import "PKTLocation.h"
+#import "PKTPushCredential.h"
 
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
   #import "PKTFile+UIImage.h"
