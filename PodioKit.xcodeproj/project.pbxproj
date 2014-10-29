@@ -233,6 +233,9 @@
 		506D925E19ED6C8400A7BCB4 /* PKTDatastore.h in Headers */ = {isa = PBXBuildFile; fileRef = 506D925C19ED6C8400A7BCB4 /* PKTDatastore.h */; };
 		506D925F19ED6C8400A7BCB4 /* PKTDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D925D19ED6C8400A7BCB4 /* PKTDatastore.m */; };
 		506D926019ED6C8400A7BCB4 /* PKTDatastore.m in Sources */ = {isa = PBXBuildFile; fileRef = 506D925D19ED6C8400A7BCB4 /* PKTDatastore.m */; };
+		50760B481A01235C00EE3EB9 /* NSSet+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 50760B461A01235C00EE3EB9 /* NSSet+PKTAdditions.h */; };
+		50760B491A01235C00EE3EB9 /* NSSet+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50760B471A01235C00EE3EB9 /* NSSet+PKTAdditions.m */; };
+		50760B4A1A01235C00EE3EB9 /* NSSet+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 50760B471A01235C00EE3EB9 /* NSSet+PKTAdditions.m */; };
 		507CA06B1503E8B500678F9D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 507CA06A1503E8B500678F9D /* libz.dylib */; };
 		507CA7E019054FA0000D9F6E /* PodioKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 507CA7DF19054FA0000D9F6E /* PodioKitTests.m */; };
 		507CA7E319055030000D9F6E /* PodioKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 507CA7E119055030000D9F6E /* PodioKit.h */; };
@@ -278,9 +281,6 @@
 		5091F1D619FEFB3600728A86 /* PKTPushClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5091F1D419FEFB3600728A86 /* PKTPushClient.h */; };
 		5091F1D719FEFB3600728A86 /* PKTPushClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091F1D519FEFB3600728A86 /* PKTPushClient.m */; };
 		5091F1D819FEFB3600728A86 /* PKTPushClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091F1D519FEFB3600728A86 /* PKTPushClient.m */; };
-		5091F1DB19FEFD4100728A86 /* PKTPushSubscription.h in Headers */ = {isa = PBXBuildFile; fileRef = 5091F1D919FEFD4100728A86 /* PKTPushSubscription.h */; };
-		5091F1DC19FEFD4100728A86 /* PKTPushSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091F1DA19FEFD4100728A86 /* PKTPushSubscription.m */; };
-		5091F1DD19FEFD4100728A86 /* PKTPushSubscription.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091F1DA19FEFD4100728A86 /* PKTPushSubscription.m */; };
 		5091F1E019FEFD5100728A86 /* PKTPushEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 5091F1DE19FEFD5100728A86 /* PKTPushEvent.h */; };
 		5091F1E119FEFD5100728A86 /* PKTPushEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091F1DF19FEFD5100728A86 /* PKTPushEvent.m */; };
 		5091F1E219FEFD5100728A86 /* PKTPushEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 5091F1DF19FEFD5100728A86 /* PKTPushEvent.m */; };
@@ -597,6 +597,8 @@
 		5065C0FD14345F0D00360855 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		506D925C19ED6C8400A7BCB4 /* PKTDatastore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDatastore.h; sourceTree = "<group>"; };
 		506D925D19ED6C8400A7BCB4 /* PKTDatastore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDatastore.m; sourceTree = "<group>"; };
+		50760B461A01235C00EE3EB9 /* NSSet+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSSet+PKTAdditions.h"; sourceTree = "<group>"; };
+		50760B471A01235C00EE3EB9 /* NSSet+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSSet+PKTAdditions.m"; sourceTree = "<group>"; };
 		507CA0611503E5D400678F9D /* PodioKitTests-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PodioKitTests-Prefix.pch"; sourceTree = "<group>"; };
 		507CA06A1503E8B500678F9D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		507CA7DF19054FA0000D9F6E /* PodioKitTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PodioKitTests.m; sourceTree = "<group>"; };
@@ -638,8 +640,6 @@
 		508F9B53195B0B0A00275A63 /* Podio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Podio.png; sourceTree = "<group>"; };
 		5091F1D419FEFB3600728A86 /* PKTPushClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTPushClient.h; sourceTree = "<group>"; };
 		5091F1D519FEFB3600728A86 /* PKTPushClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTPushClient.m; sourceTree = "<group>"; };
-		5091F1D919FEFD4100728A86 /* PKTPushSubscription.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTPushSubscription.h; sourceTree = "<group>"; };
-		5091F1DA19FEFD4100728A86 /* PKTPushSubscription.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTPushSubscription.m; sourceTree = "<group>"; };
 		5091F1DE19FEFD5100728A86 /* PKTPushEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTPushEvent.h; sourceTree = "<group>"; };
 		5091F1DF19FEFD5100728A86 /* PKTPushEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTPushEvent.m; sourceTree = "<group>"; };
 		50A1133319DD37C10063624A /* PKTEmbedsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTEmbedsAPI.h; sourceTree = "<group>"; };
@@ -993,6 +993,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		50760B451A01234800EE3EB9 /* NSSet */ = {
+			isa = PBXGroup;
+			children = (
+				50760B461A01235C00EE3EB9 /* NSSet+PKTAdditions.h */,
+				50760B471A01235C00EE3EB9 /* NSSet+PKTAdditions.m */,
+			);
+			name = NSSet;
+			sourceTree = "<group>";
+		};
 		5082425F18FC8A6C009A1580 /* NSObject */ = {
 			isa = PBXGroup;
 			children = (
@@ -1067,8 +1076,6 @@
 			children = (
 				5091F1D419FEFB3600728A86 /* PKTPushClient.h */,
 				5091F1D519FEFB3600728A86 /* PKTPushClient.m */,
-				5091F1D919FEFD4100728A86 /* PKTPushSubscription.h */,
-				5091F1DA19FEFD4100728A86 /* PKTPushSubscription.m */,
 				5091F1DE19FEFD5100728A86 /* PKTPushEvent.h */,
 				5091F1DF19FEFD5100728A86 /* PKTPushEvent.m */,
 			);
@@ -1364,6 +1371,7 @@
 		E49B6F8918901C9B0046192A /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				50760B451A01234800EE3EB9 /* NSSet */,
 				50CAE07419701C770096BE07 /* NSError */,
 				505113D6196E9B7600370285 /* NSFileManager */,
 				5006021B196D77AA00BC619F /* NSURL */,
@@ -1523,6 +1531,7 @@
 				5082427818FD76D7009A1580 /* NSValueTransformer+PKTTransformers.h in Headers */,
 				507DFDC319479341002C339A /* PKTKeychain.h in Headers */,
 				50060223196D7AEA00BC619F /* NSString+PKTURLEncode.h in Headers */,
+				50760B481A01235C00EE3EB9 /* NSSet+PKTAdditions.h in Headers */,
 				5082425618FC8466009A1580 /* PKTReversibleBlockValueTransformer.h in Headers */,
 				50DAD43E1964067600529DB5 /* PKTFormField.h in Headers */,
 				502BB23B195DB75F003160DE /* PKTTask.h in Headers */,
@@ -1588,7 +1597,6 @@
 				C9FAD28F142CC7765648109C /* PKTNumberValueTransformer.h in Headers */,
 				50E44CDE19FA23C000FB4CE2 /* PKTSecurity.h in Headers */,
 				C9FADF76FAA6C3285E7DEAB8 /* NSNumberFormatter+PKTAdditions.h in Headers */,
-				5091F1DB19FEFD4100728A86 /* PKTPushSubscription.h in Headers */,
 				C9FADBADB4E1ADF51A7396FB /* NSNumber+PKTAdditions.h in Headers */,
 				C9FADF946A076B74E33B2212 /* PKTNumberItemFieldValue.h in Headers */,
 				C9FAD565DD0B076E650D8C80 /* NSString+PKTBase64.h in Headers */,
@@ -1776,11 +1784,11 @@
 				501D607E190EF21F004D94C4 /* PKTEmbed.m in Sources */,
 				501D606E190EEB9E004D94C4 /* PKTProfile.m in Sources */,
 				50B49F1018EE08F800B7EDF5 /* PKTApp.m in Sources */,
+				50760B491A01235C00EE3EB9 /* NSSet+PKTAdditions.m in Sources */,
 				50E067F1191FE10000552CCF /* NSValueTransformer+PKTConstants.m in Sources */,
 				5006B080191C200B006FF388 /* NSDate+PKTAdditions.m in Sources */,
 				5033FF741961861700B2FD04 /* PKTStatusAPI.m in Sources */,
 				505324B619883DD500700135 /* PKTAsyncTask.m in Sources */,
-				5091F1DC19FEFD4100728A86 /* PKTPushSubscription.m in Sources */,
 				503959F21912CC47004C298C /* PKTRequestFileData.m in Sources */,
 				508F9B4C195AF2C000275A63 /* PKTImageDownloader.m in Sources */,
 				E4A2EA2018901F94003B2FC4 /* NSString+PKTRandom.m in Sources */,
@@ -1953,7 +1961,6 @@
 				506D926019ED6C8400A7BCB4 /* PKTDatastore.m in Sources */,
 				501D608B190EF2EB004D94C4 /* PKTCalculationItemFieldValue.m in Sources */,
 				50060219196D773400BC619F /* NSDictionary+PKTQueryParameters.m in Sources */,
-				5091F1DD19FEFD4100728A86 /* PKTPushSubscription.m in Sources */,
 				50FB3D6A18EB42250021DB48 /* PKTItemsAPI.m in Sources */,
 				5082427118FD612D009A1580 /* PKTModelValueTransformer.m in Sources */,
 				5019C0B319747C4D00F37634 /* PKTDateRangeTests.m in Sources */,
@@ -2010,6 +2017,7 @@
 				501D608A190EF2EB004D94C4 /* PKTProfileItemFieldValue.m in Sources */,
 				505113E7196FE9C600370285 /* PKTMultipartFormData.m in Sources */,
 				50E44CE019FA23C000FB4CE2 /* PKTSecurity.m in Sources */,
+				50760B4A1A01235C00EE3EB9 /* NSSet+PKTAdditions.m in Sources */,
 				E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */,
 				E4A2EA1F18901F92003B2FC4 /* NSString+PKTRandom.m in Sources */,
 				5082425A18FC8526009A1580 /* PKTBlockValueTransformerTests.m in Sources */,
