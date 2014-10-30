@@ -223,6 +223,7 @@
 		505324B719883DD500700135 /* PKTAsyncTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 505324B419883DD500700135 /* PKTAsyncTask.m */; };
 		505324B819883DD500700135 /* PKTAsyncTask.h in Headers */ = {isa = PBXBuildFile; fileRef = 505324B519883DD500700135 /* PKTAsyncTask.h */; };
 		505324BA19883E0000700135 /* PKTAsyncTaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 505324B919883E0000700135 /* PKTAsyncTaskTests.m */; };
+		5053EEA31A0222F700DD17EA /* PKTPushEventTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5053EEA21A0222F700DD17EA /* PKTPushEventTests.m */; };
 		50620AAC14BC8CA60060A786 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 50620AAD14BC8CA60060A786 /* InfoPlist.strings */; };
 		5065BEEC14335AB900360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
 		5065BEFD14335ABA00360855 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5065BEEB14335AB900360855 /* Foundation.framework */; };
@@ -585,6 +586,7 @@
 		505324B419883DD500700135 /* PKTAsyncTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTask.m; sourceTree = "<group>"; };
 		505324B519883DD500700135 /* PKTAsyncTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAsyncTask.h; sourceTree = "<group>"; };
 		505324B919883E0000700135 /* PKTAsyncTaskTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAsyncTaskTests.m; sourceTree = "<group>"; };
+		5053EEA21A0222F700DD17EA /* PKTPushEventTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTPushEventTests.m; sourceTree = "<group>"; };
 		50620AAD14BC8CA60060A786 /* InfoPlist.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		5065BEE814335AB900360855 /* libPodioKit.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPodioKit.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5065BEEB14335AB900360855 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -914,6 +916,14 @@
 			name = NSFileManager;
 			sourceTree = "<group>";
 		};
+		5053EEA11A0222D800DD17EA /* Push */ = {
+			isa = PBXGroup;
+			children = (
+				5053EEA21A0222F700DD17EA /* PKTPushEventTests.m */,
+			);
+			name = Push;
+			sourceTree = "<group>";
+		};
 		5065BEDD14335AB900360855 = {
 			isa = PBXGroup;
 			children = (
@@ -974,6 +984,7 @@
 				E45ED490189000EB003A020A /* Categories */,
 				5082426618FC8D58009A1580 /* Transformers */,
 				E45F9645188FF1C0009791A0 /* Support */,
+				5053EEA11A0222D800DD17EA /* Push */,
 				508F9B4D195AF6A500275A63 /* UIKit */,
 				5014C571188812540002C68D /* PKTAsyncTestCase.h */,
 				5014C572188812540002C68D /* PKTAsyncTestCase.m */,
@@ -1937,6 +1948,7 @@
 				500C2A81197942A2006DC5A9 /* PKTContactsAPI.m in Sources */,
 				50064DF21896FE9C00EF1E97 /* PKTClientTests.m in Sources */,
 				505113DB196E9CC100370285 /* NSFileManager+PKTAdditions.m in Sources */,
+				5053EEA31A0222F700DD17EA /* PKTPushEventTests.m in Sources */,
 				50AD3CA519A34E3B00589260 /* PKTWorkspaceMembersAPI.m in Sources */,
 				503959F81912D037004C298C /* PKTFilesAPI.m in Sources */,
 				5039F65F190715DD00A8A8F0 /* PKTDictionaryMappingValueTransformerTests.m in Sources */,

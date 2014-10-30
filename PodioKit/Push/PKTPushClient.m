@@ -8,6 +8,7 @@
 
 #import <DDCometClient/DDCometClient.h>
 #import <DDCometClient/DDCometSubscription.h>
+#import <DDCometClient/DDCometMessage.h>
 #import "PKTPushClient.h"
 #import "PKTMacros.h"
 #import "NSSet+PKTAdditions.h"
@@ -20,7 +21,7 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
   PKTPushSubscriptionStateActive
 };
 
-@interface PKTPushSubscription : NSObject
+@interface PKTInternalPushSubscription : NSObject
 
 @property (nonatomic, copy, readonly) NSString *channel;
 @property (nonatomic, copy, readonly) NSDictionary *extensions;
@@ -30,7 +31,9 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
 
 @end
 
-@implementation PKTPushSubscription
+#pragma mark - PKTInternalPushSubscription
+
+@implementation PKTInternalPushSubscription
 
 - (instancetype)initWithChannel:(NSString *)channel extensions:(NSDictionary *)extensions client:(PKTPushClient *)client eventBlock:(PKTPushEventBlock)eventBlock {
   NSParameterAssert(eventBlock);
@@ -47,9 +50,9 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
   return self;
 }
 
-- (void)deliverMessage:(id)message {
-  // TODO: Turn into PKTPushEvent
-  self.eventBlock(message);
+- (void)deliverMessage:(DDCometMessage *)message {
+  PKTPushEvent *event = [[PKTPushEvent alloc] initWithDictionary:message.data];
+  self.eventBlock(event);
 }
 
 #pragma mark - NSObject
@@ -62,7 +65,7 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
   } else if (![other isKindOfClass:[self class]]) {
     return NO;
   } else {
-    return [self.channel isEqualToString:[(PKTPushSubscription *)other channel]];
+    return [self.channel isEqualToString:[(PKTInternalPushSubscription *)other channel]];
   }
 }
 
@@ -72,31 +75,31 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
 
 @end
 
-#pragma mark - PKTPushSubscriptionToken
+#pragma mark - PKTPushSubscription
 
-@interface PKTPushSubscriptionToken : NSObject
+@interface PKTPushSubscription ()
 
-@property (nonatomic, weak, readonly) PKTPushSubscription *subscription;
+@property (nonatomic, weak, readonly) PKTInternalPushSubscription *internalSubscription;
 
 @end
 
-@implementation PKTPushSubscriptionToken
+@implementation PKTPushSubscription
 
-- (instancetype)initWithSubscription:(PKTPushSubscription *)subscription {
+- (instancetype)initWithInternalSubscription:(PKTInternalPushSubscription *)subscription {
   self = [super init];
   if (!self) return nil;
   
-  _subscription = subscription;
+  _internalSubscription = subscription;
   
   return self;
 }
 
-+ (instancetype)tokenForSubscription:(PKTPushSubscription *)subscription {
-  return [[self alloc] initWithSubscription:subscription];
++ (instancetype)subscriptionForInternalSubscription:(PKTInternalPushSubscription *)subscription {
+  return [[self alloc] initWithInternalSubscription:subscription];
 }
 
 - (void)unsubscribe {
-  [self.subscription.client unsubscribe:self];
+  [self.internalSubscription.client unsubscribe:self];
 }
 
 @end
@@ -166,19 +169,19 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 }
 
 - (NSSet *)inactiveSubscriptions {
-  return [self.subscriptions pkt_filteredSetWithBlock:^BOOL(PKTPushSubscription *subscription) {
+  return [self.subscriptions pkt_filteredSetWithBlock:^BOOL(PKTInternalPushSubscription *subscription) {
     return subscription.state == PKTPushSubscriptionStateInactive;
   }];
 }
 
 - (NSSet *)activeSubscriptions {
-  return [self.subscriptions pkt_filteredSetWithBlock:^BOOL(PKTPushSubscription *subscription) {
+  return [self.subscriptions pkt_filteredSetWithBlock:^BOOL(PKTInternalPushSubscription *subscription) {
     return subscription.state == PKTPushSubscriptionStateActive;
   }];
 }
 
 - (NSSet *)subscribingSubscriptions {
-  return [self.subscriptions pkt_filteredSetWithBlock:^BOOL(PKTPushSubscription *subscription) {
+  return [self.subscriptions pkt_filteredSetWithBlock:^BOOL(PKTInternalPushSubscription *subscription) {
     return subscription.state == PKTPushSubscriptionStateSubscribing;
   }];
 }
@@ -202,14 +205,14 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
   [self.client disconnect];
 }
 
-- (void)addSubscription:(PKTPushSubscription *)subscription {
+- (void)addSubscription:(PKTInternalPushSubscription *)subscription {
   NSParameterAssert(subscription);
   [self.subscriptions addObject:subscription];
 
   [self resubscribeToInactiveSubscriptionsIfAny];
 }
 
-- (void)removeSubscription:(PKTPushSubscription *)subscription {
+- (void)removeSubscription:(PKTInternalPushSubscription *)subscription {
   NSParameterAssert(subscription);
   [self.subscriptions removeObject:subscription];
 }
@@ -217,7 +220,7 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 - (void)resubscribeToInactiveSubscriptionsIfAny {
   if (self.connected || self.connecting) {
     @synchronized(self) {
-      for (PKTPushSubscription *subscription in self.inactiveSubscriptions) {
+      for (PKTInternalPushSubscription *subscription in self.inactiveSubscriptions) {
         subscription.state = PKTPushSubscriptionStateSubscribing;
         [self.client subscribeToChannel:subscription.channel
                              extensions:subscription.extensions
@@ -231,7 +234,7 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 }
 
 - (void)activateSubscriptionForChannel:(NSString *)channel {
-  for (PKTPushSubscription *subscription in self.subscribingSubscriptions) {
+  for (PKTInternalPushSubscription *subscription in self.subscribingSubscriptions) {
     if ([subscription.channel isEqualToString:channel]) {
       subscription.state = PKTPushSubscriptionStateActive;
     }
@@ -239,7 +242,7 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 }
 
 - (void)deactivateSubscriptionForChannel:(NSString *)channel {
-  for (PKTPushSubscription *subscription in self.subscribingSubscriptions) {
+  for (PKTInternalPushSubscription *subscription in self.subscribingSubscriptions) {
     if ([subscription.channel isEqualToString:channel]) {
       subscription.state = PKTPushSubscriptionStateInactive;
     }
@@ -257,22 +260,20 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 
 - (id)subscribeWithCredential:(PKTPushCredential *)credential eventBlock:(PKTPushEventBlock)block {
   NSDictionary *extensions = [[self class] extensionsForCredential:credential];
-  PKTPushSubscription *subscription = [[PKTPushSubscription alloc] initWithChannel:credential.channel
-                                                                        extensions:extensions
-                                                                            client:self
-                                                                        eventBlock:block];
+  PKTInternalPushSubscription *subscription = [[PKTInternalPushSubscription alloc] initWithChannel:credential.channel
+                                                                                        extensions:extensions
+                                                                                            client:self
+                                                                                        eventBlock:block];
   [self addSubscription:subscription];
   
-  return [PKTPushSubscriptionToken tokenForSubscription:subscription];
+  return [PKTPushSubscription subscriptionForInternalSubscription:subscription];
 }
 
-- (void)unsubscribe:(id)token {
-  NSParameterAssert([token isKindOfClass:[PKTPushSubscriptionToken class]]);
+- (void)unsubscribe:(PKTPushSubscription *)subscription {
+  PKTInternalPushSubscription *internalSubscription = subscription.internalSubscription;
+  [self removeSubscription:internalSubscription];
   
-  PKTPushSubscription *subscription = [(PKTPushSubscriptionToken *)token subscription];
-  [self removeSubscription:subscription];
-  
-  [self.client unsubsubscribeFromChannel:subscription.channel target:subscription selector:@selector(deliverMessage:)];
+  [self.client unsubsubscribeFromChannel:internalSubscription.channel target:internalSubscription selector:@selector(deliverMessage:)];
 }
 
 #pragma mark - DDCometClientDelegate

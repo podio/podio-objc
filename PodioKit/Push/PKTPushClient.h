@@ -12,6 +12,12 @@
 
 typedef void (^PKTPushEventBlock) (PKTPushEvent *event);
 
+@interface PKTPushSubscription : NSObject
+
+- (void)unsubscribe;
+
+@end
+
 @interface PKTPushClient : NSObject
 
 /**
@@ -28,17 +34,17 @@ typedef void (^PKTPushEventBlock) (PKTPushEvent *event);
  *  @param eventBlock The event block to be executed whenever a new event occurs. The event block will be retained 
  *                    by the client, so beware of retain cycles.
  *
- *  @return An opaque token representing the subscription.
+ *  @return The subscription.
  */
-- (id)subscribeWithCredential:(PKTPushCredential *)credential eventBlock:(PKTPushEventBlock)eventBlock;
+- (PKTPushSubscription *)subscribeWithCredential:(PKTPushCredential *)credential eventBlock:(PKTPushEventBlock)eventBlock;
 
 /**
- *  Unsubscribe from events.
+ *  Unsubscribe from a subscription.
  *
  *  @see see -subscribeWithCredential:eventBlock:
  *
- *  @param token The token returned when making the initial subscription.
+ *  @param token The subscription to unsubscribe from.
  */
-- (void)unsubscribe:(id)token;
+- (void)unsubscribe:(PKTPushSubscription *)subscription;
 
 @end
