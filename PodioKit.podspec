@@ -30,6 +30,7 @@ Pod::Spec.new do |s|
     sp.public_header_files = 'PodioKit/Push/**/*.h'
 
     sp.dependency 'PodioKit/Common'
-    sp.dependency 'DDCometClient', '~> 1.0'
+    sp.dependency 'DDCometClient',  '~> 1.0'
+    sp.dependency 'FXReachability', '~> 1.3'
   end
 end

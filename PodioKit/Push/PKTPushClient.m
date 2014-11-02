@@ -9,6 +9,7 @@
 #import <DDCometClient/DDCometClient.h>
 #import <DDCometClient/DDCometSubscription.h>
 #import <DDCometClient/DDCometMessage.h>
+#import <FXReachability/FXReachability.h>
 #import "PKTPushClient.h"
 #import "PKTMacros.h"
 #import "NSSet+PKTAdditions.h"
@@ -111,6 +112,8 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 @interface PKTPushClient () <DDCometClientDelegate>
 
 @property (nonatomic, strong) DDCometClient *client;
+@property (nonatomic, strong) FXReachability *reachability;
+//@property (nonatomic, strong) Reachability *reachability;
 
 @property (nonatomic, readonly, getter=isDisonnected) BOOL disconnected;
 @property (nonatomic, readonly, getter=isConnecting) BOOL connecting;
@@ -146,8 +149,20 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
   _client = [[DDCometClient alloc] initWithURL:url];
   _client.delegate = self;
   _subscriptions = [NSMutableSet new];
+  _reachability = [[FXReachability alloc] initWithHost:[url host]];
   
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reachabilityChanged:) 
+                                               name:FXReachabilityStatusDidChangeNotification
+                                             object:_reachability];
+
   return self;
+}
+
+- (void)dealloc {
+  [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                  name:FXReachabilityStatusDidChangeNotification
+                                                object:_reachability];
 }
 
 #pragma mark - Properties
@@ -192,7 +207,7 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
   if (self.isConnected || self.isConnecting) {
     return;
   }
-  
+
   [self.client scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
   [self.client handshake];
 }
@@ -202,34 +217,32 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
     return;
   }
   
+  [self unsubscribeAllSubscriptions];
+
   [self.client disconnect];
 }
 
 - (void)addSubscription:(PKTInternalPushSubscription *)subscription {
   NSParameterAssert(subscription);
   [self.subscriptions addObject:subscription];
-
-  [self resubscribeToInactiveSubscriptionsIfAny];
+  [self subscriptionsDidChange];
 }
 
 - (void)removeSubscription:(PKTInternalPushSubscription *)subscription {
   NSParameterAssert(subscription);
   [self.subscriptions removeObject:subscription];
+  [self subscriptionsDidChange];
 }
 
 - (void)resubscribeToInactiveSubscriptionsIfAny {
-  if (self.connected || self.connecting) {
-    @synchronized(self) {
-      for (PKTInternalPushSubscription *subscription in self.inactiveSubscriptions) {
-        subscription.state = PKTPushSubscriptionStateSubscribing;
-        [self.client subscribeToChannel:subscription.channel
-                             extensions:subscription.extensions
-                                 target:subscription
-                               selector:@selector(deliverMessage:)];
-      }
-    }
-  } else {
-    [self connect];
+  if (!self.connected && !self.connecting) return;
+  
+  for (PKTInternalPushSubscription *subscription in self.inactiveSubscriptions) {
+    subscription.state = PKTPushSubscriptionStateSubscribing;
+    [self.client subscribeToChannel:subscription.channel
+                         extensions:subscription.extensions
+                             target:subscription
+                           selector:@selector(deliverMessage:)];
   }
 }
 
@@ -246,6 +259,35 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
     if ([subscription.channel isEqualToString:channel]) {
       subscription.state = PKTPushSubscriptionStateInactive;
     }
+  }
+}
+
+- (void)subscriptionsDidChange {
+  if (self.connected || self.connecting) {
+    // If connected, check if there are any inactive subscriptions that needs to subscribe to.
+    // e.g. if a new subscription was added.
+    [self resubscribeToInactiveSubscriptionsIfAny];
+  } else {
+    // If not connected, we need to attempt to connect before subscribing. The subscription step for inactive
+    // subscriptions will happen automatically after the client has been successfully connected.
+    [self updateConnectionForCurrentState];
+  }
+}
+
+- (void)unsubscribeAllSubscriptions {
+  for (PKTInternalPushSubscription *subscription in self.activeSubscriptions) {
+    subscription.state = PKTPushSubscriptionStateInactive;
+    [self.client unsubsubscribeFromChannel:subscription.channel target:subscription selector:@selector(deliverMessage:)];
+  }
+}
+
+- (void)updateConnectionForCurrentState {
+  // There is only a reason to maintain a connection to the server if there are any
+  // subscriptions and if the host is reachable. Otherwise we disconnect the client.
+  if (self.reachability.isReachable && self.subscriptions > 0) {
+    [self connect];
+  } else {
+    [self disconnect];
   }
 }
 
@@ -273,7 +315,9 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
   PKTInternalPushSubscription *internalSubscription = subscription.internalSubscription;
   [self removeSubscription:internalSubscription];
   
-  [self.client unsubsubscribeFromChannel:internalSubscription.channel target:internalSubscription selector:@selector(deliverMessage:)];
+  [self.client unsubsubscribeFromChannel:internalSubscription.channel
+                                  target:internalSubscription
+                                selector:@selector(deliverMessage:)];
 }
 
 #pragma mark - DDCometClientDelegate
@@ -288,6 +332,12 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 
 - (void)cometClient:(DDCometClient *)client subscription:(DDCometSubscription *)subscription didFailWithError:(NSError *)error {
   [self deactivateSubscriptionForChannel:subscription.channel];
+}
+
+#pragma mark - Notifications
+
+- (void)reachabilityChanged:(NSNotification *)notification {
+  [self updateConnectionForCurrentState];
 }
 
 @end
