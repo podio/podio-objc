@@ -1,4 +1,7 @@
-platform :ios, '7.0'
+source 'https://github.com/CocoaPods/Specs.git'
+
+pod 'DDCometClient',  '~> 1.0'
+pod 'FXReachability', '~> 1.3'
 
 target :podiokittests do
   link_with 'PodioKitTests'

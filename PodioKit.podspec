@@ -13,11 +13,24 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.9'
   s.requires_arc          = true
 
-  s.source_files        = 'PodioKit/Common/**/*.{h,m}'
-  s.public_header_files = 'PodioKit/Common/**/*.h'
-  s.prefix_header_file  = 'PodioKit/Common/PodioKit-Prefix.pch'
+  s.default_subspec = 'Common'
 
-  s.ios.source_files = 'PodioKit/UIKit/**/*.{h,m}'
-  s.ios.public_header_files = 'PodioKit/UIKit/*.h'
-  s.ios.frameworks = 'UIKit'
+  s.subspec 'Common' do |sp|
+    sp.source_files = 'PodioKit/Common/**/*.{h,m}'
+    sp.public_header_files = 'PodioKit/Common/**/*.h'
+    sp.prefix_header_file  = 'PodioKit/Common/PodioKit-Prefix.pch'
+    
+    sp.ios.source_files = 'PodioKit/UIKit/**/*.{h,m}'
+    sp.ios.public_header_files = 'PodioKit/UIKit/*.h'
+    sp.ios.frameworks = 'UIKit'
+  end
+
+  s.subspec 'Push' do |sp|
+    sp.source_files = 'PodioKit/Push/**/*.{h,m}'
+    sp.public_header_files = 'PodioKit/Push/**/*.h'
+
+    sp.dependency 'PodioKit/Common'
+    sp.dependency 'DDCometClient',  '~> 1.0'
+    sp.dependency 'FXReachability', '~> 1.3'
+  end
 end
