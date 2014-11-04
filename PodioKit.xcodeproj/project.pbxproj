@@ -318,6 +318,8 @@
 		50D776291A06DCF200CE26B1 /* PKTConversationsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D776271A06DCF200CE26B1 /* PKTConversationsAPI.m */; };
 		50D7762A1A06DCFF00CE26B1 /* PKTConversationsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D776271A06DCF200CE26B1 /* PKTConversationsAPI.m */; };
 		50D7762C1A06DD3900CE26B1 /* PKTConversationsAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D7762B1A06DD3900CE26B1 /* PKTConversationsAPITests.m */; };
+		50D7762F1A06E19F00CE26B1 /* PKTConversation.h in Headers */ = {isa = PBXBuildFile; fileRef = 50D7762D1A06E19F00CE26B1 /* PKTConversation.h */; };
+		50D776301A06E19F00CE26B1 /* PKTConversation.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D7762E1A06E19F00CE26B1 /* PKTConversation.m */; };
 		50DAD4331964007400529DB5 /* PKTFormsAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 50DAD4311964007400529DB5 /* PKTFormsAPI.h */; };
 		50DAD4341964007400529DB5 /* PKTFormsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAD4321964007400529DB5 /* PKTFormsAPI.m */; };
 		50DAD4361964041400529DB5 /* PKTFormAPITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50DAD4351964041400529DB5 /* PKTFormAPITests.m */; };
@@ -674,6 +676,8 @@
 		50D776261A06DCF200CE26B1 /* PKTConversationsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTConversationsAPI.h; sourceTree = "<group>"; };
 		50D776271A06DCF200CE26B1 /* PKTConversationsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTConversationsAPI.m; sourceTree = "<group>"; };
 		50D7762B1A06DD3900CE26B1 /* PKTConversationsAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTConversationsAPITests.m; sourceTree = "<group>"; };
+		50D7762D1A06E19F00CE26B1 /* PKTConversation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTConversation.h; sourceTree = "<group>"; };
+		50D7762E1A06E19F00CE26B1 /* PKTConversation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTConversation.m; sourceTree = "<group>"; };
 		50DAD4311964007400529DB5 /* PKTFormsAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTFormsAPI.h; sourceTree = "<group>"; };
 		50DAD4321964007400529DB5 /* PKTFormsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTFormsAPI.m; sourceTree = "<group>"; };
 		50DAD4351964041400529DB5 /* PKTFormAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTFormAPITests.m; sourceTree = "<group>"; };
@@ -1215,6 +1219,8 @@
 				50CA79DE19D6AB3900759BB8 /* PKTLocation.m */,
 				502AAB3119FF795B006A0352 /* PKTPushCredential.h */,
 				502AAB3219FF795B006A0352 /* PKTPushCredential.m */,
+				50D7762D1A06E19F00CE26B1 /* PKTConversation.h */,
+				50D7762E1A06E19F00CE26B1 /* PKTConversation.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1571,6 +1577,7 @@
 				50FB3D6518EA0DDE0021DB48 /* PKTItemsAPI.h in Headers */,
 				5039F64B19070ED300A8A8F0 /* PKTDictionaryMappingValueTransformer.h in Headers */,
 				50F6B930195AE84900FF0024 /* UIImageView+PKTRemoteImage.h in Headers */,
+				50D7762F1A06E19F00CE26B1 /* PKTConversation.h in Headers */,
 				503B3AC519050EC3002BB703 /* NSMutableURLRequest+PKTHeaders.h in Headers */,
 				506D925E19ED6C8400A7BCB4 /* PKTDatastore.h in Headers */,
 				5033FF7A1961891E00B2FD04 /* PKTStatus.h in Headers */,
@@ -1891,6 +1898,7 @@
 				50CA79DC19D6AABA00759BB8 /* PKTLocationItemFieldValue.m in Sources */,
 				50DAD43B196404BD00529DB5 /* PKTForm.m in Sources */,
 				50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */,
+				50D776301A06E19F00CE26B1 /* PKTConversation.m in Sources */,
 				5024C5C819616DC400AE28D7 /* PKTUser.m in Sources */,
 				50395A0419137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				5082425218FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
