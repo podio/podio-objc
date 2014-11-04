@@ -29,6 +29,7 @@
   return @{
     @"accessToken": @"access_token",
     @"refreshToken": @"refresh_token",
+    @"transferToken": @"transfer_token",
     @"expiresOn": @"expires_in",
     @"refData": @"ref",
   };

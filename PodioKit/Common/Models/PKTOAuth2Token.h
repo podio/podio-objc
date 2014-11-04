@@ -12,6 +12,7 @@
 
 @property (nonatomic, copy, readonly) NSString *accessToken;
 @property (nonatomic, copy, readonly) NSString *refreshToken;
+@property (nonatomic, copy, readonly) NSString *transferToken;
 @property (nonatomic, copy, readonly) NSDate *expiresOn;
 @property (nonatomic, copy, readonly) NSDictionary *refData;
 
