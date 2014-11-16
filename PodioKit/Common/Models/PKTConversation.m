@@ -38,6 +38,15 @@
 
 #pragma mark - Public
 
++ (PKTAsyncTask *)fetchConversationWithID:(NSUInteger)conversationID {
+  PKTRequest *request = [PKTConversationsAPI requestForConversationWithID:conversationID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return [task map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
+  }];
+}
+
 + (PKTAsyncTask *)fetchAllWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   PKTRequest *request = [PKTConversationsAPI requestForConversationsWithOffset:offset limit:limit];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];

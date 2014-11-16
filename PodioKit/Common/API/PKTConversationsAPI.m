@@ -10,6 +10,12 @@
 
 @implementation PKTConversationsAPI
 
++ (PKTRequest *)requestForConversationWithID:(NSUInteger)conversationID {
+  NSString *path = [NSString stringWithFormat:@"/conversation/%lu", conversationID];
+
+  return [PKTRequest GETRequestWithPath:path parameters:nil];
+}
+
 + (PKTRequest *)requestForConversationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *params = [NSMutableDictionary new];
   

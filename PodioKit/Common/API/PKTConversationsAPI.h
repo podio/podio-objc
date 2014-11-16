@@ -10,6 +10,8 @@
 
 @interface PKTConversationsAPI : PKTBaseAPI
 
++ (PKTRequest *)requestForConversationWithID:(NSUInteger)conversationID;
+
 + (PKTRequest *)requestForConversationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 + (PKTRequest *)requestForEventsInConversationWithID:(NSUInteger)conversationID offset:(NSUInteger)offset limit:(NSUInteger)limit;

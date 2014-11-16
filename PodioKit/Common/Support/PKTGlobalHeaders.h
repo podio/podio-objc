@@ -56,6 +56,8 @@
 #import "PKTFormField.h"
 #import "PKTLocation.h"
 #import "PKTConversation.h"
+#import "PKTConversationEvent.h"
+#import "PKTMessage.h"
 #import "PKTPushCredential.h"
 
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED

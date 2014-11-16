@@ -19,6 +19,7 @@
 @property (nonatomic, copy, readonly) NSDate *lastEventOn;
 @property (nonatomic, copy, readonly) NSArray *participants;
 
++ (PKTAsyncTask *)fetchConversationWithID:(NSUInteger)conversationID;
 + (PKTAsyncTask *)fetchAllWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 @end
