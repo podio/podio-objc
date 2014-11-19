@@ -17,6 +17,11 @@
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/task/%lu", (unsigned long)taskID) parameters:nil];
 }
 
++ (PKTRequest *)requestForSummaryWithLimit:(NSUInteger)limit {
+  NSDictionary *params = @{@"limit": @(limit)};
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/task/summary") parameters:params];
+}
+
 + (PKTRequest *)requestForTasksWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSMutableDictionary *params = [[parameters queryParameters] mutableCopy];
   

@@ -14,6 +14,8 @@
 
 + (PKTRequest *)requestForTaskWithID:(NSUInteger)taskID;
 
++ (PKTRequest *)requestForSummaryWithLimit:(NSUInteger)limit;
+
 + (PKTRequest *)requestForTasksWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 + (PKTRequest *)requestToCreateTaskWithText:(NSString *)text
