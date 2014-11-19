@@ -114,6 +114,16 @@ typedef NS_ENUM(NSInteger, PKTEmbedType) {
   PKTEmbedTypeUnresolved
 };
 
+typedef NS_ENUM(NSUInteger, PKTImageSize) {
+  PKTImageSizeOriginal,
+  PKTImageSizeDefault,     // 40x40
+  PKTImageSizeTiny,        // 16x16
+  PKTImageSizeSmall,       // 32x32
+  PKTImageSizeMedium,      // 80x80
+  PKTImageSizeLarge,       // 160x160
+  PKTImageSizeExtraLarge,  // 520x?
+};
+
 #pragma mark - Tasks
 
 typedef NS_ENUM(NSUInteger, PKTTaskStatus) {

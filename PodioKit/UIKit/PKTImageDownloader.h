@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PKTConstants.h"
 
 @class PKTFile;
 @class PKTAsyncTask;
 
 @interface PKTImageDownloader : NSObject
 
-+ (PKTAsyncTask *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock;
++ (PKTAsyncTask *)setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSize:(PKTImageSize)imageSize imageSetterBlock:(void (^)(UIImage *image))imageSetterBlock;
 
 @end

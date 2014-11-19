@@ -9,13 +9,14 @@
 #if defined(__IPHONE_OS_VERSION_MIN_REQUIRED)
 
 #import <UIKit/UIKit.h>
+#import "PKTConstants.h"
 
 @class PKTFile;
 @class PKTAsyncTask;
 
 @interface UIImageView (PKTRemoteImage)
 
-- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage;
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSize:(PKTImageSize)imageSize;
 
 - (void)pkt_cancelCurrentImageDownload;
 

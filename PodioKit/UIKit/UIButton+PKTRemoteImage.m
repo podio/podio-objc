@@ -44,11 +44,11 @@ static const char kCurrentBackgroundImageTaskKey;
 
 #pragma mark - Public
 
-- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage {
+- (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage imageSize:(PKTImageSize)imageSize {
   [self pkt_cancelCurrentImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSize:imageSize imageSetterBlock:^(UIImage *image) {
     [weakSelf setImage:image forState:state];
   }] then:^(id result, NSError *error) {
     weakSelf.pkt_currentImageTask = nil;
@@ -57,11 +57,11 @@ static const char kCurrentBackgroundImageTaskKey;
   return self.pkt_currentImageTask;
 }
 
-- (PKTAsyncTask *)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage {
+- (PKTAsyncTask *)pkt_setBackgroundImageWithFile:(PKTFile *)file forState:(UIControlState)state placeholderImage:(UIImage *)placeholderImage imageSize:(PKTImageSize)imageSize {
   [self pkt_cancelCurrentBackgroundImageDownload];
   
   PKT_WEAK_SELF weakSelf = self;
-  self.pkt_currentBackgroundImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSetterBlock:^(UIImage *image) {
+  self.pkt_currentBackgroundImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSize:imageSize imageSetterBlock:^(UIImage *image) {
     [weakSelf setBackgroundImage:image forState:state];
   }] then:^(id result, NSError *error) {
     weakSelf.pkt_currentBackgroundImageTask = nil;

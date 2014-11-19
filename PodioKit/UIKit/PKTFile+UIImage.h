@@ -20,6 +20,13 @@
  */
 - (PKTAsyncTask *)downloadImage;
 
+/**
+ *  Download the file as an UIImage of a given size.
+ *
+ *  @return A task
+ */
+- (PKTAsyncTask *)downloadImageOfSize:(PKTImageSize)imageSize;
+
 @end
 
 #endif

@@ -11,13 +11,19 @@
 #import "PKTFile+UIImage.h"
 #import "PKTFilesAPI.h"
 #import "PKTMacros.h"
+#import "NSURL+PKTImageURL.h"
 
 @implementation PKTFile (UIImage)
 
 - (PKTAsyncTask *)downloadImage {
+  return [self downloadImageOfSize:PKTImageSizeOriginal];
+}
+
+- (PKTAsyncTask *)downloadImageOfSize:(PKTImageSize)imageSize {
   NSParameterAssert(self.link);
   
-  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link];
+  NSURL *imageURL = [self.link pkt_imageURLForSize:imageSize];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:imageURL];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
   PKTAsyncTask *task = [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
