@@ -28,6 +28,7 @@ static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
 
 static NSString * const kHeaderContentType = @"Content-Type";
 static NSString * const kHeaderContentLength = @"Content-Length";
+static NSString * const kHeaderTimeZone = @"X-Time-Zone";
 
 static NSString * const kBoundaryPrefix = @"----------------------";
 static NSUInteger const kBoundaryLength = 20;
@@ -116,6 +117,7 @@ static NSUInteger const kBoundaryLength = 20;
   urlRequest.HTTPMethod = [[self class] HTTPMethodForMethod:request.method];
   [urlRequest setValue:[[self class] generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
   [urlRequest setValue:[self contentTypeForRequest:request] forHTTPHeaderField:kHeaderContentType];
+  [urlRequest setValue:[[NSTimeZone localTimeZone] name] forHTTPHeaderField:kHeaderTimeZone];
   
   if (multipartData) {
     NSString *contentLength = [NSString stringWithFormat:@"%lu", (unsigned long)multipartData.finalizedData.length];
