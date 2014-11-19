@@ -10,6 +10,10 @@
 #import "PKTConstants.h"
 #import "PKTClient.h"
 
+extern NSString * const kSummarySectionOverdueKey;
+extern NSString * const kSummarySectionTodayKey;
+extern NSString * const kSummarySectionOtherKey;
+
 @class PKTProfile;
 @class PKTByLine;
 @class PKTReference;
@@ -37,6 +41,8 @@
 + (instancetype)taskWithText:(NSString *)text;
 
 + (PKTAsyncTask *)fetchWithID:(NSUInteger)taskID;
+
++ (PKTAsyncTask *)fetchSummaryWithLimit:(NSUInteger)limit;
 
 + (PKTAsyncTask *)fetchWithParameters:(PKTTaskRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 

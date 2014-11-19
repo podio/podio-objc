@@ -18,6 +18,12 @@
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTMacros.h"
 
+NSString * const kSummarySectionOverdueKey = @"overdue";
+NSString * const kSummarySectionTodayKey = @"today";
+NSString * const kSummarySectionOtherKey = @"other";
+
+static NSString * const kSummarySubSectionTasksKey = @"tasks";
+
 @interface PKTTask ()
 
 @property (nonatomic, assign, readwrite) NSUInteger taskID;
@@ -117,6 +123,24 @@
     return [[self alloc] initWithDictionary:response.body];
   }];
 
+  return task;
+}
+
++ (PKTAsyncTask *)fetchSummaryWithLimit:(NSUInteger)limit {
+  PKTRequest *request = [PKTTasksAPI requestForSummaryWithLimit:limit];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    NSMutableDictionary *dict = [NSMutableDictionary new];
+    for (NSString *sectionKey in @[kSummarySectionOverdueKey, kSummarySectionTodayKey, kSummarySectionOtherKey]) {
+      dict[sectionKey] = [response.body[sectionKey][kSummarySubSectionTasksKey] pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
+        return [[self alloc] initWithDictionary:taskDict];
+      }];
+    }
+    
+    return [dict copy];
+  }];
+  
   return task;
 }
 
