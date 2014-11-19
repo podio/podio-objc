@@ -7,6 +7,7 @@
 //
 
 #import "PKTConversation.h"
+#import "PKTPushCredential.h"
 #import "PKTProfile.h"
 #import "PKTConversationsAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
@@ -20,7 +21,8 @@
   return @{
            @"conversationID" : @"conversation_id",
            @"createdOn" : @"created_on",
-           @"lastEventOn" : @"last_event_on"
+           @"lastEventOn" : @"last_event_on",
+           @"pushCredential" : @"push"
            };
 }
 
@@ -34,6 +36,10 @@
 
 + (NSValueTransformer *)participantsValueTransformer {
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTProfile class]];
+}
+
++ (NSValueTransformer *)pushCredentialValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTPushCredential class]];
 }
 
 #pragma mark - Public

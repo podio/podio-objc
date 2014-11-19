@@ -18,6 +18,7 @@
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 @property (nonatomic, strong, readonly) id data;
 
++ (PKTAsyncTask *)fetchEventWithID:(NSUInteger)eventID;
 + (PKTAsyncTask *)fetchAllInConversationWithID:(NSUInteger)conversationID offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 @end

@@ -30,6 +30,12 @@
   return [PKTRequest GETRequestWithPath:@"/conversation/" parameters:params];
 }
 
++ (PKTRequest *)requestForConversationEventWithID:(NSUInteger)eventID {
+  NSString *path = [NSString stringWithFormat:@"/conversation/event/%lu", eventID];
+  
+  return [PKTRequest GETRequestWithPath:path parameters:nil];
+}
+
 + (PKTRequest *)requestForEventsInConversationWithID:(NSUInteger)conversationID offset:(NSUInteger)offset limit:(NSUInteger)limit {
   NSParameterAssert(conversationID > 0);
   

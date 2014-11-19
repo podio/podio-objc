@@ -8,7 +8,7 @@
 
 #import "PKTModel.h"
 
-@class PKTAsyncTask;
+@class PKTAsyncTask, PKTPushCredential;
 
 @interface PKTConversation : PKTModel
 
@@ -18,6 +18,9 @@
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 @property (nonatomic, copy, readonly) NSDate *lastEventOn;
 @property (nonatomic, copy, readonly) NSArray *participants;
+@property (nonatomic, readonly) BOOL unread;
+@property (nonatomic, readonly) BOOL starred;
+@property (nonatomic, copy, readonly) PKTPushCredential *pushCredential;
 
 + (PKTAsyncTask *)fetchConversationWithID:(NSUInteger)conversationID;
 + (PKTAsyncTask *)fetchAllWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
