@@ -11,7 +11,7 @@
 @implementation PKTConversationsAPI
 
 + (PKTRequest *)requestForConversationWithID:(NSUInteger)conversationID {
-  NSString *path = [NSString stringWithFormat:@"/conversation/%lu", conversationID];
+  NSString *path = [NSString stringWithFormat:@"/conversation/%lu", (unsigned long)conversationID];
 
   return [PKTRequest GETRequestWithPath:path parameters:nil];
 }
@@ -31,7 +31,7 @@
 }
 
 + (PKTRequest *)requestForConversationEventWithID:(NSUInteger)eventID {
-  NSString *path = [NSString stringWithFormat:@"/conversation/event/%lu", eventID];
+  NSString *path = [NSString stringWithFormat:@"/conversation/event/%lu", (unsigned long)eventID];
   
   return [PKTRequest GETRequestWithPath:path parameters:nil];
 }
@@ -49,7 +49,7 @@
     params[@"limit"] = @(limit);
   }
   
-  NSString *path = [NSString stringWithFormat:@"/conversation/%lu/event/", conversationID];
+  NSString *path = [NSString stringWithFormat:@"/conversation/%lu/event/", (unsigned long)conversationID];
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:params];
   
   return request;
