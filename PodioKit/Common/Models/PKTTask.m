@@ -18,9 +18,9 @@
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTMacros.h"
 
-NSString * const kSummarySectionOverdueKey = @"overdue";
-NSString * const kSummarySectionTodayKey = @"today";
-NSString * const kSummarySectionOtherKey = @"other";
+NSString * const PKTTaskSummarySectionOverdueKey = @"overdue";
+NSString * const PKTTaskSummarySectionTodayKey = @"today";
+NSString * const PKTTaskSummarySectionOtherKey = @"other";
 
 static NSString * const kSummarySubSectionTasksKey = @"tasks";
 
@@ -132,8 +132,9 @@ static NSString * const kSummarySubSectionTasksKey = @"tasks";
   
   PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
     NSMutableDictionary *dict = [NSMutableDictionary new];
-    for (NSString *sectionKey in @[kSummarySectionOverdueKey, kSummarySectionTodayKey, kSummarySectionOtherKey]) {
-      dict[sectionKey] = [response.body[sectionKey][kSummarySubSectionTasksKey] pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
+    for (NSString *sectionKey in @[PKTTaskSummarySectionOverdueKey, PKTTaskSummarySectionTodayKey, PKTTaskSummarySectionOtherKey]) {
+      NSArray *tasks = response.body[sectionKey] ? response.body[sectionKey][kSummarySubSectionTasksKey] : @[];
+      dict[sectionKey] = [tasks pkt_mappedArrayWithBlock:^id(NSDictionary *taskDict) {
         return [[self alloc] initWithDictionary:taskDict];
       }];
     }

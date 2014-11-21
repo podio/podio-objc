@@ -10,9 +10,9 @@
 #import "PKTConstants.h"
 #import "PKTClient.h"
 
-extern NSString * const kSummarySectionOverdueKey;
-extern NSString * const kSummarySectionTodayKey;
-extern NSString * const kSummarySectionOtherKey;
+extern NSString * const PKTTaskSummarySectionOverdueKey;
+extern NSString * const PKTTaskSummarySectionTodayKey;
+extern NSString * const PKTTaskSummarySectionOtherKey;
 
 @class PKTProfile;
 @class PKTByLine;
