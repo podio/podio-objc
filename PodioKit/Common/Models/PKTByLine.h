@@ -15,7 +15,7 @@
 
 @property (nonatomic, assign, readonly) PKTReferenceType referenceType;
 @property (nonatomic, assign, readonly) NSUInteger referenceID;
-@property (nonatomic, assign, readonly) NSInteger userID;
+@property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, strong, readonly) PKTFile *imageFile;
 
