@@ -57,6 +57,7 @@
 #import "PKTLocation.h"
 #import "PKTConversation.h"
 #import "PKTConversationEvent.h"
+#import "PKTByLine.h"
 #import "PKTMessage.h"
 #import "PKTPushCredential.h"
 
