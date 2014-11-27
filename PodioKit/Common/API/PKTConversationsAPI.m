@@ -55,4 +55,36 @@
   return request;
 }
 
++ (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedID:(NSUInteger)embedID {
+  return [self requestToReplyToConversationWithID:conversationID text:text fileIDs:fileIDs embedID:embedID embedURL:nil];
+}
+
++ (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedURL:(NSURL *)embedURL {
+  return [self requestToReplyToConversationWithID:conversationID text:text fileIDs:fileIDs embedID:0 embedURL:embedURL];
+}
+
++ (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedID:(NSUInteger)embedID embedURL:(NSURL *)embedURL {
+  NSParameterAssert(conversationID > 0);
+  NSParameterAssert([text length] > 0);
+  
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  params[@"text"] = text;
+  
+  if ([fileIDs count] > 0) {
+    params[@"file_ids"] = fileIDs;
+  }
+  
+  if (embedID > 0) {
+    params[@"embed_id"] = @(embedID);
+  } else if (embedURL) {
+    params[@"embed_url"] = [embedURL absoluteString];
+  }
+  
+  NSString *path = PKTRequestPath(@"/conversation/%lu/reply/v2", conversationID);
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:params];
+  
+  return request;
+}
+
+
 @end

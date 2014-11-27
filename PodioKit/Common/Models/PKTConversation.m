@@ -7,6 +7,7 @@
 //
 
 #import "PKTConversation.h"
+#import "PKTConversationEvent.h"
 #import "PKTPushCredential.h"
 #import "PKTProfile.h"
 #import "PKTConversationsAPI.h"
@@ -61,6 +62,32 @@
     return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *conversationDict) {
       return [[self alloc] initWithDictionary:conversationDict];
     }];
+  }];
+}
+
+- (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedID:(NSUInteger)embedID {
+  NSArray *fileIDs = [files valueForKey:@"fileID"];
+  PKTRequest *request = [PKTConversationsAPI requestToReplyToConversationWithID:self.conversationID
+                                                                           text:text
+                                                                        fileIDs:fileIDs
+                                                                        embedID:embedID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return [task map:^id(PKTResponse *response) {
+    return [[PKTConversationEvent alloc] initWithDictionary:response.body];
+  }];
+}
+
+- (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedURL:(NSURL *)embedURL {
+  NSArray *fileIDs = [files valueForKey:@"fileID"];
+  PKTRequest *request = [PKTConversationsAPI requestToReplyToConversationWithID:self.conversationID
+                                                                           text:text
+                                                                        fileIDs:fileIDs
+                                                                       embedURL:embedURL];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return [task map:^id(PKTResponse *response) {
+    return [[PKTConversationEvent alloc] initWithDictionary:response.body];
   }];
 }
 
