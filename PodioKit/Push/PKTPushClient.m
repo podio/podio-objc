@@ -263,14 +263,14 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 }
 
 - (void)subscriptionsDidChange {
-  if (self.connected || self.connecting) {
-    // If connected, check if there are any inactive subscriptions that needs to subscribe to.
-    // e.g. if a new subscription was added.
-    [self resubscribeToInactiveSubscriptionsIfAny];
-  } else {
+  if (!self.connected && !self.connecting) {
     // If not connected, we need to attempt to connect before subscribing. The subscription step for inactive
     // subscriptions will happen automatically after the client has been successfully connected.
     [self updateConnectionForCurrentState];
+  } else if (self.connected) {
+    // If connected, check if there are any inactive subscriptions that needs to subscribe to.
+    // e.g. if a new subscription was added.
+    [self resubscribeToInactiveSubscriptionsIfAny];
   }
 }
 
