@@ -55,7 +55,7 @@
   });
   
   NSString *string = targetMap[@(target)];
-  NSAssert(string != nil, @"Unsupported target %lu", target);
+  NSAssert(string != nil, @"Unsupported target %lu", (unsigned long)target);
   
   return string;
 }
