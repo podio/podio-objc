@@ -95,11 +95,24 @@
     params[@"embed_url"] = [embedURL absoluteString];
   }
   
-  NSString *path = PKTRequestPath(@"/conversation/%lu/reply/v2", conversationID);
+  NSString *path = PKTRequestPath(@"/conversation/%lu/reply/v2", (unsigned long)conversationID);
   PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:params];
   
   return request;
 }
 
++ (PKTRequest *)requestToMarkConversationWithIDAsRead:(NSUInteger)conversationID {
+  NSString *path = PKTRequestPath(@"/conversation/%lu/read", (unsigned long)conversationID);
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:nil];
+  
+  return request;
+}
+
++ (PKTRequest *)requestToMarkConversationWithIDAsUnread:(NSUInteger)conversationID {
+  NSString *path = PKTRequestPath(@"/conversation/%lu/read", (unsigned long)conversationID);
+  PKTRequest *request = [PKTRequest DELETERequestWithPath:path parameters:nil];
+  
+  return request;
+}
 
 @end

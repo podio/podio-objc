@@ -97,4 +97,18 @@
   }];
 }
 
+- (PKTAsyncTask *)markAsRead {
+  PKTRequest *request = [PKTConversationsAPI requestToMarkConversationWithIDAsRead:self.conversationID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return task;
+}
+
+- (PKTAsyncTask *)markAsUnread {
+  PKTRequest *request = [PKTConversationsAPI requestToMarkConversationWithIDAsUnread:self.conversationID];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return task;
+}
+
 @end

@@ -24,4 +24,8 @@
 
 + (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedURL:(NSURL *)embedURL;
 
++ (PKTRequest *)requestToMarkConversationWithIDAsRead:(NSUInteger)conversationID;
+
++ (PKTRequest *)requestToMarkConversationWithIDAsUnread:(NSUInteger)conversationID;
+
 @end

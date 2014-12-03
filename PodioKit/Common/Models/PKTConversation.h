@@ -30,4 +30,7 @@
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedID:(NSUInteger)embedID;
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedURL:(NSURL *)embedURL;
 
+- (PKTAsyncTask *)markAsRead;
+- (PKTAsyncTask *)markAsUnread;
+
 @end
