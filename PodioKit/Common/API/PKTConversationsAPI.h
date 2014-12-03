@@ -18,6 +18,8 @@
 
 + (PKTRequest *)requestForEventsInConversationWithID:(NSUInteger)conversationID offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKTRequest *)requestToCreateConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs;
+
 + (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedID:(NSUInteger)embedID;
 
 + (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedURL:(NSURL *)embedURL;

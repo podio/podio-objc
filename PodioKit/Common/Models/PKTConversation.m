@@ -65,6 +65,12 @@
   }];
 }
 
++ (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs {
+  PKTRequest *request = [PKTConversationsAPI requestToCreateConversationWithText:text subject:subject participantUserIDs:userIDs];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedID:(NSUInteger)embedID {
   NSArray *fileIDs = [files valueForKey:@"fileID"];
   PKTRequest *request = [PKTConversationsAPI requestToReplyToConversationWithID:self.conversationID

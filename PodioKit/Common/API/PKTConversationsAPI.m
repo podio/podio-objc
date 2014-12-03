@@ -55,6 +55,21 @@
   return request;
 }
 
++ (PKTRequest *)requestToCreateConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs {
+  NSParameterAssert(text);
+  NSParameterAssert([userIDs count] > 0);
+  
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  params[@"text"] = text;
+  params[@"participants"] = userIDs;
+  
+  if (subject) {
+    params[@"subject"] = subject;
+  }
+  
+  return [PKTRequest POSTRequestWithPath:@"/conversation/v2/" parameters:params];
+}
+
 + (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedID:(NSUInteger)embedID {
   return [self requestToReplyToConversationWithID:conversationID text:text fileIDs:fileIDs embedID:embedID embedURL:nil];
 }

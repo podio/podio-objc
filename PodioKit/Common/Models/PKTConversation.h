@@ -25,6 +25,8 @@
 + (PKTAsyncTask *)fetchConversationWithID:(NSUInteger)conversationID;
 + (PKTAsyncTask *)fetchAllWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs;
+
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedID:(NSUInteger)embedID;
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedURL:(NSURL *)embedURL;
 
