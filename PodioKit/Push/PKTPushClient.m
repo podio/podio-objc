@@ -146,26 +146,28 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
   self = [super init];
   if (!self) return nil;
   
-  _client = [[DDCometClient alloc] initWithURL:url];
-  _client.delegate = self;
+  _endpointURL = [url copy];
   _subscriptions = [NSMutableSet new];
-  _reachability = [[FXReachability alloc] initWithHost:[url host]];
-  
-  [[NSNotificationCenter defaultCenter] addObserver:self
-                                           selector:@selector(reachabilityChanged:) 
-                                               name:FXReachabilityStatusDidChangeNotification
-                                             object:_reachability];
 
+  [self setupClientForCurrentEndpointURL];
+  
   return self;
 }
 
 - (void)dealloc {
-  [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                  name:FXReachabilityStatusDidChangeNotification
-                                                object:_reachability];
+  if (_reachability) {
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:FXReachabilityStatusDidChangeNotification
+                                                  object:_reachability];
+  }
 }
 
 #pragma mark - Properties
+
+- (void)setEndpointURL:(NSURL *)endpointURL {
+  _endpointURL = [endpointURL copy];
+  [self setupClientForCurrentEndpointURL];
+}
 
 - (BOOL)isDisconnected {
   return self.client.state == DDCometStateDisconnected;
@@ -202,6 +204,28 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 }
 
 #pragma mark - Private
+
+- (void)setupClientForCurrentEndpointURL {
+  if (!self.endpointURL || [self.client.endpointURL isEqual:self.endpointURL]) return;
+  
+  _client = [[DDCometClient alloc] initWithURL:self.endpointURL];
+  _client.delegate = self;
+  
+  if (_reachability) {
+    // We need to unsubscribe from the old reachability object
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:FXReachabilityStatusDidChangeNotification
+                                                  object:_reachability];
+  }
+  
+  _reachability = [[FXReachability alloc] initWithHost:[self.endpointURL host]];
+  
+  // Observe reachability changes to new endpoint URL
+  [[NSNotificationCenter defaultCenter] addObserver:self
+                                           selector:@selector(reachabilityChanged:)
+                                               name:FXReachabilityStatusDidChangeNotification
+                                             object:_reachability];
+}
 
 - (void)connect {
   if (self.isConnected || self.isConnecting) {

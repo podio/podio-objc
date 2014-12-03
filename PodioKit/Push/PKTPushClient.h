@@ -20,6 +20,8 @@ typedef void (^PKTPushEventBlock) (PKTPushEvent *event);
 
 @interface PKTPushClient : NSObject
 
+@property (nonatomic, copy) NSURL *endpointURL;
+
 /**
  *  The shared singleton push client.
  *
