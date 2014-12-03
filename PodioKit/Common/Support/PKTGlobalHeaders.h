@@ -30,6 +30,7 @@
 #import "PKTWorkspacesAPI.h"
 #import "PKTWorkspaceMembersAPI.h"
 #import "PKTConversationsAPI.h"
+#import "PKTReferenceAPI.h"
 
 #import "PKTOAuth2Token.h"
 #import "PKTApp.h"
@@ -52,6 +53,7 @@
 #import "PKTUser.h"
 #import "PKTStatus.h"
 #import "PKTReference.h"
+#import "PKTReferenceGroup.h"
 #import "PKTForm.h"
 #import "PKTFormField.h"
 #import "PKTLocation.h"
