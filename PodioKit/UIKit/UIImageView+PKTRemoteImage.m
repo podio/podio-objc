@@ -38,6 +38,11 @@ static const char kCurrentImageTaskKey;
 - (PKTAsyncTask *)pkt_setImageWithFile:(PKTFile *)file placeholderImage:(UIImage *)placeholderImage imageSize:(PKTImageSize)imageSize {
   [self pkt_cancelCurrentImageDownload];
   
+  if (!file) {
+    self.image = nil;
+    return nil;
+  }
+  
   PKT_WEAK_SELF weakSelf = self;
   self.pkt_currentImageTask = [[PKTImageDownloader setImageWithFile:file placeholderImage:placeholderImage imageSize:imageSize imageSetterBlock:^(UIImage *image) {
     weakSelf.image = image;
