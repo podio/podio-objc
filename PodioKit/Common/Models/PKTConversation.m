@@ -65,6 +65,17 @@
   }];
 }
 
++ (PKTAsyncTask *)searchWithText:(NSString *)text includeParticipants:(BOOL)includeParticipants offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  PKTRequest *request = [PKTConversationsAPI requestToSearchConversationsWithText:text includeParticipants:includeParticipants offset:offset limit:limit];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return [task map:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *conversationDict) {
+      return [[self alloc] initWithDictionary:conversationDict];
+    }];
+  }];
+}
+
 + (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs {
   PKTRequest *request = [PKTConversationsAPI requestToCreateConversationWithText:text subject:subject participantUserIDs:userIDs];
   

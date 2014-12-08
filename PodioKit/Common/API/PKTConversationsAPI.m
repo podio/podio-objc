@@ -30,6 +30,24 @@
   return [PKTRequest GETRequestWithPath:@"/conversation/" parameters:params];
 }
 
++ (PKTRequest *)requestToSearchConversationsWithText:(NSString *)text includeParticipants:(BOOL)includeParticipants offset:(NSUInteger)offset limit:(NSUInteger)limit {
+  NSParameterAssert(text);
+  
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  params[@"text"] = text;
+  params[@"participants"] = @(includeParticipants);
+  
+  if (offset > 0) {
+    params[@"offset"] = @(offset);
+  }
+  
+  if (limit > 0) {
+    params[@"limit"] = @(limit);
+  }
+  
+  return [PKTRequest GETRequestWithPath:@"/conversation/search/" parameters:params];
+}
+
 + (PKTRequest *)requestForConversationEventWithID:(NSUInteger)eventID {
   NSString *path = [NSString stringWithFormat:@"/conversation/event/%lu", (unsigned long)eventID];
   

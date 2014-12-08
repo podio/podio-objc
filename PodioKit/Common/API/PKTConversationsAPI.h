@@ -14,6 +14,8 @@
 
 + (PKTRequest *)requestForConversationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKTRequest *)requestToSearchConversationsWithText:(NSString *)text includeParticipants:(BOOL)includeParticipants offset:(NSUInteger)offset limit:(NSUInteger)limit;
+
 + (PKTRequest *)requestForConversationEventWithID:(NSUInteger)eventID;
 
 + (PKTRequest *)requestForEventsInConversationWithID:(NSUInteger)conversationID offset:(NSUInteger)offset limit:(NSUInteger)limit;
