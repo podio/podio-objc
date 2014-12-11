@@ -14,7 +14,6 @@
 
 @property (nonatomic, assign, readonly) NSUInteger userID;
 @property (nonatomic, copy, readonly) NSString *mail;
-@property (nonatomic, copy, readonly) PKTPushCredential *pushCredential;
 
 + (PKTAsyncTask *)fetchCurrentUser;
 

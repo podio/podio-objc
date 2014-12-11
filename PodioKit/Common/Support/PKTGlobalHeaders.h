@@ -51,6 +51,7 @@
 #import "PKTCategoryOption.h"
 #import "PKTTask.h"
 #import "PKTUser.h"
+#import "PKTUserStatus.h"
 #import "PKTStatus.h"
 #import "PKTReference.h"
 #import "PKTReferenceGroup.h"
