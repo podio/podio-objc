@@ -85,6 +85,7 @@
 #import "PKItemFieldValueDateData.h"
 #import "PKItemFieldValueEmbedData.h"
 #import "PKItemFieldValueItemData.h"
+#import "PKItemFieldValueLocationData.h"
 #import "PKItemFieldValueMoneyData.h"
 #import "PKItemFieldValueOptionData.h"
 #import "PKAppFieldContactData.h"

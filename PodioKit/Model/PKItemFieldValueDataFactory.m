@@ -9,6 +9,7 @@
 #import "PKItemFieldValueDataFactory.h"
 #import "PKItemFieldValueContactData.h"
 #import "PKItemFieldValueItemData.h"
+#import "PKItemFieldValueLocationData.h"
 #import "PKItemFieldValueMoneyData.h"
 #import "PKItemFieldValueDateData.h"
 #import "PKFileData.h"
@@ -29,6 +30,9 @@
       break; 
     case PKAppFieldTypeApp:
       data = [PKItemFieldValueItemData dataFromDictionary:dict];
+      break;
+    case PKAppFieldTypeLocation:
+      data = [PKItemFieldValueLocationData dataFromDictionary:dict];
       break;
     case PKAppFieldTypeMoney:
       data = [PKItemFieldValueMoneyData dataFromDictionary:dict];
@@ -60,7 +64,6 @@
     }
     case PKAppFieldTypeText:
     case PKAppFieldTypeDuration:
-    case PKAppFieldTypeLocation:
     case PKAppFieldTypeProgress:
       data = [dict pk_objectForKey:@"value"];
       break;

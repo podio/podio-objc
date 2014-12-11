@@ -11,6 +11,8 @@
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
 		18999E0F1948445000AE50E1 /* PKCalendarAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 18999E0D1948445000AE50E1 /* PKCalendarAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18999E101948445000AE50E1 /* PKCalendarAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999E0E1948445000AE50E1 /* PKCalendarAPI.m */; };
+		18D110441A39AA0300DFE7CE /* PKItemFieldValueLocationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D110421A39AA0300DFE7CE /* PKItemFieldValueLocationData.h */; };
+		18D110451A39AA0300DFE7CE /* PKItemFieldValueLocationData.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D110431A39AA0300DFE7CE /* PKItemFieldValueLocationData.m */; };
 		5008559119D2C326001EADA1 /* PKDateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5008559019D2C326001EADA1 /* PKDateTests.m */; };
 		5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */ = {isa = PBXBuildFile; fileRef = 5009E23D1667C8040018EC75 /* PKAPIClient.h */; };
 		5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 5009E23E1667C8040018EC75 /* PKAPIClient.m */; };
@@ -556,6 +558,8 @@
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
 		18999E0D1948445000AE50E1 /* PKCalendarAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCalendarAPI.h; sourceTree = "<group>"; };
 		18999E0E1948445000AE50E1 /* PKCalendarAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCalendarAPI.m; sourceTree = "<group>"; };
+		18D110421A39AA0300DFE7CE /* PKItemFieldValueLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueLocationData.h; sourceTree = "<group>"; };
+		18D110431A39AA0300DFE7CE /* PKItemFieldValueLocationData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueLocationData.m; sourceTree = "<group>"; };
 		38DF9FDD90C74F8C9C937104 /* libPods-demoapp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demoapp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5008559019D2C326001EADA1 /* PKDateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKDateTests.m; sourceTree = "<group>"; };
 		5009E23D1667C8040018EC75 /* PKAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAPIClient.h; sourceTree = "<group>"; };
@@ -1122,6 +1126,8 @@
 				5030C04F1435E76300027F07 /* PKItemFieldValueDateData.m */,
 				5030C0501435E76300027F07 /* PKItemFieldValueEmbedData.h */,
 				5030C0511435E76300027F07 /* PKItemFieldValueEmbedData.m */,
+				18D110421A39AA0300DFE7CE /* PKItemFieldValueLocationData.h */,
+				18D110431A39AA0300DFE7CE /* PKItemFieldValueLocationData.m */,
 				5030C0561435E76300027F07 /* PKItemFieldValueMoneyData.h */,
 				5030C0571435E76300027F07 /* PKItemFieldValueMoneyData.m */,
 				5030C0581435E76300027F07 /* PKItemFieldValueOptionData.h */,
@@ -1684,6 +1690,7 @@
 				501FDEDD1548095E002B6413 /* PKItemParticipantsData.h in Headers */,
 				5048937A15400A0400022E6C /* PKAppFieldDataFactory.h in Headers */,
 				50B2A40C15666EFB00DC6C65 /* PKViewAPI.h in Headers */,
+				18D110441A39AA0300DFE7CE /* PKItemFieldValueLocationData.h in Headers */,
 				507E009E15B57F0B00FA66C9 /* PKEmbedAPI.h in Headers */,
 				5009E23F1667C8040018EC75 /* PKAPIClient.h in Headers */,
 				50D681831668955C008AEA0A /* PKHTTPRequestOperation.h in Headers */,
@@ -1967,6 +1974,7 @@
 				5030C0CD1435E92800027F07 /* PKStreamDataFactory.m in Sources */,
 				501BF17F14386AFE009764A3 /* PKFileData.m in Sources */,
 				50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */,
+				18D110451A39AA0300DFE7CE /* PKItemFieldValueLocationData.m in Sources */,
 				50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
 				5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
 				5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
