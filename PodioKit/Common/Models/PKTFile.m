@@ -8,6 +8,7 @@
 
 #import "PKTFile.h"
 #import "PKTFilesAPI.h"
+#import "NSURL+PKTImageURL.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTFile
@@ -79,6 +80,10 @@
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
   return task;
+}
+
+- (NSURL *)downloadURLForImageSize:(PKTImageSize)imageSize {
+  return [self.link pkt_imageURLForSize:imageSize];
 }
 
 @end

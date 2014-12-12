@@ -32,4 +32,6 @@
 
 - (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath;
 
+- (NSURL *)downloadURLForImageSize:(PKTImageSize)imageSize;
+
 @end
