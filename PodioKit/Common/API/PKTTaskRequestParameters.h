@@ -29,7 +29,7 @@ typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterGrouping) {
 };
 
 typedef NS_ENUM(NSUInteger, PKTTaskRequestParameterCompletedOn) {
-  PKTTaskRequestParameterCompletedOnNone,
+  PKTTaskRequestParameterCompletedOnDefault,
   PKTTaskRequestParameterCompletedOnToday,
   PKTTaskRequestParameterCompletedOn1Day,
   PKTTaskRequestParameterCompletedOn2Days,

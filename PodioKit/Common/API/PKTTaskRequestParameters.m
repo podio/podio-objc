@@ -141,7 +141,7 @@
   }
   
   // Completed on
-  if (self.completedOn != PKTTaskRequestParameterCompletedOnNone) {
+  if (self.completedOn != PKTTaskRequestParameterCompletedOnDefault) {
     params[@"completed_on"] = [[self class] completedOnMap][@(self.completedOn)];
   }
   
