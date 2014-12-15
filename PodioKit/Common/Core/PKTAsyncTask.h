@@ -111,7 +111,7 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
  *
  *  @param thenBlock The block to be executed right before the receiver completes.
  *
- *  @return A new task that will complete when the receiver completes, after executing the thenBlock.
+ *  @return A new task that will complete when the receiver completes, but after executing the thenBlock.
  */
 - (instancetype)then:(PKTAsyncTaskThenBlock)thenBlock;
 

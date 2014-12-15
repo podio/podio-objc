@@ -17,11 +17,38 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
 
 @interface PKTClient : NSObject
 
+/**
+ *  The current API key.
+ */
 @property (nonatomic, copy, readonly) NSString *apiKey;
+
+/**
+ *  The current API secret.
+ */
 @property (nonatomic, copy, readonly) NSString *apiSecret;
+
+/**
+ *  The HTTP client responsible for creating HTTP request.
+ */
 @property (nonatomic, strong, readonly) PKTHTTPClient *HTTPClient;
+
+/**
+ *  The current OAuth2 token used by the client. When not nil, the client is considered to be authenticated.
+ */
 @property (nonatomic, strong, readwrite) PKTOAuth2Token *oauthToken;
+
+/**
+ *  A boolean indicating whether the client is currently authenticated, i.e. the oauthToken is non-nil.
+ */
 @property (nonatomic, assign, readonly) BOOL isAuthenticated;
+
+/**
+ *  An optional token store. A token store is an abstraction on top of any kind of storage to which the OAuth token
+ *  can be persisted, e.g. the Keychain. A token store implementation for the iOS and OS X keychain is provided 
+ *  by the PKTKeychainTokenStore class.
+ *
+ *  @see PKTKeychainTokenStore
+ */
 @property (nonatomic, strong) id<PKTTokenStore> tokenStore;
 
 /**

@@ -83,6 +83,8 @@
 }
 
 - (NSURL *)downloadURLForImageSize:(PKTImageSize)imageSize {
+  NSParameterAssert(self.link);
+  
   return [self.link pkt_imageURLForSize:imageSize];
 }
 
