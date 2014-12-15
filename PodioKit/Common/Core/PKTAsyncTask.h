@@ -135,7 +135,7 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
  *
  *  @return A new task.
  */
-- (instancetype)flattenMap:(PKTAsyncTask *(^)(id result))block;
+- (instancetype)pipe:(PKTAsyncTask *(^)(id result))block;
 
 @end
 

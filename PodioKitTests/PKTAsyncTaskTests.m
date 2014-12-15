@@ -162,12 +162,12 @@
   expect(mergedError).willNot.beNil();
 }
 
-- (void)testFlattenMap {
+- (void)testPipe {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@3];
   }];
   
-  PKTAsyncTask *pipedTask = [task flattenMap:^PKTAsyncTask *(NSNumber *num) {
+  PKTAsyncTask *pipedTask = [task pipe:^PKTAsyncTask *(NSNumber *num) {
     return [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
       NSUInteger number =  [num unsignedIntegerValue];
       [resolver succeedWithResult:@(number * number)];
@@ -182,12 +182,12 @@
   expect(pipedTaskValue).will.equal(@9);
 }
 
-- (void)testCancellingFlattenMappedTaskShouldCancelOriginalTasks {
+- (void)testCancellingPipedTaskShouldCancelOriginalTasks {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@3];
   }];
   
-  PKTAsyncTask *pipedTask = [task flattenMap:^PKTAsyncTask *(NSNumber *num) {
+  PKTAsyncTask *pipedTask = [task pipe:^PKTAsyncTask *(NSNumber *num) {
     return [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
       NSUInteger number =  [num unsignedIntegerValue];
       [resolver succeedWithResult:@(number * number)];

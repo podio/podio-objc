@@ -167,7 +167,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   }];
 }
 
-- (instancetype)flattenMap:(PKTAsyncTask *(^)(id result))block {
+- (instancetype)pipe:(PKTAsyncTask *(^)(id result))block {
   NSParameterAssert(block);
   
   return [[self class] taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {

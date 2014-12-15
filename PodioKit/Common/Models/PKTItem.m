@@ -248,7 +248,7 @@
   PKTClient *client = [PKTClient currentClient];
   
   [client performBlock:^{
-    task = [[PKTApp fetchAppWithID:self.appID] flattenMap:^PKTAsyncTask *(PKTApp *app) {
+    task = [[PKTApp fetchAppWithID:self.appID] pipe:^PKTAsyncTask *(PKTApp *app) {
       __block PKTAsyncTask *saveTask = nil;
 
       NSArray *itemFields = [self allFieldsToSaveForApp:app];
