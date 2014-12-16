@@ -3,6 +3,19 @@ layout: default
 ---
 # Release Notes
 
+## [2.0](https://github.com/podio/podio-objc/releases/tag/2.0.0)
+* New `PKTPushClient` for subscribing to real-time updates. This is included as a subpod of the main PodioKit pod, and needs to be explicitly included in your Podfile.
+* `PKTDatastore` for optionally storing data locally.
+* Optional support for SSL pinning of .cer files included in the bundle.
+* Lat/long support for item location fields
+* Conversations API area support.
+* Notifications API area support.
+* Search API area support.
+* Reference search support.
+* New request to create and embed.
+* New request for adding an app to a workspace.
+* Better documentation of core classes.
+
 ## [Beta 6](https://github.com/podio/podio-objc/releases/tag/2.0.0-beta6)
 * Fixes issue where the OAuth token was not refreshed properly due a bug introduced with the introduction of `PKTAsyncTask`.
 * Added `then:` combinator method to `PKTAsyncTask` to add ordered side effects to the completion of a task.
