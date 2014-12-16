@@ -67,15 +67,14 @@ NSData *data = ...; // Some image data
 }];
 {% endhighlight %}
 
-You can tell we have to handle the error case twice. With a task based approach, we can instead use the `flattenMap:` combinator method that generated a new task based on the result of the first one once it completes:
-
+You can see that we have to handle the error case twice. With a task based approach, we can instead use the `pipe:` combinator method which takes a block that generates a new task based on the result of the first task once completed:
 
 {% highlight objective-c %}
 NSData *data = ...; // Some image data
 
 PKTAsyncTask *uploadTask = [PKTFile uploadWithData:data fileName:@"image.jpg"];
 
-PKTASyncTask *task = [uploadTask flattenMap:^PKTAsyncTask *(PKTFile *file) {
+PKTASyncTask *task = [uploadTask pipe:^PKTAsyncTask *(PKTFile *file) {
   return [file attachWithReferenceID:1234 referenceType:PKTReferenceTypeItem];
 }];
 
@@ -89,4 +88,4 @@ PKTASyncTask *task = [uploadTask flattenMap:^PKTAsyncTask *(PKTFile *file) {
 
 {% endhighlight %}
 
-Here, we only have to handle the error case once and we do not end up with deeply nested code blocks. There are also other useful combinator methods such as `when:` and `map:` available.
+Here, we only have to handle the error case once and we do not end up with deeply nested code blocks. There are also other useful combinator methods such as `when:`, `then:` and `map:` available.
