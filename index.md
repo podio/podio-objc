@@ -17,17 +17,17 @@ First, make sure your have integrated CocoaPods with your project. If you have n
 
 Once CocoaPods is installed, add the following line to your `Podfile` to use the latest stable release:
 
-```ruby
+{% highlight ruby %}
 pod 'PodioKit', '~> 2.0'
-```
+{% endhighlight %}
 
 Then run `pod install` from the command line.
 
 After that you are ready to start using PodioKit by importing the main header file where you would like to use it in your project:
 
-```objective-c
+{% highlight objective-c %}
 #import <PodioKit/PodioKit.h>
-```
+{% endhighlight %}
 
 Alternatively, you can use the PodioKit source directly by copying the source files directly into your Xcode project.
 
@@ -39,8 +39,8 @@ Before you can talk to the Podio API, you need to generate a new API key for you
 
 Once you have a key and secret, you need to configure PodioKit to use it. To do so, add the following code to your `application:didFinishLaunching:options:` method in your app delegate:
 
-```objective-c
+{% highlight objective-c %}
 [PodioKit setupWithAPIKey:@"my-api-key" secret:@"my-secret"];
-```
+{% endhighlight %}
 	
 That's it! You are now good to start using PodioKit.
