@@ -13,6 +13,7 @@
 #import "PKReferenceProfileData.h"
 #import "PKReferenceItemData.h"
 #import "PKReferenceMessageData.h"
+#import "PKReferenceVoteData.h"
 #import "PKReferenceRatingData.h"
 #import "PKReferenceTaskData.h"
 #import "PKReferenceCommentData.h"
@@ -38,6 +39,9 @@
       break;
     case PKReferenceTypeMessage:
       data = [PKReferenceMessageData dataFromDictionary:dict];
+      break;
+    case PKReferenceTypeVote:
+      data = [PKReferenceVoteData dataFromDictionary:dict];
       break;
     case PKReferenceTypeRating:
       data = [PKReferenceRatingData dataFromDictionary:dict];

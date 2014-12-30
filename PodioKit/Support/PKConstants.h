@@ -418,13 +418,23 @@ static NSString * const kPKActionTypeAppActivated = @"app_activated";
 static NSString * const kPKActionTypeAppDeleted = @"app_deleted";
 static NSString * const kPKActionTypeMemberJoined = @"member_joined";
 
+#pragma mark - Vote
+
+typedef enum {
+  PKVoteTypeNone = 0,
+  PKVoteTypeAnswer,
+  PKVoteTypeFivestar,
+} PKVoteType;
+
+static NSString * const kPKVoteTypeAnswer = @"answer";
+static NSString * const kPKVoteTypeFivestar = @"fivestar";
+
 #pragma mark - Rating
 
 typedef enum {
   PKRatingTypeNone = 0,
   PKRatingTypeApproved,
   PKRatingTypeRSVP,
-  PKRatingTypeFivestar,
   PKRatingTypeYesNo,
   PKRatingTypeThumbs,
   PKRatingTypeLike,
@@ -432,7 +442,6 @@ typedef enum {
 
 static NSString * const kPKRatingTypeApproved = @"approved";
 static NSString * const kPKRatingTypeRSVP = @"rsvp";
-static NSString * const kPKRatingTypeFivestar = @"fivestar";
 static NSString * const kPKRatingTypeYesNo = @"yesno";
 static NSString * const kPKRatingTypeThumbs = @"thumbs";
 static NSString * const kPKRatingTypeLike = @"like";
@@ -791,6 +800,9 @@ static NSString * const kPKImageSizeIOSLarge = @"ios_large"; // 200x200
 
 // Action
 + (PKActionType)actionTypeForString:(NSString *)string;
+
+// Vote
++ (PKVoteType)voteTypeForString:(NSString *)string;
 
 // Rating
 + (PKRatingType)ratingTypeForString:(NSString *)string;

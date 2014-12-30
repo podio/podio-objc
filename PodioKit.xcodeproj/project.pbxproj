@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
+		1840390B1A52D2B90096B420 /* PKReferenceVoteData.h in Headers */ = {isa = PBXBuildFile; fileRef = 184039091A52D2B90096B420 /* PKReferenceVoteData.h */; };
+		1840390C1A52D2B90096B420 /* PKReferenceVoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840390A1A52D2B90096B420 /* PKReferenceVoteData.m */; };
 		18999E0F1948445000AE50E1 /* PKCalendarAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 18999E0D1948445000AE50E1 /* PKCalendarAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		18999E101948445000AE50E1 /* PKCalendarAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 18999E0E1948445000AE50E1 /* PKCalendarAPI.m */; };
 		18D110441A39AA0300DFE7CE /* PKItemFieldValueLocationData.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D110421A39AA0300DFE7CE /* PKItemFieldValueLocationData.h */; };
@@ -556,6 +558,8 @@
 
 /* Begin PBXFileReference section */
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
+		184039091A52D2B90096B420 /* PKReferenceVoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceVoteData.h; sourceTree = "<group>"; };
+		1840390A1A52D2B90096B420 /* PKReferenceVoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceVoteData.m; sourceTree = "<group>"; };
 		18999E0D1948445000AE50E1 /* PKCalendarAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCalendarAPI.h; sourceTree = "<group>"; };
 		18999E0E1948445000AE50E1 /* PKCalendarAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKCalendarAPI.m; sourceTree = "<group>"; };
 		18D110421A39AA0300DFE7CE /* PKItemFieldValueLocationData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueLocationData.h; sourceTree = "<group>"; };
@@ -1076,6 +1080,8 @@
 				5030C0311435E76300027F07 /* PKReferenceCommentData.m */,
 				5030C0361435E76300027F07 /* PKReferenceRatingData.h */,
 				5030C0371435E76300027F07 /* PKReferenceRatingData.m */,
+				184039091A52D2B90096B420 /* PKReferenceVoteData.h */,
+				1840390A1A52D2B90096B420 /* PKReferenceVoteData.m */,
 				50B529F5148FC06800E05852 /* PKReferenceAlertData.h */,
 				50B529F6148FC06800E05852 /* PKReferenceAlertData.m */,
 				500EA927153F20830049F224 /* PKReferenceBatchData.h */,
@@ -1638,6 +1644,7 @@
 				5032BAB8144489CB00B7F7C7 /* PKBaseObject.h in Headers */,
 				5032BAD6144491A500B7F7C7 /* PKTaskAPI.h in Headers */,
 				502B5FAE1445729D004F4185 /* PKObjectMapping.h in Headers */,
+				1840390B1A52D2B90096B420 /* PKReferenceVoteData.h in Headers */,
 				5021CD2C14458FAE00A7013D /* PKDefaultObjectRepository.h in Headers */,
 				50F4FBC81448892700317E62 /* NSDictionary+URL.h in Headers */,
 				50F4FBCD14488A4800317E62 /* NSString+URL.h in Headers */,
@@ -1961,6 +1968,7 @@
 				5030C0811435E76300027F07 /* PKReferenceRatingData.m in Sources */,
 				5030C0871435E76300027F07 /* PKReferenceTaskActionData.m in Sources */,
 				5030C08A1435E76300027F07 /* PKReferenceTaskData.m in Sources */,
+				1840390C1A52D2B90096B420 /* PKReferenceVoteData.m in Sources */,
 				5030C0901435E76300027F07 /* PKStreamItemData.m in Sources */,
 				5030C0931435E76300027F07 /* PKStreamStatusData.m in Sources */,
 				5030C0961435E76300027F07 /* PKStreamTaskData.m in Sources */,

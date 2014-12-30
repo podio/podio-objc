@@ -252,6 +252,19 @@
   return type;
 }
 
+// Vote
++ (PKVoteType)voteTypeForString:(NSString *)string {
+  PKVoteType type = PKVoteTypeNone;
+  
+  if ([string isEqualToString:kPKVoteTypeAnswer]) {
+    type = PKVoteTypeAnswer;
+  } else if ([string isEqualToString:kPKVoteTypeFivestar]) {
+    type = PKVoteTypeFivestar;
+  }
+  
+  return type;
+}
+
 // Rating
 + (PKRatingType)ratingTypeForString:(NSString *)string {
   PKRatingType type = PKRatingTypeNone;
@@ -262,8 +275,6 @@
     type = PKRatingTypeApproved;
   } else if ([string isEqualToString:kPKRatingTypeRSVP]) {
     type = PKRatingTypeRSVP;
-  } else if ([string isEqualToString:kPKRatingTypeFivestar]) {
-    type = PKRatingTypeFivestar;
   } else if ([string isEqualToString:kPKRatingTypeYesNo]) {
     type = PKRatingTypeYesNo;
   } else if ([string isEqualToString:kPKRatingTypeThumbs]) {
@@ -405,6 +416,8 @@
     type = PKReferenceTypeAlert;
   } else if ([string isEqualToString:kPKReferenceTypeItemRevision]) {
     type = PKReferenceTypeItemRevision;
+  } else if ([string isEqualToString:kPKReferenceTypeVote]) {
+    type = PKReferenceTypeVote;
   } else if ([string isEqualToString:kPKReferenceTypeRating]) {
     type = PKReferenceTypeRating;
   } else if ([string isEqualToString:kPKReferenceTypeTask]) {
