@@ -366,6 +366,7 @@ typedef enum {
   PKStreamActivityTypeNone = 0,
   PKStreamActivityTypeComment,
   PKStreamActivityTypeFile,
+  PKStreamActivityTypeVote,
   PKStreamActivityTypeRating,
   PKStreamActivityTypeCreation,
   PKStreamActivityTypeUpdate,
@@ -378,6 +379,7 @@ typedef enum {
 
 static NSString * const kPKStreamActivityTypeComment = @"comment";
 static NSString * const kPKStreamActivityTypeFile = @"file";
+static NSString * const kPKStreamActivityTypeVote = @"vote";
 static NSString * const kPKStreamActivityTypeRating = @"rating";
 static NSString * const kPKStreamActivityTypeCreation = @"creation";
 static NSString * const kPKStreamActivityTypeUpdate = @"update";
@@ -462,6 +464,7 @@ typedef enum {
   PKReferenceTypeSpaceMember,
   PKReferenceTypeAlert,
   PKReferenceTypeItemRevision,
+  PKReferenceTypeVote,
   PKReferenceTypeRating,
   PKReferenceTypeTask,
   PKReferenceTypeTaskAction,
@@ -512,6 +515,7 @@ static NSString * const kPKReferenceTypeStatus = @"status";
 static NSString * const kPKReferenceTypeSpaceMember = @"space_member";
 static NSString * const kPKReferenceTypeAlert = @"alert";
 static NSString * const kPKReferenceTypeItemRevision = @"item_revision";
+static NSString * const kPKReferenceTypeVote = @"vote";
 static NSString * const kPKReferenceTypeRating = @"rating";
 static NSString * const kPKReferenceTypeTask = @"task";
 static NSString * const kPKReferenceTypeTaskAction = @"task_action";

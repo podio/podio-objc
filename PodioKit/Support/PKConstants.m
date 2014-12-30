@@ -198,6 +198,8 @@
     type = PKStreamActivityTypeComment;
   } else if ([string isEqualToString:kPKStreamActivityTypeFile]) {
     type = PKStreamActivityTypeFile;
+  } else if ([string isEqualToString:kPKStreamActivityTypeVote]) {
+    type = PKStreamActivityTypeVote;
   } else if ([string isEqualToString:kPKStreamActivityTypeRating]) {
     type = PKStreamActivityTypeRating;
   } else if ([string isEqualToString:kPKStreamActivityTypeCreation]) {
