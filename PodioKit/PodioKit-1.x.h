@@ -98,6 +98,7 @@
 #import "PKReferenceItemData.h"
 #import "PKReferenceMessageData.h"
 #import "PKReferenceProfileData.h"
+#import "PKReferenceVoteData.h"
 #import "PKReferenceRatingData.h"
 #import "PKReferenceSpaceData.h"
 #import "PKReferenceStatusData.h"

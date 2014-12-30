@@ -10,4 +10,9 @@
 
 @interface PKReferenceVoteData : PKObjectData
 
+@property (nonatomic) NSInteger voteId;
+@property (nonatomic) PKVoteType type;
+@property (nonatomic, copy) id value;
+
+
 @end
