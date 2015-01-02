@@ -66,7 +66,7 @@
         }
         @catch (NSException *exception) {
           if ([exception.name isEqualToString:@"NSObjectInaccessibleException"]) {
-            [context deleteObject:managedObject];
+            [context refreshObject:managedObject mergeChanges:NO];
           }
         }
       }
