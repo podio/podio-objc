@@ -61,7 +61,14 @@
     [updatedObjectIds enumerateObjectsUsingBlock:^(id objectID, BOOL *stop) {
       id managedObject = [context objectRegisteredForID:objectID];
       if (managedObject) {
-        [context refreshObject:managedObject mergeChanges:YES];
+        @try {
+          [context refreshObject:managedObject mergeChanges:YES];
+        }
+        @catch (NSException *exception) {
+          if ([exception.name isEqualToString:@"NSObjectInaccessibleException"]) {
+            [context deleteObject:managedObject];
+          }
+        }
       }
     }];
     
