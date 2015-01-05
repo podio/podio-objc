@@ -66,6 +66,8 @@
         }
         @catch (NSException *exception) {
           if ([exception.name isEqualToString:@"NSObjectInaccessibleException"]) {
+            // Catching this error prevents the app from crashing if an object's underlying data has been deleted.
+            // The remedy, according to Apple, is to discard the object.
             [context refreshObject:managedObject mergeChanges:NO];
           }
         }
