@@ -37,6 +37,8 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 // on (in a completion handler for example), the task does as well.
 @property (strong) PKTAsyncTask *task;
 
+- (instancetype)initWithTask:(PKTAsyncTask *)task;
+
 @end
 
 @implementation PKTAsyncTask {
@@ -44,7 +46,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   dispatch_once_t _resolvedOnceToken;
 }
 
-- (instancetype)initWithCancelBlock:(PKTAsyncTaskCancelBlock)cancelBlock {
+- (instancetype)init {
   self = [super init];
   if (!self) return nil;
   
@@ -53,19 +55,24 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   _successCallbacks = [NSMutableArray new];
   _errorCallbacks = [NSMutableArray new];
   _stateLock = [NSLock new];
-  _cancelBlock = [cancelBlock copy];
   
   return self;
 }
 
 + (instancetype)taskForBlock:(PKTAsyncTaskResolveBlock)block {
-  PKTAsyncTaskResolver *resolver = [PKTAsyncTaskResolver new];
-  PKTAsyncTaskCancelBlock cancelBlock = block(resolver);
-  
-  PKTAsyncTask *task = [[self alloc] initWithCancelBlock:cancelBlock];
-  resolver.task = task;
+  PKTAsyncTask *task = [self new];
+  PKTAsyncTaskResolver *resolver = [[PKTAsyncTaskResolver alloc] initWithTask:task];
+  task.cancelBlock = block(resolver);
   
   return task;
+}
+
++ (instancetype)taskWithResult:(id)result {
+  return [self taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    [resolver succeedWithResult:result];
+    
+    return nil;
+  }];
 }
 
 + (instancetype)when:(NSArray *)tasks {
@@ -365,6 +372,15 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 @end
 
 @implementation PKTAsyncTaskResolver
+
+- (instancetype)initWithTask:(PKTAsyncTask *)task {
+  self = [super init];
+  if (!self) return nil;
+  
+  _task = task;
+  
+  return self;
+}
 
 - (void)succeedWithResult:(id)result {
   [self.task succeedWithResult:result];
