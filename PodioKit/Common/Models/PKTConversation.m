@@ -77,7 +77,11 @@
 }
 
 + (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs {
-  PKTRequest *request = [PKTConversationsAPI requestToCreateConversationWithText:text subject:subject participantUserIDs:userIDs];
+  return [self createConversationWithText:text subject:subject participantUserIDs:userIDs fileIDs:nil];
+}
+
++ (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs fileIDs:(NSArray *)fileIDs {
+  PKTRequest *request = [PKTConversationsAPI requestToCreateConversationWithText:text subject:subject participantUserIDs:userIDs fileIDs:fileIDs];
   
   return [[PKTClient currentClient] performRequest:request];
 }

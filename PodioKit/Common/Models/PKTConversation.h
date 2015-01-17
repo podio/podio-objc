@@ -27,6 +27,7 @@
 + (PKTAsyncTask *)searchWithText:(NSString *)text includeParticipants:(BOOL)includeParticipants offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 + (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs;
++ (PKTAsyncTask *)createConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs fileIDs:(NSArray *)fileIDs;
 
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedID:(NSUInteger)embedID;
 - (PKTAsyncTask *)replyWithText:(NSString *)text files:(NSArray *)files embedURL:(NSURL *)embedURL;

@@ -74,6 +74,10 @@
 }
 
 + (PKTRequest *)requestToCreateConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs {
+  return [self requestToCreateConversationWithText:text subject:subject participantUserIDs:userIDs fileIDs:nil];
+}
+
++ (PKTRequest *)requestToCreateConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs fileIDs:(NSArray *)fileIDs {
   NSParameterAssert(text);
   NSParameterAssert([userIDs count] > 0);
   
@@ -83,6 +87,10 @@
   
   if (subject) {
     params[@"subject"] = subject;
+  }
+  
+  if ([fileIDs count] > 0) {
+    params[@"file_ids"] = fileIDs;
   }
   
   return [PKTRequest POSTRequestWithPath:@"/conversation/v2/" parameters:params];

@@ -22,6 +22,8 @@
 
 + (PKTRequest *)requestToCreateConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs;
 
++ (PKTRequest *)requestToCreateConversationWithText:(NSString *)text subject:(NSString *)subject participantUserIDs:(NSArray *)userIDs fileIDs:(NSArray *)fileIDs;
+
 + (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedID:(NSUInteger)embedID;
 
 + (PKTRequest *)requestToReplyToConversationWithID:(NSUInteger)conversationID text:(NSString *)text fileIDs:(NSArray *)fileIDs embedURL:(NSURL *)embedURL;
