@@ -53,6 +53,19 @@
   return task;
 }
 
++ (PKTAsyncTask *)uploadWithPath:(NSString *)filePath fileName:(NSString *)fileName {
+  PKTRequest *request = [PKTFilesAPI requestToUploadFileWithPath:filePath fileName:fileName];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class klass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [[klass alloc] initWithDictionary:response.body];
+  }];
+  
+  return task;
+}
+
 - (PKTAsyncTask *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType {
   PKTRequest *request = [PKTFilesAPI requestToAttachFileWithID:self.fileID referenceID:referenceID referenceType:referenceType];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];

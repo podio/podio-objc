@@ -26,6 +26,8 @@
 
 + (PKTAsyncTask *)uploadWithData:(NSData *)data fileName:(NSString *)fileName;
 
++ (PKTAsyncTask *)uploadWithPath:(NSString *)filePath fileName:(NSString *)fileName;
+
 - (PKTAsyncTask *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType;
 
 - (PKTAsyncTask *)download;
