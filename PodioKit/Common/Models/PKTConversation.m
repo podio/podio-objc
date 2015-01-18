@@ -11,8 +11,15 @@
 #import "PKTPushCredential.h"
 #import "PKTProfile.h"
 #import "PKTConversationsAPI.h"
+#import "PKTMacros.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSArray+PKTAdditions.h"
+
+@interface PKTConversation ()
+
+@property (nonatomic) BOOL unread;
+
+@end
 
 @implementation PKTConversation
 
@@ -116,14 +123,30 @@
   PKTRequest *request = [PKTConversationsAPI requestToMarkConversationWithIDAsRead:self.conversationID];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
-  return task;
+  BOOL previousValue = self.unread;
+  self.unread = NO;
+  
+  PKT_WEAK_SELF weakSelf = self;
+  return [task then:^(id result, NSError *error) {
+    if (error) {
+      weakSelf.unread = previousValue;
+    }
+  }];
 }
 
 - (PKTAsyncTask *)markAsUnread {
   PKTRequest *request = [PKTConversationsAPI requestToMarkConversationWithIDAsUnread:self.conversationID];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
-  return task;
+  BOOL previousValue = self.unread;
+  self.unread = YES;
+  
+  PKT_WEAK_SELF weakSelf = self;
+  return [task then:^(id result, NSError *error) {
+    if (error) {
+      weakSelf.unread = previousValue;
+    }
+  }];
 }
 
 @end
