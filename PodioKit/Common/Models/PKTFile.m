@@ -73,10 +73,10 @@
   return task;
 }
 
-- (PKTAsyncTask *)download {
-  NSParameterAssert(self.link);
++ (PKTAsyncTask *)downloadFileWithURL:(NSURL *)fileURL {
+  NSParameterAssert(fileURL);
   
-  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:fileURL];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
   PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
@@ -86,13 +86,21 @@
   return task;
 }
 
-- (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath {
-  NSParameterAssert(self.link);
++ (PKTAsyncTask *)downloadFileWithURL:(NSURL *)fileURL toFileWithPath:(NSString *)filePath {
+  NSParameterAssert(fileURL);
   
-  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:self.link toLocalFileWithPath:filePath];
+  PKTRequest *request = [PKTFilesAPI requestToDownloadFileWithURL:fileURL toLocalFileWithPath:filePath];
   PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
   
   return task;
+}
+
+- (PKTAsyncTask *)download {
+  return [[self class] downloadFileWithURL:self.link];
+}
+
+- (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath {
+  return [[self class] downloadFileWithURL:self.link toFileWithPath:filePath];
 }
 
 - (NSURL *)downloadURLForImageSize:(PKTImageSize)imageSize {

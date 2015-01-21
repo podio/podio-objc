@@ -30,6 +30,10 @@
 
 - (PKTAsyncTask *)attachWithReferenceID:(NSUInteger)referenceID referenceType:(PKTReferenceType)referenceType;
 
++ (PKTAsyncTask *)downloadFileWithURL:(NSURL *)fileURL;
+
++ (PKTAsyncTask *)downloadFileWithURL:(NSURL *)fileURL toFileWithPath:(NSString *)filePath;
+
 - (PKTAsyncTask *)download;
 
 - (PKTAsyncTask *)downloadToFileWithPath:(NSString *)filePath;
