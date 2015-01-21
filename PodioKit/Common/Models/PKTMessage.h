@@ -12,5 +12,6 @@
 
 @property (nonatomic, readonly) NSUInteger messageID;
 @property (nonatomic, copy, readonly) NSString *text;
+@property (nonatomic, copy, readonly) NSArray *files;
 
 @end

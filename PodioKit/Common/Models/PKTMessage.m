@@ -7,6 +7,8 @@
 //
 
 #import "PKTMessage.h"
+#import "PKTFile.h"
+#import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTMessage
 
@@ -16,6 +18,10 @@
   return @{
            @"messageID": @"message_id"
            };
+}
+
++ (NSValueTransformer *)filesValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
 }
 
 @end
