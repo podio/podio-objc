@@ -142,6 +142,8 @@ static NSUInteger const kBoundaryLength = 20;
   
   if (request.fileData.data) {
     [multiPartData appendFileData:request.fileData.data fileName:request.fileData.fileName mimeType:nil name:request.fileData.name];
+  } else if (request.fileData.filePath) {
+    [multiPartData appendContentsOfFileAtPath:request.fileData.filePath name:request.fileData.name];
   }
   
   if ([request.parameters count] > 0) {
@@ -149,7 +151,7 @@ static NSUInteger const kBoundaryLength = 20;
   }
   
   [multiPartData finalizeData];
-  
+
   return multiPartData;
 }
 

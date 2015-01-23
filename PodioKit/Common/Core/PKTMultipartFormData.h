@@ -19,6 +19,8 @@
 
 - (void)appendFileData:(NSData *)data fileName:(NSString *)fileName mimeType:(NSString *)mimeType name:(NSString *)name;
 
+- (void)appendContentsOfFileAtPath:(NSString *)filePath name:(NSString *)name;
+
 - (void)appendFormDataParameters:(NSDictionary *)parameters;
 
 - (void)finalizeData;

@@ -123,6 +123,14 @@
   [self appendData:data withHeaders:headers];
 }
 
+- (void)appendContentsOfFileAtPath:(NSString *)filePath name:(NSString *)name {
+  NSParameterAssert(filePath);
+  
+  NSData *data = [[NSData alloc] initWithContentsOfFile:filePath];
+  NSString *fileName = filePath.lastPathComponent;
+  [self appendFileData:data fileName:fileName mimeType:nil name:name];
+}
+
 - (void)appendFormDataParameters:(NSDictionary *)parameters {
   NSDictionary *queryParameters = [parameters pkt_queryParametersPairs];
   
