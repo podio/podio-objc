@@ -472,4 +472,18 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
   }
 }
 
++ (BOOL)automaticallyNotifiesObserversForKey:(NSString *)theKey {
+  BOOL automatic = NO;
+  
+  NSString *isAuthenticatedKey = NSStringFromSelector(@selector(isAuthenticated));
+  if ([theKey isEqualToString:isAuthenticatedKey]) {
+    // The "isAuthentication" KVO event is managed manually using willChangeValueForKey:/didChangeValueForKey:
+    automatic = NO;
+  } else {
+    automatic = [super automaticallyNotifiesObserversForKey:theKey];
+  }
+  
+  return automatic;
+}
+
 @end
