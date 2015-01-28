@@ -25,7 +25,10 @@
   self = [super init];
   if (!self) return nil;
   
-  NSParameterAssert([modelClass isSubclassOfClass:[PKTModel class]]);
+  // NOTE: Workaround for incompatability with Swift, where -isSubclassOfClass return
+  // NO when using [PKTModel class] directly.
+  Class expectedSuperClass = NSClassFromString(NSStringFromClass([PKTModel class]));
+  NSParameterAssert([modelClass isSubclassOfClass:expectedSuperClass]);
   _modelClass = modelClass;
   
   return self;
