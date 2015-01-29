@@ -56,6 +56,15 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
 + (instancetype)taskWithResult:(id)result;
 
 /**
+ *  Creates a task that immediately sends the provided error.
+ *
+ *  @param error The error of the failed task.
+ *
+ *  @return A failed task.
+ */
++ (instancetype)taskWithError:(NSError *)error;
+
+/**
  *  Register a completion block to be called when the task succeeds or fails. This block will be executed on the
  *  main queue, but the execution order of registered blocks are not gauranteed.
  *

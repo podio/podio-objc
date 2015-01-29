@@ -75,6 +75,14 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   }];
 }
 
++ (instancetype)taskWithError:(NSError *)error {
+  return [self taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+    [resolver failWithError:error];
+    
+    return nil;
+  }];
+}
+
 + (instancetype)when:(NSArray *)tasks {
   return [self taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
     NSMutableSet *pendingTasks = [NSMutableSet setWithArray:tasks];
