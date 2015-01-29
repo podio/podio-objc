@@ -31,4 +31,11 @@
   expect(request.parameters[@"fields"]).to.equal(@{@"text" : @"Some text"});
 }
 
+- (void)testRequestForAppByURLLabel {
+  PKTRequest *request = [PKTAppsAPI requestForAppInWorkspaceWithID:123 urlLabel:@"text"];
+  
+  expect(request.path).to.equal(@"/app/123/text");
+  expect(request.method).to.equal(PKTRequestMethodGET);
+}
+
 @end

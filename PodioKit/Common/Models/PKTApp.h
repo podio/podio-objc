@@ -23,6 +23,7 @@
 
 + (PKTAsyncTask *)fetchAppWithID:(NSUInteger)appID;
 + (PKTAsyncTask *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID;
++ (PKTAsyncTask *)fetchAppInWorkspaceWithID:(NSUInteger)spaceID urlLabel:(NSString *)urlLabel;
 
 - (PKTAppField *)fieldWithExternalID:(NSString *)externalID;
 

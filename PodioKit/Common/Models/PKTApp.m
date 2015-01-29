@@ -68,6 +68,19 @@
   return task;
 }
 
++ (PKTAsyncTask *)fetchAppInWorkspaceWithID:(NSUInteger)spaceID urlLabel:(NSString *)urlLabel {
+  PKTRequest *request = [PKTAppsAPI requestForAppInWorkspaceWithID:spaceID urlLabel:urlLabel];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [[objectClass alloc] initWithDictionary:response.body];
+  }];
+  
+  return task;
+}
+
 #pragma mark - Public
 
 - (PKTAppField *)fieldWithExternalID:(NSString *)externalID {

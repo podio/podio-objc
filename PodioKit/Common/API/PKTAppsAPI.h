@@ -13,5 +13,6 @@
 + (PKTRequest *)requestForAppWithID:(NSUInteger)appID;
 + (PKTRequest *)requestForAppsInWorkspaceWithID:(NSUInteger)spaceID;
 + (PKTRequest *)requestToAddAppToWorkspaceWithID:(NSUInteger)spaceID fields:(NSDictionary *)fields;
++ (PKTRequest *)requestForAppInWorkspaceWithID:(NSUInteger)spaceID urlLabel:(NSString *)urlLabel;
 
 @end

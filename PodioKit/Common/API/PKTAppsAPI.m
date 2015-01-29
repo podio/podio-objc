@@ -34,4 +34,12 @@
   return [PKTRequest POSTRequestWithPath:@"/app/" parameters:params];
 }
 
++ (PKTRequest *)requestForAppInWorkspaceWithID:(NSUInteger)spaceID urlLabel:(NSString *)urlLabel {
+  NSParameterAssert(spaceID > 0);
+  NSParameterAssert(urlLabel);
+  
+  NSString *path = PKTRequestPath(@"/app/space/%lu/%@", (unsigned long)spaceID, urlLabel);
+  return [PKTRequest GETRequestWithPath:path parameters:nil];
+}
+
 @end
