@@ -36,4 +36,10 @@
   return [PKTRequest POSTRequestWithPath:@"/space/" parameters:params];
 }
 
++ (PKTRequest *)requestForWorkspaceWithURLString:(NSString *)urlString {
+  NSParameterAssert(urlString);
+  
+  return [PKTRequest GETRequestWithPath:@"/space/url" parameters:@{@"url": urlString}];
+}
+
 @end

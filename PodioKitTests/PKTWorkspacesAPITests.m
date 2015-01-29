@@ -52,4 +52,12 @@
   expect(request.parameters[@"privacy"]).to.equal(@"closed");
 }
 
+- (void)testToGetWorkspaceByURL {
+  PKTRequest *request = [PKTWorkspacesAPI requestForWorkspaceWithURLString:@"https://podio.com/myorg/myspace"];
+  
+  expect(request.path).to.equal(@"/space/url");
+  expect(request.method).to.equal(PKTRequestMethodGET);
+  expect(request.parameters[@"url"]).to.equal(@"https://podio.com/myorg/myspace");
+}
+
 @end

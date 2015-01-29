@@ -34,7 +34,7 @@
 - (void)testRequestForAppByURLLabel {
   PKTRequest *request = [PKTAppsAPI requestForAppInWorkspaceWithID:123 urlLabel:@"text"];
   
-  expect(request.path).to.equal(@"/app/123/text");
+  expect(request.path).to.equal(@"/app/space/123/text");
   expect(request.method).to.equal(PKTRequestMethodGET);
 }
 

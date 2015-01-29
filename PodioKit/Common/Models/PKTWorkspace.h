@@ -27,6 +27,8 @@
 
 + (PKTAsyncTask *)fetchWorkspaceWithID:(NSUInteger)workspaceID;
 
++ (PKTAsyncTask *)fetchWorkspaceWithURLString:(NSString *)urlString;
+
 + (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;
 
 + (PKTAsyncTask *)createOpenWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID;

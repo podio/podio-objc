@@ -15,4 +15,6 @@
 
 + (PKTRequest *)requestToCreateWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organization privacy:(PKTWorkspacePrivacy)privacy;
 
++ (PKTRequest *)requestForWorkspaceWithURLString:(NSString *)urlString;
+
 @end

@@ -64,6 +64,15 @@
   }];
 }
 
++ (PKTAsyncTask *)fetchWorkspaceWithURLString:(NSString *)urlString {
+  PKTRequest *request = [PKTWorkspacesAPI requestForWorkspaceWithURLString:urlString];
+  PKTAsyncTask *task = [[PKTClient currentClient] performRequest:request];
+  
+  return [task map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
+  }];
+}
+
 + (PKTAsyncTask *)createWorkspaceWithName:(NSString *)name organizationID:(NSUInteger)organizationID {
   return [self createWorkspaceWithName:name organizationID:organizationID privacy:PKTWorkspacePrivacyUnknown];
 }
