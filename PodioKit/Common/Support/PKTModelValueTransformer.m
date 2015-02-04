@@ -25,10 +25,9 @@
   self = [super init];
   if (!self) return nil;
   
-  // NOTE: Workaround for incompatability with Swift, where -isSubclassOfClass return
+  // NOTE: Class casting workaround for incompatability with Swift, where -isSubclassOfClass return
   // NO when using [PKTModel class] directly.
-  Class expectedSuperClass = NSClassFromString(NSStringFromClass([PKTModel class]));
-  NSParameterAssert([modelClass isSubclassOfClass:expectedSuperClass]);
+  NSParameterAssert([NSClassFromString(NSStringFromClass(modelClass)) isSubclassOfClass:NSClassFromString(NSStringFromClass([PKTModel class]))]);
   _modelClass = modelClass;
   
   return self;
