@@ -10,8 +10,7 @@ branches:
 before_script:
   - export LANG=en_US.UTF-8
   - sudo easy_install pyyaml
-  - sudo easy_install cpp-coveralls
 script:
   - rake test:run
 after_success:
-  - rake test:coverage publish=yes
+  - rake test:coverage
