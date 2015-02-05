@@ -21,13 +21,18 @@
   return @{
            @"profileID": @"profile_id",
            @"userID": @"user_id",
-           @"imageFile" : @"image",
+           @"lastSeenOn": @"last_seen_on",
+           @"imageFile": @"image",
            @"titles": @"title",
            @"mails": @"mail",
            @"phones": @"phone",
            @"websites": @"url",
            @"linkedIn": @"linkedin"
            };
+}
+
++ (NSValueTransformer *)lastSeenOnValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
 }
 
 + (NSValueTransformer *)imageFileValueTransformer {

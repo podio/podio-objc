@@ -15,6 +15,7 @@
 
 @property (nonatomic, assign, readonly) NSUInteger profileID;
 @property (nonatomic, assign, readonly) NSUInteger userID;
+@property (nonatomic, copy, readonly) NSDate *lastSeenOn;
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSArray *mails;
 @property (nonatomic, copy, readonly) NSArray *titles;
