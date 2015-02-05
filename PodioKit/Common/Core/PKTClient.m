@@ -299,7 +299,7 @@ typedef NS_ENUM(NSUInteger, PKTClientAuthRequestPolicy) {
 #pragma mark - Requests
 
 - (PKTAsyncTask *)performRequest:(PKTRequest *)request {
-  NSAssert(self.apiKey && self.apiSecret, @"You need to configure PodioKit with an API key and secret. Call [PodioKit setupWithAPIKey:secret:] bofore making any requests using PodioKit.");
+  NSAssert(self.apiKey && self.apiSecret, @"You need to configure PodioKit with an API key and secret. Call [PodioKit setupWithAPIKey:secret:] before making any requests using PodioKit.");
   
   PKTAsyncTask *task = nil;
   
