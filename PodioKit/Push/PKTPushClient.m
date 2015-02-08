@@ -337,16 +337,22 @@ static NSString * const kDefaultEndpointURLString = @"https://push.podio.com/fay
 
 - (void)unsubscribe:(PKTPushSubscription *)subscription {
   PKTInternalPushSubscription *internalSubscription = subscription.internalSubscription;
-  [self removeSubscription:internalSubscription];
   
-  [self.client unsubsubscribeFromChannel:internalSubscription.channel
-                                  target:internalSubscription
-                                selector:@selector(deliverMessage:)];
+  if (internalSubscription) {
+    [self removeSubscription:internalSubscription];
+    [self.client unsubsubscribeFromChannel:internalSubscription.channel
+                                    target:internalSubscription
+                                  selector:@selector(deliverMessage:)];
+  }
 }
 
 #pragma mark - DDCometClientDelegate
 
 - (void)cometClientHandshakeDidSucceed:(DDCometClient *)client {
+  [self resubscribeToInactiveSubscriptionsIfAny];
+}
+
+- (void)cometClientConnectDidSucceed:(DDCometClient *)client {
   [self resubscribeToInactiveSubscriptionsIfAny];
 }
 
