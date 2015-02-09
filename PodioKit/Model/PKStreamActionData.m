@@ -14,6 +14,13 @@ static NSString * const PKStreamActionDataActionId = @"ActionId";
 static NSString * const PKStreamActionDataType = @"Type";
 static NSString * const PKStreamActionDataReferenceType = @"ReferenceType";
 static NSString * const PKStreamActionDataReference = @"Reference";
+static NSString * const PKStreamActionDataText = @"Text";
+
+@interface PKStreamActionData ()
+
+@property (nonatomic, copy, readwrite) NSString *text;
+
+@end
 
 @implementation PKStreamActionData
 
@@ -29,6 +36,7 @@ static NSString * const PKStreamActionDataReference = @"Reference";
     type_ = [aDecoder decodeIntForKey:PKStreamActionDataType];
     referenceType_ = [aDecoder decodeIntForKey:PKStreamActionDataReferenceType];
     reference_ = [aDecoder decodeObjectForKey:PKStreamActionDataReference];
+    _text = [aDecoder decodeObjectForKey:PKStreamActionDataText];
   }
   return self;
 }
@@ -39,6 +47,7 @@ static NSString * const PKStreamActionDataReference = @"Reference";
   [aCoder encodeInt:type_ forKey:PKStreamActionDataType];
   [aCoder encodeInt:referenceType_ forKey:PKStreamActionDataReferenceType];
   [aCoder encodeObject:reference_ forKey:PKStreamActionDataReference];
+  [aCoder encodeObject:_text forKey:PKStreamActionDataText];
 }
 
 #pragma mark - Factory methods
@@ -48,6 +57,7 @@ static NSString * const PKStreamActionDataReference = @"Reference";
   
   data.actionId = [[dict pk_objectForKey:@"action_id"] integerValue];
   data.type = [PKConstants actionTypeForString:[dict pk_objectForKey:@"type"]];
+  data.text = [dict pk_objectForKey:@"text"];
   
   data.referenceType = PKReferenceTypeNone;
   
@@ -65,7 +75,9 @@ static NSString * const PKStreamActionDataReference = @"Reference";
              data.type == PKActionTypeMemberJoined) {
     // Profile
     data.referenceType = PKReferenceTypeProfile;
-  } else if (data.type == PKActionTypeSpaceCreated) {
+  } else if (data.type == PKActionTypeSpaceCreated ||
+             data.type == PKActionTypeSpaceArchived ||
+             data.type == PKActionTypeSpaceRestored) {
     // Space
     data.referenceType = PKReferenceTypeSpace;
   }

@@ -21,5 +21,6 @@
 @property (nonatomic) PKActionType type;
 @property (nonatomic) PKReferenceType referenceType;
 @property (nonatomic, strong) id reference;
+@property (nonatomic, copy, readonly) NSString *text;
 
 @end

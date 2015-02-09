@@ -247,6 +247,10 @@
     type = PKActionTypeAppDeleted;
   } else if ([string isEqualToString:kPKActionTypeMemberJoined]) {
     type = PKActionTypeMemberJoined;
+  } else if ([string isEqualToString:kPKActionTypeSpaceArchived]) {
+    type = PKActionTypeSpaceArchived;
+  } else if ([string isEqualToString:kPKActionTypeSpaceRestored]) {
+    type = PKActionTypeSpaceRestored;
   }
   
   return type;

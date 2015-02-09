@@ -404,6 +404,8 @@ typedef enum {
   PKActionTypeAppActivated = 9,
   PKActionTypeAppDeleted = 10,
   PKActionTypeMemberJoined = 11,
+  PKActionTypeSpaceArchived = 12,
+  PKActionTypeSpaceRestored = 13,
 } PKActionType;
 
 static NSString * const kPKActionTypeSpaceCreated = @"space_created";
@@ -417,6 +419,8 @@ static NSString * const kPKActionTypeAppDeactivated = @"app_deactivated";
 static NSString * const kPKActionTypeAppActivated = @"app_activated";
 static NSString * const kPKActionTypeAppDeleted = @"app_deleted";
 static NSString * const kPKActionTypeMemberJoined = @"member_joined";
+static NSString * const kPKActionTypeSpaceArchived = @"space_archived";
+static NSString * const kPKActionTypeSpaceRestored = @"space_restored";
 
 #pragma mark - Vote
 
