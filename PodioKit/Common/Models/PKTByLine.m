@@ -17,7 +17,8 @@
            @"referenceType" : @"type",
            @"referenceID" : @"id",
            @"userID" : @"user_id",
-           @"imageFile" : @"image"
+           @"imageFile" : @"image",
+           @"lastSeenOn": @"last_seen_on"
            };
 }
 
@@ -27,6 +28,10 @@
 
 + (NSValueTransformer *)imageFileValueTransformer {
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
+}
+
++ (NSValueTransformer *)lastSeenOnValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
 }
 
 @end
