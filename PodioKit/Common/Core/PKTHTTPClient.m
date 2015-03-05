@@ -60,6 +60,16 @@ typedef NS_ENUM(NSUInteger, PKTErrorCode) {
   return self;
 }
 
+#pragma mark - Properties
+
+- (NSString *)userAgent {
+  return [self.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyUserAgent];
+}
+
+- (void)setUserAgent:(NSString *)userAgent {
+  [self.requestSerializer setUserAgentHeader:userAgent];
+}
+
 #pragma mark - Private
 
 - (PKTSecurity *)security {

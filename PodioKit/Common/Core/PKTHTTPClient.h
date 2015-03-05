@@ -27,6 +27,11 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 @property (nonatomic, copy) NSURL *baseURL;
 
 /**
+ *  The user agent string of the user agent.
+ */
+@property (nonatomic, copy) NSString *userAgent;
+
+/**
  *  The serializer of the request.
  */
 @property (nonatomic, strong, readonly) PKTRequestSerializer *requestSerializer;

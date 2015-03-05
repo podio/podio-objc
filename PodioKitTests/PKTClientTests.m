@@ -279,7 +279,7 @@
   // Make 1st request
   [PKTHTTPStubs stubResponseForPath:request.path statusCode:200];
   
-  NSString *beforeHeader = self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"];
+  NSString *beforeHeader = [self.testClient.HTTPClient.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization];
   
   __block BOOL completed = NO;
   [[self.testClient performRequest:request] onSuccess:^(id result) {
@@ -288,7 +288,7 @@
   
   expect(completed).will.beTruthy();
   
-  NSString *afterHeader = self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"];
+  NSString *afterHeader = [self.testClient.HTTPClient.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization];
   expect(afterHeader).toNot.equal(beforeHeader);
 }
 
@@ -302,7 +302,7 @@
     completed = YES;
   }];
 
-  expect(self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect([self.testClient.HTTPClient.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).equal([self basicAuthHeaderForTestClient]);
   
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).toNot.beNil();
@@ -318,7 +318,7 @@
     completed = YES;
   }];
 
-  expect(self.testClient.HTTPClient.requestSerializer.additionalHTTPHeaders[@"Authorization"]).equal([self basicAuthHeaderForTestClient]);
+  expect([self.testClient.HTTPClient.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).equal([self basicAuthHeaderForTestClient]);
   
   expect(completed).will.beTruthy();
   expect(self.testClient.oauthToken).toNot.beNil();

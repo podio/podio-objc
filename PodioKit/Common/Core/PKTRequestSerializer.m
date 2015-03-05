@@ -20,14 +20,17 @@ static NSString * const kHTTPMethodPUT = @"PUT";
 static NSString * const kHTTPMethodDELETE = @"DELETE";
 static NSString * const kHTTPMethodHEAD = @"HEAD";
 
+NSString * const PKTRequestSerializerHTTPHeaderKeyAuthorization = @"Authorization";
+NSString * const PKTRequestSerializerHTTPHeaderKeyUserAgent = @"User-Agent";
+NSString * const PKTRequestSerializerHTTPHeaderKeyContentType = @"Content-Type";
+NSString * const PKTRequestSerializerHTTPHeaderKeyContentLength = @"Content-Length";
+
+
 static NSString * const kHeaderRequestId = @"X-Podio-Request-Id";
 static NSUInteger const kRequestIdLength = 8;
 
-static NSString * const kHeaderAuthorization = @"Authorization";
 static NSString * const kAuthorizationOAuth2AccessTokenFormat = @"OAuth2 %@";
 
-static NSString * const kHeaderContentType = @"Content-Type";
-static NSString * const kHeaderContentLength = @"Content-Length";
 static NSString * const kHeaderTimeZone = @"X-Time-Zone";
 
 static NSString * const kBoundaryPrefix = @"----------------------";
@@ -68,6 +71,10 @@ static NSUInteger const kBoundaryLength = 20;
 
 #pragma mark Public
 
+- (id)valueForHTTPHeader:(NSString *)header {
+  return [self additionalHTTPHeaders][header];
+}
+
 - (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header {
   NSParameterAssert(header);
   
@@ -80,7 +87,7 @@ static NSUInteger const kBoundaryLength = 20;
 
 - (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken {
   NSParameterAssert(accessToken);
-  [self setValue:[NSString stringWithFormat:kAuthorizationOAuth2AccessTokenFormat, accessToken] forHTTPHeader:kHeaderAuthorization];
+  [self setValue:[NSString stringWithFormat:kAuthorizationOAuth2AccessTokenFormat, accessToken] forHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization];
 }
 
 - (void)setAuthorizationHeaderWithAPIKey:(NSString *)key secret:(NSString *)secret {
@@ -88,7 +95,12 @@ static NSUInteger const kBoundaryLength = 20;
   NSParameterAssert(secret);
   
   NSString *credentials = [NSString stringWithFormat:@"%@:%@", key, secret];
-  [self setValue:[NSString stringWithFormat:@"Basic %@", [credentials pkt_base64String]] forHTTPHeader:kHeaderAuthorization];
+  [self setValue:[NSString stringWithFormat:@"Basic %@", [credentials pkt_base64String]] forHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization];
+}
+
+- (void)setUserAgentHeader:(NSString *)userAgent {
+  NSParameterAssert(userAgent);
+  [self setValue:userAgent forHTTPHeader:PKTRequestSerializerHTTPHeaderKeyUserAgent];
 }
 
 #pragma mark - URL request
@@ -116,12 +128,12 @@ static NSUInteger const kBoundaryLength = 20;
   NSMutableURLRequest *urlRequest = [NSMutableURLRequest requestWithURL:url];
   urlRequest.HTTPMethod = [[self class] HTTPMethodForMethod:request.method];
   [urlRequest setValue:[[self class] generatedRequestId] forHTTPHeaderField:kHeaderRequestId];
-  [urlRequest setValue:[self contentTypeForRequest:request] forHTTPHeaderField:kHeaderContentType];
+  [urlRequest setValue:[self contentTypeForRequest:request] forHTTPHeaderField:PKTRequestSerializerHTTPHeaderKeyContentType];
   [urlRequest setValue:[[NSTimeZone localTimeZone] name] forHTTPHeaderField:kHeaderTimeZone];
   
   if (multipartData) {
     NSString *contentLength = [NSString stringWithFormat:@"%lu", (unsigned long)multipartData.finalizedData.length];
-    [urlRequest setValue:contentLength forHTTPHeaderField:kHeaderContentLength];
+    [urlRequest setValue:contentLength forHTTPHeaderField:PKTRequestSerializerHTTPHeaderKeyContentLength];
   }
   
   [self.additionalHTTPHeaders enumerateKeysAndObjectsUsingBlock:^(NSString *header, NSString *value, BOOL *stop) {

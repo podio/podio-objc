@@ -195,4 +195,15 @@
   expect(task).to.beKindOf([NSURLSessionDownloadTask class]);
 }
 
+- (void)testSetUserAgent {
+  NSString *userAgent = @"Some user agent";
+  self.testClient.userAgent = userAgent;
+  expect([self.testClient.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyUserAgent]).to.equal(userAgent);
+  expect(self.testClient.userAgent).to.equal(userAgent);
+  
+  userAgent = @"Some other user agent";
+  [self.testClient.requestSerializer setUserAgentHeader:userAgent];
+  expect(self.testClient.userAgent).to.equal(userAgent);
+}
+
 @end

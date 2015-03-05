@@ -35,18 +35,18 @@
 
 - (void)testSetCustomHeader {
   [self.testSerializer setValue:@"Header value" forHTTPHeader:@"X-Test-Header"];
-  expect(self.testSerializer.additionalHTTPHeaders[@"X-Test-Header"]).to.equal(@"Header value");
+  expect([self.testSerializer valueForHTTPHeader:@"X-Test-Header"]).to.equal(@"Header value");
 }
 
 - (void)testSetAuthorizationHeaderWithAPICredentials {
-  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).to.beNil;
+  expect([self.testSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).to.beNil;
   
   [self.testSerializer setAuthorizationHeaderWithAPIKey:@"my-key" secret:@"my-secret"];
   
-  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).to.contain(@"Basic ");
-  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).notTo.contain(@"my-key");
-  expect(self.testSerializer.additionalHTTPHeaders[@"Authorization"]).notTo.contain(@"my-secret");
-  expect([self.testSerializer.additionalHTTPHeaders[@"Authorization"] length]).to.beGreaterThan([@"Basic " length]);
+  expect([self.testSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).to.contain(@"Basic ");
+  expect([self.testSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).notTo.contain(@"my-key");
+  expect([self.testSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).notTo.contain(@"my-secret");
+  expect([[self.testSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization] length]).to.beGreaterThan([@"Basic " length]);
 }
 
 - (void)testSetAuthorizationHeaderFieldWithOAuth2AccessToken {
@@ -56,7 +56,7 @@
   [requestSerializer setAuthorizationHeaderWithOAuth2AccessToken:accessToken];
   
   NSString *expectedHTTPHeader = [NSString stringWithFormat:@"OAuth2 %@", accessToken];
-  expect(requestSerializer.additionalHTTPHeaders[@"Authorization"]).to.equal(expectedHTTPHeader);
+  expect([requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).to.equal(expectedHTTPHeader);
 }
 
 - (void)testURLRequestForGETRequest {
@@ -141,6 +141,12 @@
   expect(urlRequest.HTTPMethod).to.equal(@"GET");
   expect([urlRequest.URL pkt_queryParameters]).to.pkt_beSupersetOf(request.parameters);
   expect([urlRequest.allHTTPHeaderFields[@"X-Podio-Request-Id"] length]).to.beGreaterThan(0);
+}
+
+- (void)testSetUserAgentHeader {
+  NSString *userAgent = @"Some user agent";
+  [self.testSerializer setUserAgentHeader:userAgent];
+  expect([self.testSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyUserAgent]).to.equal(userAgent);
 }
 
 @end

@@ -10,16 +10,22 @@
 
 @class PKTMultipartFormData;
 
-@interface PKTRequestSerializer : NSObject
+extern NSString * const PKTRequestSerializerHTTPHeaderKeyAuthorization;
+extern NSString * const PKTRequestSerializerHTTPHeaderKeyUserAgent;
+extern NSString * const PKTRequestSerializerHTTPHeaderKeyContentType;
+extern NSString * const PKTRequestSerializerHTTPHeaderKeyContentLength;
 
-@property (nonatomic, copy, readonly) NSDictionary *additionalHTTPHeaders;
+@interface PKTRequestSerializer : NSObject
 
 - (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request relativeToURL:(NSURL *)baseURL;
 - (NSMutableURLRequest *)URLRequestForRequest:(PKTRequest *)request multipartData:(PKTMultipartFormData *)multipartData relativeToURL:(NSURL *)baseURL;
 
+- (id)valueForHTTPHeader:(NSString *)header;
+
 - (void)setValue:(NSString *)value forHTTPHeader:(NSString *)header;
 - (void)setAuthorizationHeaderWithOAuth2AccessToken:(NSString *)accessToken;
 - (void)setAuthorizationHeaderWithAPIKey:(NSString *)key secret:(NSString *)secret;
+- (void)setUserAgentHeader:(NSString *)userAgent;
 
 - (PKTMultipartFormData *)multipartFormDataFromRequest:(PKTRequest *)request;
 
