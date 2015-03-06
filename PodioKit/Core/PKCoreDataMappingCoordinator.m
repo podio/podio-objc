@@ -58,7 +58,9 @@
   [context performBlockAndWait:^{
     // Turn updated objects into faults
     NSSet *updatedObjectIds = [[notification.userInfo objectForKey:@"updated"] valueForKey:@"objectID"];
-    [updatedObjectIds enumerateObjectsUsingBlock:^(id objectID, BOOL *stop) {
+    
+    BOOL shouldMergeChanges = YES;
+    for (id objectID in updatedObjectIds) {
       id managedObject = [context objectRegisteredForID:objectID];
       if (managedObject) {
         @try {
@@ -69,12 +71,15 @@
             // Catching this error prevents the app from crashing if an object's underlying data has been deleted.
             // The remedy, according to Apple, is to discard the object.
             [context refreshObject:managedObject mergeChanges:NO];
+            shouldMergeChanges = NO;
           }
         }
       }
-    }];
+    }
     
-    [context mergeChangesFromContextDidSaveNotification:notification];
+    if (shouldMergeChanges) {
+      [context mergeChangesFromContextDidSaveNotification:notification];
+    }
   }];
 }
 
@@ -88,7 +93,7 @@
     // Save worker context
     [context performBlockAndWait:^{
       NSError *error = nil;
-
+      
       if (![context save:&error]) {
         PKLogError(@"ERROR: Failed to mapper context: %@", error);
       }
