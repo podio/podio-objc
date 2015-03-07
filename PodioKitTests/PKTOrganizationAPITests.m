@@ -22,7 +22,7 @@
 }
 
 - (void)testRequestForOrganizationWithID {
-  PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:123];
+  PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationWithID:123];
   expect(request.path).to.equal(@"/org/123");
   expect(request.method).to.equal(PKTRequestMethodGET);
 }

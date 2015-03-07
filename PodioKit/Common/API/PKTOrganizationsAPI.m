@@ -14,7 +14,7 @@
   return [PKTRequest GETRequestWithPath:@"/org/" parameters:nil];
 }
 
-+ (PKTRequest *)requestForOrganizationsWithID:(NSUInteger)organizationID {
++ (PKTRequest *)requestForOrganizationWithID:(NSUInteger)organizationID {
   NSString *path = PKTRequestPath(@"/org/%lu", (unsigned long)organizationID);
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:nil];
   

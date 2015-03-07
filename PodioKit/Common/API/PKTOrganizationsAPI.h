@@ -11,6 +11,6 @@
 @interface PKTOrganizationsAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForAllOrganizations;
-+ (PKTRequest *)requestForOrganizationsWithID:(NSUInteger)organizationID;
++ (PKTRequest *)requestForOrganizationWithID:(NSUInteger)organizationID;
 
 @end

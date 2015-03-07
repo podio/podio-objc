@@ -49,7 +49,7 @@
 }
 
 + (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID {
-  PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationsWithID:organizationID];
+  PKTRequest *request = [PKTOrganizationsAPI requestForOrganizationWithID:organizationID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
   PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
