@@ -19,6 +19,7 @@
 #import "PKTCategoryItemFieldValue.h"
 #import "PKTDurationItemFieldValue.h"
 #import "PKTLocationItemFieldValue.h"
+#import "PKTProgressItemFieldValue.h"
 #import "PKTFile.h"
 #import "PKTCategoryOption.h"
 #import "PKTNumberItemFieldValue.h"
@@ -157,8 +158,10 @@
       valueClass = [PKTDurationItemFieldValue class];
       break;
     case PKTAppFieldTypeNumber:
-    case PKTAppFieldTypeProgress:
       valueClass = [PKTNumberItemFieldValue class];
+      break;
+    case PKTAppFieldTypeProgress:
+      valueClass = [PKTProgressItemFieldValue class];
       break;
     case PKTAppFieldTypeText:
       valueClass = [PKTStringItemFieldValue class];

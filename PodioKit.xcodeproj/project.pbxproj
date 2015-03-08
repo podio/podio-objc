@@ -431,6 +431,9 @@
 		C9FADFCCA132D164F80B8CD2 /* PKTNumberItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADE9B276B9878797D9341 /* PKTNumberItemFieldValue.m */; };
 		C9FADFDADFFF9AF06D53CA1C /* PKTNumberItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADE9B276B9878797D9341 /* PKTNumberItemFieldValue.m */; };
 		D4661334DE60591B4AB85AE5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 662E9ED2E9A9DD7E247969CA /* libPods.a */; };
+		E41804C41AACEE3300084F0B /* PKTProgressItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = E41804C21AACEE3300084F0B /* PKTProgressItemFieldValue.h */; };
+		E41804C51AACEE3300084F0B /* PKTProgressItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E41804C31AACEE3300084F0B /* PKTProgressItemFieldValue.m */; };
+		E41804C61AACEFE200084F0B /* PKTProgressItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E41804C31AACEE3300084F0B /* PKTProgressItemFieldValue.m */; };
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
 		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
@@ -785,6 +788,8 @@
 		C9FADE9B276B9878797D9341 /* PKTNumberItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNumberItemFieldValue.m; sourceTree = "<group>"; };
 		C9FADEE3D48ADD446805E5A2 /* PKTDuration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTDuration.m; sourceTree = "<group>"; };
 		C9FADFA4CE84E4915BDC31ED /* PKTDuration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTDuration.h; sourceTree = "<group>"; };
+		E41804C21AACEE3300084F0B /* PKTProgressItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTProgressItemFieldValue.h; sourceTree = "<group>"; };
+		E41804C31AACEE3300084F0B /* PKTProgressItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTProgressItemFieldValue.m; sourceTree = "<group>"; };
 		E45ED49318900372003A020A /* NSString+PKTURLTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTURLTests.m"; sourceTree = "<group>"; };
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
@@ -902,10 +907,12 @@
 				C9FAD174BEFA7E9A9D36606A /* PKTDurationItemFieldValue.h */,
 				C9FAD9382EC55885F331F4ED /* PKTItemFieldValue.h */,
 				C9FAD877BDD5E7CEFEB5C060 /* PKTItemFieldValue.m */,
-				C9FADE9B276B9878797D9341 /* PKTNumberItemFieldValue.m */,
 				C9FAD8FEBC27C02AB6024B27 /* PKTNumberItemFieldValue.h */,
+				C9FADE9B276B9878797D9341 /* PKTNumberItemFieldValue.m */,
 				50CA79D919D6AABA00759BB8 /* PKTLocationItemFieldValue.h */,
 				50CA79DA19D6AABA00759BB8 /* PKTLocationItemFieldValue.m */,
+				E41804C21AACEE3300084F0B /* PKTProgressItemFieldValue.h */,
+				E41804C31AACEE3300084F0B /* PKTProgressItemFieldValue.m */,
 			);
 			name = "Item Field Values";
 			sourceTree = "<group>";
@@ -1660,6 +1667,7 @@
 				C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */,
 				50DAD43A196404BD00529DB5 /* PKTForm.h in Headers */,
 				C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */,
+				E41804C41AACEE3300084F0B /* PKTProgressItemFieldValue.h in Headers */,
 				505324B819883DD500700135 /* PKTAsyncTask.h in Headers */,
 				5024C5C719616DC400AE28D7 /* PKTUser.h in Headers */,
 				C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */,
@@ -1874,6 +1882,7 @@
 				5006B087191C34A9006FF388 /* PKTByLine.m in Sources */,
 				502BB229195DA44C003160DE /* PKTReferenceIdentifier.m in Sources */,
 				5014C579188816F10002C68D /* PKTRequest.m in Sources */,
+				E41804C51AACEE3300084F0B /* PKTProgressItemFieldValue.m in Sources */,
 				50CAE07219701C6F0096BE07 /* NSError+PKTErrors.m in Sources */,
 				50060212196D5ACC00BC619F /* PKTResponseSerializer.m in Sources */,
 				50060224196D7AEA00BC619F /* NSString+ PKTURLEncode.m in Sources */,
@@ -2072,6 +2081,7 @@
 				508F9B4F195AF6C200275A63 /* PKTImageCacheTests.m in Sources */,
 				50FB3D6918EB189B0021DB48 /* PKTItemAPITests.m in Sources */,
 				501D6062190ED520004D94C4 /* PKTItemFieldValueTests.m in Sources */,
+				E41804C61AACEFE200084F0B /* PKTProgressItemFieldValue.m in Sources */,
 				5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */,
 				50D7762C1A06DD3900CE26B1 /* PKTConversationsAPITests.m in Sources */,
 				501D6089190EF2EB004D94C4 /* PKTAppItemFieldValue.m in Sources */,

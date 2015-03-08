@@ -18,6 +18,7 @@
 #import "PKTCategoryItemFieldValue.h"
 #import "PKTDurationItemFieldValue.h"
 #import "PKTLocationItemFieldValue.h"
+#import "PKTProgressItemFieldValue.h"
 #import "PKTEmbed.h"
 #import "PKTFile.h"
 #import "PKTItem.h"
@@ -45,6 +46,13 @@
 - (void)testNumberValue {
   NSDictionary *valueDict = @{@"value" : @"12324.43277"};
   PKTNumberItemFieldValue *value = [[PKTNumberItemFieldValue alloc] initFromValueDictionary:valueDict];
+  expect(value.valueDictionary).to.equal(valueDict);
+  expect(value.unboxedValue).toNot.beNil();
+}
+
+- (void)testProgressValue {
+  NSDictionary *valueDict = @{@"value" : @50};
+  PKTProgressItemFieldValue *value = [[PKTProgressItemFieldValue alloc] initFromValueDictionary:valueDict];
   expect(value.valueDictionary).to.equal(valueDict);
   expect(value.unboxedValue).toNot.beNil();
 }
@@ -222,6 +230,10 @@
   expect([PKTNumberItemFieldValue supportsBoxingOfValue:@32123.432 error:nil]).to.beTruthy();
 }
 
+- (void)testBoxedValueSupportForValidProgressValue {
+  expect([PKTProgressItemFieldValue supportsBoxingOfValue:@23 error:nil]).to.beTruthy();
+}
+
 - (void)testBoxedValueSupportForValidDateRangeValue {
   PKTDateRange *value = [[PKTDateRange alloc] initWithStartDate:[NSDate date] endDate:[NSDate date]];
   expect([PKTDateItemFieldValue supportsBoxingOfValue:value error:nil]).to.beTruthy();
@@ -276,6 +288,10 @@
 
 - (void)testBoxedValueSupportForInvalidNumberValue {
   expect([PKTNumberItemFieldValue supportsBoxingOfValue:@"32123.432" error:nil]).to.beFalsy();
+}
+
+- (void)testBoxedValueSupportForInvalidProgressValue {
+  expect([PKTProgressItemFieldValue supportsBoxingOfValue:@"23" error:nil]).to.beFalsy();
 }
 
 - (void)testBoxedValueSupportForInvalidDateValue {
