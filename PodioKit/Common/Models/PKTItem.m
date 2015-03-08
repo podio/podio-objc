@@ -175,16 +175,21 @@
 }
 
 + (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit {
-  return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES];
+  return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:nil descending:YES filters:nil];
 }
 
 + (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending {
+  return [self fetchItemsInAppWithID:appID offset:offset limit:limit sortBy:sortBy descending:descending filters:nil];
+}
+
++ (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending filters:(NSDictionary *)filters {
   PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:appID
-                                                                offset:offset
-                                                                 limit:limit
-                                                                sortBy:sortBy
-                                                            descending:descending
-                                                              remember:NO];
+                                                                 offset:offset
+                                                                  limit:limit
+                                                                 sortBy:sortBy
+                                                             descending:descending
+                                                               remember:NO
+                                                                filters:filters];
   
   return [self fetchFilteredItemsWithRequest:request appID:appID];
 }

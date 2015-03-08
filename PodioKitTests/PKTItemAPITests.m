@@ -68,6 +68,25 @@
   expect(request.parameters[@"remember"]).to.equal(@YES);
 }
 
+- (void)testRequestToGetFilteredItemsWithFilters {
+  NSDictionary *filters = @{@"title": @"Test"};
+  PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:123
+                                                                 offset:60
+                                                                  limit:30
+                                                                 sortBy:@"created_on"
+                                                             descending:YES
+                                                               remember:YES
+                                                                filters:filters];
+  
+  expect(request.path).to.equal(@"/item/app/123/filter/");
+  expect(request.parameters[@"offset"]).to.equal(@60);
+  expect(request.parameters[@"limit"]).to.equal(@30);
+  expect(request.parameters[@"sort_by"]).to.equal(@"created_on");
+  expect(request.parameters[@"sort_desc"]).to.equal(@YES);
+  expect(request.parameters[@"remember"]).to.equal(@YES);
+  expect(request.parameters[@"filters"]).to.equal(filters);
+}
+
 - (void)testRequestToGetFilteredItemsWithViewID {
   PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:123
                                                                 offset:60

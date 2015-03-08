@@ -22,6 +22,10 @@
 }
 
 + (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending remember:(BOOL)remember {
+  return [self requestForFilteredItemsInAppWithID:appID offset:offset limit:limit sortBy:sortBy descending:descending remember:remember filters:nil];
+}
+
++ (PKTRequest *)requestForFilteredItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit sortBy:(NSString *)sortBy descending:(BOOL)descending remember:(BOOL)remember filters:(NSDictionary *)filters {
   NSMutableDictionary *parameters = [NSMutableDictionary new];
   parameters[@"offset"] = @(offset);
   parameters[@"limit"] = @(limit);
@@ -30,6 +34,10 @@
   
   if (sortBy) {
     parameters[@"sort_by"] = sortBy;
+  }
+  
+  if (filters) {
+    parameters[@"filters"] = filters;
   }
   
   NSString *path = PKTRequestPath(@"/item/app/%lu/filter/", (unsigned long)appID);
