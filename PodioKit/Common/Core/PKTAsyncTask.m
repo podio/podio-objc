@@ -147,7 +147,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 }
 
 - (instancetype)then:(PKTAsyncTaskThenBlock)thenBlock {
-  return [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+  return [[self class] taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
     [self onSuccess:^(id result) {
       thenBlock(result, nil);
       [resolver succeedWithResult:result];
@@ -165,7 +165,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 }
 
 - (instancetype)map:(id (^)(id result))block {
-  return [PKTAsyncTask taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
+  return [[self class] taskForBlock:^PKTAsyncTaskCancelBlock(PKTAsyncTaskResolver *resolver) {
     
     [self onSuccess:^(id result) {
       id mappedResult = block ? block(result) : result;
