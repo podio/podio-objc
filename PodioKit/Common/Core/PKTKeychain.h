@@ -18,7 +18,11 @@
 + (instancetype)keychainForService:(NSString *)service accessGroup:(NSString *)accessGroup;
 
 - (id)objectForKey:(id)key;
-- (BOOL)setObject:(id<NSCoding>)object ForKey:(id)key;
+- (BOOL)setObject:(id<NSCoding>)object forKey:(id)key;
+
+- (NSData *)dataForKey:(id)key;
+- (BOOL)setData:(NSData *)data forKey:(id)key;
+
 - (BOOL)removeObjectForKey:(id)key;
 
 @end

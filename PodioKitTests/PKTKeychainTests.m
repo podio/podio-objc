@@ -42,13 +42,13 @@
   NSString *key = [self uniqueKeyForKey:@"MyAppSecret"];
   expect([self.testKeychain objectForKey:key]).to.beNil();
   
-  [self.testKeychain setObject:myDict ForKey:key];
+  [self.testKeychain setObject:myDict forKey:key];
   expect([self.testKeychain objectForKey:key]).to.equal(myDict);
 }
 
 - (void)testSetObjectWithNilKey {
   expect(^{
-    [self.testKeychain setObject:@{} ForKey:nil];
+    [self.testKeychain setObject:@{} forKey:nil];
   }).to.raiseAny();
 }
 
@@ -57,7 +57,7 @@
                            @"Key2" : @"Value2"};
   
   NSString *key = [self uniqueKeyForKey:@"MyAppSecret"];
-  [self.testKeychain setObject:myDict ForKey:key];
+  [self.testKeychain setObject:myDict forKey:key];
   expect([self.testKeychain objectForKey:key]).to.equal(myDict);
   
   [self.testKeychain removeObjectForKey:key];

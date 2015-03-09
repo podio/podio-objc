@@ -38,7 +38,7 @@ static NSString * const kTokenKeychainKey = @"PodioKitOAuthToken";
 #pragma mark - PKTTokenStore
 
 - (void)storeToken:(PKTOAuth2Token *)token {
-  [self.keychain setObject:token ForKey:kTokenKeychainKey];
+  [self.keychain setObject:token forKey:kTokenKeychainKey];
 }
 
 - (void)deleteStoredToken {

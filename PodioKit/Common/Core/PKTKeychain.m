@@ -16,8 +16,6 @@
 }
 
 - (instancetype)initWithService:(NSString *)service accessGroup:(NSString *)accessGroup {
-  NSParameterAssert(service);
-  
   self = [super init];
   if (!self) return nil;
   
@@ -34,32 +32,32 @@
 #pragma mark - Keychain access
 
 - (id)objectForKey:(id)key {
-  NSParameterAssert(key);
-  
-  NSDictionary *query = [self queryForKey:key returnData:YES limitOne:YES];
-  
-  OSStatus status = errSecSuccess;
-  CFDataRef dataRef = NULL;
-  
-  status = SecItemCopyMatching((__bridge CFDictionaryRef)(query), (CFTypeRef *)&dataRef);
-  
   id object = nil;
-  if (status == errSecItemNotFound) {
-    NSLog(@"Count not find Keychain item for key '%@'", [key description]);
-  } else if (status != errSecSuccess) {
-    NSLog(@"Failed to retrieve Keychain item for key '%@'", [key description]);
-  } else if (dataRef != NULL) {
-    // Item found
-    NSData *data = CFBridgingRelease(dataRef);
+  
+  NSData *data = [self dataForKey:key];
+  if (data) {
     object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
   }
   
   return object;
 }
 
+- (BOOL)setObject:(id<NSCoding>)object forKey:(id)key {
+  NSData *data = nil;
+  if (object) {
+    data = [NSKeyedArchiver archivedDataWithRootObject:object];
+  }
+  
+  return [self setData:data forKey:key];
+}
+
 - (NSDictionary *)queryForKey:(id)key returnData:(BOOL)returnData limitOne:(BOOL)limitOne {
   NSMutableDictionary *query = [NSMutableDictionary new];
-  query[(__bridge NSString *)kSecAttrService] = self.service;
+  
+  if ([self.service length] > 0) {
+    query[(__bridge NSString *)kSecAttrService] = self.service;
+  }
+  
   query[(__bridge NSString *)kSecClass] = (__bridge NSString *)kSecClassGenericPassword;
   query[(__bridge NSString *)kSecAttrAccount] = [key description];
   
@@ -80,7 +78,30 @@
   return [query copy];
 }
 
-- (BOOL)setObject:(id<NSCoding>)object ForKey:(id)key {
+- (NSData *)dataForKey:(id)key {
+  NSParameterAssert(key);
+  
+  NSDictionary *query = [self queryForKey:key returnData:YES limitOne:YES];
+  
+  OSStatus status = errSecSuccess;
+  CFDataRef dataRef = NULL;
+  
+  status = SecItemCopyMatching((__bridge CFDictionaryRef)(query), (CFTypeRef *)&dataRef);
+  
+  NSData *data = nil;
+  if (status == errSecItemNotFound) {
+    NSLog(@"Count not find Keychain item for key '%@'", [key description]);
+  } else if (status != errSecSuccess) {
+    NSLog(@"Failed to retrieve Keychain item for key '%@'", [key description]);
+  } else if (dataRef != NULL) {
+    // Item found
+    data = CFBridgingRelease(dataRef);
+  }
+  
+  return data;
+}
+
+- (BOOL)setData:(NSData *)data forKey:(id)key {
   NSParameterAssert(key);
   
   BOOL success = YES;
@@ -88,9 +109,8 @@
   NSDictionary *query = [self queryForKey:key returnData:NO limitOne:NO];
 
   OSStatus status = errSecSuccess;
-  if (object) {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
-    NSDictionary *dataDict = @{ (__bridge NSString *)kSecValueData: data};
+  if (data) {
+    NSDictionary *dataDict = @{ (__bridge NSString *)kSecValueData: data };
     
     if ([self objectForKey:key]) {
       // Item already exists, update it
@@ -127,7 +147,7 @@
 }
 
 - (BOOL)removeObjectForKey:(id)key {
-  return [self setObject:nil ForKey:key];
+  return [self setObject:nil forKey:key];
 }
 
 @end

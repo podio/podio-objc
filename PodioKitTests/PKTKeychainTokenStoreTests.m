@@ -39,7 +39,7 @@
 - (void)testStoreToken {
   PKTOAuth2Token *token = [self dummyToken];
   
-  [[[self.testKeychain expect] andReturnValue:@YES] setObject:token ForKey:OCMOCK_ANY];
+  [(PKTKeychain *)[[self.testKeychain expect] andReturnValue:@YES] setObject:token forKey:OCMOCK_ANY];
   [[[self.testKeychain expect] andReturn:token] objectForKey:OCMOCK_ANY];
   
   [self.testStore storeToken:token];
@@ -51,7 +51,7 @@
 - (void)testDeleteToken {
   PKTOAuth2Token *token = [self dummyToken];
   
-  [[[self.testKeychain expect] andReturnValue:@YES] setObject:token ForKey:OCMOCK_ANY];
+  [(PKTKeychain *)[[self.testKeychain expect] andReturnValue:@YES] setObject:token forKey:OCMOCK_ANY];
   [[[self.testKeychain expect] andReturn:token] objectForKey:OCMOCK_ANY];
   
   [self.testStore storeToken:token];
