@@ -11,6 +11,23 @@
 
 @implementation PKTOAuth2Token
 
+- (instancetype)initWithAccessToken:(NSString *)accessToken
+                       refreshToken:(NSString *)refreshToken
+                      transferToken:(NSString *)transferToken
+                          expiresOn:(NSDate *)expiresOn
+                            refData:(NSDictionary *)refData {
+  self = [super init];
+  if (!self) return nil;
+  
+  _accessToken = [accessToken copy];
+  _refreshToken = [refreshToken copy];
+  _transferToken = [transferToken copy];
+  _expiresOn = [expiresOn copy];
+  _refData = [refData copy];
+  
+  return self;
+}
+
 #pragma mark - NSObject
 
 - (BOOL)isEqual:(id)object {

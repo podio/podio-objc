@@ -36,6 +36,23 @@
 @property (nonatomic, copy, readonly) NSDictionary *refData;
 
 /**
+ *  Convenience initiatlizer to create a token from the raw token components.
+ *
+ *  @param accessToken   The access token
+ *  @param refreshToken  The refresh token
+ *  @param transferToken The transfer token
+ *  @param expiresOn     The date when the token expires
+ *  @param refData       The reference data
+ *
+ *  @return A new auth token.
+ */
+- (instancetype)initWithAccessToken:(NSString *)accessToken
+                       refreshToken:(NSString *)refreshToken
+                      transferToken:(NSString *)transferToken
+                          expiresOn:(NSDate *)expiresOn
+                            refData:(NSDictionary *)refData;
+
+/**
  *  Convenience method to check whether or not the token will expire within the provided interval.
  *
  *  @param expireInterval A time interval from now.

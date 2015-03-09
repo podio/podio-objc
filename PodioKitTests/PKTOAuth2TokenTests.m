@@ -31,6 +31,20 @@
   expect(token.refData).to.equal(dictionary[@"ref"]);
 }
 
+- (void)testTokenFromComponents {
+  PKTOAuth2Token *token = [[PKTOAuth2Token alloc] initWithAccessToken:@"some_access_token"
+                                                         refreshToken:@"some_refresh_token"
+                                                        transferToken:@"some_transfer_token"
+                                                            expiresOn:[NSDate dateWithTimeIntervalSinceNow:1234]
+                                                              refData:@{@"test": @"value"}];
+  
+  expect(token.accessToken).to.equal(@"some_access_token");
+  expect(token.refreshToken).to.equal(@"some_refresh_token");
+  expect(token.transferToken).to.equal(@"some_transfer_token");
+  expect([token.expiresOn timeIntervalSince1970]).to.beCloseToWithin([[NSDate date] timeIntervalSince1970] + 1234, 1);
+  expect(token.refData).toNot.beNil();
+}
+
 - (void)testWillExpireInTrue {
   PKTOAuth2Token *token = [self tokenWithExpirationIntervalFromNow:100];
   expect([token willExpireWithinIntervalFromNow:1000]).to.beTruthy();
