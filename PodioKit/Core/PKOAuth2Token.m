@@ -15,6 +15,16 @@ static NSString * const PKOAuth2TokenTransferToken = @"TransferToken";
 static NSString * const PKOAuth2TokenExpiresOn = @"ExpiresOn";
 static NSString * const PKOAuth2TokenRefData = @"RefData";
 
+@interface PKOAuth2Token()
+
+@property (nonatomic, copy, readwrite) NSString *accessToken;
+@property (nonatomic, copy, readwrite) NSString *refreshToken;
+@property (nonatomic, copy, readwrite) NSString *transferToken;
+@property (nonatomic, copy, readwrite) NSDate *expiresOn;
+@property (nonatomic, copy, readwrite) NSDictionary *refData;
+
+@end
+
 @implementation PKOAuth2Token
 
 @synthesize accessToken = accessToken_;
