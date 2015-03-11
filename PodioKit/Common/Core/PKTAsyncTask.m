@@ -91,6 +91,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
     
     NSUInteger taskCount = [tasks count];
     NSMutableDictionary *results = [NSMutableDictionary new];
+    NSMutableDictionary *progresses = [NSMutableDictionary new];
     
     // We need a lock to synchronize access to the results dictionary and remaining tasks set.
     NSLock *lock = [NSLock new];
@@ -139,6 +140,22 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
         cancelRemainingBlock();
         
         [resolver failWithError:error];
+      }];
+      
+      [task onProgress:^(float progress) {
+        progresses[@(pos)] = @(progress);
+        
+        // Add together the progress of all tasks
+        float completedProgress = [[[progresses allValues] pkt_reducedValueWithBlock:^id(NSNumber *reduced, NSNumber *current) {
+          return @(reduced.floatValue + current.floatValue);
+        }] floatValue];
+        
+        // Calculate how much of the total value has been completed. The individual progress between the tasks is not
+        // weighted, so if one task includes "more" work, it will still only contribute 1.0 to the total progress.
+        float totalProgress = taskCount * 1.f;
+        float currentProgress = completedProgress / totalProgress;
+        
+        [resolver notifyProgress:currentProgress];
       }];
       
       ++pos;
