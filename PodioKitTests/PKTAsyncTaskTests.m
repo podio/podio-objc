@@ -72,6 +72,31 @@
   expect(taskError).to.beNil();
 }
 
+- (void)testProgress {
+  PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+      
+      [resolver notifyProgress:0.2];
+      [resolver notifyProgress:0.5];
+      [resolver notifyProgress:1.0];
+      
+      dispatch_async(dispatch_get_main_queue(), ^{
+        [resolver succeedWithResult:@"Value1"];
+      });
+    });
+  }];
+  
+  NSMutableArray *progressUpdates = [NSMutableArray new];
+  [task onProgress:^(float progress) {
+    [progressUpdates addObject:@(progress)];
+  }];
+  
+  expect(progressUpdates).will.haveCountOf(3);
+  expect(progressUpdates[0]).to.equal(@0.2);
+  expect(progressUpdates[1]).to.equal(@0.5);
+  expect(progressUpdates[2]).to.equal(@1.0);
+}
+
 - (void)testCanOnlyFinishOnlyOnce {
   PKTAsyncTask *task = [self taskWithCompletion:^(PKTAsyncTaskResolver *resolver) {
     [resolver succeedWithResult:@"Value1"];

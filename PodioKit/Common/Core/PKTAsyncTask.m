@@ -23,6 +23,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 @property (strong, readonly) NSMutableArray *completeCallbacks;
 @property (strong, readonly) NSMutableArray *successCallbacks;
 @property (strong, readonly) NSMutableArray *errorCallbacks;
+@property (strong, readonly) NSMutableArray *progressCallbacks;
 @property (copy) PKTAsyncTaskCancelBlock cancelBlock;
 @property (strong) NSLock *stateLock;
 
@@ -54,6 +55,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   _completeCallbacks = [NSMutableArray new];
   _successCallbacks = [NSMutableArray new];
   _errorCallbacks = [NSMutableArray new];
+  _progressCallbacks = [NSMutableArray new];
   _stateLock = [NSLock new];
   
   return self;
@@ -156,6 +158,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
       [resolver failWithError:error];
     }];
     
+    [self onProgress:^(float progress) {
+      [resolver notifyProgress:progress];
+    }];
+    
     PKT_WEAK_SELF weakSelf = self;
     
     return ^{
@@ -172,6 +178,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
       [resolver succeedWithResult:mappedResult];
     } onError:^(NSError *error) {
       [resolver failWithError:error];
+    }];
+    
+    [self onProgress:^(float progress) {
+      [resolver notifyProgress:progress];
     }];
     
     PKT_WEAK_SELF weakSelf = self;
@@ -300,6 +310,14 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
   return self;
 }
 
+- (instancetype)onProgress:(PKTAsyncTaskProgressBlock)progressBlock {
+  NSParameterAssert(progressBlock);
+  
+  [self.progressCallbacks addObject:[progressBlock copy]];
+  
+  return self;
+}
+
 #pragma mark - Resolve
 
 - (void)succeedWithResult:(id)result {
@@ -308,6 +326,14 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 
 - (void)failWithError:(NSError *)error {
   [self resolveWithState:PKTAsyncTaskStateErrored result:error];
+}
+
+- (void)notifyProgress:(float)progress {
+  for (PKTAsyncTaskProgressBlock callback in self.progressCallbacks) {
+    dispatch_async(dispatch_get_main_queue(), ^{
+      callback(progress);
+    });
+  }
 }
 
 - (void)resolveWithState:(PKTAsyncTaskState)state result:(id)result {
@@ -398,6 +424,10 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
 - (void)failWithError:(NSError *)error {
   [self.task failWithError:error];
   self.task = nil;
+}
+
+- (void)notifyProgress:(float)progress {
+  [self.task notifyProgress:progress];
 }
 
 @end

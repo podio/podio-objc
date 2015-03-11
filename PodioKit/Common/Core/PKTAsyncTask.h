@@ -15,6 +15,7 @@ typedef void (^PKTAsyncTaskSuccessBlock) (id result);
 typedef void (^PKTAsyncTaskErrorBlock) (NSError *error);
 typedef void (^PKTAsyncTaskCancelBlock) (void);
 typedef void (^PKTAsyncTaskThenBlock) (id result, NSError *error);
+typedef void (^PKTAsyncTaskProgressBlock) (float progress);
 typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolver *resolver);
 
 @interface PKTAsyncTask : NSObject
@@ -106,6 +107,15 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
 - (instancetype)onSuccess:(PKTAsyncTaskSuccessBlock)successBlock onError:(PKTAsyncTaskErrorBlock)errorBlock;
 
 /**
+ *  Register a block to be called whenever the task progress is updated. The block is executed on the main thread.
+ *
+ *  @param progressBlock A progress block.
+ *
+ *  @return The task itself.
+ */
+- (instancetype)onProgress:(PKTAsyncTaskProgressBlock)progressBlock;
+
+/**
  *  Cancel the task. This will result in the execution of the cancellation block returned from the block 
  *  passed to taskForBlock:.
  */
@@ -172,5 +182,12 @@ typedef PKTAsyncTaskCancelBlock (^PKTAsyncTaskResolveBlock) (PKTAsyncTaskResolve
  *  @param result The error, if any, of the failed task.
  */
 - (void)failWithError:(NSError *)error;
+
+/**
+ *  Update the progress of the task.
+ *
+ *  @param The new progress value of the task.
+ */
+- (void)notifyProgress:(float)progress;
 
 @end
