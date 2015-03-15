@@ -8,10 +8,13 @@
 
 #import "PKTModel.h"
 
+@class PKTEmbed;
+
 @interface PKTMessage : PKTModel
 
 @property (nonatomic, readonly) NSUInteger messageID;
 @property (nonatomic, copy, readonly) NSString *text;
 @property (nonatomic, copy, readonly) NSArray *files;
+@property (nonatomic, copy, readonly) PKTEmbed *embed;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "PKTMessage.h"
 #import "PKTFile.h"
+#import "PKTEmbed.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
 @implementation PKTMessage
@@ -16,12 +17,16 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"messageID": @"message_id"
-           };
+    @"messageID": @"message_id"
+  };
 }
 
 + (NSValueTransformer *)filesValueTransformer {
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
+}
+
++ (NSValueTransformer *)embedValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTEmbed class]];
 }
 
 @end
