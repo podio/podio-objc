@@ -8,6 +8,14 @@
 
 #import "PKTModel.h"
 
+typedef NS_ENUM(NSUInteger, PKTConversationEventAction) {
+  PKTConversationEventActionUnknown = 0,
+  PKTConversationEventActionMessage,
+  PKTConversationEventActionParticipantAdd,
+  PKTConversationEventActionParticipantLeave,
+  PKTConversationEventActionSubjectChange
+};
+
 @class PKTAsyncTask, PKTByLine;
 
 @interface PKTConversationEvent : PKTModel
@@ -16,6 +24,7 @@
 @property (nonatomic, readonly) NSUInteger conversationID;
 @property (nonatomic, strong, readonly) PKTByLine *createdBy;
 @property (nonatomic, copy, readonly) NSDate *createdOn;
+@property (nonatomic, readonly) PKTConversationEventAction action;
 @property (nonatomic, strong, readonly) id data;
 
 + (PKTAsyncTask *)fetchEventWithID:(NSUInteger)eventID;

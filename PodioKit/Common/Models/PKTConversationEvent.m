@@ -47,6 +47,15 @@
   }];
 }
 
++ (NSValueTransformer *)actionValueTransformer {
+  return [NSValueTransformer pkt_transformerWithDictionary:@{
+    @"message": @(PKTConversationEventActionMessage),
+    @"participant_add": @(PKTConversationEventActionParticipantAdd),
+    @"participant_leave": @(PKTConversationEventActionParticipantLeave),
+    @"subject_change": @(PKTConversationEventActionSubjectChange),
+  }];
+}
+
 #pragma mark - Public
 
 + (PKTAsyncTask *)fetchEventWithID:(NSUInteger)eventID {
