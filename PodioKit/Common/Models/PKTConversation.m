@@ -30,7 +30,8 @@
            @"conversationID" : @"conversation_id",
            @"createdOn" : @"created_on",
            @"lastEventOn" : @"last_event_on",
-           @"pushCredential" : @"push"
+           @"pushCredential" : @"push",
+           @"conversationType" : @"type"
            };
 }
 
@@ -48,6 +49,13 @@
 
 + (NSValueTransformer *)pushCredentialValueTransformer {
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTPushCredential class]];
+}
+
++ (NSValueTransformer *)conversationTypeValueTransformer {
+  return [NSValueTransformer pkt_transformerWithDictionary:@{
+    @"direct" : @(PKTConversationTypeDirect),
+    @"group" : @(PKTConversationTypeGroup)
+  }];
 }
 
 #pragma mark - Public

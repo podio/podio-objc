@@ -8,6 +8,12 @@
 
 #import "PKTModel.h"
 
+typedef NS_ENUM(NSUInteger, PKTConversationType) {
+  PKTConversationTypeUnknown = 0,
+  PKTConversationTypeDirect,
+  PKTConversationTypeGroup
+};
+
 @class PKTAsyncTask, PKTPushCredential;
 
 @interface PKTConversation : PKTModel
@@ -20,6 +26,7 @@
 @property (nonatomic, copy, readonly) NSArray *participants;
 @property (nonatomic, readonly) BOOL unread;
 @property (nonatomic, readonly) BOOL starred;
+@property (nonatomic, readonly) PKTConversationType conversationType;
 @property (nonatomic, copy, readonly) PKTPushCredential *pushCredential;
 
 + (PKTAsyncTask *)fetchConversationWithID:(NSUInteger)conversationID;
