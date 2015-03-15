@@ -141,4 +141,15 @@
   return request;
 }
 
++ (PKTRequest *)requestToAddParticipantsWithUserIDs:(NSArray *)userIDs conversationID:(NSUInteger)conversationID {
+  NSParameterAssert(conversationID > 0);
+  NSParameterAssert([userIDs count] > 0);
+  
+  NSString *path = PKTRequestPath(@"/conversation/%lu/participant/v2/", (unsigned long)conversationID);
+  NSDictionary *params = @{ @"participants": userIDs };
+  PKTRequest *request = [PKTRequest POSTRequestWithPath:path parameters:params];
+  
+  return request;
+}
+
 @end

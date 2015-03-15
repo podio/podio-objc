@@ -32,4 +32,6 @@
 
 + (PKTRequest *)requestToMarkConversationWithIDAsUnread:(NSUInteger)conversationID;
 
++ (PKTRequest *)requestToAddParticipantsWithUserIDs:(NSArray *)userIDs conversationID:(NSUInteger)conversationID;
+
 @end
