@@ -27,6 +27,7 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 @property (nonatomic, copy, readonly) NSArray *fields;
 @property (nonatomic, copy, readonly) NSArray *files;
 @property (nonatomic, copy, readonly) NSArray *comments;
+@property (nonatomic, copy, readonly) NSURL *link;
 
 + (instancetype)itemForAppWithID:(NSUInteger)appID;
 

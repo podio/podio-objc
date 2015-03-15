@@ -95,7 +95,8 @@
     @"createdBy" : @"created_by",
     @"mutFields": @"fields",
     @"mutFiles": @"files",
-    @"comments": @"comments"
+    @"comments": @"comments",
+    @"link": @"link"
   };
 }
 
@@ -129,6 +130,10 @@
 
 + (NSValueTransformer *)commentsValueTransformer {
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTComment class]];
+}
+
++ (NSValueTransformer *)linkValueTransformer {
+  return [NSValueTransformer pkt_URLTransformer];
 }
 
 #pragma mark - API
