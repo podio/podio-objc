@@ -137,6 +137,10 @@
   return [NSValueTransformer pkt_URLTransformer];
 }
 
++ (NSValueTransformer *)externalIDValueTransformer {
+  return [NSValueTransformer pkt_numberValueTransformer];
+}
+
 #pragma mark - API
 
 + (PKTAsyncTask *)fetchItemWithID:(NSUInteger)itemID {
