@@ -35,6 +35,8 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 
 + (PKTAsyncTask *)fetchItemWithID:(NSUInteger)itemID;
 
++ (PKTAsyncTask *)fetchItemWithExternalID:(NSUInteger)externalID inAppWithID:(NSUInteger)appID;
+
 + (PKTAsyncTask *)fetchReferencesForItemWithID:(NSUInteger)itemID;
 
 + (PKTAsyncTask *)fetchItemsInAppWithID:(NSUInteger)appID offset:(NSUInteger)offset limit:(NSUInteger)limit;

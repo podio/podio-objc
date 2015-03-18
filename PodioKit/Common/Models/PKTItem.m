@@ -149,6 +149,17 @@
   return task;
 }
 
++ (PKTAsyncTask *)fetchItemWithExternalID:(NSUInteger)externalID inAppWithID:(NSUInteger)appID {
+  PKTRequest *request = [PKTItemsAPI requestForItemWithExternalID:externalID inAppWithID:appID];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [[self alloc] initWithDictionary:response.body];
+  }];
+  
+  return task;
+}
+
 + (PKTAsyncTask *)fetchReferencesForItemWithID:(NSUInteger)itemID {
   PKTRequest *request = [PKTItemsAPI requestForReferencesForItemWithID:itemID];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];

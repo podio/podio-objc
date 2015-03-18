@@ -52,6 +52,11 @@
   expect(request.path).to.equal(@"/item/123");
 }
 
+- (void)testRequestToGetItemByExternalID {
+  PKTRequest *request = [PKTItemsAPI requestForItemWithExternalID:123 inAppWithID:456];
+  expect(request.path).to.equal(@"/item/app/456/external_id/123");
+}
+
 - (void)testRequestToGetFilteredItems {
   PKTRequest *request = [PKTItemsAPI requestForFilteredItemsInAppWithID:123
                                                                 offset:60

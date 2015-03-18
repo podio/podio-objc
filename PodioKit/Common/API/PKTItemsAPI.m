@@ -14,6 +14,10 @@
   return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/%lu", (unsigned long)itemID) parameters:nil];
 }
 
++ (PKTRequest *)requestForItemWithExternalID:(NSUInteger)externalID inAppWithID:(NSUInteger)appID {
+  return [PKTRequest GETRequestWithPath:PKTRequestPath(@"/item/app/%lu/external_id/%lu", (unsigned long)appID, (unsigned long)externalID) parameters:nil];
+}
+
 + (PKTRequest *)requestForReferencesForItemWithID:(NSUInteger)itemID {
   NSString *path = PKTRequestPath(@"/item/%lu/reference/", (unsigned long)itemID);
   PKTRequest *request = [PKTRequest GETRequestWithPath:path parameters:nil];
