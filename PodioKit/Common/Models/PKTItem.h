@@ -18,6 +18,7 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 @interface PKTItem : PKTModel
 
 @property (nonatomic, assign, readonly) NSUInteger itemID;
+@property (nonatomic, assign, readonly) NSUInteger externalID;
 @property (nonatomic, assign, readonly) NSUInteger appID;
 @property (nonatomic, assign, readonly) NSUInteger appItemID;
 @property (nonatomic, strong, readonly) NSDate *createdOn;

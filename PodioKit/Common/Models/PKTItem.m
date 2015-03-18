@@ -89,6 +89,7 @@
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
     @"itemID": @"item_id",
+    @"externalID": @"external_id",
     @"appID": @"app.app_id",
     @"appItemID" : @"app_item_id",
     @"createdOn" : @"created_on",
