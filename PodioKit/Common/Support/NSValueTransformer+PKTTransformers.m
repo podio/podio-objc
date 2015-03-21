@@ -10,6 +10,7 @@
 #import "PKTAppField.h"
 #import "PKTConstants.h"
 #import "PKTNumberValueTransformer.h"
+#import "PKTRightValueTransformer.h"
 #import "PKTReversibleBlockValueTransformer.h"
 #import "PKTModelValueTransformer.h"
 #import "PKTURLValueTransformer.h"
@@ -54,4 +55,9 @@
 + (NSValueTransformer *)pkt_numberValueTransformer {
   return [PKTNumberValueTransformer new];
 }
+
++ (NSValueTransformer *)pkt_rightValueTransformer {
+  return [PKTRightValueTransformer new];
+}
+
 @end

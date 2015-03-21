@@ -21,5 +21,6 @@
 + (NSValueTransformer *)pkt_referenceTypeTransformer;
 + (NSValueTransformer *)pkt_appFieldTypeTransformer;
 + (NSValueTransformer *)pkt_numberValueTransformer;
++ (NSValueTransformer *)pkt_rightValueTransformer;
 
 @end
