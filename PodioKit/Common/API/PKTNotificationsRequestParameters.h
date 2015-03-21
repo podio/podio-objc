@@ -28,10 +28,6 @@ typedef NS_ENUM(NSUInteger, PKTNotificationViewedState) {
   PKTNotificationViewedStateViewed
 };
 
-typedef NS_ENUM(NSUInteger, PKTNotificationType) {
-  PKTNotificationTypeNone = 0,
-};
-
 @interface PKTNotificationsRequestParameters : NSObject <PKTRequestParameters>
 
 @property (nonatomic, assign) PKTReferenceType contextType;

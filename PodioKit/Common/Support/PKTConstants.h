@@ -108,6 +108,46 @@ typedef NS_ENUM(NSUInteger, PKTReferenceType) {
   PKTReferenceTypeItemParticipation
 };
 
+#pragma mark - Notifications
+
+typedef NS_ENUM(NSInteger, PKTNotificationType) {
+  PKTNotificationTypeUnknown,
+  PKTNotificationTypeAlert,
+  PKTNotificationTypeTeamAlert,
+  PKTNotificationTypeCreation,
+  PKTNotificationTypeUpdate,
+  PKTNotificationTypeDelete,
+  PKTNotificationTypeComment,
+  PKTNotificationTypeRating,
+  PKTNotificationTypeMessage,
+  PKTNotificationTypeSpaceInvite,
+  PKTNotificationTypeSpaceDelete,
+  PKTNotificationTypeBulletin,
+  PKTNotificationTypeMemberReferenceAdd,
+  PKTNotificationTypeMemberReferenceRemove,
+  PKTNotificationTypeFile,
+  PKTNotificationTypeRoleChange,
+  PKTNotificationTypeConversationAdd,
+  PKTNotificationTypeAnswer,
+  PKTNotificationTypeSelfKickedFromSpace,
+  PKTNotificationTypeSpaceCreate,
+  PKTNotificationTypeMeetingParticipantAdd,
+  PKTNotificationTypeMeetingParticipantRemove,
+  PKTNotificationTypeReminder,
+  PKTNotificationTypeBatchProcess,
+  PKTNotificationTypeBatchComplete,
+  PKTNotificationTypeSpaceMemberRequest,
+  PKTNotificationTypeGrantCreate,
+  PKTNotificationTypeGrantDelete,
+  PKTNotificationTypeGrantCreateOther,
+  PKTNotificationTypeGrantDeleteOther,
+  PKTNotificationTypeReference,
+  PKTNotificationTypeLike,
+  PKTNotificationTypeVote,
+  PKTNotificationTypeParticipation,
+  PKTNotificationTypeFileDelete
+};
+
 #pragma mark - Workspaces
 
 typedef NS_ENUM(NSUInteger, PKTWorkspacePrivacy) {
