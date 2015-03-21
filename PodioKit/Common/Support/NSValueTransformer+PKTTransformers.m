@@ -11,6 +11,7 @@
 #import "PKTConstants.h"
 #import "PKTNumberValueTransformer.h"
 #import "PKTRightValueTransformer.h"
+#import "PKTNotificationTypeValueTransformer.h"
 #import "PKTReversibleBlockValueTransformer.h"
 #import "PKTModelValueTransformer.h"
 #import "PKTURLValueTransformer.h"
@@ -46,6 +47,10 @@
 
 + (NSValueTransformer *)pkt_referenceTypeTransformer {
   return [PKTReferenceTypeValueTransformer new];
+}
+
++ (NSValueTransformer *)pkt_notificationTypeTransformer {
+  return [PKTNotificationTypeValueTransformer new];
 }
 
 + (NSValueTransformer *)pkt_appFieldTypeTransformer {

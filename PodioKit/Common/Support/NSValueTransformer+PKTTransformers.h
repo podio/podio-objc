@@ -19,6 +19,7 @@
 + (NSValueTransformer *)pkt_URLTransformer;
 + (NSValueTransformer *)pkt_dateValueTransformer;
 + (NSValueTransformer *)pkt_referenceTypeTransformer;
++ (NSValueTransformer *)pkt_notificationTypeTransformer;
 + (NSValueTransformer *)pkt_appFieldTypeTransformer;
 + (NSValueTransformer *)pkt_numberValueTransformer;
 + (NSValueTransformer *)pkt_rightValueTransformer;

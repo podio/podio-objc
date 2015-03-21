@@ -460,6 +460,10 @@
 		E4F4603A1ABC5A4900A99B19 /* PKTRightValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */; };
 		E4F4603C1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F4603B1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m */; };
 		E4F4603D1ABC5F7500A99B19 /* PKTRightValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */; };
+		E4F460401ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = E4F4603E1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.h */; };
+		E4F460411ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F4603F1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m */; };
+		E4F460421ABD622700A99B19 /* PKTNotificationTypeValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F4603F1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m */; };
+		E4F460441ABD627800A99B19 /* PKTNotificationTypeValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F460431ABD627800A99B19 /* PKTNotificationTypeValueTransformerTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -816,6 +820,9 @@
 		E4F460371ABC5A4900A99B19 /* PKTRightValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRightValueTransformer.h; sourceTree = "<group>"; };
 		E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRightValueTransformer.m; sourceTree = "<group>"; };
 		E4F4603B1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRightValueTransformerTests.m; sourceTree = "<group>"; };
+		E4F4603E1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationTypeValueTransformer.h; sourceTree = "<group>"; };
+		E4F4603F1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationTypeValueTransformer.m; sourceTree = "<group>"; };
+		E4F460431ABD627800A99B19 /* PKTNotificationTypeValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationTypeValueTransformerTests.m; sourceTree = "<group>"; };
 		FA0D6785E9C871BD7293F984 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1098,6 +1105,8 @@
 				C9FAD6730D190BACF99137EF /* PKTNumberValueTransformer.h */,
 				E4F460371ABC5A4900A99B19 /* PKTRightValueTransformer.h */,
 				E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */,
+				E4F4603E1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.h */,
+				E4F4603F1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -1115,6 +1124,7 @@
 				5006B095191CAE73006FF388 /* PKTAppFieldTypeValueTransformerTests.m */,
 				C9FAD5036212A8EF74B70210 /* PKTNumberValueTransformerTests.m */,
 				E4F4603B1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m */,
+				E4F460431ABD627800A99B19 /* PKTNotificationTypeValueTransformerTests.m */,
 			);
 			name = Transformers;
 			sourceTree = "<group>";
@@ -1576,6 +1586,7 @@
 				5057F86F1A1D2BC900975859 /* NSURL+PKTImageURL.h in Headers */,
 				50AD3CA119A34A9000589260 /* PKTWorkspaceMembersAPI.h in Headers */,
 				5020670419235F04004721A1 /* PKTDateRange.h in Headers */,
+				E4F460401ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.h in Headers */,
 				5014C56918880B050002C68D /* PKTRequest.h in Headers */,
 				502BB224195B7448003160DE /* PKTTasksAPI.h in Headers */,
 				50CA79DB19D6AABA00759BB8 /* PKTLocationItemFieldValue.h in Headers */,
@@ -1880,6 +1891,7 @@
 				50E067F1191FE10000552CCF /* NSValueTransformer+PKTConstants.m in Sources */,
 				5006B080191C200B006FF388 /* NSDate+PKTAdditions.m in Sources */,
 				5033FF741961861700B2FD04 /* PKTStatusAPI.m in Sources */,
+				E4F460411ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m in Sources */,
 				505324B619883DD500700135 /* PKTAsyncTask.m in Sources */,
 				503959F21912CC47004C298C /* PKTRequestFileData.m in Sources */,
 				508F9B4C195AF2C000275A63 /* PKTImageDownloader.m in Sources */,
@@ -2079,6 +2091,7 @@
 				501D605E190ED1BF004D94C4 /* PKTDateItemFieldValue.m in Sources */,
 				50060229196DE19500BC619F /* NSDictionary+PKTQueryParametersTests.m in Sources */,
 				50A1133719DD37C10063624A /* PKTEmbedsAPI.m in Sources */,
+				E4F460441ABD627800A99B19 /* PKTNotificationTypeValueTransformerTests.m in Sources */,
 				5039F64D1907114F00A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
 				50CA79E419D6B7E400759BB8 /* PKTLocationTests.m in Sources */,
 				502067071923645C004721A1 /* PKTDateRange.m in Sources */,
@@ -2177,6 +2190,7 @@
 				C9FAD459B5E1A7FD82D4D1CC /* NSString+PKTBase64.m in Sources */,
 				50A1133919DDA1520063624A /* PKTEmbedsAPITests.m in Sources */,
 				50060227196D989E00BC619F /* NSString+PKTURLEncodeTests.m in Sources */,
+				E4F460421ABD622700A99B19 /* PKTNotificationTypeValueTransformer.m in Sources */,
 				501D4E3119BF309700A11B84 /* PKTNotificationsAPITests.m in Sources */,
 				C9FADAD0D7D9451B20D37296 /* NSString+PKTBase64Tests.m in Sources */,
 				502BB233195DB532003160DE /* PKTTaskAPITests.m in Sources */,

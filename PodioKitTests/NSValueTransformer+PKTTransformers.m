@@ -13,6 +13,7 @@
 #import "PKTModelValueTransformer.h"
 #import "PKTURLValueTransformer.h"
 #import "PKTReferenceTypeValueTransformer.h"
+#import "PKTNotificationTypeValueTransformer.h"
 #import "PKTRightValueTransformer.h"
 
 @interface NSValueTransformer_PKTTransformers : XCTestCase
@@ -53,6 +54,11 @@
 - (void)testReferenceTypeTransformer {
   NSValueTransformer *transformer = [NSValueTransformer pkt_referenceTypeTransformer];
   expect(transformer).to.beInstanceOf([PKTReferenceTypeValueTransformer class]);
+}
+
+- (void)testNotificationTypeTransformer {
+  NSValueTransformer *transformer = [NSValueTransformer pkt_notificationTypeTransformer];
+  expect(transformer).to.beInstanceOf([PKTNotificationTypeValueTransformer class]);
 }
 
 - (void)testRightTransformer {
