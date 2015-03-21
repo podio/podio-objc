@@ -798,7 +798,6 @@
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
 		E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandomTests.m"; sourceTree = "<group>"; };
-		E47A28271ABC2B3B00E6F0FD /* PKTRight.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PKTRight.h; sourceTree = "<group>"; };
 		E49B6F7E189016C20046192A /* NSURL+PKTParamatersHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PKTParamatersHandling.h"; sourceTree = "<group>"; };
 		E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTParamatersHandling.m"; sourceTree = "<group>"; };
 		E49B6F81189016D00046192A /* NSString+PKTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURL.h"; sourceTree = "<group>"; };
@@ -1275,7 +1274,6 @@
 				506072831A1547A200424423 /* PKTMessage.m */,
 				50DFFE781A2E248B00FFE9D2 /* PKTReferenceGroup.h */,
 				50DFFE791A2E248B00FFE9D2 /* PKTReferenceGroup.m */,
-				E47A28271ABC2B3B00E6F0FD /* PKTRight.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";

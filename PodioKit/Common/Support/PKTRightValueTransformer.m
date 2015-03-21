@@ -7,7 +7,7 @@
 //
 
 #import "PKTRightValueTransformer.h"
-#import "PKTRight.h"
+#import "PKTConstants.h"
 
 @implementation PKTRightValueTransformer
 
