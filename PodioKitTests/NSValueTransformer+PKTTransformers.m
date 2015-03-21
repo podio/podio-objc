@@ -9,6 +9,10 @@
 #import <XCTest/XCTest.h>
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTTestModel.h"
+#import "PKTReversibleBlockValueTransformer.h"
+#import "PKTModelValueTransformer.h"
+#import "PKTURLValueTransformer.h"
+#import "PKTReferenceTypeValueTransformer.h"
 
 @interface NSValueTransformer_PKTTransformers : XCTestCase
 

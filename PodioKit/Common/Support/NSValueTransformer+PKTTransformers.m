@@ -10,6 +10,12 @@
 #import "PKTAppField.h"
 #import "PKTConstants.h"
 #import "PKTNumberValueTransformer.h"
+#import "PKTReversibleBlockValueTransformer.h"
+#import "PKTModelValueTransformer.h"
+#import "PKTURLValueTransformer.h"
+#import "PKTReferenceTypeValueTransformer.h"
+#import "PKTAppFieldTypeValueTransformer.h"
+#import "PKTDateValueTransformer.h"
 
 @implementation NSValueTransformer (PKTTransformers)
 
