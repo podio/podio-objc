@@ -14,4 +14,7 @@
 + (PKTReferenceType)pkt_referenceTypeFromString:(NSString *)string;
 + (NSString *)pkt_stringFromReferenceType:(PKTReferenceType)referenceType;
 
++ (PKTNotificationType)pkt_notificationTypeFromString:(NSString *)string;
++ (NSString *)pkt_stringFromNotificationType:(PKTNotificationType)notificationType;
+
 @end

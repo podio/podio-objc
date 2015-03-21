@@ -26,4 +26,19 @@
   return [[NSValueTransformer pkt_referenceTypeTransformer] reverseTransformedValue:@(referenceType)];
 }
 
++ (PKTNotificationType)pkt_notificationTypeFromString:(NSString *)string {
+  id notificationTypeValue = [[NSValueTransformer pkt_notificationTypeTransformer] transformedValue:string];
+  
+  PKTNotificationType notificationType = PKTNotificationTypeUnknown;
+  if ([notificationTypeValue isKindOfClass:[NSNumber class]]) {
+    notificationType = [notificationTypeValue unsignedIntegerValue];
+  }
+  
+  return notificationType;
+}
+
++ (NSString *)pkt_stringFromNotificationType:(PKTNotificationType)notificationType {
+  return [[NSValueTransformer pkt_notificationTypeTransformer] reverseTransformedValue:@(notificationType)];
+}
+
 @end
