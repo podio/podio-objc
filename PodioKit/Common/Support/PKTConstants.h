@@ -101,7 +101,7 @@ typedef NS_ENUM(NSUInteger, PKTReferenceType) {
 #pragma mark - Notifications
 
 typedef NS_ENUM(NSInteger, PKTNotificationType) {
-  PKTNotificationTypeUnknown,
+  PKTNotificationTypeUnknown = 0,
   PKTNotificationTypeAlert,
   PKTNotificationTypeTeamAlert,
   PKTNotificationTypeCreation,
