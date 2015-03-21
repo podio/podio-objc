@@ -56,18 +56,8 @@
       @"reference": @(PKTRightReference),
       @"view_admins": @(PKTRightViewAdmins),
       @"download": @(PKTRightDownload),
-      @"view_members": @(PKTRightViewMembers),
-      @"auto_join": @(PKTRightAutoJoin),
       @"grant": @(PKTRightGrant),
-      @"view_structure": @(PKTRightViewStructure),
-      @"add_flow": @(PKTRightAddFlow),
-      @"request_membership": @(PKTRightRequestMembership),
-      @"manage_public_views": @(PKTRightManagePublicViews),
-      @"send_push": @(PKTRightSendPush),
-      @"add_advanced_flow": @(PKTRightAddAdvancedFlow),
-      @"grant_view": @(PKTRightGrantView),
-      @"report_visualization": @(PKTRightReportVisualization),
-      @"priority_support": @(PKTRightPrioritySupport)
+      @"grant_view": @(PKTRightGrantView)
     };
   });
   

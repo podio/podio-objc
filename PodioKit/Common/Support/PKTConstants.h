@@ -43,18 +43,8 @@ typedef NS_OPTIONS(NSUInteger, PKTRight) {
   PKTRightReference             = 1 << 27,
   PKTRightViewAdmins            = 1 << 28,
   PKTRightDownload              = 1 << 29,
-  PKTRightViewMembers           = 1 << 30,
-  PKTRightAutoJoin              = 1 << 31,
-  PKTRightGrant                 = 1 << 32,
-  PKTRightViewStructure         = 1 << 33,
-  PKTRightAddFlow               = 1 << 34,
-  PKTRightRequestMembership     = 1 << 35,
-  PKTRightManagePublicViews     = 1 << 36,
-  PKTRightSendPush              = 1 << 37,
-  PKTRightAddAdvancedFlow       = 1 << 38,
-  PKTRightGrantView             = 1 << 39,
-  PKTRightReportVisualization   = 1 << 40,
-  PKTRightPrioritySupport       = 1 << 41
+  PKTRightGrant                 = 1 << 30,
+  PKTRightGrantView             = 1 << 31
 };
 
 #pragma mark - References
