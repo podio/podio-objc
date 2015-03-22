@@ -41,7 +41,8 @@
                      @"conversation_read_all": @(PKTPushEventTypeConversationReadAll),
                      @"conversation_starred_count": @(PKTPushEventTypeConversationStarredCount),
                      @"conversation_unread_count": @(PKTPushEventTypeConversationUnreadCount),
-                     @"notification_unread": @(PKTPushEventTypeNotificationUnread)
+                     @"notification_unread": @(PKTPushEventTypeNotificationUnread),
+                     @"notification_create": @(PKTPushEventTypeNotificationCreate),
                     };
   });
   
