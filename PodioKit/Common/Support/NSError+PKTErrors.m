@@ -29,7 +29,15 @@ NSString * const PKTErrorPropagateKey = @"PKTErrorPropagate";
   return [self.domain isEqualToString:PodioServerErrorDomain] && self.code > 0;
 }
 
+- (NSString *)pkt_localizedServerSideDescription {
+  return [self pkt_shouldPropagate] ? self.userInfo[PKTErrorDescriptionKey] : nil;
+}
+
 #pragma mark - Private
+
+- (BOOL)pkt_shouldPropagate {
+  return [self pkt_isServerError] && [self.userInfo[PKTErrorPropagateKey] boolValue] == YES;
+}
 
 + (NSDictionary *)pkt_userInfoFromBody:(id)body {
   if (![body isKindOfClass:[NSDictionary class]]) return nil;
@@ -42,9 +50,9 @@ NSString * const PKTErrorPropagateKey = @"PKTErrorPropagate";
   NSString *errorDescription = [errorDict pkt_nonNullObjectForKey:@"error_description"];
   NSString *errorDetail = [errorDict pkt_nonNullObjectForKey:@"error_detail"];
   NSDictionary *errorParameters = [errorDict pkt_nonNullObjectForKey:@"error_parameters"];
-  NSNumber *errorPropagate =[errorDict pkt_nonNullObjectForKey:@"error_propagate"];
+  NSNumber *errorPropagate = [errorDict pkt_nonNullObjectForKey:@"error_propagate"];
   
-  if (errorDescription) userInfo[NSLocalizedDescriptionKey] = errorDescription;
+  if (errorDescription && [errorPropagate boolValue]) userInfo[NSLocalizedDescriptionKey] = errorDescription;
   if (error) userInfo[PKTErrorKey] = error;
   if (errorDescription) userInfo[PKTErrorDescriptionKey] = errorDescription;
   if (errorDetail) userInfo[PKTErrorDetailKey] = errorDetail;
