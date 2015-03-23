@@ -437,6 +437,10 @@
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
 		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
+		E47A281D1ABB407A00E6F0FD /* PKTNotificationGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A281B1ABB407A00E6F0FD /* PKTNotificationGroup.h */; };
+		E47A281E1ABB407A00E6F0FD /* PKTNotificationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A281C1ABB407A00E6F0FD /* PKTNotificationGroup.m */; };
+		E47A28211ABB41AD00E6F0FD /* PKTNotification.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A281F1ABB41AD00E6F0FD /* PKTNotification.h */; };
+		E47A28221ABB41AD00E6F0FD /* PKTNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A28201ABB41AD00E6F0FD /* PKTNotification.m */; };
 		E47A28251ABC183E00E6F0FD /* PKTNotificationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */; };
 		E47A28261ABC183E00E6F0FD /* PKTNotificationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */; };
 		E48E96A31ABDF87D005C652B /* PKTNotificationObjectFactory.h in Headers */ = {isa = PBXBuildFile; fileRef = E48E96A11ABDF87D005C652B /* PKTNotificationObjectFactory.h */; };
@@ -811,6 +815,10 @@
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
 		E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandomTests.m"; sourceTree = "<group>"; };
+		E47A281B1ABB407A00E6F0FD /* PKTNotificationGroup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationGroup.h; sourceTree = "<group>"; };
+		E47A281C1ABB407A00E6F0FD /* PKTNotificationGroup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationGroup.m; sourceTree = "<group>"; };
+		E47A281F1ABB41AD00E6F0FD /* PKTNotification.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotification.h; sourceTree = "<group>"; };
+		E47A28201ABB41AD00E6F0FD /* PKTNotification.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotification.m; sourceTree = "<group>"; };
 		E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationContext.h; sourceTree = "<group>"; };
 		E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationContext.m; sourceTree = "<group>"; };
 		E48E96A11ABDF87D005C652B /* PKTNotificationObjectFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationObjectFactory.h; sourceTree = "<group>"; };
@@ -1300,6 +1308,10 @@
 				506072831A1547A200424423 /* PKTMessage.m */,
 				50DFFE781A2E248B00FFE9D2 /* PKTReferenceGroup.h */,
 				50DFFE791A2E248B00FFE9D2 /* PKTReferenceGroup.m */,
+				E47A281F1ABB41AD00E6F0FD /* PKTNotification.h */,
+				E47A28201ABB41AD00E6F0FD /* PKTNotification.m */,
+				E47A281B1ABB407A00E6F0FD /* PKTNotificationGroup.h */,
+				E47A281C1ABB407A00E6F0FD /* PKTNotificationGroup.m */,
 				E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */,
 				E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */,
 				E48E96A11ABDF87D005C652B /* PKTNotificationObjectFactory.h */,
@@ -1697,6 +1709,7 @@
 				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50060217196D773400BC619F /* NSDictionary+PKTQueryParameters.h in Headers */,
 				50E6C80D190D5A6600F309B4 /* PKTAppField.h in Headers */,
+				E47A28211ABB41AD00E6F0FD /* PKTNotification.h in Headers */,
 				5006B07F191C200B006FF388 /* NSDate+PKTAdditions.h in Headers */,
 				5024C5BD196164CE00AE28D7 /* PKTReferenceObjectFactory.h in Headers */,
 				50E6C809190D4EC200F309B4 /* PKTFile.h in Headers */,
@@ -1719,6 +1732,7 @@
 				E48E96A31ABDF87D005C652B /* PKTNotificationObjectFactory.h in Headers */,
 				5024C5C719616DC400AE28D7 /* PKTUser.h in Headers */,
 				C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */,
+				E47A281D1ABB407A00E6F0FD /* PKTNotificationGroup.h in Headers */,
 				C9FADEC73A88FBD20E632A4F /* PKTAppFieldConfig.h in Headers */,
 				502AAB3319FF795B006A0352 /* PKTPushCredential.h in Headers */,
 				C9FAD5520897CD3F437A17E1 /* PKTItemFieldValue.h in Headers */,
@@ -1989,6 +2003,7 @@
 				502BB23C195DB75F003160DE /* PKTTask.m in Sources */,
 				5039F651190712DC00A8A8F0 /* PKTReferenceTypeValueTransformer.m in Sources */,
 				501D6051190E340B004D94C4 /* PKTDateItemFieldValue.m in Sources */,
+				E47A28221ABB41AD00E6F0FD /* PKTNotification.m in Sources */,
 				5014C57B188816F10002C68D /* PKTResponse.m in Sources */,
 				501D605B190E3E81004D94C4 /* PKTEmbedItemFieldValue.m in Sources */,
 				5082426318FC8A84009A1580 /* NSObject+PKTIntrospection.m in Sources */,
@@ -2034,6 +2049,7 @@
 				C9FADDB6A88831D6235765A4 /* NSNumber+PKTAdditions.m in Sources */,
 				C9FADFCCA132D164F80B8CD2 /* PKTNumberItemFieldValue.m in Sources */,
 				C9FAD5B079857EA6BAC03F7B /* NSString+PKTBase64.m in Sources */,
+				E47A281E1ABB407A00E6F0FD /* PKTNotificationGroup.m in Sources */,
 				507DFDC419479341002C339A /* PKTKeychain.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
