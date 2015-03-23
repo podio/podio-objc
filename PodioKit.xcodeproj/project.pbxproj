@@ -439,6 +439,9 @@
 		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
 		E47A28251ABC183E00E6F0FD /* PKTNotificationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */; };
 		E47A28261ABC183E00E6F0FD /* PKTNotificationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */; };
+		E48E96AA1AC03C41005C652B /* PKTItemRevision.h in Headers */ = {isa = PBXBuildFile; fileRef = E48E96A81AC03C41005C652B /* PKTItemRevision.h */; };
+		E48E96AB1AC03C41005C652B /* PKTItemRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E96A91AC03C41005C652B /* PKTItemRevision.m */; };
+		E48E96B01AC05B21005C652B /* PKTItemRevision.m in Sources */ = {isa = PBXBuildFile; fileRef = E48E96A91AC03C41005C652B /* PKTItemRevision.m */; };
 		E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */; };
 		E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F82189016D00046192A /* NSString+PKTURL.m */; };
 		E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */; };
@@ -806,6 +809,8 @@
 		E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandomTests.m"; sourceTree = "<group>"; };
 		E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationContext.h; sourceTree = "<group>"; };
 		E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationContext.m; sourceTree = "<group>"; };
+		E48E96A81AC03C41005C652B /* PKTItemRevision.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTItemRevision.h; sourceTree = "<group>"; };
+		E48E96A91AC03C41005C652B /* PKTItemRevision.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemRevision.m; sourceTree = "<group>"; };
 		E49B6F7E189016C20046192A /* NSURL+PKTParamatersHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PKTParamatersHandling.h"; sourceTree = "<group>"; };
 		E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTParamatersHandling.m"; sourceTree = "<group>"; };
 		E49B6F81189016D00046192A /* NSString+PKTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURL.h"; sourceTree = "<group>"; };
@@ -1290,6 +1295,8 @@
 				50DFFE791A2E248B00FFE9D2 /* PKTReferenceGroup.m */,
 				E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */,
 				E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */,
+				E48E96A81AC03C41005C652B /* PKTItemRevision.h */,
+				E48E96A91AC03C41005C652B /* PKTItemRevision.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1694,6 +1701,7 @@
 				E4BABDCB1897F9DA00E9149A /* PKTOAuth2Token.h in Headers */,
 				50DFFE7A1A2E248B00FFE9D2 /* PKTReferenceGroup.h in Headers */,
 				C9FADADED203CCE914EE514C /* PKTDurationItemFieldValue.h in Headers */,
+				E48E96AA1AC03C41005C652B /* PKTItemRevision.h in Headers */,
 				50DAD43A196404BD00529DB5 /* PKTForm.h in Headers */,
 				C9FAD8E2789F4294593CD312 /* PKTDuration.h in Headers */,
 				E41804C41AACEE3300084F0B /* PKTProgressItemFieldValue.h in Headers */,
@@ -1947,6 +1955,7 @@
 				50DFFE7B1A2E248B00FFE9D2 /* PKTReferenceGroup.m in Sources */,
 				5039F64C19070ED300A8A8F0 /* PKTDictionaryMappingValueTransformer.m in Sources */,
 				501D6057190E3E64004D94C4 /* PKTMoneyItemFieldValue.m in Sources */,
+				E48E96AB1AC03C41005C652B /* PKTItemRevision.m in Sources */,
 				501D604D190E30F5004D94C4 /* PKTStringItemFieldValue.m in Sources */,
 				5006B091191C39D6006FF388 /* PKTAppFieldTypeValueTransformer.m in Sources */,
 				5020670519235F04004721A1 /* PKTDateRange.m in Sources */,
@@ -2180,6 +2189,7 @@
 				C9FADFCA8046F3CBFB1DBC53 /* PKTDurationItemFieldValue.m in Sources */,
 				C9FADBC1A39DD6160D2BC363 /* PKTDuration.m in Sources */,
 				5091F1D819FEFB3600728A86 /* PKTPushClient.m in Sources */,
+				E48E96B01AC05B21005C652B /* PKTItemRevision.m in Sources */,
 				C9FAD96B97CE26ABBEA2A76A /* PKTDurationTests.m in Sources */,
 				500C2A801979429E006DC5A9 /* PKTContactAPITests.m in Sources */,
 				C9FADCD77D47E603D45B5F79 /* PKTCategoryOption.m in Sources */,
