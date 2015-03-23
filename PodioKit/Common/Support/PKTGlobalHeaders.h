@@ -31,6 +31,7 @@
 #import "PKTWorkspaceMembersAPI.h"
 #import "PKTConversationsAPI.h"
 #import "PKTReferenceAPI.h"
+#import "PKTNotificationsAPI.h"
 
 #import "PKTOAuth2Token.h"
 #import "PKTApp.h"
@@ -63,6 +64,10 @@
 #import "PKTByLine.h"
 #import "PKTMessage.h"
 #import "PKTPushCredential.h"
+#import "PKTNotification.h"
+#import "PKTNotificationContext.h"
+#import "PKTNotificationGroup.h"
+#import "PKTItemRevision.h"
 
 #ifdef __IPHONE_OS_VERSION_MIN_REQUIRED
   #import "PKTFile+UIImage.h"
