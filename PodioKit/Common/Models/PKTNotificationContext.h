@@ -1,5 +1,5 @@
 //
-//  PKTNotificationGroupContext.h
+//  PKTNotificationContext.h
 //  PodioKit
 //
 //  Created by Romain Briche on 20/03/15.
@@ -11,7 +11,7 @@
 
 @class PKTReference, PKTWorkspace, PKTOrganization;
 
-@interface PKTNotificationGroupContext : PKTModel
+@interface PKTNotificationContext : PKTModel
 
 /*
  * The reference of the context

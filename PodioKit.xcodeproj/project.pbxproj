@@ -437,8 +437,8 @@
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
 		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
-		E47A28251ABC183E00E6F0FD /* PKTNotificationGroupContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A28231ABC183E00E6F0FD /* PKTNotificationGroupContext.h */; };
-		E47A28261ABC183E00E6F0FD /* PKTNotificationGroupContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A28241ABC183E00E6F0FD /* PKTNotificationGroupContext.m */; };
+		E47A28251ABC183E00E6F0FD /* PKTNotificationContext.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */; };
+		E47A28261ABC183E00E6F0FD /* PKTNotificationContext.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */; };
 		E49B6F80189016C20046192A /* NSURL+PKTParamatersHandling.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */; };
 		E49B6F83189016D00046192A /* NSString+PKTURL.m in Sources */ = {isa = PBXBuildFile; fileRef = E49B6F82189016D00046192A /* NSString+PKTURL.m */; };
 		E49B6F8618901ACF0046192A /* PKTRequestSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = E49B6F8418901ACF0046192A /* PKTRequestSerializer.h */; };
@@ -804,8 +804,8 @@
 		E45F9648188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EXPMatchers+PKTBeSupersetOf.h"; sourceTree = "<group>"; };
 		E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "EXPMatchers+PKTBeSupersetOf.m"; sourceTree = "<group>"; };
 		E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTRandomTests.m"; sourceTree = "<group>"; };
-		E47A28231ABC183E00E6F0FD /* PKTNotificationGroupContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationGroupContext.h; sourceTree = "<group>"; };
-		E47A28241ABC183E00E6F0FD /* PKTNotificationGroupContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationGroupContext.m; sourceTree = "<group>"; };
+		E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTNotificationContext.h; sourceTree = "<group>"; };
+		E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTNotificationContext.m; sourceTree = "<group>"; };
 		E49B6F7E189016C20046192A /* NSURL+PKTParamatersHandling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+PKTParamatersHandling.h"; sourceTree = "<group>"; };
 		E49B6F7F189016C20046192A /* NSURL+PKTParamatersHandling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+PKTParamatersHandling.m"; sourceTree = "<group>"; };
 		E49B6F81189016D00046192A /* NSString+PKTURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTURL.h"; sourceTree = "<group>"; };
@@ -1288,8 +1288,8 @@
 				506072831A1547A200424423 /* PKTMessage.m */,
 				50DFFE781A2E248B00FFE9D2 /* PKTReferenceGroup.h */,
 				50DFFE791A2E248B00FFE9D2 /* PKTReferenceGroup.m */,
-				E47A28231ABC183E00E6F0FD /* PKTNotificationGroupContext.h */,
-				E47A28241ABC183E00E6F0FD /* PKTNotificationGroupContext.m */,
+				E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */,
+				E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1635,7 +1635,7 @@
 				507DFDC319479341002C339A /* PKTKeychain.h in Headers */,
 				50060223196D7AEA00BC619F /* NSString+PKTURLEncode.h in Headers */,
 				50760B481A01235C00EE3EB9 /* NSSet+PKTAdditions.h in Headers */,
-				E47A28251ABC183E00E6F0FD /* PKTNotificationGroupContext.h in Headers */,
+				E47A28251ABC183E00E6F0FD /* PKTNotificationContext.h in Headers */,
 				5082425618FC8466009A1580 /* PKTReversibleBlockValueTransformer.h in Headers */,
 				50DAD43E1964067600529DB5 /* PKTFormField.h in Headers */,
 				502BB23B195DB75F003160DE /* PKTTask.h in Headers */,
@@ -1997,7 +1997,7 @@
 				C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */,
 				5006020E196D550400BC619F /* NSString+PKTAdditions.m in Sources */,
 				50AD3CA219A34A9000589260 /* PKTWorkspaceMembersAPI.m in Sources */,
-				E47A28261ABC183E00E6F0FD /* PKTNotificationGroupContext.m in Sources */,
+				E47A28261ABC183E00E6F0FD /* PKTNotificationContext.m in Sources */,
 				501D4E2719BDE65400A11B84 /* PKTNotificationsRequestParameters.m in Sources */,
 				C9FADF2268C5ADBAAA1ED9D3 /* PKTDuration.m in Sources */,
 				C9FAD5E0C1CD812506A25FBB /* PKTCategoryOption.m in Sources */,

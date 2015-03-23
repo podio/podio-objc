@@ -1,19 +1,19 @@
 //
-//  PKTNotificationGroupContext.m
+//  PKTNotificationContext.m
 //  PodioKit
 //
 //  Created by Romain Briche on 20/03/15.
 //  Copyright (c) 2015 Citrix Systems, Inc. All rights reserved.
 //
 
-#import "PKTNotificationGroupContext.h"
+#import "PKTNotificationContext.h"
 #import "PKTReference.h"
 #import "PKTWorkspace.h"
 #import "PKTOrganization.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "NSDictionary+PKTAdditions.h"
 
-@implementation PKTNotificationGroupContext
+@implementation PKTNotificationContext
 
 #pragma mark - PKTModel
 
