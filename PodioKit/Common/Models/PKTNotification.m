@@ -7,7 +7,6 @@
 //
 
 #import "PKTNotification.h"
-#import "PKTNotificationObjectFactory.h"
 #import "NSValueTransformer+PKTTransformers.h"
 #import "PKTByLine.h"
 #import "PKTNotificationsAPI.h"
@@ -23,7 +22,6 @@
   return @{
     @"notificationID": @"notification_id",
     @"notificationType": @"type",
-    @"notificationObject": @"data",
     @"textShort": @"text_short",
     @"viewedOn": @"viewed_on",
     @"subscriptionID": @"subscription_id",
@@ -46,12 +44,6 @@
 
 + (NSValueTransformer *)notificationTypeValueTransformer {
   return [NSValueTransformer pkt_notificationTypeTransformer];
-}
-
-+ (NSValueTransformer *)notificationObjectValueTransformer {
-  return [NSValueTransformer pkt_transformerWithBlock:^id(NSDictionary *dict) {
-    return [PKTNotificationObjectFactory notificationObjectFromDictionary:dict];
-  }];
 }
 
 + (NSValueTransformer *)viewedOnValueTransformer {

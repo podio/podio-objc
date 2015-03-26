@@ -24,9 +24,9 @@
 @property (nonatomic, assign, readonly) PKTNotificationType notificationType;
 
 /*
- * The data of the notification, depends on the type of notification
+ * The data of the notification, depends on the type of notification (e.g. dictionary, array)
  */
-@property (nonatomic, strong, readonly) id notificationObject;
+@property (nonatomic, copy, readonly) id data;
 
 /*
  * The text for the notification
