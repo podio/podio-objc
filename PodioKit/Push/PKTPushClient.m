@@ -80,7 +80,7 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
 
 @interface PKTPushSubscription ()
 
-@property (nonatomic, weak, readonly) PKTInternalPushSubscription *internalSubscription;
+@property (nonatomic, strong, readonly) PKTInternalPushSubscription *internalSubscription;
 
 @end
 
@@ -93,6 +93,10 @@ typedef NS_ENUM(NSUInteger, PKTPushSubscriptionState) {
   _internalSubscription = subscription;
   
   return self;
+}
+
+- (void)dealloc {
+  [_internalSubscription.client unsubscribe:self];
 }
 
 + (instancetype)subscriptionForInternalSubscription:(PKTInternalPushSubscription *)subscription {
