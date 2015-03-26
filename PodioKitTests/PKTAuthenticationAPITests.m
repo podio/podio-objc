@@ -42,6 +42,17 @@
   expect(request.parameters[@"grant_type"]).to.equal(@"app");
 }
 
+- (void)testRequestForAuthenticationWithTransferToken {
+  NSString *transferToken = @"4534fgsdfsd52";
+  
+  PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithTransferToken:transferToken];
+  
+  expect(request.method).to.equal(PKTRequestMethodPOST);
+  expect(request.path).to.equal(@"/oauth/token");
+  expect(request.parameters[@"transfer_token"]).to.equal(transferToken);
+  expect(request.parameters[@"grant_type"]).to.equal(@"transfer_token");
+}
+
 - (void)testRequestForRefreshToken {
   NSString *refreshToken = @"aRefreshToken";
 

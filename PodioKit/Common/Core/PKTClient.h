@@ -109,7 +109,7 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  */
 - (void)performBlock:(void (^)(void))block;
 
-/** Authenticate the default client as a user with an email and password.
+/** Authenticate the client as a user with an email and password.
  *
  *  @see https://developers.podio.com/authentication/username_password
  *
@@ -130,6 +130,15 @@ extern NSString * const PKTClientAuthenticationStateDidChangeNotification;
  *  @return The resulting task.
  */
 - (PKTAsyncTask *)authenticateAsAppWithID:(NSUInteger)appID token:(NSString *)appToken;
+
+/**
+ *  Authenticate using a transfer token.
+ *
+ *  @param transferToken The transfer token.
+ *
+ *  @return The resulting task.
+ */
+- (PKTAsyncTask *)authenticateWithTransferToken:(NSString *)transferToken;
 
 /** Configure authentication parameters for authenticating the default client as an app.
  *

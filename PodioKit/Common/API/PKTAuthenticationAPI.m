@@ -16,10 +16,12 @@ static NSString * const kAuthenticationPasswordKey = @"password";
 static NSString * const kAuthenticationAppIDKey = @"app_id";
 static NSString * const kAuthenticationAppTokenKey = @"app_token";
 static NSString * const kAuthenticationrRefreshTokenKey = @"refresh_token";
+static NSString * const kAuthenticationrTransferTokenKey = @"transfer_token";
 
 static NSString * const kAuthenticationGrantTypePassword = @"password";
 static NSString * const kAuthenticationGrantTypeApp = @"app";
 static NSString * const kAuthenticationGrantTypeRefreshToken = @"refresh_token";
+static NSString * const kAuthenticationGrantTypeTransferToken = @"transfer_token";
 
 @implementation PKTAuthenticationAPI
 
@@ -27,7 +29,9 @@ static NSString * const kAuthenticationGrantTypeRefreshToken = @"refresh_token";
   NSParameterAssert(email);
   NSParameterAssert(password);
 
-  return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypePassword parameters:@{kAuthenticationUsernameKey: email, kAuthenticationPasswordKey: password}];
+  return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypePassword
+                                          parameters:@{kAuthenticationUsernameKey: email,
+                                                       kAuthenticationPasswordKey: password}];
 }
 
 + (PKTRequest *)requestForAuthenticationWithAppID:(NSUInteger)appID token:(NSString *)appToken {
@@ -35,6 +39,13 @@ static NSString * const kAuthenticationGrantTypeRefreshToken = @"refresh_token";
   NSParameterAssert(appToken);
 
   return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypeApp parameters:@{kAuthenticationAppIDKey: @(appID), kAuthenticationAppTokenKey: appToken}];
+}
+
++ (PKTRequest *)requestForAuthenticationWithTransferToken:(NSString *)transferToken {
+  NSParameterAssert(transferToken);
+  
+  return [self requestForAuthenticationWithGrantType:kAuthenticationGrantTypeTransferToken
+                                          parameters:@{kAuthenticationrTransferTokenKey: transferToken}];
 }
 
 + (PKTRequest *)requestToRefreshToken:(NSString *)refreshToken {

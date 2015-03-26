@@ -278,6 +278,13 @@ typedef void (^PKTRequestProgressBlock) (float progress);
   return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious];
 }
 
+- (PKTAsyncTask *)authenticateWithTransferToken:(NSString *)transferToken {
+  NSParameterAssert(transferToken);
+  
+  PKTRequest *request = [PKTAuthenticationAPI requestForAuthenticationWithTransferToken:transferToken];
+  return [self authenticateWithRequest:request requestPolicy:PKTClientAuthRequestPolicyCancelPrevious];
+}
+
 - (void)authenticateAutomaticallyAsAppWithID:(NSUInteger)appID token:(NSString *)appToken {
   NSParameterAssert(appID);
   NSParameterAssert(appToken);

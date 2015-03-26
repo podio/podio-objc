@@ -324,6 +324,22 @@
   expect(self.testClient.oauthToken).toNot.beNil();
 }
 
+- (void)testAuthenticationWithTransferToken {
+  NSDictionary *tokenDict = [self dummyAuthTokenDict];
+  PKTRequest *authRequest = [PKTAuthenticationAPI requestForAuthenticationWithTransferToken:@"some-transfer-token"];
+  [PKTHTTPStubs stubResponseForPath:authRequest.path responseObject:tokenDict];
+  
+  __block BOOL completed = NO;
+  [[self.testClient authenticateWithTransferToken:@"some-transfer-token"] onSuccess:^(id result) {
+    completed = YES;
+  }];
+  
+  expect([self.testClient.HTTPClient.requestSerializer valueForHTTPHeader:PKTRequestSerializerHTTPHeaderKeyAuthorization]).equal([self basicAuthHeaderForTestClient]);
+  
+  expect(completed).will.beTruthy();
+  expect(self.testClient.oauthToken).toNot.beNil();
+}
+
 - (void)testAuthenticateAutomaticallyWithApp {
   [self.testClient authenticateAutomaticallyAsAppWithID:1234 token:@"app-token"];
   

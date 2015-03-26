@@ -14,6 +14,8 @@
 
 + (PKTRequest *)requestForAuthenticationWithAppID:(NSUInteger)appID token:(NSString *)appToken;
 
++ (PKTRequest *)requestForAuthenticationWithTransferToken:(NSString *)transferToken;
+
 + (PKTRequest *)requestToRefreshToken:(NSString *)refreshToken;
 
 @end
