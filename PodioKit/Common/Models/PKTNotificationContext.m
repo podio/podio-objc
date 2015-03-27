@@ -45,7 +45,7 @@
       refDict[@"data"] = dataDict;
     }
     
-    return [[PKTReference alloc] initWithDictionary:refDict];
+    return [[PKTReference alloc] initWithDictionary:[refDict copy]];
   }];
 }
 
