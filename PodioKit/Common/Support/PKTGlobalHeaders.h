@@ -67,6 +67,7 @@
 #import "PKTNotification.h"
 #import "PKTNotificationContext.h"
 #import "PKTNotificationGroup.h"
+#import "PKTAction.h"
 
 #import "NSError+PKTErrors.h"
 
