@@ -462,6 +462,8 @@
 		E4BABDDB1898083100E9149A /* PKTAuthenticationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = E4BABDD91898083100E9149A /* PKTAuthenticationAPI.h */; };
 		E4BABDDC1898083100E9149A /* PKTAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BABDDA1898083100E9149A /* PKTAuthenticationAPI.m */; };
 		E4BABDDD1898083100E9149A /* PKTAuthenticationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BABDDA1898083100E9149A /* PKTAuthenticationAPI.m */; };
+		E4BB764C1AC595F4001B786F /* PKTAction.h in Headers */ = {isa = PBXBuildFile; fileRef = E4BB764A1AC595F4001B786F /* PKTAction.h */; };
+		E4BB764D1AC595F4001B786F /* PKTAction.m in Sources */ = {isa = PBXBuildFile; fileRef = E4BB764B1AC595F4001B786F /* PKTAction.m */; };
 		E4F460391ABC5A4900A99B19 /* PKTRightValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = E4F460371ABC5A4900A99B19 /* PKTRightValueTransformer.h */; };
 		E4F4603A1ABC5A4900A99B19 /* PKTRightValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */; };
 		E4F4603C1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E4F4603B1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m */; };
@@ -829,6 +831,8 @@
 		E4BABDD5189807DA00E9149A /* PKTBaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTBaseAPI.m; sourceTree = "<group>"; };
 		E4BABDD91898083100E9149A /* PKTAuthenticationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAuthenticationAPI.h; sourceTree = "<group>"; };
 		E4BABDDA1898083100E9149A /* PKTAuthenticationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAuthenticationAPI.m; sourceTree = "<group>"; };
+		E4BB764A1AC595F4001B786F /* PKTAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTAction.h; sourceTree = "<group>"; };
+		E4BB764B1AC595F4001B786F /* PKTAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTAction.m; sourceTree = "<group>"; };
 		E4F460371ABC5A4900A99B19 /* PKTRightValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTRightValueTransformer.h; sourceTree = "<group>"; };
 		E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRightValueTransformer.m; sourceTree = "<group>"; };
 		E4F4603B1ABC5C5000A99B19 /* PKTRightValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTRightValueTransformerTests.m; sourceTree = "<group>"; };
@@ -1302,6 +1306,8 @@
 				E47A281C1ABB407A00E6F0FD /* PKTNotificationGroup.m */,
 				E47A28231ABC183E00E6F0FD /* PKTNotificationContext.h */,
 				E47A28241ABC183E00E6F0FD /* PKTNotificationContext.m */,
+				E4BB764A1AC595F4001B786F /* PKTAction.h */,
+				E4BB764B1AC595F4001B786F /* PKTAction.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1668,6 +1674,7 @@
 				50D7762F1A06E19F00CE26B1 /* PKTConversation.h in Headers */,
 				503B3AC519050EC3002BB703 /* NSMutableURLRequest+PKTHeaders.h in Headers */,
 				506D925E19ED6C8400A7BCB4 /* PKTDatastore.h in Headers */,
+				E4BB764C1AC595F4001B786F /* PKTAction.h in Headers */,
 				5033FF7A1961891E00B2FD04 /* PKTStatus.h in Headers */,
 				502BB228195DA44C003160DE /* PKTReferenceIdentifier.h in Headers */,
 				50DAD4331964007400529DB5 /* PKTFormsAPI.h in Headers */,
@@ -2018,6 +2025,7 @@
 				C9FAD5E0C1CD812506A25FBB /* PKTCategoryOption.m in Sources */,
 				E4F4603A1ABC5A4900A99B19 /* PKTRightValueTransformer.m in Sources */,
 				50A1133619DD37C10063624A /* PKTEmbedsAPI.m in Sources */,
+				E4BB764D1AC595F4001B786F /* PKTAction.m in Sources */,
 				5024C5BE196164CE00AE28D7 /* PKTReferenceObjectFactory.m in Sources */,
 				502BB225195B7448003160DE /* PKTTasksAPI.m in Sources */,
 				C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */,

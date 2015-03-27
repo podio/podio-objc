@@ -16,6 +16,7 @@
 #import "PKTApp.h"
 #import "PKTStatus.h"
 #import "PKTComment.h"
+#import "PKTAction.h"
 #import "PKTReferenceObjectFactory.h"
 
 @interface PKTReferenceObjectFactoryTests : XCTestCase
@@ -58,6 +59,10 @@
 
 - (void)testCommentObject {
   expect([PKTReferenceObjectFactory referenceObjectFromData:@{@"comment_id" : @1234} type:PKTReferenceTypeComment]).to.beInstanceOf([PKTComment class]);
+}
+
+- (void)testActionObject {
+  expect([PKTReferenceObjectFactory referenceObjectFromData:@{@"action_id" : @1234} type:PKTReferenceTypeAction]).to.beInstanceOf([PKTAction class]);
 }
 
 @end

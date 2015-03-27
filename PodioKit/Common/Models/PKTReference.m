@@ -30,7 +30,7 @@
 }
 
 + (NSValueTransformer *)referenceObjectValueTransformerWithDictionary:(NSDictionary *)dict {
-  return [NSValueTransformer pkt_transformerWithBlock:^id(NSDictionary *dataDict) {
+  return [NSValueTransformer pkt_transformerWithBlock:^id(id _) {
     return [PKTReferenceObjectFactory referenceObjectFromDictionary:dict];
   }];
 }

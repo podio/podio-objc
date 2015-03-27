@@ -26,7 +26,7 @@
 /*
  * The data of the notification, depends on the type of notification (e.g. dictionary, array)
  */
-@property (nonatomic, copy, readonly) id data;
+@property (nonatomic, strong, readonly) id data;
 
 /*
  * The text for the notification
