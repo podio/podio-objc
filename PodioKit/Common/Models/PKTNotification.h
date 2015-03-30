@@ -75,4 +75,34 @@
 + (PKTAsyncTask *)fetchNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit;
 + (PKTAsyncTask *)fetchForNotificationsWithParameters:(PKTNotificationsRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
+/*
+ * Marks all notifications on the given object as viewed
+ */
++ (PKTAsyncTask *)markNotificationsAsViewedWithReferenceID:(NSUInteger)refenceID type:(PKTReferenceType)referenceType;
+
+/*
+ * Marks all notifications on the given object as unviewed
+ */
++ (PKTAsyncTask *)markNotificationsAsUnviewedWithReferenceID:(NSUInteger)refenceID type:(PKTReferenceType)referenceType;
+
+/*
+ * Mark the notification as viewed
+ */
+- (PKTAsyncTask *)markAsViewed;
+
+/*
+ * Mark the notification as unviewed
+ */
+- (PKTAsyncTask *)markAsUnviewed;
+
+/*
+ * Star the given notification to move it to the star list
+ */
+- (PKTAsyncTask *)star;
+
+/*
+ * Removes the star on the notification
+ */
+- (PKTAsyncTask *)unstar;
+
 @end

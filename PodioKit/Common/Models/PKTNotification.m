@@ -77,4 +77,42 @@
   return task;
 }
 
++ (PKTAsyncTask *)markNotificationsAsViewedWithReferenceID:(NSUInteger)refenceID type:(PKTReferenceType)referenceType {
+  PKTRequest *request = [PKTNotificationsAPI requestToMarkNotificationsAsViewedWithReferenceID:refenceID type:referenceType];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
++ (PKTAsyncTask *)markNotificationsAsUnviewedWithReferenceID:(NSUInteger)refenceID type:(PKTReferenceType)referenceType {
+  PKTRequest *request = [PKTNotificationsAPI requestToMarkNotificationsAsUnviewedWithReferenceID:refenceID type:referenceType];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
+- (PKTAsyncTask *)markAsViewed {
+  PKTRequest *request = [PKTNotificationsAPI requestToMarkNotificationAsViewedWithID:self.notificationID];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
+- (PKTAsyncTask *)markAsUnviewed {
+  PKTRequest *request = [PKTNotificationsAPI requestToMarkNotificationAsUnviewedWithID:self.notificationID];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
+- (PKTAsyncTask *)star {
+  PKTRequest *request = [PKTNotificationsAPI requestToStarNotificationWithID:self.notificationID];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
+- (PKTAsyncTask *)unstar {
+  {
+    PKTRequest *request = [PKTNotificationsAPI requestToUnstarNotificationWithID:self.notificationID];
+    
+    return [[PKTClient currentClient] performRequest:request];
+  }
+}
+
 @end

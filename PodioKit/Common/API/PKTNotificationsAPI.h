@@ -15,4 +15,16 @@
 
 + (PKTRequest *)requestForNotificationsWithParameters:(PKTNotificationsRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKTRequest *)requestToMarkNotificationsAsViewedWithReferenceID:(NSUInteger)referenceID type:(PKTReferenceType)referenceType;
+
++ (PKTRequest *)requestToMarkNotificationsAsUnviewedWithReferenceID:(NSUInteger)referenceID type:(PKTReferenceType)referenceType;
+
++ (PKTRequest *)requestToMarkNotificationAsViewedWithID:(NSUInteger)notificationID;
+
++ (PKTRequest *)requestToMarkNotificationAsUnviewedWithID:(NSUInteger)notificationID;
+
++ (PKTRequest *)requestToStarNotificationWithID:(NSUInteger)notificationID;
+
++ (PKTRequest *)requestToUnstarNotificationWithID:(NSUInteger)notificationID;
+
 @end
