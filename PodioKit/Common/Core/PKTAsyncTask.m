@@ -126,7 +126,7 @@ typedef NS_ENUM(NSUInteger, PKTAsyncTaskState) {
         
         [lock unlock];
         
-        if ([pendingTasks count] == 0) {
+        if (results.count == taskCount) {
           // All tasks have completed, collect the results and sort them in the
           // tasks' original ordering
           NSArray *positions = [NSArray pkt_arrayFromRange:NSMakeRange(0, taskCount)];
