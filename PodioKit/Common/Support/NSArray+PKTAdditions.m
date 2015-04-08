@@ -32,6 +32,19 @@
   }];
 }
 
+- (id)pkt_reducedValueWithInitialValue:(id)initialValue block:(id (^)(id reduced, id obj))block {
+  NSParameterAssert(initialValue);
+  NSParameterAssert(block);
+  
+  id result = initialValue;
+  
+  for (id element in self) {
+    result = block(result, element);
+  }
+  
+  return result;
+}
+
 - (id)pkt_reducedValueWithBlock:(id (^)(id reduced, id obj))block {
   NSParameterAssert(block);
   
