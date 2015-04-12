@@ -19,6 +19,15 @@
  */
 typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
 
+/**
+ *  A progress block to be called whenever a task makes progress.
+ *
+ *  @param progress           The current progress of the task.
+ *  @param totalBytesExpected The total expected number of bytes to be received.
+ *  @param totalBytesReceived The current number of bytes received at the time of calling this block.
+ */
+typedef void(^PKTRequestProgressBlock)(float progress, int64_t totalBytesExpected, int64_t totalBytesReceived);
+
 @interface PKTHTTPClient : NSObject
 
 /**
@@ -51,10 +60,11 @@ typedef void(^PKTRequestCompletionBlock)(PKTResponse *response, NSError *error);
  *  will be executed upon completion.
  *
  *  @param request    The request
+ *  @param completion A block to be called when the task makes progress, or nil.
  *  @param completion A completion handler to be executed on task completion.
  *
  *  @return An NSURLSessionTask
  */
-- (NSURLSessionTask *)taskForRequest:(PKTRequest *)request completion:(PKTRequestCompletionBlock)completion;
+- (NSURLSessionTask *)taskForRequest:(PKTRequest *)request progress:(PKTRequestProgressBlock)progress completion:(PKTRequestCompletionBlock)completion;
 
 @end

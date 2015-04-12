@@ -395,6 +395,10 @@
 		50FB3D6A18EB42250021DB48 /* PKTItemsAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6418EA0DDE0021DB48 /* PKTItemsAPI.m */; };
 		50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */; };
 		50FB3D6E18EB58560021DB48 /* PKTItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FB3D6018EA0CDD0021DB48 /* PKTItem.m */; };
+		50FC5EC31AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 50FC5EC11AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.h */; };
+		50FC5EC41AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC5EC21AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m */; };
+		50FC5EC51AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC5EC21AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m */; };
+		50FC5ECA1AD7EADE00ED3AF3 /* PKTURLSessionTaskDelegateTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 50FC5EC91AD7EADE00ED3AF3 /* PKTURLSessionTaskDelegateTests.m */; };
 		C9FAD0909FD16D61B423947B /* NSNumberFormatter+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADC6A54E0D20D7943D795 /* NSNumberFormatter+PKTAdditions.m */; };
 		C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FADCA90121ED753BEBC4B3 /* PKTAppFieldConfig.m */; };
 		C9FAD0CF42F999F167D06571 /* PKTDurationItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = C9FAD6CC141ECE483EABAB4F /* PKTDurationItemFieldValue.m */; };
@@ -774,6 +778,9 @@
 		50FB3D6418EA0DDE0021DB48 /* PKTItemsAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemsAPI.m; sourceTree = "<group>"; };
 		50FB3D6818EB189B0021DB48 /* PKTItemAPITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemAPITests.m; sourceTree = "<group>"; };
 		50FB3D6C18EB57D40021DB48 /* PKTItemTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTItemTests.m; sourceTree = "<group>"; };
+		50FC5EC11AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTURLSessionTaskDelegate.h; sourceTree = "<group>"; };
+		50FC5EC21AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTURLSessionTaskDelegate.m; sourceTree = "<group>"; };
+		50FC5EC91AD7EADE00ED3AF3 /* PKTURLSessionTaskDelegateTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTURLSessionTaskDelegateTests.m; sourceTree = "<group>"; };
 		51B9ED0A10BBDBDB17E0A5E7 /* Pods-podiokittests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-podiokittests/Pods-podiokittests.debug.xcconfig"; sourceTree = "<group>"; };
 		662E9ED2E9A9DD7E247969CA /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		749AC896ECA24D14812290D5 /* libPods-podiokittests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-podiokittests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1394,6 +1401,8 @@
 				506D925D19ED6C8400A7BCB4 /* PKTDatastore.m */,
 				50E44CDC19FA23C000FB4CE2 /* PKTSecurity.h */,
 				50E44CDD19FA23C000FB4CE2 /* PKTSecurity.m */,
+				50FC5EC11AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.h */,
+				50FC5EC21AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1439,6 +1448,7 @@
 				505113E5196FE8FA00370285 /* PKTMultipartFormDataTests.m */,
 				505324B919883E0000700135 /* PKTAsyncTaskTests.m */,
 				503A3F9D19F5093D0053FFA6 /* PKTDatastoreTests.m */,
+				50FC5EC91AD7EADE00ED3AF3 /* PKTURLSessionTaskDelegateTests.m */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -1722,6 +1732,7 @@
 				5024C5C719616DC400AE28D7 /* PKTUser.h in Headers */,
 				C9FADA7AD84BE0D81ADEFEC6 /* PKTCategoryOption.h in Headers */,
 				E47A281D1ABB407A00E6F0FD /* PKTNotificationGroup.h in Headers */,
+				50FC5EC31AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.h in Headers */,
 				C9FADEC73A88FBD20E632A4F /* PKTAppFieldConfig.h in Headers */,
 				502AAB3319FF795B006A0352 /* PKTPushCredential.h in Headers */,
 				C9FAD5520897CD3F437A17E1 /* PKTItemFieldValue.h in Headers */,
@@ -2011,6 +2022,7 @@
 				50DAD43B196404BD00529DB5 /* PKTForm.m in Sources */,
 				50FB3D6218EA0CDD0021DB48 /* PKTItem.m in Sources */,
 				50D776301A06E19F00CE26B1 /* PKTConversation.m in Sources */,
+				50FC5EC41AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m in Sources */,
 				5024C5C819616DC400AE28D7 /* PKTUser.m in Sources */,
 				50395A0419137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				5082425218FC82C1009A1580 /* PKTBlockValueTransformer.m in Sources */,
@@ -2074,6 +2086,7 @@
 				50395A0519137762004C298C /* NSDateFormatter+PKTAdditions.m in Sources */,
 				503959FA191369D4004C298C /* PKTFileAPITests.m in Sources */,
 				50B49F1C18EE095500B7EDF5 /* PKTAppTests.m in Sources */,
+				50FC5ECA1AD7EADE00ED3AF3 /* PKTURLSessionTaskDelegateTests.m in Sources */,
 				50FB3D6D18EB57D40021DB48 /* PKTItemTests.m in Sources */,
 				5006B082191C245F006FF388 /* PKTCalendarEvent.m in Sources */,
 				50E068041920A47700552CCF /* PKTOrganizationAPITests.m in Sources */,
@@ -2194,6 +2207,7 @@
 				50B49F1618EE092100B7EDF5 /* PKTAppsAPI.m in Sources */,
 				5032B0B6188EB6DC0080046B /* PKTRequestTests.m in Sources */,
 				E4BABDCF1897FBD900E9149A /* PKTOAuth2TokenTests.m in Sources */,
+				50FC5EC51AD7EA8D00ED3AF3 /* PKTURLSessionTaskDelegate.m in Sources */,
 				50FA507B190112AC009542B9 /* PKTHTTPStubber.m in Sources */,
 				E4BABDCD1897FA8600E9149A /* PKTOAuth2Token.m in Sources */,
 				5082427A18FD76D7009A1580 /* NSValueTransformer+PKTTransformers.m in Sources */,
