@@ -22,7 +22,8 @@
            @"hostedBy" : @"hosted_by",
            @"link" : @"link",
            @"thumbnailLink" : @"thumbnail_link",
-           @"createdOn" : @"created_on"
+           @"createdOn" : @"created_on",
+           @"fileDescription" : @"description"
            };
 }
 

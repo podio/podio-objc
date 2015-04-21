@@ -15,7 +15,7 @@
 @property (nonatomic, assign, readonly) NSUInteger fileID;
 @property (nonatomic, assign, readonly) NSUInteger size;
 @property (nonatomic, copy, readonly) NSString *name;
-@property (nonatomic, copy, readonly) NSString *description;
+@property (nonatomic, copy, readonly) NSString *fileDescription;
 @property (nonatomic, copy, readonly) NSString *mimeType;
 @property (nonatomic, copy, readonly) NSString *hostedBy;
 @property (nonatomic, copy, readonly) NSURL *link;
