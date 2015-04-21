@@ -18,6 +18,7 @@
 #import "PKTReferenceTypeValueTransformer.h"
 #import "PKTAppFieldTypeValueTransformer.h"
 #import "PKTDateValueTransformer.h"
+#import "PKTAvatarTypeValueTransformer.h"
 
 @implementation NSValueTransformer (PKTTransformers)
 
@@ -63,6 +64,10 @@
 
 + (NSValueTransformer *)pkt_rightValueTransformer {
   return [PKTRightValueTransformer new];
+}
+
++ (NSValueTransformer *)pkt_avatarTypeValueTransformer {
+  return [PKTAvatarTypeValueTransformer new];
 }
 
 @end

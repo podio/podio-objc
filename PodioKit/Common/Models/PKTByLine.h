@@ -19,5 +19,7 @@
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, strong, readonly) PKTFile *imageFile;
 @property (nonatomic, copy, readonly) NSDate *lastSeenOn;
+@property (nonatomic, assign, readonly) NSUInteger avatarID;
+@property (nonatomic, assign, readonly) PKTAvatarType avatarType;
 
 @end

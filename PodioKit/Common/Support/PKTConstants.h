@@ -211,4 +211,12 @@ typedef NS_ENUM(NSUInteger, PKTTaskStatus) {
   PKTTaskStatusCompleted,
 };
 
+#pragma mark - Avatar
+
+typedef NS_ENUM(NSUInteger, PKTAvatarType) {
+  PKTAvatarTypeUnknown = 0,
+  PKTAvatarTypeFile,
+  PKTAvatarTypeIcon
+};
+
 #endif

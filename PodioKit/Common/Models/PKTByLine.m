@@ -18,7 +18,9 @@
            @"referenceID" : @"id",
            @"userID" : @"user_id",
            @"imageFile" : @"image",
-           @"lastSeenOn": @"last_seen_on"
+           @"lastSeenOn": @"last_seen_on",
+           @"avatarType": @"avatar_type",
+           @"avatarID": @"avatar_id"
            };
 }
 
@@ -32,6 +34,10 @@
 
 + (NSValueTransformer *)lastSeenOnValueTransformer {
   return [NSValueTransformer pkt_dateValueTransformer];
+}
+
++ (NSValueTransformer *)avatarTypeValueTransformer {
+  return [NSValueTransformer pkt_avatarTypeValueTransformer];
 }
 
 @end

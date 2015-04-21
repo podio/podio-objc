@@ -23,5 +23,6 @@
 + (NSValueTransformer *)pkt_appFieldTypeTransformer;
 + (NSValueTransformer *)pkt_numberValueTransformer;
 + (NSValueTransformer *)pkt_rightValueTransformer;
++ (NSValueTransformer *)pkt_avatarTypeValueTransformer;
 
 @end
