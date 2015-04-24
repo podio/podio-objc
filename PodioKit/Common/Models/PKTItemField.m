@@ -107,7 +107,9 @@
   
   for (NSDictionary *valueDict in valueDictionaries) {
     PKTItemFieldValue *fieldValue = [PKTItemField valueWithType:fieldType valueDictionary:valueDict];
-    [fieldValues addObject:fieldValue];
+    if (fieldValue) {
+      [fieldValues addObject:fieldValue];
+    }
   }
   
   return fieldValues;
