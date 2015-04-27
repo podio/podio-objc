@@ -76,6 +76,11 @@
 + (PKTAsyncTask *)fetchForNotificationsWithParameters:(PKTNotificationsRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
 /*
+ * Marks all notifications as viewed
+ */
++ (PKTAsyncTask *)markAllNotificationsAsViewed;
+
+/*
  * Marks all notifications on the given object as viewed
  */
 + (PKTAsyncTask *)markNotificationsAsViewedWithReferenceID:(NSUInteger)refenceID type:(PKTReferenceType)referenceType;

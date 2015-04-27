@@ -29,6 +29,12 @@
   return [PKTRequest GETRequestWithPath:@"/notification/" parameters:params];
 }
 
++ (PKTRequest *)requestToMarkAllkNotificationsAsViewed {
+  NSString *path = PKTRequestPath(@"/notification/viewed");
+  
+  return [PKTRequest POSTRequestWithPath:path parameters:nil];
+}
+
 + (PKTRequest *)requestToMarkNotificationsAsViewedWithReferenceID:(NSUInteger)referenceID type:(PKTReferenceType)referenceType {
   NSParameterAssert(referenceID > 0);
   NSParameterAssert(referenceType != PKTReferenceTypeUnknown);

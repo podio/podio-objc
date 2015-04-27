@@ -15,6 +15,8 @@
 
 + (PKTRequest *)requestForNotificationsWithParameters:(PKTNotificationsRequestParameters *)parameters offset:(NSUInteger)offset limit:(NSUInteger)limit;
 
++ (PKTRequest *)requestToMarkAllkNotificationsAsViewed;
+
 + (PKTRequest *)requestToMarkNotificationsAsViewedWithReferenceID:(NSUInteger)referenceID type:(PKTReferenceType)referenceType;
 
 + (PKTRequest *)requestToMarkNotificationsAsUnviewedWithReferenceID:(NSUInteger)referenceID type:(PKTReferenceType)referenceType;

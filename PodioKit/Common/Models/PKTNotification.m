@@ -77,6 +77,12 @@
   return task;
 }
 
++ (PKTAsyncTask *)markAllNotificationsAsViewed {
+  PKTRequest *request = [PKTNotificationsAPI requestToMarkAllkNotificationsAsViewed];
+  
+  return [[PKTClient currentClient] performRequest:request];
+}
+
 + (PKTAsyncTask *)markNotificationsAsViewedWithReferenceID:(NSUInteger)refenceID type:(PKTReferenceType)referenceType {
   PKTRequest *request = [PKTNotificationsAPI requestToMarkNotificationsAsViewedWithReferenceID:refenceID type:referenceType];
   
