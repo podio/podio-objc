@@ -189,4 +189,31 @@
   return transformer;
 }
 
+#pragma mark - NSObject
+
+- (NSUInteger)hash {
+  NSUInteger value = 0;
+  
+  for (NSString *key in self.codablePropertyNames) {
+    value ^= [[self valueForKey:key] hash];
+  }
+  
+  return value;
+}
+
+- (BOOL)isEqual:(id)object {
+  if (self == object) return YES;
+  if (![object isMemberOfClass:self.class]) return NO;
+  
+  for (NSString *key in self.codablePropertyNames) {
+    id selfValue = [self valueForKey:key];
+    id objectValue = [object valueForKey:key];
+    
+    BOOL valuesEqual = ((selfValue == nil && objectValue == nil) || [selfValue isEqual:objectValue]);
+    if (!valuesEqual) return NO;
+  }
+  
+  return YES;
+}
+
 @end
