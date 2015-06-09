@@ -12,6 +12,7 @@
 #import "PKAppFieldMoneyData.h"
 #import "PKAppFieldContactData.h"
 #import "NSDictionary+PKAdditions.h"
+#import "PKAppFieldEmailData.h"
 
 @implementation PKAppFieldDataFactory
 
@@ -51,6 +52,13 @@
       PKAppFieldContactData *contactData = [PKAppFieldContactData data];
       contactData.validTypes = [[configDict pk_objectForKey:@"settings"] pk_objectForKey:@"valid_types"];
       data = contactData;
+      break;
+    }
+    case PKAppFieldTypeEmail: {
+      PKAppFieldEmailData *emailData = [PKAppFieldEmailData data];
+      emailData.includeInBcc = [[[configDict pk_objectForKey:@"settings"] pk_objectForKey:@"include_in_bcc"] boolValue];
+      emailData.includeInCc =  [[[configDict pk_objectForKey:@"settings"] pk_objectForKey:@"include_in_cc"] boolValue];
+      data = emailData;
       break;
     }
     default:

@@ -938,6 +938,10 @@
     type = PKAppFieldTypeCalculation;
   } else if ([string isEqualToString:kPKAppFieldTypeCategory]) {
     type = PKAppFieldTypeCategory;
+  } else if ([string isEqualToString:kPKAppFieldTypePhone]) {
+    type = PKAppFieldTypePhone;
+  } else if ([string isEqualToString:kPKAppFieldTypeEmail]) {
+    type = PKAppFieldTypeEmail;
   }
   
   return type;
@@ -994,6 +998,12 @@
       break;
     case PKAppFieldTypeCategory:
       string = kPKAppFieldTypeCategory;
+      break;
+    case PKAppFieldTypePhone:
+      string = kPKAppFieldTypePhone;
+      break;
+    case PKAppFieldTypeEmail:
+      string = kPKAppFieldTypeEmail;
       break;
     default:
       break;

@@ -269,6 +269,8 @@ typedef enum {
   PKAppFieldTypeEmbed,
   PKAppFieldTypeCalculation,
   PKAppFieldTypeCategory,
+  PKAppFieldTypePhone,
+  PKAppFieldTypeEmail,
 } PKAppFieldType;
 
 static NSString * const kPKAppFieldTypeTitle = @"title";
@@ -290,6 +292,8 @@ static NSString * const kPKAppFieldTypeEmbed = @"embed";
 static NSString * const kPKAppFieldTypeCalculation = @"calculation";
 static NSString * const kPKAppFieldTypeQuestion = @"question";
 static NSString * const kPKAppFieldTypeCategory = @"category";
+static NSString * const kPKAppFieldTypePhone = @"phone";
+static NSString * const kPKAppFieldTypeEmail = @"email";
 
 typedef enum {
   PKAppFieldStatusNone,
@@ -736,6 +740,24 @@ static NSString * const kPKPromotionDisplayTypeNetPromoterScore = @"net_promoter
 static NSString * const kPKPromotionDisplayTypeOlarkChat = @"olark_chat";
 static NSString * const kPKPromotionDisplayTypeiOSBanner = @"ios_banner";
 static NSString * const kPKPromotionDisplayTypeiOSNetPromoterScore = @"ios_net_promoter_score";
+
+#pragma mark - Phone types
+typedef NS_ENUM(NSUInteger, PKPhoneType) {
+  PKPhoneTypeMobile = 0,
+  PKPhoneTypeWork,
+  PKPhoneTypeHome,
+  PKPhoneTypeMain,
+  PKPhoneTypeWorkFax,
+  PKPhoneTypePrivateFax,
+  PKPhoneTypeOther,
+};
+
+#pragma mark - Email types
+typedef NS_ENUM(NSUInteger, PKEmailType) {
+  PKEmailTypeOther = 0,
+  PKEmailTypeHome,
+  PKEmailTypeWork,
+};
 
 #pragma mark - Avatars
 

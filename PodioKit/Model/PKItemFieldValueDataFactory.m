@@ -18,6 +18,8 @@
 #import "PKItemFieldValueOptionData.h"
 #import "NSDictionary+PKAdditions.h"
 #import "NSNumber+PKFormat.h"
+#import "PKItemFieldValuePhoneData.h"
+#import "PKItemFieldValueEmailData.h"
 
 @implementation PKItemFieldValueDataFactory
 
@@ -66,6 +68,12 @@
     case PKAppFieldTypeDuration:
     case PKAppFieldTypeProgress:
       data = [dict pk_objectForKey:@"value"];
+      break;
+    case PKAppFieldTypePhone:
+      data = [PKItemFieldValuePhoneData dataFromDictionary:dict];
+      break;
+    case PKAppFieldTypeEmail:
+      data = [PKItemFieldValueEmailData dataFromDictionary:dict];
       break;
     default:
       break;

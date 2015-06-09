@@ -7,7 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D369F541B259641001185DB /* PKItemFieldValuePhoneData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D369F521B259641001185DB /* PKItemFieldValuePhoneData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D369F551B259641001185DB /* PKItemFieldValuePhoneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */; };
+		0D369F581B25965C001185DB /* PKItemFieldValueEmailData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D369F561B25965C001185DB /* PKItemFieldValueEmailData.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0D369F591B25965C001185DB /* PKItemFieldValueEmailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F571B25965C001185DB /* PKItemFieldValueEmailData.m */; };
+		0D369F5A1B25A1D3001185DB /* PKItemFieldValuePhoneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */; };
+		0D369F5B1B25A1D3001185DB /* PKItemFieldValuePhoneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */; };
+		0D369F5C1B25A1DB001185DB /* PKItemFieldValueEmailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F571B25965C001185DB /* PKItemFieldValueEmailData.m */; };
+		0D369F5D1B25A1DB001185DB /* PKItemFieldValueEmailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F571B25965C001185DB /* PKItemFieldValueEmailData.m */; };
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
+		0DE8A29F1B27070000536405 /* PKAppFieldEmailData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0DE8A29D1B27070000536405 /* PKAppFieldEmailData.h */; };
+		0DE8A2A01B27070000536405 /* PKAppFieldEmailData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0DE8A29E1B27070000536405 /* PKAppFieldEmailData.m */; };
 		0EEBAF967C154784A35F9C6E /* libPods-podiokit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A370E68741D44C408A3BBD91 /* libPods-podiokit.a */; };
 		1840390B1A52D2B90096B420 /* PKReferenceVoteData.h in Headers */ = {isa = PBXBuildFile; fileRef = 184039091A52D2B90096B420 /* PKReferenceVoteData.h */; };
 		1840390C1A52D2B90096B420 /* PKReferenceVoteData.m in Sources */ = {isa = PBXBuildFile; fileRef = 1840390A1A52D2B90096B420 /* PKReferenceVoteData.m */; };
@@ -558,6 +568,12 @@
 
 /* Begin PBXFileReference section */
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
+		0D369F521B259641001185DB /* PKItemFieldValuePhoneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValuePhoneData.h; sourceTree = "<group>"; };
+		0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValuePhoneData.m; sourceTree = "<group>"; };
+		0D369F561B25965C001185DB /* PKItemFieldValueEmailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueEmailData.h; sourceTree = "<group>"; };
+		0D369F571B25965C001185DB /* PKItemFieldValueEmailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueEmailData.m; sourceTree = "<group>"; };
+		0DE8A29D1B27070000536405 /* PKAppFieldEmailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKAppFieldEmailData.h; sourceTree = "<group>"; };
+		0DE8A29E1B27070000536405 /* PKAppFieldEmailData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKAppFieldEmailData.m; sourceTree = "<group>"; };
 		184039091A52D2B90096B420 /* PKReferenceVoteData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKReferenceVoteData.h; sourceTree = "<group>"; };
 		1840390A1A52D2B90096B420 /* PKReferenceVoteData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKReferenceVoteData.m; sourceTree = "<group>"; };
 		18999E0D1948445000AE50E1 /* PKCalendarAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKCalendarAPI.h; sourceTree = "<group>"; };
@@ -1033,6 +1049,8 @@
 				5030C0211435E76300027F07 /* PKAppFieldMoneyData.m */,
 				5030C0221435E76300027F07 /* PKAppFieldOptionsData.h */,
 				5030C0231435E76300027F07 /* PKAppFieldOptionsData.m */,
+				0DE8A29D1B27070000536405 /* PKAppFieldEmailData.h */,
+				0DE8A29E1B27070000536405 /* PKAppFieldEmailData.m */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -1120,9 +1138,9 @@
 		5030C0BF1435E88700027F07 /* Item */ = {
 			isa = PBXGroup;
 			children = (
-				50AE897114A13573004E027E /* PKItemFieldValueItemData.h */,
 				50A5FB31143B0FEA00674360 /* PKItemFieldValueDataFactory.h */,
 				50A5FB32143B0FEA00674360 /* PKItemFieldValueDataFactory.m */,
+				50AE897114A13573004E027E /* PKItemFieldValueItemData.h */,
 				5030C0471435E76300027F07 /* PKItemFieldValueItemData.m */,
 				5030C0481435E76300027F07 /* PKItemFieldValueCalculationData.h */,
 				5030C0491435E76300027F07 /* PKItemFieldValueCalculationData.m */,
@@ -1140,6 +1158,10 @@
 				50AE897314A1366B004E027E /* PKItemFieldValueOptionData.m */,
 				501FDEDB1548095E002B6413 /* PKItemParticipantsData.h */,
 				501FDEDC1548095E002B6413 /* PKItemParticipantsData.m */,
+				0D369F521B259641001185DB /* PKItemFieldValuePhoneData.h */,
+				0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */,
+				0D369F561B25965C001185DB /* PKItemFieldValueEmailData.h */,
+				0D369F571B25965C001185DB /* PKItemFieldValueEmailData.m */,
 			);
 			name = Item;
 			sourceTree = "<group>";
@@ -1596,6 +1618,7 @@
 				5065BF891433649A00360855 /* PKCompoundMapping.h in Headers */,
 				502066B41922A660004721A1 /* PKOAuth2Token+PKAuthorizationHeader.h in Headers */,
 				5065BF8F1433649A00360855 /* PKPropertyMapping.h in Headers */,
+				0D369F541B259641001185DB /* PKItemFieldValuePhoneData.h in Headers */,
 				5065BF921433649A00360855 /* PKRelationshipMapping.h in Headers */,
 				5065BF951433649A00360855 /* PKStandaloneMapping.h in Headers */,
 				5065BF981433649A00360855 /* PKValueMapping.h in Headers */,
@@ -1618,6 +1641,7 @@
 				50B0D25C19D1A4E80057DA2E /* NSDate+PKFormatting.h in Headers */,
 				5030C06B1435E76300027F07 /* PKQuestionOptionData.h in Headers */,
 				5030C06E1435E76300027F07 /* PKReferenceSpaceData.h in Headers */,
+				0D369F581B25965C001185DB /* PKItemFieldValueEmailData.h in Headers */,
 				5030C0711435E76300027F07 /* PKStreamActionData.h in Headers */,
 				5030C0741435E76300027F07 /* PKReferenceAnswerData.h in Headers */,
 				5030C0771435E76300027F07 /* PKReferenceCommentData.h in Headers */,
@@ -1661,6 +1685,7 @@
 				5026A2BF147116BC0051D7C8 /* PKRequestResult.h in Headers */,
 				50CC1CDE14878100000B57EA /* PKReferenceAppData.h in Headers */,
 				50CC1CE414878124000B57EA /* PKReferenceProfileData.h in Headers */,
+				0DE8A29F1B27070000536405 /* PKAppFieldEmailData.h in Headers */,
 				50A16D9D148F4A4800AF86C4 /* PKReferenceItemData.h in Headers */,
 				50A16DA2148F4A5A00AF86C4 /* PKReferenceMessageData.h in Headers */,
 				50B529F7148FC06800E05852 /* PKReferenceAlertData.h in Headers */,
@@ -1984,7 +2009,9 @@
 				50BBF53B1439B365002522D6 /* NSString+Hash.m in Sources */,
 				18D110451A39AA0300DFE7CE /* PKItemFieldValueLocationData.m in Sources */,
 				50A5FB34143B0FEA00674360 /* PKItemFieldValueDataFactory.m in Sources */,
+				0DE8A2A01B27070000536405 /* PKAppFieldEmailData.m in Sources */,
 				5032BAB9144489CB00B7F7C7 /* PKBaseObject.m in Sources */,
+				0D369F551B259641001185DB /* PKItemFieldValuePhoneData.m in Sources */,
 				5032BAD7144491A500B7F7C7 /* PKTaskAPI.m in Sources */,
 				502B5FAF1445729D004F4185 /* PKObjectMapping.m in Sources */,
 				5021CD2D14458FAE00A7013D /* PKDefaultObjectRepository.m in Sources */,
@@ -2049,6 +2076,7 @@
 				5009E2401667C8040018EC75 /* PKAPIClient.m in Sources */,
 				50D681841668955C008AEA0A /* PKHTTPRequestOperation.m in Sources */,
 				509867AB166CAEE100CEAA8C /* NSURLRequest+PKDescription.m in Sources */,
+				0D369F591B25965C001185DB /* PKItemFieldValueEmailData.m in Sources */,
 				50D737FF166F4505009233FF /* PKOAuth2Token.m in Sources */,
 				50D73812166F6D09009233FF /* NSString+PKRandom.m in Sources */,
 				502CFD5416D11D55002C59E1 /* NSString+PKBase64.m in Sources */,
@@ -2105,6 +2133,7 @@
 				5075F66D19D0588E00B06D4D /* PKStreamTaskData.m in Sources */,
 				5075F67F19D0588E00B06D4D /* PKQuestionData.m in Sources */,
 				5075F66819D0588E00B06D4D /* PKSpaceInviteData.m in Sources */,
+				0D369F5A1B25A1D3001185DB /* PKItemFieldValuePhoneData.m in Sources */,
 				5075F66C19D0588E00B06D4D /* PKStreamStatusData.m in Sources */,
 				5075F67519D0588E00B06D4D /* PKReferenceMessageData.m in Sources */,
 				5075F62F19D0588E00B06D4D /* PKHTTPRequestOperation.m in Sources */,
@@ -2112,6 +2141,7 @@
 				5075F66419D0588E00B06D4D /* PKItemFieldValueOptionData.m in Sources */,
 				5075F63219D0588E00B06D4D /* PKRequestResult.m in Sources */,
 				5075F69F19D0588E00B06D4D /* NSString+URL.m in Sources */,
+				0D369F5C1B25A1DB001185DB /* PKItemFieldValueEmailData.m in Sources */,
 				5075F69319D0588E00B06D4D /* PKDefaultMappingCoordinator.m in Sources */,
 				5075F69619D0588E00B06D4D /* NSString+PKAdditions.m in Sources */,
 				5075F63519D0588E00B06D4D /* PKCompoundMapping.m in Sources */,
@@ -2264,6 +2294,7 @@
 				5075F6EF19D0589200B06D4D /* PKReferenceMessageData.m in Sources */,
 				5075F6E919D0589200B06D4D /* PKReferenceSpaceData.m in Sources */,
 				5075F6A819D0589200B06D4D /* PKOAuth2Token.m in Sources */,
+				0D369F5B1B25A1D3001185DB /* PKItemFieldValuePhoneData.m in Sources */,
 				5075F6E819D0589200B06D4D /* PKReferenceDataFactory.m in Sources */,
 				5075F6AD19D0589200B06D4D /* PKObjectMapping.m in Sources */,
 				5075F6F419D0589200B06D4D /* PKReferenceAnswerData.m in Sources */,
@@ -2281,6 +2312,7 @@
 				5075F6B319D0589200B06D4D /* PKStandaloneMapping.m in Sources */,
 				5075F6F119D0589200B06D4D /* PKReferenceRatingData.m in Sources */,
 				5075F6E319D0589200B06D4D /* PKStreamDataFactory.m in Sources */,
+				0D369F5D1B25A1DB001185DB /* PKItemFieldValueEmailData.m in Sources */,
 				509D6943152CA7A40033291C /* main.m in Sources */,
 				5075F6A919D0589200B06D4D /* PKHTTPRequestOperation.m in Sources */,
 				509D6947152CA7A40033291C /* PKAppDelegate.m in Sources */,
