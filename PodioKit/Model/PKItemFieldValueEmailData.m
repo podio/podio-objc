@@ -31,6 +31,23 @@ static NSString * const PKItemFieldValueEmailDataTypeKey  = @"EmailType";
   [aCoder encodeInteger:type_ forKey:PKItemFieldValueEmailDataTypeKey];
 }
 
+- (NSDictionary *)valueDictionary {
+  NSString *type;
+  switch (self.type) {
+    case PKEmailTypeHome:
+      type = @"home";
+      break;
+    case PKEmailTypeWork:
+      type = @"work";
+      break;
+    case PKEmailTypeOther:
+      type = @"other";
+      break;
+  }
+  
+  return @{@"value": self.email,
+           @"type": type};
+}
 
 #pragma mark - Factory methods
 

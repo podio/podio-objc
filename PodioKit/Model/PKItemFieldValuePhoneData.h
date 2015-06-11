@@ -16,7 +16,8 @@
   PKPhoneType type_;
 }
 
-@property (nonatomic, copy) NSString      *number;
-@property (nonatomic) PKPhoneType         type;
+@property (nonatomic, copy) NSString *number;
+@property (nonatomic) PKPhoneType  type;
+@property (nonatomic, copy, readonly) NSDictionary *valueDictionary;
 
 @end

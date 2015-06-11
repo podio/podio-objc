@@ -31,6 +31,36 @@ static NSString * const PKItemFieldValuePhoneDataTypeKey    = @"PhoneType";
   [aCoder encodeInteger:type_ forKey:PKItemFieldValuePhoneDataTypeKey];
 }
 
+- (NSDictionary *)valueDictionary {
+  NSString *type;
+  switch (self.type) {
+    case PKPhoneTypeMobile:
+      type = @"mobile";
+      break;
+    case PKPhoneTypeWork:
+      type = @"work";
+      break;
+    case PKPhoneTypeHome:
+      type = @"home";
+      break;
+    case PKPhoneTypeMain:
+      type = @"main";
+      break;
+    case PKPhoneTypeWorkFax:
+      type = @"work_fax";
+      break;
+    case PKPhoneTypePrivateFax:
+      type = @"private_fax";
+      break;
+    case PKPhoneTypeOther:
+      type = @"other";
+      break;
+  }
+  
+  return  @{@"value": self.number,
+            @"type": type};
+}
+
 #pragma mark - Factory methods
 
 + (id)dataFromDictionary:(NSDictionary *)dict {

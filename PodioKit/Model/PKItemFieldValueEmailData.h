@@ -18,5 +18,6 @@
 
 @property (nonatomic, copy) NSString *email;
 @property (nonatomic) PKEmailType     type;
+@property (nonatomic, copy, readonly) NSDictionary *valueDictionary;
 
 @end
