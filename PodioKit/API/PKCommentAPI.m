@@ -37,4 +37,13 @@
   return request;
 }
 
++ (PKRequest *)requestToUpdateCommentWithId:(NSUInteger)commentId value:(NSString *)value {
+  NSString *uri = [NSString stringWithFormat:@"/comment/%ld", (unsigned long)commentId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPUT objectMapping:nil];
+  
+  request.body = @{@"value": value};
+  
+  return request;
+}
+
 @end
