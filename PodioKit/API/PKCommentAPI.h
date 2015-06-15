@@ -12,5 +12,6 @@
 
 + (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType;
 + (PKRequest *)requestForPostCommentWithText:(NSString *)text referenceId:(NSUInteger)referenceId referenceType:(PKReferenceType)referenceType fileIds:(NSArray *)fileIds alertInvite:(BOOL)alertInvite;
++ (PKRequest *)requestToDeleteCommentWithId:(NSUInteger)commentId;
 
 @end
