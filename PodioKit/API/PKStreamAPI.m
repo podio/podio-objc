@@ -102,7 +102,7 @@
   
   request.parameters[@"alert_invite"] = @(alertInvite);
   
-  NSMutableDictionary * body = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(spaceId), @"space_id", text, @"value", nil];
+  NSMutableDictionary *body = [NSMutableDictionary dictionaryWithObjectsAndKeys:@(spaceId), @"space_id", text, @"value", nil];
   
 	if ([fileIds count] > 0) {
     [body setObject:fileIds forKey:@"file_ids"];
@@ -117,6 +117,34 @@
   }
   
   request.body = body;
+  
+  return request;
+}
+
++ (PKRequest *)requestToUpdateStatusWithId:(NSUInteger)statusId
+                                      text:(NSString *)text
+                                   fileIds:(NSArray *)fileIds
+                                   embedId:(NSUInteger)embedId
+                                  embedURL:(NSURL *)embedURL {
+  NSString *uri = [NSString stringWithFormat:@"/status/%ld", (unsigned long)statusId];
+  PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPUT];
+  
+  NSMutableDictionary *body = [NSMutableDictionary new];
+  body[@"value"] = text;
+  
+  if ([fileIds count] > 0) {
+    body[@"file_ids"] = fileIds;
+  }
+  
+  if (embedId > 0) {
+    body[@"embed_id"] = @(embedId);
+  }
+  
+  if (embedURL) {
+    body[@"embed_url"] = embedURL.absoluteString;
+  }
+  
+  request.body = [body copy];
   
   return request;
 }

@@ -37,4 +37,10 @@
                                     spaceId:(NSUInteger)spaceId
                                 alertInvite:(BOOL)alertInvite;
 
++ (PKRequest *)requestToUpdateStatusWithId:(NSUInteger)statusId
+                                      text:(NSString *)text
+                                   fileIds:(NSArray *)fileIds
+                                   embedId:(NSUInteger)embedId
+                                  embedURL:(NSURL *)embedURL;
+
 @end
