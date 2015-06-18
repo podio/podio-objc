@@ -85,6 +85,11 @@
  */
 - (BOOL)storedObjectExistsForKey:(NSString *)key;
 
+/**
+ *  Remove all the stored objects both in cache and on disk.
+ */
+- (void)removeAllStoredObjects;
+
 #pragma mark - Subscripting
 
 - (id)objectForKeyedSubscript:(id <NSCopying>)key;

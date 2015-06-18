@@ -82,4 +82,17 @@
   expect([store storedObjectExistsForKey:@"other-object"]).to.beFalsy();
 }
 
+- (void)testRemoveAllStoredObjects {
+  PKTDatastore *store = [PKTDatastore storeWithName:@"TestStore"];
+  
+  NSDictionary *value = @{@"key" : @"value"};
+  [store storeObject:value forKey:@"my-object"];
+  
+  expect([store storedObjectForKey:@"my-object"]).to.equal(value);
+  
+  [store removeAllStoredObjects];
+  
+  expect([store storedObjectForKey:@"my-object"]).to.beNil;
+}
+
 @end

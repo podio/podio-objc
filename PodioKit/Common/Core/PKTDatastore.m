@@ -216,6 +216,17 @@ static char * const kInternalQueueName = "com.podio.podiokit.pktdatastore.intern
   return exists;
 }
 
+- (void)removeAllStoredObjects {
+  [self clearCache];
+  
+  NSError *error = nil;
+  [self.fileManager removeItemAtPath:self.dataPath error:&error];
+  
+  if (error) {
+    NSLog(@"ERROR: Failed to remove stored objects at path %@", self.dataPath);
+  }
+}
+
 #pragma mark - Private
 
 - (void)registerNotifications {
