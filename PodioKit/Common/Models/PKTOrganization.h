@@ -7,6 +7,7 @@
 //
 
 #import "PKTModel.h"
+#import "PKTConstants.h"
 
 @class PKTFile, PKTAsyncTask;
 
@@ -16,6 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSArray *workspaces;
 @property (nonatomic, strong, readonly) PKTFile *imageFile;
+@property (nonatomic, assign, readonly) PKTRight rights;
 
 #pragma mark - API
 

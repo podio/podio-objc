@@ -24,6 +24,7 @@
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 @property (nonatomic, copy, readonly) PKTByLine *createdBy;
 @property (nonatomic, copy, readonly) NSString *linkURL;
+@property (nonatomic, assign, readonly) PKTRight rights;
 
 + (PKTAsyncTask *)fetchWorkspaceWithID:(NSUInteger)workspaceID;
 

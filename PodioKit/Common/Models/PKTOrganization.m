@@ -33,6 +33,10 @@
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTFile class]];
 }
 
++ (NSValueTransformer *)rightsValueTransformer {
+  return [NSValueTransformer pkt_rightValueTransformer];
+}
+
 #pragma mark - API
 
 + (PKTAsyncTask *)fetchAll {

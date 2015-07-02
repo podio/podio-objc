@@ -25,7 +25,7 @@
            @"descriptionText" : @"description",
            @"createdOn" : @"created_on",
            @"createdBy" : @"created_by",
-           @"spaceType" : @"type",
+           @"spaceType" : @"type"
            };
 }
 
@@ -51,6 +51,10 @@
   return [NSValueTransformer pkt_transformerWithDictionary:@{@"regular" : @(PKTWorkspaceTypeRegular),
                                                              @"emp_network" : @(PKTWorkspaceTypeEmployeeNetwork),
                                                              @"demo" : @(PKTWorkspaceTypeDemo)}];
+}
+
++ (NSValueTransformer *)rightsValueTransformer {
+  return [NSValueTransformer pkt_rightValueTransformer];
 }
 
 #pragma mark - Public

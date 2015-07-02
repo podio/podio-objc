@@ -50,7 +50,7 @@
 }
 
 + (NSValueTransformer *)rightsValueTransformer {
-  return [NSValueTransformer pkt_referenceTypeTransformer];
+  return [NSValueTransformer pkt_rightValueTransformer];
 }
 
 + (NSValueTransformer *)linkValueTransformer {
