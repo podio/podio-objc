@@ -81,6 +81,21 @@
   return task;
 }
 
++ (PKTAsyncTask *)fetchMostFrequentlyUsedApps:(NSUInteger)limit {
+  PKTRequest *request = [PKTAppsAPI requestForMostFrequentlyUsedApps:limit];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+      return [[objectClass alloc] initWithDictionary:dict];
+    }];
+  }];
+  
+  return task;
+}
+
 #pragma mark - Public
 
 - (PKTAppField *)fieldWithExternalID:(NSString *)externalID {

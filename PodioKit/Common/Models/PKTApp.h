@@ -24,6 +24,7 @@
 + (PKTAsyncTask *)fetchAppWithID:(NSUInteger)appID;
 + (PKTAsyncTask *)fetchAppsInWorkspaceWithID:(NSUInteger)spaceID;
 + (PKTAsyncTask *)fetchAppInWorkspaceWithID:(NSUInteger)spaceID urlLabel:(NSString *)urlLabel;
++ (PKTAsyncTask *)fetchMostFrequentlyUsedApps:(NSUInteger)limit;
 
 - (PKTAppField *)fieldWithExternalID:(NSString *)externalID;
 

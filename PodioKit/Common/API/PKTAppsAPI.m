@@ -23,6 +23,13 @@
   return [PKTRequest GETRequestWithPath:path parameters:nil];
 }
 
++ (PKTRequest *)requestForMostFrequentlyUsedApps:(NSUInteger)limit {
+  NSMutableDictionary *params = [NSMutableDictionary new];
+  if (limit > 0) params[@"limit"] = @(limit);
+  
+  return [PKTRequest GETRequestWithPath:@"/app/top/" parameters:params];
+}
+
 + (PKTRequest *)requestToAddAppToWorkspaceWithID:(NSUInteger)spaceID fields:(NSDictionary *)fields {
   NSParameterAssert(spaceID > 0);
   NSParameterAssert(fields);
