@@ -22,6 +22,15 @@
   expect(request.method).to.equal(PKTRequestMethodGET);
 }
 
+- (void)testRequestForMostFrequentlyUsedApps {
+  NSUInteger limit = 5;
+  PKTRequest *request = [PKTAppsAPI requestForMostFrequentlyUsedApps:limit];
+  
+  expect(request.path).to.equal(@"/app/top/");
+  expect(request.method).to.equal(PKTRequestMethodGET);
+  expect(request.parameters[@"limit"]).to.equal(@(limit));
+}
+
 - (void)testRequestToAddAppToWorkspace {
   PKTRequest *request = [PKTAppsAPI requestToAddAppToWorkspaceWithID:123 fields:@{@"text" : @"Some text"}];
   
