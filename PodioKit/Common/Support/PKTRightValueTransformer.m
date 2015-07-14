@@ -68,8 +68,10 @@
   return right;
 }
 
-+ (PKTRight)rightFromArray:(NSArray *)keys {
-  NSParameterAssert([keys isKindOfClass:[NSArray class]]);
++ (PKTRight)rightFromArray:(NSArray *)array {
+  NSParameterAssert([array isKindOfClass:[NSArray class]]);
+  
+  NSArray *keys = [array copy];
   
   PKTRight right = PKTRightNone;
   for (NSString *key in keys) {

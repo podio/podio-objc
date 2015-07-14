@@ -94,7 +94,7 @@
   testRights(values, PKTRightGrant, NO);
   testRights(values, PKTRightGrantView, NO);
 
-  values = @[@"add_conversation", @"rate", @"add_task", @"comment", @"view", @"update", @"add_file", @"grant_view", @"subscribe", @"grant"];
+  values = @[@"add_conversation", @"rate", @"add_task", @"comment", @"view", @"update", @"add_file", @"grant_view", @"subscribe", @"grant", @"unsupported_key"];
   testRights(values, PKTRightAddConversation, YES);
   testRights(values, PKTRightRate, YES);
   testRights(values, PKTRightAddTask, YES);
