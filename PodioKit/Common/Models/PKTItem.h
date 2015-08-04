@@ -12,6 +12,7 @@
 @class PKTFile;
 @class PKTByLine;
 @class PKTApp;
+@class PKTWorkspace;
 
 typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger filteredCount, NSUInteger totalCount, NSError *error);
 
@@ -24,6 +25,7 @@ typedef void(^PKTItemFilteredFetchCompletionBlock)(NSArray *items, NSUInteger fi
 @property (nonatomic, strong, readonly) NSDate *createdOn;
 @property (nonatomic, strong, readonly) PKTByLine *createdBy;
 @property (nonatomic, strong, readonly) PKTApp *app;
+@property (nonatomic, strong, readonly) PKTWorkspace *workspace;
 @property (nonatomic, copy, readonly) NSString *title;
 @property (nonatomic, copy, readonly) NSArray *fields;
 @property (nonatomic, copy, readonly) NSArray *files;

@@ -11,6 +11,7 @@
 #import "PKTFile.h"
 #import "PKTComment.h"
 #import "PKTApp.h"
+#import "PKTWorkspace.h"
 #import "PKTByLine.h"
 #import "PKTItemsAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
@@ -90,6 +91,7 @@
   return @{
     @"itemID": @"item_id",
     @"externalID": @"external_id",
+    @"workspace": @"space",
     @"appID": @"app.app_id",
     @"appItemID" : @"app_item_id",
     @"createdOn" : @"created_on",
@@ -111,6 +113,10 @@
 
 + (NSValueTransformer *)appValueTransformer {
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTApp class]];
+}
+
++ (NSValueTransformer *)workspaceValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTWorkspace class]];
 }
 
 + (NSValueTransformer *)mutFieldsValueTransformer {
