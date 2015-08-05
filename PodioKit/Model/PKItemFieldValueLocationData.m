@@ -15,7 +15,7 @@
 @property (nonatomic, readwrite, copy) NSString *country;
 @property (nonatomic, readwrite, copy) NSString *postalCode;
 @property (nonatomic, readwrite, copy) NSString *streetAddress;
-@property (nonatomic, readwrite, assign) BOOL mapInSync;
+@property (nonatomic, readwrite, copy) NSNumber *mapInSync;
 
 @end
 
@@ -42,7 +42,7 @@ static NSString * const PKItemFieldValueLocationDataMapInSyncKey = @"ItemFieldVa
     _country = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataCountryKey] copy];
     _postalCode = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataPostalCodeKey] copy];
     _streetAddress = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataStreetAddressKey] copy];
-    _mapInSync = [aDecoder decodeBoolForKey:PKItemFieldValueLocationDataMapInSyncKey];
+    _mapInSync = [aDecoder decodeObjectForKey:PKItemFieldValueLocationDataMapInSyncKey];
   }
   return self;
 }
@@ -57,7 +57,7 @@ static NSString * const PKItemFieldValueLocationDataMapInSyncKey = @"ItemFieldVa
   [aCoder encodeObject:_country forKey:PKItemFieldValueLocationDataCountryKey];
   [aCoder encodeObject:_postalCode forKey:PKItemFieldValueLocationDataPostalCodeKey];
   [aCoder encodeObject:_streetAddress forKey:PKItemFieldValueLocationDataStreetAddressKey];
-  [aCoder encodeBool:_mapInSync forKey:PKItemFieldValueLocationDataMapInSyncKey];
+  [aCoder encodeObject:_mapInSync forKey:PKItemFieldValueLocationDataMapInSyncKey];
 }
 
 #pragma mark - Factory methods
@@ -65,17 +65,35 @@ static NSString * const PKItemFieldValueLocationDataMapInSyncKey = @"ItemFieldVa
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueLocationData *data = [self data];
   
-  data.value = [dict pk_objectForKey:@"value"];
-  data.latitude = [dict pk_objectForKey:@"lat"];
-  data.longitude = [dict pk_objectForKey:@"lng"];
-  data.formatted = [dict pk_objectForKey:@"formatted"];
-  data.city = [dict pk_objectForKey:@"city"];
-  data.country = [dict pk_objectForKey:@"country"];
-  data.postalCode = [dict pk_objectForKey:@"postal_code"];
-  data.streetAddress = [dict pk_objectForKey:@"street_address"];
-  data.mapInSync = [dict pk_objectForKey:@"map_in_sync"];
+  data->_value = [[dict pk_objectForKey:@"value"] copy];
+  data->_latitude = [[dict pk_objectForKey:@"lat"] copy];
+  data->_longitude = [[dict pk_objectForKey:@"lng"] copy];
+  data->_formatted = [[dict pk_objectForKey:@"formatted"] copy];
+  data->_city = [[dict pk_objectForKey:@"city"] copy];
+  data->_country = [[dict pk_objectForKey:@"country"] copy];
+  data->_postalCode = [[dict pk_objectForKey:@"postal_code"] copy];
+  data->_streetAddress = [[dict pk_objectForKey:@"street_address"] copy];
+  data->_mapInSync = [[dict pk_objectForKey:@"map_in_sync"] copy];
   
   return data;
+}
+
+#pragma mark - NSCopying
+
+- (id)copyWithZone:(NSZone *)zone {
+  PKItemFieldValueLocationData *location = [[[self class] allocWithZone:zone] init];
+  
+  location->_value = [_value copyWithZone:zone];
+  location->_latitude = [_latitude copyWithZone:zone];
+  location->_longitude = [_longitude copy];
+  location->_formatted = [_formatted copy];
+  location->_city = [_city copy];
+  location->_country = [_country copy];
+  location->_postalCode = [_postalCode copy];
+  location->_streetAddress = [_streetAddress copy];
+  location->_mapInSync = [_mapInSync copy];
+  
+  return location;
 }
 
 @end

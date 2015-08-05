@@ -8,7 +8,7 @@
 
 #import <PodioKit-1.x/PodioKit-1.x.h>
 
-@interface PKItemFieldValueLocationData : PKObjectData
+@interface PKItemFieldValueLocationData : PKObjectData <NSCopying>
 
 @property (nonatomic, copy) NSString *value;
 @property (nonatomic, copy) NSNumber *latitude;
@@ -18,6 +18,6 @@
 @property (nonatomic, readonly, copy) NSString *country;
 @property (nonatomic, readonly, copy) NSString *postalCode;
 @property (nonatomic, readonly, copy) NSString *streetAddress;
-@property (nonatomic, readonly, assign) BOOL mapInSync;
+@property (nonatomic, readonly, copy) NSNumber *mapInSync;
 
 @end
