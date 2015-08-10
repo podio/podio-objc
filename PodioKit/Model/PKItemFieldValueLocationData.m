@@ -29,21 +29,44 @@ static NSString * const PKItemFieldValueLocationDataPostalCodeKey = @"ItemFieldV
 static NSString * const PKItemFieldValueLocationDataStreetAddressKey = @"ItemFieldValueLocationDataStreetAddress";
 static NSString * const PKItemFieldValueLocationDataMapInSyncKey = @"ItemFieldValueLocationDataMapInSync";
 
+static void * kLocationValueChanged = &kLocationValueChanged;
+static void * kStructuredValueChanged = &kStructuredValueChanged;
+
 @implementation PKItemFieldValueLocationData
+
+- (instancetype)init {
+  self = [super init];
+  if (!self) return nil;
+  
+  [self observeLocationValue];
+  [self observeStructuredValues];
+  
+  return self;
+}
+
+- (void)dealloc {
+  [self removeObserver:self forKeyPath:nil];
+}
+
+#pragma mark - NSCoding
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
-  if (self) {
-    _value = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataValueKey] copy];
-    _latitude = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataLatitudeKey] copy];
-    _longitude = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataLongitudeKey] copy];
-    _formatted = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataFormattedKey] copy];
-    _city = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataCityKey] copy];
-    _country = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataCountryKey] copy];
-    _postalCode = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataPostalCodeKey] copy];
-    _streetAddress = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataStreetAddressKey] copy];
-    _mapInSync = [aDecoder decodeObjectForKey:PKItemFieldValueLocationDataMapInSyncKey];
-  }
+  if (!self) return nil;
+  
+  _value = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataValueKey] copy];
+  _latitude = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataLatitudeKey] copy];
+  _longitude = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataLongitudeKey] copy];
+  _formatted = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataFormattedKey] copy];
+  _city = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataCityKey] copy];
+  _country = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataCountryKey] copy];
+  _postalCode = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataPostalCodeKey] copy];
+  _streetAddress = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataStreetAddressKey] copy];
+  _mapInSync = [aDecoder decodeObjectForKey:PKItemFieldValueLocationDataMapInSyncKey];
+  
+  [self observeLocationValue];
+  [self observeStructuredValues];
+  
   return self;
 }
 
@@ -94,6 +117,54 @@ static NSString * const PKItemFieldValueLocationDataMapInSyncKey = @"ItemFieldVa
   location->_mapInSync = [_mapInSync copy];
   
   return location;
+}
+
+#pragma mark - KVO
+
+- (void)observeLocationValue {
+  [self addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:kLocationValueChanged];
+}
+
+- (void)observeStructuredValues {
+  for (NSString *keyPath in @[@"city", @"country", @"postalCode", @"streetAddress"]) {
+    [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:kStructuredValueChanged];
+  }
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context {
+  if (context == kLocationValueChanged) {
+    self.formatted = nil;
+  } else if (context == kStructuredValueChanged) {
+    NSMutableString *locationString = [NSMutableString new];
+    
+    if (self.streetAddress.length > 0) {
+      [locationString appendString:self.streetAddress];
+    }
+    if (self.postalCode.length > 0) {
+      if (locationString.length > 0) {
+        [locationString appendFormat:@", %@", self.postalCode];
+      } else {
+        [locationString appendString:self.postalCode];
+      }
+    }
+    if (self.city.length > 0) {
+      if (locationString.length > 0) {
+        NSString *format = self.postalCode.length > 0 ? @" %@" : @", %@";
+        [locationString appendFormat:format, self.city];
+      } else {
+        [locationString appendString:self.city];
+      }
+    }
+    if (self.country.length > 0) {
+      if (locationString.length > 0) {
+        [locationString appendFormat:@", %@", self.country];
+      } else {
+        [locationString appendString:self.country];
+      }
+    }
+    
+    self.value = locationString.length > 0 ? [locationString copy] : nil;
+  }
 }
 
 @end
