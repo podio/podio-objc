@@ -12,6 +12,7 @@
 
 @property (nonatomic, readwrite, copy) NSString *formatted;
 @property (nonatomic, readwrite, copy) NSString *city;
+@property (nonatomic, readwrite, copy) NSString *state;
 @property (nonatomic, readwrite, copy) NSString *country;
 @property (nonatomic, readwrite, copy) NSString *postalCode;
 @property (nonatomic, readwrite, copy) NSString *streetAddress;
@@ -27,6 +28,7 @@ static NSString * const PKItemFieldValueLocationDataCityKey = @"ItemFieldValueLo
 static NSString * const PKItemFieldValueLocationDataCountryKey = @"ItemFieldValueLocationDataCountry";
 static NSString * const PKItemFieldValueLocationDataPostalCodeKey = @"ItemFieldValueLocationDataPostalCode";
 static NSString * const PKItemFieldValueLocationDataStreetAddressKey = @"ItemFieldValueLocationDataStreetAddress";
+static NSString * const PKItemFieldValueLocationDataStateKey = @"ItemFieldValueLocationDataState";
 static NSString * const PKItemFieldValueLocationDataMapInSyncKey = @"ItemFieldValueLocationDataMapInSync";
 
 static void * kLocationValueChanged = &kLocationValueChanged;
@@ -38,14 +40,15 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
   self = [super init];
   if (!self) return nil;
   
-  [self observeLocationValue];
-  [self observeStructuredValues];
+  [self startObservingLocationValue];
+  [self startObservingStructuredValues];
   
   return self;
 }
 
 - (void)dealloc {
-  [self removeObserver:self forKeyPath:nil];
+  [self stopObservingLocationValue];
+  [self stopObservingStructuredValues];
 }
 
 #pragma mark - NSCoding
@@ -62,10 +65,11 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
   _country = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataCountryKey] copy];
   _postalCode = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataPostalCodeKey] copy];
   _streetAddress = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataStreetAddressKey] copy];
+  _state = [[aDecoder decodeObjectForKey:PKItemFieldValueLocationDataStateKey] copy];
   _mapInSync = [aDecoder decodeObjectForKey:PKItemFieldValueLocationDataMapInSyncKey];
   
-  [self observeLocationValue];
-  [self observeStructuredValues];
+  [self startObservingLocationValue];
+  [self startObservingStructuredValues];
   
   return self;
 }
@@ -80,6 +84,7 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
   [aCoder encodeObject:_country forKey:PKItemFieldValueLocationDataCountryKey];
   [aCoder encodeObject:_postalCode forKey:PKItemFieldValueLocationDataPostalCodeKey];
   [aCoder encodeObject:_streetAddress forKey:PKItemFieldValueLocationDataStreetAddressKey];
+  [aCoder encodeObject:_state forKey:PKItemFieldValueLocationDataStateKey];
   [aCoder encodeObject:_mapInSync forKey:PKItemFieldValueLocationDataMapInSyncKey];
 }
 
@@ -96,6 +101,7 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
   data->_country = [[dict pk_objectForKey:@"country"] copy];
   data->_postalCode = [[dict pk_objectForKey:@"postal_code"] copy];
   data->_streetAddress = [[dict pk_objectForKey:@"street_address"] copy];
+  data->_state = [[dict pk_objectForKey:@"state"] copy];
   data->_mapInSync = [[dict pk_objectForKey:@"map_in_sync"] copy];
   
   return data;
@@ -114,6 +120,7 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
   location->_country = [_country copy];
   location->_postalCode = [_postalCode copy];
   location->_streetAddress = [_streetAddress copy];
+  location->_state = [_state copy];
   location->_mapInSync = [_mapInSync copy];
   
   return location;
@@ -121,13 +128,23 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
 
 #pragma mark - KVO
 
-- (void)observeLocationValue {
+- (void)startObservingLocationValue {
   [self addObserver:self forKeyPath:@"value" options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:kLocationValueChanged];
 }
 
-- (void)observeStructuredValues {
-  for (NSString *keyPath in @[@"city", @"country", @"postalCode", @"streetAddress"]) {
+- (void)stopObservingLocationValue {
+  [self removeObserver:self forKeyPath:@"value" context:kLocationValueChanged];
+}
+
+- (void)startObservingStructuredValues {
+  for (NSString *keyPath in @[@"city", @"country", @"postalCode", @"streetAddress", @"state"]) {
     [self addObserver:self forKeyPath:keyPath options:NSKeyValueObservingOptionNew|NSKeyValueObservingOptionOld context:kStructuredValueChanged];
+  }
+}
+
+- (void)stopObservingStructuredValues {
+  for (NSString *keyPath in @[@"city", @"country", @"postalCode", @"streetAddress", @"state"]) {
+    [self removeObserver:self forKeyPath:keyPath context:kStructuredValueChanged];
   }
 }
 
@@ -153,6 +170,13 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
         [locationString appendFormat:format, self.city];
       } else {
         [locationString appendString:self.city];
+      }
+    }
+    if (self.state.length > 0) {
+      if (locationString.length > 0) {
+        [locationString appendFormat:@", %@", self.state];
+      } else {
+        [locationString appendString:self.state];
       }
     }
     if (self.country.length > 0) {

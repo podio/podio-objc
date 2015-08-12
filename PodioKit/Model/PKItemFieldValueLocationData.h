@@ -15,6 +15,7 @@
 @property (nonatomic, copy) NSNumber *longitude;
 @property (nonatomic, readonly, copy) NSString *formatted;
 @property (nonatomic, readonly, copy) NSString *city;
+@property (nonatomic, readonly, copy) NSString *state;
 @property (nonatomic, readonly, copy) NSString *country;
 @property (nonatomic, readonly, copy) NSString *postalCode;
 @property (nonatomic, readonly, copy) NSString *streetAddress;
