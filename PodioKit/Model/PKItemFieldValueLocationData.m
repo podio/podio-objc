@@ -100,11 +100,34 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
   data->_city = [[dict pk_objectForKey:@"city"] copy];
   data->_country = [[dict pk_objectForKey:@"country"] copy];
   data->_postalCode = [[dict pk_objectForKey:@"postal_code"] copy];
-  data->_streetAddress = [[dict pk_objectForKey:@"street_address"] copy];
   data->_state = [[dict pk_objectForKey:@"state"] copy];
   data->_mapInSync = [[dict pk_objectForKey:@"map_in_sync"] copy];
+  data->_streetAddress = [[self streetAddressFromDictionary:dict] copy];
   
   return data;
+}
+
++ (NSString *)streetAddressFromDictionary:(NSDictionary *)dict {
+  NSString *streetAddress = [dict pk_objectForKey:@"street_address"];
+  if (streetAddress) {
+    return streetAddress;
+  }
+  
+  NSString *streetNumber = [dict pk_objectForKey:@"street_number"];
+  NSString *streetName = [dict pk_objectForKey:@"street_name"];
+  if (streetNumber && streetName) {
+    NSString *formatted = [dict pk_objectForKey:@"formatted"];
+    BOOL streetAddressStartsWithNumber = [formatted hasPrefix:streetNumber];
+    if (streetAddressStartsWithNumber) {
+      streetAddress = [NSString stringWithFormat:@"%@ %@", streetNumber, streetName];
+    } else {
+      streetAddress = [NSString stringWithFormat:@"%@ %@", streetName, streetNumber];
+    }
+    
+    return streetAddress;
+  }
+  
+  return nil;
 }
 
 #pragma mark - NSCopying
