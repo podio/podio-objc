@@ -109,25 +109,42 @@ static void * kStructuredValueChanged = &kStructuredValueChanged;
 
 + (NSString *)streetAddressFromDictionary:(NSDictionary *)dict {
   NSString *streetAddress = [dict pk_objectForKey:@"street_address"];
-  if (streetAddress) {
-    return streetAddress;
-  }
-  
   NSString *streetNumber = [dict pk_objectForKey:@"street_number"];
   NSString *streetName = [dict pk_objectForKey:@"street_name"];
-  if (streetNumber && streetName) {
-    NSString *formatted = [dict pk_objectForKey:@"formatted"];
-    BOOL streetAddressStartsWithNumber = [formatted hasPrefix:streetNumber];
+  NSString *streetValue = [dict pk_objectForKey:@"formatted"] ?: [dict pk_objectForKey:@"value"];
+  
+  NSString *result = nil;
+  
+  if (streetAddress) {
+    result = streetAddress;
+  } else if (streetNumber && streetName) {
+    BOOL streetAddressStartsWithNumber = [streetValue hasPrefix:streetNumber];
     if (streetAddressStartsWithNumber) {
-      streetAddress = [NSString stringWithFormat:@"%@ %@", streetNumber, streetName];
+      result = [NSString stringWithFormat:@"%@ %@", streetNumber, streetName];
     } else {
-      streetAddress = [NSString stringWithFormat:@"%@ %@", streetName, streetNumber];
+      result = [NSString stringWithFormat:@"%@ %@", streetName, streetNumber];
+    }
+  } else if (streetName) {
+    streetAddress = streetName;
+  } else if (streetNumber) {
+    streetAddress = streetNumber;
+  } else {
+    // keep all characters that are not a postal_code, city, state, or country
+    NSMutableString *temp = [streetValue mutableCopy];
+    for (NSString *key in @[@"postal_code", @"city", @"state", @"country"]) {
+      NSString *value = [dict pk_objectForKey:key];
+      if (value) {
+        NSRange range = [temp rangeOfString:value options:NSBackwardsSearch];
+        if (range.length > 0) {
+          [temp deleteCharactersInRange:range];
+        }
+      }
     }
     
-    return streetAddress;
+    result = [temp stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@", "]];
   }
-  
-  return nil;
+
+  return result;
 }
 
 #pragma mark - NSCopying
