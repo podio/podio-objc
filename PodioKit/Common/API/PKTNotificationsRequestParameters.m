@@ -34,6 +34,10 @@
     params[@"viewed"] = @(self.viewed == PKTNotificationViewedStateViewed);
   }
   
+  if (self.notificationType != PKTNotificationTypeUnknown) {
+    params[@"type"] = [NSValueTransformer pkt_stringFromNotificationType:self.notificationType];
+  }
+  
   if (self.direction != PKTNotificationDirectionDefault) {
     params[@"direction"] = self.direction == PKTNotificationDirectionOutgoing ? @"outgoing" : @"incoming";
   }
