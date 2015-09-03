@@ -12,6 +12,7 @@ static NSString * const PKReferenceAppDataAppId = @"AppId";
 static NSString * const PKReferenceAppDataName = @"Name";
 static NSString * const PKReferenceAppDataItemName = @"ItemName";
 static NSString * const PKReferenceAppDataIcon = @"Icon";
+static NSString * const PKReferenceAppDataRights = @"Rights";
 
 @implementation PKReferenceAppData
 
@@ -19,6 +20,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
 @synthesize name = name_;
 @synthesize itemName = itemName_;
 @synthesize icon = icon_;
+@synthesize rights = rights_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
@@ -27,6 +29,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
     name_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataName] copy];
     itemName_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataItemName] copy];
     icon_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataIcon] copy];
+    rights_ = [[aDecoder decodeObjectForKey:PKReferenceAppDataRights] unsignedIntegerValue];
   }
   return self;
 }
@@ -37,6 +40,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
   [aCoder encodeObject:name_ forKey:PKReferenceAppDataName];
   [aCoder encodeObject:itemName_ forKey:PKReferenceAppDataItemName];
   [aCoder encodeObject:icon_ forKey:PKReferenceAppDataIcon];
+  [aCoder encodeObject:[NSNumber numberWithUnsignedInteger:rights_] forKey:PKReferenceAppDataRights];
 }
 
 
@@ -49,6 +53,7 @@ static NSString * const PKReferenceAppDataIcon = @"Icon";
   data.name = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"name"];
   data.itemName = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"item_name"];
   data.icon = [[dict pk_objectForKey:@"config"] pk_objectForKey:@"icon"];
+  data.rights = [PKConstants rightsMaskFromArrayOfStrings:[dict pk_objectForKey:@"rights"]];
   
   return data;
 }
