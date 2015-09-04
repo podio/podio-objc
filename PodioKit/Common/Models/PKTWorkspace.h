@@ -23,7 +23,7 @@
 @property (nonatomic, copy, readonly) NSString *descriptionText;
 @property (nonatomic, copy, readonly) NSDate *createdOn;
 @property (nonatomic, copy, readonly) PKTByLine *createdBy;
-@property (nonatomic, copy, readonly) NSString *linkURL;
+@property (nonatomic, copy, readonly) NSURL *linkURL;
 @property (nonatomic, assign, readonly) PKTRight rights;
 @property (nonatomic, assign, readonly) BOOL archived;
 
