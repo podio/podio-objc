@@ -219,4 +219,14 @@ typedef NS_ENUM(NSUInteger, PKTAvatarType) {
   PKTAvatarTypeIcon
 };
 
+#pragma mark - Meetings
+
+typedef NS_ENUM(NSUInteger, PKTMeetingParticipantStatus) {
+  PKTMeetingParticipantStatusNone = 0,
+  PKTMeetingParticipantStatusInvited,
+  PKTMeetingParticipantStatusAccepted,
+  PKTMeetingParticipantStatusDeclined,
+  PKTMeetingParticipantStatusTentative,
+};
+
 #endif

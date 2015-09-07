@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
+		18D1047B1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D104791B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h */; };
+		18D1047C1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D1047A1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.m */; };
 		5006020D196D550400BC619F /* NSString+PKTAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006020B196D550400BC619F /* NSString+PKTAdditions.h */; };
 		5006020E196D550400BC619F /* NSString+PKTAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 5006020C196D550400BC619F /* NSString+PKTAdditions.m */; };
 		50060211196D5ACC00BC619F /* PKTResponseSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 5006020F196D5ACC00BC619F /* PKTResponseSerializer.h */; };
@@ -484,6 +486,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18D104791B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTMeetingParticipantStatusValueTransformer.h; sourceTree = "<group>"; };
+		18D1047A1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTMeetingParticipantStatusValueTransformer.m; sourceTree = "<group>"; };
 		2DB672C57F14E28616BCD09B /* Pods-podiokittests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.release.xcconfig"; path = "Pods/Target Support Files/Pods-podiokittests/Pods-podiokittests.release.xcconfig"; sourceTree = "<group>"; };
 		5006020B196D550400BC619F /* NSString+PKTAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PKTAdditions.h"; sourceTree = "<group>"; };
 		5006020C196D550400BC619F /* NSString+PKTAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PKTAdditions.m"; sourceTree = "<group>"; };
@@ -1136,6 +1140,8 @@
 				C9FAD6730D190BACF99137EF /* PKTNumberValueTransformer.h */,
 				E4F460371ABC5A4900A99B19 /* PKTRightValueTransformer.h */,
 				E4F460381ABC5A4900A99B19 /* PKTRightValueTransformer.m */,
+				18D104791B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h */,
+				18D1047A1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.m */,
 				E4F4603E1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.h */,
 				E4F4603F1ABD5FB700A99B19 /* PKTNotificationTypeValueTransformer.m */,
 				E40B82E01AE67BE000962E15 /* PKTAvatarTypeValueTransformer.h */,
@@ -1720,6 +1726,7 @@
 				50F6B92E195AE84900FF0024 /* UIButton+PKTRemoteImage.h in Headers */,
 				507CA7E71905560D000D9F6E /* PKTGlobalHeaders.h in Headers */,
 				50060217196D773400BC619F /* NSDictionary+PKTQueryParameters.h in Headers */,
+				18D1047B1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h in Headers */,
 				50E6C80D190D5A6600F309B4 /* PKTAppField.h in Headers */,
 				E47A28211ABB41AD00E6F0FD /* PKTNotification.h in Headers */,
 				5006B07F191C200B006FF388 /* NSDate+PKTAdditions.h in Headers */,
@@ -1967,6 +1974,7 @@
 				503959ED19128FD4004C298C /* NSArray+PKTAdditions.m in Sources */,
 				50E6C80A190D4EC200F309B4 /* PKTFile.m in Sources */,
 				50CAE07819701DFF0096BE07 /* NSDictionary+PKTAdditions.m in Sources */,
+				18D1047C1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.m in Sources */,
 				50E44CDF19FA23C000FB4CE2 /* PKTSecurity.m in Sources */,
 				50E6C80E190D5A6600F309B4 /* PKTAppField.m in Sources */,
 				50FA507318FFC041009542B9 /* PKTUsersAPI.m in Sources */,
