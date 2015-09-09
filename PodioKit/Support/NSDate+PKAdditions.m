@@ -25,12 +25,12 @@
 - (NSDate *)pk_convertedDateInCalendar:(NSCalendar *)calendar fromTimeZone:(NSTimeZone *)fromTimeZone toTimeZone:(NSTimeZone *)toTimeZone {
   NSCalendar *cal = [calendar copy];
   cal.timeZone = fromTimeZone;
-  NSDateComponents *comps = [cal components:(NSYearCalendarUnit |
-                                             NSMonthCalendarUnit |
-                                             NSDayCalendarUnit |
-                                             NSHourCalendarUnit |
-                                             NSMinuteCalendarUnit |
-                                             NSSecondCalendarUnit) fromDate:self];
+  NSDateComponents *comps = [cal components:(NSCalendarUnitYear |
+                                             NSCalendarUnitMonth |
+                                             NSCalendarUnitDay |
+                                             NSCalendarUnitHour |
+                                             NSCalendarUnitMinute |
+                                             NSCalendarUnitSecond) fromDate:self];
   cal.timeZone = toTimeZone;
   
   return [cal dateFromComponents:comps];

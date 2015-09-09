@@ -89,15 +89,15 @@ static NSString * const kIncludesTimeComponentKey = @"IncludesTimeComponent";
       
       static dispatch_once_t onceToken;
       dispatch_once(&onceToken, ^{
-        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        calendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
         calendar.timeZone = [NSTimeZone timeZoneWithName:@"UTC"];
       });
       
       // If we should ignore time component, ignore all the time components of the date
-      NSDateComponents *comps = [calendar components:(NSEraCalendarUnit |
-                                                      NSYearCalendarUnit |
-                                                      NSMonthCalendarUnit |
-                                                      NSDayCalendarUnit) fromDate:self.internalDate];
+      NSDateComponents *comps = [calendar components:(NSCalendarUnitEra |
+                                                      NSCalendarUnitYear |
+                                                      NSCalendarUnitMonth |
+                                                      NSCalendarUnitDay) fromDate:self.internalDate];
       
       _internalDateWithoutTime = [calendar dateFromComponents:comps];
     }
