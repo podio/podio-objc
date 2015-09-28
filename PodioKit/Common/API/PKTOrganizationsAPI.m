@@ -21,4 +21,12 @@
   return request;
 }
 
++ (PKTRequest *)requestToUpdateOrganizationWithID:(NSUInteger)organizationID withName:(NSString *)name {
+  NSString *path = PKTRequestPath(@"/org/%lu", (unsigned long)organizationID);
+  NSDictionary *parameters = @{@"name": name};
+  PKTRequest *request = [PKTRequest PUTRequestWithPath:path parameters:parameters];
+  
+  return request;
+}
+
 @end

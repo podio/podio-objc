@@ -12,5 +12,6 @@
 
 + (PKTRequest *)requestForAllOrganizations;
 + (PKTRequest *)requestForOrganizationWithID:(NSUInteger)organizationID;
++ (PKTRequest *)requestToUpdateOrganizationWithID:(NSUInteger)organizationID withName:(NSString *)name;
 
 @end

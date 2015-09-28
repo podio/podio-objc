@@ -27,4 +27,11 @@
   expect(request.method).to.equal(PKTRequestMethodGET);
 }
 
+- (void)testRequestToUpdateOrganizationWithID {
+  PKTRequest *request = [PKTOrganizationsAPI requestToUpdateOrganizationWithID:123 withName:@"Organisation name"];
+  expect(request.path).to.equal(@"/org/123");
+  expect(request.method).to.equal(PKTRequestMethodPUT);
+  expect(request.parameters[@"name"]).to.equal(@"Organisation name");
+}
+
 @end

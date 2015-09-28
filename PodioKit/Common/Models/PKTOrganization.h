@@ -23,5 +23,6 @@
 
 + (PKTAsyncTask *)fetchAll;
 + (PKTAsyncTask *)fetchWithID:(NSUInteger)organizationID;
++ (PKTAsyncTask *)updateOrganizationWithID:(NSUInteger)organizationID withName:(NSString *)name;
 
 @end
