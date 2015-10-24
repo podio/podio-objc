@@ -155,9 +155,9 @@ typedef NS_ENUM(NSUInteger, PKTWorkspaceMemberRole) {
 
 typedef NS_ENUM(NSUInteger, PKTWorkspaceType) {
   PKTWorkspaceTypeUnknown = 0,
+  PKTWorkspaceTypeDemo,
   PKTWorkspaceTypeRegular,
   PKTWorkspaceTypeEmployeeNetwork,
-  PKTWorkspaceTypeDemo
 };
 
 #pragma mark - Apps
