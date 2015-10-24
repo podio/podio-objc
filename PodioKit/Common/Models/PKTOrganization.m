@@ -19,10 +19,11 @@
 
 + (NSDictionary *)dictionaryKeyPathsForPropertyNames {
   return @{
-           @"organizationID" : @"org_id",
-           @"workspaces" : @"spaces",
-           @"imageFile" : @"image"
-           };
+    @"organizationID": @"org_id",
+    @"workspaces": @"spaces",
+    @"imageFile": @"image",
+    @"grantsCount": @"grants_count"
+  };
 }
 
 + (NSValueTransformer *)workspacesValueTransformer {

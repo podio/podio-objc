@@ -17,6 +17,7 @@
 @property (nonatomic, copy, readonly) NSString *name;
 @property (nonatomic, copy, readonly) NSArray *workspaces;
 @property (nonatomic, strong, readonly) PKTFile *imageFile;
+@property (nonatomic, assign, readonly) NSUInteger grantsCount;
 @property (nonatomic, assign, readonly) PKTRight rights;
 
 #pragma mark - API
