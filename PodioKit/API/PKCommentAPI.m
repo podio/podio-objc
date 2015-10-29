@@ -37,11 +37,17 @@
   return request;
 }
 
-+ (PKRequest *)requestToUpdateCommentWithId:(NSUInteger)commentId value:(NSString *)value {
++ (PKRequest *)requestToUpdateCommentWithId:(NSUInteger)commentId value:(NSString *)value fileIds:(NSArray *)fileIds {
   NSString *uri = [NSString stringWithFormat:@"/comment/%ld", (unsigned long)commentId];
   PKRequest *request = [PKRequest requestWithURI:uri method:PKRequestMethodPUT objectMapping:nil];
   
-  request.body = @{@"value": value};
+  NSMutableDictionary *body = [NSMutableDictionary new];
+  body[@"value"] = value;
+  if (fileIds) {
+    body[@"file_ids"] = fileIds;
+  }
+  
+  request.body = body;
   
   return request;
 }
