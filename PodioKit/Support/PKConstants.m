@@ -942,6 +942,8 @@
     type = PKAppFieldTypePhone;
   } else if ([string isEqualToString:kPKAppFieldTypeEmail]) {
     type = PKAppFieldTypeEmail;
+  } else if ([string isEqualToString:kPKAppFieldTypeTag]) {
+    type = PKAppFieldTypeTag;
   }
   
   return type;
@@ -1005,6 +1007,8 @@
     case PKAppFieldTypeEmail:
       string = kPKAppFieldTypeEmail;
       break;
+    case PKAppFieldTypeTag:
+      string = kPKAppFieldTypeTag;
     default:
       break;
   }

@@ -271,6 +271,7 @@ typedef enum {
   PKAppFieldTypeCategory,
   PKAppFieldTypePhone,
   PKAppFieldTypeEmail,
+  PKAppFieldTypeTag
 } PKAppFieldType;
 
 static NSString * const kPKAppFieldTypeTitle = @"title";
@@ -294,6 +295,7 @@ static NSString * const kPKAppFieldTypeQuestion = @"question";
 static NSString * const kPKAppFieldTypeCategory = @"category";
 static NSString * const kPKAppFieldTypePhone = @"phone";
 static NSString * const kPKAppFieldTypeEmail = @"email";
+static NSString * const kPKAppFieldTypeTag = @"tag";
 
 typedef enum {
   PKAppFieldStatusNone,

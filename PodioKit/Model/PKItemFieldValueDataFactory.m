@@ -20,6 +20,7 @@
 #import "NSNumber+PKFormat.h"
 #import "PKItemFieldValuePhoneData.h"
 #import "PKItemFieldValueEmailData.h"
+#import "PKItemFieldValueTagData.h"
 
 @implementation PKItemFieldValueDataFactory
 
@@ -74,6 +75,9 @@
       break;
     case PKAppFieldTypeEmail:
       data = [PKItemFieldValueEmailData dataFromDictionary:dict];
+      break;
+    case PKAppFieldTypeTag:
+      data = [PKItemFieldValueTagData dataFromDictionary:dict];
       break;
     default:
       break;

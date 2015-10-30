@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D2007B91BE379BD00BDBC0B /* PKItemFieldValueTagData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D2007B71BE379BD00BDBC0B /* PKItemFieldValueTagData.h */; };
+		0D2007BA1BE379BD00BDBC0B /* PKItemFieldValueTagData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D2007B81BE379BD00BDBC0B /* PKItemFieldValueTagData.m */; };
 		0D369F541B259641001185DB /* PKItemFieldValuePhoneData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D369F521B259641001185DB /* PKItemFieldValuePhoneData.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0D369F551B259641001185DB /* PKItemFieldValuePhoneData.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */; };
 		0D369F581B25965C001185DB /* PKItemFieldValueEmailData.h in Headers */ = {isa = PBXBuildFile; fileRef = 0D369F561B25965C001185DB /* PKItemFieldValueEmailData.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -568,6 +570,8 @@
 
 /* Begin PBXFileReference section */
 		0704D30E2B6B4C228D2F63BF /* Pods-podiokit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokit.xcconfig"; path = "Pods/Pods-podiokit.xcconfig"; sourceTree = SOURCE_ROOT; };
+		0D2007B71BE379BD00BDBC0B /* PKItemFieldValueTagData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueTagData.h; sourceTree = "<group>"; };
+		0D2007B81BE379BD00BDBC0B /* PKItemFieldValueTagData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValueTagData.m; sourceTree = "<group>"; };
 		0D369F521B259641001185DB /* PKItemFieldValuePhoneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValuePhoneData.h; sourceTree = "<group>"; };
 		0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKItemFieldValuePhoneData.m; sourceTree = "<group>"; };
 		0D369F561B25965C001185DB /* PKItemFieldValueEmailData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKItemFieldValueEmailData.h; sourceTree = "<group>"; };
@@ -1162,6 +1166,8 @@
 				0D369F531B259641001185DB /* PKItemFieldValuePhoneData.m */,
 				0D369F561B25965C001185DB /* PKItemFieldValueEmailData.h */,
 				0D369F571B25965C001185DB /* PKItemFieldValueEmailData.m */,
+				0D2007B71BE379BD00BDBC0B /* PKItemFieldValueTagData.h */,
+				0D2007B81BE379BD00BDBC0B /* PKItemFieldValueTagData.m */,
 			);
 			name = Item;
 			sourceTree = "<group>";
@@ -1621,6 +1627,7 @@
 				0D369F541B259641001185DB /* PKItemFieldValuePhoneData.h in Headers */,
 				5065BF921433649A00360855 /* PKRelationshipMapping.h in Headers */,
 				5065BF951433649A00360855 /* PKStandaloneMapping.h in Headers */,
+				0D2007B91BE379BD00BDBC0B /* PKItemFieldValueTagData.h in Headers */,
 				5065BF981433649A00360855 /* PKValueMapping.h in Headers */,
 				5065BFB11433650E00360855 /* PKManagedObject.h in Headers */,
 				50A661A618B61A95005F4587 /* PKReferenceItemParticipationData.h in Headers */,
@@ -2020,6 +2027,7 @@
 				506D531F19CF1E1100A1A0A3 /* PKDate.m in Sources */,
 				5028CBEB145E90D40003A097 /* PKObjectMapper.m in Sources */,
 				5028CBEE145E921A0003A097 /* PKStandaloneMapping.m in Sources */,
+				0D2007BA1BE379BD00BDBC0B /* PKItemFieldValueTagData.m in Sources */,
 				5028CBF3145E92DD0003A097 /* NSManagedObject+ActiveRecord.m in Sources */,
 				5028CBF6145E939A0003A097 /* PKConstants.m in Sources */,
 				5028CBFB145E96620003A097 /* PKCoreDataMappingCoordinator.m in Sources */,
