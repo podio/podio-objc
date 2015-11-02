@@ -22,6 +22,7 @@
 #import "PKTCategoryItemFieldValue.h"
 #import "PKTLocationItemFieldValue.h"
 #import "PKTProgressItemFieldValue.h"
+#import "PKTTagItemFieldValue.h"
 #import "PKTAppFieldConfig.h"
 #import "PKTCategoryOption.h"
 #import "PKTDateRange.h"
@@ -104,6 +105,7 @@
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeEmbed]).to.equal([PKTEmbedItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCalculation]).to.equal([PKTCalculationItemFieldValue class]);
   expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeCategory]).to.equal([PKTCategoryItemFieldValue class]);
+  expect([PKTItemField valueClassForFieldType:PKTAppFieldTypeTag]).to.equal([PKTTagItemFieldValue class]);
 }
 
 @end

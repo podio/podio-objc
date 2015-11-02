@@ -31,6 +31,7 @@
   expect([transformer transformedValue:@"embed"]).to.equal(PKTAppFieldTypeEmbed);
   expect([transformer transformedValue:@"calculation"]).to.equal(PKTAppFieldTypeCalculation);
   expect([transformer transformedValue:@"category"]).to.equal(PKTAppFieldTypeCategory);
+  expect([transformer transformedValue:@"tag"]).to.equal(PKTAppFieldTypeTag);
 }
 
 @end
