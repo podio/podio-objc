@@ -11,10 +11,10 @@
 @interface PKItemFieldValueTagData : PKObjectData {
   
 @private
-  NSArray *tags_;
+  NSString *tag_;
 }
 
-@property (nonatomic, copy) NSArray *tags;
+@property (nonatomic, copy) NSString *tag;
 @property (nonatomic, copy, readonly) NSDictionary *valueDictionary;
 
 @end

@@ -8,29 +8,27 @@
 
 #import "PKItemFieldValueTagData.h"
 
-static NSString * const PKItemFieldValueTagsDataTagKey = @"Tags";
+static NSString * const PKItemFieldValueTagDataTagKey = @"Tag";
 
 @implementation PKItemFieldValueTagData
 
-@synthesize tags = tags_;
+@synthesize tag = tag_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    tags_ = [[aDecoder decodeObjectForKey:PKItemFieldValueTagsDataTagKey] copy];
+    tag_ = [[aDecoder decodeObjectForKey:PKItemFieldValueTagDataTagKey] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeObject:tags_ forKey:PKItemFieldValueTagsDataTagKey];
+  [aCoder encodeObject:tag_ forKey:PKItemFieldValueTagDataTagKey];
 }
 
 - (NSDictionary *)valueDictionary {
-  return @{@"values": [self.tags pk_arrayFromObjectsCollectedWithBlock:^id(NSString *value) {
-    return @{@"value": value};
-  }]};
+  return @{@"value": self.tag};
 }
 
 #pragma mark - Factory methods
@@ -38,9 +36,7 @@ static NSString * const PKItemFieldValueTagsDataTagKey = @"Tags";
 + (id)dataFromDictionary:(NSDictionary *)dict {
   PKItemFieldValueTagData *data = [self data];
   
-  data.tags = [[dict pk_objectForKey:@"values"] pk_arrayFromObjectsCollectedWithBlock:^id(NSDictionary *value) {
-    return value[@"value"];
-  }];
+  data.tag = [dict pk_objectForKey:@"value"];
   
   return data;
 }
