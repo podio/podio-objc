@@ -25,7 +25,8 @@
     @"duration" : @(PKTAppFieldTypeDuration),
     @"embed" : @(PKTAppFieldTypeEmbed),
     @"calculation" : @(PKTAppFieldTypeCalculation),
-    @"category" : @(PKTAppFieldTypeCategory)
+    @"category" : @(PKTAppFieldTypeCategory),
+    @"tag" : @(PKTAppFieldTypeTag)
   }];
 }
 
