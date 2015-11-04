@@ -7,6 +7,8 @@
 //
 
 #import "PKTLocation.h"
+#import "PKTLocationAPI.h"
+#import "NSArray+PKTAdditions.h"
 
 @implementation PKTLocation
 
@@ -66,6 +68,21 @@
            @"latitude" : @"lat",
            @"longitude" : @"lng",
            };
+}
+
+#pragma mark - API calls
+
++ (PKTAsyncTask *)lookupAddress:(NSString *)addressString {
+  PKTRequest *request = [PKTLocationAPI requestToLookupLoactionWithAddressString:addressString];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+      return [[PKTLocation alloc] initWithDictionary:dict];
+    }];
+  }];
+  
+  return task;
 }
 
 @end

@@ -22,6 +22,8 @@
 
 /* Begin PBXBuildFile section */
 		0DE23AA3AC544297AB63B706 /* libPods-podiokittests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 749AC896ECA24D14812290D5 /* libPods-podiokittests.a */; };
+		1806561D1BEA3A3C006088A4 /* PKTLocationAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = 1806561B1BEA3A3C006088A4 /* PKTLocationAPI.h */; };
+		1806561E1BEA3A3C006088A4 /* PKTLocationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806561C1BEA3A3C006088A4 /* PKTLocationAPI.m */; };
 		182D44421BE76A2700F784A1 /* PKTTagItemFieldValue.h in Headers */ = {isa = PBXBuildFile; fileRef = 182D44401BE76A2700F784A1 /* PKTTagItemFieldValue.h */; };
 		182D44431BE76A2700F784A1 /* PKTTagItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D44411BE76A2700F784A1 /* PKTTagItemFieldValue.m */; };
 		18D1047B1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h in Headers */ = {isa = PBXBuildFile; fileRef = 18D104791B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h */; };
@@ -488,6 +490,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1806561B1BEA3A3C006088A4 /* PKTLocationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTLocationAPI.h; sourceTree = "<group>"; };
+		1806561C1BEA3A3C006088A4 /* PKTLocationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTLocationAPI.m; sourceTree = "<group>"; };
 		182D44401BE76A2700F784A1 /* PKTTagItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTTagItemFieldValue.h; sourceTree = "<group>"; };
 		182D44411BE76A2700F784A1 /* PKTTagItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTTagItemFieldValue.m; sourceTree = "<group>"; };
 		18D104791B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTMeetingParticipantStatusValueTransformer.h; sourceTree = "<group>"; };
@@ -1598,6 +1602,8 @@
 				50D776271A06DCF200CE26B1 /* PKTConversationsAPI.m */,
 				50DFFE741A2E1C7E00FFE9D2 /* PKTReferenceAPI.h */,
 				50DFFE751A2E1C7E00FFE9D2 /* PKTReferenceAPI.m */,
+				1806561B1BEA3A3C006088A4 /* PKTLocationAPI.h */,
+				1806561C1BEA3A3C006088A4 /* PKTLocationAPI.m */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1696,6 +1702,7 @@
 				50E0C61E194768E200D37281 /* PKTKeychainTokenStore.h in Headers */,
 				501D6065190EE9BB004D94C4 /* PKTFileItemFieldValue.h in Headers */,
 				501D604C190E30F5004D94C4 /* PKTStringItemFieldValue.h in Headers */,
+				1806561D1BEA3A3C006088A4 /* PKTLocationAPI.h in Headers */,
 				50F6B92C195AE84900FF0024 /* PKTFile+UIImage.h in Headers */,
 				505113DE196EB9AB00370285 /* PKTMultipartFormData.h in Headers */,
 				501D605A190E3E81004D94C4 /* PKTEmbedItemFieldValue.h in Headers */,
@@ -2069,6 +2076,7 @@
 				E4BB764D1AC595F4001B786F /* PKTAction.m in Sources */,
 				5024C5BE196164CE00AE28D7 /* PKTReferenceObjectFactory.m in Sources */,
 				502BB225195B7448003160DE /* PKTTasksAPI.m in Sources */,
+				1806561E1BEA3A3C006088A4 /* PKTLocationAPI.m in Sources */,
 				C9FAD0BB1D368F8E9CEB9568 /* PKTAppFieldConfig.m in Sources */,
 				C9FADF66DCAA1D556BEB3C1F /* PKTItemFieldValue.m in Sources */,
 				C9FADABAC0F8E5C7AA861A12 /* PKTNumberValueTransformer.m in Sources */,

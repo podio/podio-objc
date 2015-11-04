@@ -8,6 +8,8 @@
 
 #import "PKTModel.h"
 
+@class PKTAsyncTask;
+
 typedef double PKTLocationCoordinate;
 
 @interface PKTLocation : PKTModel
@@ -33,5 +35,7 @@ typedef double PKTLocationCoordinate;
 - (instancetype)initWithValue:(NSString *)value;
 
 - (instancetype)initWithLatitude:(PKTLocationCoordinate)latitude longitude:(PKTLocationCoordinate)longitude;
+
++ (PKTAsyncTask *)lookupAddress:(NSString *)addressString;
 
 @end
