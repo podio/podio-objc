@@ -17,4 +17,7 @@
 @property (nonatomic, copy) NSString *tag;
 @property (nonatomic, copy, readonly) NSDictionary *valueDictionary;
 
++ (id)dataFromDictionary:(NSDictionary *)dictionary;
++ (id)dataFromTagString:(NSString *)tagString;
+
 @end

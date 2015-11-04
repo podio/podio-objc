@@ -522,6 +522,7 @@ typedef enum {
   PKReferenceTypeLive,
   PKReferenceTypeItemParticipation,
   PKReferenceTypeGrant,
+  PKReferenceTypeItemTagField,
 } PKReferenceType;
 
 static NSString * const kPKReferenceTypeApp = @"app";

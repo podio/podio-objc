@@ -33,10 +33,14 @@ static NSString * const PKItemFieldValueTagDataTagKey = @"Tag";
 
 #pragma mark - Factory methods
 
-+ (id)dataFromDictionary:(NSDictionary *)dict {
++ (id)dataFromDictionary:(NSDictionary *)dictionary {
+  NSString *tagString = [dictionary pk_objectForKey:@"value"];
+  return [PKItemFieldValueTagData dataFromTagString:tagString];
+}
+
++ (id)dataFromTagString:(NSString *)tagString {
   PKItemFieldValueTagData *data = [self data];
-  
-  data.tag = [dict pk_objectForKey:@"value"];
+  data.tag = tagString;
   
   return data;
 }
