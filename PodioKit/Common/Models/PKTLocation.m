@@ -15,8 +15,10 @@
 - (instancetype)initWithValue:(NSString *)value
                formattedValue:(NSString *)formattedValue
                    streetName:(NSString *)streetName
+                 streetNumber:(NSString *)streetNumber
                    postalCode:(NSString *)postalCode
                          city:(NSString *)city
+                        state:(NSString *)state
                       country:(NSString *)country
                      latitude:(PKTLocationCoordinate)latitude
                     longitude:(PKTLocationCoordinate)longitude {
@@ -26,8 +28,10 @@
   _value = [value copy];
   _formattedValue = [formattedValue copy];
   _streetName = [streetName copy];
+  _streetNumber = [streetNumber copy];
   _postalCode = [postalCode copy];
   _city = [city copy];
+  _state = [state copy];
   _country = [country copy];
   _latitude = latitude;
   _longitude = longitude;
@@ -39,8 +43,10 @@
   return [self initWithValue:value
               formattedValue:nil
                   streetName:nil
+                streetNumber:nil
                   postalCode:nil
                         city:nil
+                       state:nil
                      country:nil
                     latitude:0
                    longitude:0];
@@ -50,8 +56,10 @@
   return [self initWithValue:nil
               formattedValue:nil
                   streetName:nil
+                streetNumber:nil
                   postalCode:nil
                         city:nil
+                       state:nil
                      country:nil
                     latitude:latitude
                    longitude:longitude];
@@ -64,10 +72,17 @@
            @"value" : @"value",
            @"formattedValue" : @"formatted",
            @"streetName" : @"street_name",
+           @"streetNumber" : @"street_number",
            @"postalCode" : @"postal_code",
            @"latitude" : @"lat",
            @"longitude" : @"lng",
            };
+}
+
+#pragma mark - Computed properties
+
+- (NSString *)streetAddress {
+  return self.streetNumber ? [NSString stringWithFormat:@"%@ %@", self.streetName, self.streetNumber] : self.streetName;
 }
 
 #pragma mark - API calls

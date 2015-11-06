@@ -17,17 +17,23 @@ typedef double PKTLocationCoordinate;
 @property (nonatomic, copy) NSString *value;
 @property (nonatomic, copy) NSString *formattedValue;
 @property (nonatomic, copy) NSString *streetName;
+@property (nonatomic, copy) NSString *streetNumber;
 @property (nonatomic, copy) NSString *postalCode;
 @property (nonatomic, copy) NSString *city;
+@property (nonatomic, copy) NSString *state;
 @property (nonatomic, copy) NSString *country;
 @property (nonatomic, assign) PKTLocationCoordinate latitude;
 @property (nonatomic, assign) PKTLocationCoordinate longitude;
 
+@property (nonatomic, copy, readonly) NSString *streetAddress;
+
 - (instancetype)initWithValue:(NSString *)value
                formattedValue:(NSString *)formattedValue
                    streetName:(NSString *)streetName
+                 streetNumber:(NSString *)streetNumber
                    postalCode:(NSString *)postalCode
                          city:(NSString *)city
+                        state:(NSString *)state
                       country:(NSString *)country
                      latitude:(PKTLocationCoordinate)latitude
                     longitude:(PKTLocationCoordinate)longitude NS_DESIGNATED_INITIALIZER;
