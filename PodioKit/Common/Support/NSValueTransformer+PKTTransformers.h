@@ -24,5 +24,6 @@
 + (NSValueTransformer *)pkt_numberValueTransformer;
 + (NSValueTransformer *)pkt_rightValueTransformer;
 + (NSValueTransformer *)pkt_avatarTypeValueTransformer;
++ (NSValueTransformer *)pkt_emojiValueTransformer;
 
 @end

@@ -65,4 +65,8 @@
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTOrganization class]];
 }
 
++ (NSValueTransformer *)titleValueTransformer {
+  return [NSValueTransformer pkt_emojiValueTransformer];
+}
+
 @end

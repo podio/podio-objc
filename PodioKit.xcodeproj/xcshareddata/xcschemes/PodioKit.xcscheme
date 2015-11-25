@@ -51,6 +51,17 @@
                BlueprintName = "PodioKitTests"
                ReferencedContainer = "container:PodioKit.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "NSValueTransformer_PKTTransformers">
+               </Test>
+               <Test
+                  Identifier = "PKTClientTests">
+               </Test>
+               <Test
+                  Identifier = "PKTURLSessionTaskDelegateTests">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <AdditionalOptions>

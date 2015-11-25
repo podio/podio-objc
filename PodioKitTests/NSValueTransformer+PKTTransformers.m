@@ -16,6 +16,7 @@
 #import "PKTNotificationTypeValueTransformer.h"
 #import "PKTRightValueTransformer.h"
 #import "PKTAvatarTypeValueTransformer.h"
+#import "PKTEmojiValueTransformer.h"
 
 @interface NSValueTransformer_PKTTransformers : XCTestCase
 
@@ -70,6 +71,11 @@
 - (void)testAvatarTypeTransformer {
   NSValueTransformer *transformer = [NSValueTransformer pkt_avatarTypeValueTransformer];
   expect(transformer).to.beInstanceOf([PKTAvatarTypeValueTransformer class]);
+}
+
+- (void)testEmojiTransformer {
+  NSValueTransformer *transformer = [NSValueTransformer pkt_emojiValueTransformer];
+  expect(transformer).to.beAnInstanceOf([PKTEmojiValueTransformer class]);
 }
 
 @end

@@ -58,6 +58,10 @@
   return [NSValueTransformer pkt_transformerWithModelClass:[PKTByLine class]];
 }
 
++ (NSValueTransformer *)textValueTransformer {
+  return [NSValueTransformer pkt_emojiValueTransformer];
+}
+
 #pragma mark - API calls
 
 + (PKTAsyncTask *)fetchNotificationsWithOffset:(NSUInteger)offset limit:(NSUInteger)limit {
