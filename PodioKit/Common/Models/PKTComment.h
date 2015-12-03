@@ -12,6 +12,7 @@
 @class PKTEmbed;
 @class PKTFile;
 @class PKTAsyncTask;
+@class PKTByLine;
 
 @interface PKTComment : PKTModel
 
@@ -20,6 +21,8 @@
 @property (nonatomic, readonly) NSUInteger referenceID;
 @property (nonatomic, copy, readonly) NSString *value;
 @property (nonatomic, copy, readonly) NSString *richValue;
+@property (nonatomic, copy, readonly) NSDate *createdOn;
+@property (nonatomic, strong, readonly) PKTByLine *createdBy;
 @property (nonatomic, strong, readonly) PKTEmbed *embed;
 @property (nonatomic, strong, readonly) PKTFile *embedFile;
 @property (nonatomic, copy, readonly) NSArray *files;

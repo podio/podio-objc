@@ -9,6 +9,7 @@
 #import "PKTComment.h"
 #import "PKTEmbed.h"
 #import "PKTFile.h"
+#import "PKTByLine.h"
 #import "PKTCommentsAPI.h"
 #import "NSValueTransformer+PKTTransformers.h"
 
@@ -24,6 +25,7 @@
     @"value": @"value",
     @"richValue": @"rich_value",
     @"createdOn": @"created_on",
+    @"createdBy": @"created_by",
     @"embed": @"embed",
     @"embedFile": @"embed_file",
     @"files": @"files"
@@ -36,6 +38,10 @@
 
 + (NSValueTransformer *)createdOnValueTransformer {
   return [NSValueTransformer pkt_dateValueTransformer];
+}
+
++ (NSValueTransformer *)createdByValueTransformer {
+  return [NSValueTransformer pkt_transformerWithModelClass:[PKTByLine class]];
 }
 
 + (NSValueTransformer *)embedValueTransformer {
