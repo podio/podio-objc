@@ -6,7 +6,7 @@
 //  Copyright © 2015 Citrix Systems, Inc. All rights reserved.
 //
 
-#import <PodioKit/PodioKit.h>
+#import "PKTBaseAPI.h"
 
 @interface PKTLocationAPI : PKTBaseAPI
 

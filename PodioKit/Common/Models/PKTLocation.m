@@ -9,6 +9,7 @@
 #import "PKTLocation.h"
 #import "PKTLocationAPI.h"
 #import "NSArray+PKTAdditions.h"
+#import "PKTClient.h"
 
 @implementation PKTLocation
 
