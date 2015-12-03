@@ -43,4 +43,6 @@
                                    embedId:(NSUInteger)embedId
                                   embedURL:(NSURL *)embedURL;
 
++ (PKRequest *)requestToDeleteStatusWithId:(NSUInteger)statusId;
+
 @end

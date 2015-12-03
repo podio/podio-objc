@@ -149,4 +149,9 @@
   return request;
 }
 
++ (PKRequest *)requestToDeleteStatusWithId:(NSUInteger)statusId {
+  NSString *uri = [NSString stringWithFormat:@"/status/%ld", (unsigned long)statusId];
+  return [PKRequest requestWithURI:uri method:PKRequestMethodDELETE];
+}
+
 @end
