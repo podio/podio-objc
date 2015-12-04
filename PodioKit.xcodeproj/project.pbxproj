@@ -454,6 +454,8 @@
 		E41804C61AACEFE200084F0B /* PKTProgressItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = E41804C31AACEE3300084F0B /* PKTProgressItemFieldValue.m */; };
 		E45ED49418900372003A020A /* NSString+PKTURLTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E45ED49318900372003A020A /* NSString+PKTURLTests.m */; };
 		E45F964A188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m in Sources */ = {isa = PBXBuildFile; fileRef = E45F9649188FF259009791A0 /* EXPMatchers+PKTBeSupersetOf.m */; };
+		E478BEFC1C11707D00F4D3A9 /* PKTLocationAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 1806561C1BEA3A3C006088A4 /* PKTLocationAPI.m */; };
+		E478BEFD1C11708A00F4D3A9 /* PKTTagItemFieldValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 182D44411BE76A2700F784A1 /* PKTTagItemFieldValue.m */; };
 		E479481C18FD540800F50E81 /* NSString+PKTRandomTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E479481B18FD540800F50E81 /* NSString+PKTRandomTests.m */; };
 		E47A281D1ABB407A00E6F0FD /* PKTNotificationGroup.h in Headers */ = {isa = PBXBuildFile; fileRef = E47A281B1ABB407A00E6F0FD /* PKTNotificationGroup.h */; };
 		E47A281E1ABB407A00E6F0FD /* PKTNotificationGroup.m in Sources */ = {isa = PBXBuildFile; fileRef = E47A281C1ABB407A00E6F0FD /* PKTNotificationGroup.m */; };
@@ -494,13 +496,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D57EF691BE289A600257396 /* PKTEmojiValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTEmojiValueTransformerTests.m; sourceTree = "<group>"; };
+		0DC2C41C1B9CC11400A1FEAB /* PKTEmojiValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTEmojiValueTransformer.h; sourceTree = "<group>"; };
+		0DC2C41D1B9CC11400A1FEAB /* PKTEmojiValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTEmojiValueTransformer.m; sourceTree = "<group>"; };
 		1806561B1BEA3A3C006088A4 /* PKTLocationAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTLocationAPI.h; sourceTree = "<group>"; };
 		1806561C1BEA3A3C006088A4 /* PKTLocationAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTLocationAPI.m; sourceTree = "<group>"; };
 		182D44401BE76A2700F784A1 /* PKTTagItemFieldValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTTagItemFieldValue.h; sourceTree = "<group>"; };
 		182D44411BE76A2700F784A1 /* PKTTagItemFieldValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTTagItemFieldValue.m; sourceTree = "<group>"; };
-		0D57EF691BE289A600257396 /* PKTEmojiValueTransformerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTEmojiValueTransformerTests.m; sourceTree = "<group>"; };
-		0DC2C41C1B9CC11400A1FEAB /* PKTEmojiValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTEmojiValueTransformer.h; sourceTree = "<group>"; };
-		0DC2C41D1B9CC11400A1FEAB /* PKTEmojiValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTEmojiValueTransformer.m; sourceTree = "<group>"; };
 		18D104791B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PKTMeetingParticipantStatusValueTransformer.h; sourceTree = "<group>"; };
 		18D1047A1B9DA5EC0040A1DE /* PKTMeetingParticipantStatusValueTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PKTMeetingParticipantStatusValueTransformer.m; sourceTree = "<group>"; };
 		2DB672C57F14E28616BCD09B /* Pods-podiokittests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-podiokittests.release.xcconfig"; path = "Pods/Target Support Files/Pods-podiokittests/Pods-podiokittests.release.xcconfig"; sourceTree = "<group>"; };
@@ -2108,6 +2110,7 @@
 			files = (
 				507CA7E519055030000D9F6E /* PodioKit.m in Sources */,
 				501D6088190EF2EB004D94C4 /* PKTFileItemFieldValue.m in Sources */,
+				E478BEFD1C11708A00F4D3A9 /* PKTTagItemFieldValue.m in Sources */,
 				50CA79E119D6AEFA00759BB8 /* PKTLocationItemFieldValue.m in Sources */,
 				502BB22F195DAA92003160DE /* PKTTaskRequestParametersTests.m in Sources */,
 				503B3ACC190514BF002BB703 /* NSMutableURLRequest+PKTHeaders.m in Sources */,
@@ -2207,6 +2210,7 @@
 				E41804C61AACEFE200084F0B /* PKTProgressItemFieldValue.m in Sources */,
 				5014C583188817550002C68D /* PKTHTTPClientTests.m in Sources */,
 				50D7762C1A06DD3900CE26B1 /* PKTConversationsAPITests.m in Sources */,
+				E478BEFC1C11707D00F4D3A9 /* PKTLocationAPI.m in Sources */,
 				501D6089190EF2EB004D94C4 /* PKTAppItemFieldValue.m in Sources */,
 				E4BABDD8189807DA00E9149A /* PKTBaseAPI.m in Sources */,
 				50E9350E19A1DBFB00E05FEA /* PKTWorkspacesAPITests.m in Sources */,

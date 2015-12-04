@@ -32,6 +32,7 @@
 #import "PKTConversationsAPI.h"
 #import "PKTReferenceAPI.h"
 #import "PKTNotificationsAPI.h"
+#import "PKTLocationAPI.h"
 
 #import "PKTOAuth2Token.h"
 #import "PKTApp.h"
