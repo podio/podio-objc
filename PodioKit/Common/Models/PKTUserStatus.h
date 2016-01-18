@@ -15,7 +15,7 @@
 @property (nonatomic, readonly) NSUInteger newNotificationsCount;
 @property (nonatomic, readonly) NSUInteger unreadMessagesCount;
 @property (nonatomic, copy, readonly) PKTUser *user;
-@property (nonatomic, copy, readonly) PKTUser *profile;
+@property (nonatomic, copy, readonly) PKTProfile *profile;
 @property (nonatomic, copy, readonly) PKTPushCredential *pushCredential;
 @property (nonatomic, copy, readonly) NSArray *betas;
 @property (nonatomic, copy, readonly) NSArray *flags;
