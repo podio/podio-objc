@@ -178,6 +178,8 @@ typedef NS_ENUM(NSUInteger, PKTAppFieldType) {
   PKTAppFieldTypeCalculation,
   PKTAppFieldTypeCategory,
   PKTAppFieldTypeTag,
+  PKTAppFieldTypePhone,
+  PKTAppFieldTypeEmail,
 };
 
 typedef NS_ENUM(NSUInteger, PKTCategoryOptionStatus) {
