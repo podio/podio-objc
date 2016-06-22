@@ -26,6 +26,8 @@
     @"embed" : @(PKTAppFieldTypeEmbed),
     @"calculation" : @(PKTAppFieldTypeCalculation),
     @"category" : @(PKTAppFieldTypeCategory),
+    @"phone" : @(PKTAppFieldTypePhone),
+    @"email" : @(PKTAppFieldTypeEmail),
     @"tag" : @(PKTAppFieldTypeTag)
   }];
 }
