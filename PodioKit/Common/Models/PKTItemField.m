@@ -172,14 +172,14 @@
     case PKTAppFieldTypeLocation:
       valueClass = [PKTLocationItemFieldValue class];
       break;
-    case PKTAppFieldTypeTag:
-      valueClass = [PKTTagItemFieldValue class];
-      break;
     case PKTAppFieldTypePhone:
       valueClass = [PKTStringItemFieldValue class];
       break;
     case PKTAppFieldTypeEmail:
       valueClass = [PKTStringItemFieldValue class];
+      break;
+    case PKTAppFieldTypeTag:
+      valueClass = [PKTTagItemFieldValue class];
       break;
     default:
       break;
