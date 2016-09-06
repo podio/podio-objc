@@ -821,6 +821,8 @@
   
   if ([string isEqualToString:kPKExternalMeetingTypeGoToMeeting]) {
     type = PKExternalMeetingTypeGoToMeeting;
+  } else if ([string isEqualToString:kPKExternalMeetingTypeAppearIn]) {
+    type = PKExternalMeetingTypeAppearIn;
   }
   
   return type;

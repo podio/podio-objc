@@ -648,9 +648,11 @@ static NSString * const kPKNotificationTypeParticipation = @"participation";
 typedef enum {
   PKExternalMeetingTypeNone = 0,
   PKExternalMeetingTypeGoToMeeting,
+  PKExternalMeetingTypeAppearIn,
 } PKExternalMeetingType;
 
 static NSString * const kPKExternalMeetingTypeGoToMeeting = @"gotomeeting";
+static NSString * const kPKExternalMeetingTypeAppearIn = @"appear_in";
 
 typedef NS_ENUM(NSUInteger, PKMeetingParticipantStatus) {
   PKMeetingParticipantStatusNone,
