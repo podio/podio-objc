@@ -21,6 +21,12 @@
   return [PKCalendarAPI requestForCalendarEventsUsingURLString:[NSString stringWithFormat:@"/calendar/space/%ld", (unsigned long)spaceId] fromDate:fromDate toDate:toDate priority:priority];
 }
 
++ (PKRequest *)requestForCalendarEventsForApp:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+
+  return [PKCalendarAPI requestForCalendarEventsUsingURLString:[NSString stringWithFormat:@"/calendar/app/%ld", (unsigned long)appId] fromDate:fromDate toDate:toDate priority:priority];
+}
+
+
 #pragma mark - Private
 
 + (PKRequest *)requestForCalendarEventsUsingURLString:(NSString *)urlString fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {

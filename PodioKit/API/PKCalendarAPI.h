@@ -12,5 +12,6 @@
 
 + (PKRequest *)requestForGlobalCalendarEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
 + (PKRequest *)requestForCalendarEventsForSpace:(NSUInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
++ (PKRequest *)requestForCalendarEventsForApp:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
 
 @end
