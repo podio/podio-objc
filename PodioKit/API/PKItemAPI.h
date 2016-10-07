@@ -27,5 +27,6 @@ typedef enum {
 + (PKRequest *)requestToSetParticipationForItemWithId:(NSUInteger)itemId status:(PKMeetingParticipantStatus)status;
 + (PKRequest *)requestToFindItemsForFieldWithId:(NSUInteger)fieldId text:(NSString *)text notItemIds:(NSArray *)notItemIds sortType:(PKItemAPISortType)sortType;
 + (PKRequest *)requestForReferencesToItemWithId:(NSUInteger)itemId fieldId:(NSUInteger)fieldId limit:(NSUInteger)limit;
++ (PKRequest *)requestToSetReminderForItemWithId:(NSUInteger)itemId reminderDelta:(NSInteger)delta;
 
 @end

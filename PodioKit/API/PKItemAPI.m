@@ -176,4 +176,13 @@
   return request;
 }
 
++ (PKRequest *)requestToSetReminderForItemWithId:(NSUInteger)itemId reminderDelta:(int)delta {
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/reminder/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT]; //TODO: THIS IS WORKING!!!!!
+  
+  request.body = [[NSMutableDictionary alloc] initWithCapacity:1];
+  [request.body setValue:@(delta) forKey:@"remind_delta"];
+  
+  return request;
+}
+
 @end
