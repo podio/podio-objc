@@ -185,4 +185,12 @@
   return request;
 }
 
++ (PKRequest *)requestToSetRecurrenceForItemWithId:(NSUInteger)itemId recurrenceOptions:(NSDictionary *)recurrenceOptions {
+  
+  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/recurrence/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
+  request.body = recurrenceOptions;
+  
+  return request;
+}
+
 @end
