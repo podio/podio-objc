@@ -177,18 +177,31 @@
 }
 
 + (PKRequest *)requestToSetReminderForItemWithId:(NSUInteger)itemId reminderDelta:(int)delta {
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/reminder/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT]; //TODO: THIS IS WORKING!!!!!
   
-  request.body = [[NSMutableDictionary alloc] initWithCapacity:1];
-  [request.body setValue:@(delta) forKey:@"remind_delta"];
+  PKRequest *request;
+  
+  if(delta == -1) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/reminder/item/%ld", (unsigned long)itemId] method:PKRequestMethodDELETE];
+  } else {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/reminder/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
+  
+    request.body = [[NSMutableDictionary alloc] initWithCapacity:1];
+    [request.body setValue:@(delta) forKey:@"remind_delta"];
+  }
   
   return request;
 }
 
 + (PKRequest *)requestToSetRecurrenceForItemWithId:(NSUInteger)itemId recurrenceOptions:(NSDictionary *)recurrenceOptions {
   
-  PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/recurrence/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
-  request.body = recurrenceOptions;
+  PKRequest *request;
+  
+  if([[recurrenceOptions valueForKey:@"name"] isEqualToString:@"none"]) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/recurrence/item/%ld", (unsigned long)itemId] method:PKRequestMethodDELETE];
+  } else {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/recurrence/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
+    request.body = recurrenceOptions;
+  }
   
   return request;
 }
