@@ -261,7 +261,7 @@
                    objectDict:(NSDictionary *)objectDict 
                  parentObject:(id<PKMappableObject>)parentObject {
   
-  if (attributeValue == nil) return;
+  if (attributeValue == nil) return;  //TODO: I think this is my problem, not mapping nil attributes
   
   if ([mapping isMemberOfClass:[PKValueMapping class]]) {
     // Single value mapping
