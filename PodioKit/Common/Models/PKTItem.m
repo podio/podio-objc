@@ -177,7 +177,7 @@
   Class objectClass = [self class];
   
   PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
-    NSMutableArray *items = nil;
+    NSMutableArray *items = [NSMutableArray array];
     
     for (NSDictionary *dict in response.body) {
       NSNumber *appID = dict[@"app"][@"app_id"];
