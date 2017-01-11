@@ -69,4 +69,23 @@
   return task;
 }
 
++ (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
+  return [self fetchEventsFromDate:fromDate toDate:toDate priority:0];
+}
+
++ (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+  PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority includeTasks:NO];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+      return [[objectClass alloc] initWithDictionary:dict];
+    }];
+  }];
+  
+  return task;
+}
+
 @end

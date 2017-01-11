@@ -30,4 +30,27 @@
   return [PKTRequest  GETRequestWithPath:@"/calendar/" parameters:parameters];
 }
 
++ (PKTRequest *)requestForGlobalCalendarWithFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded {
+  
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
+  
+  if (fromDate) {
+    parameters[@"date_from"] = [fromDate pkt_UTCDateString];
+  }
+  
+  if (toDate) {
+    parameters[@"date_to"] = [toDate pkt_UTCDateString];
+  }
+  
+  if (priority > 0) {
+    parameters[@"priority"] = @(priority);
+  }
+  
+  if (!tasksIncluded) {
+    parameters[@"tasks"] = @(NO);
+  }
+  
+  return [PKTRequest  GETRequestWithPath:@"/calendar/" parameters:parameters];
+}
+
 @end

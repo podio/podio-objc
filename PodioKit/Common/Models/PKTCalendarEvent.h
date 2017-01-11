@@ -30,5 +30,7 @@
 
 + (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 + (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
++ (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
++ (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
 
 @end

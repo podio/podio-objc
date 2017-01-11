@@ -11,5 +11,6 @@
 @interface PKTCalendarAPI : PKTBaseAPI
 
 + (PKTRequest *)requestForGlobalCalendarWithFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
++ (PKTRequest *)requestForGlobalCalendarWithFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded;
 
 @end
