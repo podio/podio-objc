@@ -22,9 +22,13 @@
 @property (nonatomic, copy, readonly) NSDate *endDate;
 @property (nonatomic, copy, readonly) NSURL *linkURL;
 @property (nonatomic, copy, readonly) PKTApp *app;
+@property (nonatomic, copy, readonly) NSString *colorString;
+@property (nonatomic, copy, readonly) NSString *categoryText;
 @property (nonatomic, assign, readonly) BOOL busy;
 @property (nonatomic, assign, readonly) PKTReferenceType referenceType;
 @property (nonatomic, assign, readonly) NSUInteger referenceID;
+@property (nonatomic, assign, readonly) BOOL forged;
+
 
 #pragma mark - API
 

@@ -25,6 +25,9 @@
            @"descr" : @"description",
            @"startDate" : @"start_utc",
            @"endDate" : @"end_utc",
+           @"forged" : @"forged",
+           @"colorString" : @"color",
+           @"categoryText" : @"category_text",
            };
 }
 
