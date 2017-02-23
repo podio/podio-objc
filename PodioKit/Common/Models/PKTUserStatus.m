@@ -23,6 +23,7 @@
     @"unreadMessagesCount": @"message_unread_count",
     @"calendarCode": @"calendar_code",
     @"pushCredential": @"push",
+    @"globalCalendarPriority": @"properties.calendar_priority.global",
   };
 }
 
