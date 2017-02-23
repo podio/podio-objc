@@ -58,18 +58,7 @@
 }
 
 + (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
-  PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority];
-  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
-  
-  Class objectClass = [self class];
-  
-  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
-    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
-      return [[objectClass alloc] initWithDictionary:dict];
-    }];
-  }];
-  
-  return task;
+  return [self fetchAllFromDate:fromDate toDate:toDate priority:priority includeTasks:YES];
 }
 
 + (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
@@ -77,7 +66,11 @@
 }
 
 + (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
-  PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority includeTasks:NO];
+  return [self fetchAllFromDate:fromDate toDate:toDate priority:priority includeTasks:NO];
+}
+
++ (PKTAsyncTask *)fetchAllFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)includeTasks {
+  PKTRequest *request = [PKTCalendarAPI requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority includeTasks:includeTasks];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
   Class objectClass = [self class];
@@ -96,18 +89,7 @@
 }
 
 + (PKTAsyncTask *)fetchAllForApp:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
-  PKTRequest *request = [PKTCalendarAPI requestForAppCalendarWithAppId:appId fromDate:fromDate toDate:toDate priority:priority];
-  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
-  
-  Class objectClass = [self class];
-  
-  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
-    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
-      return [[objectClass alloc] initWithDictionary:dict];
-    }];
-  }];
-  
-  return task;
+  return [self fetchAllForApp:appId fromDate:fromDate toDate:toDate priority:priority includeTasks:YES];
 }
 
 + (PKTAsyncTask *)fetchEventsForApp:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
@@ -115,7 +97,12 @@
 }
 
 + (PKTAsyncTask *)fetchEventsForApp:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
-  PKTRequest *request = [PKTCalendarAPI requestForAppCalendarWithAppId:appId fromDate:fromDate toDate:toDate priority:priority includeTasks:NO];
+  return [self fetchAllForApp:appId fromDate:fromDate toDate:toDate priority:priority includeTasks:NO];
+}
+
++ (PKTAsyncTask *)fetchAllForApp:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)includeTasks {
+  
+  PKTRequest *request = [PKTCalendarAPI requestForAppCalendarWithAppId:appId fromDate:fromDate toDate:toDate priority:priority includeTasks:includeTasks];
   PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
   
   Class objectClass = [self class];
@@ -128,6 +115,5 @@
   
   return task;
 }
-
 
 @end
