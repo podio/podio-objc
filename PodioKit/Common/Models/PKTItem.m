@@ -291,7 +291,7 @@
       NSMutableArray *mutItemFields = [NSMutableArray new];
       for (PKTItemField* field in itemFields) {
         if ([field type] != PKTAppFieldTypeCalculation) {
-          [mutItemFields addObject:field]
+          [mutItemFields addObject:field];
         }
       }
       [client performBlock:^{
