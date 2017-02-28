@@ -21,6 +21,7 @@
 @property (nonatomic, copy, readonly) NSArray *flags;
 @property (nonatomic, copy, readonly) NSString *calendarCode;
 @property (nonatomic, copy, readonly) NSString *mailbox;
+@property (nonatomic, readonly) NSUInteger globalCalendarPriority;
 
 + (PKTAsyncTask *)fetchStatusForCurrentUser;
 

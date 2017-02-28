@@ -11,7 +11,34 @@
 
 @implementation PKTCalendarAPI
 
+
+
 + (PKTRequest *)requestForGlobalCalendarWithFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+
+  return [self requestForGlobalCalendarWithFromDate:fromDate toDate:toDate priority:priority includeTasks:YES];
+  
+}
+
++ (PKTRequest *)requestForGlobalCalendarWithFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded {
+  
+  return [PKTRequest  GETRequestWithPath:@"/calendar/" parameters:[self getParamsForCalendarRequestFromDate:fromDate toDate:toDate priority:priority includeTasks:tasksIncluded]];
+}
+
++ (PKTRequest *)requestForAppCalendarWithAppId:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+  
+  return [self requestForAppCalendarWithAppId:appId fromDate:fromDate toDate:toDate priority:priority includeTasks:YES];
+  
+}
+
++ (PKTRequest *)requestForAppCalendarWithAppId:(NSUInteger)appId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded {
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
+  
+  NSString *requestPath = [NSString stringWithFormat:@"/calendar/app/%u", appId];
+  
+  return [PKTRequest  GETRequestWithPath:requestPath parameters: [self getParamsForCalendarRequestFromDate:fromDate toDate:toDate priority:priority includeTasks:tasksIncluded]];
+}
+
++ (NSDictionary *) getParamsForCalendarRequestFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded {
   
   NSMutableDictionary *parameters = [NSMutableDictionary new];
   
@@ -27,7 +54,11 @@
     parameters[@"priority"] = @(priority);
   }
   
-  return [PKTRequest  GETRequestWithPath:@"/calendar/" parameters:parameters];
+  if (!tasksIncluded) {
+    parameters[@"tasks"] = @(NO);
+  }
+  
+  return parameters;
 }
 
 @end
