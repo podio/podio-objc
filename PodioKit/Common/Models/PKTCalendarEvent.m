@@ -45,6 +45,14 @@
   return [NSValueTransformer pkt_dateValueTransformer];
 }
 
++ (NSValueTransformer *)startTimeValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
+}
+
++ (NSValueTransformer *)endTimeValueTransformer {
+  return [NSValueTransformer pkt_dateValueTransformer];
+}
+
 + (NSValueTransformer *)linkURLValueTransformer {
   return [NSValueTransformer pkt_URLTransformer];
 }

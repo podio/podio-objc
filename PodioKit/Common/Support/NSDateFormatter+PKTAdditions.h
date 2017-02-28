@@ -12,5 +12,6 @@
 
 + (NSDateFormatter *)pkt_UTCDateFormatter;
 + (NSDateFormatter *)pkt_UTCDateTimeFormatter;
++ (NSDateFormatter *)pkt_UTCTimeFormatter;
 
 @end

@@ -11,6 +11,7 @@
 
 static NSDateFormatter *sUTCDateFormatter = nil;
 static NSDateFormatter *sUTCDateTimeFormatter = nil;
+static NSDateFormatter *sUTCTimeFormatter = nil;
 
 @implementation NSDate (PKTAdditions)
 
@@ -24,12 +25,20 @@ static NSDateFormatter *sUTCDateTimeFormatter = nil;
   return [[self UTCDateTimeFormatter] dateFromString:dateTimeString];
 }
 
++ (NSDate *)pkt_dateFromUTCTimeString:(NSString *)timeString {
+  return [[self UTCTimeFormatter] dateFromString:timeString];
+}
+
 - (NSString *)pkt_UTCDateString {
   return [[[self class] UTCDateFormatter] stringFromDate:self];
 }
 
 - (NSString *)pkt_UTCDateTimeString {
   return [[[self class] UTCDateTimeFormatter] stringFromDate:self];
+}
+
+- (NSString *)pkt_UTCTimeString {
+  return [[[self class] UTCTimeFormatter] stringFromDate:self];
 }
 
 #pragma mark - Private
@@ -46,10 +55,19 @@ static NSDateFormatter *sUTCDateTimeFormatter = nil;
 + (NSDateFormatter *)UTCDateTimeFormatter {
   static dispatch_once_t onceToken;
   dispatch_once(&onceToken, ^{
-    sUTCDateTimeFormatter = [NSDateFormatter pkt_UTCDateTimeFormatter];
+    sUTCTimeFormatter = [NSDateFormatter pkt_UTCDateTimeFormatter];
   });
   
   return sUTCDateTimeFormatter;
+}
+
++ (NSDateFormatter *)UTCTimeFormatter {
+  static dispatch_once_t onceToken;
+  dispatch_once(&onceToken, ^{
+    sUTCTimeFormatter = [NSDateFormatter pkt_UTCTimeFormatter];
+  });
+  
+  return sUTCTimeFormatter;
 }
 
 @end

@@ -28,4 +28,13 @@
   return formatter;
 }
 
++ (NSDateFormatter *)pkt_UTCTimeFormatter {
+  NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+  formatter.dateFormat = @"HH:mm:ss";
+  formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+  formatter.timeZone = [NSTimeZone timeZoneWithAbbreviation:@"UTC"];
+  
+  return formatter;
+}
+
 @end
