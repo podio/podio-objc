@@ -118,4 +118,37 @@
   return task;
 }
 
++ (PKTAsyncTask *)fetchAllForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
+  return [self fetchAllForSpace:spaceId fromDate:fromDate toDate:toDate priority:0];
+}
+
++ (PKTAsyncTask *)fetchAllForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+  return [self fetchAllForSpace:spaceId fromDate:fromDate toDate:toDate priority:priority includeTasks:YES];
+}
+
++ (PKTAsyncTask *)fetchEventsForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate {
+  return [self fetchEventsForSpace:spaceId fromDate:fromDate toDate:toDate priority:0];
+}
+
++ (PKTAsyncTask *)fetchEventsForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+  return [self fetchAllForSpace:spaceId fromDate:fromDate toDate:toDate priority:priority includeTasks:NO];
+}
+
++ (PKTAsyncTask *)fetchAllForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)includeTasks {
+  
+  PKTRequest *request = [PKTCalendarAPI requestForSpaceCalendarWithSpaceId:spaceId fromDate:fromDate toDate:toDate priority:priority includeTasks:includeTasks];
+  PKTAsyncTask *requestTask = [[PKTClient currentClient] performRequest:request];
+  
+  Class objectClass = [self class];
+  
+  PKTAsyncTask *task = [requestTask map:^id(PKTResponse *response) {
+    return [response.body pkt_mappedArrayWithBlock:^id(NSDictionary *dict) {
+      return [[objectClass alloc] initWithDictionary:dict];
+    }];
+  }];
+  
+  return task;
+}
+
+
 @end

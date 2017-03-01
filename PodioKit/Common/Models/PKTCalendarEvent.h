@@ -39,4 +39,9 @@
 + (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
 + (PKTAsyncTask *)fetchEventsFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
 
++ (PKTAsyncTask *)fetchAllForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
++ (PKTAsyncTask *)fetchAllForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
++ (PKTAsyncTask *)fetchEventsForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate;
++ (PKTAsyncTask *)fetchEventsForSpace:(NSInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority;
+
 @end

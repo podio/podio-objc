@@ -38,6 +38,20 @@
   return [PKTRequest  GETRequestWithPath:requestPath parameters: [self getParamsForCalendarRequestFromDate:fromDate toDate:toDate priority:priority includeTasks:tasksIncluded]];
 }
 
++ (PKTRequest *)requestForSpaceCalendarWithSpaceId:(NSUInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority {
+  
+  return [self requestForSpaceCalendarWithSpaceId:spaceId fromDate:fromDate toDate:toDate priority:priority includeTasks:YES];
+  
+}
+
++ (PKTRequest *)requestForSpaceCalendarWithSpaceId:(NSUInteger)spaceId fromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded {
+  NSMutableDictionary *parameters = [NSMutableDictionary new];
+  
+  NSString *requestPath = [NSString stringWithFormat:@"/calendar/space/%u", spaceId];
+  
+  return [PKTRequest  GETRequestWithPath:requestPath parameters: [self getParamsForCalendarRequestFromDate:fromDate toDate:toDate priority:priority includeTasks:tasksIncluded]];
+}
+
 + (NSDictionary *) getParamsForCalendarRequestFromDate:(NSDate *)fromDate toDate:(NSDate *)toDate priority:(NSUInteger)priority includeTasks:(BOOL)tasksIncluded {
   
   NSMutableDictionary *parameters = [NSMutableDictionary new];
