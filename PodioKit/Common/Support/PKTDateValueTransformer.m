@@ -20,6 +20,11 @@
     if (!date) {
       // Failed to parse time component, try date only
       date = [NSDate pkt_dateFromUTCDateString:dateString];
+    
+      if (!date) {
+        // Still failed to parse, try time only
+        date = [NSDate pkt_dateFromUTCTimeString:dateString];
+      }
     }
     
     return date;

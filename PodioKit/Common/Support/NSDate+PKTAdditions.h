@@ -12,8 +12,10 @@
 
 + (NSDate *)pkt_dateFromUTCDateString:(NSString *)dateString;
 + (NSDate *)pkt_dateFromUTCDateTimeString:(NSString *)dateTimeString;
++ (NSDate *)pkt_dateFromUTCTimeString:(NSString *)timeString;
 
 - (NSString *)pkt_UTCDateString;
 - (NSString *)pkt_UTCDateTimeString;
+- (NSString *)pkt_UTCTimeString;
 
 @end
