@@ -284,8 +284,18 @@
       __block PKTAsyncTask *saveTask = nil;
 
       NSArray *itemFields = [self allFieldsToSaveForApp:app];
+
+      // Filter out all fields of type PKTAppFieldTypeCalculation because
+      // if you updating an existing item containing one, it will 
+      // cause an error: "Values cannot be set directly for field with id <FIELD-ID-NUMBER>"
+      NSMutableArray *mutItemFields = [NSMutableArray new];
+      for (PKTItemField* field in itemFields) {
+        if ([field type] != PKTAppFieldTypeCalculation) {
+          [mutItemFields addObject:field];
+        }
+      }
       [client performBlock:^{
-        saveTask = [self saveWithItemFields:itemFields];
+        saveTask = [self saveWithItemFields:mutItemFields];
       }];
       
       return saveTask;
