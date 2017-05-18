@@ -16,44 +16,40 @@ static NSString * const PKSearchResultDataAppItemName = @"AppItemName";
 static NSString * const PKSearchResultDataAppIcon = @"AppIcon";
 static NSString * const PKSearchResultDataSpaceId = @"SpaceId";
 static NSString * const PKSearchResultDataSpaceName = @"spaceName";
+static NSString * const PKSearchResultDataOrgId = @"OrganizationId";
+static NSString * const PKSearchResultDataOrgName = @"OrganizationName";
 
 @implementation PKSearchResultData
-
-@synthesize referenceType = referenceType_;
-@synthesize referenceId = referenceId_;
-@synthesize title = title_;
-@synthesize appName = appName_;
-@synthesize appItemName = appItemName_;
-@synthesize appIcon = appIcon_;
-@synthesize spaceId = spaceId_;
-@synthesize spaceName = spaceName_;
-@synthesize createdBy = createdBy_;
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
   self = [super initWithCoder:aDecoder];
   if (self) {
-    referenceType_ = [aDecoder decodeIntForKey:PKSearchResultDataReferenceType];
-    referenceId_ = [aDecoder decodeIntegerForKey:PKSearchResultDataReferenceId];
-    title_ = [[aDecoder decodeObjectForKey:PKSearchResultDataTitle] copy];
-    appName_ = [[aDecoder decodeObjectForKey:PKSearchResultDataAppName] copy];
-    appItemName_ = [[aDecoder decodeObjectForKey:PKSearchResultDataAppItemName] copy];
-    appIcon_ = [[aDecoder decodeObjectForKey:PKSearchResultDataAppIcon] copy];
-    spaceId_ = [aDecoder decodeIntegerForKey:PKSearchResultDataSpaceId];
-    spaceName_ = [[aDecoder decodeObjectForKey:PKSearchResultDataSpaceName] copy];
+    _referenceType = [aDecoder decodeIntForKey:PKSearchResultDataReferenceType];
+    _referenceId = [aDecoder decodeIntegerForKey:PKSearchResultDataReferenceId];
+    _title = [[aDecoder decodeObjectForKey:PKSearchResultDataTitle] copy];
+    _appName = [[aDecoder decodeObjectForKey:PKSearchResultDataAppName] copy];
+    _appItemName = [[aDecoder decodeObjectForKey:PKSearchResultDataAppItemName] copy];
+    _appIcon = [[aDecoder decodeObjectForKey:PKSearchResultDataAppIcon] copy];
+    _spaceId = [aDecoder decodeIntegerForKey:PKSearchResultDataSpaceId];
+    _spaceName = [[aDecoder decodeObjectForKey:PKSearchResultDataSpaceName] copy];
+    _orgId = [aDecoder decodeIntegerForKey:PKSearchResultDataOrgId];
+    _orgName = [[aDecoder decodeObjectForKey:PKSearchResultDataOrgName] copy];
   }
   return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)aCoder {
   [super encodeWithCoder:aCoder];
-  [aCoder encodeInt:referenceType_ forKey:PKSearchResultDataReferenceType];
-  [aCoder encodeInteger:referenceId_ forKey:PKSearchResultDataReferenceId];
-  [aCoder encodeObject:title_ forKey:PKSearchResultDataTitle];
-  [aCoder encodeObject:appName_ forKey:PKSearchResultDataAppName];
-  [aCoder encodeObject:appItemName_ forKey:PKSearchResultDataAppItemName];
-  [aCoder encodeObject:appIcon_ forKey:PKSearchResultDataAppIcon];
-  [aCoder encodeInteger:spaceId_ forKey:PKSearchResultDataSpaceId];
-  [aCoder encodeObject:spaceName_ forKey:PKSearchResultDataSpaceName];
+  [aCoder encodeInt:_referenceType forKey:PKSearchResultDataReferenceType];
+  [aCoder encodeInteger:_referenceId forKey:PKSearchResultDataReferenceId];
+  [aCoder encodeObject:_title forKey:PKSearchResultDataTitle];
+  [aCoder encodeObject:_appName forKey:PKSearchResultDataAppName];
+  [aCoder encodeObject:_appItemName forKey:PKSearchResultDataAppItemName];
+  [aCoder encodeObject:_appIcon forKey:PKSearchResultDataAppIcon];
+  [aCoder encodeInteger:_spaceId forKey:PKSearchResultDataSpaceId];
+  [aCoder encodeObject:_spaceName forKey:PKSearchResultDataSpaceName];
+  [aCoder encodeInteger:_orgId forKey:PKSearchResultDataOrgId];
+  [aCoder encodeObject:_orgName forKey:PKSearchResultDataOrgName];
 }
 
 #pragma mark - Factory methods
@@ -70,6 +66,8 @@ static NSString * const PKSearchResultDataSpaceName = @"spaceName";
   data.spaceId = [[[dict pk_objectForKey:@"space"] pk_objectForKey:@"space_id"] integerValue];
   data.spaceName = [[dict pk_objectForKey:@"space"] pk_objectForKey:@"name"];
   data.createdBy = [PKByLineData dataFromDictionary:[dict pk_objectForKey:@"created_by"]];
+  data.orgId = [[[dict pk_objectForKey:@"org"] pk_objectForKey:@"org_id"] integerValue];
+  data.orgName = [[dict pk_objectForKey:@"org"] pk_objectForKey:@"name"];
   
   return data;
 }
