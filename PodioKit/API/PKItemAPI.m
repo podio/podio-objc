@@ -111,6 +111,19 @@
   return request;
 }
 
++ (PKRequest *)requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds meetingProviderId:(NSNumber *)linkedAccountId {
+  PKRequest *request = [PKItemAPI requestToCreateItemWithAppId:(NSUInteger)appId fields:(NSArray *)fields fileIds:(NSArray *)fileIds];
+  
+  //Insert the meeting provider's ID for linked_account_id
+  if(linkedAccountId.integerValue > 0) {
+    [request.body setObject:linkedAccountId forKey:@"linked_account_id"];
+  } else {
+    [request.body setObject:[NSNull null] forKey:@"linked_account_id"];
+  }
+  
+  return request;
+}
+
 + (PKRequest *)requestToUpdateItemFields:(NSArray *)fields itemId:(NSUInteger)itemId {
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld/value", (unsigned long)itemId] method:PKRequestMethodPUT];
   
@@ -123,8 +136,22 @@
   PKRequest *request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
   
   request.body = [NSMutableDictionary dictionaryWithObject:fields forKey:@"fields"];
+  
   if (fileIds) {
     [request.body setObject:fileIds forKey:@"file_ids"];
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestToUpdateItemWithId:(NSUInteger)itemId fields:(NSArray *)fields fileIds:(NSArray *)fileIds meetingProviderId:(NSNumber *)linkedAccountId {
+  PKRequest *request = [PKItemAPI requestToUpdateItemWithId:(NSUInteger)itemId fields:(NSArray *)fields fileIds:(NSArray *)fileIds];
+  
+  //Insert the meeting provider's ID for linked_account_id
+  if(linkedAccountId.integerValue > 0) {
+    [request.body setObject:linkedAccountId forKey:@"linked_account_id"];
+  } else {
+    [request.body setObject:[NSNull null] forKey:@"linked_account_id"];
   }
   
   return request;
@@ -171,6 +198,36 @@
   
   if (limit > 0) {
     request.parameters[@"limit"] = [NSString stringWithFormat:@"%ld", (unsigned long)limit];
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestToSetReminderForItemWithId:(NSUInteger)itemId reminderDelta:(int)delta {
+  
+  PKRequest *request;
+  
+  if(delta == -1) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/reminder/item/%ld", (unsigned long)itemId] method:PKRequestMethodDELETE];
+  } else {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/reminder/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
+  
+    request.body = [[NSMutableDictionary alloc] initWithCapacity:1];
+    [request.body setValue:@(delta) forKey:@"remind_delta"];
+  }
+  
+  return request;
+}
+
++ (PKRequest *)requestToSetRecurrenceForItemWithId:(NSUInteger)itemId recurrenceOptions:(NSDictionary *)recurrenceOptions {
+  
+  PKRequest *request;
+  
+  if([[recurrenceOptions valueForKey:@"name"] isEqualToString:@"none"]) {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/recurrence/item/%ld", (unsigned long)itemId] method:PKRequestMethodDELETE];
+  } else {
+    request = [PKRequest requestWithURI:[NSString stringWithFormat:@"/recurrence/item/%ld", (unsigned long)itemId] method:PKRequestMethodPUT];
+    request.body = recurrenceOptions;
   }
   
   return request;
