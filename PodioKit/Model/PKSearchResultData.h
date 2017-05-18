@@ -20,5 +20,7 @@
 @property (nonatomic) NSInteger spaceId;
 @property (nonatomic, copy) NSString *spaceName;
 @property (nonatomic, strong) PKByLineData *createdBy;
+@property (nonatomic) NSInteger orgId;
+@property (nonatomic, copy) NSString *orgName;
 
 @end
