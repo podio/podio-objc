@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 # PodioKit 
 
 [![Build Status](https://travis-ci.org/podio/podio-objc.png?branch=master)](https://travis-ci.org/podio/podio-objc)
