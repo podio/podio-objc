@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'azure-linux-ubuntu-18' }
+    agent { label 'aws-linuxdocker-test' }
     options {
         skipStagesAfterUnstable()
         disableConcurrentBuilds()
@@ -22,7 +22,7 @@ pipeline {
                         [$class: 'CloneOption', shallow: true, depth: 1, noTags: false]
                     ],
                     submoduleCfg: [],
-                    userRemoteConfigs: [[credentialsId: 'github-app-podio-jm', url: 'https://github.com/podio/podio-objc.git']]
+                    userRemoteConfigs: [[credentialsId: 'gh-podio-app', url: 'https://github.com/podio/podio-objc.git']]
                 ])
             }
         }
